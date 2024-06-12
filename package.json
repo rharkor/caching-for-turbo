@@ -1,22 +1,19 @@
 {
   "name": "typescript-action",
   "description": "GitHub Actions TypeScript template",
-  "version": "0.0.0",
-  "author": "",
+  "version": "1.0.0",
   "private": true,
-  "homepage": "https://github.com/actions/typescript-action",
+  "homepage": "https://github.com/rharkor/caching-for-turbo",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
-  },
-  "bugs": {
-    "url": "https://github.com/actions/typescript-action/issues"
+    "url": "git+https://github.com/rharkor/caching-for-turbo.git"
   },
   "keywords": [
     "actions",
     "node",
     "setup"
   ],
+  "author": "HUORT Louis (https://louis.huort.com)",
   "exports": {
     ".": "./dist/index.js"
   },
