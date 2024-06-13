@@ -3,7 +3,7 @@
 import { server } from './lib/server'
 import { launchServer } from './lib/server/utils'
 
-const main = async () => {
+const main = async (): Promise<void> => {
   //* Run server
   server()
   //* Run launch server

@@ -1,15 +1,19 @@
-import * as core from '@actions/core'
-import { serverLogFile, serverPort } from './lib/constants'
-import { readFile } from 'fs/promises'
-import { killServer } from './lib/server/utils'
+const core = require('@actions/core')
+const { readFile } = require('fs/promises')
+
+const serverPort = 41230
+const serverLogFile = '/tmp/turbogha.log'
 
 /**
  * The post function of the action. It kills the server
  * @returns {Promise<void>} Resolves when the action is complete.
  */
-export async function run(): Promise<void> {
+async function run() {
   try {
-    await killServer()
+    //* Kill the server
+    await fetch(`http://localhost:${serverPort}/shutdown`, {
+      method: 'DELETE'
+    })
 
     //* Read the logs
     const logs = await readFile(serverLogFile, 'utf-8')
