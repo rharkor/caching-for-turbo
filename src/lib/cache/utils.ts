@@ -108,10 +108,10 @@ export function getCacheClient() {
     data?: { cacheKey: string; archiveLocation: string }
   }> => {
     try {
-      const res = await fetch(`${baseURL}/caches`, {
+      const params = new URLSearchParams({ keys, version })
+      const res = await fetch(`${baseURL}/caches?${params}`, {
         method: 'GET',
-        headers,
-        body: JSON.stringify({ keys, version })
+        headers
       })
       if (!res.ok) {
         const { status, statusText } = res
