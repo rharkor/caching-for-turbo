@@ -97,24 +97,24 @@ export function getCacheClient() {
     data?: { cacheKey: string; archiveLocation: string }
   }> => {
     try {
-      const params = new URLSearchParams({ keys, version })
-      const res = await fetch(`${baseURL}/caches?${params}`, {
-        method: 'GET',
-        headers
-      })
-      if (!res.ok) {
-        const { status, statusText } = res
-        const data = await res.text()
-        const buildedError = new HandledError(status, statusText, data)
+      const queryCacheResponse = await cacheHttpClient.getCacheEntry(
+        [keys],
+        [version]
+      )
+      if (queryCacheResponse?.result?.cacheKey) {
+        return {
+          success: true,
+          data: {
+            cacheKey: queryCacheResponse.result.cacheKey,
+            archiveLocation: queryCacheResponse.result.archiveLocation
+          }
+        }
+      } else {
+        const { statusCode, statusText } = queryCacheResponse
+        const data = await queryCacheResponse.readBody()
+        const buildedError = new HandledError(statusCode, statusText, data)
         return handleFetchError('Unable to query cache')(buildedError)
       }
-      const text = await res.text()
-      if (!text) {
-        return { success: true, data: undefined }
-      }
-      core.info('Cache query response: ' + text)
-      const data = JSON.parse(text)
-      return { success: true, data }
     } catch (error) {
       return handleFetchError('Unable to query cache')(error)
     }
