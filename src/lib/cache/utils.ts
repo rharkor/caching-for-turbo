@@ -52,7 +52,7 @@ export function getCacheClient() {
       })
       if (!res.ok) {
         const { status, statusText } = res
-        const data = await res.json()
+        const data = await res.text()
         if (status === 409) {
           return { success: false }
         }
@@ -115,7 +115,7 @@ export function getCacheClient() {
       })
       if (!res.ok) {
         const { status, statusText } = res
-        const data = await res.json()
+        const data = await res.text()
         const buildedError = new HandledError(status, statusText, data)
         return handleFetchError('Unable to query cache')(buildedError)
       }
