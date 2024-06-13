@@ -88226,6 +88226,9 @@ function getCacheClient() {
                 return handleFetchError('Unable to query cache')(buildedError);
             }
             const text = await res.text();
+            if (!text) {
+                return { success: true, data: undefined };
+            }
             core.info('Cache query response: ' + text);
             const data = JSON.parse(text);
             return { success: true, data };
