@@ -43,10 +43,6 @@ jobs:
         id: npm-lint
         run: npm run lint
 
-      - name: Test
-        id: npm-ci-test
-        run: npm run ci-test
-
   test-action:
     name: GitHub Actions Test
     runs-on: ubuntu-latest
@@ -56,12 +52,19 @@ jobs:
         id: checkout
         uses: actions/checkout@v4
 
-      - name: Test Local Action
-        id: test-action
-        uses: ./
+      - name: Setup Node.js
+        id: setup-node
+        uses: actions/setup-node@v4
         with:
-          milliseconds: 2000
+          node-version-file: .node-version
+          cache: npm
 
-      - name: Print Output
-        id: output
-        run: echo "${{ steps.test-action.outputs.time }}"
+      - name: Install Dependencies
+        id: npm-ci
+        run: npm ci
+
+      - name: Test Local Action
+        uses: ./
+
+      - name: Test build cache
+        run: npm run test
