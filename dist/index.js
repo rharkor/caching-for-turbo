@@ -88417,7 +88417,7 @@ const child_process_1 = __nccwpck_require__(32081);
 const waitForServer = async () => {
     await (0, wait_on_1.default)({
         resources: [`http-get://localhost:${constants_1.serverPort}`],
-        timeout: 10000
+        timeout: 5000
     });
 };
 exports.waitForServer = waitForServer;
@@ -88526,7 +88526,6 @@ async function run() {
     }
 }
 exports.run = run;
-run();
 
 
 /***/ }),
