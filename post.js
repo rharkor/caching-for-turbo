@@ -1,4 +1,3 @@
-const core = require('@actions/core')
 const { readFile } = require('fs/promises')
 
 const serverPort = 41230
@@ -17,7 +16,7 @@ async function run() {
 
     //* Read the logs
     const logs = await readFile(serverLogFile, 'utf-8')
-    core.info(logs)
+    console.log(logs)
   } catch (error) {
     // Fail the workflow run if an error occurs
     if (error instanceof Error) core.setFailed(error.message)
