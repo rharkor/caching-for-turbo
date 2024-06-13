@@ -1,6 +1,8 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Caching for Turborepo'
+description:
+  'Sets up Turborepo Remote Caching to work with GitHub Actions built-in cache.
+  No Vercel account access tokens needed.'
+author: 'HUORT Louis'
 
 # Add your action's branding here. This will appear on the GitHub Marketplace.
 branding:
@@ -9,16 +11,12 @@ branding:
 
 # Define your inputs here.
 inputs:
-  milliseconds:
-    description: 'Your input description here'
-    required: true
-    default: '1000'
-
-# Define your outputs here.
-outputs:
-  time:
-    description: 'Your output description here'
+  cache-prefix:
+    description: 'Prefix for the cache key'
+    required: false
+    default: turbogha_
 
 runs:
   using: node20
   main: dist/index.js
+  post: post.js
