@@ -103,3 +103,4 @@ __tests__/runner/*
 *.code-workspace
 
 .turbo
+tmp.ts

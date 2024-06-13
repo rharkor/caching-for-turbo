@@ -38,7 +38,6 @@ export async function server(): Promise<void> {
     await saveCache(
       request,
       hash,
-      +(request.headers['content-length'] || 0),
       String(request.headers['x-artifact-tag'] || ''),
       request.raw
     )

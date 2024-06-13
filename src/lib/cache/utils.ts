@@ -1,7 +1,10 @@
 import { Readable } from 'node:stream'
 import { env } from '../env'
 import * as core from '@actions/core'
+import * as cacheHttpClient from '@actions/cache/lib/internal/cacheHttpClient'
 import streamToPromise from 'stream-to-promise'
+import { createWriteStream } from 'node:fs'
+import { unlink } from 'node:fs/promises'
 
 class HandledError extends Error {
   status: number
@@ -37,7 +40,7 @@ export function getCacheClient() {
     Accept: 'application/json;api-version=6.0-preview.1'
   })
 
-  const create = async (
+  const reserve = async (
     key: string,
     version: string
   ): Promise<{
@@ -45,70 +48,44 @@ export function getCacheClient() {
     data?: { cacheId: string }
   }> => {
     try {
-      const res = await fetch(`${baseURL}/caches`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({ key, version })
-      })
-      if (!res.ok) {
-        const { status, statusText } = res
-        const data = await res.text()
-        if (status === 409) {
-          return { success: false }
+      const reserveCacheResponse = await cacheHttpClient.reserveCache(key, [
+        version
+      ])
+      if (reserveCacheResponse?.result?.cacheId) {
+        return {
+          success: true,
+          data: {
+            cacheId: reserveCacheResponse.result.cacheId
+          }
         }
-        // TODO Remove
-        const requestEncodedB64 = Buffer.from(
-          JSON.stringify({
-            url: `${baseURL}/caches`,
-            method: 'POST',
-            headers,
-            body: JSON.stringify({ key, version })
-          })
-        ).toString('base64')
-        core.info(
-          `Cache create response: ${status} ${statusText}: ${requestEncodedB64}`
-        )
-        const buildedError = new HandledError(status, statusText, data)
+      } else if (reserveCacheResponse?.statusCode === 409) {
+        return { success: false }
+      } else {
+        const { statusCode, statusText } = reserveCacheResponse
+        const data = await reserveCacheResponse.readBody()
+        const buildedError = new HandledError(statusCode, statusText, data)
         return handleFetchError('Unable to reserve cache')(buildedError)
       }
-      const data = await res.json()
-      return { success: true, data }
     } catch (error) {
       return handleFetchError('Unable to reserve cache')(error)
     }
   }
 
-  const upload = async (
-    id: string,
-    stream: Readable,
-    size: number
-  ): Promise<void> => {
+  const save = async (id: number, stream: Readable): Promise<void> => {
     try {
-      const body = await streamToPromise(stream)
-      await fetch(`${baseURL}/caches/${id}`, {
-        method: 'PATCH',
-        headers: {
-          ...headers,
-          'Content-Length': size.toString(),
-          'Content-Type': 'application/octet-stream',
-          'Content-Range': `bytes 0-${size - 1}/*`
-        },
-        body
-      })
+      //* Create a temporary file to store the cache
+      const tempFile = `/tmp/cache-${id}.tg.bin`
+      const writeStream = createWriteStream(tempFile)
+      await streamToPromise(stream.pipe(writeStream))
+      core.info(`Saved cache to ${tempFile}`)
+
+      await cacheHttpClient.saveCache(id, tempFile)
+      core.info(`Saved cache ${id}`)
+
+      //* Remove the temporary file
+      await unlink(tempFile)
     } catch (error) {
       handleFetchError('Unable to upload cache')(error)
-    }
-  }
-
-  const commit = async (id: string, size: number): Promise<void> => {
-    try {
-      await fetch(`${baseURL}/caches/${id}`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({ size })
-      })
-    } catch (error) {
-      handleFetchError('Unable to commit cache')(error)
     }
   }
 
@@ -144,9 +121,8 @@ export function getCacheClient() {
   }
 
   return {
-    create,
-    upload,
-    commit,
+    reserve,
+    save,
     query
   }
 }

@@ -20,7 +20,6 @@ type RequestContext = {
 export async function saveCache(
   ctx: RequestContext,
   hash: string,
-  size: number,
   tag: string,
   stream: Readable
 ): Promise<void> {
@@ -32,7 +31,7 @@ export async function saveCache(
     return
   }
   const client = getCacheClient()
-  const existingCacheResponse = await client.create(
+  const existingCacheResponse = await client.reserve(
     getCacheKey(hash, tag),
     cacheVersion
   )
@@ -51,9 +50,8 @@ export async function saveCache(
     )
   }
   ctx.log.info(`Reserved cache ${id}`)
-  await client.upload(id, stream, size)
-  await client.commit(id, size)
-  ctx.log.info(`Saved cache ${id} for ${hash} (${size} bytes)`)
+  await client.save(parseInt(id), stream)
+  ctx.log.info(`Saved cache ${id} for ${hash}`)
 }
 
 export async function getCache(
