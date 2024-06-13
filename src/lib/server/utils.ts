@@ -12,7 +12,7 @@ import { spawn } from 'child_process'
 export const waitForServer = async (): Promise<void> => {
   await waitOn({
     resources: [`http-get://localhost:${serverPort}`],
-    timeout: 10000
+    timeout: 5000
   })
 }
 
