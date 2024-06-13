@@ -88172,6 +88172,7 @@ function getCacheClient() {
                 if (status === 409) {
                     return { success: false };
                 }
+                core.info(`Cache create response: ${status} ${statusText}: ${data}`);
                 const buildedError = new HandledError(status, statusText, data);
                 return handleFetchError('Unable to reserve cache')(buildedError);
             }
