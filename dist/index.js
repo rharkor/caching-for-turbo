@@ -88172,7 +88172,14 @@ function getCacheClient() {
                 if (status === 409) {
                     return { success: false };
                 }
-                core.info(`Cache create response: ${status} ${statusText}: ${data}`);
+                // TODO Remove
+                const requestEncodedB64 = Buffer.from(JSON.stringify({
+                    url: `${baseURL}/caches`,
+                    method: 'POST',
+                    headers,
+                    body: JSON.stringify({ key, version })
+                })).toString('base64');
+                core.info(`Cache create response: ${status} ${statusText}: ${requestEncodedB64}`);
                 const buildedError = new HandledError(status, statusText, data);
                 return handleFetchError('Unable to reserve cache')(buildedError);
             }
