@@ -101,19 +101,17 @@ export function getCacheClient() {
         [keys],
         [version]
       )
-      if (queryCacheResponse?.result?.cacheKey) {
+      core.info(`Cache result ${queryCacheResponse}`)
+      if (queryCacheResponse?.archiveLocation) {
         return {
           success: true,
           data: {
-            cacheKey: queryCacheResponse.result.cacheKey,
-            archiveLocation: queryCacheResponse.result.archiveLocation
+            cacheKey: keys,
+            archiveLocation: queryCacheResponse.archiveLocation
           }
         }
       } else {
-        const { statusCode, statusText } = queryCacheResponse
-        const data = await queryCacheResponse.readBody()
-        const buildedError = new HandledError(statusCode, statusText, data)
-        return handleFetchError('Unable to query cache')(buildedError)
+        return handleFetchError('Unable to query cache')(queryCacheResponse)
       }
     } catch (error) {
       return handleFetchError('Unable to query cache')(error)
