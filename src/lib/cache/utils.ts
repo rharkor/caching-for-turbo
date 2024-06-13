@@ -34,11 +34,6 @@ export function getCacheClient() {
   if (!env.valid) {
     throw new Error('Cache API env vars are not set')
   }
-  const baseURL = `${env.ACTIONS_CACHE_URL.replace(/\/$/, '')}/_apis/artifactcache`
-  const headers = new Headers({
-    Authorization: `Bearer ${env.ACTIONS_RUNTIME_TOKEN}`,
-    Accept: 'application/json;api-version=6.0-preview.1'
-  })
 
   const reserve = async (
     key: string,
@@ -101,7 +96,6 @@ export function getCacheClient() {
         [keys],
         [version]
       )
-      core.info(`Cache result ${queryCacheResponse}`)
       if (queryCacheResponse?.archiveLocation) {
         return {
           success: true,
@@ -111,7 +105,9 @@ export function getCacheClient() {
           }
         }
       } else {
-        return handleFetchError('Unable to query cache')(queryCacheResponse)
+        return {
+          success: false
+        }
       }
     } catch (error) {
       return handleFetchError('Unable to query cache')(error)
