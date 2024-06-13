@@ -88225,7 +88225,9 @@ function getCacheClient() {
                 const buildedError = new HandledError(status, statusText, data);
                 return handleFetchError('Unable to query cache')(buildedError);
             }
-            const data = await res.json();
+            const text = await res.text();
+            core.info('Cache query response: ' + text);
+            const data = JSON.parse(text);
             return { success: true, data };
         }
         catch (error) {
