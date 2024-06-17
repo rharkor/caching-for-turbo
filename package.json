@@ -57,9 +57,9 @@
     "make-coverage-badge": "^1.2.0",
     "prettier": "^3.3.2",
     "prettier-eslint": "^16.3.0",
-    "ts-jest": "^29.1.4",
-    "tsx": "^4.15.4",
-    "turbo": "^2.0.3",
+    "ts-jest": "^29.1.5",
+    "tsx": "^4.15.5",
+    "turbo": "^2.0.4",
     "typescript": "^5.4.5"
   },
   "packageManager": "npm@10.8.1"
