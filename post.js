@@ -1,3 +1,4 @@
+const core = require('@actions/core')
 const { readFile } = require('fs/promises')
 
 const serverPort = 41230
