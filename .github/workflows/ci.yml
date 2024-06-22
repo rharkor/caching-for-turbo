@@ -68,3 +68,29 @@ jobs:
 
       - name: Test build cache
         run: npm run test
+
+  test-action-windows:
+    name: GitHub Actions Test (Windows)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        id: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Install Dependencies
+        id: npm-ci
+        run: npm ci
+
+      - name: Test Local Action
+        uses: ./
+
+      - name: Test build cache
+        run: npm run test
