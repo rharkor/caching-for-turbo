@@ -25,7 +25,6 @@ export async function launchServer(devRun?: boolean): Promise<void> {
   if (!devRun) {
     //* Launch a detached child process to run the server
     // See: https://nodejs.org/docs/latest-v16.x/api/child_process.html#optionsdetached
-    core.info(JSON.stringify(process.env))
     const out = openSync(serverLogFile, 'a')
     const err = openSync(serverLogFile, 'a')
     const child = spawn(process.argv[0], [process.argv[1], '--server'], {
