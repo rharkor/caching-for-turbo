@@ -1,7 +1,11 @@
+const core = require('@actions/core')
 const { readFile } = require('fs/promises')
+const { join } = require('path')
 
 const serverPort = 41230
-const serverLogFile = '/tmp/turbogha.log'
+const serverLogFile = process.env.RUNNER_TEMP
+  ? join(process.env.RUNNER_TEMP, 'turbogha.log')
+  : '/tmp/turbogha.log'
 
 /**
  * The post function of the action. It kills the server
