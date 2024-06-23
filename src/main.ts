@@ -12,11 +12,6 @@ export async function run(): Promise<void> {
     if (process.argv[2] === '--server') {
       return server()
     }
-    //* Post setup
-    if (process.argv[2] === '--post-setup') {
-      core.info('Post setup')
-      return
-    }
     //* Base process
     return launchServer()
   } catch (error) {
