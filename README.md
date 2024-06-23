@@ -17,12 +17,12 @@ Add this to your GitHub Actions workflow, **before** running `turbo build`.
 
 The action will:
 
-1. Launch a server on `localhost:41230` (and waits for it to be ready).
+1. Launch a server on `localhost:41230` (and wait for it to be ready).
 
-2. Exports the `TURBO_API`, `TURBO_TOKEN` and `TURBO_TEAM` environment variables
+2. Export the `TURBO_API`, `TURBO_TOKEN` and `TURBO_TEAM` environment variables
    for use by `turbo build`.
 
-3. Sets up a post-build step to print the server logs (for debugging).
+3. Set up a post-build step to print the server logs (for debugging).
 
 ## Configuration
 
