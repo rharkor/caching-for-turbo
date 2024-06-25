@@ -63,10 +63,26 @@ jobs:
         id: npm-ci
         run: npm ci
 
-      - name: Test Local Action
+      - name: Test Local Action (no cache)
         uses: ./
+        with:
+          # Use a unique cache prefix for each pipeline & job
+          cache-prefix:
+            ${{ runner.os }}-${{ github.run_id }}-${{ github.run_number }}-${{
+            runner.os }}
 
       - name: Test build cache
+        run: npm run test
+
+      - name: Test Local Action (with cache)
+        uses: ./
+        with:
+          # Use a unique cache prefix for each pipeline & job
+          cache-prefix:
+            ${{ runner.os }}-${{ github.run_id }}-${{ github.run_number }}-${{
+            runner.os }}
+
+      - name: Test build cache (full cache)
         run: npm run test
 
   test-action-windows:
@@ -89,8 +105,24 @@ jobs:
         id: npm-ci
         run: npm ci
 
-      - name: Test Local Action
+      - name: Test Local Action (no cache)
         uses: ./
+        with:
+          # Use a unique cache prefix for each pipeline & job
+          cache-prefix:
+            ${{ runner.os }}-${{ github.run_id }}-${{ github.run_number }}-${{
+            runner.os }}
 
       - name: Test build cache
+        run: npm run test
+
+      - name: Test Local Action (with cache)
+        uses: ./
+        with:
+          # Use a unique cache prefix for each pipeline & job
+          cache-prefix:
+            ${{ runner.os }}-${{ github.run_id }}-${{ github.run_number }}-${{
+            runner.os }}
+
+      - name: Test build cache (full cache)
         run: npm run test
