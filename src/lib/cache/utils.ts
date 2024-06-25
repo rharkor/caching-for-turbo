@@ -5,6 +5,7 @@ import * as cacheHttpClient from '@actions/cache/lib/internal/cacheHttpClient'
 import streamToPromise from 'stream-to-promise'
 import { createWriteStream } from 'node:fs'
 import { unlink } from 'node:fs/promises'
+import { getTempCachePath } from '../constants'
 
 class HandledError extends Error {
   status: number
@@ -69,7 +70,7 @@ export function getCacheClient() {
   const save = async (id: number, stream: Readable): Promise<void> => {
     try {
       //* Create a temporary file to store the cache
-      const tempFile = `/tmp/cache-${id}.tg.bin`
+      const tempFile = getTempCachePath(id)
       const writeStream = createWriteStream(tempFile)
       await streamToPromise(stream.pipe(writeStream))
       core.info(`Saved cache to ${tempFile}`)
