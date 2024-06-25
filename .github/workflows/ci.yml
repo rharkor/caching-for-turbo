@@ -44,7 +44,7 @@ jobs:
         run: npm run lint
 
   test-action:
-    name: GitHub Actions Test
+    name: GitHub Actions Test (Linux)
     runs-on: ubuntu-latest
 
     steps:
@@ -65,9 +65,17 @@ jobs:
 
       - name: Test Local Action
         uses: ./
+        with:
+          # Use a unique cache prefix for each pipeline & job
+          cache-prefix:
+            ${{ runner.os }}-${{ github.run_id }}-${{ github.run_number }}-${{
+            runner.os }}
 
       - name: Test build cache
         run: npm run test
+
+      - name: Test build cache (full cache)
+        run: ./check-full-turbo.sh
 
   test-action-windows:
     name: GitHub Actions Test (Windows)
@@ -91,6 +99,14 @@ jobs:
 
       - name: Test Local Action
         uses: ./
+        with:
+          # Use a unique cache prefix for each pipeline & job
+          cache-prefix:
+            ${{ runner.os }}-${{ github.run_id }}-${{ github.run_number }}-${{
+            runner.os }}
 
       - name: Test build cache
         run: npm run test
+
+      - name: Test build cache (full cache)
+        run: ./check-full-turbo.sh

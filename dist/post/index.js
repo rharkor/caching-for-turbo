@@ -24949,7 +24949,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.serverLogFile = exports.getCacheKey = exports.cachePrefix = exports.cacheVersion = exports.serverPort = void 0;
+exports.getTempCachePath = exports.getFsCachePath = exports.serverLogFile = exports.getCacheKey = exports.cachePrefix = exports.cacheVersion = exports.serverPort = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const path_1 = __nccwpck_require__(1017);
 const env_1 = __nccwpck_require__(2343);
@@ -24961,6 +24961,10 @@ exports.getCacheKey = getCacheKey;
 exports.serverLogFile = env_1.env.RUNNER_TEMP
     ? (0, path_1.join)(env_1.env.RUNNER_TEMP, 'turbogha.log')
     : '/tmp/turbogha.log';
+const getFsCachePath = (hash) => (0, path_1.join)(env_1.env.RUNNER_TEMP || '/tmp', `${hash}.tg.bin`);
+exports.getFsCachePath = getFsCachePath;
+const getTempCachePath = (id) => (0, path_1.join)(env_1.env.RUNNER_TEMP || '/tmp', `cache-${id}.tg.bin`);
+exports.getTempCachePath = getTempCachePath;
 
 
 /***/ }),

@@ -12,7 +12,7 @@ Add this to your GitHub Actions workflow, **before** running `turbo build`.
 <!-- prettier-ignore -->
 ```yaml
       - name: Cache for Turbo
-        uses: rharkor/caching-for-turbo@v1.4
+        uses: rharkor/caching-for-turbo@v1.5
 ```
 
 The action will:
