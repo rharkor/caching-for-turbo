@@ -75,12 +75,7 @@ jobs:
         run: npm run test
 
       - name: Test build cache (full cache)
-        run: |
-          npm run test | tee test-output.log
-          if ! grep -q "FULL TURBO" test-output.log; then
-            echo "FULL TURBO not found in output"
-            exit 1
-          fi
+        run: ./check-full-turbo.sh
 
   test-action-windows:
     name: GitHub Actions Test (Windows)
@@ -114,9 +109,4 @@ jobs:
         run: npm run test
 
       - name: Test build cache (full cache)
-        run: |
-          npm run test | tee test-output.log
-          if ! findstr "FULL TURBO" test-output.log; then
-            echo "FULL TURBO not found in output"
-            exit 1
-          fi
+        run: ./check-full-turbo.sh
