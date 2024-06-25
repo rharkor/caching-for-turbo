@@ -10,3 +10,7 @@ export const getCacheKey = (hash: string, tag?: string): string =>
 export const serverLogFile = env.RUNNER_TEMP
   ? join(env.RUNNER_TEMP, 'turbogha.log')
   : '/tmp/turbogha.log'
+export const getFsCachePath = (hash: string): string =>
+  join(env.RUNNER_TEMP || '/tmp', `${hash}.tg.bin`)
+export const getTempCachePath = (id: number): string =>
+  join(env.RUNNER_TEMP || '/tmp', `cache-${id}.tg.bin`)

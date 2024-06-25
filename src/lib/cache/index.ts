@@ -8,7 +8,7 @@ import {
   statSync
 } from 'node:fs'
 import { getCacheClient } from './utils'
-import { cacheVersion, getCacheKey } from '../constants'
+import { cacheVersion, getCacheKey, getFsCachePath } from '../constants'
 
 type RequestContext = {
   log: {
@@ -27,7 +27,7 @@ export async function saveCache(
     ctx.log.info(
       `Using filesystem cache because cache API env vars are not set`
     )
-    await pipeline(stream, createWriteStream(`/tmp/${hash}.tg.bin`))
+    await pipeline(stream, createWriteStream(getFsCachePath(hash)))
     return
   }
   const client = getCacheClient()
@@ -60,12 +60,14 @@ export async function getCache(
 ): Promise<
   [number | undefined, Readable | ReadableStream, string | undefined] | null
 > {
+  //* Get cache from filesystem if cache API env vars are not set
   if (!env.valid) {
-    const path = `/tmp/${hash}.tg.bin`
+    const path = getFsCachePath(hash)
     if (!existsSync(path)) return null
     const size = statSync(path).size
     return [size, createReadStream(path), undefined]
   }
+  //* Get cache from cache API
   const client = getCacheClient()
   const cacheKey = getCacheKey(hash)
   const { data } = await client.query(cacheKey, cacheVersion)
