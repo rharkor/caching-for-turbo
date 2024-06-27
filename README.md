@@ -1,62 +1,63 @@
-# Caching for Turborepo
+# Caching for Turborepo with GitHub Actions
 
-[![typescript-action status](https://github.com/rharkor/caching-for-turbo/workflows/ci/badge.svg)](https://github.com/rharkor/caching-for-turbo/actions)
+[![CI Status](https://github.com/rharkor/caching-for-turbo/workflows/ci/badge.svg)](https://github.com/rharkor/caching-for-turbo/actions)
 
-Caching for [Turborepo](https://turbo.build/repo/), using GitHub Actions’ cache
-service.
+Supercharge your [Turborepo](https://turbo.build/repo/) builds with our
+dedicated GitHub Actions caching service, designed to make your CI workflows
+faster and more efficient.
 
-## How to use
+## Quick Start
 
-Add this to your GitHub Actions workflow, **before** running `turbo build`.
+Easily integrate our caching action into your GitHub Actions workflow by adding
+the following step **before** you run `turbo build`:
 
-<!-- prettier-ignore -->
 ```yaml
-      - name: Cache for Turbo
-        uses: rharkor/caching-for-turbo@v1.5
+- name: Cache for Turbo
+  uses: rharkor/caching-for-turbo@v1.5
 ```
 
-The action will:
+This GitHub Action facilitates:
 
-1. Launch a server on `localhost:41230` (and waits for it to be ready).
+1. **Server Initialization**: Automatically spins up a server on
+   `localhost:41230`.
+2. **Environment Setup**: Sets up `TURBO_API`, `TURBO_TOKEN`, and `TURBO_TEAM`
+   environment variables required by `turbo build`.
+3. **Efficient Caching**: Leverages GitHub's cache service to significantly
+   accelerate build times.
 
-2. Exports the `TURBO_API`, `TURBO_TOKEN` and `TURBO_TEAM` environment variables
-   for use by `turbo build`.
+## Configurable Options
 
-3. Sets up a post-build step to print the server logs (for debugging).
+Customize the caching behavior with the following optional settings (defaults
+provided):
 
-## Configuration
-
-Configuration is optional. Here are the available options and their default
-values:
-
-<!-- prettier-ignore -->
 ```yaml
-        with:
-          # Set the prefix for the cache keys.
-          cache-prefix: turbogha_
+with:
+  cache-prefix: turbogha_ # Custom prefix for cache keys
 ```
 
-## Development
+## Contributing
 
-To run the tests:
+### Set Up Your Development Environment
 
-Start a server in a separate terminal:
+1. Start the development server:
 
-```bash
-npm run dev-run
-```
+   ```bash
+   npm run dev-run
+   ```
 
-Run the tests:
+2. In a separate terminal, execute the tests:
 
-```bash
-npm test
-```
+   ```bash
+   npm test
+   ```
 
-## License
+## Licensing
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE)
+Licensed under the MIT License. For more details, see the [LICENSE](LICENSE)
 file.
 
-The code was inspired by
+## Acknowledgements
+
+This project is inspired by
 [dtinth](https://github.com/dtinth/setup-github-actions-caching-for-turbo/actions)
-but was entirely rewritten to be more robust.
+and has been comprehensively rewritten for enhanced robustness and reliability.
