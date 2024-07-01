@@ -58,8 +58,8 @@
     "prettier": "^3.3.2",
     "prettier-eslint": "^16.3.0",
     "ts-jest": "^29.1.4",
-    "tsx": "^4.15.4",
-    "turbo": "^2.0.3",
+    "tsx": "^4.16.0",
+    "turbo": "^2.0.6",
     "typescript": "^5.4.5"
   },
   "packageManager": "npm@10.8.1"
