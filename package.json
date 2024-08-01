@@ -1,6 +1,6 @@
 {
-  "name": "typescript-action",
-  "description": "GitHub Actions TypeScript template",
+  "name": "@rharkor/caching-for-turbo",
+  "description": "Sets up Turborepo Remote Caching to work with GitHub Actions built-in cache",
   "version": "1.0.0",
   "private": true,
   "homepage": "https://github.com/rharkor/caching-for-turbo",
