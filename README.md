@@ -1,6 +1,6 @@
 # Caching for Turborepo with GitHub Actions
 
-[![CI Status](https://github.com/rharkor/caching-for-turbo/workflows/ci/badge.svg)](https://github.com/rharkor/caching-for-turbo/actions)
+[![CI Status](https://github.com/rharkor/caching-for-turbo/workflows/Test%20core%20functionality/badge.svg)](https://github.com/rharkor/caching-for-turbo/actions)
 
 Supercharge your [Turborepo](https://turbo.build/repo/) builds with our
 dedicated GitHub Actions caching service, designed to make your CI workflows
@@ -55,7 +55,7 @@ the following step **before** you run `turbo build`:
 
 ```yaml
 - name: Cache for Turbo
-  uses: rharkor/caching-for-turbo@v1.7
+  uses: rharkor/caching-for-turbo@v1.8
 ```
 
 This GitHub Action facilitates:
@@ -75,6 +75,95 @@ provided):
 ```yaml
 with:
   cache-prefix: turbogha_ # Custom prefix for cache keys
+  provider: github # Storage provider: 'github' (default) or 's3'
+
+  # S3 Provider Configuration (required when provider is set to 's3')
+  s3-access-key-id: ${{ secrets.S3_ACCESS_KEY_ID }} # S3 access key
+  s3-secret-access-key: ${{ secrets.S3_SECRET_ACCESS_KEY }} # S3 secret key
+  s3-bucket: your-bucket-name # S3 bucket name
+  s3-region: us-east-1 # S3 bucket region
+  s3-endpoint: https://s3.amazonaws.com # S3 endpoint
+  s3-prefix: turbogha/ # Optional prefix for S3 objects (default: 'turbogha/')
+```
+
+### Storage Providers
+
+#### GitHub Cache (Default)
+
+By default, this action uses GitHub's built-in cache service, which offers:
+
+- Seamless integration with GitHub Actions
+- No additional setup required
+- Automatic cache pruning by GitHub
+
+#### S3 Storage
+
+For teams requiring more control over caching infrastructure, the action
+supports Amazon S3 or compatible storage:
+
+- Store cache artifacts in your own S3 bucket
+- Works with any S3-compatible storage (AWS S3, MinIO, DigitalOcean Spaces,
+  etc.)
+- Greater control over retention policies and storage costs
+- Useful for larger organizations with existing S3 infrastructure
+
+It is very important to note that by default the cached files are stored
+forever. It is recommended to set a max-size (or other cleanup options) to avoid
+unexpected costs.
+
+Example S3 configuration:
+
+```yaml
+- name: Cache for Turbo
+  uses: rharkor/caching-for-turbo@v1.8
+  with:
+    provider: s3
+    s3-access-key-id: ${{ secrets.S3_ACCESS_KEY_ID }}
+    s3-secret-access-key: ${{ secrets.S3_SECRET_ACCESS_KEY }}
+    s3-bucket: my-turbo-cache-bucket
+    s3-region: us-west-2
+    s3-endpoint: https://s3.amazonaws.com
+```
+
+### Cache Cleanup Options
+
+To prevent unbounded growth of your cache (especially important when using S3
+storage), you can configure automatic cleanup using one or more of these
+options:
+
+```yaml
+with:
+  # Cleanup by age - remove cache entries older than the specified duration
+  max-age: 1mo # e.g., 1d (1 day), 1w (1 week), 1mo (1 month)
+
+  # Cleanup by count - keep only the specified number of most recent cache entries
+  max-files: 300 # e.g., limit to 300 files
+
+  # Cleanup by size - remove oldest entries when total size exceeds the limit
+  max-size: 10gb # e.g., 100mb, 5gb, 10gb
+```
+
+When using the GitHub provider, the built-in cache has its own pruning
+mechanism, but these options can still be useful for more precise control.
+
+For S3 storage, implementing these cleanup options is **highly recommended** to
+control storage costs, as S3 does not automatically remove old cache entries.
+
+Example with cleanup configuration:
+
+```yaml
+- name: Cache for Turbo
+  uses: rharkor/caching-for-turbo@v1.8
+  with:
+    provider: s3
+    s3-access-key-id: ${{ secrets.S3_ACCESS_KEY_ID }}
+    s3-secret-access-key: ${{ secrets.S3_SECRET_ACCESS_KEY }}
+    s3-bucket: my-turbo-cache-bucket
+    s3-region: us-west-2
+    s3-endpoint: https://s3.amazonaws.com
+    # Cleanup configuration
+    max-age: 2w
+    max-size: 5gb
 ```
 
 ## Contributing
@@ -90,8 +179,14 @@ with:
 2. In a separate terminal, execute the tests:
 
    ```bash
-   npm test
+   npm test -- --cache=remote:rw --no-daemon
    ```
+
+#### Testing the cleanup script
+
+```bash
+npm run cleanup
+```
 
 ## Licensing
 
