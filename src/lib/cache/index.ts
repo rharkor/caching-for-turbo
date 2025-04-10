@@ -52,25 +52,19 @@ export async function getCache(
   //* Get cache from cache API
   const client = getCacheClient()
   const cacheKey = getCacheKey(hash)
-  const { data } = await client.query(getTempCachePath(cacheKey), cacheKey)
+  const fileRestorationPath = getTempCachePath(cacheKey)
+  const foundKey = await client.restore(fileRestorationPath, cacheKey)
   ctx.log.info(`Cache lookup for ${cacheKey}`)
-  if (!data) {
+  if (!foundKey) {
     ctx.log.info(`Cache lookup did not return data`)
     return null
   }
-  const [foundCacheKey, artifactTag] = String(data.cacheKey).split('#')
+  const [foundCacheKey, artifactTag] = String(foundKey).split('#')
   if (foundCacheKey !== cacheKey) {
     ctx.log.info(`Cache key mismatch: ${foundCacheKey} !== ${cacheKey}`)
     return null
   }
-  const resp = await fetch(data.archiveLocation)
-  const size = +(resp.headers.get('content-length') || 0)
-  const readableStream = resp.body
-  // Debug print file content
-  const fileContent = await resp.text()
-  ctx.log.info(`File content: ${fileContent}`)
-  if (!readableStream) {
-    throw new Error('Failed to retrieve cache stream')
-  }
+  const size = statSync(fileRestorationPath).size
+  const readableStream = createReadStream(fileRestorationPath)
   return [size, readableStream, artifactTag]
 }
