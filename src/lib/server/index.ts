@@ -1,7 +1,7 @@
 import Fastify from 'fastify'
 import { serverPort } from '../constants'
 import { getCache, saveCache } from '../cache'
-import cache from "@actions/cache"
+import cache from '@actions/cache'
 import fs from 'fs/promises'
 
 export async function server(): Promise<void> {
@@ -11,8 +11,9 @@ export async function server(): Promise<void> {
   })
 
   //! DEBUG try to insert cache
+  console.log('DEBUG try to insert cache')
   await fs.writeFile('test.txt', 'test')
-  await cache.saveCache(["test.txt"], 'test')
+  await cache.saveCache(['test.txt'], 'test')
 
   //? Server status check
   fastify.get('/', async () => {

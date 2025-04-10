@@ -1,10 +1,5 @@
 import waitOn from 'wait-on'
-import {
-  cachePrefix,
-  cachePath,
-  serverLogFile,
-  serverPort
-} from '../constants'
+import { cachePrefix, cachePath, serverLogFile, serverPort } from '../constants'
 import * as core from '@actions/core'
 import { openSync } from 'fs'
 import { spawn } from 'child_process'

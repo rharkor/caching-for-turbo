@@ -58,8 +58,14 @@ export function getCacheClient() {
         return { success: false }
       } else {
         const { statusCode, error } = reserveCacheResponse
-        const buildedError = new HandledError(statusCode, error?.message || 'Unknown', reserveCacheResponse)
-        return handleFetchError(`Unable to reserve cache (status: ${statusCode})`)(buildedError)
+        const buildedError = new HandledError(
+          statusCode,
+          error?.message || 'Unknown',
+          reserveCacheResponse
+        )
+        return handleFetchError(
+          `Unable to reserve cache (status: ${statusCode})`
+        )(buildedError)
       }
     } catch (error) {
       return handleFetchError('Unable to reserve cache')(error)
