@@ -44,6 +44,9 @@ export async function cleanup(ctx: RequestContext) {
 
   const files = await provider.list()
 
+  ctx.log.info(`Found ${files.length} files in cache`)
+  core.info(JSON.stringify(files, null, 2))
+
   const fileToDelete: TListFile[] = []
   if (maxAgeParsed) {
     const now = new Date()

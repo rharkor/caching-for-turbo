@@ -159,22 +159,27 @@ export const getS3Provider = (): TProvider => {
 
   const list = async (): Promise<TListFile[]> => {
     try {
-      const listCommand = new ListObjectsV2Command({
-        Bucket: s3Bucket,
-        Prefix: s3Prefix
-      })
-
       const files: TListFile[] = []
       let continuationToken: string | undefined
 
       do {
-        if (continuationToken) {
-          listCommand.input.ContinuationToken = continuationToken
-        }
+        // Create a new command for each request with the current continuation token
+        const listCommand = new ListObjectsV2Command({
+          Bucket: s3Bucket,
+          Prefix: s3Prefix,
+          MaxKeys: 1000,
+          ContinuationToken: continuationToken
+        })
+
+        core.debug(
+          `Listing S3 objects with prefix ${s3Prefix}${continuationToken ? ' and continuation token' : ''}`
+        )
 
         const response = await s3Client.send(listCommand)
 
-        if (response.Contents) {
+        if (response.Contents && response.Contents.length > 0) {
+          core.debug(`Found ${response.Contents.length} objects`)
+
           const objects = response.Contents.filter(obj => obj.Key).map(
             (obj): TListFile => {
               return {
@@ -189,8 +194,12 @@ export const getS3Provider = (): TProvider => {
         }
 
         continuationToken = response.NextContinuationToken
+        if (continuationToken) {
+          core.debug(`NextContinuationToken: ${continuationToken}`)
+        }
       } while (continuationToken)
 
+      core.debug(`Total files listed: ${files.length}`)
       return files
     } catch (error) {
       core.error(`Error listing artifacts from S3: ${error}`)
