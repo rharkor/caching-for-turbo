@@ -55,7 +55,7 @@ the following step **before** you run `turbo build`:
 
 ```yaml
 - name: Cache for Turbo
-  uses: rharkor/caching-for-turbo@v1.5
+  uses: rharkor/caching-for-turbo@v1.6
 ```
 
 This GitHub Action facilitates:
