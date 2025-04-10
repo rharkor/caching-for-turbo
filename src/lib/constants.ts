@@ -4,7 +4,9 @@ import { env } from './env'
 
 export const serverPort = 41230
 export const cachePath = 'turbogha_v2'
-export const cachePrefix = core.getInput('cache-prefix') || 'turbogha_'
+export const cachePrefix = core.getInput('cache-prefix')
+  ? `${core.getInput('cache-prefix')}-${cachePath}`
+  : cachePath
 export const getCacheKey = (hash: string, tag?: string): string =>
   `${cachePrefix}${hash}${tag ? `#${tag}` : ''}`
 export const serverLogFile = env.RUNNER_TEMP

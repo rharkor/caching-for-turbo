@@ -25671,7 +25671,9 @@ const path_1 = __nccwpck_require__(6928);
 const env_1 = __nccwpck_require__(1363);
 exports.serverPort = 41230;
 exports.cachePath = 'turbogha_v2';
-exports.cachePrefix = core.getInput('cache-prefix') || 'turbogha_';
+exports.cachePrefix = core.getInput('cache-prefix')
+    ? `${core.getInput('cache-prefix')}-${exports.cachePath}`
+    : exports.cachePath;
 const getCacheKey = (hash, tag) => `${exports.cachePrefix}${hash}${tag ? `#${tag}` : ''}`;
 exports.getCacheKey = getCacheKey;
 exports.serverLogFile = env_1.env.RUNNER_TEMP
