@@ -1,7 +1,7 @@
 import waitOn from 'wait-on'
 import {
   cachePrefix,
-  cacheVersion,
+  cachePath,
   serverLogFile,
   serverPort
 } from '../constants'
@@ -32,7 +32,7 @@ export async function launchServer(devRun?: boolean): Promise<void> {
       stdio: ['ignore', out, err]
     })
     child.unref()
-    core.info(`Cache version: ${cacheVersion}`)
+    core.info(`Cache version: ${cachePath}`)
     core.info(`Cache prefix: ${cachePrefix}`)
     core.info(`Launched child process: ${child.pid}`)
     core.info(`Server log file: ${serverLogFile}`)
