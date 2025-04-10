@@ -25672,7 +25672,7 @@ const env_1 = __nccwpck_require__(1363);
 exports.serverPort = 41230;
 exports.cachePath = 'turbogha_v2';
 exports.cachePrefix = core.getInput('cache-prefix')
-    ? `${core.getInput('cache-prefix')}-${exports.cachePath}`
+    ? `${exports.cachePath}-${core.getInput('cache-prefix')}`
     : exports.cachePath;
 const getCacheKey = (hash, tag) => `${exports.cachePrefix}${hash}${tag ? `#${tag}` : ''}`;
 exports.getCacheKey = getCacheKey;
