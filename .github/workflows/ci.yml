@@ -113,7 +113,7 @@ jobs:
 
   #? This step test nothing, the goal is to see if we can fetch an already saved cache from another run
   test-action-all-time-cache:
-    name: GitHub Actions Test (Linux)
+    name: GitHub Actions Test (All Time Cache)
     runs-on: ubuntu-latest
 
     steps:

@@ -105,7 +105,7 @@ export function getCacheClient() {
       const response = await twirpClient.GetCacheEntryDownloadURL(request)
 
       if (!response.ok) {
-        core.debug(
+        core.info(
           `Cache not found for version ${request.version} of keys: ${keys.join(
             ', '
           )}`

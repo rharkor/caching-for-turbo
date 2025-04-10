@@ -53,7 +53,7 @@ export async function getCache(
   const client = getCacheClient()
   const cacheKey = getCacheKey(hash)
   const { data } = await client.query(cacheKey, cachePath)
-  ctx.log.info(`Cache lookup for ${cacheKey}`)
+  ctx.log.info(`Cache lookup for ${cacheKey} (path: ${cachePath})`)
   if (!data) {
     ctx.log.info(`Cache lookup did not return data`)
     return null
