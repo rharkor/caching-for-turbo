@@ -73,6 +73,7 @@ export function getCacheClient() {
 
   const query = async (
     key: string,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     path: string
   ): Promise<{
     success: boolean
@@ -99,7 +100,7 @@ export function getCacheClient() {
       const request: GetCacheEntryDownloadURLRequest = {
         key,
         restoreKeys: [],
-        version: utils.getCacheVersion([path], compressionMethod, false)
+        version: utils.getCacheVersion([key], compressionMethod, false)
       }
 
       const response = await twirpClient.GetCacheEntryDownloadURL(request)
