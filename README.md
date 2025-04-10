@@ -76,7 +76,7 @@ provided):
 with:
   cache-prefix: turbogha_ # Custom prefix for cache keys
   provider: github # Storage provider: 'github' (default) or 's3'
-  
+
   # S3 Provider Configuration (required when provider is set to 's3')
   s3-access-key-id: ${{ secrets.S3_ACCESS_KEY_ID }} # S3 access key
   s3-secret-access-key: ${{ secrets.S3_SECRET_ACCESS_KEY }} # S3 secret key
@@ -91,19 +91,25 @@ with:
 #### GitHub Cache (Default)
 
 By default, this action uses GitHub's built-in cache service, which offers:
+
 - Seamless integration with GitHub Actions
 - No additional setup required
 - Automatic cache pruning by GitHub
 
 #### S3 Storage
 
-For teams requiring more control over caching infrastructure, the action supports Amazon S3 or compatible storage:
+For teams requiring more control over caching infrastructure, the action
+supports Amazon S3 or compatible storage:
+
 - Store cache artifacts in your own S3 bucket
-- Works with any S3-compatible storage (AWS S3, MinIO, DigitalOcean Spaces, etc.)
+- Works with any S3-compatible storage (AWS S3, MinIO, DigitalOcean Spaces,
+  etc.)
 - Greater control over retention policies and storage costs
 - Useful for larger organizations with existing S3 infrastructure
 
-It is very important to note that by default the cached files are stored forever. It is recommended to set a max-size (or other cleanup options) to avoid unexpected costs.
+It is very important to note that by default the cached files are stored
+forever. It is recommended to set a max-size (or other cleanup options) to avoid
+unexpected costs.
 
 Example S3 configuration:
 
@@ -121,23 +127,27 @@ Example S3 configuration:
 
 ### Cache Cleanup Options
 
-To prevent unbounded growth of your cache (especially important when using S3 storage), you can configure automatic cleanup using one or more of these options:
+To prevent unbounded growth of your cache (especially important when using S3
+storage), you can configure automatic cleanup using one or more of these
+options:
 
 ```yaml
 with:
   # Cleanup by age - remove cache entries older than the specified duration
-  max-age: 1mo  # e.g., 1d (1 day), 1w (1 week), 1mo (1 month)
-  
+  max-age: 1mo # e.g., 1d (1 day), 1w (1 week), 1mo (1 month)
+
   # Cleanup by count - keep only the specified number of most recent cache entries
-  max-files: 300  # e.g., limit to 300 files
-  
+  max-files: 300 # e.g., limit to 300 files
+
   # Cleanup by size - remove oldest entries when total size exceeds the limit
-  max-size: 10gb  # e.g., 100mb, 5gb, 10gb
+  max-size: 10gb # e.g., 100mb, 5gb, 10gb
 ```
 
-When using the GitHub provider, the built-in cache has its own pruning mechanism, but these options can still be useful for more precise control.
+When using the GitHub provider, the built-in cache has its own pruning
+mechanism, but these options can still be useful for more precise control.
 
-For S3 storage, implementing these cleanup options is **highly recommended** to control storage costs, as S3 does not automatically remove old cache entries.
+For S3 storage, implementing these cleanup options is **highly recommended** to
+control storage costs, as S3 does not automatically remove old cache entries.
 
 Example with cleanup configuration:
 
