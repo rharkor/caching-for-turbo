@@ -1,8 +1,6 @@
 import Fastify from 'fastify'
 import { serverPort } from '../constants'
 import { getCache, saveCache } from '../cache'
-import * as cache from '@actions/cache'
-import fs from 'fs/promises'
 
 export async function server(): Promise<void> {
   //* Create the server
