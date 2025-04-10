@@ -11,10 +11,29 @@ branding:
 
 # Define your inputs here.
 inputs:
+  provider:
+    description: 'Provider to use for caching (github)'
+    required: true
+    default: 'github'
   cache-prefix:
     description: 'Prefix for the cache key'
     required: false
     default: turbogha_
+  max-age:
+    description:
+      'Cleanup cache files older than this age (ex: 1mo, 1w, 1d). using
+      https://www.npmjs.com/package/parse-duration'
+    required: false
+  max-files:
+    description:
+      'Cleanup oldest cache files when number of files exceeds this limit (ex:
+      300)'
+    required: false
+  max-size:
+    description:
+      'Cleanup oldest cache files when total size exceeds this limit (ex: 100mb,
+      10gb)'
+    required: false
 
 runs:
   using: node20

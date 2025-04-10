@@ -1,6 +1,13 @@
 import Fastify from 'fastify'
 import { serverPort } from '../constants'
 import { getCache, saveCache } from '../cache'
+import { cleanup } from './cleanup'
+
+export type RequestContext = {
+  log: {
+    info: (message: string) => void
+  }
+}
 
 export async function server(): Promise<void> {
   //* Create the server
@@ -14,12 +21,16 @@ export async function server(): Promise<void> {
   })
 
   //? Shut down the server
-  const shutdown = () => {
+  const shutdown = async (ctx: RequestContext) => {
+    //* Handle cleanup
+    await cleanup(ctx)
+
+    // Exit the server after responding (100ms)
     setTimeout(() => process.exit(0), 100)
     return { ok: true }
   }
-  fastify.delete('/shutdown', async () => {
-    return shutdown()
+  fastify.delete('/shutdown', async request => {
+    return shutdown(request)
   })
 
   //? Handle streaming requets body

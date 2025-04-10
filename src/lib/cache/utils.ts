@@ -6,7 +6,8 @@ import { createWriteStream } from 'node:fs'
 import { unlink } from 'node:fs/promises'
 import { getTempCachePath } from '../constants'
 import { restoreCache, saveCache } from '@actions/cache'
-
+import { deleteCache, listCache } from './index'
+import { TProvider } from '../providers'
 class HandledError extends Error {
   status: number
   statusText: string
@@ -31,7 +32,7 @@ function handleFetchError(message: string) {
   }
 }
 
-export function getCacheClient() {
+export function getGithubProvider(): TProvider {
   if (!env.valid) {
     throw new Error('Cache API env vars are not set')
   }
@@ -66,6 +67,8 @@ export function getCacheClient() {
 
   return {
     save,
-    restore
+    restore,
+    delete: deleteCache,
+    list: listCache
   }
 }

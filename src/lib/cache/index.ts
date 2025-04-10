@@ -9,12 +9,9 @@ import {
 } from 'node:fs'
 import { getCacheClient } from './utils'
 import { getCacheKey, getFsCachePath, getTempCachePath } from '../constants'
-
-type RequestContext = {
-  log: {
-    info: (message: string) => void
-  }
-}
+import { RequestContext } from '../server'
+import * as core from '@actions/core'
+import { TListFile } from '../server/cleanup'
 
 //* Cache API
 export async function saveCache(
@@ -67,4 +64,14 @@ export async function getCache(
   const size = statSync(fileRestorationPath).size
   const readableStream = createReadStream(fileRestorationPath)
   return [size, readableStream, artifactTag]
+}
+
+export async function deleteCache(): Promise<void> {
+  core.error(`Cannot delete github cache automatically.`)
+  throw new Error(`Cannot delete github cache automatically.`)
+}
+
+export async function listCache(): Promise<TListFile[]> {
+  core.error(`Cannot list github cache automatically.`)
+  throw new Error(`Cannot list github cache automatically.`)
 }
