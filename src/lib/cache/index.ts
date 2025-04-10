@@ -8,7 +8,7 @@ import {
   statSync
 } from 'node:fs'
 import { getCacheClient } from './utils'
-import { cachePath, getCacheKey, getFsCachePath } from '../constants'
+import { getCacheKey, getFsCachePath, getTempCachePath } from '../constants'
 
 type RequestContext = {
   log: {
@@ -52,8 +52,8 @@ export async function getCache(
   //* Get cache from cache API
   const client = getCacheClient()
   const cacheKey = getCacheKey(hash)
-  const { data } = await client.query(cacheKey, cachePath)
-  ctx.log.info(`Cache lookup for ${cacheKey} (path: ${cachePath})`)
+  const { data } = await client.query(getTempCachePath(cacheKey), cacheKey)
+  ctx.log.info(`Cache lookup for ${cacheKey}`)
   if (!data) {
     ctx.log.info(`Cache lookup did not return data`)
     return null

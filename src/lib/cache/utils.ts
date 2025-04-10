@@ -61,6 +61,7 @@ export function getCacheClient() {
       await streamToPromise(stream.pipe(writeStream))
       core.info(`Saved cache to ${tempFile}`)
 
+      core.info(`Saving cache for key: ${key}, path: ${tempFile}`)
       await saveCache([tempFile], key)
       core.info(`Saved cache ${key}`)
 
@@ -72,13 +73,13 @@ export function getCacheClient() {
   }
 
   const query = async (
-    key: string,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    path: string
+    path: string,
+    key: string
   ): Promise<{
     success: boolean
     data?: { cacheKey: string; archiveLocation: string }
   }> => {
+    core.info(`Querying cache for key: ${key}, path: ${path}`)
     const keys = [key]
 
     core.debug('Resolved Keys:')
@@ -100,7 +101,7 @@ export function getCacheClient() {
       const request: GetCacheEntryDownloadURLRequest = {
         key,
         restoreKeys: [],
-        version: utils.getCacheVersion([key], compressionMethod, false)
+        version: utils.getCacheVersion([path], compressionMethod, false)
       }
 
       const response = await twirpClient.GetCacheEntryDownloadURL(request)
