@@ -141,7 +141,7 @@ jobs:
           s3-bucket: ${{ secrets.S3_BUCKET }}
           s3-region: ${{ secrets.S3_REGION }}
           s3-endpoint: ${{ secrets.S3_ENDPOINT }}
-          max-age: 1d
+          max-age: 3m
           max-size: 100mb
           max-files: 100
 
