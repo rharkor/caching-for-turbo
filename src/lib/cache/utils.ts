@@ -1,7 +1,6 @@
 import { Readable } from 'node:stream'
 import { env } from '../env'
 import * as core from '@actions/core'
-import * as cacheHttpClient from '@actions/cache/lib/internal/cacheHttpClient'
 import * as cacheTwirpClient from '@actions/cache/lib/internal/shared/cacheTwirpClient'
 import * as utils from '@actions/cache/lib/internal/cacheUtils'
 import streamToPromise from 'stream-to-promise'
@@ -93,7 +92,6 @@ export function getCacheClient() {
       checkKey(key)
     }
 
-    let archivePath = ''
     try {
       const twirpClient = cacheTwirpClient.internalCacheTwirpClient()
       const compressionMethod = await utils.getCompressionMethod()
@@ -127,14 +125,6 @@ export function getCacheClient() {
       } else {
         // Supress all non-validation cache related errors because caching should be optional
         core.warning(`Failed to restore: ${(error as Error).message}`)
-      }
-    } finally {
-      try {
-        if (archivePath) {
-          await utils.unlinkFile(archivePath)
-        }
-      } catch (error) {
-        core.debug(`Failed to delete archive: ${error}`)
       }
     }
 
