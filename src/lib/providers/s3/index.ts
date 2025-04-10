@@ -10,6 +10,7 @@ import {
   ListObjectsV2Command
 } from '@aws-sdk/client-s3'
 import { Upload } from '@aws-sdk/lib-storage'
+import { getCacheKey } from 'src/lib/constants'
 
 export const getS3Provider = (): TProvider => {
   const s3AccessKeyId = core.getInput('s3-access-key-id')
@@ -40,20 +41,13 @@ export const getS3Provider = (): TProvider => {
     }
   })
 
-  const getObjectKey = (hash: string, tag?: string): string => {
-    if (tag) {
-      return `${s3Prefix}${hash}#${tag}`
-    }
-    return `${s3Prefix}${hash}`
-  }
-
   const save = async (
     ctx: RequestContext,
     hash: string,
     tag: string,
     stream: Readable
   ): Promise<void> => {
-    const objectKey = getObjectKey(hash, tag)
+    const objectKey = getCacheKey(hash, tag)
 
     try {
       // Use the S3 Upload utility which handles multipart uploads for large files
@@ -82,7 +76,7 @@ export const getS3Provider = (): TProvider => {
     [number | undefined, Readable | ReadableStream, string | undefined] | null
   > => {
     // First try to get with just the hash
-    const objectKey = getObjectKey(hash)
+    const objectKey = getCacheKey(hash)
 
     try {
       // Try to find the object
@@ -153,7 +147,7 @@ export const getS3Provider = (): TProvider => {
     try {
       const deleteCommand = new DeleteObjectCommand({
         Bucket: s3Bucket,
-        Key: hash.startsWith(s3Prefix) ? hash : getObjectKey(hash)
+        Key: getCacheKey(hash)
       })
 
       await s3Client.send(deleteCommand)
