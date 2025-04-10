@@ -38,14 +38,14 @@ export function getCacheClient() {
 
   const reserve = async (
     key: string,
-    version: string
+    path: string
   ): Promise<{
     success: boolean
-    data?: { cacheId: string }
+    data?: { cacheId: number }
   }> => {
     try {
       const reserveCacheResponse = await cacheHttpClient.reserveCache(key, [
-        version
+        path
       ])
       if (reserveCacheResponse?.result?.cacheId) {
         return {
@@ -57,10 +57,9 @@ export function getCacheClient() {
       } else if (reserveCacheResponse?.statusCode === 409) {
         return { success: false }
       } else {
-        const { statusCode, statusText } = reserveCacheResponse
-        const data = await reserveCacheResponse.readBody()
-        const buildedError = new HandledError(statusCode, statusText, data)
-        return handleFetchError(`Unable to reserve cache (status: ${statusCode} ${statusText})`)(buildedError)
+        const { statusCode, error } = reserveCacheResponse
+        const buildedError = new HandledError(statusCode, error?.message || 'Unknown', reserveCacheResponse)
+        return handleFetchError(`Unable to reserve cache (status: ${statusCode} ${reserveCacheResponse})`)(buildedError)
       }
     } catch (error) {
       return handleFetchError('Unable to reserve cache')(error)

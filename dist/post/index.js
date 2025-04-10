@@ -25665,12 +25665,12 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.getTempCachePath = exports.getFsCachePath = exports.serverLogFile = exports.getCacheKey = exports.cachePrefix = exports.cacheVersion = exports.serverPort = void 0;
+exports.getTempCachePath = exports.getFsCachePath = exports.serverLogFile = exports.getCacheKey = exports.cachePrefix = exports.cachePath = exports.serverPort = void 0;
 const core = __importStar(__nccwpck_require__(7484));
 const path_1 = __nccwpck_require__(6928);
 const env_1 = __nccwpck_require__(1363);
 exports.serverPort = 41230;
-exports.cacheVersion = 'turbogha_v2';
+exports.cachePath = 'turbogha_v2';
 exports.cachePrefix = core.getInput('cache-prefix') || 'turbogha_';
 const getCacheKey = (hash, tag) => `${exports.cachePrefix}${hash}${tag ? `#${tag}` : ''}`;
 exports.getCacheKey = getCacheKey;

@@ -50,7 +50,7 @@ export async function saveCache(
     )
   }
   ctx.log.info(`Reserved cache ${id}`)
-  await client.save(parseInt(id), stream)
+  await client.save(id, stream)
   ctx.log.info(`Saved cache ${id} for ${hash}`)
 }
 
