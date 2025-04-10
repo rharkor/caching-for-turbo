@@ -2,8 +2,8 @@ import * as core from '@actions/core'
 import { Readable } from 'stream'
 import { TListFile } from './server/cleanup'
 import { RequestContext } from './server'
-import { getGithubProvider } from './cache'
-
+import { getGithubProvider } from './providers/cache'
+import { getS3Provider } from './providers/s3'
 export type TProvider = {
   save: (
     ctx: RequestContext,
@@ -17,7 +17,7 @@ export type TProvider = {
   ) => Promise<
     [number | undefined, Readable | ReadableStream, string | undefined] | null
   >
-  delete: () => Promise<void>
+  delete: (hash: string) => Promise<void>
   list: () => Promise<TListFile[]>
 }
 
@@ -25,6 +25,9 @@ export const getProvider = (): TProvider => {
   const provider = core.getInput('provider')
   if (provider === 'github') {
     return getGithubProvider()
+  }
+  if (provider === 's3') {
+    return getS3Provider()
   }
 
   throw new Error(`Provider ${provider} not supported`)

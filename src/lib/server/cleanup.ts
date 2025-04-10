@@ -1,7 +1,7 @@
 import * as core from '@actions/core'
 import { RequestContext } from '.'
-import { deleteCache, listCache } from '../cache'
 import parse from 'parse-duration'
+import { getProvider } from '../providers'
 
 export type TListFile = {
   path: string
@@ -40,7 +40,9 @@ export async function cleanup(ctx: RequestContext) {
     throw new Error('Invalid max-size provided')
   }
 
-  const files = await listCache()
+  const provider = getProvider()
+
+  const files = await provider.list()
 
   const fileToDelete: TListFile[] = []
   if (maxAgeParsed) {
@@ -87,7 +89,7 @@ export async function cleanup(ctx: RequestContext) {
 
     for (const file of fileToDelete) {
       try {
-        await deleteCache()
+        await provider.delete(file.path)
         ctx.log.info(`Deleted ${file.path}`)
       } catch (error) {
         core.error(`Failed to delete ${file.path}: ${error}`)
