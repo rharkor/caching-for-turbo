@@ -1,10 +1,5 @@
 import waitOn from 'wait-on'
-import {
-  cachePrefix,
-  cacheVersion,
-  serverLogFile,
-  serverPort
-} from '../constants'
+import { cachePrefix, cachePath, serverLogFile, serverPort } from '../constants'
 import * as core from '@actions/core'
 import { openSync } from 'fs'
 import { spawn } from 'child_process'
@@ -32,7 +27,7 @@ export async function launchServer(devRun?: boolean): Promise<void> {
       stdio: ['ignore', out, err]
     })
     child.unref()
-    core.info(`Cache version: ${cacheVersion}`)
+    core.info(`Cache version: ${cachePath}`)
     core.info(`Cache prefix: ${cachePrefix}`)
     core.info(`Launched child process: ${child.pid}`)
     core.info(`Server log file: ${serverLogFile}`)

@@ -8,7 +8,7 @@ import {
   statSync
 } from 'node:fs'
 import { getCacheClient } from './utils'
-import { cacheVersion, getCacheKey, getFsCachePath } from '../constants'
+import { getCacheKey, getFsCachePath, getTempCachePath } from '../constants'
 
 type RequestContext = {
   log: {
@@ -31,27 +31,9 @@ export async function saveCache(
     return
   }
   const client = getCacheClient()
-  const existingCacheResponse = await client.reserve(
-    getCacheKey(hash, tag),
-    cacheVersion
-  )
-
-  // Silently exit when we have not been able to receive a cache-hit
-  if (existingCacheResponse.success === false) {
-    return
-  }
-
-  const id = existingCacheResponse.data?.cacheId
-  if (!id) {
-    throw new Error(
-      `Unable to reserve cache (received: ${JSON.stringify(
-        existingCacheResponse.data
-      )})`
-    )
-  }
-  ctx.log.info(`Reserved cache ${id}`)
-  await client.save(parseInt(id), stream)
-  ctx.log.info(`Saved cache ${id} for ${hash}`)
+  const key = getCacheKey(hash, tag)
+  await client.save(key, stream)
+  ctx.log.info(`Saved cache ${key} for ${hash}`)
 }
 
 export async function getCache(
@@ -70,22 +52,19 @@ export async function getCache(
   //* Get cache from cache API
   const client = getCacheClient()
   const cacheKey = getCacheKey(hash)
-  const { data } = await client.query(cacheKey, cacheVersion)
+  const fileRestorationPath = getTempCachePath(cacheKey)
+  const foundKey = await client.restore(fileRestorationPath, cacheKey)
   ctx.log.info(`Cache lookup for ${cacheKey}`)
-  if (!data) {
+  if (!foundKey) {
     ctx.log.info(`Cache lookup did not return data`)
     return null
   }
-  const [foundCacheKey, artifactTag] = String(data.cacheKey).split('#')
+  const [foundCacheKey, artifactTag] = String(foundKey).split('#')
   if (foundCacheKey !== cacheKey) {
     ctx.log.info(`Cache key mismatch: ${foundCacheKey} !== ${cacheKey}`)
     return null
   }
-  const resp = await fetch(data.archiveLocation)
-  const size = +(resp.headers.get('content-length') || 0)
-  const readableStream = resp.body
-  if (!readableStream) {
-    throw new Error('Failed to retrieve cache stream')
-  }
+  const size = statSync(fileRestorationPath).size
+  const readableStream = createReadStream(fileRestorationPath)
   return [size, readableStream, artifactTag]
 }
