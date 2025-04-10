@@ -50,6 +50,10 @@ inputs:
     description: 'Prefix for S3 objects'
     required: false
     default: 'turbogha/'
+  s3-endpoint:
+    description: 'S3 endpoint (required when provider is s3)'
+    required: false
+    default: 'https://s3.amazonaws.com'
 
 runs:
   using: node20

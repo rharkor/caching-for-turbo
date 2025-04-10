@@ -16,16 +16,24 @@ export const getS3Provider = (): TProvider => {
   const s3SecretAccessKey = core.getInput('s3-secret-access-key')
   const s3Bucket = core.getInput('s3-bucket')
   const s3Region = core.getInput('s3-region')
+  const s3Endpoint = core.getInput('s3-endpoint')
   const s3Prefix = core.getInput('s3-prefix') || 'turbogha/'
 
-  if (!s3AccessKeyId || !s3SecretAccessKey || !s3Bucket || !s3Region) {
+  if (
+    !s3AccessKeyId ||
+    !s3SecretAccessKey ||
+    !s3Bucket ||
+    !s3Region ||
+    !s3Endpoint
+  ) {
     throw new Error(
-      'S3 provider requires s3-access-key-id, s3-secret-access-key, s3-bucket, and s3-region inputs'
+      'S3 provider requires s3-access-key-id, s3-secret-access-key, s3-bucket, s3-region, and s3-endpoint inputs'
     )
   }
 
   const s3Client = new S3Client({
     region: s3Region,
+    endpoint: s3Endpoint,
     credentials: {
       accessKeyId: s3AccessKeyId,
       secretAccessKey: s3SecretAccessKey

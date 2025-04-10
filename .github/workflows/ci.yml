@@ -140,6 +140,7 @@ jobs:
           s3-secret-access-key: ${{ secrets.S3_SECRET_ACCESS_KEY }}
           s3-bucket: ${{ secrets.S3_BUCKET }}
           s3-region: ${{ secrets.S3_REGION }}
+          s3-endpoint: ${{ secrets.S3_ENDPOINT }}
 
       - name: Test build cache
         run: npm run test
