@@ -13,12 +13,15 @@ import { Upload } from '@aws-sdk/lib-storage'
 import { getCacheKey } from 'src/lib/constants'
 
 export const getS3Provider = (): TProvider => {
-  const s3AccessKeyId = core.getInput('s3-access-key-id')
-  const s3SecretAccessKey = core.getInput('s3-secret-access-key')
-  const s3Bucket = core.getInput('s3-bucket')
-  const s3Region = core.getInput('s3-region')
-  const s3Endpoint = core.getInput('s3-endpoint')
-  const s3Prefix = core.getInput('s3-prefix') || 'turbogha/'
+  const s3AccessKeyId =
+    core.getInput('s3-access-key-id') || process.env.S3_ACCESS_KEY_ID
+  const s3SecretAccessKey =
+    core.getInput('s3-secret-access-key') || process.env.S3_SECRET_ACCESS_KEY
+  const s3Bucket = core.getInput('s3-bucket') || process.env.S3_BUCKET
+  const s3Region = core.getInput('s3-region') || process.env.S3_REGION
+  const s3Endpoint = core.getInput('s3-endpoint') || process.env.S3_ENDPOINT
+  const s3Prefix =
+    core.getInput('s3-prefix') || process.env.S3_PREFIX || 'turbogha/'
 
   if (
     !s3AccessKeyId ||
@@ -41,13 +44,22 @@ export const getS3Provider = (): TProvider => {
     }
   })
 
+  const getS3Key = (hash: string, tag?: string) => {
+    const key = getCacheKey(hash, tag)
+    if (s3Prefix) {
+      return `${s3Prefix}${key}`
+    }
+    return key
+  }
+
   const save = async (
     ctx: RequestContext,
     hash: string,
     tag: string,
     stream: Readable
   ): Promise<void> => {
-    const objectKey = getCacheKey(hash, tag)
+    const objectKey = getS3Key(hash, tag)
+    console.log({ objectKey, s3Prefix })
 
     try {
       // Use the S3 Upload utility which handles multipart uploads for large files
@@ -76,7 +88,7 @@ export const getS3Provider = (): TProvider => {
     [number | undefined, Readable | ReadableStream, string | undefined] | null
   > => {
     // First try to get with just the hash
-    const objectKey = getCacheKey(hash)
+    const objectKey = getS3Key(hash)
 
     try {
       // Try to find the object
@@ -143,11 +155,11 @@ export const getS3Provider = (): TProvider => {
     }
   }
 
-  const deleteObj = async (hash: string): Promise<void> => {
+  const deleteObj = async (key: string): Promise<void> => {
     try {
       const deleteCommand = new DeleteObjectCommand({
         Bucket: s3Bucket,
-        Key: getCacheKey(hash)
+        Key: key
       })
 
       await s3Client.send(deleteCommand)

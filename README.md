@@ -179,8 +179,14 @@ Example with cleanup configuration:
 2. In a separate terminal, execute the tests:
 
    ```bash
-   npm test
+   npm test -- --cache=remote:rw --no-daemon
    ```
+
+#### Testing the cleanup script
+
+```bash
+npm run cleanup
+```
 
 ## Licensing
 

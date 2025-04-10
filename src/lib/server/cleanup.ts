@@ -2,6 +2,7 @@ import * as core from '@actions/core'
 import { RequestContext } from '.'
 import parse from 'parse-duration'
 import { getProvider } from '../providers'
+import { parseFileSize } from './utils'
 
 export type TListFile = {
   path: string
@@ -10,9 +11,9 @@ export type TListFile = {
 }
 
 export async function cleanup(ctx: RequestContext) {
-  const maxAge = core.getInput('max-age')
-  const maxFiles = core.getInput('max-files')
-  const maxSize = core.getInput('max-size')
+  const maxAge = core.getInput('max-age') || process.env.MAX_AGE
+  const maxFiles = core.getInput('max-files') || process.env.MAX_FILES
+  const maxSize = core.getInput('max-size') || process.env.MAX_SIZE
 
   if (!maxAge && !maxFiles && !maxSize) {
     ctx.log.info('No cleanup options provided, skipping cleanup')
@@ -20,9 +21,9 @@ export async function cleanup(ctx: RequestContext) {
   }
 
   const { maxAgeParsed, maxFilesParsed, maxSizeParsed } = {
-    maxAgeParsed: parse(maxAge),
-    maxFilesParsed: parseInt(maxFiles),
-    maxSizeParsed: parseInt(maxSize)
+    maxAgeParsed: maxAge ? parse(maxAge) : undefined,
+    maxFilesParsed: maxFiles ? parseInt(maxFiles) : undefined,
+    maxSizeParsed: maxSize ? parseFileSize(maxSize) : undefined
   }
 
   if (maxAge && !maxAgeParsed) {
@@ -44,14 +45,17 @@ export async function cleanup(ctx: RequestContext) {
 
   const files = await provider.list()
 
-  ctx.log.info(`Found ${files.length} files in cache`)
-  core.info(JSON.stringify(files, null, 2))
-
-  const fileToDelete: TListFile[] = []
+  const fileToDelete: (TListFile & {
+    reason: 'max-age' | 'max-files' | 'max-size'
+  })[] = []
   if (maxAgeParsed) {
     const now = new Date()
     const age = new Date(now.getTime() - maxAgeParsed)
-    fileToDelete.push(...files.filter(file => new Date(file.createdAt) < age))
+    fileToDelete.push(
+      ...files
+        .filter(file => new Date(file.createdAt) < age)
+        .map(file => ({ ...file, reason: 'max-age' as const }))
+    )
   }
 
   if (maxFilesParsed && files.length > maxFilesParsed) {
@@ -62,7 +66,7 @@ export async function cleanup(ctx: RequestContext) {
     const excessFiles = sortedByDate.slice(0, files.length - maxFilesParsed)
     excessFiles.forEach(file => {
       if (!fileToDelete.some(f => f.path === file.path)) {
-        fileToDelete.push(file)
+        fileToDelete.push({ ...file, reason: 'max-files' })
       }
     })
   }
@@ -80,7 +84,7 @@ export async function cleanup(ctx: RequestContext) {
         if (totalSize <= maxSizeParsed) break
 
         if (!fileToDelete.some(f => f.path === file.path)) {
-          fileToDelete.push(file)
+          fileToDelete.push({ ...file, reason: 'max-size' })
           totalSize -= file.size
         }
       }
@@ -88,8 +92,11 @@ export async function cleanup(ctx: RequestContext) {
   }
 
   if (fileToDelete.length > 0) {
-    ctx.log.info(`Cleaning up ${fileToDelete.length} files`)
-
+    ctx.log.info(
+      `Cleaning up ${fileToDelete.length} files (${fileToDelete.map(
+        f => `${f.path} (${f.reason})`
+      )})`
+    )
     for (const file of fileToDelete) {
       try {
         await provider.delete(file.path)

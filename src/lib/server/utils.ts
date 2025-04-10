@@ -59,3 +59,27 @@ export async function killServer() {
     method: 'DELETE'
   })
 }
+
+export const parseFileSize = (size: string): number => {
+  const units: { [key: string]: number } = {
+    b: 1,
+    kb: 1024,
+    mb: 1024 * 1024,
+    gb: 1024 * 1024 * 1024,
+    tb: 1024 * 1024 * 1024 * 1024
+  }
+
+  const match = size.toLowerCase().match(/^(\d+)\s*([a-z]+)$/)
+  if (!match) {
+    throw new Error(`Invalid file size format: ${size}`)
+  }
+
+  const [, value, unit] = match
+  const multiplier = units[unit]
+
+  if (!multiplier) {
+    throw new Error(`Invalid file size unit: ${unit}`)
+  }
+
+  return parseInt(value) * multiplier
+}

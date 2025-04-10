@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Run the test and capture the output
-npm run test -- --cache=remote:rw | tee test-output.log
+npm run test -- --cache=remote:rw --no-daemon | tee test-output.log
 
 cat test-output.log
 

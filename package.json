@@ -32,7 +32,8 @@
     "all": "npm run format:write && npm run lint && npm run coverage && npm run package",
     "test-build": "npm run -s package",
     "test": "turbo run test-build",
-    "dev-run": "tsx ./src/dev-run.ts"
+    "dev-run": "tsx ./src/dev-run.ts",
+    "cleanup": "tsx ./src/dev/cleanup.ts"
   },
   "license": "MIT",
   "dependencies": {
@@ -41,6 +42,7 @@
     "@aws-sdk/client-s3": "^3.0.0",
     "@aws-sdk/lib-storage": "^3.0.0",
     "fastify": "^5.0.0",
+    "filesize-parser": "^1.5.1",
     "parse-duration": "^2.1.4",
     "stream-to-promise": "^3.0.0",
     "wait-on": "^8.0.0"
@@ -54,6 +56,7 @@
     "@typescript-eslint/eslint-plugin": "^8.29.1",
     "@typescript-eslint/parser": "^8.29.1",
     "@vercel/ncc": "^0.38.1",
+    "dotenv": "^16.4.7",
     "eslint": "^9.24.0",
     "eslint-plugin-github": "^6.0.0",
     "eslint-plugin-jest": "^28.6.0",

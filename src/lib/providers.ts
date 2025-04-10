@@ -17,12 +17,17 @@ export type TProvider = {
   ) => Promise<
     [number | undefined, Readable | ReadableStream, string | undefined] | null
   >
-  delete: (hash: string) => Promise<void>
+  delete: (key: string) => Promise<void>
   list: () => Promise<TListFile[]>
 }
 
 export const getProvider = (): TProvider => {
-  const provider = core.getInput('provider')
+  const provider = core.getInput('provider') || process.env.PROVIDER
+
+  if (!provider) {
+    throw new Error('Provider is required')
+  }
+
   if (provider === 'github') {
     return getGithubProvider()
   }
