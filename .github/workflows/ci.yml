@@ -1,4 +1,4 @@
-name: CI
+name: Test core functionality
 
 on:
   pull_request:
