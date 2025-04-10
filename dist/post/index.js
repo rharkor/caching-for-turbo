@@ -25679,7 +25679,7 @@ exports.serverLogFile = env_1.env.RUNNER_TEMP
     : '/tmp/turbogha.log';
 const getFsCachePath = (hash) => (0, path_1.join)(env_1.env.RUNNER_TEMP || '/tmp', `${hash}.tg.bin`);
 exports.getFsCachePath = getFsCachePath;
-const getTempCachePath = (id) => (0, path_1.join)(env_1.env.RUNNER_TEMP || '/tmp', `cache-${id}.tg.bin`);
+const getTempCachePath = (key) => (0, path_1.join)(env_1.env.RUNNER_TEMP || '/tmp', `cache-${key}.tg.bin`);
 exports.getTempCachePath = getTempCachePath;
 
 

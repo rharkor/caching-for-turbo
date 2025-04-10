@@ -31,27 +31,9 @@ export async function saveCache(
     return
   }
   const client = getCacheClient()
-  const existingCacheResponse = await client.reserve(
-    getCacheKey(hash, tag),
-    cachePath
-  )
-
-  // Silently exit when we have not been able to receive a cache-hit
-  if (existingCacheResponse.success === false) {
-    return
-  }
-
-  const id = existingCacheResponse.data?.cacheId
-  if (!id) {
-    throw new Error(
-      `Unable to reserve cache (received: ${JSON.stringify(
-        existingCacheResponse.data
-      )})`
-    )
-  }
-  ctx.log.info(`Reserved cache ${id}`)
-  await client.save(id, stream)
-  ctx.log.info(`Saved cache ${id} for ${hash}`)
+  const key = getCacheKey(hash, tag)
+  await client.save(key, stream)
+  ctx.log.info(`Saved cache ${key} for ${hash}`)
 }
 
 export async function getCache(

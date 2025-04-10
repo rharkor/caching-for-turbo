@@ -10,15 +10,6 @@ export async function server(): Promise<void> {
     logger: true
   })
 
-  //! DEBUG try to insert cache
-  try {
-    console.log('DEBUG try to insert cache')
-    await fs.writeFile('test.txt', 'test')
-    await cache.saveCache(['test.txt'], 'test')
-  } catch (error) {
-    console.error(error)
-  }
-
   //? Server status check
   fastify.get('/', async () => {
     return { ok: true }
