@@ -7,11 +7,12 @@ import {
   existsSync,
   statSync
 } from 'node:fs'
-import { getCacheClient } from './utils'
 import { getCacheKey, getFsCachePath, getTempCachePath } from '../constants'
 import { RequestContext } from '../server'
 import * as core from '@actions/core'
 import { TListFile } from '../server/cleanup'
+import { getCacheClient } from './utils'
+import { TProvider } from '../providers'
 
 //* Cache API
 export async function saveCache(
@@ -74,4 +75,13 @@ export async function deleteCache(): Promise<void> {
 export async function listCache(): Promise<TListFile[]> {
   core.error(`Cannot list github cache automatically.`)
   throw new Error(`Cannot list github cache automatically.`)
+}
+
+export const getGithubProvider = (): TProvider => {
+  return {
+    save: saveCache,
+    get: getCache,
+    delete: deleteCache,
+    list: listCache
+  }
 }

@@ -1,11 +1,22 @@
 import * as core from '@actions/core'
-import { getGithubProvider } from './cache/utils'
 import { Readable } from 'stream'
 import { TListFile } from './server/cleanup'
+import { RequestContext } from './server'
+import { getGithubProvider } from './cache'
 
 export type TProvider = {
-  save: (key: string, stream: Readable) => Promise<void>
-  restore: (path: string, key: string) => Promise<string | undefined>
+  save: (
+    ctx: RequestContext,
+    hash: string,
+    tag: string,
+    stream: Readable
+  ) => Promise<void>
+  get: (
+    ctx: RequestContext,
+    hash: string
+  ) => Promise<
+    [number | undefined, Readable | ReadableStream, string | undefined] | null
+  >
   delete: () => Promise<void>
   list: () => Promise<TListFile[]>
 }

@@ -1,7 +1,7 @@
 import Fastify from 'fastify'
 import { serverPort } from '../constants'
-import { getCache, saveCache } from '../cache'
 import { cleanup } from './cleanup'
+import { getProvider } from '../providers'
 
 export type RequestContext = {
   log: {
@@ -46,7 +46,8 @@ export async function server(): Promise<void> {
   fastify.put('/v8/artifacts/:hash', async request => {
     const hash = (request.params as { hash: string }).hash
     request.log.info(`Received artifact for ${hash}`)
-    await saveCache(
+    const provider = getProvider()
+    await provider.save(
       request,
       hash,
       String(request.headers['x-artifact-tag'] || ''),
@@ -60,7 +61,8 @@ export async function server(): Promise<void> {
   fastify.get('/v8/artifacts/:hash', async (request, reply) => {
     const hash = (request.params as { hash: string }).hash
     request.log.info(`Requested artifact for ${hash}`)
-    const result = await getCache(request, hash)
+    const provider = getProvider()
+    const result = await provider.get(request, hash)
     if (result === null) {
       request.log.info(`Artifact for ${hash} not found`)
       reply.code(404)
