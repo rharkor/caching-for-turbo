@@ -66,6 +66,9 @@ export async function getCache(
   const resp = await fetch(data.archiveLocation)
   const size = +(resp.headers.get('content-length') || 0)
   const readableStream = resp.body
+  // Debug print file content
+  const fileContent = await resp.text()
+  ctx.log.info(`File content: ${fileContent}`)
   if (!readableStream) {
     throw new Error('Failed to retrieve cache stream')
   }
