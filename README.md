@@ -1,6 +1,6 @@
 # Caching for Turborepo with GitHub Actions
 
-[![CI Status](https://github.com/rharkor/caching-for-turbo/workflows/Test%20core%20functionality/badge.svg)](https://github.com/rharkor/caching-for-turbo/actions)
+[![CI Status](https://github.com/rharkor/caching-for-turbo/workflows/ci/badge.svg)](https://github.com/rharkor/caching-for-turbo/actions)
 
 Supercharge your [Turborepo](https://turbo.build/repo/) builds with our
 dedicated GitHub Actions caching service, designed to make your CI workflows
@@ -55,7 +55,7 @@ the following step **before** you run `turbo build`:
 
 ```yaml
 - name: Cache for Turbo
-  uses: rharkor/caching-for-turbo@v1.8
+  uses: rharkor/caching-for-turbo@v1.7
 ```
 
 This GitHub Action facilitates:

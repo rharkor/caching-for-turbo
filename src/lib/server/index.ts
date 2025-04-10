@@ -1,13 +1,6 @@
 import Fastify from 'fastify'
 import { serverPort } from '../constants'
-import { cleanup } from './cleanup'
-import { getProvider } from '../providers'
-
-export type RequestContext = {
-  log: {
-    info: (message: string) => void
-  }
-}
+import { getCache, saveCache } from '../cache'
 
 export async function server(): Promise<void> {
   //* Create the server
@@ -21,16 +14,12 @@ export async function server(): Promise<void> {
   })
 
   //? Shut down the server
-  const shutdown = async (ctx: RequestContext) => {
-    //* Handle cleanup
-    await cleanup(ctx)
-
-    // Exit the server after responding (100ms)
+  const shutdown = () => {
     setTimeout(() => process.exit(0), 100)
     return { ok: true }
   }
-  fastify.delete('/shutdown', async request => {
-    return shutdown(request)
+  fastify.delete('/shutdown', async () => {
+    return shutdown()
   })
 
   //? Handle streaming requets body
@@ -46,8 +35,7 @@ export async function server(): Promise<void> {
   fastify.put('/v8/artifacts/:hash', async request => {
     const hash = (request.params as { hash: string }).hash
     request.log.info(`Received artifact for ${hash}`)
-    const provider = getProvider()
-    await provider.save(
+    await saveCache(
       request,
       hash,
       String(request.headers['x-artifact-tag'] || ''),
@@ -61,8 +49,7 @@ export async function server(): Promise<void> {
   fastify.get('/v8/artifacts/:hash', async (request, reply) => {
     const hash = (request.params as { hash: string }).hash
     request.log.info(`Requested artifact for ${hash}`)
-    const provider = getProvider()
-    const result = await provider.get(request, hash)
+    const result = await getCache(request, hash)
     if (result === null) {
       request.log.info(`Artifact for ${hash} not found`)
       reply.code(404)
