@@ -3,7 +3,7 @@ import { join } from 'path'
 import { env } from './env'
 
 export const serverPort = 41230
-export const cacheVersion = 'turbogha_v2'
+export const cachePath = 'turbogha_v2'
 export const cachePrefix = core.getInput('cache-prefix') || 'turbogha_'
 export const getCacheKey = (hash: string, tag?: string): string =>
   `${cachePrefix}${hash}${tag ? `#${tag}` : ''}`

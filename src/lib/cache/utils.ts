@@ -60,7 +60,7 @@ export function getCacheClient() {
         const { statusCode, statusText } = reserveCacheResponse
         const data = await reserveCacheResponse.readBody()
         const buildedError = new HandledError(statusCode, statusText, data)
-        return handleFetchError('Unable to reserve cache')(buildedError)
+        return handleFetchError(`Unable to reserve cache (status: ${statusCode} ${statusText})`)(buildedError)
       }
     } catch (error) {
       return handleFetchError('Unable to reserve cache')(error)
@@ -86,22 +86,22 @@ export function getCacheClient() {
   }
 
   const query = async (
-    keys: string,
-    version: string
+    key: string,
+    path: string
   ): Promise<{
     success: boolean
     data?: { cacheKey: string; archiveLocation: string }
   }> => {
     try {
       const queryCacheResponse = await cacheHttpClient.getCacheEntry(
-        [keys],
-        [version]
+        [key],
+        [path]
       )
       if (queryCacheResponse?.archiveLocation) {
         return {
           success: true,
           data: {
-            cacheKey: keys,
+            cacheKey: key,
             archiveLocation: queryCacheResponse.archiveLocation
           }
         }
