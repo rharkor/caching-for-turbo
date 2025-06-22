@@ -1,0 +1,80 @@
+# Source files (not needed in published package)
+src/
+tsconfig.json
+
+# Development and build tools
+.github/
+.devcontainer/
+script/
+check-full-turbo.sh
+
+# Development dependencies and configs
+node_modules/
+.turbo/
+package-lock.json
+
+# Development tooling
+eslint.config.mjs
+.prettierrc.json
+.prettierignore
+.releaserc.json
+renovate.json
+turbo.json
+.node-version
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# Development scripts and tools
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts
+__tests__/
+test/
+tests/
+coverage/
+.nyc_output/
+
+# Documentation and examples (if any)
+docs/
+examples/
+*.md
+!README.md
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db 
