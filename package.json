@@ -21,7 +21,7 @@
     ".": "./dist/index.js"
   },
   "bin": {
-    "turbogha": "./dist/cli.js"
+    "turbogha": "./dist/cli/index.js"
   },
   "type": "module",
   "engines": {
