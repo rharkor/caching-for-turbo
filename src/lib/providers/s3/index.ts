@@ -1,5 +1,5 @@
 import { TProvider } from 'src/lib/providers'
-import * as core from '@actions/core'
+
 import { Readable } from 'stream'
 import { RequestContext } from '../../server'
 import { TListFile } from '../../server/cleanup'
@@ -11,27 +11,36 @@ import {
 } from '@aws-sdk/client-s3'
 import { Upload } from '@aws-sdk/lib-storage'
 import { getCacheKey } from 'src/lib/constants'
+import { core } from 'src/lib/core'
+
+// Helper function to get input value, prioritizing environment variables for local development
+const getInput = (name: string, envName?: string): string | undefined => {
+  // In GitHub Actions context, try core.getInput first
+  if (process.env.GITHUB_ACTIONS === 'true') {
+    const coreInput = core.getInput(name)
+    if (coreInput) return coreInput
+  }
+
+  // Fall back to environment variable
+  const envVar = envName || name.toUpperCase().replace(/-/g, '_')
+  return process.env[envVar]
+}
 
 export const getS3Provider = (): TProvider => {
-  const s3AccessKeyId =
-    core.getInput('s3-access-key-id') || process.env.S3_ACCESS_KEY_ID
-  const s3SecretAccessKey =
-    core.getInput('s3-secret-access-key') || process.env.S3_SECRET_ACCESS_KEY
-  const s3Bucket = core.getInput('s3-bucket') || process.env.S3_BUCKET
-  const s3Region = core.getInput('s3-region') || process.env.S3_REGION
-  const s3Endpoint = core.getInput('s3-endpoint') || process.env.S3_ENDPOINT
-  const s3Prefix =
-    core.getInput('s3-prefix') || process.env.S3_PREFIX || 'turbogha/'
+  const s3AccessKeyId = getInput('s3-access-key-id', 'S3_ACCESS_KEY_ID')
+  const s3SecretAccessKey = getInput(
+    's3-secret-access-key',
+    'S3_SECRET_ACCESS_KEY'
+  )
+  const s3Bucket = getInput('s3-bucket', 'S3_BUCKET')
+  const s3Region = getInput('s3-region', 'S3_REGION')
+  const s3Endpoint =
+    getInput('s3-endpoint', 'S3_ENDPOINT') || 'https://s3.amazonaws.com'
+  const s3Prefix = getInput('s3-prefix', 'S3_PREFIX') || 'turbogha/'
 
-  if (
-    !s3AccessKeyId ||
-    !s3SecretAccessKey ||
-    !s3Bucket ||
-    !s3Region ||
-    !s3Endpoint
-  ) {
+  if (!s3AccessKeyId || !s3SecretAccessKey || !s3Bucket || !s3Region) {
     throw new Error(
-      'S3 provider requires s3-access-key-id, s3-secret-access-key, s3-bucket, s3-region, and s3-endpoint inputs'
+      'S3 provider requires s3-access-key-id, s3-secret-access-key, s3-bucket, and s3-region. Set these as environment variables or GitHub Actions inputs.'
     )
   }
 

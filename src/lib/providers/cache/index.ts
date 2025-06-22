@@ -9,10 +9,10 @@ import {
 } from 'node:fs'
 import { getCacheKey, getFsCachePath, getTempCachePath } from '../../constants'
 import { RequestContext } from '../../server'
-import * as core from '@actions/core'
 import { TListFile } from '../../server/cleanup'
 import { getCacheClient } from './utils'
 import { TProvider } from '../../providers'
+import { core } from 'src/lib/core'
 
 //* Cache API
 export async function saveCache(
