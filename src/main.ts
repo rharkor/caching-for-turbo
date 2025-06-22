@@ -1,4 +1,4 @@
-import * as core from '@actions/core'
+import { core } from './lib/core'
 import { server } from './lib/server'
 import { launchServer } from './lib/server/utils'
 

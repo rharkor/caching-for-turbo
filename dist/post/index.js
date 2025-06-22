@@ -25636,10 +25636,31 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:events"
 
 /***/ }),
 
+/***/ 8161:
+/***/ ((module) => {
+
+module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:os");
+
+/***/ }),
+
+/***/ 1708:
+/***/ ((module) => {
+
+module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:process");
+
+/***/ }),
+
 /***/ 7075:
 /***/ ((module) => {
 
 module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:stream");
+
+/***/ }),
+
+/***/ 7066:
+/***/ ((module) => {
+
+module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:tty");
 
 /***/ }),
 
@@ -27393,16 +27414,130 @@ module.exports = parseParams
 /******/ 	return module.exports;
 /******/ }
 /******/ 
+/******/ // expose the modules object (__webpack_modules__)
+/******/ __nccwpck_require__.m = __webpack_modules__;
+/******/ 
 /************************************************************************/
+/******/ /* webpack/runtime/define property getters */
+/******/ (() => {
+/******/ 	// define getter functions for harmony exports
+/******/ 	__nccwpck_require__.d = (exports, definition) => {
+/******/ 		for(var key in definition) {
+/******/ 			if(__nccwpck_require__.o(definition, key) && !__nccwpck_require__.o(exports, key)) {
+/******/ 				Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 			}
+/******/ 		}
+/******/ 	};
+/******/ })();
+/******/ 
+/******/ /* webpack/runtime/ensure chunk */
+/******/ (() => {
+/******/ 	__nccwpck_require__.f = {};
+/******/ 	// This file contains only the entry chunk.
+/******/ 	// The chunk loading function for additional chunks
+/******/ 	__nccwpck_require__.e = (chunkId) => {
+/******/ 		return Promise.all(Object.keys(__nccwpck_require__.f).reduce((promises, key) => {
+/******/ 			__nccwpck_require__.f[key](chunkId, promises);
+/******/ 			return promises;
+/******/ 		}, []));
+/******/ 	};
+/******/ })();
+/******/ 
+/******/ /* webpack/runtime/get javascript chunk filename */
+/******/ (() => {
+/******/ 	// This function allow to reference async chunks
+/******/ 	__nccwpck_require__.u = (chunkId) => {
+/******/ 		// return url for filenames based on template
+/******/ 		return "" + chunkId + ".index.js";
+/******/ 	};
+/******/ })();
+/******/ 
+/******/ /* webpack/runtime/hasOwnProperty shorthand */
+/******/ (() => {
+/******/ 	__nccwpck_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ })();
+/******/ 
+/******/ /* webpack/runtime/make namespace object */
+/******/ (() => {
+/******/ 	// define __esModule on exports
+/******/ 	__nccwpck_require__.r = (exports) => {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/ })();
+/******/ 
 /******/ /* webpack/runtime/compat */
 /******/ 
 /******/ if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = new URL('.', import.meta.url).pathname.slice(import.meta.url.match(/^file:\/\/\/\w:/) ? 1 : 0, -1) + "/";
 /******/ 
+/******/ /* webpack/runtime/import chunk loading */
+/******/ (() => {
+/******/ 	// no baseURI
+/******/ 	
+/******/ 	// object to store loaded and loading chunks
+/******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 	// [resolve, Promise] = chunk loading, 0 = chunk loaded
+/******/ 	var installedChunks = {
+/******/ 		792: 0
+/******/ 	};
+/******/ 	
+/******/ 	var installChunk = (data) => {
+/******/ 		var {ids, modules, runtime} = data;
+/******/ 		// add "modules" to the modules object,
+/******/ 		// then flag all "ids" as loaded and fire callback
+/******/ 		var moduleId, chunkId, i = 0;
+/******/ 		for(moduleId in modules) {
+/******/ 			if(__nccwpck_require__.o(modules, moduleId)) {
+/******/ 				__nccwpck_require__.m[moduleId] = modules[moduleId];
+/******/ 			}
+/******/ 		}
+/******/ 		if(runtime) runtime(__nccwpck_require__);
+/******/ 		for(;i < ids.length; i++) {
+/******/ 			chunkId = ids[i];
+/******/ 			if(__nccwpck_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 				installedChunks[chunkId][0]();
+/******/ 			}
+/******/ 			installedChunks[ids[i]] = 0;
+/******/ 		}
+/******/ 	
+/******/ 	}
+/******/ 	
+/******/ 	__nccwpck_require__.f.j = (chunkId, promises) => {
+/******/ 			// import() chunk loading for javascript
+/******/ 			var installedChunkData = __nccwpck_require__.o(installedChunks, chunkId) ? installedChunks[chunkId] : undefined;
+/******/ 			if(installedChunkData !== 0) { // 0 means "already installed".
+/******/ 	
+/******/ 				// a Promise means "currently loading".
+/******/ 				if(installedChunkData) {
+/******/ 					promises.push(installedChunkData[1]);
+/******/ 				} else {
+/******/ 					if(true) { // all chunks have JS
+/******/ 						// setup Promise in chunk cache
+/******/ 						var promise = import("./" + __nccwpck_require__.u(chunkId)).then(installChunk, (e) => {
+/******/ 							if(installedChunks[chunkId] !== 0) installedChunks[chunkId] = undefined;
+/******/ 							throw e;
+/******/ 						});
+/******/ 						var promise = Promise.race([promise, new Promise((resolve) => (installedChunkData = installedChunks[chunkId] = [resolve]))])
+/******/ 						promises.push(installedChunkData[1] = promise);
+/******/ 					}
+/******/ 				}
+/******/ 			}
+/******/ 	};
+/******/ 	
+/******/ 	// no prefetching
+/******/ 	
+/******/ 	// no preloaded
+/******/ 	
+/******/ 	// no external install chunk
+/******/ 	
+/******/ 	// no on chunks loaded
+/******/ })();
+/******/ 
 /************************************************************************/
 var __webpack_exports__ = {};
 
-// EXTERNAL MODULE: ./node_modules/@actions/core/lib/core.js
-var core = __nccwpck_require__(7484);
 ;// CONCATENATED MODULE: external "fs/promises"
 const promises_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("fs/promises");
 // EXTERNAL MODULE: external "path"
@@ -27418,13 +27553,263 @@ const env_env = {
     ...envObject
 };
 
+// EXTERNAL MODULE: ./node_modules/@actions/core/lib/core.js
+var core = __nccwpck_require__(7484);
+;// CONCATENATED MODULE: ./node_modules/@rharkor/logger/dist/index.mjs
+let gchalk = null;
+const getChalk = () => {
+  if (gchalk) return gchalk;
+  throw new Error("Chalk not loaded");
+};
+const loadChalk = async () => {
+  if (gchalk) return gchalk;
+  const resolvedChalk = await __nccwpck_require__.e(/* import() */ 884).then(__nccwpck_require__.bind(__nccwpck_require__, 6884)).then((_chalk) => _chalk.default);
+  gchalk = resolvedChalk;
+  return resolvedChalk;
+};
+
+const post_console = globalThis.console;
+const black = "#000000";
+const dist_text = "#CDCDCD";
+const yellow = "#F3F99D";
+const orange = "#F9CB8F";
+const red = "#F09393";
+const green = "#7EE081";
+const blue = "#7DCFEA";
+const gray = "#686868";
+
+const printColor = (bg, text2) => (...args) => {
+  const data = args.map((arg) => {
+    if (typeof arg === "object" && arg) {
+      const str = arg.toString();
+      if (str === "[object Object]") {
+        return JSON.stringify(arg, null, 2);
+      }
+      return str;
+    }
+    return arg;
+  }).join(" ");
+  if (isBrowser()) return data;
+  try {
+    const chalk = getChalk();
+    if (bg && text2) return chalk.bgHex(bg).hex(text2)(data);
+    if (bg) return chalk.bgHex(bg)(data);
+    if (text2) return chalk.hex(text2)(data);
+  } catch (e) {
+    return data;
+  }
+  return data;
+};
+const _log = printColor(void 0, void 0);
+const log = printColor(void 0, dist_text);
+const warn = printColor(yellow, black);
+const warnText = printColor(void 0, yellow);
+const debug = printColor(orange, black);
+const debugText = printColor(void 0, orange);
+const error = printColor(red, black);
+const errorText = printColor(void 0, red);
+const success = printColor(green, black);
+const successText = printColor(void 0, green);
+const info = printColor(blue, black);
+const infoText = printColor(void 0, blue);
+const subLog = printColor(void 0, gray);
+function addPrefixToArgs(prefix, ...args) {
+  if (typeof prefix === "string") {
+    return [log(prefix), ...args];
+  }
+  if (typeof prefix === "function") {
+    return [log(prefix()), ...args];
+  }
+  return args;
+}
+const getLoggerEnv = () => process.env.LOGGER_ENV || "production";
+const allowDebug = () => getLoggerEnv() === "development";
+const isBrowser = () => typeof window !== "undefined";
+
+var utils = /*#__PURE__*/Object.freeze({
+  __proto__: null,
+  _log: _log,
+  addPrefixToArgs: addPrefixToArgs,
+  allowDebug: allowDebug,
+  debug: debug,
+  debugText: debugText,
+  error: error,
+  errorText: errorText,
+  info: info,
+  infoText: infoText,
+  isBrowser: isBrowser,
+  log: log,
+  subLog: subLog,
+  success: success,
+  successText: successText,
+  warn: warn,
+  warnText: warnText
+});
+
+const logger = {
+  ...post_console,
+  isInitialized: false,
+  init: async () => {
+    await loadChalk();
+    logger.isInitialized = true;
+  },
+  allowDebug,
+  _log: (...args) => {
+    warnIfNotInitialized();
+    const value = addPrefixToArgs(logger.prefix, _log(...args));
+    post_console.log(...value);
+    logger.onLog?.("log", value);
+  },
+  log: (...args) => {
+    warnIfNotInitialized();
+    const value = addPrefixToArgs(logger.prefix, log(...args));
+    post_console.log(...value);
+    logger.onLog?.("log", value);
+  },
+  debug: (...args) => {
+    if (allowDebug()) {
+      warnIfNotInitialized();
+      const value = addPrefixToArgs(logger.prefix, debug(" DEBUG "), debugText(...args));
+      post_console.debug(...value);
+      logger.onLog?.("debug", value);
+    }
+  },
+  warn: (...args) => {
+    warnIfNotInitialized();
+    const value = addPrefixToArgs(logger.prefix, warn(" WARN "), warnText(...args));
+    post_console.warn(...value);
+    logger.onLog?.("warn", value);
+  },
+  error: (...args) => {
+    warnIfNotInitialized();
+    const value = addPrefixToArgs(logger.prefix, error(" ERROR "), errorText(...args));
+    post_console.error(...value);
+    logger.onLog?.("error", value);
+  },
+  trace: (...args) => {
+    warnIfNotInitialized();
+    const value = addPrefixToArgs(logger.prefix, error(" ERROR "), errorText(...args));
+    post_console.trace(...value);
+    logger.onLog?.("trace", value);
+  },
+  success: (...args) => {
+    warnIfNotInitialized();
+    const value = addPrefixToArgs(logger.prefix, success(" SUCCESS "), successText(...args));
+    post_console.log(...value);
+    logger.onLog?.("success", value);
+  },
+  info: (...args) => {
+    warnIfNotInitialized();
+    const value = addPrefixToArgs(logger.prefix, info(" INFO "), infoText(...args));
+    post_console.log(...value);
+    logger.onLog?.("info", value);
+  },
+  subLog: (...args) => {
+    warnIfNotInitialized();
+    const value = addPrefixToArgs(logger.prefix, subLog(...args));
+    post_console.log(...value);
+    logger.onLog?.("subLog", value);
+  },
+  utils
+};
+logger.init();
+let alreadyWarned = false;
+const warnIfNotInitialized = () => {
+  if (!logger.isInitialized && !alreadyWarned) {
+    post_console.warn("Logger is not initialized yet. Please call and await logger.init()");
+    alreadyWarned = true;
+  }
+};
+
+
+
+;// CONCATENATED MODULE: ./src/lib/core.ts
+
+
+const isCI = process.env.CI === 'true';
+const core_core = {
+    isCI,
+    setFailed: (message) => {
+        if (isCI) {
+            core.setFailed(message);
+        }
+        else {
+            logger.error(message);
+        }
+    },
+    getInput: (name) => {
+        if (isCI) {
+            return core.getInput(name);
+        }
+        return undefined;
+    },
+    exportVariable: (name, value) => {
+        if (isCI) {
+            core.exportVariable(name, value);
+        }
+    },
+    //* Logger
+    info: (message) => {
+        if (isCI) {
+            core.info(message);
+        }
+        else {
+            logger.info(message);
+        }
+    },
+    error: (message) => {
+        if (isCI) {
+            core.error(message);
+        }
+        else {
+            logger.error(message);
+        }
+    },
+    debug: (message) => {
+        if (isCI) {
+            core.debug(message);
+        }
+        else {
+            logger.debug(message);
+        }
+    },
+    log: (message) => {
+        if (isCI) {
+            core.info(message);
+        }
+        else {
+            logger.log(message);
+        }
+    },
+    success: (message) => {
+        if (isCI) {
+            core.info(message);
+        }
+        else {
+            logger.success(message);
+        }
+    }
+};
+
 ;// CONCATENATED MODULE: ./src/lib/constants.ts
 
 
 
+// Helper function to get input value, prioritizing environment variables for local development
+const getInput = (name, envName) => {
+    // In GitHub Actions context, try core.getInput first
+    if (process.env.CI === 'true') {
+        const coreInput = core_core.getInput(name);
+        if (coreInput)
+            return coreInput;
+    }
+    // Fall back to environment variable
+    const envVar = envName || name.toUpperCase().replace(/-/g, '_');
+    return process.env[envVar];
+};
 const serverPort = 41230;
 const cachePath = 'turbogha_';
-const cachePrefix = core.getInput('cache-prefix') || cachePath;
+const cachePrefix = getInput('cache-prefix', 'CACHE_PREFIX') || cachePath;
 const getCacheKey = (hash, tag) => `${cachePrefix}${hash}${tag ? `#${tag}` : ''}`;
 const serverLogFile = env_env.RUNNER_TEMP
     ? (0,external_path_.join)(env_env.RUNNER_TEMP, 'turbogha.log')
@@ -27448,12 +27833,12 @@ async function post() {
         //* Read the logs
         const logs = await (0,promises_namespaceObject.readFile)(serverLogFile, 'utf-8');
         //* Print the logs
-        core.info(logs);
+        core_core.info(logs);
     }
     catch (error) {
         // Fail the workflow run if an error occurs
         if (error instanceof Error)
-            core.setFailed(error.message);
+            core_core.setFailed(error.message);
     }
 }
 // Run the out script

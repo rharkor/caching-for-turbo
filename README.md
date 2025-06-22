@@ -67,6 +67,122 @@ This GitHub Action facilitates:
 3. **Efficient Caching**: Leverages GitHub's cache service to significantly
    accelerate build times.
 
+## Local Development
+
+You can also use this package as a devDependency to run the cache server locally
+during development. This allows you to use the same caching infrastructure
+(including S3) that you use in CI.
+
+### Installation
+
+Add this package as a devDependency to your project:
+
+```bash
+npm install --save-dev @rharkor/caching-for-turbo
+```
+
+### Usage
+
+The package provides a `turbogha` binary that you can use to start the cache
+server:
+
+```bash
+# Start the server in background mode (recommended for development)
+npx turbogha
+
+# Or run the server in foreground mode
+npx turbogha --server
+```
+
+To stop the server, you can use the following command:
+
+```bash
+curl -X DELETE http://localhost:41230/shutdown
+```
+
+To ping the server, you can use the following command:
+
+```bash
+npx turbogha --ping
+```
+
+### Environment Configuration
+
+Create a `.env` file in your project root to configure the cache server:
+
+```env
+# Cache provider (github or s3)
+PROVIDER=s3
+
+# S3 Configuration (required when using s3 provider)
+S3_ACCESS_KEY_ID=your-access-key
+S3_SECRET_ACCESS_KEY=your-secret-key
+S3_BUCKET=your-bucket-name
+S3_REGION=us-east-1
+S3_ENDPOINT=https://s3.amazonaws.com
+S3_PREFIX=turbogha/
+
+# Optional: Custom cache prefix
+CACHE_PREFIX=turbogha_
+```
+
+### Using with Turbo
+
+Once the server is running, you can use Turbo with remote caching:
+
+```bash
+export TURBOGHA_PORT=41230
+export TURBO_API=http://localhost:41230
+export TURBO_TOKEN=turbogha
+export TURBO_TEAM=turbogha
+
+# Now run your turbo commands
+turbo build
+```
+
+_**Note:** Store the environment variables in a .env for turbo to use them._
+_See: https://turborepo.com/docs/reference/system-environment-variables_
+
+### Stopping the Server
+
+To stop the cache server:
+
+```bash
+curl -X DELETE http://localhost:41230/shutdown
+```
+
+### Development Workflow Example
+
+1. **Start the cache server:**
+
+   ```bash
+   npx turbogha
+   ```
+
+2. **Set up environment variables:**
+
+   ```bash
+   export TURBO_API=http://localhost:41230
+   export TURBO_TOKEN=turbogha
+   export TURBO_TEAM=turbogha
+   ```
+
+3. **Run your builds with remote caching:**
+
+   ```bash
+   turbo build
+   turbo test
+   ```
+
+4. **Stop the server when done:**
+   ```bash
+   curl -X DELETE http://localhost:41230/shutdown
+   ```
+
+This setup allows you to use the same S3-based caching infrastructure locally
+that you use in your CI pipeline, ensuring consistent caching behavior across
+environments.
+
 ## Configurable Options
 
 Customize the caching behavior with the following optional settings (defaults

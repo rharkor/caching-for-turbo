@@ -1,8 +1,8 @@
-import * as core from '@actions/core'
 import { RequestContext } from '.'
 import parse from 'parse-duration'
 import { getProvider } from '../providers'
 import { parseFileSize } from './utils'
+import { core } from '../core'
 
 export type TListFile = {
   path: string

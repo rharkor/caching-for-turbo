@@ -1,6 +1,6 @@
-import * as core from '@actions/core'
 import { readFile } from 'fs/promises'
 import { serverLogFile, serverPort } from './lib/constants'
+import { core } from './lib/core'
 
 /**
  * The out script for the action.

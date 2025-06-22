@@ -1,8 +1,8 @@
 import waitOn from 'wait-on'
 import { cachePrefix, cachePath, serverLogFile, serverPort } from '../constants'
-import * as core from '@actions/core'
 import { openSync } from 'fs'
 import { spawn } from 'child_process'
+import { core } from '../core'
 
 export const waitForServer = async (): Promise<void> => {
   await waitOn({
@@ -13,7 +13,7 @@ export const waitForServer = async (): Promise<void> => {
 
 export const exportVariable = (name: string, value: string): void => {
   core.exportVariable(name, value)
-  core.info(`  ${name}=${value}`)
+  core.log(`  ${name}=${value}`)
 }
 
 export async function launchServer(devRun?: boolean): Promise<void> {
@@ -27,10 +27,10 @@ export async function launchServer(devRun?: boolean): Promise<void> {
       stdio: ['ignore', out, err]
     })
     child.unref()
-    core.info(`Cache version: ${cachePath}`)
-    core.info(`Cache prefix: ${cachePrefix}`)
-    core.info(`Launched child process: ${child.pid}`)
-    core.info(`Server log file: ${serverLogFile}`)
+    core.log(`Cache version: ${cachePath}`)
+    core.log(`Cache prefix: ${cachePrefix}`)
+    core.log(`Launched child process: ${child.pid}`)
+    core.log(`Server log file: ${serverLogFile}`)
   }
 
   //* Wait for server
@@ -45,7 +45,13 @@ export async function launchServer(devRun?: boolean): Promise<void> {
     console.log(`export TURBO_TOKEN=turbogha`)
     console.log(`export TURBO_TEAM=turbogha`)
   } else {
-    core.info('The following environment variables are exported:')
+    if (core.isCI) {
+      core.info('The following environment variables are exported:')
+    } else {
+      core.info(
+        'You need to use the following environment variables for turbo to work:'
+      )
+    }
     exportVariable('TURBOGHA_PORT', `${serverPort}`)
     exportVariable('TURBO_API', `http://localhost:${serverPort}`)
     exportVariable('TURBO_TOKEN', 'turbogha')

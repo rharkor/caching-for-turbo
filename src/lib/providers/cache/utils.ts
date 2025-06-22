@@ -1,11 +1,11 @@
 import { Readable } from 'node:stream'
 import { env } from '../../env'
-import * as core from '@actions/core'
 import streamToPromise from 'stream-to-promise'
 import { createWriteStream } from 'node:fs'
 import { unlink } from 'node:fs/promises'
 import { getTempCachePath } from '../../constants'
 import { restoreCache, saveCache } from '@actions/cache'
+import { core } from 'src/lib/core'
 class HandledError extends Error {
   status: number
   statusText: string
