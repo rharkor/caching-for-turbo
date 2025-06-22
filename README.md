@@ -55,7 +55,7 @@ the following step **before** you run `turbo build`:
 
 ```yaml
 - name: Cache for Turbo
-  uses: rharkor/caching-for-turbo@v2.1.0
+  uses: rharkor/caching-for-turbo@v2.1.1
 ```
 
 This GitHub Action facilitates:
@@ -200,7 +200,7 @@ Example S3 configuration:
 
 ```yaml
 - name: Cache for Turbo
-  uses: rharkor/caching-for-turbo@v2.1.0
+  uses: rharkor/caching-for-turbo@v2.1.1
   with:
     provider: s3
     s3-access-key-id: ${{ secrets.S3_ACCESS_KEY_ID }}
@@ -238,7 +238,7 @@ Example with cleanup configuration:
 
 ```yaml
 - name: Cache for Turbo
-  uses: rharkor/caching-for-turbo@v2.1.0
+  uses: rharkor/caching-for-turbo@v2.1.1
   with:
     provider: s3
     s3-access-key-id: ${{ secrets.S3_ACCESS_KEY_ID }}
