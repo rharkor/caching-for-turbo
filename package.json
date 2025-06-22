@@ -34,6 +34,7 @@
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "package": "ncc build src/index.ts -o dist/setup --source-map --license licenses.txt && ncc build src/post.ts -o dist/post --source-map --license licenses.txt && ncc build src/cli.ts -o dist/cli --source-map --license licenses.txt",
+    "cleanup-package": "npm pkg delete dependencies devDependencies scripts",
     "package:watch": "npm run package -- --watch",
     "all": "npm run format:write && npm run lint && npm run coverage && npm run package",
     "test-build": "npm run -s package",
