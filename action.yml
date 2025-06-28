@@ -35,16 +35,16 @@ inputs:
       10gb)'
     required: false
   s3-access-key-id:
-    description: 'AWS S3 access key ID (required when provider is s3)'
+    description: 'AWS S3 access key ID'
     required: false
   s3-secret-access-key:
-    description: 'AWS S3 secret access key (required when provider is s3)'
+    description: 'AWS S3 secret access key'
     required: false
   s3-bucket:
-    description: 'AWS S3 bucket name (required when provider is s3)'
+    description: 'AWS S3 bucket name'
     required: false
   s3-region:
-    description: 'AWS S3 region (required when provider is s3)'
+    description: 'AWS S3 region'
     required: false
   s3-prefix:
     description: 'Prefix for S3 objects'
