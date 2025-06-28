@@ -78,3 +78,8 @@ yarn-error.log*
 .Trashes
 ehthumbs.db
 Thumbs.db 
+
+dist/
+!dist/cli/
+action.yml
+.env.example

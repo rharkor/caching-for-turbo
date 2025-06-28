@@ -88,22 +88,22 @@ server:
 
 ```bash
 # Start the server in background mode (recommended for development)
-turbogha
+turbogha start
 
 # Or run the server in foreground mode
-turbogha --server
+turbogha start --foreground
 ```
 
 To stop the server, you can use the following command:
 
 ```bash
-turbogha --kill
+turbogha kill
 ```
 
 To ping the server, you can use the following command:
 
 ```bash
-turbogha --ping
+turbogha ping
 ```
 
 ### Environment Configuration
@@ -115,11 +115,11 @@ Create a `.env` file in your project root to configure the cache server:
 PROVIDER=s3
 
 # S3 Configuration (required when using s3 provider)
-S3_ACCESS_KEY_ID=your-access-key
-S3_SECRET_ACCESS_KEY=your-secret-key
-S3_BUCKET=your-bucket-name
-S3_REGION=us-east-1
-S3_ENDPOINT=https://s3.amazonaws.com
+AWS_ACCESS_KEY_ID=secret # Or S3_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY=secret # Or S3_SECRET_ACCESS_KEY
+AWS_REGION=us-east-1 # Or AWS_DEFAULT_REGION or S3_REGION
+AWS_ENDPOINT_URL_S3=https://s3.amazonaws.com # Or AWS_ENDPOINT_URL or S3_ENDPOINT
+S3_BUCKET=my-bucket
 S3_PREFIX=turbogha/
 
 # Optional: Custom cache prefix
@@ -147,7 +147,7 @@ _See: https://turborepo.com/docs/reference/system-environment-variables_
 To stop the cache server:
 
 ```bash
-turbogha --kill
+turbogha kill
 # or
 curl -X DELETE http://localhost:41230/shutdown
 ```
@@ -162,7 +162,7 @@ with:
   cache-prefix: turbogha_ # Custom prefix for cache keys
   provider: github # Storage provider: 'github' (default) or 's3'
 
-  # S3 Provider Configuration (required when provider is set to 's3')
+  # S3 Provider Configuration (variables will be read from environment variables if not provided)
   s3-access-key-id: ${{ secrets.S3_ACCESS_KEY_ID }} # S3 access key
   s3-secret-access-key: ${{ secrets.S3_SECRET_ACCESS_KEY }} # S3 secret key
   s3-bucket: your-bucket-name # S3 bucket name
@@ -203,11 +203,7 @@ Example S3 configuration:
   uses: rharkor/caching-for-turbo@v2.1.1
   with:
     provider: s3
-    s3-access-key-id: ${{ secrets.S3_ACCESS_KEY_ID }}
-    s3-secret-access-key: ${{ secrets.S3_SECRET_ACCESS_KEY }}
     s3-bucket: my-turbo-cache-bucket
-    s3-region: us-west-2
-    s3-endpoint: https://s3.amazonaws.com
 ```
 
 ### Cache Cleanup Options
@@ -241,11 +237,7 @@ Example with cleanup configuration:
   uses: rharkor/caching-for-turbo@v2.1.1
   with:
     provider: s3
-    s3-access-key-id: ${{ secrets.S3_ACCESS_KEY_ID }}
-    s3-secret-access-key: ${{ secrets.S3_SECRET_ACCESS_KEY }}
     s3-bucket: my-turbo-cache-bucket
-    s3-region: us-west-2
-    s3-endpoint: https://s3.amazonaws.com
     # Cleanup configuration
     max-age: 2w
     max-size: 5gb

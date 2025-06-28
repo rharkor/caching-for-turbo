@@ -14,7 +14,7 @@ import { getCacheKey } from 'src/lib/constants'
 import { core } from 'src/lib/core'
 
 // Helper function to get input value, prioritizing environment variables for local development
-const getInput = (name: string, envName?: string): string | undefined => {
+const getInput = (name: string, envNames?: string[]): string | undefined => {
   // In GitHub Actions context, try core.getInput first
   if (process.env.GITHUB_ACTIONS === 'true') {
     const coreInput = core.getInput(name)
@@ -22,21 +22,37 @@ const getInput = (name: string, envName?: string): string | undefined => {
   }
 
   // Fall back to environment variable
-  const envVar = envName || name.toUpperCase().replace(/-/g, '_')
-  return process.env[envVar]
+  const envVars = envNames || [name.toUpperCase().replace(/-/g, '_')]
+  for (const envVar of envVars) {
+    if (process.env[envVar]) {
+      return process.env[envVar]
+    }
+  }
+  return undefined
 }
 
 export const getS3Provider = (): TProvider => {
-  const s3AccessKeyId = getInput('s3-access-key-id', 'S3_ACCESS_KEY_ID')
-  const s3SecretAccessKey = getInput(
-    's3-secret-access-key',
+  const s3AccessKeyId = getInput('s3-access-key-id', [
+    'AWS_ACCESS_KEY_ID',
+    'S3_ACCESS_KEY_ID'
+  ])
+  const s3SecretAccessKey = getInput('s3-secret-access-key', [
+    'AWS_SECRET_ACCESS_KEY',
     'S3_SECRET_ACCESS_KEY'
-  )
-  const s3Bucket = getInput('s3-bucket', 'S3_BUCKET')
-  const s3Region = getInput('s3-region', 'S3_REGION')
+  ])
+  const s3Bucket = getInput('s3-bucket', ['S3_BUCKET'])
+  const s3Region = getInput('s3-region', [
+    'AWS_REGION',
+    'AWS_DEFAULT_REGION',
+    'S3_REGION'
+  ])
   const s3Endpoint =
-    getInput('s3-endpoint', 'S3_ENDPOINT') || 'https://s3.amazonaws.com'
-  const s3Prefix = getInput('s3-prefix', 'S3_PREFIX') || 'turbogha/'
+    getInput('s3-endpoint', [
+      'AWS_ENDPOINT_URL_S3',
+      'AWS_ENDPOINT_URL',
+      'S3_ENDPOINT'
+    ]) || 'https://s3.amazonaws.com'
+  const s3Prefix = getInput('s3-prefix', ['S3_PREFIX']) || 'turbogha/'
 
   if (!s3AccessKeyId || !s3SecretAccessKey || !s3Bucket || !s3Region) {
     throw new Error(
