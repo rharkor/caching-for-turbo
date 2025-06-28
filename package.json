@@ -18,7 +18,7 @@
   ],
   "author": "HUORT Louis (https://louis.huort.com)",
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/cli/index.js"
   },
   "bin": {
     "turbogha": "./dist/cli/index.js"
