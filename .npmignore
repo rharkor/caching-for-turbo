@@ -79,7 +79,8 @@ yarn-error.log*
 ehthumbs.db
 Thumbs.db 
 
-dist/
-!dist/cli/
+dist/setup/
+dist/post/
+dist/cli/index.js.map
 action.yml
 .env.example
