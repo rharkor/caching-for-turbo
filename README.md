@@ -88,22 +88,22 @@ server:
 
 ```bash
 # Start the server in background mode (recommended for development)
-turbogha
+turbogha start
 
 # Or run the server in foreground mode
-turbogha --server
+turbogha start --foreground
 ```
 
 To stop the server, you can use the following command:
 
 ```bash
-turbogha --kill
+turbogha kill
 ```
 
 To ping the server, you can use the following command:
 
 ```bash
-turbogha --ping
+turbogha ping
 ```
 
 ### Environment Configuration
@@ -147,7 +147,7 @@ _See: https://turborepo.com/docs/reference/system-environment-variables_
 To stop the cache server:
 
 ```bash
-turbogha --kill
+turbogha kill
 # or
 curl -X DELETE http://localhost:41230/shutdown
 ```
