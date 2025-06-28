@@ -2,6 +2,7 @@ import Fastify from 'fastify'
 import { serverPort } from '../constants'
 import { cleanup } from './cleanup'
 import { getProvider } from '../providers'
+import { Readable } from 'stream'
 
 export type RequestContext = {
   log: {
@@ -18,6 +19,65 @@ export async function server(): Promise<void> {
   //? Server status check
   fastify.get('/', async () => {
     return { ok: true }
+  })
+
+  //? Ping endpoint to test cache provider functionality
+  fastify.get('/ping', async request => {
+    request.log.info(
+      'Ping endpoint called - testing cache provider functionality'
+    )
+
+    try {
+      const tests = []
+      const provider = getProvider()
+      const testHash = 'ping-test-file'
+      const testContent = 'This is a test file for ping functionality'
+
+      // Create a readable stream from the test content
+      const testStream = new Readable()
+      testStream.push(testContent)
+      testStream.push(null) // End the stream
+
+      // Test 1: Upload a test file
+      request.log.info('Testing cache upload...')
+      await provider.save(request, testHash, 'ping-test', testStream)
+      request.log.info('Cache upload test successful')
+      tests.push('upload')
+
+      // Test 2: Retrieve the test file
+      request.log.info('Testing cache retrieval...')
+      const result = await provider.get(request, testHash)
+      if (!result) {
+        throw new Error('Failed to retrieve test file from cache')
+      }
+      request.log.info('Cache retrieval test successful')
+      tests.push('retrieve')
+
+      // Test 3: Delete the test file (only if supported)
+      try {
+        request.log.info('Testing cache deletion...')
+        await provider.delete(testHash)
+        request.log.info('Cache deletion test successful')
+        tests.push('delete')
+      } catch (deleteError) {
+        request.log.info(
+          `Cache deletion not supported or failed: ${deleteError}`
+        )
+        // Don't fail the ping test if deletion is not supported
+      }
+
+      return {
+        ok: true,
+        message: 'Cache provider functionality test completed successfully',
+        tests
+      }
+    } catch (error) {
+      request.log.error(`Ping test failed: ${error}`)
+      return {
+        ok: false,
+        error: error instanceof Error ? error.message : String(error)
+      }
+    }
   })
 
   //? Shut down the server
