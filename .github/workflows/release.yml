@@ -40,21 +40,8 @@ jobs:
         run: npm install
       - name: Package
         run: npm run package
-      - name: Create publish package.json
-        run: |
-          # Create a copy of package.json for publishing
-          cp package.json package-publish.json
-          # Remove unwanted fields from the publish version
-          npm pkg delete dependencies devDependencies scripts --prefix . --package package-publish.json
-          # Move the publish version to be the main package.json for semantic-release
-          mv package-publish.json package.json
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
-      - name: Restore original package.json
-        if: always()
-        run: |
-          # Restore the original package.json from git
-          git checkout HEAD -- package.json
