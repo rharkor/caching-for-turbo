@@ -124,8 +124,14 @@
         }
       }
     ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "npm pkg delete dependencies devDependencies scripts"
+      }
+    ],
+    ["@semantic-release/npm", {}],
     "@semantic-release/github",
-    "@semantic-release/npm",
     "@semantic-release/git",
     "@semantic-release/changelog"
   ]

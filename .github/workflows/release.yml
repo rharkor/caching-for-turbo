@@ -40,9 +40,6 @@ jobs:
         run: npm install
       - name: Package
         run: npm run package
-      - name: Create publish package.json
-        run: |
-          npm pkg delete dependencies devDependencies scripts
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
