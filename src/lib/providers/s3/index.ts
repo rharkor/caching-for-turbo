@@ -40,6 +40,10 @@ export const getS3Provider = (): TProvider => {
     'AWS_SECRET_ACCESS_KEY',
     'S3_SECRET_ACCESS_KEY'
   ])
+  const s3SessionToken = getInput('s3-session-token', [
+    'AWS_SESSION_TOKEN',
+    'S3_SESSION_TOKEN'
+  ])
   const s3Bucket = getInput('s3-bucket', ['S3_BUCKET'])
   const s3Region = getInput('s3-region', [
     'AWS_REGION',
@@ -65,7 +69,8 @@ export const getS3Provider = (): TProvider => {
     endpoint: s3Endpoint,
     credentials: {
       accessKeyId: s3AccessKeyId,
-      secretAccessKey: s3SecretAccessKey
+      secretAccessKey: s3SecretAccessKey,
+      sessionToken: s3SessionToken
     }
   })
 
