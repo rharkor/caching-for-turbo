@@ -40,6 +40,11 @@ inputs:
   s3-secret-access-key:
     description: 'AWS S3 secret access key'
     required: false
+  s3-session-token:
+    description:
+      'AWS S3 session token (optional, only required for temporary credentials
+      e.g. OIDC authentication)'
+    required: false
   s3-bucket:
     description: 'AWS S3 bucket name'
     required: false
