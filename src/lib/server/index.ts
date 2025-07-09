@@ -140,6 +140,63 @@ export async function server(): Promise<void> {
     return reply.send(stream)
   })
 
+  /**
+   *  Login and link commands
+   */
+
+  fastify.get('/v5/user/tokens/current', async () => {
+    return {
+      ok: true,
+      token: {
+        id: 'turbogha',
+        name: 'turbogha',
+        type: 'turbogha',
+        origin: 'turbogha',
+        scopes: [],
+        activeAt: Date.now(),
+        createdAt: Date.now()
+      }
+    }
+  })
+
+  fastify.get('/v8/artifacts/status', async () => {
+    return {
+      ok: true,
+      status: 'enabled'
+    }
+  })
+
+  fastify.get('/v2/user', async () => {
+    return {
+      ok: true,
+      user: {
+        id: 'turbogha',
+        username: 'turbogha',
+        email: 'turbogha@turbogha.com',
+        name: 'turbogha',
+        createdAt: Date.now()
+      }
+    }
+  })
+
+  fastify.get('/v2/teams', async () => {
+    return {
+      ok: true,
+      teams: [
+        {
+          id: 'turbogha',
+          slug: 'turbogha',
+          name: 'turbogha',
+          createdAt: Date.now(),
+          created: new Date(),
+          membership: {
+            role: 'OWNER'
+          }
+        }
+      ]
+    }
+  })
+
   //* Start the server
   await fastify.listen({ port: serverPort })
 }
