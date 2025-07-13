@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - main-release
 
   workflow_dispatch:
 
@@ -10,6 +11,44 @@ permissions:
   contents: read # for checkout
 
 jobs:
+  sync:
+    name: Sync
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # to be able to push to the main:release and rec:release branches
+      id-token: write # to enable use of OIDC for npm provenance
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Generate token
+        id: generate_token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ vars.MYBOT_APP_ID }}
+          private_key: ${{ secrets.MYBOT_PRIVATE_KEY }}
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ steps.generate_token.outputs.token }}
+      - name: Setup Git Config
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions@example.com"
+
+      - name: Sync Branch
+        run: |
+          SOURCE_BRANCH="${GITHUB_REF_NAME}"
+          TARGET_BRANCH="${GITHUB_REF_NAME}-release"
+          # Checkout target branch
+          git fetch origin ${TARGET_BRANCH}:${TARGET_BRANCH}
+          git checkout ${TARGET_BRANCH}
+          # Merge changes from SOURCE_BRANCH to TARGET_BRANCH, favoring 'theirs' for conflicts
+          git merge -X theirs origin/${SOURCE_BRANCH}
+          # Push changes to TARGET_BRANCH
+          git push origin ${TARGET_BRANCH}
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+
   release:
     name: Release
     runs-on: ubuntu-latest
@@ -18,7 +57,7 @@ jobs:
       issues: write # to be able to comment on released issues
       pull-requests: write # to be able to comment on released pull requests
       id-token: write # to enable use of OIDC for npm provenance
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main-release'
     steps:
       - name: Generate token
         id: generate_token
