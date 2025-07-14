@@ -42,8 +42,8 @@ jobs:
           # Checkout target branch
           git fetch origin ${TARGET_BRANCH}:${TARGET_BRANCH}
           git checkout ${TARGET_BRANCH}
-          # Merge changes from SOURCE_BRANCH to TARGET_BRANCH, favoring 'theirs' for conflicts
-          git merge -X theirs origin/${SOURCE_BRANCH}
+          # Forcefully reset TARGET_BRANCH to match SOURCE_BRANCH
+          git reset --hard origin/${SOURCE_BRANCH}
           # Push changes to TARGET_BRANCH
           git push origin ${TARGET_BRANCH}
         env:
