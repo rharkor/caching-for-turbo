@@ -165,6 +165,7 @@ with:
   # S3 Provider Configuration (variables will be read from environment variables if not provided)
   s3-access-key-id: ${{ secrets.S3_ACCESS_KEY_ID }} # S3 access key
   s3-secret-access-key: ${{ secrets.S3_SECRET_ACCESS_KEY }} # S3 secret key
+  s3-session-token: ${{ secrets.S3_SESSION_TOKEN }} # Optional S3 session token, for temporary credentials (e.g. OIDC)
   s3-bucket: your-bucket-name # S3 bucket name
   s3-region: us-east-1 # S3 bucket region
   s3-endpoint: https://s3.amazonaws.com # S3 endpoint
