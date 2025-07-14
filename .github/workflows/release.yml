@@ -45,7 +45,7 @@ jobs:
           # Forcefully reset TARGET_BRANCH to match SOURCE_BRANCH
           git reset --hard origin/${SOURCE_BRANCH}
           # Push changes to TARGET_BRANCH
-          git push origin ${TARGET_BRANCH}
+          git push origin ${TARGET_BRANCH} --force
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
