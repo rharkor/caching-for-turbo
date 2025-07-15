@@ -37,15 +37,28 @@ jobs:
 
       - name: Sync Branch
         run: |
-          SOURCE_BRANCH="${GITHUB_REF_NAME}"
-          TARGET_BRANCH="${GITHUB_REF_NAME}-release"
-          # Checkout target branch
-          git fetch origin ${TARGET_BRANCH}:${TARGET_BRANCH}
-          git checkout ${TARGET_BRANCH}
-          # Forcefully reset TARGET_BRANCH to match SOURCE_BRANCH
-          git reset --hard origin/${SOURCE_BRANCH}
-          # Push changes to TARGET_BRANCH
-          git push origin ${TARGET_BRANCH} --force
+          SOURCE="${GITHUB_REF_NAME}"
+          TARGET="${GITHUB_REF_NAME}-release"
+
+          # fetch both branches & tags
+          git fetch origin $TARGET:$TARGET
+          git fetch origin $SOURCE
+
+          # check out the release branch
+          git checkout $TARGET
+
+          # merge in main, taking main's version on all conflicts
+          git merge origin/$SOURCE --strategy=recursive -X theirs --no-edit
+
+          # now override package.json with main's copy
+          git checkout origin/$SOURCE -- package.json
+          git add package.json
+
+          # commit that one-file change
+          git commit -m "chore(sync): restore package.json from $SOURCE"
+
+          # push the updated branch (history + tags intact)
+          git push origin $TARGET
         env:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
 
