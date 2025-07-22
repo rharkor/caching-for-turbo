@@ -48,6 +48,42 @@ However, if you're already using Vercel and their remote caching works well for
 your needs, there's no pressing need to switch. Both solutions are valid
 approaches to the same problem.
 
+## Comparison with Other Approaches
+
+### GitHub Actions Built-in Cache
+
+Turborepo's [official documentation](https://turborepo.com/docs/guides/ci-vendors/github-actions#remote-caching-with-github-actionscache) also mentions using GitHub Actions' built-in cache directly. Here's how our approach compares:
+
+**GitHub Actions Built-in Cache Approach**
+
+- Uses `actions/cache` action directly with Turborepo's cache outputs
+- Simpler setup with fewer moving parts
+- Limited to GitHub's cache storage only
+
+**This Action's Approach**
+
+- Provides a modular caching solution with multiple storage backends
+- Supports both GitHub Actions cache and S3 storage
+- Offers more control over cache retention and cleanup policies
+- Enables local development with the same caching infrastructure
+
+### When to Choose Each Approach
+
+**Choose GitHub Actions Built-in Cache when:**
+- You want the simplest possible setup
+- You're only using GitHub Actions for CI
+- You don't need advanced cache management features
+- You're satisfied with GitHub's cache storage limitations
+
+**Choose This Action when:**
+- You need more granular cache control
+- You want to use S3 or other storage backends
+- You need advanced cleanup and retention policies
+- You want to use the same caching infrastructure locally and in CI
+- You have a large monorepo where modular caching provides benefits
+
+Both approaches are valid and serve different use cases. The built-in cache approach is simpler and has been available for a long time, while this action provides more flexibility and features.
+
 ## Quick Start
 
 Easily integrate our caching action into your GitHub Actions workflow by adding
