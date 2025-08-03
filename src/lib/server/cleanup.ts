@@ -3,6 +3,7 @@ import parse from 'parse-duration'
 import { getProvider } from '../providers'
 import { parseFileSize } from './utils'
 import { core } from '../core'
+import { getTracker } from '../tracker'
 
 export type TListFile = {
   path: string
@@ -10,7 +11,10 @@ export type TListFile = {
   size: number
 }
 
-export async function cleanup(ctx: RequestContext) {
+export async function cleanup(
+  ctx: RequestContext,
+  tracker: ReturnType<typeof getTracker>
+) {
   const maxAge = core.getInput('max-age') || process.env.MAX_AGE
   const maxFiles = core.getInput('max-files') || process.env.MAX_FILES
   const maxSize = core.getInput('max-size') || process.env.MAX_SIZE
@@ -41,7 +45,7 @@ export async function cleanup(ctx: RequestContext) {
     throw new Error('Invalid max-size provided')
   }
 
-  const provider = getProvider()
+  const provider = getProvider(tracker)
 
   const files = await provider.list()
 
@@ -99,8 +103,9 @@ export async function cleanup(ctx: RequestContext) {
     )
     for (const file of fileToDelete) {
       try {
+        console.log('Deleting', file)
         await provider.delete(file.path)
-        ctx.log.info(`Deleted ${file.path}`)
+        ctx.log.info(`Deleted ${file}`)
       } catch (error) {
         core.error(`Failed to delete ${file.path}: ${error}`)
       }

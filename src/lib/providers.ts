@@ -4,6 +4,7 @@ import { RequestContext } from './server'
 import { getGithubProvider } from './providers/cache'
 import { getS3Provider } from './providers/s3'
 import { core } from './core'
+import { getTracker } from './tracker'
 
 export type TProvider = {
   save: (
@@ -22,7 +23,9 @@ export type TProvider = {
   list: () => Promise<TListFile[]>
 }
 
-export const getProvider = (): TProvider => {
+export const getProvider = (
+  tracker: ReturnType<typeof getTracker>
+): TProvider => {
   const provider = core.getInput('provider') || process.env.PROVIDER
 
   if (!provider) {
@@ -32,10 +35,10 @@ export const getProvider = (): TProvider => {
   }
 
   if (provider === 'github') {
-    return getGithubProvider()
+    return getGithubProvider(tracker)
   }
   if (provider === 's3') {
-    return getS3Provider()
+    return getS3Provider(tracker)
   }
 
   throw new Error(`Provider ${provider} not supported`)

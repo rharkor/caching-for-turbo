@@ -12,6 +12,8 @@ import {
 import { Upload } from '@aws-sdk/lib-storage'
 import { getCacheKey } from 'src/lib/constants'
 import { core } from 'src/lib/core'
+import { timingProvider } from 'src/lib/utils'
+import { getTracker } from 'src/lib/tracker'
 
 // Helper function to get input value, prioritizing environment variables for local development
 const getInput = (name: string, envNames?: string[]): string | undefined => {
@@ -31,7 +33,9 @@ const getInput = (name: string, envNames?: string[]): string | undefined => {
   return undefined
 }
 
-export const getS3Provider = (): TProvider => {
+export const getS3Provider = (
+  tracker: ReturnType<typeof getTracker>
+): TProvider => {
   const s3AccessKeyId = getInput('s3-access-key-id', [
     'AWS_ACCESS_KEY_ID',
     'S3_ACCESS_KEY_ID'
@@ -89,8 +93,6 @@ export const getS3Provider = (): TProvider => {
     stream: Readable
   ): Promise<void> => {
     const objectKey = getS3Key(hash, tag)
-    console.log({ objectKey, s3Prefix })
-
     try {
       // Use the S3 Upload utility which handles multipart uploads for large files
       const upload = new Upload({
@@ -250,9 +252,9 @@ export const getS3Provider = (): TProvider => {
   }
 
   return {
-    save,
-    get,
-    delete: deleteObj,
-    list
+    save: timingProvider('save', tracker, save),
+    get: timingProvider('get', tracker, get),
+    delete: timingProvider('delete', tracker, deleteObj),
+    list: timingProvider('list', tracker, list)
   }
 }

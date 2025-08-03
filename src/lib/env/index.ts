@@ -1,7 +1,8 @@
 const envObject = {
   ACTIONS_RUNTIME_TOKEN: process.env.ACTIONS_RUNTIME_TOKEN,
   ACTIONS_CACHE_URL: process.env.ACTIONS_CACHE_URL,
-  RUNNER_TEMP: process.env.RUNNER_TEMP
+  RUNNER_TEMP: process.env.RUNNER_TEMP,
+  LOG_LEVEL: process.env.LOG_LEVEL
 }
 
 type TInvalidEnv = {
