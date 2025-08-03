@@ -13,6 +13,8 @@ import { TListFile } from '../../server/cleanup'
 import { getCacheClient } from './utils'
 import { TProvider } from '../../providers'
 import { core } from 'src/lib/core'
+import { timingProvider } from 'src/lib/utils'
+import { getTracker } from 'src/lib/tracker'
 
 //* Cache API
 export async function saveCache(
@@ -77,11 +79,13 @@ export async function listCache(): Promise<TListFile[]> {
   throw new Error(`Cannot list github cache automatically.`)
 }
 
-export const getGithubProvider = (): TProvider => {
+export const getGithubProvider = (
+  tracker: ReturnType<typeof getTracker>
+): TProvider => {
   return {
-    save: saveCache,
-    get: getCache,
-    delete: deleteCache,
-    list: listCache
+    save: timingProvider('save', tracker, saveCache),
+    get: timingProvider('get', tracker, getCache),
+    delete: timingProvider('delete', tracker, deleteCache),
+    list: timingProvider('list', tracker, listCache)
   }
 }

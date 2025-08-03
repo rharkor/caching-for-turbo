@@ -52,7 +52,10 @@ approaches to the same problem.
 
 ### GitHub Actions Built-in Cache
 
-Turborepo's [official documentation](https://turborepo.com/docs/guides/ci-vendors/github-actions#remote-caching-with-github-actionscache) also mentions using GitHub Actions' built-in cache directly. Here's how our approach compares:
+Turborepo's
+[official documentation](https://turborepo.com/docs/guides/ci-vendors/github-actions#remote-caching-with-github-actionscache)
+also mentions using GitHub Actions' built-in cache directly. Here's how our
+approach compares:
 
 **GitHub Actions Built-in Cache Approach**
 
@@ -70,19 +73,23 @@ Turborepo's [official documentation](https://turborepo.com/docs/guides/ci-vendor
 ### When to Choose Each Approach
 
 **Choose GitHub Actions Built-in Cache when:**
+
 - You want the simplest possible setup
 - You're only using GitHub Actions for CI
 - You don't need advanced cache management features
 - You're satisfied with GitHub's cache storage limitations
 
 **Choose This Action when:**
+
 - You need more granular cache control
 - You want to use S3 or other storage backends
 - You need advanced cleanup and retention policies
 - You want to use the same caching infrastructure locally and in CI
 - You have a large monorepo where modular caching provides benefits
 
-Both approaches are valid and serve different use cases. The built-in cache approach is simpler and has been available for a long time, while this action provides more flexibility and features.
+Both approaches are valid and serve different use cases. The built-in cache
+approach is simpler and has been available for a long time, while this action
+provides more flexibility and features.
 
 ## Quick Start
 

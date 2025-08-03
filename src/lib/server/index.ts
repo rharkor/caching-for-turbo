@@ -3,6 +3,8 @@ import { serverPort } from '../constants'
 import { cleanup } from './cleanup'
 import { getProvider } from '../providers'
 import { Readable } from 'stream'
+import { env } from '../env'
+import { getTracker } from '../tracker'
 
 export type RequestContext = {
   log: {
@@ -11,9 +13,11 @@ export type RequestContext = {
 }
 
 export async function server(): Promise<void> {
+  const tracker = getTracker()
+
   //* Create the server
   const fastify = Fastify({
-    logger: true
+    logger: env.LOG_LEVEL === 'debug' ? true : false
   })
 
   //? Server status check
@@ -29,7 +33,7 @@ export async function server(): Promise<void> {
 
     try {
       const tests = []
-      const provider = getProvider()
+      const provider = getProvider(tracker)
       const testHash = 'ping-test-file'
       const testContent = 'This is a test file for ping functionality'
 
@@ -83,7 +87,16 @@ export async function server(): Promise<void> {
   //? Shut down the server
   const shutdown = async (ctx: RequestContext) => {
     //* Handle cleanup
-    await cleanup(ctx)
+    await cleanup(ctx, tracker)
+
+    //* Print tracker
+    const total = tracker.save + tracker.get + tracker.delete + tracker.list
+    console.log('Average time taken:', {
+      save: `${tracker.save}ms (${Math.round((tracker.save / Math.max(total, 1)) * 100)}%)`,
+      get: `${tracker.get}ms (${Math.round((tracker.get / Math.max(total, 1)) * 100)}%)`,
+      delete: `${tracker.delete}ms (${Math.round((tracker.delete / Math.max(total, 1)) * 100)}%)`,
+      list: `${tracker.list}ms (${Math.round((tracker.list / Math.max(total, 1)) * 100)}%)`
+    })
 
     // Exit the server after responding (100ms)
     setTimeout(() => process.exit(0), 100)
@@ -106,7 +119,7 @@ export async function server(): Promise<void> {
   fastify.put('/v8/artifacts/:hash', async request => {
     const hash = (request.params as { hash: string }).hash
     request.log.info(`Received artifact for ${hash}`)
-    const provider = getProvider()
+    const provider = getProvider(tracker)
     await provider.save(
       request,
       hash,
@@ -121,7 +134,7 @@ export async function server(): Promise<void> {
   fastify.get('/v8/artifacts/:hash', async (request, reply) => {
     const hash = (request.params as { hash: string }).hash
     request.log.info(`Requested artifact for ${hash}`)
-    const provider = getProvider()
+    const provider = getProvider(tracker)
     const result = await provider.get(request, hash)
     if (result === null) {
       request.log.info(`Artifact for ${hash} not found`)
