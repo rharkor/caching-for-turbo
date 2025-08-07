@@ -144,6 +144,7 @@ jobs:
           max-age: 3m
           max-size: 100mb
           max-files: 100
+          server-port: 41231
 
       - name: Test build cache
         run: npm run test
