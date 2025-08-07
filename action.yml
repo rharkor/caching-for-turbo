@@ -59,7 +59,10 @@ inputs:
     description: 'S3 endpoint (required when provider is s3)'
     required: false
     default: 'https://s3.amazonaws.com'
-
+  server-port:
+    description: 'Port for the caching server (default: 41230)'
+    required: false
+    default: '41230'
 runs:
   using: node20
   main: dist/setup/index.js
