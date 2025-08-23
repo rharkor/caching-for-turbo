@@ -15,7 +15,7 @@ const getInput = (name: string, envName?: string): string | undefined => {
   return process.env[envVar]
 }
 
-export const serverPort = 41230
+export const serverPort = parseInt(getInput('server-port', 'SERVER_PORT') || '41230', 10)
 export const cachePath = 'turbogha_'
 export const cachePrefix = getInput('cache-prefix', 'CACHE_PREFIX') || cachePath
 export const getCacheKey = (hash: string, tag?: string): string =>
