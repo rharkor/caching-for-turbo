@@ -27803,7 +27803,7 @@ const getInput = (name, envName) => {
     const envVar = envName || name.toUpperCase().replace(/-/g, '_');
     return process.env[envVar];
 };
-const serverPort = 41230;
+const serverPort = parseInt(getInput('server-port', 'SERVER_PORT') || '41230', 10);
 const cachePath = 'turbogha_';
 const cachePrefix = getInput('cache-prefix', 'CACHE_PREFIX') || cachePath;
 const getCacheKey = (hash, tag) => `${cachePrefix}${hash}${tag ? `#${tag}` : ''}`;

@@ -104,7 +104,7 @@ the following step **before** you run `turbo build`:
 This GitHub Action facilitates:
 
 1. **Server Initialization**: Automatically spins up a server on
-   `localhost:41230`.
+   `localhost:41230` (configurable via `server-port`).
 2. **Environment Setup**: Sets up `TURBO_API`, `TURBO_TOKEN`, and `TURBO_TEAM`
    environment variables required by `turbo build`.
 3. **Efficient Caching**: Leverages GitHub's cache service to significantly
@@ -167,6 +167,9 @@ S3_PREFIX=turbogha/
 
 # Optional: Custom cache prefix
 CACHE_PREFIX=turbogha_
+
+# Optional: Custom server port (default: 41230)
+SERVER_PORT=41230
 ```
 
 ### Using with Turbo
@@ -174,8 +177,13 @@ CACHE_PREFIX=turbogha_
 Once the server is running, you can use Turbo with remote caching:
 
 ```bash
-export TURBOGHA_PORT=41230
+# If using default port (41230)
 export TURBO_API=http://localhost:41230
+export TURBO_TOKEN=turbogha
+export TURBO_TEAM=turbogha
+
+# If using custom port (set via SERVER_PORT env var)
+export TURBO_API=http://localhost:${SERVER_PORT:-41230}
 export TURBO_TOKEN=turbogha
 export TURBO_TEAM=turbogha
 
@@ -191,8 +199,8 @@ To stop the cache server:
 
 ```bash
 turbogha kill
-# or
-curl -X DELETE http://localhost:41230/shutdown
+# or (use your custom port if configured)
+curl -X DELETE http://localhost:${SERVER_PORT:-41230}/shutdown
 ```
 
 ## Configurable Options
@@ -204,6 +212,7 @@ provided):
 with:
   cache-prefix: turbogha_ # Custom prefix for cache keys
   provider: github # Storage provider: 'github' (default) or 's3'
+  server-port: 41230 # Port for the caching server (default: 41230)
 
   # S3 Provider Configuration (variables will be read from environment variables if not provided)
   s3-access-key-id: ${{ secrets.S3_ACCESS_KEY_ID }} # S3 access key
