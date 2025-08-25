@@ -103,7 +103,6 @@ export async function cleanup(
     )
     for (const file of fileToDelete) {
       try {
-        console.log('Deleting', file)
         await provider.delete(file.path)
         ctx.log.info(`Deleted ${file}`)
       } catch (error) {
