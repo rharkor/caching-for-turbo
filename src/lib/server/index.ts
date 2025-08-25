@@ -3,7 +3,6 @@ import { serverPort } from '../constants'
 import { cleanup } from './cleanup'
 import { getProvider } from '../providers'
 import { Readable } from 'stream'
-import { env } from '../env'
 import { getTracker } from '../tracker'
 
 export type RequestContext = {
@@ -17,7 +16,7 @@ export async function server(): Promise<void> {
 
   //* Create the server
   const fastify = Fastify({
-    logger: env.LOG_LEVEL === 'debug' ? true : false
+    logger: process.env.LOG_LEVEL === 'debug' ? true : false
   })
 
   //? Server status check

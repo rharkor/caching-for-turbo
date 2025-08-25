@@ -1,4 +1,3 @@
-import { env } from './env'
 import { getTracker } from './tracker'
 
 export const timingProvider = <
@@ -13,7 +12,7 @@ export const timingProvider = <
     const start = performance.now()
     const result = await fn(...args)
     const end = performance.now()
-    if (env.LOG_LEVEL === 'debug') {
+    if (process.env.LOG_LEVEL === 'debug') {
       console.log(`${name} took ${end - start}ms`)
     }
     tracker[name] += end - start
