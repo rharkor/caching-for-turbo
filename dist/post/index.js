@@ -27546,8 +27546,7 @@ var external_path_ = __nccwpck_require__(6928);
 const envObject = {
     ACTIONS_RUNTIME_TOKEN: process.env.ACTIONS_RUNTIME_TOKEN,
     ACTIONS_CACHE_URL: process.env.ACTIONS_CACHE_URL,
-    RUNNER_TEMP: process.env.RUNNER_TEMP,
-    LOG_LEVEL: process.env.LOG_LEVEL
+    RUNNER_TEMP: process.env.RUNNER_TEMP
 };
 const env_env = {
     valid: Object.values(envObject).every(value => value !== undefined),
@@ -27580,26 +27579,22 @@ const blue = "#7DCFEA";
 const gray = "#686868";
 
 const printColor = (bg, text2) => (...args) => {
-  const data = args.map((arg) => {
-    if (typeof arg === "object" && arg) {
-      const str = arg.toString();
-      if (str === "[object Object]") {
-        return JSON.stringify(arg, null, 2);
-      }
-      return str;
-    }
-    return arg;
-  }).join(" ");
-  if (isBrowser()) return data;
+  if (isBrowser()) return args;
   try {
     const chalk = getChalk();
-    if (bg && text2) return chalk.bgHex(bg).hex(text2)(data);
-    if (bg) return chalk.bgHex(bg)(data);
-    if (text2) return chalk.hex(text2)(data);
-  } catch (e) {
+    const data = args.map((arg) => {
+      if (typeof arg === "object" && arg) {
+        return arg;
+      }
+      if (bg && text2) return chalk.bgHex(bg).hex(text2)(arg);
+      if (bg) return chalk.bgHex(bg)(arg);
+      if (text2) return chalk.hex(text2)(arg);
+      return arg;
+    });
     return data;
+  } catch (e) {
+    return args;
   }
-  return data;
 };
 const _log = printColor(void 0, void 0);
 const log = printColor(void 0, dist_text);
@@ -27657,57 +27652,57 @@ const logger = {
   allowDebug,
   _log: (...args) => {
     warnIfNotInitialized();
-    const value = addPrefixToArgs(logger.prefix, _log(...args));
+    const value = addPrefixToArgs(logger.prefix, ..._log(...args));
     post_console.log(...value);
     logger.onLog?.("log", value);
   },
   log: (...args) => {
     warnIfNotInitialized();
-    const value = addPrefixToArgs(logger.prefix, log(...args));
+    const value = addPrefixToArgs(logger.prefix, ...log(...args));
     post_console.log(...value);
     logger.onLog?.("log", value);
   },
   debug: (...args) => {
     if (allowDebug()) {
       warnIfNotInitialized();
-      const value = addPrefixToArgs(logger.prefix, debug(" DEBUG "), debugText(...args));
+      const value = addPrefixToArgs(logger.prefix, ...debug(" DEBUG "), ...debugText(...args));
       post_console.debug(...value);
       logger.onLog?.("debug", value);
     }
   },
   warn: (...args) => {
     warnIfNotInitialized();
-    const value = addPrefixToArgs(logger.prefix, warn(" WARN "), warnText(...args));
+    const value = addPrefixToArgs(logger.prefix, ...warn(" WARN "), ...warnText(...args));
     post_console.warn(...value);
     logger.onLog?.("warn", value);
   },
   error: (...args) => {
     warnIfNotInitialized();
-    const value = addPrefixToArgs(logger.prefix, error(" ERROR "), errorText(...args));
+    const value = addPrefixToArgs(logger.prefix, ...error(" ERROR "), ...errorText(...args));
     post_console.error(...value);
     logger.onLog?.("error", value);
   },
   trace: (...args) => {
     warnIfNotInitialized();
-    const value = addPrefixToArgs(logger.prefix, error(" ERROR "), errorText(...args));
+    const value = addPrefixToArgs(logger.prefix, ...error(" ERROR "), ...errorText(...args));
     post_console.trace(...value);
     logger.onLog?.("trace", value);
   },
   success: (...args) => {
     warnIfNotInitialized();
-    const value = addPrefixToArgs(logger.prefix, success(" SUCCESS "), successText(...args));
+    const value = addPrefixToArgs(logger.prefix, ...success(" SUCCESS "), ...successText(...args));
     post_console.log(...value);
     logger.onLog?.("success", value);
   },
   info: (...args) => {
     warnIfNotInitialized();
-    const value = addPrefixToArgs(logger.prefix, info(" INFO "), infoText(...args));
+    const value = addPrefixToArgs(logger.prefix, ...info(" INFO "), ...infoText(...args));
     post_console.log(...value);
     logger.onLog?.("info", value);
   },
   subLog: (...args) => {
     warnIfNotInitialized();
-    const value = addPrefixToArgs(logger.prefix, subLog(...args));
+    const value = addPrefixToArgs(logger.prefix, ...subLog(...args));
     post_console.log(...value);
     logger.onLog?.("subLog", value);
   },
