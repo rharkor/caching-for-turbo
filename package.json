@@ -89,7 +89,7 @@
     "conventional-changelog-conventionalcommits": "^9.0.0",
     "semantic-release": "^24.0.0"
   },
-  "packageManager": "npm@11.5.2",
+  "packageManager": "npm@11.6.0",
   "publishConfig": {
     "access": "public"
   }
