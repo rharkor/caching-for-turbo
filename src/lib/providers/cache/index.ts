@@ -70,12 +70,10 @@ export async function getCache(
 }
 
 export async function deleteCache(): Promise<void> {
-  core.error(`Cannot delete github cache automatically.`)
   throw new Error(`Cannot delete github cache automatically.`)
 }
 
 export async function listCache(): Promise<TListFile[]> {
-  core.error(`Cannot list github cache automatically.`)
   throw new Error(`Cannot list github cache automatically.`)
 }
 
