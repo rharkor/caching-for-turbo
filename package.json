@@ -53,7 +53,7 @@
     "filesize-parser": "^1.5.1",
     "parse-duration": "^2.1.4",
     "stream-to-promise": "^3.0.0",
-    "wait-on": "^8.0.0"
+    "wait-on": "^9.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.24.0",
