@@ -13,6 +13,12 @@ export const waitForServer = async (): Promise<void> => {
 	await waitOn({
 		resources: [`http-get://localhost:${serverPort}`],
 		timeout: 5000,
+	}).catch((e) => {
+		// Display logs of the server
+		const logs = readFileSync(serverLogFile, "utf-8");
+		core.log("Server logs:");
+		core.error(logs);
+		throw e;
 	});
 };
 
