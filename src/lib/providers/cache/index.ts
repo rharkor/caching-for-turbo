@@ -1,20 +1,19 @@
-import { Readable } from 'node:stream'
-import { env } from '../../env'
-import { pipeline } from 'node:stream/promises'
 import {
   createReadStream,
   createWriteStream,
   existsSync,
   statSync
 } from 'node:fs'
-import { getCacheKey, getFsCachePath, getTempCachePath } from '../../constants'
-import { RequestContext } from '../../server'
-import { TListFile } from '../../server/cleanup'
-import { getCacheClient } from './utils'
-import { TProvider } from '../../providers'
-import { core } from 'src/lib/core'
+import type { Readable } from 'node:stream'
+import { pipeline } from 'node:stream/promises'
+import type { getTracker } from 'src/lib/tracker'
 import { timingProvider } from 'src/lib/utils'
-import { getTracker } from 'src/lib/tracker'
+import { getCacheKey, getFsCachePath, getTempCachePath } from '../../constants'
+import { env } from '../../env'
+import type { TProvider } from '../../providers'
+import type { RequestContext } from '../../server'
+import type { TListFile } from '../../server/cleanup'
+import { getCacheClient } from './utils'
 
 //* Cache API
 export async function saveCache(
