@@ -47,15 +47,15 @@ export async function cleanup(
 
   const provider = getProvider(tracker)
 
-	let files: TListFile[] = [];
-	try {
-		files = await provider.list();
-	} catch (e) {
-		const msg = `Provider does not support listing: ${(e as Error).message}
-Exiting early, no files were cleaned up.`;
-		ctx.log.info(msg);
-		return;
-	}
+  let files: TListFile[] = []
+  try {
+    files = await provider.list()
+  } catch (e) {
+    const msg = `Provider does not support listing: ${(e as Error).message}
+Exiting early, no files were cleaned up.`
+    ctx.log.info(msg)
+    return
+  }
 
   const fileToDelete: (TListFile & {
     reason: 'max-age' | 'max-files' | 'max-size'
