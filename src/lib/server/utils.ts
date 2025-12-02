@@ -1,13 +1,19 @@
-import waitOn from 'wait-on'
-import { cachePrefix, cachePath, serverLogFile, serverPort } from '../constants'
-import { openSync } from 'fs'
 import { spawn } from 'child_process'
+import { openSync, readFileSync } from 'fs'
+import waitOn from 'wait-on'
+import { cachePath, cachePrefix, serverLogFile, serverPort } from '../constants'
 import { core } from '../core'
 
 export const waitForServer = async (): Promise<void> => {
   await waitOn({
     resources: [`http-get://localhost:${serverPort}`],
     timeout: 5000
+  }).catch(e => {
+    // Display logs of the server
+    const logs = readFileSync(serverLogFile, 'utf-8')
+    core.log('Server logs:')
+    core.error(logs)
+    throw e
   })
 }
 

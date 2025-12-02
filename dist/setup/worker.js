@@ -1,194 +1,174 @@
 'use strict'
 
-const EE = require('events')
-const { pipeline, PassThrough } = require('stream')
-const pino = require('../pino.js')
-const build = require('pino-abstract-transport')
-const loadTransportStreamBuilder = require('./transport-stream')
+const { realImport, realRequire } = require('real-require')
+const { workerData, parentPort } = require('worker_threads')
+const { WRITE_INDEX, READ_INDEX } = require('./indexes')
+const { waitDiff } = require('./wait')
 
-// This file is not checked by the code coverage tool,
-// as it is not reliable.
+const {
+  dataBuf,
+  filename,
+  stateBuf
+} = workerData
 
-/* istanbul ignore file */
+let destination
 
-/*
- * > Multiple targets & pipelines
- *
- *
- * ┌─────────────────────────────────────────────────┐    ┌─────┐
- * │                                                 │    │  p  │
- * │                                                 │    │  i  │
- * │                   target                        │    │  n  │
- * │               │ ────────────────────────────────┼────┤  o  │
- * │   targets     │   target                        │    │  .  │
- * │ ────────────► │ ────────────────────────────────┼────┤  m  │       source
- * │               │   target                        │    │  u  │         │
- * │               │ ────────────────────────────────┼────┤  l  │         │write
- * │               │                                 │    │  t  │         ▼
- * │               │  pipeline   ┌───────────────┐   │    │  i  │      ┌────────┐
- * │               │ ──────────► │  PassThrough  ├───┼────┤  s  ├──────┤        │
- * │               │             └───────────────┘   │    │  t  │ write│ Thread │
- * │               │                                 │    │  r  │◄─────┤ Stream │
- * │               │  pipeline   ┌───────────────┐   │    │  e  │      │        │
- * │               │ ──────────► │  PassThrough  ├───┼────┤  a  │      └────────┘
- * │                             └───────────────┘   │    │  m  │
- * │                                                 │    │     │
- * └─────────────────────────────────────────────────┘    └─────┘
- *
- *
- *
- *  > One single pipeline or target
- *
- *
- *                                                           source
- *                                                             │
- * ┌────────────────────────────────────────────────┐          │write
- * │                                                │          ▼
- * │                                                │      ┌────────┐
- * │   targets     │   target                       │      │        │
- * │ ────────────► │  ──────────────────────────────┤      │        │
- * │               │                                │      │        │
- * │                                                ├──────┤        │
- * │                                                │      │        │
- * │                                                │      │        │
- * │                     OR                         │      │        │
- * │                                                │      │        │
- * │                                                │      │        │
- * │                               ┌──────────────┐ │      │        │
- * │   targets     │   pipeline    │              │ │      │ Thread │
- * │ ────────────► │  ────────────►│ PassThrough  ├─┤      │ Stream │
- * │               │               │              │ │      │        │
- * │                               └──────────────┘ │      │        │
- * │                                                │      │        │
- * │                     OR                         │ write│        │
- * │                                                │◄─────┤        │
- * │                                                │      │        │
- * │                ┌──────────────┐                │      │        │
- * │    pipeline    │              │                │      │        │
- * │ ──────────────►│ PassThrough  ├────────────────┤      │        │
- * │                │              │                │      │        │
- * │                └──────────────┘                │      └────────┘
- * │                                                │
- * │                                                │
- * └────────────────────────────────────────────────┘
- */
+const state = new Int32Array(stateBuf)
+const data = Buffer.from(dataBuf)
 
-module.exports = async function ({ targets, pipelines, levels, dedupe }) {
-  const targetStreams = []
-
-  // Process targets
-  if (targets && targets.length) {
-    targets = await Promise.all(targets.map(async (t) => {
-      const fn = await loadTransportStreamBuilder(t.target)
-      const stream = await fn(t.options)
-      return {
-        level: t.level,
-        stream
+async function start () {
+  let worker
+  try {
+    if (filename.endsWith('.ts') || filename.endsWith('.cts')) {
+      // TODO: add support for the TSM modules loader ( https://github.com/lukeed/tsm ).
+      if (!process[Symbol.for('ts-node.register.instance')]) {
+        realRequire('ts-node/register')
+      } else if (process.env.TS_NODE_DEV) {
+        realRequire('ts-node-dev')
       }
-    }))
-
-    targetStreams.push(...targets)
+      // TODO: Support ES imports once tsc, tap & ts-node provide better compatibility guarantees.
+      // Remove extra forwardslash on Windows
+      worker = realRequire(decodeURIComponent(filename.replace(process.platform === 'win32' ? 'file:///' : 'file://', '')))
+    } else {
+      worker = (await realImport(filename))
+    }
+  } catch (error) {
+    // A yarn user that tries to start a ThreadStream for an external module
+    // provides a filename pointing to a zip file.
+    // eg. require.resolve('pino-elasticsearch') // returns /foo/pino-elasticsearch-npm-6.1.0-0c03079478-6915435172.zip/bar.js
+    // The `import` will fail to try to load it.
+    // This catch block executes the `require` fallback to load the module correctly.
+    // In fact, yarn modifies the `require` function to manage the zipped path.
+    // More details at https://github.com/pinojs/pino/pull/1113
+    // The error codes may change based on the node.js version (ENOTDIR > 12, ERR_MODULE_NOT_FOUND <= 12 )
+    if ((error.code === 'ENOTDIR' || error.code === 'ERR_MODULE_NOT_FOUND') &&
+     filename.startsWith('file://')) {
+      worker = realRequire(decodeURIComponent(filename.replace('file://', '')))
+    } else if (error.code === undefined || error.code === 'ERR_VM_DYNAMIC_IMPORT_CALLBACK_MISSING') {
+      // When bundled with pkg, an undefined error is thrown when called with realImport
+      // When bundled with pkg and using node v20, an ERR_VM_DYNAMIC_IMPORT_CALLBACK_MISSING error is thrown when called with realImport
+      // More info at: https://github.com/pinojs/thread-stream/issues/143
+      try {
+        worker = realRequire(decodeURIComponent(filename.replace(process.platform === 'win32' ? 'file:///' : 'file://', '')))
+      } catch {
+        throw error
+      }
+    } else {
+      throw error
+    }
   }
 
-  // Process pipelines
-  if (pipelines && pipelines.length) {
-    pipelines = await Promise.all(
-      pipelines.map(async (p) => {
-        let level
-        const pipeDests = await Promise.all(
-          p.map(async (t) => {
-            // level assigned to pipeline is duplicated over all its targets, just store it
-            level = t.level
-            const fn = await loadTransportStreamBuilder(t.target)
-            const stream = await fn(t.options)
-            return stream
-          }
-          ))
+  // Depending on how the default export is performed, and on how the code is
+  // transpiled, we may find cases of two nested "default" objects.
+  // See https://github.com/pinojs/pino/issues/1243#issuecomment-982774762
+  if (typeof worker === 'object') worker = worker.default
+  if (typeof worker === 'object') worker = worker.default
 
-        return {
-          level,
-          stream: createPipeline(pipeDests)
-        }
-      })
-    )
-    targetStreams.push(...pipelines)
+  destination = await worker(workerData.workerData)
+
+  destination.on('error', function (err) {
+    Atomics.store(state, WRITE_INDEX, -2)
+    Atomics.notify(state, WRITE_INDEX)
+
+    Atomics.store(state, READ_INDEX, -2)
+    Atomics.notify(state, READ_INDEX)
+
+    parentPort.postMessage({
+      code: 'ERROR',
+      err
+    })
+  })
+
+  destination.on('close', function () {
+    // process._rawDebug('worker close emitted')
+    const end = Atomics.load(state, WRITE_INDEX)
+    Atomics.store(state, READ_INDEX, end)
+    Atomics.notify(state, READ_INDEX)
+    setImmediate(() => {
+      process.exit(0)
+    })
+  })
+}
+
+// No .catch() handler,
+// in case there is an error it goes
+// to unhandledRejection
+start().then(function () {
+  parentPort.postMessage({
+    code: 'READY'
+  })
+
+  process.nextTick(run)
+})
+
+function run () {
+  const current = Atomics.load(state, READ_INDEX)
+  const end = Atomics.load(state, WRITE_INDEX)
+
+  // process._rawDebug(`pre state ${current} ${end}`)
+
+  if (end === current) {
+    if (end === data.length) {
+      waitDiff(state, READ_INDEX, end, Infinity, run)
+    } else {
+      waitDiff(state, WRITE_INDEX, end, Infinity, run)
+    }
+    return
   }
 
-  // Skip building the multistream step if either one single pipeline or target is defined and
-  // return directly the stream instance back to TreadStream.
-  // This is equivalent to define either:
-  //
-  // pino.transport({ target: ... })
-  //
-  // OR
-  //
-  // pino.transport({ pipeline: ... })
-  if (targetStreams.length === 1) {
-    return targetStreams[0].stream
+  // process._rawDebug(`post state ${current} ${end}`)
+
+  if (end === -1) {
+    // process._rawDebug('end')
+    destination.end()
+    return
+  }
+
+  const toWrite = data.toString('utf8', current, end)
+  // process._rawDebug('worker writing: ' + toWrite)
+
+  const res = destination.write(toWrite)
+
+  if (res) {
+    Atomics.store(state, READ_INDEX, end)
+    Atomics.notify(state, READ_INDEX)
+    setImmediate(run)
   } else {
-    return build(process, {
-      parse: 'lines',
-      metadata: true,
-      close (err, cb) {
-        let expected = 0
-        for (const transport of targetStreams) {
-          expected++
-          transport.stream.on('close', closeCb)
-          transport.stream.end()
-        }
-
-        function closeCb () {
-          if (--expected === 0) {
-            cb(err)
-          }
-        }
-      }
+    destination.once('drain', function () {
+      Atomics.store(state, READ_INDEX, end)
+      Atomics.notify(state, READ_INDEX)
+      run()
     })
-  }
-
-  // TODO: Why split2 was not used for pipelines?
-  function process (stream) {
-    const multi = pino.multistream(targetStreams, { levels, dedupe })
-    // TODO manage backpressure
-    stream.on('data', function (chunk) {
-      const { lastTime, lastMsg, lastObj, lastLevel } = this
-      multi.lastLevel = lastLevel
-      multi.lastTime = lastTime
-      multi.lastMsg = lastMsg
-      multi.lastObj = lastObj
-
-      // TODO handle backpressure
-      multi.write(chunk + '\n')
-    })
-  }
-
-  /**
- * Creates a pipeline using the provided streams and return an instance of `PassThrough` stream
- * as a source for the pipeline.
- *
- * @param {(TransformStream|WritableStream)[]} streams An array of streams.
- *   All intermediate streams in the array *MUST* be `Transform` streams and only the last one `Writable`.
- * @returns A `PassThrough` stream instance representing the source stream of the pipeline
- */
-  function createPipeline (streams) {
-    const ee = new EE()
-    const stream = new PassThrough({
-      autoDestroy: true,
-      destroy (_, cb) {
-        ee.on('error', cb)
-        ee.on('closed', cb)
-      }
-    })
-
-    pipeline(stream, ...streams, function (err) {
-      if (err && err.code !== 'ERR_STREAM_PREMATURE_CLOSE') {
-        ee.emit('error', err)
-        return
-      }
-
-      ee.emit('closed')
-    })
-
-    return stream
   }
 }
+
+process.on('unhandledRejection', function (err) {
+  parentPort.postMessage({
+    code: 'ERROR',
+    err
+  })
+  process.exit(1)
+})
+
+process.on('uncaughtException', function (err) {
+  parentPort.postMessage({
+    code: 'ERROR',
+    err
+  })
+  process.exit(1)
+})
+
+process.once('exit', exitCode => {
+  if (exitCode !== 0) {
+    process.exit(exitCode)
+    return
+  }
+  if (destination?.writableNeedDrain && !destination?.writableEnded) {
+    parentPort.postMessage({
+      code: 'WARNING',
+      err: new Error('ThreadStream: process exited before destination stream was drained. this may indicate that the destination stream try to write to a another missing stream')
+    })
+  }
+
+  process.exit(0)
+})
