@@ -80,6 +80,7 @@ export const getGithubProvider = (
   tracker: ReturnType<typeof getTracker>
 ): TProvider => {
   return {
+    name: 'github',
     save: timingProvider('save', tracker, saveCache),
     get: timingProvider('get', tracker, getCache),
     delete: timingProvider('delete', tracker, deleteCache),
