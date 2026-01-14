@@ -48,7 +48,7 @@ export async function cleanup(
   const provider = getProvider(tracker)
 
   if (provider.name === 'github') {
-    ctx.log.info(
+    console.warn(
       'Cleanup options are not available when using the GitHub provider, skipping cleanup'
     )
     return
