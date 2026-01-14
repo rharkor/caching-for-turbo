@@ -1,7 +1,7 @@
 {
   "name": "@rharkor/caching-for-turbo",
   "description": "Sets up Turborepo Remote Caching to work with GitHub Actions built-in cache",
-  "version": "2.3.5",
+  "version": "2.2.0",
   "private": false,
   "homepage": "https://github.com/rharkor/caching-for-turbo",
   "repository": {
@@ -26,6 +26,21 @@
   "type": "module",
   "engines": {
     "node": ">=20"
+  },
+  "scripts": {
+    "bundle": "npm run format:write && npm run package",
+    "coverage": "make-coverage-badge --output-path ./badges/coverage.svg",
+    "format:write": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "package": "ncc build src/index.ts -o dist/setup --source-map --license licenses.txt && ncc build src/post.ts -o dist/post --source-map --license licenses.txt && ncc build src/cli.ts -o dist/cli --source-map --license licenses.txt",
+    "package:watch": "npm run package -- --watch",
+    "all": "npm run format:write && npm run lint && npm run coverage && npm run package",
+    "test-build": "npm run -s package",
+    "test": "turbo run test-build",
+    "dev-run": "tsx ./src/dev-run.ts",
+    "cleanup": "tsx ./src/dev/cleanup.ts",
+    "start": "node dist/cli/index.js"
   },
   "license": "MIT",
   "dependencies": {
