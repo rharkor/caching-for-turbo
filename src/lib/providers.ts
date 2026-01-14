@@ -7,6 +7,7 @@ import { core } from './core'
 import { getTracker } from './tracker'
 
 export type TProvider = {
+  name: 'github' | 's3'
   save: (
     ctx: RequestContext,
     hash: string,

@@ -47,6 +47,13 @@ export async function cleanup(
 
   const provider = getProvider(tracker)
 
+  if (provider.name === 'github') {
+    ctx.log.info(
+      'Cleanup options are not available when using the GitHub provider, skipping cleanup'
+    )
+    return
+  }
+
   let files: TListFile[] = []
   try {
     files = await provider.list()
