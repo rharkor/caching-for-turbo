@@ -261,6 +261,8 @@ Example S3 configuration:
 
 ### Cache Cleanup Options
 
+> **Cleanup options are not available when using the GitHub provider.**
+
 To prevent unbounded growth of your cache (especially important when using S3
 storage), you can configure automatic cleanup using one or more of these
 options:

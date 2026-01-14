@@ -252,6 +252,7 @@ export const getS3Provider = (
   }
 
   return {
+    name: 's3',
     save: timingProvider('save', tracker, save),
     get: timingProvider('get', tracker, get),
     delete: timingProvider('delete', tracker, deleteObj),
