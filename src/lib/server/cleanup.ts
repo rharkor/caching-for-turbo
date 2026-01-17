@@ -48,8 +48,12 @@ export async function cleanup(
   const provider = getProvider(tracker)
 
   if (provider.name === 'github') {
-    core.error('Cleanup options are not available when using the GitHub provider')
-    throw new Error('Cleanup options are not available when using the GitHub provider')
+    core.error(
+      'Cleanup options are not available when using the GitHub provider'
+    )
+    throw new Error(
+      'Cleanup options are not available when using the GitHub provider'
+    )
   }
 
   let files: TListFile[] = []
