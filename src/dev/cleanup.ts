@@ -1,8 +1,8 @@
 import { config } from 'dotenv'
 config()
 
-import { cleanup } from 'src/lib/server/cleanup'
-import { getTracker } from 'src/lib/tracker'
+import { cleanup } from '@/lib/server/cleanup'
+import { getTracker } from '@/lib/tracker'
 
 const main = async () => {
   await cleanup(
