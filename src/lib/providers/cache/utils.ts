@@ -5,7 +5,7 @@ import { createWriteStream } from 'node:fs'
 import { unlink } from 'node:fs/promises'
 import { getTempCachePath } from '../../constants'
 import { restoreCache, saveCache } from '@actions/cache'
-import { core } from 'src/lib/core'
+import { core } from '@/lib/core'
 class HandledError extends Error {
   status: number
   statusText: string

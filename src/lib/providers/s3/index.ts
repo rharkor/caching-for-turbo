@@ -1,4 +1,4 @@
-import { TProvider } from 'src/lib/providers'
+import { TProvider } from '@/lib/providers'
 
 import { Readable } from 'stream'
 import { RequestContext } from '../../server'
@@ -10,10 +10,10 @@ import {
   ListObjectsV2Command
 } from '@aws-sdk/client-s3'
 import { Upload } from '@aws-sdk/lib-storage'
-import { getCacheKey } from 'src/lib/constants'
-import { core } from 'src/lib/core'
-import { timingProvider } from 'src/lib/utils'
-import { getTracker } from 'src/lib/tracker'
+import { getCacheKey } from '@/lib/constants'
+import { core } from '@/lib/core'
+import { timingProvider } from '@/lib/utils'
+import { getTracker } from '@/lib/tracker'
 
 // Helper function to get input value, prioritizing environment variables for local development
 const getInput = (name: string, envNames?: string[]): string | undefined => {
