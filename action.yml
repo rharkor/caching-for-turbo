@@ -64,6 +64,6 @@ inputs:
     required: false
     default: '41230'
 runs:
-  using: node20
+  using: node24
   main: dist/setup/index.js
   post: dist/post/index.js
