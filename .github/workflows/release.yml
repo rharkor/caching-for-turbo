@@ -21,10 +21,10 @@ jobs:
     steps:
       - name: Generate token
         id: generate_token
-        uses: tibdex/github-app-token@v2
+        uses: actions/create-github-app-token@v3
         with:
-          app_id: ${{ vars.MYBOT_APP_ID }}
-          private_key: ${{ secrets.MYBOT_PRIVATE_KEY }}
+          client-id: ${{ vars.MYBOT_CLIENT_ID }}
+          private-key: ${{ secrets.MYBOT_PRIVATE_KEY }}
       - name: Checkout
         uses: actions/checkout@v6
         with:
@@ -74,10 +74,10 @@ jobs:
     steps:
       - name: Generate token
         id: generate_token
-        uses: tibdex/github-app-token@v2
+        uses: actions/create-github-app-token@v3
         with:
-          app_id: ${{ vars.MYBOT_APP_ID }}
-          private_key: ${{ secrets.MYBOT_PRIVATE_KEY }}
+          client-id: ${{ vars.MYBOT_CLIENT_ID }}
+          private-key: ${{ secrets.MYBOT_PRIVATE_KEY }}
       - name: Checkout
         uses: actions/checkout@v6
         with:
@@ -86,8 +86,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '24.x'
-          cache: 'npm'
+          node-version: "24.x"
+          cache: "npm"
       - name: Install dependencies
         run: npm install
       - name: Package
