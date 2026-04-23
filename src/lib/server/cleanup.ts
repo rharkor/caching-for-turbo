@@ -56,7 +56,7 @@ export async function cleanup(
     )
   }
 
-  let files: TListFile[] = []
+  let files: TListFile[]
   try {
     files = await provider.list()
   } catch (e) {
