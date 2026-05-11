@@ -81,7 +81,7 @@ describe('parseFileSize', () => {
     ['10kb', 10 * 1024],
     ['5mb', 5 * 1024 * 1024],
     ['2gb', 2 * 1024 * 1024 * 1024],
-    ['1tb', 1024 * 1024 * 1024 * 1024],
+    ['1tb', 1024 * 1024 * 1024 * 1024]
   ])('parses %s to %d', (input, expected) => {
     expect(parseFileSize(input)).toBe(expected)
   })

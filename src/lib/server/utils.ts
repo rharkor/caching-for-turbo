@@ -37,9 +37,7 @@ export const readActualPort = (
     // spawnSync is cheap and yields the CPU unlike a busy-wait loop.
     spawnSync('sleep', ['0.05'])
   }
-  throw new Error(
-    `Timed out waiting for server to write its port to ${file_}`
-  )
+  throw new Error(`Timed out waiting for server to write its port to ${file_}`)
 }
 
 export const waitForServer = async (port?: number): Promise<void> => {
