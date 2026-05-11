@@ -37,7 +37,8 @@
     "package:watch": "npm run package -- --watch",
     "all": "npm run format:write && npm run lint && npm run coverage && npm run package",
     "test-build": "npm run -s package",
-    "test": "turbo run test-build",
+    "test-unit": "jest",
+    "test": "turbo run test-build test-unit",
     "dev-run": "tsx ./src/dev-run.ts",
     "cleanup": "tsx ./src/dev/cleanup.ts",
     "start": "node dist/cli/index.js"

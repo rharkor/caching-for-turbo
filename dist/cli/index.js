@@ -679,6 +679,770 @@ exports.resolveHttpAuthSchemeConfig = resolveHttpAuthSchemeConfig;
 
 /***/ }),
 
+/***/ 66363:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.bdd = void 0;
+const util_endpoints_1 = __nccwpck_require__(79674);
+const av = "ref", aw = "argv", ax = "backend", ay = "authSchemes", az = "disableDoubleEncoding", aA = "signingName", aB = "signingRegion", aC = "signingRegionSet";
+const a = -1, b = true, c = false, d = "isSet", e = "booleanEquals", f = "stringEquals", g = "coalesce", h = "substring", i = "", j = "aws.partition", k = "partitionResult", l = "accessPointSuffix", m = "regionPrefix", n = (n) => "outpostId_ssa_" + n + i, o = "hardwareType", p = "ite", q = "isValidHostLabel", s = "sigv4", t = "aws.isVirtualHostableS3Bucket", u = "url", v = "getAttr", w = "bucketArn", x = "--", y = "arnType", z = "accesspoint", A = (n) => "accessPointName_ssa_" + n + i, B = "s3-object-lambda", C = "s3-outposts", D = "bucketPartition", E = "us-east-1", F = "outpostType", G = "name", H = "s3", I = "{url#scheme}://{Bucket}.{url#authority}{url#path}", J = "{url#scheme}://{url#authority}{url#path}", K = "{url#scheme}://{url#authority}{url#normalizedPath}{Bucket}", L = "https://{Bucket}.s3-accelerate.{partitionResult#dnsSuffix}", M = "https://{Bucket}.s3.{partitionResult#dnsSuffix}", N = (n) => "{url#scheme}://{accessPointName_ssa_" + n + "}-{bucketArn#accountId}.{url#authority}{url#path}", O = "sigv4a", P = "{url#scheme}://{url#authority}{url#normalizedPath}{uri_encoded_bucket}", Q = "https://s3.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", R = "https://s3.{partitionResult#dnsSuffix}", S = { [av]: "UseFIPS" }, T = { [av]: "UseDualStack" }, U = { [av]: "Bucket" }, V = { "fn": v, [aw]: [{ [av]: k }, G] }, W = { [av]: u }, X = { [av]: "Region" }, Y = { [av]: w }, Z = { [av]: y }, aa = { [av]: "accessPointName_ssa_1" }, ab = { "fn": v, [aw]: [Y, "region"] }, ac = { [av]: o }, ad = { "fn": v, [aw]: [Y, "service"] }, ae = { "fn": v, [aw]: [Y, "accountId"] }, af = { [ax]: "S3Express", [ay]: [{ [az]: true, [G]: "{_s3e_auth}", [aA]: "s3express", [aB]: "{Region}" }] }, ag = { [ax]: "S3Express", [ay]: [{ [az]: true, [G]: s, [aA]: "s3express", [aB]: "{Region}" }] }, ah = { [ay]: [{ [az]: true, [G]: O, [aA]: C, [aC]: ["*"] }, { [az]: true, [G]: s, [aA]: C, [aB]: "{Region}" }] }, ai = { [ay]: [{ [az]: true, [G]: s, [aA]: H, [aB]: E }] }, aj = { [ay]: [{ [az]: true, [G]: s, [aA]: H, [aB]: "{Region}" }] }, ak = { [ay]: [{ [az]: true, [G]: s, [aA]: B, [aB]: "{bucketArn#region}" }] }, al = { [ay]: [{ [az]: true, [G]: s, [aA]: H, [aB]: "{bucketArn#region}" }] }, am = { [ay]: [{ [az]: true, [G]: O, [aA]: C, [aC]: ["*"] }, { [az]: true, [G]: s, [aA]: C, [aB]: "{bucketArn#region}" }] }, an = { [ay]: [{ [az]: true, [G]: s, [aA]: B, [aB]: "{Region}" }] }, ao = [X], ap = [{ [av]: "Endpoint" }], aq = [U], as = [U, 0, 7, true], at = [Y, "resourceId[1]"], au = ["*"];
+const _data = {
+    conditions: [
+        [d, ao],
+        [e, [{ [av]: "Accelerate" }, b]],
+        [e, [S, b]],
+        [e, [T, b]],
+        [d, ap],
+        [d, aq],
+        [f, [{ fn: g, [aw]: [{ fn: h, [aw]: [U, 0, 6, b] }, i] }, "--x-s3"]],
+        [f, [{ fn: g, [aw]: [{ fn: h, [aw]: as }, i] }, "--xa-s3"]],
+        [j, ao, k],
+        [h, as, l],
+        [f, [{ [av]: l }, "--op-s3"]],
+        [h, [U, 8, 12, b], m],
+        [h, [U, 32, 49, b], n(2)],
+        [h, [U, 49, 50, b], o],
+        [e, [{ [av]: "ForcePathStyle" }, b]],
+        [f, [V, "aws-cn"]],
+        [p, [T, ".dualstack", i], "_s3e_ds"],
+        [q, [{ [av]: n(2) }, c]],
+        [p, [S, "-fips", i], "_s3e_fips"],
+        [p, [{ fn: g, [aw]: [{ [av]: "DisableS3ExpressSessionAuth" }, c] }, s, "sigv4-s3express"], "_s3e_auth"],
+        [t, [U, c]],
+        ["parseURL", ap, u],
+        [e, [{ fn: g, [aw]: [{ [av]: "UseS3ExpressControlEndpoint" }, c] }, b]],
+        [t, [U, b]],
+        [f, [{ fn: v, [aw]: [W, "scheme"] }, "http"]],
+        [q, [X, c]],
+        ["aws.parseArn", aq, w],
+        [v, [{ fn: "split", [aw]: [U, x, 0] }, "[-2]"], "s3expressAvailabilityZoneId"],
+        [f, [{ fn: g, [aw]: [{ fn: h, [aw]: [U, 0, 4, c] }, i] }, "arn:"]],
+        [f, [{ fn: g, [aw]: [{ fn: h, [aw]: [U, 16, 18, b] }, i] }, x]],
+        [e, [{ fn: v, [aw]: [W, "isIp"] }, b]],
+        [f, [{ fn: g, [aw]: [{ fn: h, [aw]: [U, 21, 23, b] }, i] }, x]],
+        [f, [{ fn: g, [aw]: [{ fn: h, [aw]: [U, 27, 29, b] }, i] }, x]],
+        [f, [{ [av]: m }, "beta"]],
+        ["uriEncode", aq, "uri_encoded_bucket"],
+        [q, [X, b]],
+        [e, [{ fn: g, [aw]: [{ [av]: "UseObjectLambdaEndpoint" }, c] }, b]],
+        [v, [Y, "resourceId[0]"], y],
+        [f, [Z, i]],
+        [f, [Z, z]],
+        [v, at, A(1)],
+        [f, [aa, i]],
+        [f, [ab, i]],
+        [f, [{ fn: g, [aw]: [{ fn: h, [aw]: [U, 14, 16, b] }, i] }, x]],
+        [f, [ac, "e"]],
+        [f, [ac, "o"]],
+        [f, [X, "aws-global"]],
+        [f, [{ fn: g, [aw]: [{ fn: h, [aw]: [U, 19, 21, b] }, i] }, x]],
+        [f, [ad, B]],
+        [e, [{ fn: g, [aw]: [{ [av]: "DisableAccessPoints" }, c] }, b]],
+        [f, [ad, C]],
+        [j, [ab], D],
+        [q, [aa, b]],
+        [f, [{ fn: g, [aw]: [{ fn: h, [aw]: [U, 26, 28, b] }, i] }, x]],
+        [f, [{ fn: g, [aw]: [{ fn: h, [aw]: [U, 15, 17, b] }, i] }, x]],
+        [v, [Y, "resourceId[4]"]],
+        [f, [{ fn: g, [aw]: [{ fn: h, [aw]: [U, 20, 22, b] }, i] }, x]],
+        [e, [{ [av]: "UseGlobalEndpoint" }, b]],
+        [f, [X, E]],
+        [v, at, n(1)],
+        [e, [{ fn: g, [aw]: [{ [av]: "UseArnRegion" }, b] }, b]],
+        [q, [{ [av]: n(1) }, c]],
+        [v, [Y, "resourceId[2]"], F],
+        [f, [X, ab]],
+        [f, [{ fn: v, [aw]: [{ [av]: D }, G] }, V]],
+        [e, [{ [av]: "DisableMultiRegionAccessPoints" }, b]],
+        [q, [ab, b]],
+        [f, [{ fn: v, [aw]: [Y, "partition"] }, V]],
+        [f, [ae, i]],
+        [f, [ad, H]],
+        [q, [ae, c]],
+        [v, [Y, "resourceId[3]"], A(2)],
+        [q, [aa, c]],
+        [f, [{ [av]: F }, z]]
+    ],
+    results: [
+        [a],
+        [a, "Accelerate cannot be used with FIPS"],
+        [a, "Cannot set dual-stack in combination with a custom endpoint."],
+        [a, "A custom endpoint cannot be combined with FIPS"],
+        [a, "A custom endpoint cannot be combined with S3 Accelerate"],
+        [a, "Partition does not support FIPS"],
+        [a, "S3Express does not support S3 Accelerate."],
+        ["{url#scheme}://{url#authority}/{uri_encoded_bucket}{url#path}", af],
+        [I, af],
+        [a, "S3Express bucket name is not a valid virtual hostable name."],
+        ["https://s3express-control{_s3e_fips}{_s3e_ds}.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", ag],
+        ["https://{Bucket}.s3express{_s3e_fips}-{s3expressAvailabilityZoneId}{_s3e_ds}.{Region}.{partitionResult#dnsSuffix}", af],
+        [a, "Unrecognized S3Express bucket name format."],
+        [J, af],
+        ["https://s3express-control{_s3e_fips}{_s3e_ds}.{Region}.{partitionResult#dnsSuffix}", ag],
+        [a, "Expected a endpoint to be specified but no endpoint was found"],
+        ["https://{Bucket}.ec2.{url#authority}", ah],
+        ["https://{Bucket}.ec2.s3-outposts.{Region}.{partitionResult#dnsSuffix}", ah],
+        ["https://{Bucket}.op-{outpostId_ssa_2}.{url#authority}", ah],
+        ["https://{Bucket}.op-{outpostId_ssa_2}.s3-outposts.{Region}.{partitionResult#dnsSuffix}", ah],
+        [a, "Unrecognized hardware type: \"Expected hardware type o or e but got {hardwareType}\""],
+        [a, "Invalid Outposts Bucket alias - it must be a valid bucket name."],
+        [a, "Invalid ARN: The outpost Id must only contain a-z, A-Z, 0-9 and `-`."],
+        [a, "Custom endpoint `{Endpoint}` was not a valid URI"],
+        [a, "S3 Accelerate cannot be used in this region"],
+        ["https://{Bucket}.s3-fips.dualstack.us-east-1.{partitionResult#dnsSuffix}", ai],
+        ["https://{Bucket}.s3-fips.dualstack.{Region}.{partitionResult#dnsSuffix}", aj],
+        ["https://{Bucket}.s3-fips.us-east-1.{partitionResult#dnsSuffix}", ai],
+        ["https://{Bucket}.s3-fips.{Region}.{partitionResult#dnsSuffix}", aj],
+        ["https://{Bucket}.s3-accelerate.dualstack.us-east-1.{partitionResult#dnsSuffix}", ai],
+        ["https://{Bucket}.s3-accelerate.dualstack.{partitionResult#dnsSuffix}", aj],
+        ["https://{Bucket}.s3.dualstack.us-east-1.{partitionResult#dnsSuffix}", ai],
+        ["https://{Bucket}.s3.dualstack.{Region}.{partitionResult#dnsSuffix}", aj],
+        [K, ai],
+        [I, ai],
+        [K, aj],
+        [I, aj],
+        [L, ai],
+        [L, aj],
+        [M, ai],
+        [M, aj],
+        ["https://{Bucket}.s3.{Region}.{partitionResult#dnsSuffix}", aj],
+        [a, "Invalid region: region was not a valid DNS name."],
+        [a, "S3 Object Lambda does not support Dual-stack"],
+        [a, "S3 Object Lambda does not support S3 Accelerate"],
+        [a, "Access points are not supported for this operation"],
+        [a, "Invalid configuration: region from ARN `{bucketArn#region}` does not match client region `{Region}` and UseArnRegion is `false`"],
+        [a, "Invalid ARN: Missing account id"],
+        [N(1), ak],
+        ["https://{accessPointName_ssa_1}-{bucketArn#accountId}.s3-object-lambda-fips.{bucketArn#region}.{bucketPartition#dnsSuffix}", ak],
+        ["https://{accessPointName_ssa_1}-{bucketArn#accountId}.s3-object-lambda.{bucketArn#region}.{bucketPartition#dnsSuffix}", ak],
+        [a, "Invalid ARN: The access point name may only contain a-z, A-Z, 0-9 and `-`. Found: `{accessPointName_ssa_1}`"],
+        [a, "Invalid ARN: The account id may only contain a-z, A-Z, 0-9 and `-`. Found: `{bucketArn#accountId}`"],
+        [a, "Invalid region in ARN: `{bucketArn#region}` (invalid DNS name)"],
+        [a, "Client was configured for partition `{partitionResult#name}` but ARN (`{Bucket}`) has `{bucketPartition#name}`"],
+        [a, "Invalid ARN: The ARN may only contain a single resource component after `accesspoint`."],
+        [a, "Invalid ARN: bucket ARN is missing a region"],
+        [a, "Invalid ARN: Expected a resource of the format `accesspoint:<accesspoint name>` but no name was provided"],
+        [a, "Invalid ARN: Object Lambda ARNs only support `accesspoint` arn types, but found: `{arnType}`"],
+        [a, "Access Points do not support S3 Accelerate"],
+        ["https://{accessPointName_ssa_1}-{bucketArn#accountId}.s3-accesspoint-fips.dualstack.{bucketArn#region}.{bucketPartition#dnsSuffix}", al],
+        ["https://{accessPointName_ssa_1}-{bucketArn#accountId}.s3-accesspoint-fips.{bucketArn#region}.{bucketPartition#dnsSuffix}", al],
+        ["https://{accessPointName_ssa_1}-{bucketArn#accountId}.s3-accesspoint.dualstack.{bucketArn#region}.{bucketPartition#dnsSuffix}", al],
+        [N(1), al],
+        ["https://{accessPointName_ssa_1}-{bucketArn#accountId}.s3-accesspoint.{bucketArn#region}.{bucketPartition#dnsSuffix}", al],
+        [a, "Invalid ARN: The ARN was not for the S3 service, found: {bucketArn#service}"],
+        [a, "S3 MRAP does not support dual-stack"],
+        [a, "S3 MRAP does not support FIPS"],
+        [a, "S3 MRAP does not support S3 Accelerate"],
+        [a, "Invalid configuration: Multi-Region Access Point ARNs are disabled."],
+        ["https://{accessPointName_ssa_1}.accesspoint.s3-global.{partitionResult#dnsSuffix}", { [ay]: [{ [az]: b, name: O, [aA]: H, [aC]: au }] }],
+        [a, "Client was configured for partition `{partitionResult#name}` but bucket referred to partition `{bucketArn#partition}`"],
+        [a, "Invalid Access Point Name"],
+        [a, "S3 Outposts does not support Dual-stack"],
+        [a, "S3 Outposts does not support FIPS"],
+        [a, "S3 Outposts does not support S3 Accelerate"],
+        [a, "Invalid Arn: Outpost Access Point ARN contains sub resources"],
+        ["https://{accessPointName_ssa_2}-{bucketArn#accountId}.{outpostId_ssa_1}.{url#authority}", am],
+        ["https://{accessPointName_ssa_2}-{bucketArn#accountId}.{outpostId_ssa_1}.s3-outposts.{bucketArn#region}.{bucketPartition#dnsSuffix}", am],
+        [a, "Expected an outpost type `accesspoint`, found {outpostType}"],
+        [a, "Invalid ARN: expected an access point name"],
+        [a, "Invalid ARN: Expected a 4-component resource"],
+        [a, "Invalid ARN: The outpost Id may only contain a-z, A-Z, 0-9 and `-`. Found: `{outpostId_ssa_1}`"],
+        [a, "Invalid ARN: The Outpost Id was not set"],
+        [a, "Invalid ARN: Unrecognized format: {Bucket} (type: {arnType})"],
+        [a, "Invalid ARN: No ARN type specified"],
+        [a, "Invalid ARN: `{Bucket}` was not a valid ARN"],
+        [a, "Path-style addressing cannot be used with ARN buckets"],
+        ["https://s3-fips.dualstack.us-east-1.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", ai],
+        ["https://s3-fips.dualstack.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", aj],
+        ["https://s3-fips.us-east-1.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", ai],
+        ["https://s3-fips.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", aj],
+        ["https://s3.dualstack.us-east-1.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", ai],
+        ["https://s3.dualstack.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", aj],
+        [P, ai],
+        [P, aj],
+        [Q, ai],
+        [Q, aj],
+        ["https://s3.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", aj],
+        [a, "Path-style addressing cannot be used with S3 Accelerate"],
+        [J, an],
+        ["https://s3-object-lambda-fips.{Region}.{partitionResult#dnsSuffix}", an],
+        ["https://s3-object-lambda.{Region}.{partitionResult#dnsSuffix}", an],
+        ["https://s3-fips.dualstack.us-east-1.{partitionResult#dnsSuffix}", ai],
+        ["https://s3-fips.dualstack.{Region}.{partitionResult#dnsSuffix}", aj],
+        ["https://s3-fips.us-east-1.{partitionResult#dnsSuffix}", ai],
+        ["https://s3-fips.{Region}.{partitionResult#dnsSuffix}", aj],
+        ["https://s3.dualstack.us-east-1.{partitionResult#dnsSuffix}", ai],
+        ["https://s3.dualstack.{Region}.{partitionResult#dnsSuffix}", aj],
+        [J, ai],
+        [J, aj],
+        [R, ai],
+        [R, aj],
+        ["https://s3.{Region}.{partitionResult#dnsSuffix}", aj],
+        [a, "A region must be set when sending requests to S3."]
+    ]
+};
+const root = 2;
+const r = 100_000_000;
+const nodes = new Int32Array([
+    -1, 1, -1,
+    0, 3, r + 114,
+    1, 422, 4,
+    2, 270, 5,
+    3, 231, 6,
+    4, 84, 7,
+    5, 15, 8,
+    8, 9, r + 114,
+    16, 10, 13,
+    18, 11, 13,
+    19, 12, 13,
+    22, r + 14, 13,
+    35, 14, r + 42,
+    36, r + 102, 433,
+    6, 269, 16,
+    7, 268, 17,
+    8, 19, 18,
+    14, 499, 105,
+    9, 20, 24,
+    10, 21, 24,
+    11, 22, 24,
+    12, 23, 24,
+    13, 545, 24,
+    14, 76, 25,
+    20, 72, 26,
+    26, 27, 77,
+    37, 28, r + 85,
+    38, r + 85, 29,
+    39, 46, 30,
+    48, r + 58, 31,
+    50, 32, r + 84,
+    51, 33, 135,
+    55, r + 76, 34,
+    59, 35, r + 83,
+    60, 39, 36,
+    61, 37, r + 82,
+    62, 38, 145,
+    63, 41, r + 46,
+    61, 40, r + 82,
+    62, 41, 149,
+    64, 42, r + 54,
+    66, 43, r + 53,
+    70, 44, r + 52,
+    71, 45, r + 80,
+    73, r + 78, r + 79,
+    40, 47, r + 57,
+    41, r + 57, 48,
+    42, 183, 49,
+    48, 61, 50,
+    49, r + 45, 51,
+    51, 52, 524,
+    60, 55, 53,
+    62, r + 55, 54,
+    63, 56, r + 46,
+    62, r + 55, 56,
+    64, 57, r + 54,
+    66, 58, r + 53,
+    69, 59, r + 65,
+    70, 60, r + 52,
+    72, r + 64, r + 51,
+    49, r + 45, 62,
+    51, 63, 524,
+    60, 66, 64,
+    62, r + 55, 65,
+    63, 67, r + 46,
+    62, r + 55, 67,
+    64, 68, r + 54,
+    66, 69, r + 53,
+    68, r + 47, 70,
+    70, 71, r + 52,
+    72, r + 50, r + 51,
+    25, 73, r + 42,
+    46, r + 39, 74,
+    57, 75, r + 41,
+    58, r + 40, r + 41,
+    26, r + 87, 77,
+    28, r + 86, 78,
+    34, 81, 79,
+    35, 80, 543,
+    36, r + 102, r + 114,
+    46, r + 96, 82,
+    57, 83, r + 98,
+    58, r + 97, r + 98,
+    5, 100, 85,
+    8, 86, r + 114,
+    16, 87, 88,
+    18, 90, 88,
+    19, 89, 91,
+    21, 96, 94,
+    19, 92, 91,
+    21, 97, 94,
+    21, 96, 93,
+    22, r + 14, 94,
+    35, 95, r + 42,
+    36, r + 102, r + 42,
+    22, r + 13, 97,
+    35, 98, r + 42,
+    36, r + 100, 99,
+    46, r + 109, r + 110,
+    6, 212, 101,
+    7, 206, 102,
+    8, 118, 103,
+    14, 117, 104,
+    21, 105, r + 23,
+    26, 106, 500,
+    37, 107, r + 85,
+    38, r + 85, 108,
+    39, 111, 109,
+    48, r + 58, 110,
+    50, 135, r + 84,
+    40, 112, r + 57,
+    41, r + 57, 113,
+    42, 114, 498,
+    48, r + 56, 115,
+    52, 116, r + 72,
+    65, r + 69, r + 72,
+    21, 499, r + 23,
+    9, 119, 123,
+    10, 120, 123,
+    11, 121, 123,
+    12, 122, 123,
+    13, 200, 123,
+    14, 193, 124,
+    20, 188, 125,
+    21, 126, r + 23,
+    23, 127, 128,
+    24, 187, 128,
+    26, 129, 195,
+    37, 130, r + 85,
+    38, r + 85, 131,
+    39, 157, 132,
+    48, r + 58, 133,
+    50, 134, r + 84,
+    51, 140, 135,
+    55, r + 76, 136,
+    59, 137, r + 83,
+    60, r + 82, 138,
+    61, 139, r + 82,
+    63, r + 82, r + 46,
+    55, r + 76, 141,
+    59, 142, r + 83,
+    60, 147, 143,
+    61, 144, r + 82,
+    62, 146, 145,
+    63, 149, r + 46,
+    63, 152, r + 46,
+    61, 148, r + 82,
+    62, 152, 149,
+    64, 150, r + 54,
+    66, 151, r + 53,
+    70, r + 81, r + 52,
+    64, 153, r + 54,
+    66, 154, r + 53,
+    70, 155, r + 52,
+    71, 156, r + 80,
+    73, r + 77, r + 79,
+    40, 158, r + 57,
+    41, r + 57, 159,
+    42, 183, 160,
+    48, 172, 161,
+    49, r + 45, 162,
+    51, 163, 524,
+    60, 166, 164,
+    62, r + 55, 165,
+    63, 167, r + 46,
+    62, r + 55, 167,
+    64, 168, r + 54,
+    66, 169, r + 53,
+    69, 170, r + 65,
+    70, 171, r + 52,
+    72, r + 63, r + 51,
+    49, r + 45, 173,
+    51, 174, 524,
+    60, 177, 175,
+    62, r + 55, 176,
+    63, 178, r + 46,
+    62, r + 55, 178,
+    64, 179, r + 54,
+    66, 180, r + 53,
+    68, r + 47, 181,
+    70, 182, r + 52,
+    72, r + 48, r + 51,
+    48, r + 56, 184,
+    52, 185, r + 72,
+    65, r + 69, 186,
+    67, r + 70, r + 71,
+    25, r + 36, r + 42,
+    21, 189, r + 23,
+    25, 190, r + 42,
+    30, 192, 191,
+    46, r + 34, r + 36,
+    46, r + 33, r + 35,
+    21, 194, r + 23,
+    26, r + 87, 195,
+    28, r + 86, 196,
+    34, 199, 197,
+    35, 198, 543,
+    36, r + 100, r + 114,
+    46, r + 94, r + 95,
+    17, 201, r + 22,
+    20, 202, r + 21,
+    21, 203, 548,
+    33, 204, 548,
+    44, r + 16, 205,
+    45, r + 18, r + 20,
+    8, 207, 213,
+    16, 208, 218,
+    18, 209, 218,
+    19, 210, 222,
+    20, 211, 225,
+    21, 229, 399,
+    8, 216, 213,
+    19, 214, r + 9,
+    20, 215, 225,
+    21, 229, r + 9,
+    16, 217, 218,
+    18, 221, 218,
+    19, 219, 222,
+    20, 220, 225,
+    21, 229, r + 12,
+    19, 224, 222,
+    20, 223, r + 9,
+    21, r + 9, r + 12,
+    20, 228, 225,
+    21, 226, r + 9,
+    30, 227, r + 9,
+    34, r + 7, r + 9,
+    21, 229, 413,
+    30, 230, r + 8,
+    34, r + 7, r + 8,
+    4, r + 2, 232,
+    5, 233, 478,
+    6, 269, 234,
+    7, 268, 235,
+    8, 236, 489,
+    9, 237, 241,
+    10, 238, 241,
+    11, 239, 241,
+    12, 240, 241,
+    13, 545, 241,
+    14, 264, 242,
+    20, 262, 243,
+    26, 244, 265,
+    37, 245, r + 85,
+    38, r + 85, 246,
+    39, 247, 516,
+    40, 248, r + 57,
+    41, r + 57, 249,
+    42, 536, 250,
+    48, r + 43, 251,
+    49, r + 45, 252,
+    51, 253, 524,
+    60, 256, 254,
+    62, r + 55, 255,
+    63, 257, r + 46,
+    62, r + 55, 257,
+    64, 258, r + 54,
+    66, 259, r + 53,
+    69, 260, r + 65,
+    70, 261, r + 52,
+    72, r + 62, r + 51,
+    25, 263, r + 42,
+    46, r + 31, r + 32,
+    26, r + 87, 265,
+    28, r + 86, 266,
+    34, 267, 542,
+    46, r + 92, r + 93,
+    8, 395, r + 9,
+    8, 405, r + 9,
+    3, 344, 271,
+    4, r + 3, 272,
+    5, 282, 273,
+    8, 274, r + 114,
+    15, r + 5, 275,
+    16, 276, 279,
+    18, 277, 279,
+    19, 278, 279,
+    22, r + 14, 279,
+    35, 280, r + 42,
+    36, r + 101, 281,
+    46, r + 105, r + 106,
+    6, 403, 283,
+    7, 393, 284,
+    8, 293, 285,
+    14, 499, 286,
+    26, 287, 500,
+    37, 288, r + 85,
+    38, r + 85, 289,
+    39, 290, 305,
+    40, 291, r + 57,
+    41, r + 57, 292,
+    42, 333, 498,
+    9, 294, 298,
+    10, 295, 298,
+    11, 296, 298,
+    12, 297, 298,
+    13, 392, 298,
+    14, 337, 299,
+    15, r + 5, 300,
+    20, 335, 301,
+    26, 302, 339,
+    37, 303, r + 85,
+    38, r + 85, 304,
+    39, 307, 305,
+    48, r + 58, 306,
+    50, r + 74, r + 84,
+    40, 308, r + 57,
+    41, r + 57, 309,
+    42, 333, 310,
+    48, 322, 311,
+    49, r + 45, 312,
+    51, 313, 524,
+    60, 316, 314,
+    62, r + 55, 315,
+    63, 317, r + 46,
+    62, r + 55, 317,
+    64, 318, r + 54,
+    66, 319, r + 53,
+    69, 320, r + 65,
+    70, 321, r + 52,
+    72, r + 61, r + 51,
+    49, r + 45, 323,
+    51, 324, 524,
+    60, 327, 325,
+    62, r + 55, 326,
+    63, 328, r + 46,
+    62, r + 55, 328,
+    64, 329, r + 54,
+    66, 330, r + 53,
+    68, r + 47, 331,
+    70, 332, r + 52,
+    72, r + 49, r + 51,
+    48, r + 56, 334,
+    52, r + 67, r + 72,
+    25, 336, r + 42,
+    46, r + 27, r + 28,
+    15, r + 5, 338,
+    26, r + 87, 339,
+    28, r + 86, 340,
+    34, 343, 341,
+    35, 342, 543,
+    36, r + 101, r + 114,
+    46, r + 90, r + 91,
+    4, r + 2, 345,
+    5, 355, 346,
+    8, 347, r + 114,
+    15, r + 5, 348,
+    16, 349, 352,
+    18, 350, 352,
+    19, 351, 352,
+    22, r + 14, 352,
+    35, 353, r + 42,
+    36, r + 43, 354,
+    46, r + 103, r + 104,
+    6, 403, 356,
+    7, 393, 357,
+    8, 358, 489,
+    9, 359, 363,
+    10, 360, 363,
+    11, 361, 363,
+    12, 362, 363,
+    13, 392, 363,
+    14, 387, 364,
+    15, r + 5, 365,
+    20, 385, 366,
+    26, 367, 389,
+    37, 368, r + 85,
+    38, r + 85, 369,
+    39, 370, 516,
+    40, 371, r + 57,
+    41, r + 57, 372,
+    42, 536, 373,
+    48, r + 43, 374,
+    49, r + 45, 375,
+    51, 376, 524,
+    60, 379, 377,
+    62, r + 55, 378,
+    63, 380, r + 46,
+    62, r + 55, 380,
+    64, 381, r + 54,
+    66, 382, r + 53,
+    69, 383, r + 65,
+    70, 384, r + 52,
+    72, r + 60, r + 51,
+    25, 386, r + 42,
+    46, r + 25, r + 26,
+    15, r + 5, 388,
+    26, r + 87, 389,
+    28, r + 86, 390,
+    34, 391, 542,
+    46, r + 88, r + 89,
+    15, r + 5, 545,
+    8, 394, r + 9,
+    15, r + 5, 395,
+    16, 396, 408,
+    18, 397, 408,
+    19, 398, 408,
+    20, 399, r + 9,
+    27, 400, r + 12,
+    29, r + 11, 401,
+    31, r + 11, 402,
+    32, r + 11, 420,
+    8, 404, r + 9,
+    15, r + 5, 405,
+    16, 406, 408,
+    18, 407, 408,
+    19, 409, 408,
+    20, r + 12, r + 9,
+    20, 412, 410,
+    22, 411, r + 9,
+    34, r + 10, r + 9,
+    22, 414, 413,
+    27, 417, r + 12,
+    27, 416, 415,
+    34, r + 10, r + 12,
+    34, r + 10, 417,
+    43, r + 11, 418,
+    47, r + 11, 419,
+    53, r + 11, 420,
+    54, r + 11, 421,
+    56, r + 11, r + 12,
+    2, r + 1, 423,
+    3, 476, 424,
+    4, r + 4, 425,
+    5, 436, 426,
+    8, 427, r + 114,
+    16, 428, 431,
+    18, 429, 431,
+    19, 430, 431,
+    22, r + 14, 431,
+    35, 432, r + 42,
+    36, r + 44, 433,
+    46, r + 111, 434,
+    57, 435, r + 113,
+    58, r + 112, r + 113,
+    6, r + 6, 437,
+    7, r + 6, 438,
+    8, 448, 439,
+    14, 499, 440,
+    26, 441, 500,
+    37, 442, r + 85,
+    38, r + 85, 443,
+    39, 444, 463,
+    40, 445, r + 57,
+    41, r + 57, 446,
+    42, 469, 447,
+    48, r + 44, 498,
+    9, 449, 453,
+    10, 450, 453,
+    11, 451, 453,
+    12, 452, 453,
+    13, 545, 453,
+    14, 471, 454,
+    15, 458, 455,
+    20, 456, 459,
+    25, 457, r + 42,
+    46, r + 37, r + 38,
+    20, 538, 459,
+    26, 460, 472,
+    37, 461, r + 85,
+    38, r + 85, 462,
+    39, 465, 463,
+    48, r + 58, 464,
+    50, r + 75, r + 84,
+    40, 466, r + 57,
+    41, r + 57, 467,
+    42, 469, 468,
+    48, r + 44, 522,
+    48, r + 44, 470,
+    52, r + 68, r + 72,
+    26, r + 87, 472,
+    28, r + 86, 473,
+    34, r + 99, 474,
+    35, 475, 543,
+    36, r + 44, r + 114,
+    4, r + 2, 477,
+    5, 486, 478,
+    8, 479, r + 114,
+    16, 480, 483,
+    18, 481, 483,
+    19, 482, 483,
+    22, r + 14, 483,
+    35, 484, r + 42,
+    36, r + 43, 485,
+    46, r + 107, r + 108,
+    6, r + 6, 487,
+    7, r + 6, 488,
+    8, 501, 489,
+    14, 499, 490,
+    26, 491, 500,
+    37, 492, r + 85,
+    38, r + 85, 493,
+    39, 494, 516,
+    40, 495, r + 57,
+    41, r + 57, 496,
+    42, 536, 497,
+    48, r + 43, 498,
+    49, r + 45, 524,
+    26, r + 87, 500,
+    28, r + 86, r + 114,
+    9, 502, 506,
+    10, 503, 506,
+    11, 504, 506,
+    12, 505, 506,
+    13, 545, 506,
+    14, 539, 507,
+    15, 511, 508,
+    20, 509, 512,
+    25, 510, r + 42,
+    46, r + 29, r + 30,
+    20, 538, 512,
+    26, 513, 540,
+    37, 514, r + 85,
+    38, r + 85, 515,
+    39, 518, 516,
+    48, r + 58, 517,
+    50, r + 73, r + 84,
+    40, 519, r + 57,
+    41, r + 57, 520,
+    42, 536, 521,
+    48, r + 43, 522,
+    49, r + 45, 523,
+    51, 527, 524,
+    60, r + 55, 525,
+    62, r + 55, 526,
+    63, r + 55, r + 46,
+    60, 530, 528,
+    62, r + 55, 529,
+    63, 531, r + 46,
+    62, r + 55, 531,
+    64, 532, r + 54,
+    66, 533, r + 53,
+    69, 534, r + 65,
+    70, 535, r + 52,
+    72, r + 59, r + 51,
+    48, r + 43, 537,
+    52, r + 66, r + 72,
+    25, r + 24, r + 42,
+    26, r + 87, 540,
+    28, r + 86, 541,
+    34, r + 99, 542,
+    35, 544, 543,
+    36, r + 42, r + 114,
+    36, r + 43, r + 114,
+    17, 546, r + 22,
+    20, 547, r + 21,
+    33, 550, 548,
+    44, r + 17, 549,
+    45, r + 19, r + 20,
+    44, r + 15, 551,
+    45, r + 15, r + 20,
+]);
+exports.bdd = util_endpoints_1.BinaryDecisionDiagram.from(nodes, root, _data.conditions, _data.results);
+
+
+/***/ }),
+
 /***/ 57526:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
@@ -687,7 +1451,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.defaultEndpointResolver = void 0;
 const util_endpoints_1 = __nccwpck_require__(83068);
 const util_endpoints_2 = __nccwpck_require__(79674);
-const ruleset_1 = __nccwpck_require__(62999);
+const bdd_1 = __nccwpck_require__(66363);
 const cache = new util_endpoints_2.EndpointCache({
     size: 50,
     params: [
@@ -708,27 +1472,13 @@ const cache = new util_endpoints_2.EndpointCache({
     ],
 });
 const defaultEndpointResolver = (endpointParams, context = {}) => {
-    return cache.get(endpointParams, () => (0, util_endpoints_2.resolveEndpoint)(ruleset_1.ruleSet, {
+    return cache.get(endpointParams, () => (0, util_endpoints_2.decideEndpoint)(bdd_1.bdd, {
         endpointParams: endpointParams,
         logger: context.logger,
     }));
 };
 exports.defaultEndpointResolver = defaultEndpointResolver;
 util_endpoints_2.customEndpointFunctions.aws = util_endpoints_1.awsEndpointFunctions;
-
-
-/***/ }),
-
-/***/ 62999:
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.ruleSet = void 0;
-const cs = "required", ct = "type", cu = "rules", cv = "conditions", cw = "fn", cx = "argv", cy = "ref", cz = "assign", cA = "url", cB = "properties", cC = "backend", cD = "authSchemes", cE = "disableDoubleEncoding", cF = "signingName", cG = "signingRegion", cH = "headers", cI = "signingRegionSet";
-const a = 6, b = false, c = true, d = "isSet", e = "booleanEquals", f = "error", g = "aws.partition", h = "stringEquals", i = "getAttr", j = "name", k = "substring", l = "bucketSuffix", m = "parseURL", n = "endpoint", o = "tree", p = "aws.isVirtualHostableS3Bucket", q = "{url#scheme}://{Bucket}.{url#authority}{url#path}", r = "not", s = "accessPointSuffix", t = "{url#scheme}://{url#authority}{url#path}", u = "hardwareType", v = "regionPrefix", w = "bucketAliasSuffix", x = "outpostId", y = "isValidHostLabel", z = "sigv4a", A = "s3-outposts", B = "s3", C = "{url#scheme}://{url#authority}{url#normalizedPath}{Bucket}", D = "https://{Bucket}.s3-accelerate.{partitionResult#dnsSuffix}", E = "https://{Bucket}.s3.{partitionResult#dnsSuffix}", F = "aws.parseArn", G = "bucketArn", H = "arnType", I = "", J = "s3-object-lambda", K = "accesspoint", L = "accessPointName", M = "{url#scheme}://{accessPointName}-{bucketArn#accountId}.{url#authority}{url#path}", N = "mrapPartition", O = "outpostType", P = "arnPrefix", Q = "{url#scheme}://{url#authority}{url#normalizedPath}{uri_encoded_bucket}", R = "https://s3.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", S = "https://s3.{partitionResult#dnsSuffix}", T = { [cs]: false, [ct]: "string" }, U = { [cs]: true, "default": false, [ct]: "boolean" }, V = { [cs]: false, [ct]: "boolean" }, W = { [cw]: e, [cx]: [{ [cy]: "Accelerate" }, true] }, X = { [cw]: e, [cx]: [{ [cy]: "UseFIPS" }, true] }, Y = { [cw]: e, [cx]: [{ [cy]: "UseDualStack" }, true] }, Z = { [cw]: d, [cx]: [{ [cy]: "Endpoint" }] }, aa = { [cw]: g, [cx]: [{ [cy]: "Region" }], [cz]: "partitionResult" }, ab = { [cw]: h, [cx]: [{ [cw]: i, [cx]: [{ [cy]: "partitionResult" }, j] }, "aws-cn"] }, ac = { [cw]: d, [cx]: [{ [cy]: "Bucket" }] }, ad = { [cy]: "Bucket" }, ae = { [cv]: [W], [f]: "S3Express does not support S3 Accelerate.", [ct]: f }, af = { [cv]: [Z, { [cw]: m, [cx]: [{ [cy]: "Endpoint" }], [cz]: "url" }], [cu]: [{ [cv]: [{ [cw]: d, [cx]: [{ [cy]: "DisableS3ExpressSessionAuth" }] }, { [cw]: e, [cx]: [{ [cy]: "DisableS3ExpressSessionAuth" }, true] }], [cu]: [{ [cv]: [{ [cw]: e, [cx]: [{ [cw]: i, [cx]: [{ [cy]: "url" }, "isIp"] }, true] }], [cu]: [{ [cv]: [{ [cw]: "uriEncode", [cx]: [ad], [cz]: "uri_encoded_bucket" }], [cu]: [{ [n]: { [cA]: "{url#scheme}://{url#authority}/{uri_encoded_bucket}{url#path}", [cB]: { [cC]: "S3Express", [cD]: [{ [cE]: true, [j]: "sigv4", [cF]: "s3express", [cG]: "{Region}" }] }, [cH]: {} }, [ct]: n }], [ct]: o }], [ct]: o }, { [cv]: [{ [cw]: p, [cx]: [ad, false] }], [cu]: [{ [n]: { [cA]: q, [cB]: { [cC]: "S3Express", [cD]: [{ [cE]: true, [j]: "sigv4", [cF]: "s3express", [cG]: "{Region}" }] }, [cH]: {} }, [ct]: n }], [ct]: o }, { [f]: "S3Express bucket name is not a valid virtual hostable name.", [ct]: f }], [ct]: o }, { [cv]: [{ [cw]: e, [cx]: [{ [cw]: i, [cx]: [{ [cy]: "url" }, "isIp"] }, true] }], [cu]: [{ [cv]: [{ [cw]: "uriEncode", [cx]: [ad], [cz]: "uri_encoded_bucket" }], [cu]: [{ [n]: { [cA]: "{url#scheme}://{url#authority}/{uri_encoded_bucket}{url#path}", [cB]: { [cC]: "S3Express", [cD]: [{ [cE]: true, [j]: "sigv4-s3express", [cF]: "s3express", [cG]: "{Region}" }] }, [cH]: {} }, [ct]: n }], [ct]: o }], [ct]: o }, { [cv]: [{ [cw]: p, [cx]: [ad, false] }], [cu]: [{ [n]: { [cA]: q, [cB]: { [cC]: "S3Express", [cD]: [{ [cE]: true, [j]: "sigv4-s3express", [cF]: "s3express", [cG]: "{Region}" }] }, [cH]: {} }, [ct]: n }], [ct]: o }, { [f]: "S3Express bucket name is not a valid virtual hostable name.", [ct]: f }], [ct]: o }, ag = { [cw]: m, [cx]: [{ [cy]: "Endpoint" }], [cz]: "url" }, ah = { [cw]: e, [cx]: [{ [cw]: i, [cx]: [{ [cy]: "url" }, "isIp"] }, true] }, ai = { [cy]: "url" }, aj = { [cw]: "uriEncode", [cx]: [ad], [cz]: "uri_encoded_bucket" }, ak = { [cC]: "S3Express", [cD]: [{ [cE]: true, [j]: "sigv4", [cF]: "s3express", [cG]: "{Region}" }] }, al = {}, am = { [cw]: p, [cx]: [ad, false] }, an = { [f]: "S3Express bucket name is not a valid virtual hostable name.", [ct]: f }, ao = { [cw]: d, [cx]: [{ [cy]: "UseS3ExpressControlEndpoint" }] }, ap = { [cw]: e, [cx]: [{ [cy]: "UseS3ExpressControlEndpoint" }, true] }, aq = { [cw]: r, [cx]: [Z] }, ar = { [cw]: e, [cx]: [{ [cy]: "UseDualStack" }, false] }, as = { [cw]: e, [cx]: [{ [cy]: "UseFIPS" }, false] }, at = { [f]: "Unrecognized S3Express bucket name format.", [ct]: f }, au = { [cw]: r, [cx]: [ac] }, av = { [cy]: u }, aw = { [cv]: [aq], [f]: "Expected a endpoint to be specified but no endpoint was found", [ct]: f }, ax = { [cD]: [{ [cE]: true, [j]: z, [cF]: A, [cI]: ["*"] }, { [cE]: true, [j]: "sigv4", [cF]: A, [cG]: "{Region}" }] }, ay = { [cw]: e, [cx]: [{ [cy]: "ForcePathStyle" }, false] }, az = { [cy]: "ForcePathStyle" }, aA = { [cw]: e, [cx]: [{ [cy]: "Accelerate" }, false] }, aB = { [cw]: h, [cx]: [{ [cy]: "Region" }, "aws-global"] }, aC = { [cD]: [{ [cE]: true, [j]: "sigv4", [cF]: B, [cG]: "us-east-1" }] }, aD = { [cw]: r, [cx]: [aB] }, aE = { [cw]: e, [cx]: [{ [cy]: "UseGlobalEndpoint" }, true] }, aF = { [cA]: "https://{Bucket}.s3-fips.dualstack.{Region}.{partitionResult#dnsSuffix}", [cB]: { [cD]: [{ [cE]: true, [j]: "sigv4", [cF]: B, [cG]: "{Region}" }] }, [cH]: {} }, aG = { [cD]: [{ [cE]: true, [j]: "sigv4", [cF]: B, [cG]: "{Region}" }] }, aH = { [cw]: e, [cx]: [{ [cy]: "UseGlobalEndpoint" }, false] }, aI = { [cA]: "https://{Bucket}.s3-fips.{Region}.{partitionResult#dnsSuffix}", [cB]: aG, [cH]: {} }, aJ = { [cA]: "https://{Bucket}.s3-accelerate.dualstack.{partitionResult#dnsSuffix}", [cB]: aG, [cH]: {} }, aK = { [cA]: "https://{Bucket}.s3.dualstack.{Region}.{partitionResult#dnsSuffix}", [cB]: aG, [cH]: {} }, aL = { [cw]: e, [cx]: [{ [cw]: i, [cx]: [ai, "isIp"] }, false] }, aM = { [cA]: C, [cB]: aG, [cH]: {} }, aN = { [cA]: q, [cB]: aG, [cH]: {} }, aO = { [n]: aN, [ct]: n }, aP = { [cA]: D, [cB]: aG, [cH]: {} }, aQ = { [cA]: "https://{Bucket}.s3.{Region}.{partitionResult#dnsSuffix}", [cB]: aG, [cH]: {} }, aR = { [f]: "Invalid region: region was not a valid DNS name.", [ct]: f }, aS = { [cy]: G }, aT = { [cy]: H }, aU = { [cw]: i, [cx]: [aS, "service"] }, aV = { [cy]: L }, aW = { [cv]: [Y], [f]: "S3 Object Lambda does not support Dual-stack", [ct]: f }, aX = { [cv]: [W], [f]: "S3 Object Lambda does not support S3 Accelerate", [ct]: f }, aY = { [cv]: [{ [cw]: d, [cx]: [{ [cy]: "DisableAccessPoints" }] }, { [cw]: e, [cx]: [{ [cy]: "DisableAccessPoints" }, true] }], [f]: "Access points are not supported for this operation", [ct]: f }, aZ = { [cv]: [{ [cw]: d, [cx]: [{ [cy]: "UseArnRegion" }] }, { [cw]: e, [cx]: [{ [cy]: "UseArnRegion" }, false] }, { [cw]: r, [cx]: [{ [cw]: h, [cx]: [{ [cw]: i, [cx]: [aS, "region"] }, "{Region}"] }] }], [f]: "Invalid configuration: region from ARN `{bucketArn#region}` does not match client region `{Region}` and UseArnRegion is `false`", [ct]: f }, ba = { [cw]: i, [cx]: [{ [cy]: "bucketPartition" }, j] }, bb = { [cw]: i, [cx]: [aS, "accountId"] }, bc = { [cD]: [{ [cE]: true, [j]: "sigv4", [cF]: J, [cG]: "{bucketArn#region}" }] }, bd = { [f]: "Invalid ARN: The access point name may only contain a-z, A-Z, 0-9 and `-`. Found: `{accessPointName}`", [ct]: f }, be = { [f]: "Invalid ARN: The account id may only contain a-z, A-Z, 0-9 and `-`. Found: `{bucketArn#accountId}`", [ct]: f }, bf = { [f]: "Invalid region in ARN: `{bucketArn#region}` (invalid DNS name)", [ct]: f }, bg = { [f]: "Client was configured for partition `{partitionResult#name}` but ARN (`{Bucket}`) has `{bucketPartition#name}`", [ct]: f }, bh = { [f]: "Invalid ARN: The ARN may only contain a single resource component after `accesspoint`.", [ct]: f }, bi = { [f]: "Invalid ARN: Expected a resource of the format `accesspoint:<accesspoint name>` but no name was provided", [ct]: f }, bj = { [cD]: [{ [cE]: true, [j]: "sigv4", [cF]: B, [cG]: "{bucketArn#region}" }] }, bk = { [cD]: [{ [cE]: true, [j]: z, [cF]: A, [cI]: ["*"] }, { [cE]: true, [j]: "sigv4", [cF]: A, [cG]: "{bucketArn#region}" }] }, bl = { [cw]: F, [cx]: [ad] }, bm = { [cA]: "https://s3-fips.dualstack.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cB]: aG, [cH]: {} }, bn = { [cA]: "https://s3-fips.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cB]: aG, [cH]: {} }, bo = { [cA]: "https://s3.dualstack.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cB]: aG, [cH]: {} }, bp = { [cA]: Q, [cB]: aG, [cH]: {} }, bq = { [cA]: "https://s3.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cB]: aG, [cH]: {} }, br = { [cy]: "UseObjectLambdaEndpoint" }, bs = { [cD]: [{ [cE]: true, [j]: "sigv4", [cF]: J, [cG]: "{Region}" }] }, bt = { [cA]: "https://s3-fips.dualstack.{Region}.{partitionResult#dnsSuffix}", [cB]: aG, [cH]: {} }, bu = { [cA]: "https://s3-fips.{Region}.{partitionResult#dnsSuffix}", [cB]: aG, [cH]: {} }, bv = { [cA]: "https://s3.dualstack.{Region}.{partitionResult#dnsSuffix}", [cB]: aG, [cH]: {} }, bw = { [cA]: t, [cB]: aG, [cH]: {} }, bx = { [cA]: "https://s3.{Region}.{partitionResult#dnsSuffix}", [cB]: aG, [cH]: {} }, by = [{ [cy]: "Region" }], bz = [{ [cy]: "Endpoint" }], bA = [ad], bB = [W], bC = [Z, ag], bD = [{ [cw]: d, [cx]: [{ [cy]: "DisableS3ExpressSessionAuth" }] }, { [cw]: e, [cx]: [{ [cy]: "DisableS3ExpressSessionAuth" }, true] }], bE = [aj], bF = [am], bG = [aa], bH = [X, Y], bI = [X, ar], bJ = [as, Y], bK = [as, ar], bL = [{ [cw]: k, [cx]: [ad, 6, 14, true], [cz]: "s3expressAvailabilityZoneId" }, { [cw]: k, [cx]: [ad, 14, 16, true], [cz]: "s3expressAvailabilityZoneDelim" }, { [cw]: h, [cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"] }], bM = [{ [cv]: [X, Y], [n]: { [cA]: "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.dualstack.{Region}.{partitionResult#dnsSuffix}", [cB]: ak, [cH]: {} }, [ct]: n }, { [cv]: bI, [n]: { [cA]: "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.{Region}.{partitionResult#dnsSuffix}", [cB]: ak, [cH]: {} }, [ct]: n }, { [cv]: bJ, [n]: { [cA]: "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.dualstack.{Region}.{partitionResult#dnsSuffix}", [cB]: ak, [cH]: {} }, [ct]: n }, { [cv]: bK, [n]: { [cA]: "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.{Region}.{partitionResult#dnsSuffix}", [cB]: ak, [cH]: {} }, [ct]: n }], bN = [{ [cw]: k, [cx]: [ad, 6, 15, true], [cz]: "s3expressAvailabilityZoneId" }, { [cw]: k, [cx]: [ad, 15, 17, true], [cz]: "s3expressAvailabilityZoneDelim" }, { [cw]: h, [cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"] }], bO = [{ [cw]: k, [cx]: [ad, 6, 19, true], [cz]: "s3expressAvailabilityZoneId" }, { [cw]: k, [cx]: [ad, 19, 21, true], [cz]: "s3expressAvailabilityZoneDelim" }, { [cw]: h, [cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"] }], bP = [{ [cw]: k, [cx]: [ad, 6, 20, true], [cz]: "s3expressAvailabilityZoneId" }, { [cw]: k, [cx]: [ad, 20, 22, true], [cz]: "s3expressAvailabilityZoneDelim" }, { [cw]: h, [cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"] }], bQ = [{ [cw]: k, [cx]: [ad, 6, 26, true], [cz]: "s3expressAvailabilityZoneId" }, { [cw]: k, [cx]: [ad, 26, 28, true], [cz]: "s3expressAvailabilityZoneDelim" }, { [cw]: h, [cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"] }], bR = [{ [cv]: [X, Y], [n]: { [cA]: "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.dualstack.{Region}.{partitionResult#dnsSuffix}", [cB]: { [cC]: "S3Express", [cD]: [{ [cE]: true, [j]: "sigv4-s3express", [cF]: "s3express", [cG]: "{Region}" }] }, [cH]: {} }, [ct]: n }, { [cv]: bI, [n]: { [cA]: "https://{Bucket}.s3express-fips-{s3expressAvailabilityZoneId}.{Region}.{partitionResult#dnsSuffix}", [cB]: { [cC]: "S3Express", [cD]: [{ [cE]: true, [j]: "sigv4-s3express", [cF]: "s3express", [cG]: "{Region}" }] }, [cH]: {} }, [ct]: n }, { [cv]: bJ, [n]: { [cA]: "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.dualstack.{Region}.{partitionResult#dnsSuffix}", [cB]: { [cC]: "S3Express", [cD]: [{ [cE]: true, [j]: "sigv4-s3express", [cF]: "s3express", [cG]: "{Region}" }] }, [cH]: {} }, [ct]: n }, { [cv]: bK, [n]: { [cA]: "https://{Bucket}.s3express-{s3expressAvailabilityZoneId}.{Region}.{partitionResult#dnsSuffix}", [cB]: { [cC]: "S3Express", [cD]: [{ [cE]: true, [j]: "sigv4-s3express", [cF]: "s3express", [cG]: "{Region}" }] }, [cH]: {} }, [ct]: n }], bS = [ad, 0, 7, true], bT = [{ [cw]: k, [cx]: [ad, 7, 15, true], [cz]: "s3expressAvailabilityZoneId" }, { [cw]: k, [cx]: [ad, 15, 17, true], [cz]: "s3expressAvailabilityZoneDelim" }, { [cw]: h, [cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"] }], bU = [{ [cw]: k, [cx]: [ad, 7, 16, true], [cz]: "s3expressAvailabilityZoneId" }, { [cw]: k, [cx]: [ad, 16, 18, true], [cz]: "s3expressAvailabilityZoneDelim" }, { [cw]: h, [cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"] }], bV = [{ [cw]: k, [cx]: [ad, 7, 20, true], [cz]: "s3expressAvailabilityZoneId" }, { [cw]: k, [cx]: [ad, 20, 22, true], [cz]: "s3expressAvailabilityZoneDelim" }, { [cw]: h, [cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"] }], bW = [{ [cw]: k, [cx]: [ad, 7, 21, true], [cz]: "s3expressAvailabilityZoneId" }, { [cw]: k, [cx]: [ad, 21, 23, true], [cz]: "s3expressAvailabilityZoneDelim" }, { [cw]: h, [cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"] }], bX = [{ [cw]: k, [cx]: [ad, 7, 27, true], [cz]: "s3expressAvailabilityZoneId" }, { [cw]: k, [cx]: [ad, 27, 29, true], [cz]: "s3expressAvailabilityZoneDelim" }, { [cw]: h, [cx]: [{ [cy]: "s3expressAvailabilityZoneDelim" }, "--"] }], bY = [ac], bZ = [{ [cw]: y, [cx]: [{ [cy]: x }, false] }], ca = [{ [cw]: h, [cx]: [{ [cy]: v }, "beta"] }], cb = ["*"], cc = [{ [cw]: y, [cx]: [{ [cy]: "Region" }, false] }], cd = [{ [cw]: h, [cx]: [{ [cy]: "Region" }, "us-east-1"] }], ce = [{ [cw]: h, [cx]: [aT, K] }], cf = [{ [cw]: i, [cx]: [aS, "resourceId[1]"], [cz]: L }, { [cw]: r, [cx]: [{ [cw]: h, [cx]: [aV, I] }] }], cg = [aS, "resourceId[1]"], ch = [Y], ci = [{ [cw]: r, [cx]: [{ [cw]: h, [cx]: [{ [cw]: i, [cx]: [aS, "region"] }, I] }] }], cj = [{ [cw]: r, [cx]: [{ [cw]: d, [cx]: [{ [cw]: i, [cx]: [aS, "resourceId[2]"] }] }] }], ck = [aS, "resourceId[2]"], cl = [{ [cw]: g, [cx]: [{ [cw]: i, [cx]: [aS, "region"] }], [cz]: "bucketPartition" }], cm = [{ [cw]: h, [cx]: [ba, { [cw]: i, [cx]: [{ [cy]: "partitionResult" }, j] }] }], cn = [{ [cw]: y, [cx]: [{ [cw]: i, [cx]: [aS, "region"] }, true] }], co = [{ [cw]: y, [cx]: [bb, false] }], cp = [{ [cw]: y, [cx]: [aV, false] }], cq = [X], cr = [{ [cw]: y, [cx]: [{ [cy]: "Region" }, true] }];
-const _data = { version: "1.0", parameters: { Bucket: T, Region: T, UseFIPS: U, UseDualStack: U, Endpoint: T, ForcePathStyle: U, Accelerate: U, UseGlobalEndpoint: U, UseObjectLambdaEndpoint: V, Key: T, Prefix: T, CopySource: T, DisableAccessPoints: V, DisableMultiRegionAccessPoints: U, UseArnRegion: V, UseS3ExpressControlEndpoint: V, DisableS3ExpressSessionAuth: V }, [cu]: [{ [cv]: [{ [cw]: d, [cx]: by }], [cu]: [{ [cv]: [W, X], error: "Accelerate cannot be used with FIPS", [ct]: f }, { [cv]: [Y, Z], error: "Cannot set dual-stack in combination with a custom endpoint.", [ct]: f }, { [cv]: [Z, X], error: "A custom endpoint cannot be combined with FIPS", [ct]: f }, { [cv]: [Z, W], error: "A custom endpoint cannot be combined with S3 Accelerate", [ct]: f }, { [cv]: [X, aa, ab], error: "Partition does not support FIPS", [ct]: f }, { [cv]: [ac, { [cw]: k, [cx]: [ad, 0, a, c], [cz]: l }, { [cw]: h, [cx]: [{ [cy]: l }, "--x-s3"] }], [cu]: [ae, af, { [cv]: [ao, ap], [cu]: [{ [cv]: bG, [cu]: [{ [cv]: [aj, aq], [cu]: [{ [cv]: bH, endpoint: { [cA]: "https://s3express-control-fips.dualstack.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cB]: ak, [cH]: al }, [ct]: n }, { [cv]: bI, endpoint: { [cA]: "https://s3express-control-fips.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cB]: ak, [cH]: al }, [ct]: n }, { [cv]: bJ, endpoint: { [cA]: "https://s3express-control.dualstack.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cB]: ak, [cH]: al }, [ct]: n }, { [cv]: bK, endpoint: { [cA]: "https://s3express-control.{Region}.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cB]: ak, [cH]: al }, [ct]: n }], [ct]: o }], [ct]: o }], [ct]: o }, { [cv]: bF, [cu]: [{ [cv]: bG, [cu]: [{ [cv]: bD, [cu]: [{ [cv]: bL, [cu]: bM, [ct]: o }, { [cv]: bN, [cu]: bM, [ct]: o }, { [cv]: bO, [cu]: bM, [ct]: o }, { [cv]: bP, [cu]: bM, [ct]: o }, { [cv]: bQ, [cu]: bM, [ct]: o }, at], [ct]: o }, { [cv]: bL, [cu]: bR, [ct]: o }, { [cv]: bN, [cu]: bR, [ct]: o }, { [cv]: bO, [cu]: bR, [ct]: o }, { [cv]: bP, [cu]: bR, [ct]: o }, { [cv]: bQ, [cu]: bR, [ct]: o }, at], [ct]: o }], [ct]: o }, an], [ct]: o }, { [cv]: [ac, { [cw]: k, [cx]: bS, [cz]: s }, { [cw]: h, [cx]: [{ [cy]: s }, "--xa-s3"] }], [cu]: [ae, af, { [cv]: bF, [cu]: [{ [cv]: bG, [cu]: [{ [cv]: bD, [cu]: [{ [cv]: bT, [cu]: bM, [ct]: o }, { [cv]: bU, [cu]: bM, [ct]: o }, { [cv]: bV, [cu]: bM, [ct]: o }, { [cv]: bW, [cu]: bM, [ct]: o }, { [cv]: bX, [cu]: bM, [ct]: o }, at], [ct]: o }, { [cv]: bT, [cu]: bR, [ct]: o }, { [cv]: bU, [cu]: bR, [ct]: o }, { [cv]: bV, [cu]: bR, [ct]: o }, { [cv]: bW, [cu]: bR, [ct]: o }, { [cv]: bX, [cu]: bR, [ct]: o }, at], [ct]: o }], [ct]: o }, an], [ct]: o }, { [cv]: [au, ao, ap], [cu]: [{ [cv]: bG, [cu]: [{ [cv]: bC, endpoint: { [cA]: t, [cB]: ak, [cH]: al }, [ct]: n }, { [cv]: bH, endpoint: { [cA]: "https://s3express-control-fips.dualstack.{Region}.{partitionResult#dnsSuffix}", [cB]: ak, [cH]: al }, [ct]: n }, { [cv]: bI, endpoint: { [cA]: "https://s3express-control-fips.{Region}.{partitionResult#dnsSuffix}", [cB]: ak, [cH]: al }, [ct]: n }, { [cv]: bJ, endpoint: { [cA]: "https://s3express-control.dualstack.{Region}.{partitionResult#dnsSuffix}", [cB]: ak, [cH]: al }, [ct]: n }, { [cv]: bK, endpoint: { [cA]: "https://s3express-control.{Region}.{partitionResult#dnsSuffix}", [cB]: ak, [cH]: al }, [ct]: n }], [ct]: o }], [ct]: o }, { [cv]: [ac, { [cw]: k, [cx]: [ad, 49, 50, c], [cz]: u }, { [cw]: k, [cx]: [ad, 8, 12, c], [cz]: v }, { [cw]: k, [cx]: bS, [cz]: w }, { [cw]: k, [cx]: [ad, 32, 49, c], [cz]: x }, { [cw]: g, [cx]: by, [cz]: "regionPartition" }, { [cw]: h, [cx]: [{ [cy]: w }, "--op-s3"] }], [cu]: [{ [cv]: bZ, [cu]: [{ [cv]: bF, [cu]: [{ [cv]: [{ [cw]: h, [cx]: [av, "e"] }], [cu]: [{ [cv]: ca, [cu]: [aw, { [cv]: bC, endpoint: { [cA]: "https://{Bucket}.ec2.{url#authority}", [cB]: ax, [cH]: al }, [ct]: n }], [ct]: o }, { endpoint: { [cA]: "https://{Bucket}.ec2.s3-outposts.{Region}.{regionPartition#dnsSuffix}", [cB]: ax, [cH]: al }, [ct]: n }], [ct]: o }, { [cv]: [{ [cw]: h, [cx]: [av, "o"] }], [cu]: [{ [cv]: ca, [cu]: [aw, { [cv]: bC, endpoint: { [cA]: "https://{Bucket}.op-{outpostId}.{url#authority}", [cB]: ax, [cH]: al }, [ct]: n }], [ct]: o }, { endpoint: { [cA]: "https://{Bucket}.op-{outpostId}.s3-outposts.{Region}.{regionPartition#dnsSuffix}", [cB]: ax, [cH]: al }, [ct]: n }], [ct]: o }, { error: "Unrecognized hardware type: \"Expected hardware type o or e but got {hardwareType}\"", [ct]: f }], [ct]: o }, { error: "Invalid Outposts Bucket alias - it must be a valid bucket name.", [ct]: f }], [ct]: o }, { error: "Invalid ARN: The outpost Id must only contain a-z, A-Z, 0-9 and `-`.", [ct]: f }], [ct]: o }, { [cv]: bY, [cu]: [{ [cv]: [Z, { [cw]: r, [cx]: [{ [cw]: d, [cx]: [{ [cw]: m, [cx]: bz }] }] }], error: "Custom endpoint `{Endpoint}` was not a valid URI", [ct]: f }, { [cv]: [ay, am], [cu]: [{ [cv]: bG, [cu]: [{ [cv]: cc, [cu]: [{ [cv]: [W, ab], error: "S3 Accelerate cannot be used in this region", [ct]: f }, { [cv]: [Y, X, aA, aq, aB], endpoint: { [cA]: "https://{Bucket}.s3-fips.dualstack.us-east-1.{partitionResult#dnsSuffix}", [cB]: aC, [cH]: al }, [ct]: n }, { [cv]: [Y, X, aA, aq, aD, aE], [cu]: [{ endpoint: aF, [ct]: n }], [ct]: o }, { [cv]: [Y, X, aA, aq, aD, aH], endpoint: aF, [ct]: n }, { [cv]: [ar, X, aA, aq, aB], endpoint: { [cA]: "https://{Bucket}.s3-fips.us-east-1.{partitionResult#dnsSuffix}", [cB]: aC, [cH]: al }, [ct]: n }, { [cv]: [ar, X, aA, aq, aD, aE], [cu]: [{ endpoint: aI, [ct]: n }], [ct]: o }, { [cv]: [ar, X, aA, aq, aD, aH], endpoint: aI, [ct]: n }, { [cv]: [Y, as, W, aq, aB], endpoint: { [cA]: "https://{Bucket}.s3-accelerate.dualstack.us-east-1.{partitionResult#dnsSuffix}", [cB]: aC, [cH]: al }, [ct]: n }, { [cv]: [Y, as, W, aq, aD, aE], [cu]: [{ endpoint: aJ, [ct]: n }], [ct]: o }, { [cv]: [Y, as, W, aq, aD, aH], endpoint: aJ, [ct]: n }, { [cv]: [Y, as, aA, aq, aB], endpoint: { [cA]: "https://{Bucket}.s3.dualstack.us-east-1.{partitionResult#dnsSuffix}", [cB]: aC, [cH]: al }, [ct]: n }, { [cv]: [Y, as, aA, aq, aD, aE], [cu]: [{ endpoint: aK, [ct]: n }], [ct]: o }, { [cv]: [Y, as, aA, aq, aD, aH], endpoint: aK, [ct]: n }, { [cv]: [ar, as, aA, Z, ag, ah, aB], endpoint: { [cA]: C, [cB]: aC, [cH]: al }, [ct]: n }, { [cv]: [ar, as, aA, Z, ag, aL, aB], endpoint: { [cA]: q, [cB]: aC, [cH]: al }, [ct]: n }, { [cv]: [ar, as, aA, Z, ag, ah, aD, aE], [cu]: [{ [cv]: cd, endpoint: aM, [ct]: n }, { endpoint: aM, [ct]: n }], [ct]: o }, { [cv]: [ar, as, aA, Z, ag, aL, aD, aE], [cu]: [{ [cv]: cd, endpoint: aN, [ct]: n }, aO], [ct]: o }, { [cv]: [ar, as, aA, Z, ag, ah, aD, aH], endpoint: aM, [ct]: n }, { [cv]: [ar, as, aA, Z, ag, aL, aD, aH], endpoint: aN, [ct]: n }, { [cv]: [ar, as, W, aq, aB], endpoint: { [cA]: D, [cB]: aC, [cH]: al }, [ct]: n }, { [cv]: [ar, as, W, aq, aD, aE], [cu]: [{ [cv]: cd, endpoint: aP, [ct]: n }, { endpoint: aP, [ct]: n }], [ct]: o }, { [cv]: [ar, as, W, aq, aD, aH], endpoint: aP, [ct]: n }, { [cv]: [ar, as, aA, aq, aB], endpoint: { [cA]: E, [cB]: aC, [cH]: al }, [ct]: n }, { [cv]: [ar, as, aA, aq, aD, aE], [cu]: [{ [cv]: cd, endpoint: { [cA]: E, [cB]: aG, [cH]: al }, [ct]: n }, { endpoint: aQ, [ct]: n }], [ct]: o }, { [cv]: [ar, as, aA, aq, aD, aH], endpoint: aQ, [ct]: n }], [ct]: o }, aR], [ct]: o }], [ct]: o }, { [cv]: [Z, ag, { [cw]: h, [cx]: [{ [cw]: i, [cx]: [ai, "scheme"] }, "http"] }, { [cw]: p, [cx]: [ad, c] }, ay, as, ar, aA], [cu]: [{ [cv]: bG, [cu]: [{ [cv]: cc, [cu]: [aO], [ct]: o }, aR], [ct]: o }], [ct]: o }, { [cv]: [ay, { [cw]: F, [cx]: bA, [cz]: G }], [cu]: [{ [cv]: [{ [cw]: i, [cx]: [aS, "resourceId[0]"], [cz]: H }, { [cw]: r, [cx]: [{ [cw]: h, [cx]: [aT, I] }] }], [cu]: [{ [cv]: [{ [cw]: h, [cx]: [aU, J] }], [cu]: [{ [cv]: ce, [cu]: [{ [cv]: cf, [cu]: [aW, aX, { [cv]: ci, [cu]: [aY, { [cv]: cj, [cu]: [aZ, { [cv]: cl, [cu]: [{ [cv]: bG, [cu]: [{ [cv]: cm, [cu]: [{ [cv]: cn, [cu]: [{ [cv]: [{ [cw]: h, [cx]: [bb, I] }], error: "Invalid ARN: Missing account id", [ct]: f }, { [cv]: co, [cu]: [{ [cv]: cp, [cu]: [{ [cv]: bC, endpoint: { [cA]: M, [cB]: bc, [cH]: al }, [ct]: n }, { [cv]: cq, endpoint: { [cA]: "https://{accessPointName}-{bucketArn#accountId}.s3-object-lambda-fips.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cB]: bc, [cH]: al }, [ct]: n }, { endpoint: { [cA]: "https://{accessPointName}-{bucketArn#accountId}.s3-object-lambda.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cB]: bc, [cH]: al }, [ct]: n }], [ct]: o }, bd], [ct]: o }, be], [ct]: o }, bf], [ct]: o }, bg], [ct]: o }], [ct]: o }], [ct]: o }, bh], [ct]: o }, { error: "Invalid ARN: bucket ARN is missing a region", [ct]: f }], [ct]: o }, bi], [ct]: o }, { error: "Invalid ARN: Object Lambda ARNs only support `accesspoint` arn types, but found: `{arnType}`", [ct]: f }], [ct]: o }, { [cv]: ce, [cu]: [{ [cv]: cf, [cu]: [{ [cv]: ci, [cu]: [{ [cv]: ce, [cu]: [{ [cv]: ci, [cu]: [aY, { [cv]: cj, [cu]: [aZ, { [cv]: cl, [cu]: [{ [cv]: bG, [cu]: [{ [cv]: [{ [cw]: h, [cx]: [ba, "{partitionResult#name}"] }], [cu]: [{ [cv]: cn, [cu]: [{ [cv]: [{ [cw]: h, [cx]: [aU, B] }], [cu]: [{ [cv]: co, [cu]: [{ [cv]: cp, [cu]: [{ [cv]: bB, error: "Access Points do not support S3 Accelerate", [ct]: f }, { [cv]: bH, endpoint: { [cA]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint-fips.dualstack.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cB]: bj, [cH]: al }, [ct]: n }, { [cv]: bI, endpoint: { [cA]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint-fips.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cB]: bj, [cH]: al }, [ct]: n }, { [cv]: bJ, endpoint: { [cA]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint.dualstack.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cB]: bj, [cH]: al }, [ct]: n }, { [cv]: [as, ar, Z, ag], endpoint: { [cA]: M, [cB]: bj, [cH]: al }, [ct]: n }, { [cv]: bK, endpoint: { [cA]: "https://{accessPointName}-{bucketArn#accountId}.s3-accesspoint.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cB]: bj, [cH]: al }, [ct]: n }], [ct]: o }, bd], [ct]: o }, be], [ct]: o }, { error: "Invalid ARN: The ARN was not for the S3 service, found: {bucketArn#service}", [ct]: f }], [ct]: o }, bf], [ct]: o }, bg], [ct]: o }], [ct]: o }], [ct]: o }, bh], [ct]: o }], [ct]: o }], [ct]: o }, { [cv]: [{ [cw]: y, [cx]: [aV, c] }], [cu]: [{ [cv]: ch, error: "S3 MRAP does not support dual-stack", [ct]: f }, { [cv]: cq, error: "S3 MRAP does not support FIPS", [ct]: f }, { [cv]: bB, error: "S3 MRAP does not support S3 Accelerate", [ct]: f }, { [cv]: [{ [cw]: e, [cx]: [{ [cy]: "DisableMultiRegionAccessPoints" }, c] }], error: "Invalid configuration: Multi-Region Access Point ARNs are disabled.", [ct]: f }, { [cv]: [{ [cw]: g, [cx]: by, [cz]: N }], [cu]: [{ [cv]: [{ [cw]: h, [cx]: [{ [cw]: i, [cx]: [{ [cy]: N }, j] }, { [cw]: i, [cx]: [aS, "partition"] }] }], [cu]: [{ endpoint: { [cA]: "https://{accessPointName}.accesspoint.s3-global.{mrapPartition#dnsSuffix}", [cB]: { [cD]: [{ [cE]: c, name: z, [cF]: B, [cI]: cb }] }, [cH]: al }, [ct]: n }], [ct]: o }, { error: "Client was configured for partition `{mrapPartition#name}` but bucket referred to partition `{bucketArn#partition}`", [ct]: f }], [ct]: o }], [ct]: o }, { error: "Invalid Access Point Name", [ct]: f }], [ct]: o }, bi], [ct]: o }, { [cv]: [{ [cw]: h, [cx]: [aU, A] }], [cu]: [{ [cv]: ch, error: "S3 Outposts does not support Dual-stack", [ct]: f }, { [cv]: cq, error: "S3 Outposts does not support FIPS", [ct]: f }, { [cv]: bB, error: "S3 Outposts does not support S3 Accelerate", [ct]: f }, { [cv]: [{ [cw]: d, [cx]: [{ [cw]: i, [cx]: [aS, "resourceId[4]"] }] }], error: "Invalid Arn: Outpost Access Point ARN contains sub resources", [ct]: f }, { [cv]: [{ [cw]: i, [cx]: cg, [cz]: x }], [cu]: [{ [cv]: bZ, [cu]: [aZ, { [cv]: cl, [cu]: [{ [cv]: bG, [cu]: [{ [cv]: cm, [cu]: [{ [cv]: cn, [cu]: [{ [cv]: co, [cu]: [{ [cv]: [{ [cw]: i, [cx]: ck, [cz]: O }], [cu]: [{ [cv]: [{ [cw]: i, [cx]: [aS, "resourceId[3]"], [cz]: L }], [cu]: [{ [cv]: [{ [cw]: h, [cx]: [{ [cy]: O }, K] }], [cu]: [{ [cv]: bC, endpoint: { [cA]: "https://{accessPointName}-{bucketArn#accountId}.{outpostId}.{url#authority}", [cB]: bk, [cH]: al }, [ct]: n }, { endpoint: { [cA]: "https://{accessPointName}-{bucketArn#accountId}.{outpostId}.s3-outposts.{bucketArn#region}.{bucketPartition#dnsSuffix}", [cB]: bk, [cH]: al }, [ct]: n }], [ct]: o }, { error: "Expected an outpost type `accesspoint`, found {outpostType}", [ct]: f }], [ct]: o }, { error: "Invalid ARN: expected an access point name", [ct]: f }], [ct]: o }, { error: "Invalid ARN: Expected a 4-component resource", [ct]: f }], [ct]: o }, be], [ct]: o }, bf], [ct]: o }, bg], [ct]: o }], [ct]: o }], [ct]: o }, { error: "Invalid ARN: The outpost Id may only contain a-z, A-Z, 0-9 and `-`. Found: `{outpostId}`", [ct]: f }], [ct]: o }, { error: "Invalid ARN: The Outpost Id was not set", [ct]: f }], [ct]: o }, { error: "Invalid ARN: Unrecognized format: {Bucket} (type: {arnType})", [ct]: f }], [ct]: o }, { error: "Invalid ARN: No ARN type specified", [ct]: f }], [ct]: o }, { [cv]: [{ [cw]: k, [cx]: [ad, 0, 4, b], [cz]: P }, { [cw]: h, [cx]: [{ [cy]: P }, "arn:"] }, { [cw]: r, [cx]: [{ [cw]: d, [cx]: [bl] }] }], error: "Invalid ARN: `{Bucket}` was not a valid ARN", [ct]: f }, { [cv]: [{ [cw]: e, [cx]: [az, c] }, bl], error: "Path-style addressing cannot be used with ARN buckets", [ct]: f }, { [cv]: bE, [cu]: [{ [cv]: bG, [cu]: [{ [cv]: [aA], [cu]: [{ [cv]: [Y, aq, X, aB], endpoint: { [cA]: "https://s3-fips.dualstack.us-east-1.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cB]: aC, [cH]: al }, [ct]: n }, { [cv]: [Y, aq, X, aD, aE], [cu]: [{ endpoint: bm, [ct]: n }], [ct]: o }, { [cv]: [Y, aq, X, aD, aH], endpoint: bm, [ct]: n }, { [cv]: [ar, aq, X, aB], endpoint: { [cA]: "https://s3-fips.us-east-1.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cB]: aC, [cH]: al }, [ct]: n }, { [cv]: [ar, aq, X, aD, aE], [cu]: [{ endpoint: bn, [ct]: n }], [ct]: o }, { [cv]: [ar, aq, X, aD, aH], endpoint: bn, [ct]: n }, { [cv]: [Y, aq, as, aB], endpoint: { [cA]: "https://s3.dualstack.us-east-1.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", [cB]: aC, [cH]: al }, [ct]: n }, { [cv]: [Y, aq, as, aD, aE], [cu]: [{ endpoint: bo, [ct]: n }], [ct]: o }, { [cv]: [Y, aq, as, aD, aH], endpoint: bo, [ct]: n }, { [cv]: [ar, Z, ag, as, aB], endpoint: { [cA]: Q, [cB]: aC, [cH]: al }, [ct]: n }, { [cv]: [ar, Z, ag, as, aD, aE], [cu]: [{ [cv]: cd, endpoint: bp, [ct]: n }, { endpoint: bp, [ct]: n }], [ct]: o }, { [cv]: [ar, Z, ag, as, aD, aH], endpoint: bp, [ct]: n }, { [cv]: [ar, aq, as, aB], endpoint: { [cA]: R, [cB]: aC, [cH]: al }, [ct]: n }, { [cv]: [ar, aq, as, aD, aE], [cu]: [{ [cv]: cd, endpoint: { [cA]: R, [cB]: aG, [cH]: al }, [ct]: n }, { endpoint: bq, [ct]: n }], [ct]: o }, { [cv]: [ar, aq, as, aD, aH], endpoint: bq, [ct]: n }], [ct]: o }, { error: "Path-style addressing cannot be used with S3 Accelerate", [ct]: f }], [ct]: o }], [ct]: o }], [ct]: o }, { [cv]: [{ [cw]: d, [cx]: [br] }, { [cw]: e, [cx]: [br, c] }], [cu]: [{ [cv]: bG, [cu]: [{ [cv]: cr, [cu]: [aW, aX, { [cv]: bC, endpoint: { [cA]: t, [cB]: bs, [cH]: al }, [ct]: n }, { [cv]: cq, endpoint: { [cA]: "https://s3-object-lambda-fips.{Region}.{partitionResult#dnsSuffix}", [cB]: bs, [cH]: al }, [ct]: n }, { endpoint: { [cA]: "https://s3-object-lambda.{Region}.{partitionResult#dnsSuffix}", [cB]: bs, [cH]: al }, [ct]: n }], [ct]: o }, aR], [ct]: o }], [ct]: o }, { [cv]: [au], [cu]: [{ [cv]: bG, [cu]: [{ [cv]: cr, [cu]: [{ [cv]: [X, Y, aq, aB], endpoint: { [cA]: "https://s3-fips.dualstack.us-east-1.{partitionResult#dnsSuffix}", [cB]: aC, [cH]: al }, [ct]: n }, { [cv]: [X, Y, aq, aD, aE], [cu]: [{ endpoint: bt, [ct]: n }], [ct]: o }, { [cv]: [X, Y, aq, aD, aH], endpoint: bt, [ct]: n }, { [cv]: [X, ar, aq, aB], endpoint: { [cA]: "https://s3-fips.us-east-1.{partitionResult#dnsSuffix}", [cB]: aC, [cH]: al }, [ct]: n }, { [cv]: [X, ar, aq, aD, aE], [cu]: [{ endpoint: bu, [ct]: n }], [ct]: o }, { [cv]: [X, ar, aq, aD, aH], endpoint: bu, [ct]: n }, { [cv]: [as, Y, aq, aB], endpoint: { [cA]: "https://s3.dualstack.us-east-1.{partitionResult#dnsSuffix}", [cB]: aC, [cH]: al }, [ct]: n }, { [cv]: [as, Y, aq, aD, aE], [cu]: [{ endpoint: bv, [ct]: n }], [ct]: o }, { [cv]: [as, Y, aq, aD, aH], endpoint: bv, [ct]: n }, { [cv]: [as, ar, Z, ag, aB], endpoint: { [cA]: t, [cB]: aC, [cH]: al }, [ct]: n }, { [cv]: [as, ar, Z, ag, aD, aE], [cu]: [{ [cv]: cd, endpoint: bw, [ct]: n }, { endpoint: bw, [ct]: n }], [ct]: o }, { [cv]: [as, ar, Z, ag, aD, aH], endpoint: bw, [ct]: n }, { [cv]: [as, ar, aq, aB], endpoint: { [cA]: S, [cB]: aC, [cH]: al }, [ct]: n }, { [cv]: [as, ar, aq, aD, aE], [cu]: [{ [cv]: cd, endpoint: { [cA]: S, [cB]: aG, [cH]: al }, [ct]: n }, { endpoint: bx, [ct]: n }], [ct]: o }, { [cv]: [as, ar, aq, aD, aH], endpoint: bx, [ct]: n }], [ct]: o }, aR], [ct]: o }], [ct]: o }], [ct]: o }, { error: "A region must be set when sending requests to S3.", [ct]: f }] };
-exports.ruleSet = _data;
 
 
 /***/ }),
@@ -1669,10 +2419,7 @@ class GetBucketPolicyCommand extends smithyClient.Command
     Bucket: { type: "contextParams", name: "Bucket" },
 })
     .m(function (Command, cs, config, o) {
-    return [
-        middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        middlewareSdkS3.getThrow200ExceptionsPlugin(config),
-    ];
+    return [middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
 })
     .s("AmazonS3", "GetBucketPolicy", {})
     .n("S3Client", "GetBucketPolicyCommand")
@@ -1845,7 +2592,7 @@ class GetObjectCommand extends smithyClient.Command
         middlewareFlexibleChecksums.getFlexibleChecksumsPlugin(config, {
             requestChecksumRequired: false,
             requestValidationModeMember: 'ChecksumMode',
-            'responseAlgorithms': ['CRC64NVME', 'CRC32', 'CRC32C', 'SHA256', 'SHA1'],
+            'responseAlgorithms': ['CRC64NVME', 'CRC32', 'CRC32C', 'SHA256', 'SHA1', 'SHA512', 'MD5', 'XXHASH64', 'XXHASH3', 'XXHASH128'],
         }),
         middlewareSsec.getSsecPlugin(config),
         middlewareSdkS3.getS3ExpiresMiddlewarePlugin(config),
@@ -2803,7 +3550,6 @@ class SelectObjectContentCommand extends smithyClient.Command
     .m(function (Command, cs, config, o) {
     return [
         middlewareEndpoint.getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        middlewareSdkS3.getThrow200ExceptionsPlugin(config),
         middlewareSsec.getSsecPlugin(config),
     ];
 })
@@ -3225,8 +3971,13 @@ const ChecksumAlgorithm = {
     CRC32: "CRC32",
     CRC32C: "CRC32C",
     CRC64NVME: "CRC64NVME",
+    MD5: "MD5",
     SHA1: "SHA1",
     SHA256: "SHA256",
+    SHA512: "SHA512",
+    XXHASH128: "XXHASH128",
+    XXHASH3: "XXHASH3",
+    XXHASH64: "XXHASH64",
 };
 const MetadataDirective = {
     COPY: "COPY",
@@ -4273,7 +5024,8 @@ const _CL_ = "Content-Language";
 const _CL__ = "Content-Length";
 const _CLo = "ContentLength";
 const _CM = "Content-MD5";
-const _CMD = "ContentMD5";
+const _CMD = "ChecksumMD5";
+const _CMDo = "ContentMD5";
 const _CMU = "CompletedMultipartUpload";
 const _CMUO = "CompleteMultipartUploadOutput";
 const _CMUOr = "CreateMultipartUploadOutput";
@@ -4302,6 +5054,7 @@ const _CR_ = "Content-Range";
 const _CS = "CopySource";
 const _CSHA = "ChecksumSHA1";
 const _CSHAh = "ChecksumSHA256";
+const _CSHAhe = "ChecksumSHA512";
 const _CSIM = "CopySourceIfMatch";
 const _CSIMS = "CopySourceIfModifiedSince";
 const _CSINM = "CopySourceIfNoneMatch";
@@ -4325,6 +5078,9 @@ const _CTl = "ClientToken";
 const _CTo = "ContentType";
 const _CTom = "CompressionType";
 const _CTon = "ContinuationToken";
+const _CXXHASH = "ChecksumXXHASH64";
+const _CXXHASHh = "ChecksumXXHASH3";
+const _CXXHASHhe = "ChecksumXXHASH128";
 const _Co = "Condition";
 const _Cod = "Code";
 const _Com = "Comments";
@@ -5090,11 +5846,13 @@ const _xaca = "x-amz-checksum-algorithm";
 const _xacc = "x-amz-checksum-crc32";
 const _xacc_ = "x-amz-checksum-crc32c";
 const _xacc__ = "x-amz-checksum-crc64nvme";
-const _xacm = "x-amz-checksum-mode";
+const _xacm = "x-amz-checksum-md5";
+const _xacm_ = "x-amz-checksum-mode";
 const _xacrsba = "x-amz-confirm-remove-self-bucket-access";
 const _xacs = "x-amz-checksum-sha1";
 const _xacs_ = "x-amz-checksum-sha256";
-const _xacs__ = "x-amz-copy-source";
+const _xacs__ = "x-amz-checksum-sha512";
+const _xacs___ = "x-amz-copy-source";
 const _xacsim = "x-amz-copy-source-if-match";
 const _xacsims = "x-amz-copy-source-if-modified-since";
 const _xacsinm = "x-amz-copy-source-if-none-match";
@@ -5107,6 +5865,9 @@ const _xacssseckM = "x-amz-copy-source-server-side-encryption-customer-key-MD5";
 const _xacsvi = "x-amz-copy-source-version-id";
 const _xact = "x-amz-checksum-type";
 const _xact_ = "x-amz-client-token";
+const _xacx = "x-amz-checksum-xxhash64";
+const _xacx_ = "x-amz-checksum-xxhash3";
+const _xacx__ = "x-amz-checksum-xxhash128";
 const _xadm = "x-amz-delete-marker";
 const _xae = "x-amz-expiration";
 const _xaebo = "x-amz-expected-bucket-owner";
@@ -5125,8 +5886,13 @@ const _xafhar = "x-amz-fwd-header-accept-ranges";
 const _xafhxacc = "x-amz-fwd-header-x-amz-checksum-crc32";
 const _xafhxacc_ = "x-amz-fwd-header-x-amz-checksum-crc32c";
 const _xafhxacc__ = "x-amz-fwd-header-x-amz-checksum-crc64nvme";
+const _xafhxacm = "x-amz-fwd-header-x-amz-checksum-md5";
 const _xafhxacs = "x-amz-fwd-header-x-amz-checksum-sha1";
 const _xafhxacs_ = "x-amz-fwd-header-x-amz-checksum-sha256";
+const _xafhxacs__ = "x-amz-fwd-header-x-amz-checksum-sha512";
+const _xafhxacx = "x-amz-fwd-header-x-amz-checksum-xxhash64";
+const _xafhxacx_ = "x-amz-fwd-header-x-amz-checksum-xxhash3";
+const _xafhxacx__ = "x-amz-fwd-header-x-amz-checksum-xxhash128";
 const _xafhxadm = "x-amz-fwd-header-x-amz-delete-marker";
 const _xafhxae = "x-amz-fwd-header-x-amz-expiration";
 const _xafhxamm = "x-amz-fwd-header-x-amz-missing-meta";
@@ -5391,8 +6157,8 @@ exports.BucketLoggingStatus$ = [3, n0, _BLS,
 ];
 exports.Checksum$ = [3, n0, _C,
     0,
-    [_CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CT],
-    [0, 0, 0, 0, 0, 0]
+    [_CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CT],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 exports.CommonPrefix$ = [3, n0, _CP,
     0,
@@ -5406,18 +6172,18 @@ exports.CompletedMultipartUpload$ = [3, n0, _CMU,
 ];
 exports.CompletedPart$ = [3, n0, _CPo,
     0,
-    [_ETa, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _PN],
-    [0, 0, 0, 0, 0, 0, 1]
+    [_ETa, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _PN],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
 ];
 exports.CompleteMultipartUploadOutput$ = [3, n0, _CMUO,
     { [_xN]: _CMUR },
-    [_L, _B, _K, _E, _ETa, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CT, _SSE, _VI, _SSEKMSKI, _BKE, _RC],
-    [0, 0, 0, [0, { [_hH]: _xae }], 0, 0, 0, 0, 0, 0, 0, [0, { [_hH]: _xasse }], [0, { [_hH]: _xavi }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xarc }]]
+    [_L, _B, _K, _E, _ETa, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CT, _SSE, _VI, _SSEKMSKI, _BKE, _RC],
+    [0, 0, 0, [0, { [_hH]: _xae }], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, [0, { [_hH]: _xasse }], [0, { [_hH]: _xavi }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xarc }]]
 ];
 exports.CompleteMultipartUploadRequest$ = [3, n0, _CMURo,
     0,
-    [_B, _K, _UI, _MU, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CT, _MOS, _RP, _EBO, _IM, _INM, _SSECA, _SSECK, _SSECKMD],
-    [[0, 1], [0, 1], [0, { [_hQ]: _uI }], [() => exports.CompletedMultipartUpload$, { [_hP]: 1, [_xN]: _CMUo }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xact }], [1, { [_hH]: _xamos }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _IM_ }], [0, { [_hH]: _INM_ }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }]], 3
+    [_B, _K, _UI, _MU, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CT, _MOS, _RP, _EBO, _IM, _INM, _SSECA, _SSECK, _SSECKMD],
+    [[0, 1], [0, 1], [0, { [_hQ]: _uI }], [() => exports.CompletedMultipartUpload$, { [_hP]: 1, [_xN]: _CMUo }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _xact }], [1, { [_hH]: _xamos }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _IM_ }], [0, { [_hH]: _INM_ }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }]], 3
 ];
 exports.Condition$ = [3, n0, _Co,
     0,
@@ -5437,17 +6203,17 @@ exports.CopyObjectOutput$ = [3, n0, _COO,
 exports.CopyObjectRequest$ = [3, n0, _CORo,
     0,
     [_B, _CS, _K, _ACL_, _CC, _CA, _CDo, _CEo, _CL, _CTo, _CSIM, _CSIMS, _CSINM, _CSIUS, _Ex, _GFC, _GR, _GRACP, _GWACP, _IM, _INM, _M, _MD, _TD, _SSE, _SC, _WRL, _SSECA, _SSECK, _SSECKMD, _SSEKMSKI, _SSEKMSEC, _BKE, _CSSSECA, _CSSSECK, _CSSSECKMD, _RP, _Tag, _OLM, _OLRUD, _OLLHS, _EBO, _ESBO],
-    [[0, 1], [0, { [_hH]: _xacs__ }], [0, 1], [0, { [_hH]: _xaa }], [0, { [_hH]: _CC_ }], [0, { [_hH]: _xaca }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [0, { [_hH]: _CT_ }], [0, { [_hH]: _xacsim }], [4, { [_hH]: _xacsims }], [0, { [_hH]: _xacsinm }], [4, { [_hH]: _xacsius }], [4, { [_hH]: _Ex }], [0, { [_hH]: _xagfc }], [0, { [_hH]: _xagr }], [0, { [_hH]: _xagra }], [0, { [_hH]: _xagwa }], [0, { [_hH]: _IM_ }], [0, { [_hH]: _INM_ }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xamd }], [0, { [_hH]: _xatd }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xacssseca }], [() => CopySourceSSECustomerKey, { [_hH]: _xacssseck }], [0, { [_hH]: _xacssseckM }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xat }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xasebo }]], 3
+    [[0, 1], [0, { [_hH]: _xacs___ }], [0, 1], [0, { [_hH]: _xaa }], [0, { [_hH]: _CC_ }], [0, { [_hH]: _xaca }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [0, { [_hH]: _CT_ }], [0, { [_hH]: _xacsim }], [4, { [_hH]: _xacsims }], [0, { [_hH]: _xacsinm }], [4, { [_hH]: _xacsius }], [4, { [_hH]: _Ex }], [0, { [_hH]: _xagfc }], [0, { [_hH]: _xagr }], [0, { [_hH]: _xagra }], [0, { [_hH]: _xagwa }], [0, { [_hH]: _IM_ }], [0, { [_hH]: _INM_ }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xamd }], [0, { [_hH]: _xatd }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xacssseca }], [() => CopySourceSSECustomerKey, { [_hH]: _xacssseck }], [0, { [_hH]: _xacssseckM }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xat }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xasebo }]], 3
 ];
 exports.CopyObjectResult$ = [3, n0, _COR,
     0,
-    [_ETa, _LM, _CT, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh],
-    [0, 4, 0, 0, 0, 0, 0, 0]
+    [_ETa, _LM, _CT, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe],
+    [0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 exports.CopyPartResult$ = [3, n0, _CPR,
     0,
-    [_ETa, _LM, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh],
-    [0, 4, 0, 0, 0, 0, 0]
+    [_ETa, _LM, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe],
+    [0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 exports.CORSConfiguration$ = [3, n0, _CORSC,
     0,
@@ -5466,12 +6232,12 @@ exports.CreateBucketConfiguration$ = [3, n0, _CBC,
 ];
 exports.CreateBucketMetadataConfigurationRequest$ = [3, n0, _CBMCR,
     0,
-    [_B, _MC, _CMD, _CA, _EBO],
+    [_B, _MC, _CMDo, _CA, _EBO],
     [[0, 1], [() => exports.MetadataConfiguration$, { [_hP]: 1, [_xN]: _MC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.CreateBucketMetadataTableConfigurationRequest$ = [3, n0, _CBMTCR,
     0,
-    [_B, _MTC, _CMD, _CA, _EBO],
+    [_B, _MTC, _CMDo, _CA, _EBO],
     [[0, 1], [() => exports.MetadataTableConfiguration$, { [_hP]: 1, [_xN]: _MTC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.CreateBucketOutput$ = [3, n0, _CBO,
@@ -5986,13 +6752,13 @@ exports.GetObjectLockConfigurationRequest$ = [3, n0, _GOLCR,
 ];
 exports.GetObjectOutput$ = [3, n0, _GOO,
     0,
-    [_Bo, _DM, _AR, _E, _Re, _LM, _CLo, _ETa, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CT, _MM, _VI, _CC, _CDo, _CEo, _CL, _CR, _CTo, _Ex, _ES, _WRL, _SSE, _M, _SSECA, _SSECKMD, _SSEKMSKI, _BKE, _SC, _RC, _RS, _PC, _TC, _OLM, _OLRUD, _OLLHS],
-    [[() => StreamingBlob, 16], [2, { [_hH]: _xadm }], [0, { [_hH]: _ar }], [0, { [_hH]: _xae }], [0, { [_hH]: _xar }], [4, { [_hH]: _LM_ }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _ETa }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xact }], [1, { [_hH]: _xamm }], [0, { [_hH]: _xavi }], [0, { [_hH]: _CC_ }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [0, { [_hH]: _CR_ }], [0, { [_hH]: _CT_ }], [4, { [_hH]: _Ex }], [0, { [_hH]: _ES }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasse }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xarc }], [0, { [_hH]: _xars }], [1, { [_hH]: _xampc }], [1, { [_hH]: _xatc }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }]]
+    [_Bo, _DM, _AR, _E, _Re, _LM, _CLo, _ETa, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CT, _MM, _VI, _CC, _CDo, _CEo, _CL, _CR, _CTo, _Ex, _ES, _WRL, _SSE, _M, _SSECA, _SSECKMD, _SSEKMSKI, _BKE, _SC, _RC, _RS, _PC, _TC, _OLM, _OLRUD, _OLLHS],
+    [[() => StreamingBlob, 16], [2, { [_hH]: _xadm }], [0, { [_hH]: _ar }], [0, { [_hH]: _xae }], [0, { [_hH]: _xar }], [4, { [_hH]: _LM_ }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _ETa }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _xact }], [1, { [_hH]: _xamm }], [0, { [_hH]: _xavi }], [0, { [_hH]: _CC_ }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [0, { [_hH]: _CR_ }], [0, { [_hH]: _CT_ }], [4, { [_hH]: _Ex }], [0, { [_hH]: _ES }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasse }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xarc }], [0, { [_hH]: _xars }], [1, { [_hH]: _xampc }], [1, { [_hH]: _xatc }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }]]
 ];
 exports.GetObjectRequest$ = [3, n0, _GOR,
     0,
     [_B, _K, _IM, _IMSf, _INM, _IUS, _Ra, _RCC, _RCD, _RCE, _RCL, _RCT, _RE, _VI, _SSECA, _SSECK, _SSECKMD, _RP, _PN, _EBO, _CMh],
-    [[0, 1], [0, 1], [0, { [_hH]: _IM_ }], [4, { [_hH]: _IMS_ }], [0, { [_hH]: _INM_ }], [4, { [_hH]: _IUS_ }], [0, { [_hH]: _Ra }], [0, { [_hQ]: _rcc }], [0, { [_hQ]: _rcd }], [0, { [_hQ]: _rce }], [0, { [_hQ]: _rcl }], [0, { [_hQ]: _rct }], [6, { [_hQ]: _re }], [0, { [_hQ]: _vI }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [0, { [_hH]: _xarp }], [1, { [_hQ]: _pN }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xacm }]], 2
+    [[0, 1], [0, 1], [0, { [_hH]: _IM_ }], [4, { [_hH]: _IMS_ }], [0, { [_hH]: _INM_ }], [4, { [_hH]: _IUS_ }], [0, { [_hH]: _Ra }], [0, { [_hQ]: _rcc }], [0, { [_hQ]: _rcd }], [0, { [_hQ]: _rce }], [0, { [_hQ]: _rcl }], [0, { [_hQ]: _rct }], [6, { [_hQ]: _re }], [0, { [_hQ]: _vI }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [0, { [_hH]: _xarp }], [1, { [_hQ]: _pN }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xacm_ }]], 2
 ];
 exports.GetObjectRetentionOutput$ = [3, n0, _GORO,
     0,
@@ -6061,13 +6827,13 @@ exports.HeadBucketRequest$ = [3, n0, _HBR,
 ];
 exports.HeadObjectOutput$ = [3, n0, _HOO,
     0,
-    [_DM, _AR, _E, _Re, _ASr, _LM, _CLo, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CT, _ETa, _MM, _VI, _CC, _CDo, _CEo, _CL, _CTo, _CR, _Ex, _ES, _WRL, _SSE, _M, _SSECA, _SSECKMD, _SSEKMSKI, _BKE, _SC, _RC, _RS, _PC, _TC, _OLM, _OLRUD, _OLLHS],
-    [[2, { [_hH]: _xadm }], [0, { [_hH]: _ar }], [0, { [_hH]: _xae }], [0, { [_hH]: _xar }], [0, { [_hH]: _xaas }], [4, { [_hH]: _LM_ }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xact }], [0, { [_hH]: _ETa }], [1, { [_hH]: _xamm }], [0, { [_hH]: _xavi }], [0, { [_hH]: _CC_ }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [0, { [_hH]: _CT_ }], [0, { [_hH]: _CR_ }], [4, { [_hH]: _Ex }], [0, { [_hH]: _ES }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasse }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xarc }], [0, { [_hH]: _xars }], [1, { [_hH]: _xampc }], [1, { [_hH]: _xatc }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }]]
+    [_DM, _AR, _E, _Re, _ASr, _LM, _CLo, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CT, _ETa, _MM, _VI, _CC, _CDo, _CEo, _CL, _CTo, _CR, _Ex, _ES, _WRL, _SSE, _M, _SSECA, _SSECKMD, _SSEKMSKI, _BKE, _SC, _RC, _RS, _PC, _TC, _OLM, _OLRUD, _OLLHS],
+    [[2, { [_hH]: _xadm }], [0, { [_hH]: _ar }], [0, { [_hH]: _xae }], [0, { [_hH]: _xar }], [0, { [_hH]: _xaas }], [4, { [_hH]: _LM_ }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _xact }], [0, { [_hH]: _ETa }], [1, { [_hH]: _xamm }], [0, { [_hH]: _xavi }], [0, { [_hH]: _CC_ }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [0, { [_hH]: _CT_ }], [0, { [_hH]: _CR_ }], [4, { [_hH]: _Ex }], [0, { [_hH]: _ES }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasse }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xarc }], [0, { [_hH]: _xars }], [1, { [_hH]: _xampc }], [1, { [_hH]: _xatc }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }]]
 ];
 exports.HeadObjectRequest$ = [3, n0, _HOR,
     0,
     [_B, _K, _IM, _IMSf, _INM, _IUS, _Ra, _RCC, _RCD, _RCE, _RCL, _RCT, _RE, _VI, _SSECA, _SSECK, _SSECKMD, _RP, _PN, _EBO, _CMh],
-    [[0, 1], [0, 1], [0, { [_hH]: _IM_ }], [4, { [_hH]: _IMS_ }], [0, { [_hH]: _INM_ }], [4, { [_hH]: _IUS_ }], [0, { [_hH]: _Ra }], [0, { [_hQ]: _rcc }], [0, { [_hQ]: _rcd }], [0, { [_hQ]: _rce }], [0, { [_hQ]: _rcl }], [0, { [_hQ]: _rct }], [6, { [_hQ]: _re }], [0, { [_hQ]: _vI }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [0, { [_hH]: _xarp }], [1, { [_hQ]: _pN }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xacm }]], 2
+    [[0, 1], [0, 1], [0, { [_hH]: _IM_ }], [4, { [_hH]: _IMS_ }], [0, { [_hH]: _INM_ }], [4, { [_hH]: _IUS_ }], [0, { [_hH]: _Ra }], [0, { [_hQ]: _rcc }], [0, { [_hQ]: _rcd }], [0, { [_hQ]: _rce }], [0, { [_hQ]: _rcl }], [0, { [_hQ]: _rct }], [6, { [_hQ]: _re }], [0, { [_hQ]: _vI }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [0, { [_hH]: _xarp }], [1, { [_hQ]: _pN }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xacm_ }]], 2
 ];
 exports.IndexDocument$ = [3, n0, _IDn,
     0,
@@ -6416,8 +7182,8 @@ exports.ObjectLockRule$ = [3, n0, _OLRb,
 ];
 exports.ObjectPart$ = [3, n0, _OPb,
     0,
-    [_PN, _Si, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh],
-    [1, 1, 0, 0, 0, 0, 0]
+    [_PN, _Si, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe],
+    [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 exports.ObjectVersion$ = [3, n0, _OV,
     0,
@@ -6456,8 +7222,8 @@ exports.ParquetInput$ = [3, n0, _PI,
 ];
 exports.Part$ = [3, n0, _Par,
     0,
-    [_PN, _LM, _ETa, _Si, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh],
-    [1, 4, 0, 1, 0, 0, 0, 0, 0]
+    [_PN, _LM, _ETa, _Si, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe],
+    [1, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
 exports.PartitionedPrefix$ = [3, n0, _PP,
     { [_xN]: _PP },
@@ -6486,7 +7252,7 @@ exports.PublicAccessBlockConfiguration$ = [3, n0, _PABC,
 ];
 exports.PutBucketAbacRequest$ = [3, n0, _PBAR,
     0,
-    [_B, _AS, _CMD, _CA, _EBO],
+    [_B, _AS, _CMDo, _CA, _EBO],
     [[0, 1], [() => exports.AbacStatus$, { [_hP]: 1, [_xN]: _AS }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.PutBucketAccelerateConfigurationRequest$ = [3, n0, _PBACR,
@@ -6496,7 +7262,7 @@ exports.PutBucketAccelerateConfigurationRequest$ = [3, n0, _PBACR,
 ];
 exports.PutBucketAclRequest$ = [3, n0, _PBARu,
     0,
-    [_B, _ACL_, _ACP, _CMD, _CA, _GFC, _GR, _GRACP, _GW, _GWACP, _EBO],
+    [_B, _ACL_, _ACP, _CMDo, _CA, _GFC, _GR, _GRACP, _GW, _GWACP, _EBO],
     [[0, 1], [0, { [_hH]: _xaa }], [() => exports.AccessControlPolicy$, { [_hP]: 1, [_xN]: _ACP }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xagfc }], [0, { [_hH]: _xagr }], [0, { [_hH]: _xagra }], [0, { [_hH]: _xagw }], [0, { [_hH]: _xagwa }], [0, { [_hH]: _xaebo }]], 1
 ];
 exports.PutBucketAnalyticsConfigurationRequest$ = [3, n0, _PBACRu,
@@ -6506,12 +7272,12 @@ exports.PutBucketAnalyticsConfigurationRequest$ = [3, n0, _PBACRu,
 ];
 exports.PutBucketCorsRequest$ = [3, n0, _PBCR,
     0,
-    [_B, _CORSC, _CMD, _CA, _EBO],
+    [_B, _CORSC, _CMDo, _CA, _EBO],
     [[0, 1], [() => exports.CORSConfiguration$, { [_hP]: 1, [_xN]: _CORSC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.PutBucketEncryptionRequest$ = [3, n0, _PBER,
     0,
-    [_B, _SSEC, _CMD, _CA, _EBO],
+    [_B, _SSEC, _CMDo, _CA, _EBO],
     [[0, 1], [() => exports.ServerSideEncryptionConfiguration$, { [_hP]: 1, [_xN]: _SSEC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.PutBucketIntelligentTieringConfigurationRequest$ = [3, n0, _PBITCR,
@@ -6536,7 +7302,7 @@ exports.PutBucketLifecycleConfigurationRequest$ = [3, n0, _PBLCR,
 ];
 exports.PutBucketLoggingRequest$ = [3, n0, _PBLR,
     0,
-    [_B, _BLS, _CMD, _CA, _EBO],
+    [_B, _BLS, _CMDo, _CA, _EBO],
     [[0, 1], [() => exports.BucketLoggingStatus$, { [_hP]: 1, [_xN]: _BLS }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.PutBucketMetricsConfigurationRequest$ = [3, n0, _PBMCR,
@@ -6551,37 +7317,37 @@ exports.PutBucketNotificationConfigurationRequest$ = [3, n0, _PBNCR,
 ];
 exports.PutBucketOwnershipControlsRequest$ = [3, n0, _PBOCR,
     0,
-    [_B, _OC, _CMD, _EBO, _CA],
+    [_B, _OC, _CMDo, _EBO, _CA],
     [[0, 1], [() => exports.OwnershipControls$, { [_hP]: 1, [_xN]: _OC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xasca }]], 2
 ];
 exports.PutBucketPolicyRequest$ = [3, n0, _PBPR,
     0,
-    [_B, _Po, _CMD, _CA, _CRSBA, _EBO],
+    [_B, _Po, _CMDo, _CA, _CRSBA, _EBO],
     [[0, 1], [0, 16], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [2, { [_hH]: _xacrsba }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.PutBucketReplicationRequest$ = [3, n0, _PBRR,
     0,
-    [_B, _RCe, _CMD, _CA, _To, _EBO],
+    [_B, _RCe, _CMDo, _CA, _To, _EBO],
     [[0, 1], [() => exports.ReplicationConfiguration$, { [_hP]: 1, [_xN]: _RCe }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xabolt }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.PutBucketRequestPaymentRequest$ = [3, n0, _PBRPR,
     0,
-    [_B, _RPC, _CMD, _CA, _EBO],
+    [_B, _RPC, _CMDo, _CA, _EBO],
     [[0, 1], [() => exports.RequestPaymentConfiguration$, { [_hP]: 1, [_xN]: _RPC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.PutBucketTaggingRequest$ = [3, n0, _PBTR,
     0,
-    [_B, _Tag, _CMD, _CA, _EBO],
+    [_B, _Tag, _CMDo, _CA, _EBO],
     [[0, 1], [() => exports.Tagging$, { [_hP]: 1, [_xN]: _Tag }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.PutBucketVersioningRequest$ = [3, n0, _PBVR,
     0,
-    [_B, _VC, _CMD, _CA, _MFA, _EBO],
+    [_B, _VC, _CMDo, _CA, _MFA, _EBO],
     [[0, 1], [() => exports.VersioningConfiguration$, { [_hP]: 1, [_xN]: _VC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xam_ }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.PutBucketWebsiteRequest$ = [3, n0, _PBWR,
     0,
-    [_B, _WC, _CMD, _CA, _EBO],
+    [_B, _WC, _CMDo, _CA, _EBO],
     [[0, 1], [() => exports.WebsiteConfiguration$, { [_hP]: 1, [_xN]: _WC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.PutObjectAclOutput$ = [3, n0, _POAO,
@@ -6591,7 +7357,7 @@ exports.PutObjectAclOutput$ = [3, n0, _POAO,
 ];
 exports.PutObjectAclRequest$ = [3, n0, _POAR,
     0,
-    [_B, _K, _ACL_, _ACP, _CMD, _CA, _GFC, _GR, _GRACP, _GW, _GWACP, _RP, _VI, _EBO],
+    [_B, _K, _ACL_, _ACP, _CMDo, _CA, _GFC, _GR, _GRACP, _GW, _GWACP, _RP, _VI, _EBO],
     [[0, 1], [0, 1], [0, { [_hH]: _xaa }], [() => exports.AccessControlPolicy$, { [_hP]: 1, [_xN]: _ACP }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xagfc }], [0, { [_hH]: _xagr }], [0, { [_hH]: _xagra }], [0, { [_hH]: _xagw }], [0, { [_hH]: _xagwa }], [0, { [_hH]: _xarp }], [0, { [_hQ]: _vI }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.PutObjectLegalHoldOutput$ = [3, n0, _POLHO,
@@ -6601,7 +7367,7 @@ exports.PutObjectLegalHoldOutput$ = [3, n0, _POLHO,
 ];
 exports.PutObjectLegalHoldRequest$ = [3, n0, _POLHR,
     0,
-    [_B, _K, _LH, _RP, _VI, _CMD, _CA, _EBO],
+    [_B, _K, _LH, _RP, _VI, _CMDo, _CA, _EBO],
     [[0, 1], [0, 1], [() => exports.ObjectLockLegalHold$, { [_hP]: 1, [_xN]: _LH }], [0, { [_hH]: _xarp }], [0, { [_hQ]: _vI }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.PutObjectLockConfigurationOutput$ = [3, n0, _POLCO,
@@ -6611,18 +7377,18 @@ exports.PutObjectLockConfigurationOutput$ = [3, n0, _POLCO,
 ];
 exports.PutObjectLockConfigurationRequest$ = [3, n0, _POLCR,
     0,
-    [_B, _OLC, _RP, _To, _CMD, _CA, _EBO],
+    [_B, _OLC, _RP, _To, _CMDo, _CA, _EBO],
     [[0, 1], [() => exports.ObjectLockConfiguration$, { [_hP]: 1, [_xN]: _OLC }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xabolt }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 1
 ];
 exports.PutObjectOutput$ = [3, n0, _POO,
     0,
-    [_E, _ETa, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CT, _SSE, _VI, _SSECA, _SSECKMD, _SSEKMSKI, _SSEKMSEC, _BKE, _Si, _RC],
-    [[0, { [_hH]: _xae }], [0, { [_hH]: _ETa }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xact }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xavi }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }], [1, { [_hH]: _xaos }], [0, { [_hH]: _xarc }]]
+    [_E, _ETa, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CT, _SSE, _VI, _SSECA, _SSECKMD, _SSEKMSKI, _SSEKMSEC, _BKE, _Si, _RC],
+    [[0, { [_hH]: _xae }], [0, { [_hH]: _ETa }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _xact }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xavi }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }], [1, { [_hH]: _xaos }], [0, { [_hH]: _xarc }]]
 ];
 exports.PutObjectRequest$ = [3, n0, _POR,
     0,
-    [_B, _K, _ACL_, _Bo, _CC, _CDo, _CEo, _CL, _CLo, _CMD, _CTo, _CA, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _Ex, _IM, _INM, _GFC, _GR, _GRACP, _GWACP, _WOB, _M, _SSE, _SC, _WRL, _SSECA, _SSECK, _SSECKMD, _SSEKMSKI, _SSEKMSEC, _BKE, _RP, _Tag, _OLM, _OLRUD, _OLLHS, _EBO],
-    [[0, 1], [0, 1], [0, { [_hH]: _xaa }], [() => StreamingBlob, 16], [0, { [_hH]: _CC_ }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _CM }], [0, { [_hH]: _CT_ }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [4, { [_hH]: _Ex }], [0, { [_hH]: _IM_ }], [0, { [_hH]: _INM_ }], [0, { [_hH]: _xagfc }], [0, { [_hH]: _xagr }], [0, { [_hH]: _xagra }], [0, { [_hH]: _xagwa }], [1, { [_hH]: _xawob }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xat }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }], [0, { [_hH]: _xaebo }]], 2
+    [_B, _K, _ACL_, _Bo, _CC, _CDo, _CEo, _CL, _CLo, _CMDo, _CTo, _CA, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _Ex, _IM, _INM, _GFC, _GR, _GRACP, _GWACP, _WOB, _M, _SSE, _SC, _WRL, _SSECA, _SSECK, _SSECKMD, _SSEKMSKI, _SSEKMSEC, _BKE, _RP, _Tag, _OLM, _OLRUD, _OLLHS, _EBO],
+    [[0, 1], [0, 1], [0, { [_hH]: _xaa }], [() => StreamingBlob, 16], [0, { [_hH]: _CC_ }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _CM }], [0, { [_hH]: _CT_ }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [4, { [_hH]: _Ex }], [0, { [_hH]: _IM_ }], [0, { [_hH]: _INM_ }], [0, { [_hH]: _xagfc }], [0, { [_hH]: _xagr }], [0, { [_hH]: _xagra }], [0, { [_hH]: _xagwa }], [1, { [_hH]: _xawob }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xat }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.PutObjectRetentionOutput$ = [3, n0, _PORO,
     0,
@@ -6631,7 +7397,7 @@ exports.PutObjectRetentionOutput$ = [3, n0, _PORO,
 ];
 exports.PutObjectRetentionRequest$ = [3, n0, _PORR,
     0,
-    [_B, _K, _Ret, _RP, _VI, _BGR, _CMD, _CA, _EBO],
+    [_B, _K, _Ret, _RP, _VI, _BGR, _CMDo, _CA, _EBO],
     [[0, 1], [0, 1], [() => exports.ObjectLockRetention$, { [_hP]: 1, [_xN]: _Ret }], [0, { [_hH]: _xarp }], [0, { [_hQ]: _vI }], [2, { [_hH]: _xabgr }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.PutObjectTaggingOutput$ = [3, n0, _POTO,
@@ -6641,12 +7407,12 @@ exports.PutObjectTaggingOutput$ = [3, n0, _POTO,
 ];
 exports.PutObjectTaggingRequest$ = [3, n0, _POTR,
     0,
-    [_B, _K, _Tag, _VI, _CMD, _CA, _EBO, _RP],
+    [_B, _K, _Tag, _VI, _CMDo, _CA, _EBO, _RP],
     [[0, 1], [0, 1], [() => exports.Tagging$, { [_hP]: 1, [_xN]: _Tag }], [0, { [_hQ]: _vI }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xarp }]], 3
 ];
 exports.PutPublicAccessBlockRequest$ = [3, n0, _PPABR,
     0,
-    [_B, _PABC, _CMD, _CA, _EBO],
+    [_B, _PABC, _CMDo, _CA, _EBO],
     [[0, 1], [() => exports.PublicAccessBlockConfiguration$, { [_hP]: 1, [_xN]: _PABC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.QueueConfiguration$ = [3, n0, _QCue,
@@ -6901,17 +7667,17 @@ exports.Transition$ = [3, n0, _Tra,
 ];
 exports.UpdateBucketMetadataInventoryTableConfigurationRequest$ = [3, n0, _UBMITCR,
     0,
-    [_B, _ITCn, _CMD, _CA, _EBO],
+    [_B, _ITCn, _CMDo, _CA, _EBO],
     [[0, 1], [() => exports.InventoryTableConfigurationUpdates$, { [_hP]: 1, [_xN]: _ITCn }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.UpdateBucketMetadataJournalTableConfigurationRequest$ = [3, n0, _UBMJTCR,
     0,
-    [_B, _JTC, _CMD, _CA, _EBO],
+    [_B, _JTC, _CMDo, _CA, _EBO],
     [[0, 1], [() => exports.JournalTableConfigurationUpdates$, { [_hP]: 1, [_xN]: _JTC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
 exports.UpdateObjectEncryptionRequest$ = [3, n0, _UOER,
     0,
-    [_B, _K, _OE, _VI, _RP, _EBO, _CMD, _CA],
+    [_B, _K, _OE, _VI, _RP, _EBO, _CMDo, _CA],
     [[0, 1], [0, 1], [() => exports.ObjectEncryption$, 16], [0, { [_hQ]: _vI }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }]], 3
 ];
 exports.UpdateObjectEncryptionResponse$ = [3, n0, _UOERp,
@@ -6927,17 +7693,17 @@ exports.UploadPartCopyOutput$ = [3, n0, _UPCO,
 exports.UploadPartCopyRequest$ = [3, n0, _UPCR,
     0,
     [_B, _CS, _K, _PN, _UI, _CSIM, _CSIMS, _CSINM, _CSIUS, _CSRo, _SSECA, _SSECK, _SSECKMD, _CSSSECA, _CSSSECK, _CSSSECKMD, _RP, _EBO, _ESBO],
-    [[0, 1], [0, { [_hH]: _xacs__ }], [0, 1], [1, { [_hQ]: _pN }], [0, { [_hQ]: _uI }], [0, { [_hH]: _xacsim }], [4, { [_hH]: _xacsims }], [0, { [_hH]: _xacsinm }], [4, { [_hH]: _xacsius }], [0, { [_hH]: _xacsr }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [0, { [_hH]: _xacssseca }], [() => CopySourceSSECustomerKey, { [_hH]: _xacssseck }], [0, { [_hH]: _xacssseckM }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xasebo }]], 5
+    [[0, 1], [0, { [_hH]: _xacs___ }], [0, 1], [1, { [_hQ]: _pN }], [0, { [_hQ]: _uI }], [0, { [_hH]: _xacsim }], [4, { [_hH]: _xacsims }], [0, { [_hH]: _xacsinm }], [4, { [_hH]: _xacsius }], [0, { [_hH]: _xacsr }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [0, { [_hH]: _xacssseca }], [() => CopySourceSSECustomerKey, { [_hH]: _xacssseck }], [0, { [_hH]: _xacssseckM }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xasebo }]], 5
 ];
 exports.UploadPartOutput$ = [3, n0, _UPO,
     0,
-    [_SSE, _ETa, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _SSECA, _SSECKMD, _SSEKMSKI, _BKE, _RC],
-    [[0, { [_hH]: _xasse }], [0, { [_hH]: _ETa }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xarc }]]
+    [_SSE, _ETa, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _SSECA, _SSECKMD, _SSEKMSKI, _BKE, _RC],
+    [[0, { [_hH]: _xasse }], [0, { [_hH]: _ETa }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xarc }]]
 ];
 exports.UploadPartRequest$ = [3, n0, _UPR,
     0,
-    [_B, _K, _PN, _UI, _Bo, _CLo, _CMD, _CA, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _SSECA, _SSECK, _SSECKMD, _RP, _EBO],
-    [[0, 1], [0, 1], [1, { [_hQ]: _pN }], [0, { [_hQ]: _uI }], [() => StreamingBlob, 16], [1, { [_hH]: _CL__ }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }]], 4
+    [_B, _K, _PN, _UI, _Bo, _CLo, _CMDo, _CA, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _SSECA, _SSECK, _SSECKMD, _RP, _EBO],
+    [[0, 1], [0, 1], [1, { [_hQ]: _pN }], [0, { [_hQ]: _uI }], [() => StreamingBlob, 16], [1, { [_hH]: _CL__ }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }]], 4
 ];
 exports.VersioningConfiguration$ = [3, n0, _VC,
     0,
@@ -6951,8 +7717,8 @@ exports.WebsiteConfiguration$ = [3, n0, _WC,
 ];
 exports.WriteGetObjectResponseRequest$ = [3, n0, _WGORR,
     0,
-    [_RReq, _RTe, _Bo, _SCt, _ECr, _EM, _AR, _CC, _CDo, _CEo, _CL, _CLo, _CR, _CTo, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _DM, _ETa, _Ex, _E, _LM, _MM, _M, _OLM, _OLLHS, _OLRUD, _PC, _RS, _RC, _Re, _SSE, _SSECA, _SSEKMSKI, _SSECKMD, _SC, _TC, _VI, _BKE],
-    [[0, { [_hL]: 1, [_hH]: _xarr }], [0, { [_hH]: _xart }], [() => StreamingBlob, 16], [1, { [_hH]: _xafs }], [0, { [_hH]: _xafec }], [0, { [_hH]: _xafem }], [0, { [_hH]: _xafhar }], [0, { [_hH]: _xafhCC }], [0, { [_hH]: _xafhCD }], [0, { [_hH]: _xafhCE }], [0, { [_hH]: _xafhCL }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _xafhCR }], [0, { [_hH]: _xafhCT }], [0, { [_hH]: _xafhxacc }], [0, { [_hH]: _xafhxacc_ }], [0, { [_hH]: _xafhxacc__ }], [0, { [_hH]: _xafhxacs }], [0, { [_hH]: _xafhxacs_ }], [2, { [_hH]: _xafhxadm }], [0, { [_hH]: _xafhE }], [4, { [_hH]: _xafhE_ }], [0, { [_hH]: _xafhxae }], [4, { [_hH]: _xafhLM }], [1, { [_hH]: _xafhxamm }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xafhxaolm }], [0, { [_hH]: _xafhxaollh }], [5, { [_hH]: _xafhxaolrud }], [1, { [_hH]: _xafhxampc }], [0, { [_hH]: _xafhxars }], [0, { [_hH]: _xafhxarc }], [0, { [_hH]: _xafhxar }], [0, { [_hH]: _xafhxasse }], [0, { [_hH]: _xafhxasseca }], [() => SSEKMSKeyId, { [_hH]: _xafhxasseakki }], [0, { [_hH]: _xafhxasseckM }], [0, { [_hH]: _xafhxasc }], [1, { [_hH]: _xafhxatc }], [0, { [_hH]: _xafhxavi }], [2, { [_hH]: _xafhxassebke }]], 2
+    [_RReq, _RTe, _Bo, _SCt, _ECr, _EM, _AR, _CC, _CDo, _CEo, _CL, _CLo, _CR, _CTo, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _DM, _ETa, _Ex, _E, _LM, _MM, _M, _OLM, _OLLHS, _OLRUD, _PC, _RS, _RC, _Re, _SSE, _SSECA, _SSEKMSKI, _SSECKMD, _SC, _TC, _VI, _BKE],
+    [[0, { [_hL]: 1, [_hH]: _xarr }], [0, { [_hH]: _xart }], [() => StreamingBlob, 16], [1, { [_hH]: _xafs }], [0, { [_hH]: _xafec }], [0, { [_hH]: _xafem }], [0, { [_hH]: _xafhar }], [0, { [_hH]: _xafhCC }], [0, { [_hH]: _xafhCD }], [0, { [_hH]: _xafhCE }], [0, { [_hH]: _xafhCL }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _xafhCR }], [0, { [_hH]: _xafhCT }], [0, { [_hH]: _xafhxacc }], [0, { [_hH]: _xafhxacc_ }], [0, { [_hH]: _xafhxacc__ }], [0, { [_hH]: _xafhxacs }], [0, { [_hH]: _xafhxacs_ }], [0, { [_hH]: _xafhxacs__ }], [0, { [_hH]: _xafhxacm }], [0, { [_hH]: _xafhxacx }], [0, { [_hH]: _xafhxacx_ }], [0, { [_hH]: _xafhxacx__ }], [2, { [_hH]: _xafhxadm }], [0, { [_hH]: _xafhE }], [4, { [_hH]: _xafhE_ }], [0, { [_hH]: _xafhxae }], [4, { [_hH]: _xafhLM }], [1, { [_hH]: _xafhxamm }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xafhxaolm }], [0, { [_hH]: _xafhxaollh }], [5, { [_hH]: _xafhxaolrud }], [1, { [_hH]: _xafhxampc }], [0, { [_hH]: _xafhxars }], [0, { [_hH]: _xafhxarc }], [0, { [_hH]: _xafhxar }], [0, { [_hH]: _xafhxasse }], [0, { [_hH]: _xafhxasseca }], [() => SSEKMSKeyId, { [_hH]: _xafhxasseakki }], [0, { [_hH]: _xafhxasseckM }], [0, { [_hH]: _xafhxasc }], [1, { [_hH]: _xafhxatc }], [0, { [_hH]: _xafhxavi }], [2, { [_hH]: _xafhxassebke }]], 2
 ];
 var __Unit = "unit";
 var AllowedHeaders = (/* unused pure expression or super */ null && (64 | 0));
@@ -7436,9 +8202,11 @@ exports.WriteGetObjectResponse$ = [9, n0, _WGOR,
 /***/ }),
 
 /***/ 5152:
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 
+
+var utilRetry = __nccwpck_require__(15518);
 
 const state = {
     warningEmitted: false,
@@ -7480,6 +8248,7 @@ function setCredentialFeature(credentials, feature, value) {
     return credentials;
 }
 
+utilRetry.Retry.v2026 ||= typeof process === "object" && process.env?.AWS_NEW_RETRIES_2026 === "true";
 function setFeature(context, feature, value) {
     if (!context.__aws_sdk_context) {
         context.__aws_sdk_context = {
@@ -7925,12 +8694,11 @@ class ProtocolLib {
             if (msg) {
                 error.message = msg;
             }
-            error.Error = {
-                ...error.Error,
-                Type: error.Error?.Type,
-                Code: error.Error?.Code,
-                Message: error.Error?.message ?? error.Error?.Message ?? msg,
-            };
+            const errorObj = error.Error ?? {};
+            errorObj.Type = error.Error?.Type;
+            errorObj.Code = error.Error?.Code;
+            errorObj.Message = error.Error?.message ?? error.Error?.Message ?? msg;
+            error.Error = errorObj;
             const reqId = error.$metadata.requestId;
             if (reqId) {
                 error.RequestId = reqId;
@@ -7943,14 +8711,16 @@ class ProtocolLib {
         const queryErrorHeader = response.headers?.["x-amzn-query-error"];
         if (output !== undefined && queryErrorHeader != null) {
             const [Code, Type] = queryErrorHeader.split(";");
-            const entries = Object.entries(output);
+            const keys = Object.keys(output);
             const Error = {
                 Code,
                 Type,
             };
-            Object.assign(output, Error);
-            for (const [k, v] of entries) {
-                Error[k === "message" ? "Message" : k] = v;
+            output.Code = Code;
+            output.Type = Type;
+            for (let i = 0; i < keys.length; i++) {
+                const k = keys[i];
+                Error[k === "message" ? "Message" : k] = output[k];
             }
             delete Error.__type;
             output.Error = Error;
@@ -8089,7 +8859,10 @@ class UnionSerde {
     constructor(from, to) {
         this.from = from;
         this.to = to;
-        this.keys = new Set(Object.keys(this.from).filter((k) => k !== "__type"));
+        const keys = Object.keys(this.from);
+        const set = new Set(keys);
+        set.delete("__type");
+        this.keys = set;
     }
     mark(key) {
         this.keys.delete(key);
@@ -8147,24 +8920,24 @@ const parseJsonErrorBody = async (errorBody, context) => {
     value.message = value.message ?? value.Message;
     return value;
 };
+const findKey = (object, key) => Object.keys(object).find((k) => k.toLowerCase() === key.toLowerCase());
+const sanitizeErrorCode = (rawValue) => {
+    let cleanValue = rawValue;
+    if (typeof cleanValue === "number") {
+        cleanValue = cleanValue.toString();
+    }
+    if (cleanValue.indexOf(",") >= 0) {
+        cleanValue = cleanValue.split(",")[0];
+    }
+    if (cleanValue.indexOf(":") >= 0) {
+        cleanValue = cleanValue.split(":")[0];
+    }
+    if (cleanValue.indexOf("#") >= 0) {
+        cleanValue = cleanValue.split("#")[1];
+    }
+    return cleanValue;
+};
 const loadRestJsonErrorCode = (output, data) => {
-    const findKey = (object, key) => Object.keys(object).find((k) => k.toLowerCase() === key.toLowerCase());
-    const sanitizeErrorCode = (rawValue) => {
-        let cleanValue = rawValue;
-        if (typeof cleanValue === "number") {
-            cleanValue = cleanValue.toString();
-        }
-        if (cleanValue.indexOf(",") >= 0) {
-            cleanValue = cleanValue.split(",")[0];
-        }
-        if (cleanValue.indexOf(":") >= 0) {
-            cleanValue = cleanValue.split(":")[0];
-        }
-        if (cleanValue.indexOf("#") >= 0) {
-            cleanValue = cleanValue.split("#")[1];
-        }
-        return cleanValue;
-    };
     const headerKey = findKey(output.headers, "x-amzn-errortype");
     if (headerKey !== undefined) {
         return sanitizeErrorCode(output.headers[headerKey]);
@@ -8226,7 +8999,8 @@ class JsonShapeDeserializer extends SerdeContextConfig {
                     unionSerde.writeUnknown();
                 }
                 else if (typeof record.__type === "string") {
-                    for (const [k, v] of Object.entries(record)) {
+                    for (const k in record) {
+                        const v = record[k];
                         const t = jsonName ? nameMap[k] ?? k : k;
                         if (!(t in out)) {
                             out[t] = v;
@@ -8246,8 +9020,8 @@ class JsonShapeDeserializer extends SerdeContextConfig {
             if (ns.isMapSchema()) {
                 const mapMember = ns.getValueSchema();
                 const out = {};
-                for (const [_k, _v] of Object.entries(value)) {
-                    out[_k] = this._read(mapMember, _v);
+                for (const _k in value) {
+                    out[_k] = this._read(mapMember, value[_k]);
                 }
                 return out;
             }
@@ -8304,7 +9078,8 @@ class JsonShapeDeserializer extends SerdeContextConfig {
         if (ns.isDocumentSchema()) {
             if (isObject) {
                 const out = Array.isArray(value) ? [] : {};
-                for (const [k, v] of Object.entries(value)) {
+                for (const k in value) {
+                    const v = value[k];
                     if (v instanceof serde.NumericValue) {
                         out[k] = v;
                     }
@@ -8381,12 +9156,6 @@ class JsonShapeSerializer extends SerdeContextConfig {
         this.rootSchema = schema.NormalizedSchema.of(schema$1);
         this.buffer = this._write(this.rootSchema, value);
     }
-    writeDiscriminatedDocument(schema$1, value) {
-        this.write(schema$1, value);
-        if (typeof this.buffer === "object") {
-            this.buffer.__type = schema.NormalizedSchema.of(schema$1).getName(true);
-        }
-    }
     flush() {
         const { rootSchema, useReplacer } = this;
         this.rootSchema = undefined;
@@ -8400,6 +9169,12 @@ class JsonShapeSerializer extends SerdeContextConfig {
         }
         return this.buffer;
     }
+    writeDiscriminatedDocument(schema$1, value) {
+        this.write(schema$1, value);
+        if (typeof this.buffer === "object") {
+            this.buffer.__type = schema.NormalizedSchema.of(schema$1).getName(true);
+        }
+    }
     _write(schema$1, value, container) {
         const isObject = value !== null && typeof value === "object";
         const ns = schema.NormalizedSchema.of(schema$1);
@@ -8412,6 +9187,7 @@ class JsonShapeSerializer extends SerdeContextConfig {
                 if (jsonName) {
                     nameMap = {};
                 }
+                let outCount = 0;
                 for (const [memberName, memberSchema] of ns.structIterator()) {
                     const serializableValue = this._write(memberSchema, record[memberName], ns);
                     if (serializableValue !== undefined) {
@@ -8421,9 +9197,10 @@ class JsonShapeSerializer extends SerdeContextConfig {
                             nameMap[memberName] = targetKey;
                         }
                         out[targetKey] = serializableValue;
+                        outCount++;
                     }
                 }
-                if (ns.isUnionSchema() && Object.keys(out).length === 0) {
+                if (ns.isUnionSchema() && outCount === 0) {
                     const { $unknown } = record;
                     if (Array.isArray($unknown)) {
                         const [k, v] = $unknown;
@@ -8431,7 +9208,8 @@ class JsonShapeSerializer extends SerdeContextConfig {
                     }
                 }
                 else if (typeof record.__type === "string") {
-                    for (const [k, v] of Object.entries(record)) {
+                    for (const k in record) {
+                        const v = record[k];
                         const targetKey = jsonName ? nameMap[k] ?? k : k;
                         if (!(targetKey in out)) {
                             out[targetKey] = this._write(15, v);
@@ -8455,7 +9233,8 @@ class JsonShapeSerializer extends SerdeContextConfig {
                 const mapMember = ns.getValueSchema();
                 const out = {};
                 const sparse = !!ns.getMergedTraits().sparse;
-                for (const [_k, _v] of Object.entries(value)) {
+                for (const _k in value) {
+                    const _v = value[_k];
                     if (sparse || _v != null) {
                         out[_k] = this._write(mapMember, _v);
                     }
@@ -8520,7 +9299,8 @@ class JsonShapeSerializer extends SerdeContextConfig {
         if (ns.isDocumentSchema()) {
             if (isObject) {
                 const out = Array.isArray(value) ? [] : {};
-                for (const [k, v] of Object.entries(value)) {
+                for (const k in value) {
+                    const v = value[k];
                     if (v instanceof serde.NumericValue) {
                         this.useReplacer = true;
                         out[k] = v;
@@ -8589,10 +9369,8 @@ class AwsJsonRpcProtocol extends protocols.RpcProtocol {
         if (!request.path.endsWith("/")) {
             request.path += "/";
         }
-        Object.assign(request.headers, {
-            "content-type": `application/x-amz-json-${this.getJsonRpcVersion()}`,
-            "x-amz-target": `${this.serviceTarget}.${operationSchema.name}`,
-        });
+        request.headers["content-type"] = `application/x-amz-json-${this.getJsonRpcVersion()}`;
+        request.headers["x-amz-target"] = `${this.serviceTarget}.${operationSchema.name}`;
         if (this.awsQueryCompatible) {
             request.headers["x-amzn-query-mode"] = "true";
         }
@@ -8616,9 +9394,10 @@ class AwsJsonRpcProtocol extends protocols.RpcProtocol {
         const ErrorCtor = this.compositeErrorRegistry.getErrorCtor(errorSchema) ?? Error;
         const exception = new ErrorCtor(message);
         const output = {};
+        const errorDeserializer = this.codec.createDeserializer();
         for (const [name, member] of ns.structIterator()) {
             if (dataObject[name] != null) {
-                output[name] = this.codec.createDeserializer().readObject(member, dataObject[name]);
+                output[name] = errorDeserializer.readObject(member, dataObject[name]);
             }
         }
         if (this.awsQueryCompatible) {
@@ -8739,9 +9518,10 @@ class AwsRestJsonProtocol extends protocols.HttpBindingProtocol {
         const exception = new ErrorCtor(message);
         await this.deserializeHttpMessage(errorSchema, context, response, dataObject);
         const output = {};
+        const errorDeserializer = this.codec.createDeserializer();
         for (const [name, member] of ns.structIterator()) {
             const target = member.getMergedTraits().jsonName ?? name;
-            output[name] = this.codec.createDeserializer().readObject(member, dataObject[target]);
+            output[name] = errorDeserializer.readObject(member, dataObject[target]);
         }
         throw this.mixin.decorateServiceException(Object.assign(exception, errorMetadata, {
             $fault: ns.getMergedTraits().error,
@@ -9019,7 +9799,8 @@ class QueryShapeSerializer extends SerdeContextConfig {
                 const memberSchema = ns.getValueSchema();
                 const flat = ns.getMergedTraits().xmlFlattened;
                 let i = 1;
-                for (const [k, v] of Object.entries(value)) {
+                for (const k in value) {
+                    const v = value[k];
                     if (v == null) {
                         continue;
                     }
@@ -9132,9 +9913,7 @@ class AwsQueryProtocol extends protocols.RpcProtocol {
         if (!request.path.endsWith("/")) {
             request.path += "/";
         }
-        Object.assign(request.headers, {
-            "content-type": `application/x-www-form-urlencoded`,
-        });
+        request.headers["content-type"] = "application/x-www-form-urlencoded";
         if (schema.deref(operationSchema.input) === "unit" || !request.body) {
             request.body = "";
         }
@@ -9167,11 +9946,8 @@ class AwsQueryProtocol extends protocols.RpcProtocol {
         if (bytes.byteLength > 0) {
             Object.assign(dataObject, await deserializer.read(ns, bytes, awsQueryResultKey));
         }
-        const output = {
-            $metadata: this.deserializeMetadata(response),
-            ...dataObject,
-        };
-        return output;
+        dataObject.$metadata = this.deserializeMetadata(response);
+        return dataObject;
     }
     useNestedResult() {
         return true;
@@ -9478,7 +10254,8 @@ class XmlShapeSerializer extends SerdeContextConfig {
             entry.addChildNode(valueNode);
         };
         if (flat) {
-            for (const [key, val] of Object.entries(map)) {
+            for (const key in map) {
+                const val = map[key];
                 if (sparse || val != null) {
                     const entry = xmlBuilder.XmlNode.of(mapTraits.xmlName ?? mapMember.getMemberName());
                     addKeyValue(entry, key, val);
@@ -9495,7 +10272,8 @@ class XmlShapeSerializer extends SerdeContextConfig {
                 }
                 container.addChildNode(mapNode);
             }
-            for (const [key, val] of Object.entries(map)) {
+            for (const key in map) {
+                const val = map[key];
                 if (sparse || val != null) {
                     const entry = xmlBuilder.XmlNode.of("entry");
                     addKeyValue(entry, key, val);
@@ -9618,7 +10396,6 @@ class AwsRestXmlProtocol extends protocols.HttpBindingProtocol {
         this.codec = new XmlCodec(settings);
         this.serializer = new protocols.HttpInterceptingShapeSerializer(this.codec.createSerializer(), settings);
         this.deserializer = new protocols.HttpInterceptingShapeDeserializer(this.codec.createDeserializer(), settings);
-        this.compositeErrorRegistry;
     }
     getPayloadCodec() {
         return this.codec;
@@ -9671,10 +10448,11 @@ class AwsRestXmlProtocol extends protocols.HttpBindingProtocol {
         const exception = new ErrorCtor(message);
         await this.deserializeHttpMessage(errorSchema, context, response, dataObject);
         const output = {};
+        const errorDeserializer = this.codec.createDeserializer();
         for (const [name, member] of ns.structIterator()) {
             const target = member.getMergedTraits().xmlName ?? name;
             const value = dataObject.Error?.[target] ?? dataObject[target];
-            output[name] = this.codec.createDeserializer().readSchema(member, value);
+            output[name] = errorDeserializer.readSchema(member, value);
         }
         throw this.mixin.decorateServiceException(Object.assign(exception, errorMetadata, {
             $fault: ns.getMergedTraits().error,
@@ -11724,7 +12502,7 @@ exports.recursionDetectionMiddleware = recursionDetectionMiddleware;
 
 var protocolHttp = __nccwpck_require__(72356);
 var smithyClient = __nccwpck_require__(61411);
-var utilStream = __nccwpck_require__(4252);
+var toStream = __nccwpck_require__(32136);
 var utilArnParser = __nccwpck_require__(56369);
 var protocols = __nccwpck_require__(37288);
 var schema = __nccwpck_require__(26890);
@@ -12141,45 +12919,29 @@ const THROW_IF_EMPTY_BODY = {
     UploadPartCopyCommand: true,
     CompleteMultipartUploadCommand: true,
 };
-const MAX_BYTES_TO_INSPECT = 3000;
 const throw200ExceptionsMiddleware = (config) => (next, context) => async (args) => {
     const result = await next(args);
     const { response } = result;
     if (!protocolHttp.HttpResponse.isInstance(response)) {
         return result;
     }
-    const { statusCode, body: sourceBody } = response;
+    const { statusCode, body } = response;
     if (statusCode < 200 || statusCode >= 300) {
         return result;
     }
-    const isSplittableStream = typeof sourceBody?.stream === "function" ||
-        typeof sourceBody?.pipe === "function" ||
-        typeof sourceBody?.tee === "function";
-    if (!isSplittableStream) {
-        return result;
-    }
-    let bodyCopy = sourceBody;
-    let body = sourceBody;
-    if (sourceBody && typeof sourceBody === "object" && !(sourceBody instanceof Uint8Array)) {
-        [bodyCopy, body] = await utilStream.splitStream(sourceBody);
-    }
-    response.body = body;
-    const bodyBytes = await collectBody(bodyCopy, {
-        streamCollector: async (stream) => {
-            return utilStream.headStream(stream, MAX_BYTES_TO_INSPECT);
-        },
-    });
-    if (typeof bodyCopy?.destroy === "function") {
-        bodyCopy.destroy();
-    }
-    const bodyStringTail = config.utf8Encoder(bodyBytes.subarray(bodyBytes.length - 16));
+    const bodyBytes = await collectBody(body, config);
+    response.body = toStream.toStream(bodyBytes);
     if (bodyBytes.length === 0 && THROW_IF_EMPTY_BODY[context.commandName]) {
         const err = new Error("S3 aborted request");
+        err.$metadata = {
+            httpStatusCode: 503,
+        };
         err.name = "InternalError";
         throw err;
     }
+    const bodyStringTail = config.utf8Encoder(bodyBytes.subarray(bodyBytes.length - 16));
     if (bodyStringTail && bodyStringTail.endsWith("</Error>")) {
-        response.statusCode = 400;
+        response.statusCode = 503;
     }
     return result;
 };
@@ -12317,6 +13079,20 @@ exports.throw200ExceptionsMiddleware = throw200ExceptionsMiddleware;
 exports.throw200ExceptionsMiddlewareOptions = throw200ExceptionsMiddlewareOptions;
 exports.validateBucketNameMiddleware = validateBucketNameMiddleware;
 exports.validateBucketNameMiddlewareOptions = validateBucketNameMiddlewareOptions;
+
+
+/***/ }),
+
+/***/ 32136:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.toStream = toStream;
+const node_stream_1 = __nccwpck_require__(57075);
+function toStream(bytes) {
+    return node_stream_1.Readable.from(Buffer.from(bytes));
+}
 
 
 /***/ }),
@@ -30444,7 +31220,8 @@ function setFeature(context, feature, value) {
 class DefaultIdentityProviderConfig {
     authSchemes = new Map();
     constructor(config) {
-        for (const [key, value] of Object.entries(config)) {
+        for (const key in config) {
+            const value = config[key];
             if (value !== undefined) {
                 this.authSchemes.set(key, value);
             }
@@ -31337,7 +32114,13 @@ const loadSmithyRpcV2CborErrorCode = (output, data) => {
     if (data["__type"] !== undefined) {
         return sanitizeErrorCode(data["__type"]);
     }
-    const codeKey = Object.keys(data).find((key) => key.toLowerCase() === "code");
+    let codeKey;
+    for (const key in data) {
+        if (key.toLowerCase() === "code") {
+            codeKey = key;
+            break;
+        }
+    }
     if (codeKey && data[codeKey] !== undefined) {
         return sanitizeErrorCode(data[codeKey]);
     }
@@ -31364,8 +32147,8 @@ const buildHttpRpcRequest = async (context, headers, path, resolvedHostname, bod
         contents.hostname = resolvedHostname;
     }
     if (endpoint.headers) {
-        for (const [name, value] of Object.entries(endpoint.headers)) {
-            contents.headers[name] = value;
+        for (const name in endpoint.headers) {
+            contents.headers[name] = endpoint.headers[name];
         }
     }
     if (body !== undefined) {
@@ -31435,7 +32218,7 @@ class CborShapeSerializer extends protocols.SerdeContext {
             const newObject = {};
             if (ns.isMapSchema()) {
                 const sparse = !!ns.getMergedTraits().sparse;
-                for (const key of Object.keys(sourceObject)) {
+                for (const key in sourceObject) {
                     const value = this.serialize(ns.getValueSchema(), sourceObject[key]);
                     if (value != null || sparse) {
                         newObject[key] = value;
@@ -31455,15 +32238,15 @@ class CborShapeSerializer extends protocols.SerdeContext {
                     newObject[k] = v;
                 }
                 else if (typeof sourceObject.__type === "string") {
-                    for (const [k, v] of Object.entries(sourceObject)) {
+                    for (const k in sourceObject) {
                         if (!(k in newObject)) {
-                            newObject[k] = this.serialize(15, v);
+                            newObject[k] = this.serialize(15, sourceObject[k]);
                         }
                     }
                 }
             }
             else if (ns.isDocumentSchema()) {
-                for (const key of Object.keys(sourceObject)) {
+                for (const key in sourceObject) {
                     newObject[key] = this.serialize(ns.getValueSchema(), sourceObject[key]);
                 }
             }
@@ -31536,7 +32319,7 @@ class CborShapeDeserializer extends protocols.SerdeContext {
             const newObject = {};
             if (ns.isMapSchema()) {
                 const targetSchema = ns.getValueSchema();
-                for (const key of Object.keys(value)) {
+                for (const key in value) {
                     const itemValue = this.readValue(targetSchema, value[key]);
                     newObject[key] = itemValue;
                 }
@@ -31545,7 +32328,12 @@ class CborShapeDeserializer extends protocols.SerdeContext {
                 const isUnion = ns.isUnionSchema();
                 let keys;
                 if (isUnion) {
-                    keys = new Set(Object.keys(value).filter((k) => k !== "__type"));
+                    keys = new Set();
+                    for (const k in value) {
+                        if (k !== "__type") {
+                            keys.add(k);
+                        }
+                    }
                 }
                 for (const [key, memberSchema] of ns.structIterator()) {
                     if (isUnion) {
@@ -31555,14 +32343,21 @@ class CborShapeDeserializer extends protocols.SerdeContext {
                         newObject[key] = this.readValue(memberSchema, value[key]);
                     }
                 }
-                if (isUnion && keys?.size === 1 && Object.keys(newObject).length === 0) {
-                    const k = keys.values().next().value;
-                    newObject.$unknown = [k, value[k]];
+                if (isUnion && keys?.size === 1) {
+                    let newObjectEmpty = true;
+                    for (const _ in newObject) {
+                        newObjectEmpty = false;
+                        break;
+                    }
+                    if (newObjectEmpty) {
+                        const k = keys.values().next().value;
+                        newObject.$unknown = [k, value[k]];
+                    }
                 }
                 else if (typeof value.__type === "string") {
-                    for (const [k, v] of Object.entries(value)) {
+                    for (const k in value) {
                         if (!(k in newObject)) {
-                            newObject[k] = v;
+                            newObject[k] = value[k];
                         }
                     }
                 }
@@ -31703,8 +32498,8 @@ const toEndpointV1 = (endpoint) => {
             const v1Endpoint = urlParser.parseUrl(endpoint.url);
             if (endpoint.headers) {
                 v1Endpoint.headers = {};
-                for (const [name, values] of Object.entries(endpoint.headers)) {
-                    v1Endpoint.headers[name.toLowerCase()] = values.join(", ");
+                for (const name in endpoint.headers) {
+                    v1Endpoint.headers[name.toLowerCase()] = endpoint.headers[name].join(", ");
                 }
             }
             return v1Endpoint;
@@ -31796,8 +32591,8 @@ class HttpProtocol extends SerdeContext {
                 request.query[k] = v;
             }
             if (endpoint.headers) {
-                for (const [name, values] of Object.entries(endpoint.headers)) {
-                    request.headers[name] = values.join(", ");
+                for (const name in endpoint.headers) {
+                    request.headers[name] = endpoint.headers[name].join(", ");
                 }
             }
             return request;
@@ -31811,8 +32606,8 @@ class HttpProtocol extends SerdeContext {
                 ...endpoint.query,
             };
             if (endpoint.headers) {
-                for (const [name, value] of Object.entries(endpoint.headers)) {
-                    request.headers[name] = value;
+                for (const name in endpoint.headers) {
+                    request.headers[name] = endpoint.headers[name];
                 }
             }
             return request;
@@ -31827,8 +32622,10 @@ class HttpProtocol extends SerdeContext {
         if (opTraits.endpoint) {
             let hostPrefix = opTraits.endpoint?.[0];
             if (typeof hostPrefix === "string") {
-                const hostLabelInputs = [...inputNs.structIterator()].filter(([, member]) => member.getMergedTraits().hostLabel);
-                for (const [name] of hostLabelInputs) {
+                for (const [name, member] of inputNs.structIterator()) {
+                    if (!member.getMergedTraits().hostLabel) {
+                        continue;
+                    }
                     const replacement = input[name];
                     if (typeof replacement !== "string") {
                         throw new Error(`@smithy/core/schema - ${name} in input must be a string as hostLabel.`);
@@ -31924,7 +32721,9 @@ class HttpBindingProtocol extends HttpProtocol {
                     request.path += path;
                 }
                 const traitSearchParams = new URLSearchParams(search ?? "");
-                Object.assign(query, Object.fromEntries(traitSearchParams));
+                for (const [key, value] of traitSearchParams) {
+                    query[key] = value;
+                }
             }
         }
         for (const [memberName, memberNs] of ns.structIterator()) {
@@ -31974,7 +32773,8 @@ class HttpBindingProtocol extends HttpProtocol {
                 headers[memberTraits.httpHeader.toLowerCase()] = String(serializer.flush());
             }
             else if (typeof memberTraits.httpPrefixHeaders === "string") {
-                for (const [key, val] of Object.entries(inputMemberValue)) {
+                for (const key in inputMemberValue) {
+                    const val = inputMemberValue[key];
                     const amalgam = memberTraits.httpPrefixHeaders + key;
                     serializer.write([memberNs.getValueSchema(), { httpHeader: amalgam }], val);
                     headers[amalgam.toLowerCase()] = serializer.flush();
@@ -32019,8 +32819,9 @@ class HttpBindingProtocol extends HttpProtocol {
         const serializer = this.serializer;
         const traits = ns.getMergedTraits();
         if (traits.httpQueryParams) {
-            for (const [key, val] of Object.entries(data)) {
+            for (const key in data) {
                 if (!(key in query)) {
+                    const val = data[key];
                     const valueSchema = ns.getValueSchema();
                     Object.assign(valueSchema.getMergedTraits(), {
                         ...traits,
@@ -32148,8 +32949,9 @@ class HttpBindingProtocol extends HttpProtocol {
             }
             else if (memberTraits.httpPrefixHeaders !== undefined) {
                 dataObject[memberName] = {};
-                for (const [header, value] of Object.entries(response.headers)) {
+                for (const header in response.headers) {
                     if (header.startsWith(memberTraits.httpPrefixHeaders)) {
+                        const value = response.headers[header];
                         const valueSchema = memberSchema.getValueSchema();
                         valueSchema.getMergedTraits().httpHeader = header;
                         dataObject[memberName][header.slice(memberTraits.httpPrefixHeaders.length)] = await deserializer.read(valueSchema, value);
@@ -33261,7 +34063,12 @@ class TypeRegistry {
         return undefined;
     }
     find(predicate) {
-        return [...this.schemas.values()].find(predicate);
+        for (const schema of this.schemas.values()) {
+            if (predicate(schema)) {
+                return schema;
+            }
+        }
+        return undefined;
     }
     clear() {
         this.schemas.clear();
@@ -33452,9 +34259,12 @@ const expectUnion = (value) => {
         return undefined;
     }
     const asObject = expectObject(value);
-    const setKeys = Object.entries(asObject)
-        .filter(([, v]) => v != null)
-        .map(([k]) => k);
+    const setKeys = [];
+    for (const k in asObject) {
+        if (asObject[k] != null) {
+            setKeys.push(k);
+        }
+    }
     if (setKeys.length === 0) {
         throw new TypeError(`Unions must have exactly one non-null member. None were found.`);
     }
@@ -36703,58 +37513,119 @@ or increase socketAcquisitionWarningTimeout=(millis) in the NodeHttpHandler conf
     }
 }
 
-class NodeHttp2ConnectionPool {
-    sessions = [];
-    constructor(sessions) {
-        this.sessions = sessions ?? [];
+const ids = new Uint16Array(1);
+class ClientHttp2SessionRef {
+    id = ids[0]++;
+    total = 0;
+    max = 0;
+    session;
+    refs = 0;
+    constructor(session) {
+        session.unref();
+        this.session = session;
     }
-    poll() {
-        if (this.sessions.length > 0) {
-            return this.sessions.shift();
+    retain() {
+        if (this.session.destroyed) {
+            throw new Error("@smithy/node-http-handler - cannot acquire reference to destroyed session.");
+        }
+        this.refs += 1;
+        this.total += 1;
+        this.max = Math.max(this.refs, this.max);
+        this.session.ref();
+    }
+    free() {
+        if (this.session.destroyed) {
+            return;
+        }
+        this.refs -= 1;
+        if (this.refs === 0) {
+            this.session.unref();
+        }
+        if (this.refs < 0) {
+            throw new Error("@smithy/node-http-handler - ClientHttp2Session refcount at zero, cannot decrement.");
         }
     }
-    offerLast(session) {
-        this.sessions.push(session);
+    deref() {
+        return this.session;
     }
-    contains(session) {
-        return this.sessions.includes(session);
+    destroy() {
+        this.refs = 0;
+        if (!this.session.destroyed) {
+            this.session.destroy();
+        }
     }
-    remove(session) {
-        this.sessions = this.sessions.filter((s) => s !== session);
+    useCount() {
+        return this.refs;
     }
-    [Symbol.iterator]() {
-        return this.sessions[Symbol.iterator]();
+}
+
+class NodeHttp2ConnectionPool {
+    sessions = [];
+    maxConcurrency = 0;
+    constructor(sessions) {
+        this.sessions = (sessions ?? []).map((session) => new ClientHttp2SessionRef(session));
     }
-    destroy(connection) {
+    poll() {
+        let cleanup = false;
         for (const session of this.sessions) {
-            if (session === connection) {
-                if (!session.destroyed) {
-                    session.destroy();
+            if (session.deref().destroyed) {
+                cleanup = true;
+                continue;
+            }
+            if (!this.maxConcurrency || session.useCount() < this.maxConcurrency) {
+                return session;
+            }
+        }
+        if (cleanup) {
+            for (const session of this.sessions) {
+                if (session.deref().destroyed) {
+                    this.remove(session);
                 }
             }
         }
     }
+    offerLast(ref) {
+        this.sessions.push(ref);
+    }
+    remove(ref) {
+        const ix = this.sessions.indexOf(ref);
+        if (ix > -1) {
+            this.sessions.splice(ix, 1);
+        }
+    }
+    [Symbol.iterator]() {
+        return this.sessions[Symbol.iterator]();
+    }
+    setMaxConcurrency(maxConcurrency) {
+        this.maxConcurrency = maxConcurrency;
+    }
+    destroy(ref) {
+        this.remove(ref);
+        ref.destroy();
+    }
 }
 
 class NodeHttp2ConnectionManager {
+    config;
+    connectionPools = new Map();
     constructor(config) {
         this.config = config;
         if (this.config.maxConcurrency && this.config.maxConcurrency <= 0) {
             throw new RangeError("maxConcurrency must be greater than zero.");
         }
     }
-    config;
-    sessionCache = new Map();
     lease(requestContext, connectionConfiguration) {
         const url = this.getUrlString(requestContext);
-        const existingPool = this.sessionCache.get(url);
-        if (existingPool) {
-            const existingSession = existingPool.poll();
-            if (existingSession && !this.config.disableConcurrency) {
-                return existingSession;
+        const pool = this.getPool(url);
+        if (!this.config.disableConcurrency && !connectionConfiguration.isEventStream) {
+            const available = pool.poll();
+            if (available) {
+                available.retain();
+                return available;
             }
         }
-        const session = http2.connect(url);
+        const ref = new ClientHttp2SessionRef(http2.connect(url));
+        const session = ref.deref();
         if (this.config.maxConcurrency) {
             session.settings({ maxConcurrentStreams: this.config.maxConcurrency }, (err) => {
                 if (err) {
@@ -36765,47 +37636,48 @@ class NodeHttp2ConnectionManager {
                 }
             });
         }
-        session.unref();
         const destroySessionCb = () => {
             session.destroy();
-            this.deleteSession(url, session);
+            this.removeFromPool(url, ref);
         };
         session.on("goaway", destroySessionCb);
         session.on("error", destroySessionCb);
         session.on("frameError", destroySessionCb);
-        session.on("close", () => this.deleteSession(url, session));
+        session.on("close", () => this.removeFromPool(url, ref));
         if (connectionConfiguration.requestTimeout) {
             session.setTimeout(connectionConfiguration.requestTimeout, destroySessionCb);
         }
-        const connectionPool = this.sessionCache.get(url) || new NodeHttp2ConnectionPool();
-        connectionPool.offerLast(session);
-        this.sessionCache.set(url, connectionPool);
-        return session;
+        pool.offerLast(ref);
+        ref.retain();
+        return ref;
     }
-    deleteSession(authority, session) {
-        const existingConnectionPool = this.sessionCache.get(authority);
-        if (!existingConnectionPool) {
-            return;
-        }
-        if (!existingConnectionPool.contains(session)) {
-            return;
-        }
-        existingConnectionPool.remove(session);
-        this.sessionCache.set(authority, existingConnectionPool);
+    release(_requestContext, ref) {
+        ref.free();
     }
-    release(requestContext, session) {
-        const cacheKey = this.getUrlString(requestContext);
-        this.sessionCache.get(cacheKey)?.offerLast(session);
+    createIsolatedSession(requestContext, connectionConfiguration) {
+        const url = this.getUrlString(requestContext);
+        const ref = new ClientHttp2SessionRef(http2.connect(url));
+        const session = ref.deref();
+        session.settings({ maxConcurrentStreams: 1 });
+        const destroySession = () => {
+            session.destroy();
+        };
+        session.on("goaway", destroySession);
+        session.on("error", destroySession);
+        session.on("frameError", destroySession);
+        session.on("close", destroySession);
+        if (connectionConfiguration.requestTimeout) {
+            session.setTimeout(connectionConfiguration.requestTimeout, destroySession);
+        }
+        ref.retain();
+        return ref;
     }
     destroy() {
-        for (const [key, connectionPool] of this.sessionCache) {
-            for (const session of connectionPool) {
-                if (!session.destroyed) {
-                    session.destroy();
-                }
-                connectionPool.remove(session);
+        for (const [url, connectionPool] of this.connectionPools) {
+            for (const session of [...connectionPool]) {
+                session.destroy();
             }
-            this.sessionCache.delete(key);
+            this.connectionPools.delete(url);
         }
     }
     setMaxConcurrentStreams(maxConcurrentStreams) {
@@ -36813,9 +37685,41 @@ class NodeHttp2ConnectionManager {
             throw new RangeError("maxConcurrentStreams must be greater than zero.");
         }
         this.config.maxConcurrency = maxConcurrentStreams;
+        for (const pool of this.connectionPools.values()) {
+            pool.setMaxConcurrency(maxConcurrentStreams);
+        }
     }
     setDisableConcurrentStreams(disableConcurrentStreams) {
         this.config.disableConcurrency = disableConcurrentStreams;
+    }
+    debug() {
+        const pools = {};
+        for (const [url, pool] of this.connectionPools) {
+            const sessions = [];
+            for (const ref of pool) {
+                sessions.push({
+                    id: ref.id,
+                    active: ref.useCount(),
+                    maxConcurrent: ref.max,
+                    totalRequests: ref.total,
+                });
+            }
+            pools[url] = { sessions };
+        }
+        return pools;
+    }
+    removeFromPool(authority, ref) {
+        this.connectionPools.get(authority)?.remove(ref);
+    }
+    getPool(url) {
+        if (!this.connectionPools.has(url)) {
+            const pool = new NodeHttp2ConnectionPool();
+            if (this.config.maxConcurrency) {
+                pool.setMaxConcurrency(this.config.maxConcurrency);
+            }
+            this.connectionPools.set(url, pool);
+        }
+        return this.connectionPools.get(url);
     }
     getUrlString(request) {
         return request.destination.toString();
@@ -36850,15 +37754,17 @@ class NodeHttp2Handler {
     destroy() {
         this.connectionManager.destroy();
     }
-    async handle(request, { abortSignal, requestTimeout } = {}) {
+    async handle(request, { abortSignal, requestTimeout, isEventStream } = {}) {
         if (!this.config) {
             this.config = await this.configProvider;
-            this.connectionManager.setDisableConcurrentStreams(this.config.disableConcurrentStreams || false);
-            if (this.config.maxConcurrentStreams) {
-                this.connectionManager.setMaxConcurrentStreams(this.config.maxConcurrentStreams);
+            const { disableConcurrentStreams, maxConcurrentStreams } = this.config;
+            this.connectionManager.setDisableConcurrentStreams(disableConcurrentStreams ?? false);
+            if (maxConcurrentStreams) {
+                this.connectionManager.setMaxConcurrentStreams(maxConcurrentStreams);
             }
         }
         const { requestTimeout: configRequestTimeout, disableConcurrentStreams } = this.config;
+        const useIsolatedSession = disableConcurrentStreams || isEventStream;
         const effectiveRequestTimeout = requestTimeout ?? configRequestTimeout;
         return new Promise((_resolve, _reject) => {
             let fulfilled = false;
@@ -36886,18 +37792,22 @@ class NodeHttp2Handler {
             }
             const authority = `${protocol}//${auth}${hostname}${port ? `:${port}` : ""}`;
             const requestContext = { destination: new URL(authority) };
-            const session = this.connectionManager.lease(requestContext, {
+            const connectConfig = {
                 requestTimeout: this.config?.sessionTimeout,
-                disableConcurrentStreams: disableConcurrentStreams || false,
-            });
+                isEventStream,
+            };
+            const ref = useIsolatedSession
+                ? this.connectionManager.createIsolatedSession(requestContext, connectConfig)
+                : this.connectionManager.lease(requestContext, connectConfig);
+            const session = ref.deref();
             const rejectWithDestroy = (err) => {
-                if (disableConcurrentStreams) {
-                    this.destroySession(session);
+                if (useIsolatedSession) {
+                    ref.destroy();
                 }
                 fulfilled = true;
                 reject(err);
             };
-            const queryString = querystringBuilder.buildQueryString(query || {});
+            const queryString = querystringBuilder.buildQueryString(query ?? {});
             let path = request.path;
             if (queryString) {
                 path += `?${queryString}`;
@@ -36905,28 +37815,14 @@ class NodeHttp2Handler {
             if (request.fragment) {
                 path += `#${request.fragment}`;
             }
-            const req = session.request({
+            const clientHttp2Stream = session.request({
                 ...request.headers,
                 [http2.constants.HTTP2_HEADER_PATH]: path,
                 [http2.constants.HTTP2_HEADER_METHOD]: method,
             });
-            session.ref();
-            req.on("response", (headers) => {
-                const httpResponse = new protocolHttp.HttpResponse({
-                    statusCode: headers[":status"] || -1,
-                    headers: getTransformedHeaders(headers),
-                    body: req,
-                });
-                fulfilled = true;
-                resolve({ response: httpResponse });
-                if (disableConcurrentStreams) {
-                    session.close();
-                    this.connectionManager.deleteSession(authority, session);
-                }
-            });
             if (effectiveRequestTimeout) {
-                req.setTimeout(effectiveRequestTimeout, () => {
-                    req.close();
+                clientHttp2Stream.setTimeout(effectiveRequestTimeout, () => {
+                    clientHttp2Stream.close();
                     const timeoutError = new Error(`Stream timed out because of no activity for ${effectiveRequestTimeout} ms`);
                     timeoutError.name = "TimeoutError";
                     rejectWithDestroy(timeoutError);
@@ -36934,36 +37830,50 @@ class NodeHttp2Handler {
             }
             if (abortSignal) {
                 const onAbort = () => {
-                    req.close();
+                    clientHttp2Stream.close();
                     const abortError = buildAbortError(abortSignal);
                     rejectWithDestroy(abortError);
                 };
                 if (typeof abortSignal.addEventListener === "function") {
                     const signal = abortSignal;
                     signal.addEventListener("abort", onAbort, { once: true });
-                    req.once("close", () => signal.removeEventListener("abort", onAbort));
+                    clientHttp2Stream.once("close", () => signal.removeEventListener("abort", onAbort));
                 }
                 else {
                     abortSignal.onabort = onAbort;
                 }
             }
-            req.on("frameError", (type, code, id) => {
+            clientHttp2Stream.on("frameError", (type, code, id) => {
                 rejectWithDestroy(new Error(`Frame type id ${type} in stream id ${id} has failed with code ${code}.`));
             });
-            req.on("error", rejectWithDestroy);
-            req.on("aborted", () => {
-                rejectWithDestroy(new Error(`HTTP/2 stream is abnormally aborted in mid-communication with result code ${req.rstCode}.`));
+            clientHttp2Stream.on("error", rejectWithDestroy);
+            clientHttp2Stream.on("aborted", () => {
+                rejectWithDestroy(new Error(`HTTP/2 stream is abnormally aborted in mid-communication with result code ${clientHttp2Stream.rstCode}.`));
             });
-            req.on("close", () => {
-                session.unref();
-                if (disableConcurrentStreams) {
-                    session.destroy();
+            clientHttp2Stream.on("response", (headers) => {
+                const httpResponse = new protocolHttp.HttpResponse({
+                    statusCode: headers[":status"] ?? -1,
+                    headers: getTransformedHeaders(headers),
+                    body: clientHttp2Stream,
+                });
+                fulfilled = true;
+                resolve({ response: httpResponse });
+                if (useIsolatedSession) {
+                    session.close();
+                }
+            });
+            clientHttp2Stream.on("close", () => {
+                if (useIsolatedSession) {
+                    ref.destroy();
+                }
+                else {
+                    this.connectionManager.release(requestContext, ref);
                 }
                 if (!fulfilled) {
                     rejectWithDestroy(new Error("Unexpected error: http2 request did not get a response"));
                 }
             });
-            writeRequestBodyPromise = writeRequestBody(req, request, effectiveRequestTimeout);
+            writeRequestBodyPromise = writeRequestBody(clientHttp2Stream, request, effectiveRequestTimeout);
         });
     }
     updateHttpClientConfig(key, value) {
@@ -36977,11 +37887,6 @@ class NodeHttp2Handler {
     }
     httpHandlerConfigs() {
         return this.config ?? {};
-    }
-    destroySession(session) {
-        if (!session.destroyed) {
-            session.destroy();
-        }
     }
 }
 
@@ -37470,6 +38375,7 @@ const isTransientError = (error, depth = 0) => isRetryableByTrait(error) ||
     NODEJS_NETWORK_ERROR_CODES.includes(error?.code || "") ||
     TRANSIENT_ERROR_STATUS_CODES.includes(error.$metadata?.httpStatusCode || 0) ||
     isBrowserNetworkError(error) ||
+    isNodeJsHttp2TransientError(error) ||
     (error.cause !== undefined && depth <= 10 && isTransientError(error.cause, depth + 1));
 const isServerError = (error) => {
     if (error.$metadata?.httpStatusCode !== undefined) {
@@ -37481,10 +38387,14 @@ const isServerError = (error) => {
     }
     return false;
 };
+function isNodeJsHttp2TransientError(error) {
+    return error.code === "ERR_HTTP2_STREAM_ERROR" && error.message.includes("NGHTTP2_REFUSED_STREAM");
+}
 
 exports.isBrowserNetworkError = isBrowserNetworkError;
 exports.isClockSkewCorrectedError = isClockSkewCorrectedError;
 exports.isClockSkewError = isClockSkewError;
+exports.isNodeJsHttp2TransientError = isNodeJsHttp2TransientError;
 exports.isRetryableByTrait = isRetryableByTrait;
 exports.isServerError = isServerError;
 exports.isThrottlingError = isThrottlingError;
@@ -38246,7 +39156,7 @@ class SignatureV4 extends SignatureV4Base {
             return this.signRequest(toSign, options);
         }
     }
-    async signEvent({ headers, payload }, { signingDate = new Date(), priorSignature, signingRegion, signingService }) {
+    async signEvent({ headers, payload }, { signingDate = new Date(), priorSignature, signingRegion, signingService, eventStreamCredentials, }) {
         const region = signingRegion ?? (await this.regionProvider());
         const { shortDate, longDate } = this.formatDate(signingDate);
         const scope = createScope(shortDate, region, signingService ?? this.service);
@@ -38262,9 +39172,14 @@ class SignatureV4 extends SignatureV4Base {
             hashedHeaders,
             hashedPayload,
         ].join("\n");
-        return this.signString(stringToSign, { signingDate, signingRegion: region, signingService });
+        return this.signString(stringToSign, {
+            signingDate,
+            signingRegion: region,
+            signingService,
+            eventStreamCredentials,
+        });
     }
-    async signMessage(signableMessage, { signingDate = new Date(), signingRegion, signingService }) {
+    async signMessage(signableMessage, { signingDate = new Date(), signingRegion, signingService, eventStreamCredentials }) {
         const promise = this.signEvent({
             headers: this.headerFormatter.format(signableMessage.message.headers),
             payload: signableMessage.message.body,
@@ -38273,13 +39188,14 @@ class SignatureV4 extends SignatureV4Base {
             signingRegion,
             signingService,
             priorSignature: signableMessage.priorSignature,
+            eventStreamCredentials,
         });
         return promise.then((signature) => {
             return { message: signableMessage.message, signature };
         });
     }
-    async signString(stringToSign, { signingDate = new Date(), signingRegion, signingService } = {}) {
-        const credentials = await this.credentialProvider();
+    async signString(stringToSign, { signingDate = new Date(), signingRegion, signingService, eventStreamCredentials, } = {}) {
+        const credentials = eventStreamCredentials ?? (await this.credentialProvider());
         this.validateResolvedCredentials(credentials);
         const region = signingRegion ?? (await this.regionProvider());
         const { shortDate } = this.formatDate(signingDate);
@@ -38490,7 +39406,14 @@ class Command {
             ...additionalContext,
         };
         const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+        let requestOptions = options ?? {};
+        if (smithyContext.eventStream) {
+            requestOptions = {
+                isEventStream: true,
+                ...requestOptions,
+            };
+        }
+        return stack.resolve((request) => requestHandler.handle(request.request, requestOptions), handlerExecutionContext);
     }
 }
 class ClassBuilder {
@@ -39450,6 +40373,22 @@ exports.resolveDefaultsModeConfig = resolveDefaultsModeConfig;
 
 var types = __nccwpck_require__(90690);
 
+class BinaryDecisionDiagram {
+    nodes;
+    root;
+    conditions;
+    results;
+    constructor(bdd, root, conditions, results) {
+        this.nodes = bdd;
+        this.root = root;
+        this.conditions = conditions;
+        this.results = results;
+    }
+    static from(bdd, root, conditions, results) {
+        return new BinaryDecisionDiagram(bdd, root, conditions, results);
+    }
+}
+
 class EndpointCache {
     capacity;
     data = new Map();
@@ -39501,24 +40440,12 @@ class EndpointCache {
     }
 }
 
-const IP_V4_REGEX = new RegExp(`^(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}$`);
-const isIpAddress = (value) => IP_V4_REGEX.test(value) || (value.startsWith("[") && value.endsWith("]"));
-
-const VALID_HOST_LABEL_REGEX = new RegExp(`^(?!.*-$)(?!-)[a-zA-Z0-9-]{1,63}$`);
-const isValidHostLabel = (value, allowSubDomains = false) => {
-    if (!allowSubDomains) {
-        return VALID_HOST_LABEL_REGEX.test(value);
+class EndpointError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "EndpointError";
     }
-    const labels = value.split(".");
-    for (const label of labels) {
-        if (!isValidHostLabel(label)) {
-            return false;
-        }
-    }
-    return true;
-};
-
-const customEndpointFunctions = {};
+}
 
 const debugId = "endpoints";
 
@@ -39535,14 +40462,18 @@ function toDebugString(input) {
     return JSON.stringify(input, null, 2);
 }
 
-class EndpointError extends Error {
-    constructor(message) {
-        super(message);
-        this.name = "EndpointError";
-    }
-}
+const customEndpointFunctions = {};
 
 const booleanEquals = (value1, value2) => value1 === value2;
+
+function coalesce(...args) {
+    for (const arg of args) {
+        if (arg != null) {
+            return arg;
+        }
+    }
+    return undefined;
+}
 
 const getAttrPathList = (path) => {
     const parts = path.split(".");
@@ -39574,14 +40505,36 @@ const getAttr = (value, path) => getAttrPathList(path).reduce((acc, index) => {
         throw new EndpointError(`Index '${index}' in '${path}' not found in '${JSON.stringify(value)}'`);
     }
     else if (Array.isArray(acc)) {
-        return acc[parseInt(index)];
+        const i = parseInt(index);
+        return acc[i < 0 ? acc.length + i : i];
     }
     return acc[index];
 }, value);
 
 const isSet = (value) => value != null;
 
+const VALID_HOST_LABEL_REGEX = new RegExp(`^(?!.*-$)(?!-)[a-zA-Z0-9-]{1,63}$`);
+const isValidHostLabel = (value, allowSubDomains = false) => {
+    if (!allowSubDomains) {
+        return VALID_HOST_LABEL_REGEX.test(value);
+    }
+    const labels = value.split(".");
+    for (const label of labels) {
+        if (!isValidHostLabel(label)) {
+            return false;
+        }
+    }
+    return true;
+};
+
+function ite(condition, trueValue, falseValue) {
+    return condition ? trueValue : falseValue;
+}
+
 const not = (value) => !value;
+
+const IP_V4_REGEX = new RegExp(`^(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}$`);
+const isIpAddress = (value) => IP_V4_REGEX.test(value) || (value.startsWith("[") && value.endsWith("]"));
 
 const DEFAULT_PORTS = {
     [types.EndpointURLScheme.HTTP]: 80,
@@ -39633,10 +40586,24 @@ const parseURL = (value) => {
     };
 };
 
+function split(value, delimiter, limit) {
+    if (limit === 1) {
+        return [value];
+    }
+    if (value === "") {
+        return [""];
+    }
+    const parts = value.split(delimiter);
+    if (limit === 0) {
+        return parts;
+    }
+    return parts.slice(0, limit - 1).concat(parts.slice(1).join(delimiter));
+}
+
 const stringEquals = (value1, value2) => value1 === value2;
 
 const substring = (input, start, stop, reverse) => {
-    if (start >= stop || input.length < stop || /[^\u0000-\u007f]/.test(input)) {
+    if (input == null || start >= stop || input.length < stop || /[^\u0000-\u007f]/.test(input)) {
         return null;
     }
     if (!reverse) {
@@ -39649,11 +40616,14 @@ const uriEncode = (value) => encodeURIComponent(value).replace(/[!*'()]/g, (c) =
 
 const endpointFunctions = {
     booleanEquals,
+    coalesce,
     getAttr,
     isSet,
     isValidHostLabel,
+    ite,
     not,
     parseURL,
+    split,
     stringEquals,
     substring,
     uriEncode,
@@ -39661,10 +40631,7 @@ const endpointFunctions = {
 
 const evaluateTemplate = (template, options) => {
     const evaluatedTemplateArr = [];
-    const templateContext = {
-        ...options.endpointParams,
-        ...options.referenceRecord,
-    };
+    const { referenceRecord, endpointParams } = options;
     let currentIndex = 0;
     while (currentIndex < template.length) {
         const openingBraceIndex = template.indexOf("{", currentIndex);
@@ -39685,10 +40652,10 @@ const evaluateTemplate = (template, options) => {
         const parameterName = template.substring(openingBraceIndex + 1, closingBraceIndex);
         if (parameterName.includes("#")) {
             const [refName, attrName] = parameterName.split("#");
-            evaluatedTemplateArr.push(getAttr(templateContext[refName], attrName));
+            evaluatedTemplateArr.push(getAttr((referenceRecord[refName] ?? endpointParams[refName]), attrName));
         }
         else {
-            evaluatedTemplateArr.push(templateContext[parameterName]);
+            evaluatedTemplateArr.push((referenceRecord[parameterName] ?? endpointParams[parameterName]));
         }
         currentIndex = closingBraceIndex + 1;
     }
@@ -39696,11 +40663,7 @@ const evaluateTemplate = (template, options) => {
 };
 
 const getReferenceValue = ({ ref }, options) => {
-    const referenceRecord = {
-        ...options.endpointParams,
-        ...options.referenceRecord,
-    };
-    return referenceRecord[ref];
+    return options.referenceRecord[ref] ?? options.endpointParams[ref];
 };
 
 const evaluateExpression = (obj, keyName, options) => {
@@ -39716,66 +40679,64 @@ const evaluateExpression = (obj, keyName, options) => {
     throw new EndpointError(`'${keyName}': ${String(obj)} is not a string, function or reference.`);
 };
 const callFunction = ({ fn, argv }, options) => {
-    const evaluatedArgs = argv.map((arg) => ["boolean", "number"].includes(typeof arg) ? arg : group$2.evaluateExpression(arg, "arg", options));
-    const fnSegments = fn.split(".");
-    if (fnSegments[0] in customEndpointFunctions && fnSegments[1] != null) {
-        return customEndpointFunctions[fnSegments[0]][fnSegments[1]](...evaluatedArgs);
+    const evaluatedArgs = Array(argv.length);
+    for (let i = 0; i < evaluatedArgs.length; ++i) {
+        const arg = argv[i];
+        if (typeof arg === "boolean" || typeof arg === "number") {
+            evaluatedArgs[i] = arg;
+        }
+        else {
+            evaluatedArgs[i] = group$2.evaluateExpression(arg, "arg", options);
+        }
     }
-    return endpointFunctions[fn](...evaluatedArgs);
+    const namespaceSeparatorIndex = fn.indexOf(".");
+    if (namespaceSeparatorIndex !== -1) {
+        const namespaceFunctions = customEndpointFunctions[fn.slice(0, namespaceSeparatorIndex)];
+        const customFunction = namespaceFunctions?.[fn.slice(namespaceSeparatorIndex + 1)];
+        if (typeof customFunction === "function") {
+            return customFunction(...evaluatedArgs);
+        }
+    }
+    const callable = endpointFunctions[fn];
+    if (typeof callable === "function") {
+        return callable(...evaluatedArgs);
+    }
+    throw new Error(`function ${fn} not loaded in endpointFunctions.`);
 };
 const group$2 = {
     evaluateExpression,
     callFunction,
 };
 
-const evaluateCondition = ({ assign, ...fnArgs }, options) => {
+const evaluateCondition = (condition, options) => {
+    const { assign } = condition;
     if (assign && assign in options.referenceRecord) {
         throw new EndpointError(`'${assign}' is already defined in Reference Record.`);
     }
-    const value = callFunction(fnArgs, options);
-    options.logger?.debug?.(`${debugId} evaluateCondition: ${toDebugString(fnArgs)} = ${toDebugString(value)}`);
-    return {
-        result: value === "" ? true : !!value,
-        ...(assign != null && { toAssign: { name: assign, value } }),
-    };
-};
-
-const evaluateConditions = (conditions = [], options) => {
-    const conditionsReferenceRecord = {};
-    for (const condition of conditions) {
-        const { result, toAssign } = evaluateCondition(condition, {
-            ...options,
-            referenceRecord: {
-                ...options.referenceRecord,
-                ...conditionsReferenceRecord,
-            },
-        });
-        if (!result) {
-            return { result };
-        }
-        if (toAssign) {
-            conditionsReferenceRecord[toAssign.name] = toAssign.value;
-            options.logger?.debug?.(`${debugId} assign: ${toAssign.name} := ${toDebugString(toAssign.value)}`);
-        }
+    const value = callFunction(condition, options);
+    options.logger?.debug?.(`${debugId} evaluateCondition: ${toDebugString(condition)} = ${toDebugString(value)}`);
+    const result = value === "" ? true : !!value;
+    if (assign != null) {
+        return { result, toAssign: { name: assign, value } };
     }
-    return { result: true, referenceRecord: conditionsReferenceRecord };
+    return { result };
 };
 
-const getEndpointHeaders = (headers, options) => Object.entries(headers).reduce((acc, [headerKey, headerVal]) => ({
-    ...acc,
-    [headerKey]: headerVal.map((headerValEntry) => {
+const getEndpointHeaders = (headers, options) => Object.entries(headers ?? {}).reduce((acc, [headerKey, headerVal]) => {
+    acc[headerKey] = headerVal.map((headerValEntry) => {
         const processedExpr = evaluateExpression(headerValEntry, "Header value entry", options);
         if (typeof processedExpr !== "string") {
             throw new EndpointError(`Header '${headerKey}' value '${processedExpr}' is not a string`);
         }
         return processedExpr;
-    }),
-}), {});
+    });
+    return acc;
+}, {});
 
-const getEndpointProperties = (properties, options) => Object.entries(properties).reduce((acc, [propertyKey, propertyVal]) => ({
-    ...acc,
-    [propertyKey]: group$1.getEndpointProperty(propertyVal, options),
-}), {});
+const getEndpointProperties = (properties, options) => Object.entries(properties).reduce((acc, [propertyKey, propertyVal]) => {
+    acc[propertyKey] = group$1.getEndpointProperty(propertyVal, options);
+    return acc;
+}, {});
 const getEndpointProperty = (property, options) => {
     if (Array.isArray(property)) {
         return property.map((propertyEntry) => getEndpointProperty(propertyEntry, options));
@@ -39813,27 +40774,90 @@ const getEndpointUrl = (endpointUrl, options) => {
     throw new EndpointError(`Endpoint URL must be a string, got ${typeof expression}`);
 };
 
+const RESULT = 100_000_000;
+const decideEndpoint = (bdd, options) => {
+    const { nodes, root, results, conditions } = bdd;
+    let ref = root;
+    const referenceRecord = {};
+    const closure = {
+        referenceRecord,
+        endpointParams: options.endpointParams,
+        logger: options.logger,
+    };
+    while (ref !== 1 && ref !== -1 && ref < RESULT) {
+        const node_i = 3 * (Math.abs(ref) - 1);
+        const [condition_i, highRef, lowRef] = [nodes[node_i], nodes[node_i + 1], nodes[node_i + 2]];
+        const [fn, argv, assign] = conditions[condition_i];
+        const evaluation = evaluateCondition({ fn, assign, argv }, closure);
+        if (evaluation.toAssign) {
+            const { name, value } = evaluation.toAssign;
+            referenceRecord[name] = value;
+        }
+        ref = ref >= 0 === evaluation.result ? highRef : lowRef;
+    }
+    if (ref >= RESULT) {
+        const result = results[ref - RESULT];
+        if (result[0] === -1) {
+            const [, errorExpression] = result;
+            throw new EndpointError(evaluateExpression(errorExpression, "Error", closure));
+        }
+        const [url, properties, headers] = result;
+        return {
+            url: getEndpointUrl(url, closure),
+            properties: getEndpointProperties(properties, closure),
+            headers: getEndpointHeaders(headers ?? {}, closure),
+        };
+    }
+    throw new EndpointError(`No matching endpoint.`);
+};
+
+const evaluateConditions = (conditions = [], options) => {
+    const conditionsReferenceRecord = {};
+    const conditionOptions = {
+        ...options,
+        referenceRecord: { ...options.referenceRecord },
+    };
+    let didAssign = false;
+    for (const condition of conditions) {
+        const { result, toAssign } = evaluateCondition(condition, conditionOptions);
+        if (!result) {
+            return { result };
+        }
+        if (toAssign) {
+            didAssign = true;
+            conditionsReferenceRecord[toAssign.name] = toAssign.value;
+            conditionOptions.referenceRecord[toAssign.name] = toAssign.value;
+            options.logger?.debug?.(`${debugId} assign: ${toAssign.name} := ${toDebugString(toAssign.value)}`);
+        }
+    }
+    if (didAssign) {
+        return { result: true, referenceRecord: conditionsReferenceRecord };
+    }
+    return { result: true };
+};
+
 const evaluateEndpointRule = (endpointRule, options) => {
     const { conditions, endpoint } = endpointRule;
     const { result, referenceRecord } = evaluateConditions(conditions, options);
     if (!result) {
         return;
     }
-    const endpointRuleOptions = {
-        ...options,
-        referenceRecord: { ...options.referenceRecord, ...referenceRecord },
-    };
+    const endpointRuleOptions = referenceRecord
+        ? {
+            ...options,
+            referenceRecord: { ...options.referenceRecord, ...referenceRecord },
+        }
+        : options;
     const { url, properties, headers } = endpoint;
     options.logger?.debug?.(`${debugId} Resolving endpoint from template: ${toDebugString(endpoint)}`);
-    return {
-        ...(headers != undefined && {
-            headers: getEndpointHeaders(headers, endpointRuleOptions),
-        }),
-        ...(properties != undefined && {
-            properties: getEndpointProperties(properties, endpointRuleOptions),
-        }),
-        url: getEndpointUrl(url, endpointRuleOptions),
-    };
+    const endpointToReturn = { url: getEndpointUrl(url, endpointRuleOptions) };
+    if (headers != null) {
+        endpointToReturn.headers = getEndpointHeaders(headers, endpointRuleOptions);
+    }
+    if (properties != null) {
+        endpointToReturn.properties = getEndpointProperties(properties, endpointRuleOptions);
+    }
+    return endpointToReturn;
 };
 
 const evaluateErrorRule = (errorRule, options) => {
@@ -39842,10 +40866,13 @@ const evaluateErrorRule = (errorRule, options) => {
     if (!result) {
         return;
     }
-    throw new EndpointError(evaluateExpression(error, "Error", {
-        ...options,
-        referenceRecord: { ...options.referenceRecord, ...referenceRecord },
-    }));
+    const errorRuleOptions = referenceRecord
+        ? {
+            ...options,
+            referenceRecord: { ...options.referenceRecord, ...referenceRecord },
+        }
+        : options;
+    throw new EndpointError(evaluateExpression(error, "Error", errorRuleOptions));
 };
 
 const evaluateRules = (rules, options) => {
@@ -39877,10 +40904,10 @@ const evaluateTreeRule = (treeRule, options) => {
     if (!result) {
         return;
     }
-    return group.evaluateRules(rules, {
-        ...options,
-        referenceRecord: { ...options.referenceRecord, ...referenceRecord },
-    });
+    const treeRuleOptions = referenceRecord
+        ? { ...options, referenceRecord: { ...options.referenceRecord, ...referenceRecord } }
+        : options;
+    return group.evaluateRules(rules, treeRuleOptions);
 };
 const group = {
     evaluateRules,
@@ -39891,20 +40918,15 @@ const resolveEndpoint = (ruleSetObject, options) => {
     const { endpointParams, logger } = options;
     const { parameters, rules } = ruleSetObject;
     options.logger?.debug?.(`${debugId} Initial EndpointParams: ${toDebugString(endpointParams)}`);
-    const paramsWithDefault = Object.entries(parameters)
-        .filter(([, v]) => v.default != null)
-        .map(([k, v]) => [k, v.default]);
-    if (paramsWithDefault.length > 0) {
-        for (const [paramKey, paramDefaultValue] of paramsWithDefault) {
-            endpointParams[paramKey] = endpointParams[paramKey] ?? paramDefaultValue;
+    for (const paramKey in parameters) {
+        const parameter = parameters[paramKey];
+        const endpointParam = endpointParams[paramKey];
+        if (endpointParam == null && parameter.default != null) {
+            endpointParams[paramKey] = parameter.default;
+            continue;
         }
-    }
-    const requiredParams = Object.entries(parameters)
-        .filter(([, v]) => v.required)
-        .map(([k]) => k);
-    for (const requiredParam of requiredParams) {
-        if (endpointParams[requiredParam] == null) {
-            throw new EndpointError(`Missing required parameter: '${requiredParam}'`);
+        if (parameter.required && endpointParam == null) {
+            throw new EndpointError(`Missing required parameter: '${paramKey}'`);
         }
     }
     const endpoint = evaluateRules(rules, { endpointParams, logger, referenceRecord: {} });
@@ -39912,9 +40934,11 @@ const resolveEndpoint = (ruleSetObject, options) => {
     return endpoint;
 };
 
+exports.BinaryDecisionDiagram = BinaryDecisionDiagram;
 exports.EndpointCache = EndpointCache;
 exports.EndpointError = EndpointError;
 exports.customEndpointFunctions = customEndpointFunctions;
+exports.decideEndpoint = decideEndpoint;
 exports.isIpAddress = isIpAddress;
 exports.isValidHostLabel = isValidHostLabel;
 exports.resolveEndpoint = resolveEndpoint;
@@ -127063,7 +128087,7 @@ module.exports = {
 
 
 
-const VERSION = '5.8.4'
+const VERSION = '5.8.5'
 
 const Avvio = __nccwpck_require__(92586)
 const http = __nccwpck_require__(37067)
@@ -133656,16 +134680,14 @@ function getTrustProxyFn (tp) {
   }
   if (typeof tp === 'number') {
     // Support trusting hop count
-    return function (a, i) { return a != null && i < tp }
+    return function (a, i) { return i < tp }
   }
   if (typeof tp === 'string') {
     // Support comma-separated tps
     const values = tp.split(',').map(it => it.trim())
-    const trust = proxyAddr.compile(values)
-    return function (a, i) { return a != null && trust(a, i) }
+    return proxyAddr.compile(values)
   }
-  const trust = proxyAddr.compile(tp)
-  return function (a, i) { return a != null && trust(a, i) }
+  return proxyAddr.compile(tp)
 }
 
 function buildRequest (R, trustProxy) {
@@ -133728,7 +134750,8 @@ function buildRequestWithTrustProxy (R, trustProxy) {
     },
     host: {
       get () {
-        if (this.headers['x-forwarded-host'] && proxyFn(this.raw.socket?.remoteAddress, 0)) {
+        const socketAddr = this.raw.socket?.remoteAddress
+        if (this.headers['x-forwarded-host'] && socketAddr !== null && proxyFn(socketAddr, 0)) {
           return getLastEntryInMultiHeaderValue(this.headers['x-forwarded-host'])
         }
         /**
@@ -133742,7 +134765,8 @@ function buildRequestWithTrustProxy (R, trustProxy) {
     },
     protocol: {
       get () {
-        if (this.headers['x-forwarded-proto'] && proxyFn(this.raw.socket?.remoteAddress, 0)) {
+        const socketAddr = this.raw.socket?.remoteAddress
+        if (this.headers['x-forwarded-proto'] && socketAddr !== null && proxyFn(socketAddr, 0)) {
           return getLastEntryInMultiHeaderValue(this.headers['x-forwarded-proto'])
         }
         if (this.socket) {
@@ -133864,19 +134888,13 @@ Object.defineProperties(Request.prototype, {
   },
   port: {
     get () {
-      // first try taking port from host
-      const portFromHost = parseInt(this.host.split(':').slice(-1)[0])
-      if (!isNaN(portFromHost)) {
-        return portFromHost
+      const portReg = /(?<port>:\d+)$/
+      const host = this.headers.host ?? this.headers[':authority'] ?? ''
+      const matches = portReg.exec(host)
+      if (matches === null || matches[1] === undefined) {
+        return null
       }
-      // now fall back to port from host/:authority header
-      const host = (this.headers.host ?? this.headers[':authority'] ?? '')
-      const portFromHeader = parseInt(host.split(':').slice(-1)[0])
-      if (!isNaN(portFromHeader)) {
-        return portFromHeader
-      }
-      // fall back to null
-      return null
+      return parseInt(matches.groups.port.slice(1), 10)
     }
   },
   protocol: {
@@ -135882,7 +136900,7 @@ function wrapValidationError (result, dataVar, schemaErrorFormatter) {
  */
 function getEssenceMediaType (header) {
   if (!header) return ''
-  return header.split(/[ ;]/, 1)[0].trim().toLowerCase()
+  return header.trimStart().split(/[ ;]/, 1)[0].trim().toLowerCase()
 }
 
 module.exports = {
@@ -150311,7 +151329,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"name":"@actions/cache","version":"6.
 /***/ 27413:
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-s3","description":"AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native","version":"3.1029.0","scripts":{"build":"concurrently \'yarn:build:types\' \'yarn:build:es\' && yarn build:cjs","build:cjs":"node ../../scripts/compilation/inline client-s3","build:es":"tsc -p tsconfig.es.json","build:include:deps":"yarn g:turbo run build -F=\\"$npm_package_name\\"","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"premove dist-cjs dist-es dist-types tsconfig.cjs.tsbuildinfo tsconfig.es.tsbuildinfo tsconfig.types.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo s3","test":"yarn g:vitest run","test:browser":"node ./test/browser-build/esbuild && yarn g:vitest run -c vitest.config.browser.mts","test:browser:watch":"node ./test/browser-build/esbuild && yarn g:vitest watch -c vitest.config.browser.mts","test:e2e":"yarn g:vitest run -c vitest.config.e2e.mts && yarn test:browser","test:e2e:watch":"yarn g:vitest watch -c vitest.config.e2e.mts","test:index":"tsc --noEmit ./test/index-types.ts && node ./test/index-objects.spec.mjs","test:integration":"yarn g:vitest run -c vitest.config.integ.mts","test:integration:watch":"yarn g:vitest watch -c vitest.config.integ.mts","test:watch":"yarn g:vitest watch"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha1-browser":"5.2.0","@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"^3.973.27","@aws-sdk/credential-provider-node":"^3.972.30","@aws-sdk/middleware-bucket-endpoint":"^3.972.9","@aws-sdk/middleware-expect-continue":"^3.972.9","@aws-sdk/middleware-flexible-checksums":"^3.974.7","@aws-sdk/middleware-host-header":"^3.972.9","@aws-sdk/middleware-location-constraint":"^3.972.9","@aws-sdk/middleware-logger":"^3.972.9","@aws-sdk/middleware-recursion-detection":"^3.972.10","@aws-sdk/middleware-sdk-s3":"^3.972.28","@aws-sdk/middleware-ssec":"^3.972.9","@aws-sdk/middleware-user-agent":"^3.972.29","@aws-sdk/region-config-resolver":"^3.972.11","@aws-sdk/signature-v4-multi-region":"^3.996.16","@aws-sdk/types":"^3.973.7","@aws-sdk/util-endpoints":"^3.996.6","@aws-sdk/util-user-agent-browser":"^3.972.9","@aws-sdk/util-user-agent-node":"^3.973.15","@smithy/config-resolver":"^4.4.14","@smithy/core":"^3.23.14","@smithy/eventstream-serde-browser":"^4.2.13","@smithy/eventstream-serde-config-resolver":"^4.3.13","@smithy/eventstream-serde-node":"^4.2.13","@smithy/fetch-http-handler":"^5.3.16","@smithy/hash-blob-browser":"^4.2.14","@smithy/hash-node":"^4.2.13","@smithy/hash-stream-node":"^4.2.13","@smithy/invalid-dependency":"^4.2.13","@smithy/md5-js":"^4.2.13","@smithy/middleware-content-length":"^4.2.13","@smithy/middleware-endpoint":"^4.4.29","@smithy/middleware-retry":"^4.5.0","@smithy/middleware-serde":"^4.2.17","@smithy/middleware-stack":"^4.2.13","@smithy/node-config-provider":"^4.3.13","@smithy/node-http-handler":"^4.5.2","@smithy/protocol-http":"^5.3.13","@smithy/smithy-client":"^4.12.9","@smithy/types":"^4.14.0","@smithy/url-parser":"^4.2.13","@smithy/util-base64":"^4.3.2","@smithy/util-body-length-browser":"^4.2.2","@smithy/util-body-length-node":"^4.2.3","@smithy/util-defaults-mode-browser":"^4.3.45","@smithy/util-defaults-mode-node":"^4.2.49","@smithy/util-endpoints":"^3.3.4","@smithy/util-middleware":"^4.2.13","@smithy/util-retry":"^4.3.0","@smithy/util-stream":"^4.5.22","@smithy/util-utf8":"^4.2.2","@smithy/util-waiter":"^4.2.15","tslib":"^2.6.2"},"devDependencies":{"@aws-sdk/signature-v4-crt":"3.1029.0","@smithy/snapshot-testing":"^2.0.5","@tsconfig/node20":"20.1.8","@types/node":"^20.14.8","concurrently":"7.0.0","downlevel-dts":"0.10.1","premove":"4.0.0","typescript":"~5.8.3","vitest":"^4.0.17"},"engines":{"node":">=20.0.0"},"typesVersions":{"<4.5":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-s3","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-s3"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-s3","description":"AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native","version":"3.1035.0","scripts":{"build":"concurrently \'yarn:build:types\' \'yarn:build:es\' && yarn build:cjs","build:cjs":"node ../../scripts/compilation/inline client-s3","build:es":"tsc -p tsconfig.es.json","build:include:deps":"yarn g:turbo run build -F=\\"$npm_package_name\\"","build:types":"tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"premove dist-cjs dist-es dist-types tsconfig.cjs.tsbuildinfo tsconfig.es.tsbuildinfo tsconfig.types.tsbuildinfo","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service --solo s3","test":"yarn g:vitest run","test:browser":"node ./test/browser-build/esbuild && yarn g:vitest run -c vitest.config.browser.mts","test:browser:watch":"node ./test/browser-build/esbuild && yarn g:vitest watch -c vitest.config.browser.mts","test:e2e":"yarn g:vitest run -c vitest.config.e2e.mts && yarn test:browser","test:e2e:watch":"yarn g:vitest watch -c vitest.config.e2e.mts","test:index":"tsc --noEmit ./test/index-types.ts && node ./test/index-objects.spec.mjs","test:integration":"yarn g:vitest run -c vitest.config.integ.mts","test:integration:watch":"yarn g:vitest watch -c vitest.config.integ.mts","test:watch":"yarn g:vitest watch"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha1-browser":"5.2.0","@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"^3.974.4","@aws-sdk/credential-provider-node":"^3.972.35","@aws-sdk/middleware-bucket-endpoint":"^3.972.10","@aws-sdk/middleware-expect-continue":"^3.972.10","@aws-sdk/middleware-flexible-checksums":"^3.974.12","@aws-sdk/middleware-host-header":"^3.972.10","@aws-sdk/middleware-location-constraint":"^3.972.10","@aws-sdk/middleware-logger":"^3.972.10","@aws-sdk/middleware-recursion-detection":"^3.972.11","@aws-sdk/middleware-sdk-s3":"^3.972.33","@aws-sdk/middleware-ssec":"^3.972.10","@aws-sdk/middleware-user-agent":"^3.972.34","@aws-sdk/region-config-resolver":"^3.972.13","@aws-sdk/signature-v4-multi-region":"^3.996.21","@aws-sdk/types":"^3.973.8","@aws-sdk/util-endpoints":"^3.996.8","@aws-sdk/util-user-agent-browser":"^3.972.10","@aws-sdk/util-user-agent-node":"^3.973.20","@smithy/config-resolver":"^4.4.17","@smithy/core":"^3.23.16","@smithy/eventstream-serde-browser":"^4.2.14","@smithy/eventstream-serde-config-resolver":"^4.3.14","@smithy/eventstream-serde-node":"^4.2.14","@smithy/fetch-http-handler":"^5.3.17","@smithy/hash-blob-browser":"^4.2.15","@smithy/hash-node":"^4.2.14","@smithy/hash-stream-node":"^4.2.14","@smithy/invalid-dependency":"^4.2.14","@smithy/md5-js":"^4.2.14","@smithy/middleware-content-length":"^4.2.14","@smithy/middleware-endpoint":"^4.4.31","@smithy/middleware-retry":"^4.5.4","@smithy/middleware-serde":"^4.2.19","@smithy/middleware-stack":"^4.2.14","@smithy/node-config-provider":"^4.3.14","@smithy/node-http-handler":"^4.6.0","@smithy/protocol-http":"^5.3.14","@smithy/smithy-client":"^4.12.12","@smithy/types":"^4.14.1","@smithy/url-parser":"^4.2.14","@smithy/util-base64":"^4.3.2","@smithy/util-body-length-browser":"^4.2.2","@smithy/util-body-length-node":"^4.2.3","@smithy/util-defaults-mode-browser":"^4.3.48","@smithy/util-defaults-mode-node":"^4.2.53","@smithy/util-endpoints":"^3.4.2","@smithy/util-middleware":"^4.2.14","@smithy/util-retry":"^4.3.3","@smithy/util-stream":"^4.5.24","@smithy/util-utf8":"^4.2.2","@smithy/util-waiter":"^4.2.16","tslib":"^2.6.2"},"devDependencies":{"@aws-sdk/signature-v4-crt":"3.1035.0","@smithy/snapshot-testing":"^2.0.7","@tsconfig/node20":"20.1.8","@types/node":"^20.14.8","concurrently":"7.0.0","downlevel-dts":"0.10.1","premove":"4.0.0","typescript":"~5.8.3","vitest":"^4.0.17"},"engines":{"node":">=20.0.0"},"typesVersions":{"<4.5":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-s3","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-s3"}}');
 
 /***/ }),
 
@@ -150778,6 +151796,8 @@ var main = __nccwpck_require__(18889);
 // EXTERNAL MODULE: ./node_modules/fastify/fastify.js
 var fastify_fastify = __nccwpck_require__(16703);
 var fastify_default = /*#__PURE__*/__nccwpck_require__.n(fastify_fastify);
+// EXTERNAL MODULE: external "fs"
+var external_fs_ = __nccwpck_require__(79896);
 // EXTERNAL MODULE: external "path"
 var external_path_ = __nccwpck_require__(16928);
 ;// CONCATENATED MODULE: ./src/lib/env/index.ts
@@ -150923,8 +151943,6 @@ function escapeProperty(s) {
 //# sourceMappingURL=command.js.map
 // EXTERNAL MODULE: external "crypto"
 var external_crypto_ = __nccwpck_require__(76982);
-// EXTERNAL MODULE: external "fs"
-var external_fs_ = __nccwpck_require__(79896);
 ;// CONCATENATED MODULE: ./node_modules/@actions/core/lib/file-command.js
 // For internal use, subject to change.
 // We use any as a valid input type
@@ -153988,6 +155006,9 @@ const serverPort = parseInt(constants_getInput('server-port', 'SERVER_PORT') || 
 const cachePath = 'turbogha_';
 const cachePrefix = constants_getInput('cache-prefix', 'CACHE_PREFIX') || cachePath;
 const getCacheKey = (hash, tag) => `${cachePrefix}${hash}${tag ? `#${tag}` : ''}`;
+const serverPortFile = env.RUNNER_TEMP
+    ? (0,external_path_.join)(env.RUNNER_TEMP, 'turbogha-port')
+    : '/tmp/turbogha-port';
 const serverLogFile = env.RUNNER_TEMP
     ? (0,external_path_.join)(env.RUNNER_TEMP, 'turbogha.log')
     : '/tmp/turbogha.log';
@@ -199206,6 +200227,8 @@ const getProvider = (tracker) => {
     throw new Error(`Provider ${provider} not supported`);
 };
 
+;// CONCATENATED MODULE: external "timers/promises"
+const external_timers_promises_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("timers/promises");
 // EXTERNAL MODULE: ./node_modules/wait-on/lib/wait-on.js
 var wait_on = __nccwpck_require__(1503);
 var wait_on_default = /*#__PURE__*/__nccwpck_require__.n(wait_on);
@@ -199215,15 +200238,68 @@ var wait_on_default = /*#__PURE__*/__nccwpck_require__.n(wait_on);
 
 
 
-const waitForServer = async () => {
+
+const readPortFromFile = (file) => {
+    if (!(0,external_fs_.existsSync)(file))
+        return undefined;
+    const raw = (0,external_fs_.readFileSync)(file, 'utf-8').trim();
+    const port = parseInt(raw, 10);
+    return !Number.isNaN(port) && port > 0 ? port : undefined;
+};
+/**
+ * Poll for the actual port from the port file. When port 0 is configured,
+ * the OS assigns an ephemeral port and the server writes it to a port file
+ * after binding. This function polls synchronously with a short timeout.
+ *
+ * Accepts explicit overrides for testability; defaults to module-level constants.
+ */
+const readActualPort = (timeoutMs = 5000, portOverride, portFileOverride) => {
+    const port_ = portOverride ?? serverPort;
+    const file_ = portFileOverride ?? serverPortFile;
+    if (port_ !== 0)
+        return port_;
+    const deadline = Date.now() + timeoutMs;
+    while (Date.now() < deadline) {
+        const port = readPortFromFile(file_);
+        if (port !== undefined)
+            return port;
+        // Synchronous sleep — we're in a setup-phase spin-wait, not on a hot path.
+        // spawnSync is cheap and yields the CPU unlike a busy-wait loop.
+        (0,external_child_process_namespaceObject.spawnSync)('sleep', ['0.05']);
+    }
+    throw new Error(`Timed out waiting for server to write its port to ${file_}`);
+};
+const readActualPortAsync = async (timeoutMs = 5000, portOverride, portFileOverride) => {
+    const port_ = portOverride ?? serverPort;
+    const file_ = portFileOverride ?? serverPortFile;
+    if (port_ !== 0)
+        return port_;
+    const deadline = Date.now() + timeoutMs;
+    while (Date.now() < deadline) {
+        const port = readPortFromFile(file_);
+        if (port !== undefined)
+            return port;
+        await (0,external_timers_promises_namespaceObject.setTimeout)(50);
+    }
+    throw new Error(`Timed out waiting for server to write its port to ${file_}`);
+};
+const waitForServer = async (port) => {
+    const effectivePort = port ?? serverPort;
     await wait_on_default()({
-        resources: [`http-get://localhost:${serverPort}`],
+        resources: [`http-get://localhost:${effectivePort}`],
         timeout: 5000
     }).catch(e => {
-        // Display logs of the server
-        const logs = (0,external_fs_.readFileSync)(serverLogFile, 'utf-8');
-        core_core.log('Server logs:');
-        core_core.error(logs);
+        core_core.error(`Timed out waiting for cache server on port ${effectivePort}. ` +
+            `This often means the server failed to start — check the logs below for EADDRINUSE or other binding errors. ` +
+            `If the port is already in use, set server-port to 0 for automatic port assignment.`);
+        // Surface the server log file for diagnosis
+        try {
+            const logs = (0,external_fs_.readFileSync)(serverLogFile, 'utf-8');
+            core_core.error(`Server logs (${serverLogFile}):\n${logs}`);
+        }
+        catch {
+            core_core.error(`Server log file not found at ${serverLogFile} — the server process may not have started`);
+        }
         throw e;
     });
 };
@@ -199232,6 +200308,13 @@ const utils_exportVariable = (name, value) => {
     core_core.log(`  ${name}=${value}`);
 };
 async function launchServer(devRun) {
+    //* Remove stale port file from a previous invocation
+    try {
+        (0,external_fs_.rmSync)(serverPortFile, { force: true });
+    }
+    catch {
+        // ignore — file may not exist
+    }
     if (!devRun) {
         //* Launch a detached child process to run the server
         // See: https://nodejs.org/docs/latest-v16.x/api/child_process.html#optionsdetached
@@ -199247,14 +200330,16 @@ async function launchServer(devRun) {
         core_core.log(`Launched child process: ${child.pid}`);
         core_core.log(`Server log file: ${serverLogFile}`);
     }
+    //* Resolve the actual port (reads port file when port 0 was requested)
+    const actualPort = await readActualPortAsync();
     //* Wait for server
-    await waitForServer();
-    core_core.info(`Server is now up and running.`);
+    await waitForServer(actualPort);
+    core_core.info(`Server is now up and running on port ${actualPort}.`);
     //* Export the environment variables for Turbo
     if (devRun) {
         console.log('Execute:');
-        console.log(`export TURBOGHA_PORT=${serverPort}`);
-        console.log(`export TURBO_API=http://localhost:${serverPort}`);
+        console.log(`export TURBOGHA_PORT=${actualPort}`);
+        console.log(`export TURBO_API=http://localhost:${actualPort}`);
         console.log(`export TURBO_TOKEN=turbogha`);
         console.log(`export TURBO_TEAM=turbogha`);
     }
@@ -199265,17 +200350,25 @@ async function launchServer(devRun) {
         else {
             core_core.info('You need to use the following environment variables for turbo to work:');
         }
-        utils_exportVariable('TURBOGHA_PORT', `${serverPort}`);
-        utils_exportVariable('TURBO_API', `http://localhost:${serverPort}`);
+        utils_exportVariable('TURBOGHA_PORT', `${actualPort}`);
+        utils_exportVariable('TURBO_API', `http://localhost:${actualPort}`);
         utils_exportVariable('TURBO_TOKEN', 'turbogha');
         utils_exportVariable('TURBO_TEAM', 'turbogha');
     }
 }
 async function killServer() {
     //* Kill the server
-    await fetch(`http://localhost:${serverPort}/shutdown`, {
+    const actualPort = readActualPort(500);
+    await fetch(`http://localhost:${actualPort}/shutdown`, {
         method: 'DELETE'
     });
+    //* Clean up the port file
+    try {
+        (0,external_fs_.rmSync)(serverPortFile, { force: true });
+    }
+    catch {
+        // ignore — best-effort cleanup
+    }
 }
 const parseFileSize = (size) => {
     const units = {
@@ -199332,7 +200425,7 @@ async function cleanup(ctx, tracker) {
         core_core.error('Cleanup options are not available when using the GitHub provider');
         throw new Error('Cleanup options are not available when using the GitHub provider');
     }
-    let files = [];
+    let files;
     try {
         files = await provider.list();
     }
@@ -199399,6 +200492,7 @@ const getTracker = () => ({
 });
 
 ;// CONCATENATED MODULE: ./src/lib/server/index.ts
+
 
 
 
@@ -199574,6 +200668,14 @@ async function server() {
     });
     //* Start the server
     await fastify.listen({ port: serverPort });
+    //* Write the actual port to a file so the parent process can discover it
+    const address = fastify.server.address();
+    const actualPort = address && typeof address === 'object' ? address.port : serverPort;
+    if (actualPort <= 0) {
+        throw new Error(`Server bound but resolved port is ${actualPort} — ` +
+            `fastify.server.address() returned ${JSON.stringify(address)}`);
+    }
+    (0,external_fs_.writeFileSync)(serverPortFile, String(actualPort));
 }
 
 ;// CONCATENATED MODULE: ./src/lib/ping.ts
@@ -199581,12 +200683,14 @@ async function server() {
 
 const ping = async () => {
     try {
+        //* Short timeout: port file either exists already or server never started
+        const actualPort = readActualPort(500);
         const controller = new AbortController();
         const timeoutId = setTimeout(() => {
             core_core.error('Cache provider test timed out');
             controller.abort();
         }, 15000);
-        const response = await fetch(`http://localhost:${serverPort}/ping`, {
+        const response = await fetch(`http://localhost:${actualPort}/ping`, {
             signal: controller.signal
         });
         clearTimeout(timeoutId);

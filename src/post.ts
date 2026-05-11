@@ -1,14 +1,19 @@
 import { readFile } from 'fs/promises'
-import { serverLogFile, serverPort } from './lib/constants'
+import { serverLogFile } from './lib/constants'
 import { core } from './lib/core'
+import { readActualPort } from './lib/server/utils'
 
 /**
  * The out script for the action.
  */
 async function post(): Promise<void> {
   try {
+    //* Read the actual port (supports port 0 auto-assignment)
+    //* Short timeout: in post hook the port file either exists already or never will
+    const actualPort = readActualPort(500)
+
     //* Kill the server
-    await fetch(`http://localhost:${serverPort}/shutdown`, {
+    await fetch(`http://localhost:${actualPort}/shutdown`, {
       method: 'DELETE'
     })
 

@@ -212,7 +212,7 @@ provided):
 with:
   cache-prefix: turbogha_ # Custom prefix for cache keys
   provider: github # Storage provider: 'github' (default) or 's3'
-  server-port: 41230 # Port for the caching server (default: 41230)
+  server-port: 41230 # Port for the caching server (default: 41230, use 0 for auto-assign)
 
   # S3 Provider Configuration (variables will be read from environment variables if not provided)
   s3-access-key-id: ${{ secrets.S3_ACCESS_KEY_ID }} # S3 access key

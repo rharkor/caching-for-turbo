@@ -4,6 +4,9 @@
     "test-build": {
       "inputs": ["src"],
       "outputs": ["dist"]
+    },
+    "test-unit": {
+      "inputs": ["src", "__tests__", "__mocks__", "jest.config.ts"]
     }
   }
 }
