@@ -200227,6 +200227,8 @@ const getProvider = (tracker) => {
     throw new Error(`Provider ${provider} not supported`);
 };
 
+;// CONCATENATED MODULE: external "timers/promises"
+const external_timers_promises_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("timers/promises");
 // EXTERNAL MODULE: ./node_modules/wait-on/lib/wait-on.js
 var wait_on = __nccwpck_require__(1503);
 var wait_on_default = /*#__PURE__*/__nccwpck_require__.n(wait_on);
@@ -200236,10 +200238,18 @@ var wait_on_default = /*#__PURE__*/__nccwpck_require__.n(wait_on);
 
 
 
+
+const readPortFromFile = (file) => {
+    if (!(0,external_fs_.existsSync)(file))
+        return undefined;
+    const raw = (0,external_fs_.readFileSync)(file, 'utf-8').trim();
+    const port = parseInt(raw, 10);
+    return !Number.isNaN(port) && port > 0 ? port : undefined;
+};
 /**
  * Poll for the actual port from the port file. When port 0 is configured,
  * the OS assigns an ephemeral port and the server writes it to a port file
- * after binding. This function polls for that file with a short timeout.
+ * after binding. This function polls synchronously with a short timeout.
  *
  * Accepts explicit overrides for testability; defaults to module-level constants.
  */
@@ -200249,17 +200259,27 @@ const readActualPort = (timeoutMs = 5000, portOverride, portFileOverride) => {
     if (port_ !== 0)
         return port_;
     const deadline = Date.now() + timeoutMs;
-    const interval = 50;
     while (Date.now() < deadline) {
-        if ((0,external_fs_.existsSync)(file_)) {
-            const raw = (0,external_fs_.readFileSync)(file_, 'utf-8').trim();
-            const port = parseInt(raw, 10);
-            if (!isNaN(port) && port > 0)
-                return port;
-        }
+        const port = readPortFromFile(file_);
+        if (port !== undefined)
+            return port;
         // Synchronous sleep — we're in a setup-phase spin-wait, not on a hot path.
         // spawnSync is cheap and yields the CPU unlike a busy-wait loop.
         (0,external_child_process_namespaceObject.spawnSync)('sleep', ['0.05']);
+    }
+    throw new Error(`Timed out waiting for server to write its port to ${file_}`);
+};
+const readActualPortAsync = async (timeoutMs = 5000, portOverride, portFileOverride) => {
+    const port_ = portOverride ?? serverPort;
+    const file_ = portFileOverride ?? serverPortFile;
+    if (port_ !== 0)
+        return port_;
+    const deadline = Date.now() + timeoutMs;
+    while (Date.now() < deadline) {
+        const port = readPortFromFile(file_);
+        if (port !== undefined)
+            return port;
+        await (0,external_timers_promises_namespaceObject.setTimeout)(50);
     }
     throw new Error(`Timed out waiting for server to write its port to ${file_}`);
 };
@@ -200311,7 +200331,7 @@ async function launchServer(devRun) {
         core_core.log(`Server log file: ${serverLogFile}`);
     }
     //* Resolve the actual port (reads port file when port 0 was requested)
-    const actualPort = readActualPort();
+    const actualPort = await readActualPortAsync();
     //* Wait for server
     await waitForServer(actualPort);
     core_core.info(`Server is now up and running on port ${actualPort}.`);

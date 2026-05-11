@@ -1,5 +1,6 @@
 import { spawn, spawnSync } from 'child_process'
 import { existsSync, openSync, readFileSync, rmSync } from 'fs'
+import { setTimeout as sleep } from 'timers/promises'
 import waitOn from 'wait-on'
 import {
   cachePath,
@@ -10,10 +11,18 @@ import {
 } from '../constants'
 import { core } from '../core'
 
+const readPortFromFile = (file: string): number | undefined => {
+  if (!existsSync(file)) return undefined
+
+  const raw = readFileSync(file, 'utf-8').trim()
+  const port = parseInt(raw, 10)
+  return !Number.isNaN(port) && port > 0 ? port : undefined
+}
+
 /**
  * Poll for the actual port from the port file. When port 0 is configured,
  * the OS assigns an ephemeral port and the server writes it to a port file
- * after binding. This function polls for that file with a short timeout.
+ * after binding. This function polls synchronously with a short timeout.
  *
  * Accepts explicit overrides for testability; defaults to module-level constants.
  */
@@ -26,16 +35,31 @@ export const readActualPort = (
   const file_ = portFileOverride ?? serverPortFile
   if (port_ !== 0) return port_
   const deadline = Date.now() + timeoutMs
-  const interval = 50
   while (Date.now() < deadline) {
-    if (existsSync(file_)) {
-      const raw = readFileSync(file_, 'utf-8').trim()
-      const port = parseInt(raw, 10)
-      if (!isNaN(port) && port > 0) return port
-    }
+    const port = readPortFromFile(file_)
+    if (port !== undefined) return port
+
     // Synchronous sleep — we're in a setup-phase spin-wait, not on a hot path.
     // spawnSync is cheap and yields the CPU unlike a busy-wait loop.
     spawnSync('sleep', ['0.05'])
+  }
+  throw new Error(`Timed out waiting for server to write its port to ${file_}`)
+}
+
+export const readActualPortAsync = async (
+  timeoutMs = 5000,
+  portOverride?: number,
+  portFileOverride?: string
+): Promise<number> => {
+  const port_ = portOverride ?? serverPort
+  const file_ = portFileOverride ?? serverPortFile
+  if (port_ !== 0) return port_
+  const deadline = Date.now() + timeoutMs
+  while (Date.now() < deadline) {
+    const port = readPortFromFile(file_)
+    if (port !== undefined) return port
+
+    await sleep(50)
   }
   throw new Error(`Timed out waiting for server to write its port to ${file_}`)
 }
@@ -94,7 +118,7 @@ export async function launchServer(devRun?: boolean): Promise<void> {
   }
 
   //* Resolve the actual port (reads port file when port 0 was requested)
-  const actualPort = readActualPort()
+  const actualPort = await readActualPortAsync()
 
   //* Wait for server
   await waitForServer(actualPort)

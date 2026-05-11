@@ -15,11 +15,13 @@ process.env.CI = 'true'
 // Import the real function — it reads module-level constants at import time,
 // but we bypass them via the portOverride / portFileOverride params.
 let readActualPort: typeof import('@/lib/server/utils').readActualPort
+let readActualPortAsync: typeof import('@/lib/server/utils').readActualPortAsync
 let parseFileSize: typeof import('@/lib/server/utils').parseFileSize
 
 beforeEach(async () => {
   const mod = await import('@/lib/server/utils')
   readActualPort = mod.readActualPort
+  readActualPortAsync = mod.readActualPortAsync
   parseFileSize = mod.parseFileSize
 })
 
@@ -72,6 +74,43 @@ describe('readActualPort', () => {
     const portFile = join(tempDir, 'turbogha-port')
     writeFileSync(portFile, '  12345\n')
     expect(readActualPort(5000, 0, portFile)).toBe(12345)
+  })
+})
+
+describe('readActualPortAsync', () => {
+  let tempDir: string
+
+  beforeEach(() => {
+    tempDir = mkdtempSync(join(tmpdir(), 'turbogha-test-'))
+  })
+
+  afterEach(() => {
+    rmSync(tempDir, { recursive: true, force: true })
+  })
+
+  it('returns serverPort directly when it is not 0', async () => {
+    const portFile = join(tempDir, 'turbogha-port')
+    await expect(readActualPortAsync(5000, 41230, portFile)).resolves.toBe(
+      41230
+    )
+  })
+
+  it('does not block the event loop while waiting for the port file', async () => {
+    const portFile = join(tempDir, 'turbogha-port')
+    const portPromise = readActualPortAsync(1000, 0, portFile)
+
+    setTimeout(() => {
+      writeFileSync(portFile, '54321')
+    }, 0)
+
+    await expect(portPromise).resolves.toBe(54321)
+  })
+
+  it('throws when port file does not appear within timeout', async () => {
+    const portFile = join(tempDir, 'turbogha-port-missing')
+    await expect(readActualPortAsync(100, 0, portFile)).rejects.toThrow(
+      /Timed out waiting for server to write its port/
+    )
   })
 })
 
