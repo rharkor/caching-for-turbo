@@ -60,7 +60,9 @@ inputs:
     required: false
     default: 'https://s3.amazonaws.com'
   server-port:
-    description: 'Port for the caching server (default: 41230)'
+    description:
+      'Port for the caching server. Use 0 for automatic port assignment to avoid
+      EADDRINUSE conflicts on shared runners (default: 41230)'
     required: false
     default: '41230'
 runs:

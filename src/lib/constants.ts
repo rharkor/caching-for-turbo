@@ -23,6 +23,9 @@ export const cachePath = 'turbogha_'
 export const cachePrefix = getInput('cache-prefix', 'CACHE_PREFIX') || cachePath
 export const getCacheKey = (hash: string, tag?: string): string =>
   `${cachePrefix}${hash}${tag ? `#${tag}` : ''}`
+export const serverPortFile = env.RUNNER_TEMP
+  ? join(env.RUNNER_TEMP, 'turbogha-port')
+  : '/tmp/turbogha-port'
 export const serverLogFile = env.RUNNER_TEMP
   ? join(env.RUNNER_TEMP, 'turbogha.log')
   : '/tmp/turbogha.log'

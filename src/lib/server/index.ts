@@ -1,5 +1,6 @@
 import Fastify from 'fastify'
-import { serverPort } from '../constants'
+import { writeFileSync } from 'fs'
+import { serverPort, serverPortFile } from '../constants'
 import { cleanup } from './cleanup'
 import { getProvider } from '../providers'
 import { Readable } from 'stream'
@@ -211,4 +212,16 @@ export async function server(): Promise<void> {
 
   //* Start the server
   await fastify.listen({ port: serverPort })
+
+  //* Write the actual port to a file so the parent process can discover it
+  const address = fastify.server.address()
+  const actualPort =
+    address && typeof address === 'object' ? address.port : serverPort
+  if (actualPort <= 0) {
+    throw new Error(
+      `Server bound but resolved port is ${actualPort} — ` +
+        `fastify.server.address() returned ${JSON.stringify(address)}`
+    )
+  }
+  writeFileSync(serverPortFile, String(actualPort))
 }

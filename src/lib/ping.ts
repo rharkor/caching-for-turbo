@@ -1,15 +1,17 @@
 import { core } from './core'
-import { serverPort } from './constants'
+import { readActualPort } from './server/utils'
 
 export const ping = async () => {
   try {
+    //* Short timeout: port file either exists already or server never started
+    const actualPort = readActualPort(500)
     const controller = new AbortController()
     const timeoutId = setTimeout(() => {
       core.error('Cache provider test timed out')
       controller.abort()
     }, 15000)
 
-    const response = await fetch(`http://localhost:${serverPort}/ping`, {
+    const response = await fetch(`http://localhost:${actualPort}/ping`, {
       signal: controller.signal
     })
     clearTimeout(timeoutId)

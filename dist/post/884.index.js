@@ -2,7 +2,7 @@ export const id = 884;
 export const ids = [884];
 export const modules = {
 
-/***/ 6884:
+/***/ 96884:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 // ESM COMPAT FLAG
@@ -253,7 +253,7 @@ const ansiStyles = assembleStyles();
 // EXTERNAL MODULE: external "node:process"
 var external_node_process_ = __webpack_require__(1708);
 // EXTERNAL MODULE: external "node:os"
-var external_node_os_ = __webpack_require__(8161);
+var external_node_os_ = __webpack_require__(48161);
 // EXTERNAL MODULE: external "node:tty"
 var external_node_tty_ = __webpack_require__(7066);
 ;// CONCATENATED MODULE: ./node_modules/@rharkor/logger/node_modules/chalk/source/vendor/supports-color/index.js

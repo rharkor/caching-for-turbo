@@ -17,5 +17,12 @@
       "@/*": ["./src/*"]
     }
   },
-  "exclude": ["./dist", "./node_modules", "./__tests__", "./coverage"]
+  "exclude": [
+    "./dist",
+    "./node_modules",
+    "./__tests__",
+    "./__mocks__",
+    "./coverage",
+    "./jest.config.ts"
+  ]
 }
