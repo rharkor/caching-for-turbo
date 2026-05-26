@@ -8,7 +8,7 @@ export const modules = {
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.checkUrl = void 0;
-const property_provider_1 = __webpack_require__(71238);
+const config_1 = __webpack_require__(47291);
 const LOOPBACK_CIDR_IPv4 = "127.0.0.0/8";
 const LOOPBACK_CIDR_IPv6 = "::1/128";
 const ECS_CONTAINER_HOST = "169.254.170.2";
@@ -45,7 +45,7 @@ const checkUrl = (url, logger) => {
             return;
         }
     }
-    throw new property_provider_1.CredentialsProviderError(`URL not accepted. It must either be HTTPS or match one of the following:
+    throw new config_1.CredentialsProviderError(`URL not accepted. It must either be HTTPS or match one of the following:
   - loopback CIDR 127.0.0.0/8 or [::1/128]
   - ECS container host 169.254.170.2
   - EKS container host 169.254.170.23 or [fd00:ec2::23]`, { logger });
@@ -63,8 +63,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.fromHttp = void 0;
 const tslib_1 = __webpack_require__(61860);
 const client_1 = __webpack_require__(5152);
+const config_1 = __webpack_require__(47291);
 const node_http_handler_1 = __webpack_require__(61279);
-const property_provider_1 = __webpack_require__(71238);
 const promises_1 = tslib_1.__importDefault(__webpack_require__(51455));
 const checkUrl_1 = __webpack_require__(1509);
 const requestHelpers_1 = __webpack_require__(78914);
@@ -101,7 +101,7 @@ const fromHttp = (options = {}) => {
         host = `${DEFAULT_LINK_LOCAL_HOST}${relative}`;
     }
     else {
-        throw new property_provider_1.CredentialsProviderError(`No HTTP credential provider host provided.
+        throw new config_1.CredentialsProviderError(`No HTTP credential provider host provided.
 Set AWS_CONTAINER_CREDENTIALS_FULL_URI or AWS_CONTAINER_CREDENTIALS_RELATIVE_URI.`, { logger: options.logger });
     }
     const url = new URL(host);
@@ -123,7 +123,7 @@ Set AWS_CONTAINER_CREDENTIALS_FULL_URI or AWS_CONTAINER_CREDENTIALS_RELATIVE_URI
             return (0, requestHelpers_1.getCredentials)(result.response).then((creds) => (0, client_1.setCredentialFeature)(creds, "CREDENTIALS_HTTP", "z"));
         }
         catch (e) {
-            throw new property_provider_1.CredentialsProviderError(String(e), { logger: options.logger });
+            throw new config_1.CredentialsProviderError(String(e), { logger: options.logger });
         }
     }, options.maxRetries ?? 3, options.timeout ?? 1000);
 };
@@ -139,12 +139,12 @@ exports.fromHttp = fromHttp;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.createGetRequest = createGetRequest;
 exports.getCredentials = getCredentials;
-const property_provider_1 = __webpack_require__(71238);
-const protocol_http_1 = __webpack_require__(72356);
-const smithy_client_1 = __webpack_require__(61411);
-const util_stream_1 = __webpack_require__(4252);
+const config_1 = __webpack_require__(47291);
+const protocols_1 = __webpack_require__(93422);
+const serde_1 = __webpack_require__(92430);
+const serde_2 = __webpack_require__(92430);
 function createGetRequest(url) {
-    return new protocol_http_1.HttpRequest({
+    return new protocols_1.HttpRequest({
         protocol: url.protocol,
         hostname: url.hostname,
         port: Number(url.port),
@@ -157,7 +157,7 @@ function createGetRequest(url) {
     });
 }
 async function getCredentials(response, logger) {
-    const stream = (0, util_stream_1.sdkStreamMixin)(response.body);
+    const stream = (0, serde_2.sdkStreamMixin)(response.body);
     const str = await stream.transformToString();
     if (response.statusCode === 200) {
         const parsed = JSON.parse(str);
@@ -165,14 +165,14 @@ async function getCredentials(response, logger) {
             typeof parsed.SecretAccessKey !== "string" ||
             typeof parsed.Token !== "string" ||
             typeof parsed.Expiration !== "string") {
-            throw new property_provider_1.CredentialsProviderError("HTTP credential provider response not of the required format, an object matching: " +
+            throw new config_1.CredentialsProviderError("HTTP credential provider response not of the required format, an object matching: " +
                 "{ AccessKeyId: string, SecretAccessKey: string, Token: string, Expiration: string(rfc3339) }", { logger });
         }
         return {
             accessKeyId: parsed.AccessKeyId,
             secretAccessKey: parsed.SecretAccessKey,
             sessionToken: parsed.Token,
-            expiration: (0, smithy_client_1.parseRfc3339DateTime)(parsed.Expiration),
+            expiration: (0, serde_1.parseRfc3339DateTime)(parsed.Expiration),
         };
     }
     if (response.statusCode >= 400 && response.statusCode < 500) {
@@ -181,12 +181,12 @@ async function getCredentials(response, logger) {
             parsedBody = JSON.parse(str);
         }
         catch (e) { }
-        throw Object.assign(new property_provider_1.CredentialsProviderError(`Server responded with status: ${response.statusCode}`, { logger }), {
+        throw Object.assign(new config_1.CredentialsProviderError(`Server responded with status: ${response.statusCode}`, { logger }), {
             Code: parsedBody.Code,
             Message: parsedBody.Message,
         });
     }
-    throw new property_provider_1.CredentialsProviderError(`Server responded with status: ${response.statusCode}`, { logger });
+    throw new config_1.CredentialsProviderError(`Server responded with status: ${response.statusCode}`, { logger });
 }
 
 
@@ -219,12 +219,13 @@ exports.retryWrapper = retryWrapper;
 /***/ 98605:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-var __webpack_unused_export__;
 
-__webpack_unused_export__ = ({ value: true });
-exports.fromHttp = void 0;
-var fromHttp_1 = __webpack_require__(68712);
-Object.defineProperty(exports, "fromHttp", ({ enumerable: true, get: function () { return fromHttp_1.fromHttp; } }));
+
+var fromHttp = __webpack_require__(68712);
+
+
+
+exports.fromHttp = fromHttp.fromHttp;
 
 
 /***/ })
