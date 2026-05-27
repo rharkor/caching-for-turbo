@@ -154952,6 +154952,14 @@ const core_core = {
             dist_logger.info(message);
         }
     },
+    warning: (message) => {
+        if (isCI) {
+            warning(message);
+        }
+        else {
+            dist_logger.info(message);
+        }
+    },
     error: (message) => {
         if (isCI) {
             core_error(message);
@@ -199887,6 +199895,15 @@ function saveCacheV2(paths_1, key_1, options_1) {
 
 
 
+function utils_sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+function isRateLimitError(error) {
+    if (!(error instanceof Error))
+        return false;
+    const msg = error.message.toLowerCase();
+    return msg.includes('429') || msg.includes('rate limit');
+}
 class HandledError extends Error {
     status;
     statusText;
@@ -199932,7 +199949,23 @@ function getCacheClient() {
     };
     const restore = async (path, key) => {
         core_core.info(`Querying cache for key: ${key}, path: ${path}`);
-        return restoreCache([path], key, []);
+        try {
+            return await restoreCache([path], key, []);
+        }
+        catch (error) {
+            if (isRateLimitError(error)) {
+                core_core.warning(`Rate limited restoring cache for key ${key}, retrying in 1s`);
+                await utils_sleep(1000);
+                try {
+                    return await restoreCache([path], key, []);
+                }
+                catch (retryError) {
+                    core_core.warning(`Failed to restore cache for key ${key} after retry: ${retryError}`);
+                    return undefined;
+                }
+            }
+            throw error;
+        }
     };
     return {
         save,
