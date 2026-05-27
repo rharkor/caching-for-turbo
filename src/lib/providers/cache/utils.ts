@@ -6,6 +6,17 @@ import { unlink } from 'node:fs/promises'
 import { getTempCachePath } from '../../constants'
 import { restoreCache, saveCache } from '@actions/cache'
 import { core } from '@/lib/core'
+
+function sleep(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+function isRateLimitError(error: unknown): boolean {
+  if (!(error instanceof Error)) return false
+  const msg = error.message.toLowerCase()
+  return msg.includes('429') || msg.includes('rate limit')
+}
+
 class HandledError extends Error {
   status: number
   statusText: string
@@ -60,7 +71,25 @@ export function getCacheClient() {
   ): Promise<string | undefined> => {
     core.info(`Querying cache for key: ${key}, path: ${path}`)
 
-    return restoreCache([path], key, [])
+    try {
+      return await restoreCache([path], key, [])
+    } catch (error) {
+      if (isRateLimitError(error)) {
+        core.warning(
+          `Rate limited restoring cache for key ${key}, retrying in 1s`
+        )
+        await sleep(1000)
+        try {
+          return await restoreCache([path], key, [])
+        } catch (retryError) {
+          core.warning(
+            `Failed to restore cache for key ${key} after retry: ${retryError}`
+          )
+          return undefined
+        }
+      }
+      throw error
+    }
   }
 
   return {
