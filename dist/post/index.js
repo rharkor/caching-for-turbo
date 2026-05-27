@@ -67493,7 +67493,7 @@ function error(message, properties = {}) {
  * @param properties optional properties to add to the annotation.
  */
 function warning(message, properties = {}) {
-    issueCommand('warning', toCommandProperties(properties), message instanceof Error ? message.toString() : message);
+    command_issueCommand('warning', utils_toCommandProperties(properties), message instanceof Error ? message.toString() : message);
 }
 /**
  * Adds a notice issue
@@ -67788,6 +67788,14 @@ const core_core = {
     info: (message) => {
         if (isCI) {
             info(message);
+        }
+        else {
+            logger.info(message);
+        }
+    },
+    warning: (message) => {
+        if (isCI) {
+            warning(message);
         }
         else {
             logger.info(message);

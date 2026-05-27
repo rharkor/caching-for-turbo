@@ -31,6 +31,13 @@ export const core = {
       loggerLib.info(message)
     }
   },
+  warning: (message: string) => {
+    if (isCI) {
+      coreLib.warning(message)
+    } else {
+      loggerLib.info(message)
+    }
+  },
   error: (message: string) => {
     if (isCI) {
       coreLib.error(message)
