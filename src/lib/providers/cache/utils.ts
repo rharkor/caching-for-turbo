@@ -8,7 +8,7 @@ import { restoreCache, saveCache } from '@actions/cache'
 import { core } from '@/lib/core'
 
 function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms))
+  return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 function isRateLimitError(error: unknown): boolean {
@@ -75,12 +75,16 @@ export function getCacheClient() {
       return await restoreCache([path], key, [])
     } catch (error) {
       if (isRateLimitError(error)) {
-        core.warning(`Rate limited restoring cache for key ${key}, retrying in 1s`)
+        core.warning(
+          `Rate limited restoring cache for key ${key}, retrying in 1s`
+        )
         await sleep(1000)
         try {
           return await restoreCache([path], key, [])
         } catch (retryError) {
-          core.warning(`Failed to restore cache for key ${key} after retry: ${retryError}`)
+          core.warning(
+            `Failed to restore cache for key ${key} after retry: ${retryError}`
+          )
           return undefined
         }
       }
