@@ -26,8 +26,6 @@ The main technical difference lies in how caching is handled:
 **Vercel's Approach**
 
 - Uses a remote caching server hosted by Vercel
-- Become expensive for large monorepos with multiple apps/packages
-- May have limitations based on your Vercel plan
 
 **This Action's Approach**
 
