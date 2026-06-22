@@ -2,8 +2,9 @@ import { Readable } from 'node:stream'
 import { env } from '../../env'
 import streamToPromise from 'stream-to-promise'
 import { createWriteStream } from 'node:fs'
-import { unlink } from 'node:fs/promises'
-import { getTempCachePath } from '../../constants'
+import { mkdir, unlink } from 'node:fs/promises'
+import { dirname } from 'node:path'
+import { getTempCachePath, getTempCacheRelativePath } from '../../constants'
 import { restoreCache, saveCache } from '@actions/cache'
 import { core } from '@/lib/core'
 
@@ -50,12 +51,15 @@ export function getCacheClient() {
     try {
       //* Create a temporary file to store the cache
       const tempFile = getTempCachePath(key)
+      const cachePath = getTempCacheRelativePath(key)
+      await mkdir(dirname(tempFile), { recursive: true })
       const writeStream = createWriteStream(tempFile)
       await streamToPromise(stream.pipe(writeStream))
       core.info(`Saved cache to ${tempFile}`)
 
-      core.info(`Saving cache for key: ${key}, path: ${tempFile}`)
-      await saveCache([tempFile], key)
+      // Use a workspace-relative path so cache version hashes match across runners.
+      core.info(`Saving cache for key: ${key}, path: ${cachePath}`)
+      await saveCache([cachePath], key)
       core.info(`Saved cache ${key}`)
 
       //* Remove the temporary file
@@ -66,13 +70,13 @@ export function getCacheClient() {
   }
 
   const restore = async (
-    path: string,
+    cachePath: string,
     key: string
   ): Promise<string | undefined> => {
-    core.info(`Querying cache for key: ${key}, path: ${path}`)
+    core.info(`Querying cache for key: ${key}, path: ${cachePath}`)
 
     try {
-      return await restoreCache([path], key, [])
+      return await restoreCache([cachePath], key, [])
     } catch (error) {
       if (isRateLimitError(error)) {
         core.warning(
@@ -80,7 +84,7 @@ export function getCacheClient() {
         )
         await sleep(1000)
         try {
-          return await restoreCache([path], key, [])
+          return await restoreCache([cachePath], key, [])
         } catch (retryError) {
           core.warning(
             `Failed to restore cache for key ${key} after retry: ${retryError}`

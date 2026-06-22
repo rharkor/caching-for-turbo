@@ -8,7 +8,12 @@ import type { Readable } from 'node:stream'
 import { pipeline } from 'node:stream/promises'
 import type { getTracker } from '@/lib/tracker'
 import { timingProvider } from '@/lib/utils'
-import { getCacheKey, getFsCachePath, getTempCachePath } from '../../constants'
+import {
+  getCacheKey,
+  getFsCachePath,
+  getTempCachePath,
+  getTempCacheRelativePath
+} from '../../constants'
 import { env } from '../../env'
 import type { TProvider } from '../../providers'
 import type { RequestContext } from '../../server'
@@ -52,7 +57,8 @@ export async function getCache(
   const client = getCacheClient()
   const cacheKey = getCacheKey(hash)
   const fileRestorationPath = getTempCachePath(cacheKey)
-  const foundKey = await client.restore(fileRestorationPath, cacheKey)
+  const cacheRelativePath = getTempCacheRelativePath(cacheKey)
+  const foundKey = await client.restore(cacheRelativePath, cacheKey)
   ctx.log.info(`Cache lookup for ${cacheKey}`)
   if (!foundKey) {
     ctx.log.info(`Cache lookup did not return data`)

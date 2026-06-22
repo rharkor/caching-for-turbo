@@ -31,5 +31,16 @@ export const serverLogFile = env.RUNNER_TEMP
   : '/tmp/turbogha.log'
 export const getFsCachePath = (hash: string): string =>
   join(env.RUNNER_TEMP || '/tmp', `${hash}.tg.bin`)
+
+// Stored under the workspace so @actions/cache version hashes stay stable
+// across runners (RUNNER_TEMP differs per machine).
+export const turboghaCacheDir = '.turbogha-cache'
+
+const getWorkspaceRoot = (): string =>
+  process.env.GITHUB_WORKSPACE || process.cwd()
+
+export const getTempCacheRelativePath = (key: string): string =>
+  `${turboghaCacheDir}/cache-${key}.tg.bin`
+
 export const getTempCachePath = (key: string): string =>
-  join(env.RUNNER_TEMP || '/tmp', `cache-${key}.tg.bin`)
+  join(getWorkspaceRoot(), getTempCacheRelativePath(key))
