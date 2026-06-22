@@ -2,6 +2,7 @@ import { readFile } from 'fs/promises'
 import { serverLogFile } from './lib/constants'
 import { core } from './lib/core'
 import { readActualPort } from './lib/server/utils'
+import { cleanupWorkspaceCache } from './lib/workspace'
 
 /**
  * The out script for the action.
@@ -21,6 +22,9 @@ async function post(): Promise<void> {
     const logs = await readFile(serverLogFile, 'utf-8')
     //* Print the logs
     core.info(logs)
+
+    //* Remove restored cache artifacts from the workspace checkout
+    await cleanupWorkspaceCache()
   } catch (error) {
     // Fail the workflow run if an error occurs
     if (error instanceof Error) core.setFailed(error.message)

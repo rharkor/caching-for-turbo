@@ -5,6 +5,7 @@ import { cleanup } from './cleanup'
 import { getProvider } from '../providers'
 import { Readable } from 'stream'
 import { getTracker } from '../tracker'
+import { ensureWorkspaceRoot } from '../workspace'
 
 export type RequestContext = {
   log: {
@@ -13,6 +14,7 @@ export type RequestContext = {
 }
 
 export async function server(): Promise<void> {
+  ensureWorkspaceRoot()
   const tracker = getTracker()
 
   //* Create the server

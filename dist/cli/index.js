@@ -153781,7 +153781,7 @@ var io_util_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _
 };
 
 
-const { chmod, copyFile, lstat, mkdir, open: io_util_open, readdir, rename, rm, rmdir, stat, symlink, unlink } = external_fs_.promises;
+const { chmod, copyFile, lstat, mkdir, open: io_util_open, readdir, rename, rm: io_util_rm, rmdir, stat, symlink, unlink } = external_fs_.promises;
 // export const {open} = 'fs'
 const IS_WINDOWS = process.platform === 'win32';
 /**
@@ -155543,10 +155543,10 @@ const serverLogFile = env.RUNNER_TEMP
 const getFsCachePath = (hash) => (0,external_path_.join)(env.RUNNER_TEMP || '/tmp', `${hash}.tg.bin`);
 // Stored under the workspace so @actions/cache version hashes stay stable
 // across runners (RUNNER_TEMP differs per machine).
-const turboghaCacheDir = '.turbogha-cache';
-const getWorkspaceRoot = () => process.env.GITHUB_WORKSPACE || process.cwd();
-const getTempCacheRelativePath = (key) => `${turboghaCacheDir}/cache-${key}.tg.bin`;
-const getTempCachePath = (key) => (0,external_path_.join)(getWorkspaceRoot(), getTempCacheRelativePath(key));
+const constants_turboghaCacheDir = '.turbogha-cache';
+const constants_getWorkspaceRoot = () => process.env.GITHUB_WORKSPACE || process.cwd();
+const getTempCacheRelativePath = (key) => `${constants_turboghaCacheDir}/cache-${key}.tg.bin`;
+const getTempCachePath = (key) => (0,external_path_.join)(constants_getWorkspaceRoot(), getTempCacheRelativePath(key));
 
 ;// CONCATENATED MODULE: ./node_modules/parse-duration/locale/en.js
 const unit = Object.create(null)
@@ -155610,8 +155610,10 @@ function parse(str = '', format = 'ms') {
 
 // EXTERNAL MODULE: external "node:fs"
 var external_node_fs_ = __nccwpck_require__(73024);
+// EXTERNAL MODULE: external "node:fs/promises"
+var promises_ = __nccwpck_require__(51455);
 ;// CONCATENATED MODULE: external "node:stream/promises"
-const promises_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:stream/promises");
+const external_node_stream_promises_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:stream/promises");
 ;// CONCATENATED MODULE: ./src/lib/utils.ts
 const timingProvider = (name, tracker, fn) => {
     return async (...args) => {
@@ -155629,10 +155631,43 @@ const timingProvider = (name, tracker, fn) => {
 // EXTERNAL MODULE: ./node_modules/stream-to-promise/index.js
 var stream_to_promise = __nccwpck_require__(42050);
 var stream_to_promise_default = /*#__PURE__*/__nccwpck_require__.n(stream_to_promise);
-// EXTERNAL MODULE: external "node:fs/promises"
-var promises_ = __nccwpck_require__(51455);
 // EXTERNAL MODULE: external "node:path"
 var external_node_path_ = __nccwpck_require__(76760);
+// EXTERNAL MODULE: external "node:process"
+var external_node_process_ = __nccwpck_require__(1708);
+;// CONCATENATED MODULE: ./src/lib/workspace.ts
+
+
+
+
+function ensureWorkspaceRoot() {
+    const workspaceRoot = constants_getWorkspaceRoot();
+    if (process.cwd() !== workspaceRoot) {
+        (0,external_node_process_.chdir)(workspaceRoot);
+    }
+}
+async function withWorkspaceRoot(fn) {
+    const workspaceRoot = constants_getWorkspaceRoot();
+    const previousCwd = process.cwd();
+    if (previousCwd !== workspaceRoot) {
+        (0,external_node_process_.chdir)(workspaceRoot);
+    }
+    try {
+        return await fn();
+    }
+    finally {
+        if (previousCwd !== workspaceRoot) {
+            (0,external_node_process_.chdir)(previousCwd);
+        }
+    }
+}
+async function cleanupWorkspaceCache() {
+    await rm(join(getWorkspaceRoot(), turboghaCacheDir), {
+        recursive: true,
+        force: true
+    });
+}
+
 ;// CONCATENATED MODULE: ./node_modules/@actions/glob/lib/internal-glob-options-helper.js
 
 /**
@@ -156858,8 +156893,6 @@ class AbortError extends Error {
 var external_node_os_ = __nccwpck_require__(48161);
 // EXTERNAL MODULE: external "node:util"
 var external_node_util_ = __nccwpck_require__(57975);
-// EXTERNAL MODULE: external "node:process"
-var external_node_process_ = __nccwpck_require__(1708);
 ;// CONCATENATED MODULE: ./node_modules/@typespec/ts-http-runtime/dist/esm/logger/log.js
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
@@ -202493,6 +202526,7 @@ function saveCacheV2(paths_1, key_1, options_1) {
 
 
 
+
 function utils_sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -202539,7 +202573,7 @@ function getCacheClient() {
             core_core.info(`Saved cache to ${tempFile}`);
             // Use a workspace-relative path so cache version hashes match across runners.
             core_core.info(`Saving cache for key: ${key}, path: ${cachePath}`);
-            await cache_saveCache([cachePath], key);
+            await withWorkspaceRoot(() => cache_saveCache([cachePath], key));
             core_core.info(`Saved cache ${key}`);
             //* Remove the temporary file
             await (0,promises_.unlink)(tempFile);
@@ -202551,14 +202585,14 @@ function getCacheClient() {
     const restore = async (cachePath, key) => {
         core_core.info(`Querying cache for key: ${key}, path: ${cachePath}`);
         try {
-            return await restoreCache([cachePath], key, []);
+            return await withWorkspaceRoot(() => restoreCache([cachePath], key, []));
         }
         catch (error) {
             if (isRateLimitError(error)) {
                 core_core.warning(`Rate limited restoring cache for key ${key}, retrying in 1s`);
                 await utils_sleep(1000);
                 try {
-                    return await restoreCache([cachePath], key, []);
+                    return await withWorkspaceRoot(() => restoreCache([cachePath], key, []));
                 }
                 catch (retryError) {
                     core_core.warning(`Failed to restore cache for key ${key} after retry: ${retryError}`);
@@ -202581,11 +202615,12 @@ function getCacheClient() {
 
 
 
+
 //* Cache API
 async function providers_cache_saveCache(ctx, hash, tag, stream) {
     if (!env.valid) {
         ctx.log.info(`Using filesystem cache because cache API env vars are not set`);
-        await (0,promises_namespaceObject.pipeline)(stream, (0,external_node_fs_.createWriteStream)(getFsCachePath(hash)));
+        await (0,external_node_stream_promises_namespaceObject.pipeline)(stream, (0,external_node_fs_.createWriteStream)(getFsCachePath(hash)));
         return;
     }
     const client = getCacheClient();
@@ -202620,6 +202655,15 @@ async function getCache(ctx, hash) {
     }
     const size = (0,external_node_fs_.statSync)(fileRestorationPath).size;
     const readableStream = (0,external_node_fs_.createReadStream)(fileRestorationPath);
+    let cleanedUp = false;
+    const cleanupRestoredFile = () => {
+        if (cleanedUp)
+            return;
+        cleanedUp = true;
+        (0,promises_.unlink)(fileRestorationPath).catch(() => { });
+    };
+    readableStream.once('close', cleanupRestoredFile);
+    readableStream.once('error', cleanupRestoredFile);
     return [size, readableStream, artifactTag];
 }
 async function deleteCache() {
@@ -203134,7 +203178,9 @@ const getTracker = () => ({
 
 
 
+
 async function server() {
+    ensureWorkspaceRoot();
     const tracker = getTracker();
     //* Create the server
     const fastify = fastify_default()({

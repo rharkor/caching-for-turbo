@@ -5,6 +5,7 @@ import { createWriteStream } from 'node:fs'
 import { mkdir, unlink } from 'node:fs/promises'
 import { dirname } from 'node:path'
 import { getTempCachePath, getTempCacheRelativePath } from '../../constants'
+import { withWorkspaceRoot } from '../../workspace'
 import { restoreCache, saveCache } from '@actions/cache'
 import { core } from '@/lib/core'
 
@@ -59,7 +60,7 @@ export function getCacheClient() {
 
       // Use a workspace-relative path so cache version hashes match across runners.
       core.info(`Saving cache for key: ${key}, path: ${cachePath}`)
-      await saveCache([cachePath], key)
+      await withWorkspaceRoot(() => saveCache([cachePath], key))
       core.info(`Saved cache ${key}`)
 
       //* Remove the temporary file
@@ -76,7 +77,7 @@ export function getCacheClient() {
     core.info(`Querying cache for key: ${key}, path: ${cachePath}`)
 
     try {
-      return await restoreCache([cachePath], key, [])
+      return await withWorkspaceRoot(() => restoreCache([cachePath], key, []))
     } catch (error) {
       if (isRateLimitError(error)) {
         core.warning(
@@ -84,7 +85,9 @@ export function getCacheClient() {
         )
         await sleep(1000)
         try {
-          return await restoreCache([cachePath], key, [])
+          return await withWorkspaceRoot(() =>
+            restoreCache([cachePath], key, [])
+          )
         } catch (retryError) {
           core.warning(
             `Failed to restore cache for key ${key} after retry: ${retryError}`

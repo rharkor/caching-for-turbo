@@ -36,7 +36,7 @@ export const getFsCachePath = (hash: string): string =>
 // across runners (RUNNER_TEMP differs per machine).
 export const turboghaCacheDir = '.turbogha-cache'
 
-const getWorkspaceRoot = (): string =>
+export const getWorkspaceRoot = (): string =>
   process.env.GITHUB_WORKSPACE || process.cwd()
 
 export const getTempCacheRelativePath = (key: string): string =>

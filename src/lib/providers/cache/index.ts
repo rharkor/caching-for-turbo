@@ -5,6 +5,7 @@ import {
   statSync
 } from 'node:fs'
 import type { Readable } from 'node:stream'
+import { unlink } from 'node:fs/promises'
 import { pipeline } from 'node:stream/promises'
 import type { getTracker } from '@/lib/tracker'
 import { timingProvider } from '@/lib/utils'
@@ -71,6 +72,14 @@ export async function getCache(
   }
   const size = statSync(fileRestorationPath).size
   const readableStream = createReadStream(fileRestorationPath)
+  let cleanedUp = false
+  const cleanupRestoredFile = () => {
+    if (cleanedUp) return
+    cleanedUp = true
+    unlink(fileRestorationPath).catch(() => {})
+  }
+  readableStream.once('close', cleanupRestoredFile)
+  readableStream.once('error', cleanupRestoredFile)
   return [size, readableStream, artifactTag]
 }
 

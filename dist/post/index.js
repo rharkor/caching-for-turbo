@@ -68458,9 +68458,9 @@ const getFsCachePath = (hash) => join(env.RUNNER_TEMP || '/tmp', `${hash}.tg.bin
 // Stored under the workspace so @actions/cache version hashes stay stable
 // across runners (RUNNER_TEMP differs per machine).
 const turboghaCacheDir = '.turbogha-cache';
-const getWorkspaceRoot = () => process.env.GITHUB_WORKSPACE || process.cwd();
+const constants_getWorkspaceRoot = () => process.env.GITHUB_WORKSPACE || process.cwd();
 const getTempCacheRelativePath = (key) => `${turboghaCacheDir}/cache-${key}.tg.bin`;
-const getTempCachePath = (key) => join(getWorkspaceRoot(), getTempCacheRelativePath(key));
+const getTempCachePath = (key) => join(constants_getWorkspaceRoot(), getTempCacheRelativePath(key));
 
 ;// CONCATENATED MODULE: external "timers/promises"
 const external_timers_promises_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("timers/promises");
@@ -68624,7 +68624,47 @@ const parseFileSize = (size) => {
     return parseInt(value) * multiplier;
 };
 
+;// CONCATENATED MODULE: external "node:fs/promises"
+const external_node_fs_promises_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:fs/promises");
+;// CONCATENATED MODULE: external "node:path"
+const external_node_path_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("node:path");
+// EXTERNAL MODULE: external "node:process"
+var external_node_process_ = __nccwpck_require__(1708);
+;// CONCATENATED MODULE: ./src/lib/workspace.ts
+
+
+
+
+function ensureWorkspaceRoot() {
+    const workspaceRoot = getWorkspaceRoot();
+    if (process.cwd() !== workspaceRoot) {
+        chdir(workspaceRoot);
+    }
+}
+async function withWorkspaceRoot(fn) {
+    const workspaceRoot = getWorkspaceRoot();
+    const previousCwd = process.cwd();
+    if (previousCwd !== workspaceRoot) {
+        chdir(workspaceRoot);
+    }
+    try {
+        return await fn();
+    }
+    finally {
+        if (previousCwd !== workspaceRoot) {
+            chdir(previousCwd);
+        }
+    }
+}
+async function cleanupWorkspaceCache() {
+    await (0,external_node_fs_promises_namespaceObject.rm)((0,external_node_path_namespaceObject.join)(constants_getWorkspaceRoot(), turboghaCacheDir), {
+        recursive: true,
+        force: true
+    });
+}
+
 ;// CONCATENATED MODULE: ./src/post.ts
+
 
 
 
@@ -68645,6 +68685,8 @@ async function post() {
         const logs = await (0,promises_namespaceObject.readFile)(constants_serverLogFile, 'utf-8');
         //* Print the logs
         core_core.info(logs);
+        //* Remove restored cache artifacts from the workspace checkout
+        await cleanupWorkspaceCache();
     }
     catch (error) {
         // Fail the workflow run if an error occurs
