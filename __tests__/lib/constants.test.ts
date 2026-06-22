@@ -1,4 +1,11 @@
-import { describe, it, expect, beforeEach, afterEach, jest } from '@jest/globals'
+import {
+  describe,
+  it,
+  expect,
+  beforeEach,
+  afterEach,
+  jest
+} from '@jest/globals'
 import { mkdtempSync, rmSync } from 'fs'
 import { join } from 'path'
 import { tmpdir } from 'os'
@@ -24,11 +31,8 @@ describe('cache paths', () => {
   })
 
   it('uses workspace-relative paths that are stable across runners', async () => {
-    const {
-      getTempCacheRelativePath,
-      getTempCachePath,
-      turboghaCacheDir
-    } = await import('@/lib/constants')
+    const { getTempCacheRelativePath, getTempCachePath, turboghaCacheDir } =
+      await import('@/lib/constants')
 
     const key = 'turbogha_abc123'
     expect(getTempCacheRelativePath(key)).toBe(
@@ -43,9 +47,8 @@ describe('cache paths', () => {
     const previousRunnerTemp = process.env.RUNNER_TEMP
     process.env.RUNNER_TEMP = '/runner-temp/unique-per-machine'
 
-    const { getTempCacheRelativePath, getTempCachePath } = await import(
-      '@/lib/constants'
-    )
+    const { getTempCacheRelativePath, getTempCachePath } =
+      await import('@/lib/constants')
 
     const key = 'turbogha_hash'
     expect(getTempCacheRelativePath(key)).not.toContain('runner-temp')
