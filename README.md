@@ -236,9 +236,9 @@ By default, this action uses GitHub's built-in cache service, which offers:
 - Automatic cache pruning by GitHub
 
 Set `use-relative-cache-path: true` when jobs may save and restore the same
-cache from runners with different temporary directories. This keeps the cache
-archive path out of `RUNNER_TEMP`, allowing GitHub cache versions to match
-across those runners.
+cache from runners with different temporary directories. The temporary cache
+blob stays in `RUNNER_TEMP`, while the path passed to GitHub's cache service is
+relative so cache versions can match across those runners.
 
 #### S3 Storage
 

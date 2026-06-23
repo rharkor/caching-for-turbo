@@ -68459,9 +68459,7 @@ const getFsCachePath = (hash) => join(env.RUNNER_TEMP || '/tmp', `${hash}.tg.bin
 const getTempCachePath = (key) => {
     const pathKey = useRelativeCachePath ? key.split('#')[0] : key;
     const fileName = `cache-${pathKey}.tg.bin`;
-    return useRelativeCachePath
-        ? fileName
-        : join(env.RUNNER_TEMP || '/tmp', fileName);
+    return join(env.RUNNER_TEMP || '/tmp', fileName);
 };
 
 ;// CONCATENATED MODULE: external "timers/promises"

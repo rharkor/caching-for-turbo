@@ -36,7 +36,5 @@ export const getFsCachePath = (hash: string): string =>
 export const getTempCachePath = (key: string): string => {
   const pathKey = useRelativeCachePath ? key.split('#')[0] : key
   const fileName = `cache-${pathKey}.tg.bin`
-  return useRelativeCachePath
-    ? fileName
-    : join(env.RUNNER_TEMP || '/tmp', fileName)
+  return join(env.RUNNER_TEMP || '/tmp', fileName)
 }

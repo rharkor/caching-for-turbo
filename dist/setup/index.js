@@ -160275,9 +160275,7 @@ const getFsCachePath = (hash) => (0,external_path_.join)(env.RUNNER_TEMP || '/tm
 const getTempCachePath = (key) => {
     const pathKey = useRelativeCachePath ? key.split('#')[0] : key;
     const fileName = `cache-${pathKey}.tg.bin`;
-    return useRelativeCachePath
-        ? fileName
-        : (0,external_path_.join)(env.RUNNER_TEMP || '/tmp', fileName);
+    return (0,external_path_.join)(env.RUNNER_TEMP || '/tmp', fileName);
 };
 
 ;// CONCATENATED MODULE: ./node_modules/parse-duration/locale/en.js
@@ -160363,6 +160361,8 @@ var stream_to_promise = __nccwpck_require__(42050);
 var stream_to_promise_default = /*#__PURE__*/__nccwpck_require__.n(stream_to_promise);
 // EXTERNAL MODULE: external "node:fs/promises"
 var promises_ = __nccwpck_require__(51455);
+// EXTERNAL MODULE: external "node:path"
+var external_node_path_ = __nccwpck_require__(76760);
 ;// CONCATENATED MODULE: ./node_modules/@actions/glob/lib/internal-glob-options-helper.js
 
 /**
@@ -207282,8 +207282,33 @@ function saveCacheV2(paths_1, key_1, options_1) {
 
 
 
+
+let relativeCachePathLock = Promise.resolve();
 function utils_sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+async function withCachePath(path, operation) {
+    if (!useRelativeCachePath) {
+        return operation(path);
+    }
+    const previousOperation = relativeCachePathLock;
+    let releaseLock;
+    relativeCachePathLock = new Promise(resolve => {
+        releaseLock = resolve;
+    });
+    await previousOperation.catch(() => undefined);
+    const previousCwd = process.cwd();
+    let changedCwd = false;
+    try {
+        process.chdir((0,external_node_path_.dirname)(path));
+        changedCwd = true;
+        return await operation((0,external_node_path_.basename)(path));
+    }
+    finally {
+        if (changedCwd)
+            process.chdir(previousCwd);
+        releaseLock?.();
+    }
 }
 function isRateLimitError(error) {
     if (!(error instanceof Error))
@@ -207325,7 +207350,7 @@ function getCacheClient() {
             await stream_to_promise_default()(stream.pipe(writeStream));
             core_core.info(`Saved cache to ${tempFile}`);
             core_core.info(`Saving cache for key: ${key}, path: ${tempFile}`);
-            await cache_saveCache([tempFile], key);
+            await withCachePath(tempFile, cachePath => cache_saveCache([cachePath], key));
             core_core.info(`Saved cache ${key}`);
             //* Remove the temporary file
             await (0,promises_.unlink)(tempFile);
@@ -207337,14 +207362,14 @@ function getCacheClient() {
     const restore = async (path, key) => {
         core_core.info(`Querying cache for key: ${key}, path: ${path}`);
         try {
-            return await restoreCache([path], key, []);
+            return await withCachePath(path, cachePath => restoreCache([cachePath], key, []));
         }
         catch (error) {
             if (isRateLimitError(error)) {
                 core_core.warning(`Rate limited restoring cache for key ${key}, retrying in 1s`);
                 await utils_sleep(1000);
                 try {
-                    return await restoreCache([path], key, []);
+                    return await withCachePath(path, cachePath => restoreCache([cachePath], key, []));
                 }
                 catch (retryError) {
                     core_core.warning(`Failed to restore cache for key ${key} after retry: ${retryError}`);
