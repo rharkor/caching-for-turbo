@@ -21,6 +21,8 @@ export const serverPort = parseInt(
 )
 export const cachePath = 'turbogha_'
 export const cachePrefix = getInput('cache-prefix', 'CACHE_PREFIX') || cachePath
+export const useRelativeCachePath =
+  getInput('use-relative-cache-path', 'USE_RELATIVE_CACHE_PATH') === 'true'
 export const getCacheKey = (hash: string, tag?: string): string =>
   `${cachePrefix}${hash}${tag ? `#${tag}` : ''}`
 export const serverPortFile = env.RUNNER_TEMP
@@ -31,5 +33,10 @@ export const serverLogFile = env.RUNNER_TEMP
   : '/tmp/turbogha.log'
 export const getFsCachePath = (hash: string): string =>
   join(env.RUNNER_TEMP || '/tmp', `${hash}.tg.bin`)
-export const getTempCachePath = (key: string): string =>
-  join(env.RUNNER_TEMP || '/tmp', `cache-${key}.tg.bin`)
+export const getTempCachePath = (key: string): string => {
+  const pathKey = useRelativeCachePath ? key.split('#')[0] : key
+  const fileName = `cache-${pathKey}.tg.bin`
+  return useRelativeCachePath
+    ? fileName
+    : join(env.RUNNER_TEMP || '/tmp', fileName)
+}

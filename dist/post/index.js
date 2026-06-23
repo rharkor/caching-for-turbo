@@ -67854,6 +67854,7 @@ const constants_getInput = (name, envName) => {
 const constants_serverPort = parseInt(constants_getInput('server-port', 'SERVER_PORT') || '41230', 10);
 const constants_cachePath = 'turbogha_';
 const constants_cachePrefix = constants_getInput('cache-prefix', 'CACHE_PREFIX') || constants_cachePath;
+const useRelativeCachePath = constants_getInput('use-relative-cache-path', 'USE_RELATIVE_CACHE_PATH') === 'true';
 const getCacheKey = (hash, tag) => `${constants_cachePrefix}${hash}${tag ? `#${tag}` : ''}`;
 const constants_serverPortFile = env_env.RUNNER_TEMP
     ? (0,external_path_.join)(env_env.RUNNER_TEMP, 'turbogha-port')
@@ -67862,7 +67863,13 @@ const constants_serverLogFile = env_env.RUNNER_TEMP
     ? (0,external_path_.join)(env_env.RUNNER_TEMP, 'turbogha.log')
     : '/tmp/turbogha.log';
 const getFsCachePath = (hash) => join(env.RUNNER_TEMP || '/tmp', `${hash}.tg.bin`);
-const getTempCachePath = (key) => join(env.RUNNER_TEMP || '/tmp', `cache-${key}.tg.bin`);
+const getTempCachePath = (key) => {
+    const pathKey = useRelativeCachePath ? key.split('#')[0] : key;
+    const fileName = `cache-${pathKey}.tg.bin`;
+    return useRelativeCachePath
+        ? fileName
+        : join(env.RUNNER_TEMP || '/tmp', fileName);
+};
 
 ;// CONCATENATED MODULE: external "timers/promises"
 const external_timers_promises_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("timers/promises");
