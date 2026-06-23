@@ -26,7 +26,7 @@ jobs:
           client-id: ${{ vars.MYBOT_CLIENT_ID }}
           private-key: ${{ secrets.MYBOT_PRIVATE_KEY }}
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
           token: ${{ steps.generate_token.outputs.token }}
@@ -50,12 +50,12 @@ jobs:
           # merge in main, taking main's version on all conflicts
           git merge origin/$SOURCE --strategy=recursive -X theirs --no-edit
 
-          # now override package.json with main's copy
+          # now override package.json with main's copy (if it differs after merge)
           git checkout origin/$SOURCE -- package.json
           git add package.json
-
-          # commit that one-file change
-          git commit -m "chore(sync): restore package.json from $SOURCE"
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(sync): restore package.json from $SOURCE"
+          fi
 
           # push the updated branch (history + tags intact)
           git push origin $TARGET
@@ -79,7 +79,7 @@ jobs:
           client-id: ${{ vars.MYBOT_CLIENT_ID }}
           private-key: ${{ secrets.MYBOT_PRIVATE_KEY }}
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
           token: ${{ steps.generate_token.outputs.token }}
