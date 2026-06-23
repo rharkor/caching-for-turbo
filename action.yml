@@ -19,6 +19,12 @@ inputs:
     description: 'Prefix for the cache key'
     required: false
     default: turbogha_
+  use-relative-cache-path:
+    description:
+      'Use a relative archive path for the GitHub cache provider so cache
+      versions can match across runners with different temporary directories'
+    required: false
+    default: 'false'
   max-age:
     description:
       'Cleanup cache files older than this age (ex: 1mo, 1w, 1d). using

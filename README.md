@@ -213,6 +213,7 @@ with:
   cache-prefix: turbogha_ # Custom prefix for cache keys
   provider: github # Storage provider: 'github' (default) or 's3'
   server-port: 41230 # Port for the caching server (default: 41230, use 0 for auto-assign)
+  use-relative-cache-path: false # GitHub provider: use a runner-independent cache archive path
 
   # S3 Provider Configuration (variables will be read from environment variables if not provided)
   s3-access-key-id: ${{ secrets.S3_ACCESS_KEY_ID }} # S3 access key
@@ -233,6 +234,11 @@ By default, this action uses GitHub's built-in cache service, which offers:
 - Seamless integration with GitHub Actions
 - No additional setup required
 - Automatic cache pruning by GitHub
+
+Set `use-relative-cache-path: true` when jobs may save and restore the same
+cache from runners with different temporary directories. The temporary cache
+blob stays in `RUNNER_TEMP`, while the path passed to GitHub's cache service is
+relative so cache versions can match across those runners.
 
 #### S3 Storage
 
