@@ -86,7 +86,7 @@
     "@semantic-release/npm": "^13.0.0",
     "@semantic-release/release-notes-generator": "^14.0.0",
     "@semantic-release/exec": "^7.1.0",
-    "conventional-changelog-conventionalcommits": "^9.0.0",
+    "conventional-changelog-conventionalcommits": "^10.0.0",
     "semantic-release": "^25.0.0"
   },
   "packageManager": "npm@11.17.0",
