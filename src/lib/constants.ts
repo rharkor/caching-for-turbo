@@ -34,7 +34,8 @@ export const serverLogFile = env.RUNNER_TEMP
 export const getFsCachePath = (hash: string): string =>
   join(env.RUNNER_TEMP || '/tmp', `${hash}.tg.bin`)
 export const getTempCachePath = (key: string): string => {
-  const pathKey = useRelativeCachePath ? key.split('#')[0] : key
+  // Strip the artifact tag from temp paths — tags are base64 and may contain '/'
+  const pathKey = key.split('#')[0]
   const fileName = `cache-${pathKey}.tg.bin`
   return join(env.RUNNER_TEMP || '/tmp', fileName)
 }

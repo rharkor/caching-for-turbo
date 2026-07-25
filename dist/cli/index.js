@@ -160706,7 +160706,8 @@ const serverLogFile = env.RUNNER_TEMP
     : '/tmp/turbogha.log';
 const getFsCachePath = (hash) => (0,external_path_.join)(env.RUNNER_TEMP || '/tmp', `${hash}.tg.bin`);
 const getTempCachePath = (key) => {
-    const pathKey = useRelativeCachePath ? key.split('#')[0] : key;
+    // Strip the artifact tag from temp paths — tags are base64 and may contain '/'
+    const pathKey = key.split('#')[0];
     const fileName = `cache-${pathKey}.tg.bin`;
     return (0,external_path_.join)(env.RUNNER_TEMP || '/tmp', fileName);
 };
@@ -207795,14 +207796,14 @@ function getCacheClient() {
     const restore = async (path, key) => {
         core_core.info(`Querying cache for key: ${key}, path: ${path}`);
         try {
-            return await withCachePath(path, cachePath => restoreCache([cachePath], key, []));
+            return await withCachePath(path, cachePath => restoreCache([cachePath], key, [key]));
         }
         catch (error) {
             if (isRateLimitError(error)) {
                 core_core.warning(`Rate limited restoring cache for key ${key}, retrying in 1s`);
                 await utils_sleep(1000);
                 try {
-                    return await withCachePath(path, cachePath => restoreCache([cachePath], key, []));
+                    return await withCachePath(path, cachePath => restoreCache([cachePath], key, [key]));
                 }
                 catch (retryError) {
                     core_core.warning(`Failed to restore cache for key ${key} after retry: ${retryError}`);

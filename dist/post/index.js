@@ -68457,7 +68457,8 @@ const constants_serverLogFile = env_env.RUNNER_TEMP
     : '/tmp/turbogha.log';
 const getFsCachePath = (hash) => join(env.RUNNER_TEMP || '/tmp', `${hash}.tg.bin`);
 const getTempCachePath = (key) => {
-    const pathKey = useRelativeCachePath ? key.split('#')[0] : key;
+    // Strip the artifact tag from temp paths — tags are base64 and may contain '/'
+    const pathKey = key.split('#')[0];
     const fileName = `cache-${pathKey}.tg.bin`;
     return join(env.RUNNER_TEMP || '/tmp', fileName);
 };
