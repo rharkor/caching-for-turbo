@@ -54,18 +54,19 @@ describe('getCacheClient', () => {
     ])
   })
 
-  it('uploads tagged artifacts using a tag-free temp path', async () => {
+  it('uploads tagged artifacts using a filesystem-safe unique temp path', async () => {
     const { saveCache } = await import('../../../mocks/actions-cache')
     const { getCacheClient } = await import('@/lib/providers/cache/utils')
     saveCache.mockReset()
     saveCache.mockResolvedValue(1)
 
     const client = getCacheClient()
-    const key =
-      'turbogha_7ee20327ec1a3d63#s43Vqe9K4fqUlFo3c/2drvp46vUGR8lLgb+28BwGUJM='
+    const tag = 's43Vqe9K4fqUlFo3c/2drvp46vUGR8lLgb+28BwGUJM='
+    const key = `turbogha_7ee20327ec1a3d63#${tag}`
+    const encodedTag = Buffer.from(tag, 'utf8').toString('base64url')
     const expectedTempPath = join(
       tempDir,
-      'cache-turbogha_7ee20327ec1a3d63.tg.bin'
+      `cache-turbogha_7ee20327ec1a3d63--${encodedTag}.tg.bin`
     )
 
     await client.save(key, Readable.from(Buffer.from('artifact-bytes')))
