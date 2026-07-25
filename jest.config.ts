@@ -13,7 +13,8 @@ const config: Config.InitialOptions = {
   },
   testMatch: ['<rootDir>/__tests__/**/*.test.ts'],
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1'
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '^@actions/cache$': '<rootDir>/__tests__/mocks/actions-cache.ts'
   }
 }
 

@@ -104,7 +104,7 @@ export function getCacheClient() {
 
     try {
       return await withCachePath(path, cachePath =>
-        restoreCache([cachePath], key, [])
+        restoreCache([cachePath], key, [key])
       )
     } catch (error) {
       if (isRateLimitError(error)) {
@@ -114,7 +114,7 @@ export function getCacheClient() {
         await sleep(1000)
         try {
           return await withCachePath(path, cachePath =>
-            restoreCache([cachePath], key, [])
+            restoreCache([cachePath], key, [key])
           )
         } catch (retryError) {
           core.warning(

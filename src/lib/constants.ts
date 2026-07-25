@@ -33,8 +33,14 @@ export const serverLogFile = env.RUNNER_TEMP
   : '/tmp/turbogha.log'
 export const getFsCachePath = (hash: string): string =>
   join(env.RUNNER_TEMP || '/tmp', `${hash}.tg.bin`)
+
+const encodeArtifactTagForPath = (tag: string): string =>
+  Buffer.from(tag, 'utf8').toString('base64url')
+
 export const getTempCachePath = (key: string): string => {
-  const pathKey = useRelativeCachePath ? key.split('#')[0] : key
-  const fileName = `cache-${pathKey}.tg.bin`
+  const [pathKey, tag] = key.split('#')
+  const fileName = tag
+    ? `cache-${pathKey}--${encodeArtifactTagForPath(tag)}.tg.bin`
+    : `cache-${pathKey}.tg.bin`
   return join(env.RUNNER_TEMP || '/tmp', fileName)
 }
