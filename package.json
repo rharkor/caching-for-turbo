@@ -79,17 +79,17 @@
     "turbo": "^2.0.3",
     "typescript": "^6.0.0",
     "typescript-eslint": "^8.29.1",
-    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/changelog": "^7.0.0",
     "@semantic-release/commit-analyzer": "^13.0.0",
-    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/git": "^11.0.0",
     "@semantic-release/github": "^12.0.0",
     "@semantic-release/npm": "^13.0.0",
     "@semantic-release/release-notes-generator": "^14.0.0",
     "@semantic-release/exec": "^7.1.0",
-    "conventional-changelog-conventionalcommits": "^9.0.0",
+    "conventional-changelog-conventionalcommits": "^10.0.0",
     "semantic-release": "^25.0.0"
   },
-  "packageManager": "npm@11.17.0",
+  "packageManager": "npm@11.18.0",
   "publishConfig": {
     "access": "public"
   }

@@ -68456,9 +68456,12 @@ const constants_serverLogFile = env_env.RUNNER_TEMP
     ? (0,external_path_.join)(env_env.RUNNER_TEMP, 'turbogha.log')
     : '/tmp/turbogha.log';
 const getFsCachePath = (hash) => join(env.RUNNER_TEMP || '/tmp', `${hash}.tg.bin`);
+const encodeArtifactTagForPath = (tag) => Buffer.from(tag, 'utf8').toString('base64url');
 const getTempCachePath = (key) => {
-    const pathKey = useRelativeCachePath ? key.split('#')[0] : key;
-    const fileName = `cache-${pathKey}.tg.bin`;
+    const [pathKey, tag] = key.split('#');
+    const fileName = tag
+        ? `cache-${pathKey}--${encodeArtifactTagForPath(tag)}.tg.bin`
+        : `cache-${pathKey}.tg.bin`;
     return join(env.RUNNER_TEMP || '/tmp', fileName);
 };
 
