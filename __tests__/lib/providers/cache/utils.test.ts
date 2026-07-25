@@ -15,7 +15,8 @@ jest.mock('@/lib/core', () => ({
   core: {
     info: jest.fn(),
     error: jest.fn(),
-    warning: jest.fn()
+    warning: jest.fn(),
+    getInput: jest.fn(() => '')
   }
 }))
 
