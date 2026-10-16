@@ -74,4 +74,42 @@ describe('getCacheClient', () => {
 
     expect(saveCache).toHaveBeenCalledWith([expectedTempPath], key)
   })
+
+  it('retries once when a save returns no id, then succeeds', async () => {
+    const { saveCache } = await import('../../../mocks/actions-cache')
+    const { core } = await import('@/lib/core')
+    const { getCacheClient } = await import('@/lib/providers/cache/utils')
+    saveCache.mockReset()
+    saveCache.mockResolvedValueOnce(-1).mockResolvedValueOnce(42)
+    jest.mocked(core.warning).mockClear()
+    jest.mocked(core.info).mockClear()
+
+    const client = getCacheClient()
+    await client.save('turbogha_retry', Readable.from(Buffer.from('bytes')))
+
+    expect(saveCache).toHaveBeenCalledTimes(2)
+    expect(core.info).toHaveBeenCalledWith('Saved cache turbogha_retry')
+    expect(core.warning).not.toHaveBeenCalledWith(
+      'Cache not saved for key turbogha_retry'
+    )
+  })
+
+  it('reports the save as not saved when the retry also returns no id', async () => {
+    const { saveCache } = await import('../../../mocks/actions-cache')
+    const { core } = await import('@/lib/core')
+    const { getCacheClient } = await import('@/lib/providers/cache/utils')
+    saveCache.mockReset()
+    saveCache.mockResolvedValue(-1)
+    jest.mocked(core.warning).mockClear()
+    jest.mocked(core.info).mockClear()
+
+    const client = getCacheClient()
+    await client.save('turbogha_fail', Readable.from(Buffer.from('bytes')))
+
+    expect(saveCache).toHaveBeenCalledTimes(2)
+    expect(core.warning).toHaveBeenCalledWith(
+      'Cache not saved for key turbogha_fail'
+    )
+    expect(core.info).not.toHaveBeenCalledWith('Saved cache turbogha_fail')
+  })
 })

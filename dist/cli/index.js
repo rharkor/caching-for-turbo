@@ -2,587 +2,51 @@
 import './sourcemap-register.cjs';import { createRequire as __WEBPACK_EXTERNAL_createRequire } from "module";
 /******/ var __webpack_modules__ = ({
 
-/***/ 56863:
+/***/ 8282:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
-
-// Copyright Amazon.com Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: Apache-2.0
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.AwsCrc32 = void 0;
-var tslib_1 = __nccwpck_require__(61860);
-var util_1 = __nccwpck_require__(95667);
-var index_1 = __nccwpck_require__(62110);
-var AwsCrc32 = /** @class */ (function () {
-    function AwsCrc32() {
-        this.crc32 = new index_1.Crc32();
-    }
-    AwsCrc32.prototype.update = function (toHash) {
-        if ((0, util_1.isEmptyData)(toHash))
-            return;
-        this.crc32.update((0, util_1.convertToBuffer)(toHash));
-    };
-    AwsCrc32.prototype.digest = function () {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
-            return tslib_1.__generator(this, function (_a) {
-                return [2 /*return*/, (0, util_1.numToUint8)(this.crc32.digest())];
-            });
-        });
-    };
-    AwsCrc32.prototype.reset = function () {
-        this.crc32 = new index_1.Crc32();
-    };
-    return AwsCrc32;
-}());
-exports.AwsCrc32 = AwsCrc32;
-//# sourceMappingURL=aws_crc32.js.map
-
-/***/ }),
-
-/***/ 62110:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.AwsCrc32 = exports.Crc32 = exports.crc32 = void 0;
-var tslib_1 = __nccwpck_require__(61860);
-var util_1 = __nccwpck_require__(95667);
-function crc32(data) {
-    return new Crc32().update(data).digest();
-}
-exports.crc32 = crc32;
-var Crc32 = /** @class */ (function () {
-    function Crc32() {
-        this.checksum = 0xffffffff;
-    }
-    Crc32.prototype.update = function (data) {
-        var e_1, _a;
-        try {
-            for (var data_1 = tslib_1.__values(data), data_1_1 = data_1.next(); !data_1_1.done; data_1_1 = data_1.next()) {
-                var byte = data_1_1.value;
-                this.checksum =
-                    (this.checksum >>> 8) ^ lookupTable[(this.checksum ^ byte) & 0xff];
-            }
-        }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-        finally {
-            try {
-                if (data_1_1 && !data_1_1.done && (_a = data_1.return)) _a.call(data_1);
-            }
-            finally { if (e_1) throw e_1.error; }
-        }
-        return this;
-    };
-    Crc32.prototype.digest = function () {
-        return (this.checksum ^ 0xffffffff) >>> 0;
-    };
-    return Crc32;
-}());
+const { Crc32, Crc32Js, Crc32Node } = __nccwpck_require__(99542);
 exports.Crc32 = Crc32;
-// prettier-ignore
-var a_lookUpTable = [
-    0x00000000, 0x77073096, 0xEE0E612C, 0x990951BA,
-    0x076DC419, 0x706AF48F, 0xE963A535, 0x9E6495A3,
-    0x0EDB8832, 0x79DCB8A4, 0xE0D5E91E, 0x97D2D988,
-    0x09B64C2B, 0x7EB17CBD, 0xE7B82D07, 0x90BF1D91,
-    0x1DB71064, 0x6AB020F2, 0xF3B97148, 0x84BE41DE,
-    0x1ADAD47D, 0x6DDDE4EB, 0xF4D4B551, 0x83D385C7,
-    0x136C9856, 0x646BA8C0, 0xFD62F97A, 0x8A65C9EC,
-    0x14015C4F, 0x63066CD9, 0xFA0F3D63, 0x8D080DF5,
-    0x3B6E20C8, 0x4C69105E, 0xD56041E4, 0xA2677172,
-    0x3C03E4D1, 0x4B04D447, 0xD20D85FD, 0xA50AB56B,
-    0x35B5A8FA, 0x42B2986C, 0xDBBBC9D6, 0xACBCF940,
-    0x32D86CE3, 0x45DF5C75, 0xDCD60DCF, 0xABD13D59,
-    0x26D930AC, 0x51DE003A, 0xC8D75180, 0xBFD06116,
-    0x21B4F4B5, 0x56B3C423, 0xCFBA9599, 0xB8BDA50F,
-    0x2802B89E, 0x5F058808, 0xC60CD9B2, 0xB10BE924,
-    0x2F6F7C87, 0x58684C11, 0xC1611DAB, 0xB6662D3D,
-    0x76DC4190, 0x01DB7106, 0x98D220BC, 0xEFD5102A,
-    0x71B18589, 0x06B6B51F, 0x9FBFE4A5, 0xE8B8D433,
-    0x7807C9A2, 0x0F00F934, 0x9609A88E, 0xE10E9818,
-    0x7F6A0DBB, 0x086D3D2D, 0x91646C97, 0xE6635C01,
-    0x6B6B51F4, 0x1C6C6162, 0x856530D8, 0xF262004E,
-    0x6C0695ED, 0x1B01A57B, 0x8208F4C1, 0xF50FC457,
-    0x65B0D9C6, 0x12B7E950, 0x8BBEB8EA, 0xFCB9887C,
-    0x62DD1DDF, 0x15DA2D49, 0x8CD37CF3, 0xFBD44C65,
-    0x4DB26158, 0x3AB551CE, 0xA3BC0074, 0xD4BB30E2,
-    0x4ADFA541, 0x3DD895D7, 0xA4D1C46D, 0xD3D6F4FB,
-    0x4369E96A, 0x346ED9FC, 0xAD678846, 0xDA60B8D0,
-    0x44042D73, 0x33031DE5, 0xAA0A4C5F, 0xDD0D7CC9,
-    0x5005713C, 0x270241AA, 0xBE0B1010, 0xC90C2086,
-    0x5768B525, 0x206F85B3, 0xB966D409, 0xCE61E49F,
-    0x5EDEF90E, 0x29D9C998, 0xB0D09822, 0xC7D7A8B4,
-    0x59B33D17, 0x2EB40D81, 0xB7BD5C3B, 0xC0BA6CAD,
-    0xEDB88320, 0x9ABFB3B6, 0x03B6E20C, 0x74B1D29A,
-    0xEAD54739, 0x9DD277AF, 0x04DB2615, 0x73DC1683,
-    0xE3630B12, 0x94643B84, 0x0D6D6A3E, 0x7A6A5AA8,
-    0xE40ECF0B, 0x9309FF9D, 0x0A00AE27, 0x7D079EB1,
-    0xF00F9344, 0x8708A3D2, 0x1E01F268, 0x6906C2FE,
-    0xF762575D, 0x806567CB, 0x196C3671, 0x6E6B06E7,
-    0xFED41B76, 0x89D32BE0, 0x10DA7A5A, 0x67DD4ACC,
-    0xF9B9DF6F, 0x8EBEEFF9, 0x17B7BE43, 0x60B08ED5,
-    0xD6D6A3E8, 0xA1D1937E, 0x38D8C2C4, 0x4FDFF252,
-    0xD1BB67F1, 0xA6BC5767, 0x3FB506DD, 0x48B2364B,
-    0xD80D2BDA, 0xAF0A1B4C, 0x36034AF6, 0x41047A60,
-    0xDF60EFC3, 0xA867DF55, 0x316E8EEF, 0x4669BE79,
-    0xCB61B38C, 0xBC66831A, 0x256FD2A0, 0x5268E236,
-    0xCC0C7795, 0xBB0B4703, 0x220216B9, 0x5505262F,
-    0xC5BA3BBE, 0xB2BD0B28, 0x2BB45A92, 0x5CB36A04,
-    0xC2D7FFA7, 0xB5D0CF31, 0x2CD99E8B, 0x5BDEAE1D,
-    0x9B64C2B0, 0xEC63F226, 0x756AA39C, 0x026D930A,
-    0x9C0906A9, 0xEB0E363F, 0x72076785, 0x05005713,
-    0x95BF4A82, 0xE2B87A14, 0x7BB12BAE, 0x0CB61B38,
-    0x92D28E9B, 0xE5D5BE0D, 0x7CDCEFB7, 0x0BDBDF21,
-    0x86D3D2D4, 0xF1D4E242, 0x68DDB3F8, 0x1FDA836E,
-    0x81BE16CD, 0xF6B9265B, 0x6FB077E1, 0x18B74777,
-    0x88085AE6, 0xFF0F6A70, 0x66063BCA, 0x11010B5C,
-    0x8F659EFF, 0xF862AE69, 0x616BFFD3, 0x166CCF45,
-    0xA00AE278, 0xD70DD2EE, 0x4E048354, 0x3903B3C2,
-    0xA7672661, 0xD06016F7, 0x4969474D, 0x3E6E77DB,
-    0xAED16A4A, 0xD9D65ADC, 0x40DF0B66, 0x37D83BF0,
-    0xA9BCAE53, 0xDEBB9EC5, 0x47B2CF7F, 0x30B5FFE9,
-    0xBDBDF21C, 0xCABAC28A, 0x53B39330, 0x24B4A3A6,
-    0xBAD03605, 0xCDD70693, 0x54DE5729, 0x23D967BF,
-    0xB3667A2E, 0xC4614AB8, 0x5D681B02, 0x2A6F2B94,
-    0xB40BBE37, 0xC30C8EA1, 0x5A05DF1B, 0x2D02EF8D,
-];
-var lookupTable = (0, util_1.uint32ArrayFrom)(a_lookUpTable);
-var aws_crc32_1 = __nccwpck_require__(56863);
-Object.defineProperty(exports, "AwsCrc32", ({ enumerable: true, get: function () { return aws_crc32_1.AwsCrc32; } }));
-//# sourceMappingURL=index.js.map
+exports.Crc32Js = Crc32Js;
+exports.Crc32Node = Crc32Node;
 
-/***/ }),
-
-/***/ 95405:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-
-// Copyright Amazon.com Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: Apache-2.0
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.AwsCrc32c = void 0;
-var tslib_1 = __nccwpck_require__(61860);
-var util_1 = __nccwpck_require__(95667);
-var index_1 = __nccwpck_require__(91491);
-var AwsCrc32c = /** @class */ (function () {
-    function AwsCrc32c() {
-        this.crc32c = new index_1.Crc32c();
+const T = new Uint32Array(256);
+for (let i = 0; i < 256; ++i) {
+    let c = i;
+    for (let j = 0; j < 8; ++j) {
+        c = c & 1 ? 0x82f63b78 ^ (c >>> 1) : c >>> 1;
     }
-    AwsCrc32c.prototype.update = function (toHash) {
-        if ((0, util_1.isEmptyData)(toHash))
-            return;
-        this.crc32c.update((0, util_1.convertToBuffer)(toHash));
-    };
-    AwsCrc32c.prototype.digest = function () {
-        return tslib_1.__awaiter(this, void 0, void 0, function () {
-            return tslib_1.__generator(this, function (_a) {
-                return [2 /*return*/, (0, util_1.numToUint8)(this.crc32c.digest())];
-            });
-        });
-    };
-    AwsCrc32c.prototype.reset = function () {
-        this.crc32c = new index_1.Crc32c();
-    };
-    return AwsCrc32c;
-}());
-exports.AwsCrc32c = AwsCrc32c;
-//# sourceMappingURL=aws_crc32c.js.map
-
-/***/ }),
-
-/***/ 91491:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-
-// Copyright Amazon.com Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: Apache-2.0
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.AwsCrc32c = exports.Crc32c = exports.crc32c = void 0;
-var tslib_1 = __nccwpck_require__(61860);
-var util_1 = __nccwpck_require__(95667);
-function crc32c(data) {
-    return new Crc32c().update(data).digest();
+    T[i] = c >>> 0;
 }
-exports.crc32c = crc32c;
-var Crc32c = /** @class */ (function () {
-    function Crc32c() {
-        this.checksum = 0xffffffff;
-    }
-    Crc32c.prototype.update = function (data) {
-        var e_1, _a;
-        try {
-            for (var data_1 = tslib_1.__values(data), data_1_1 = data_1.next(); !data_1_1.done; data_1_1 = data_1.next()) {
-                var byte = data_1_1.value;
-                this.checksum =
-                    (this.checksum >>> 8) ^ lookupTable[(this.checksum ^ byte) & 0xff];
-            }
-        }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-        finally {
-            try {
-                if (data_1_1 && !data_1_1.done && (_a = data_1.return)) _a.call(data_1);
-            }
-            finally { if (e_1) throw e_1.error; }
-        }
-        return this;
-    };
-    Crc32c.prototype.digest = function () {
-        return (this.checksum ^ 0xffffffff) >>> 0;
-    };
-    return Crc32c;
-}());
-exports.Crc32c = Crc32c;
-// prettier-ignore
-var a_lookupTable = [
-    0x00000000, 0xF26B8303, 0xE13B70F7, 0x1350F3F4, 0xC79A971F, 0x35F1141C, 0x26A1E7E8, 0xD4CA64EB,
-    0x8AD958CF, 0x78B2DBCC, 0x6BE22838, 0x9989AB3B, 0x4D43CFD0, 0xBF284CD3, 0xAC78BF27, 0x5E133C24,
-    0x105EC76F, 0xE235446C, 0xF165B798, 0x030E349B, 0xD7C45070, 0x25AFD373, 0x36FF2087, 0xC494A384,
-    0x9A879FA0, 0x68EC1CA3, 0x7BBCEF57, 0x89D76C54, 0x5D1D08BF, 0xAF768BBC, 0xBC267848, 0x4E4DFB4B,
-    0x20BD8EDE, 0xD2D60DDD, 0xC186FE29, 0x33ED7D2A, 0xE72719C1, 0x154C9AC2, 0x061C6936, 0xF477EA35,
-    0xAA64D611, 0x580F5512, 0x4B5FA6E6, 0xB93425E5, 0x6DFE410E, 0x9F95C20D, 0x8CC531F9, 0x7EAEB2FA,
-    0x30E349B1, 0xC288CAB2, 0xD1D83946, 0x23B3BA45, 0xF779DEAE, 0x05125DAD, 0x1642AE59, 0xE4292D5A,
-    0xBA3A117E, 0x4851927D, 0x5B016189, 0xA96AE28A, 0x7DA08661, 0x8FCB0562, 0x9C9BF696, 0x6EF07595,
-    0x417B1DBC, 0xB3109EBF, 0xA0406D4B, 0x522BEE48, 0x86E18AA3, 0x748A09A0, 0x67DAFA54, 0x95B17957,
-    0xCBA24573, 0x39C9C670, 0x2A993584, 0xD8F2B687, 0x0C38D26C, 0xFE53516F, 0xED03A29B, 0x1F682198,
-    0x5125DAD3, 0xA34E59D0, 0xB01EAA24, 0x42752927, 0x96BF4DCC, 0x64D4CECF, 0x77843D3B, 0x85EFBE38,
-    0xDBFC821C, 0x2997011F, 0x3AC7F2EB, 0xC8AC71E8, 0x1C661503, 0xEE0D9600, 0xFD5D65F4, 0x0F36E6F7,
-    0x61C69362, 0x93AD1061, 0x80FDE395, 0x72966096, 0xA65C047D, 0x5437877E, 0x4767748A, 0xB50CF789,
-    0xEB1FCBAD, 0x197448AE, 0x0A24BB5A, 0xF84F3859, 0x2C855CB2, 0xDEEEDFB1, 0xCDBE2C45, 0x3FD5AF46,
-    0x7198540D, 0x83F3D70E, 0x90A324FA, 0x62C8A7F9, 0xB602C312, 0x44694011, 0x5739B3E5, 0xA55230E6,
-    0xFB410CC2, 0x092A8FC1, 0x1A7A7C35, 0xE811FF36, 0x3CDB9BDD, 0xCEB018DE, 0xDDE0EB2A, 0x2F8B6829,
-    0x82F63B78, 0x709DB87B, 0x63CD4B8F, 0x91A6C88C, 0x456CAC67, 0xB7072F64, 0xA457DC90, 0x563C5F93,
-    0x082F63B7, 0xFA44E0B4, 0xE9141340, 0x1B7F9043, 0xCFB5F4A8, 0x3DDE77AB, 0x2E8E845F, 0xDCE5075C,
-    0x92A8FC17, 0x60C37F14, 0x73938CE0, 0x81F80FE3, 0x55326B08, 0xA759E80B, 0xB4091BFF, 0x466298FC,
-    0x1871A4D8, 0xEA1A27DB, 0xF94AD42F, 0x0B21572C, 0xDFEB33C7, 0x2D80B0C4, 0x3ED04330, 0xCCBBC033,
-    0xA24BB5A6, 0x502036A5, 0x4370C551, 0xB11B4652, 0x65D122B9, 0x97BAA1BA, 0x84EA524E, 0x7681D14D,
-    0x2892ED69, 0xDAF96E6A, 0xC9A99D9E, 0x3BC21E9D, 0xEF087A76, 0x1D63F975, 0x0E330A81, 0xFC588982,
-    0xB21572C9, 0x407EF1CA, 0x532E023E, 0xA145813D, 0x758FE5D6, 0x87E466D5, 0x94B49521, 0x66DF1622,
-    0x38CC2A06, 0xCAA7A905, 0xD9F75AF1, 0x2B9CD9F2, 0xFF56BD19, 0x0D3D3E1A, 0x1E6DCDEE, 0xEC064EED,
-    0xC38D26C4, 0x31E6A5C7, 0x22B65633, 0xD0DDD530, 0x0417B1DB, 0xF67C32D8, 0xE52CC12C, 0x1747422F,
-    0x49547E0B, 0xBB3FFD08, 0xA86F0EFC, 0x5A048DFF, 0x8ECEE914, 0x7CA56A17, 0x6FF599E3, 0x9D9E1AE0,
-    0xD3D3E1AB, 0x21B862A8, 0x32E8915C, 0xC083125F, 0x144976B4, 0xE622F5B7, 0xF5720643, 0x07198540,
-    0x590AB964, 0xAB613A67, 0xB831C993, 0x4A5A4A90, 0x9E902E7B, 0x6CFBAD78, 0x7FAB5E8C, 0x8DC0DD8F,
-    0xE330A81A, 0x115B2B19, 0x020BD8ED, 0xF0605BEE, 0x24AA3F05, 0xD6C1BC06, 0xC5914FF2, 0x37FACCF1,
-    0x69E9F0D5, 0x9B8273D6, 0x88D28022, 0x7AB90321, 0xAE7367CA, 0x5C18E4C9, 0x4F48173D, 0xBD23943E,
-    0xF36E6F75, 0x0105EC76, 0x12551F82, 0xE03E9C81, 0x34F4F86A, 0xC69F7B69, 0xD5CF889D, 0x27A40B9E,
-    0x79B737BA, 0x8BDCB4B9, 0x988C474D, 0x6AE7C44E, 0xBE2DA0A5, 0x4C4623A6, 0x5F16D052, 0xAD7D5351,
-];
-var lookupTable = (0, util_1.uint32ArrayFrom)(a_lookupTable);
-var aws_crc32c_1 = __nccwpck_require__(95405);
-Object.defineProperty(exports, "AwsCrc32c", ({ enumerable: true, get: function () { return aws_crc32c_1.AwsCrc32c; } }));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 45675:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-
-// Copyright Amazon.com Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: Apache-2.0
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.convertToBuffer = void 0;
-var util_utf8_1 = __nccwpck_require__(47515);
-// Quick polyfill
-var fromUtf8 = typeof Buffer !== "undefined" && Buffer.from
-    ? function (input) { return Buffer.from(input, "utf8"); }
-    : util_utf8_1.fromUtf8;
-function convertToBuffer(data) {
-    // Already a Uint8, do nothing
-    if (data instanceof Uint8Array)
-        return data;
-    if (typeof data === "string") {
-        return fromUtf8(data);
-    }
-    if (ArrayBuffer.isView(data)) {
-        return new Uint8Array(data.buffer, data.byteOffset, data.byteLength / Uint8Array.BYTES_PER_ELEMENT);
-    }
-    return new Uint8Array(data);
-}
-exports.convertToBuffer = convertToBuffer;
-//# sourceMappingURL=convertToBuffer.js.map
-
-/***/ }),
-
-/***/ 95667:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-
-// Copyright Amazon.com Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: Apache-2.0
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.uint32ArrayFrom = exports.numToUint8 = exports.isEmptyData = exports.convertToBuffer = void 0;
-var convertToBuffer_1 = __nccwpck_require__(45675);
-Object.defineProperty(exports, "convertToBuffer", ({ enumerable: true, get: function () { return convertToBuffer_1.convertToBuffer; } }));
-var isEmptyData_1 = __nccwpck_require__(14658);
-Object.defineProperty(exports, "isEmptyData", ({ enumerable: true, get: function () { return isEmptyData_1.isEmptyData; } }));
-var numToUint8_1 = __nccwpck_require__(35436);
-Object.defineProperty(exports, "numToUint8", ({ enumerable: true, get: function () { return numToUint8_1.numToUint8; } }));
-var uint32ArrayFrom_1 = __nccwpck_require__(50673);
-Object.defineProperty(exports, "uint32ArrayFrom", ({ enumerable: true, get: function () { return uint32ArrayFrom_1.uint32ArrayFrom; } }));
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 14658:
-/***/ ((__unused_webpack_module, exports) => {
-
-
-// Copyright Amazon.com Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: Apache-2.0
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.isEmptyData = void 0;
-function isEmptyData(data) {
-    if (typeof data === "string") {
-        return data.length === 0;
-    }
-    return data.byteLength === 0;
-}
-exports.isEmptyData = isEmptyData;
-//# sourceMappingURL=isEmptyData.js.map
-
-/***/ }),
-
-/***/ 35436:
-/***/ ((__unused_webpack_module, exports) => {
-
-
-// Copyright Amazon.com Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: Apache-2.0
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.numToUint8 = void 0;
-function numToUint8(num) {
-    return new Uint8Array([
-        (num & 0xff000000) >> 24,
-        (num & 0x00ff0000) >> 16,
-        (num & 0x0000ff00) >> 8,
-        num & 0x000000ff,
-    ]);
-}
-exports.numToUint8 = numToUint8;
-//# sourceMappingURL=numToUint8.js.map
-
-/***/ }),
-
-/***/ 50673:
-/***/ ((__unused_webpack_module, exports) => {
-
-
-// Copyright Amazon.com Inc. or its affiliates. All Rights Reserved.
-// SPDX-License-Identifier: Apache-2.0
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.uint32ArrayFrom = void 0;
-// IE 11 does not support Array.from, so we do it manually
-function uint32ArrayFrom(a_lookUpTable) {
-    if (!Uint32Array.from) {
-        var return_array = new Uint32Array(a_lookUpTable.length);
-        var a_index = 0;
-        while (a_index < a_lookUpTable.length) {
-            return_array[a_index] = a_lookUpTable[a_index];
-            a_index += 1;
-        }
-        return return_array;
-    }
-    return Uint32Array.from(a_lookUpTable);
-}
-exports.uint32ArrayFrom = uint32ArrayFrom;
-//# sourceMappingURL=uint32ArrayFrom.js.map
-
-/***/ }),
-
-/***/ 78756:
-/***/ ((module) => {
-
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-
-// src/index.ts
-var src_exports = {};
-__export(src_exports, {
-  isArrayBuffer: () => isArrayBuffer
-});
-module.exports = __toCommonJS(src_exports);
-var isArrayBuffer = /* @__PURE__ */ __name((arg) => typeof ArrayBuffer === "function" && arg instanceof ArrayBuffer || Object.prototype.toString.call(arg) === "[object ArrayBuffer]", "isArrayBuffer");
-// Annotate the CommonJS export names for ESM import in node:
-
-0 && (0);
-
-
-
-/***/ }),
-
-/***/ 19077:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-
-// src/index.ts
-var src_exports = {};
-__export(src_exports, {
-  fromArrayBuffer: () => fromArrayBuffer,
-  fromString: () => fromString
-});
-module.exports = __toCommonJS(src_exports);
-var import_is_array_buffer = __nccwpck_require__(78756);
-var import_buffer = __nccwpck_require__(20181);
-var fromArrayBuffer = /* @__PURE__ */ __name((input, offset = 0, length = input.byteLength - offset) => {
-  if (!(0, import_is_array_buffer.isArrayBuffer)(input)) {
-    throw new TypeError(`The "input" argument must be ArrayBuffer. Received type ${typeof input} (${input})`);
-  }
-  return import_buffer.Buffer.from(input, offset, length);
-}, "fromArrayBuffer");
-var fromString = /* @__PURE__ */ __name((input, encoding) => {
-  if (typeof input !== "string") {
-    throw new TypeError(`The "input" argument must be of type string. Received type ${typeof input} (${input})`);
-  }
-  return encoding ? import_buffer.Buffer.from(input, encoding) : import_buffer.Buffer.from(input);
-}, "fromString");
-// Annotate the CommonJS export names for ESM import in node:
-
-0 && (0);
-
-
-
-/***/ }),
-
-/***/ 47515:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-
-// src/index.ts
-var src_exports = {};
-__export(src_exports, {
-  fromUtf8: () => fromUtf8,
-  toUint8Array: () => toUint8Array,
-  toUtf8: () => toUtf8
-});
-module.exports = __toCommonJS(src_exports);
-
-// src/fromUtf8.ts
-var import_util_buffer_from = __nccwpck_require__(19077);
-var fromUtf8 = /* @__PURE__ */ __name((input) => {
-  const buf = (0, import_util_buffer_from.fromString)(input, "utf8");
-  return new Uint8Array(buf.buffer, buf.byteOffset, buf.byteLength / Uint8Array.BYTES_PER_ELEMENT);
-}, "fromUtf8");
-
-// src/toUint8Array.ts
-var toUint8Array = /* @__PURE__ */ __name((data) => {
-  if (typeof data === "string") {
-    return fromUtf8(data);
-  }
-  if (ArrayBuffer.isView(data)) {
-    return new Uint8Array(data.buffer, data.byteOffset, data.byteLength / Uint8Array.BYTES_PER_ELEMENT);
-  }
-  return new Uint8Array(data);
-}, "toUint8Array");
-
-// src/toUtf8.ts
-
-var toUtf8 = /* @__PURE__ */ __name((input) => {
-  if (typeof input === "string") {
-    return input;
-  }
-  if (typeof input !== "object" || typeof input.byteOffset !== "number" || typeof input.byteLength !== "number") {
-    throw new Error("@smithy/util-utf8: toUtf8 encoder function only accepts string | Uint8Array.");
-  }
-  return (0, import_util_buffer_from.fromArrayBuffer)(input.buffer, input.byteOffset, input.byteLength).toString("utf8");
-}, "toUtf8");
-// Annotate the CommonJS export names for ESM import in node:
-
-0 && (0);
-
-
-
-/***/ }),
-
-/***/ 9151:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-const { AwsCrc32 } = __nccwpck_require__(62110);
-const { numToUint8 } = __nccwpck_require__(95667);
-const zlib = __nccwpck_require__(38522);
-class NodeCrc32 {
-    checksum = 0;
+class Crc32cJs {
+    digestLength = 4;
+    crc = 0xffff_ffff;
     update(data) {
-        this.checksum = zlib.crc32(data, this.checksum);
+        let crc = this.crc;
+        for (let i = 0; i < data.length; ++i) {
+            crc = (crc >>> 8) ^ T[(crc ^ data[i]) & 0xff];
+        }
+        this.crc = crc;
     }
     async digest() {
-        return numToUint8(this.checksum);
+        const value = (this.crc ^ 0xffff_ffff) >>> 0;
+        const out = new Uint8Array(4);
+        out[0] = value >>> 24;
+        out[1] = (value >>> 16) & 0xff;
+        out[2] = (value >>> 8) & 0xff;
+        out[3] = value & 0xff;
+        return out;
     }
     reset() {
-        this.checksum = 0;
+        this.crc = 0xffff_ffff;
     }
 }
-exports.getCrc32ChecksumAlgorithmFunction = () => {
-    if (typeof zlib.crc32 === "undefined") {
-        return AwsCrc32;
-    }
-    return NodeCrc32;
+
+const Crc32cNode = Crc32cJs;
+
+const crc64NvmeCrtContainer = {
+    CrtCrc64Nvme: null,
 };
-
-
-/***/ }),
-
-/***/ 36251:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-const { setFeature } = __nccwpck_require__(5152);
-const { HttpRequest } = __nccwpck_require__(93422);
-const { isArrayBuffer, toUint8Array, createBufferedReadable, createChecksumStream } = __nccwpck_require__(92430);
-const { AwsCrc32c } = __nccwpck_require__(91491);
-const { getCrc32ChecksumAlgorithmFunction } = __nccwpck_require__(9151);
-const { normalizeProvider } = __nccwpck_require__(92658);
 
 const generateCRC64NVMETable = () => {
     const sliceLength = 8;
@@ -615,7 +79,7 @@ const ensureTablesInitialized = () => {
         [t0, t1, t2, t3, t4, t5, t6, t7] = CRC64_NVME_REVERSED_TABLE;
     }
 };
-class Crc64Nvme {
+class Crc64NvmeJs {
     c1 = 0;
     c2 = 0;
     constructor() {
@@ -652,7 +116,7 @@ class Crc64Nvme {
             crc2 = ((crc2 >>> 8) | ((crc1 & 255) << 24)) >>> 0;
             crc1 = (crc1 >>> 8) ^ t0[idx];
             crc2 ^= t0[idx + 1];
-            i++;
+            ++i;
         }
         this.c1 = crc1;
         this.c2 = crc2;
@@ -677,9 +141,41 @@ class Crc64Nvme {
     }
 }
 
-const crc64NvmeCrtContainer = {
-    CrtCrc64Nvme: null,
-};
+class Crc64Nvme {
+    impl;
+    constructor() {
+        const Crt = crc64NvmeCrtContainer.CrtCrc64Nvme;
+        this.impl = Crt ? new Crt() : new Crc64NvmeJs();
+    }
+    update(data) {
+        this.impl.update(data);
+    }
+    async digest() {
+        return this.impl.digest();
+    }
+    reset() {
+        this.impl.reset();
+    }
+}
+
+exports.Crc32c = Crc32cNode;
+exports.Crc32cJs = Crc32cJs;
+exports.Crc32cNode = Crc32cNode;
+exports.Crc64Nvme = Crc64Nvme;
+exports.Crc64NvmeJs = Crc64NvmeJs;
+exports.crc64NvmeCrtContainer = crc64NvmeCrtContainer;
+
+
+/***/ }),
+
+/***/ 20238:
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+
+const { setFeature } = __nccwpck_require__(5152);
+const { HttpRequest } = __nccwpck_require__(93422);
+const { isArrayBuffer, toUint8Array, createBufferedReadable, createChecksumStream } = __nccwpck_require__(92430);
+const { Crc64Nvme, Crc32c, Crc32 } = __nccwpck_require__(8282);
+const { normalizeProvider } = __nccwpck_require__(92658);
 
 const RequestChecksumCalculation = {
     WHEN_SUPPORTED: "WHEN_SUPPORTED",
@@ -796,14 +292,11 @@ const selectChecksumAlgorithmFunction = (checksumAlgorithm, config) => {
         case ChecksumAlgorithm.MD5:
             return checksumAlgorithms?.MD5 ?? config.md5;
         case ChecksumAlgorithm.CRC32:
-            return checksumAlgorithms?.CRC32 ?? getCrc32ChecksumAlgorithmFunction();
+            return checksumAlgorithms?.CRC32 ?? Crc32;
         case ChecksumAlgorithm.CRC32C:
-            return checksumAlgorithms?.CRC32C ?? AwsCrc32c;
+            return checksumAlgorithms?.CRC32C ?? Crc32c;
         case ChecksumAlgorithm.CRC64NVME:
-            if (typeof crc64NvmeCrtContainer.CrtCrc64Nvme !== "function") {
-                return checksumAlgorithms?.CRC64NVME ?? Crc64Nvme;
-            }
-            return checksumAlgorithms?.CRC64NVME ?? crc64NvmeCrtContainer.CrtCrc64Nvme;
+            return checksumAlgorithms?.CRC64NVME ?? Crc64Nvme;
         case ChecksumAlgorithm.SHA1:
             return checksumAlgorithms?.SHA1 ?? config.sha1;
         case ChecksumAlgorithm.SHA256:
@@ -1109,7 +602,6 @@ exports.CONFIG_REQUEST_CHECKSUM_CALCULATION = CONFIG_REQUEST_CHECKSUM_CALCULATIO
 exports.CONFIG_RESPONSE_CHECKSUM_VALIDATION = CONFIG_RESPONSE_CHECKSUM_VALIDATION;
 exports.ChecksumAlgorithm = ChecksumAlgorithm;
 exports.ChecksumLocation = ChecksumLocation;
-exports.Crc64Nvme = Crc64Nvme;
 exports.DEFAULT_CHECKSUM_ALGORITHM = DEFAULT_CHECKSUM_ALGORITHM;
 exports.DEFAULT_REQUEST_CHECKSUM_CALCULATION = DEFAULT_REQUEST_CHECKSUM_CALCULATION;
 exports.DEFAULT_RESPONSE_CHECKSUM_VALIDATION = DEFAULT_RESPONSE_CHECKSUM_VALIDATION;
@@ -1119,7 +611,6 @@ exports.NODE_REQUEST_CHECKSUM_CALCULATION_CONFIG_OPTIONS = NODE_REQUEST_CHECKSUM
 exports.NODE_RESPONSE_CHECKSUM_VALIDATION_CONFIG_OPTIONS = NODE_RESPONSE_CHECKSUM_VALIDATION_CONFIG_OPTIONS;
 exports.RequestChecksumCalculation = RequestChecksumCalculation;
 exports.ResponseChecksumValidation = ResponseChecksumValidation;
-exports.crc64NvmeCrtContainer = crc64NvmeCrtContainer;
 exports.flexibleChecksumsMiddleware = flexibleChecksumsMiddleware;
 exports.flexibleChecksumsMiddlewareOptions = flexibleChecksumsMiddlewareOptions;
 exports.getFlexibleChecksumsPlugin = getFlexibleChecksumsPlugin;
@@ -1128,139 +619,350 @@ exports.resolveFlexibleChecksumsConfig = resolveFlexibleChecksumsConfig;
 
 /***/ }),
 
-/***/ 7168:
+/***/ 63242:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
-const { resolveAwsSdkSigV4AConfig, resolveAwsSdkSigV4Config } = __nccwpck_require__(97523);
-const { SignatureV4MultiRegion } = __nccwpck_require__(5785);
-const { getSmithyContext, normalizeProvider } = __nccwpck_require__(92658);
-const { resolveParams } = __nccwpck_require__(62085);
-const { defaultEndpointResolver } = __nccwpck_require__(57526);
-const createEndpointRuleSetHttpAuthSchemeParametersProvider = (defaultHttpAuthSchemeParametersProvider) => async (config, context, input) => {
-    if (!input) {
-        throw new Error("Could not find `input` for `defaultEndpointRuleSetHttpAuthSchemeParametersProvider`");
-    }
-    const defaultParameters = await defaultHttpAuthSchemeParametersProvider(config, context, input);
-    const instructionsFn = getSmithyContext(context)?.commandInstance?.constructor
-        ?.getEndpointParameterInstructions;
-    if (!instructionsFn) {
-        throw new Error(`getEndpointParameterInstructions() is not defined on '${context.commandName}'`);
-    }
-    const endpointParameters = await resolveParams(input, { getEndpointParameterInstructions: instructionsFn }, config);
-    return Object.assign(defaultParameters, endpointParameters);
-};
-const _defaultS3HttpAuthSchemeParametersProvider = async (config, context, input) => {
-    return {
-        operation: getSmithyContext(context).operation,
-        region: await normalizeProvider(config.region)() || (() => {
-            throw new Error("expected `region` to be configured for `aws.auth#sigv4`");
-        })(),
-    };
-};
-exports.defaultS3HttpAuthSchemeParametersProvider = createEndpointRuleSetHttpAuthSchemeParametersProvider(_defaultS3HttpAuthSchemeParametersProvider);
-function createAwsAuthSigv4HttpAuthOption(authParameters) {
-    return {
-        schemeId: "aws.auth#sigv4",
-        signingProperties: {
-            name: "s3",
-            region: authParameters.region,
-        },
-        propertiesExtractor: (config, context) => ({
-            signingProperties: {
-                config,
-                context,
-            },
-        }),
-    };
-}
-function createAwsAuthSigv4aHttpAuthOption(authParameters) {
-    return {
-        schemeId: "aws.auth#sigv4a",
-        signingProperties: {
-            name: "s3",
-            region: authParameters.region,
-        },
-        propertiesExtractor: (config, context) => ({
-            signingProperties: {
-                config,
-                context,
-            },
-        }),
-    };
-}
-const createEndpointRuleSetHttpAuthSchemeProvider = (defaultEndpointResolver, defaultHttpAuthSchemeResolver, createHttpAuthOptionFunctions) => {
-    const endpointRuleSetHttpAuthSchemeProvider = (authParameters) => {
-        const endpoint = defaultEndpointResolver(authParameters);
-        const authSchemes = endpoint.properties?.authSchemes;
-        if (!authSchemes) {
-            return defaultHttpAuthSchemeResolver(authParameters);
+const { toUint8Array, concatBytes } = __nccwpck_require__(92430);
+const { createHmac, createHash } = __nccwpck_require__(77598);
+const { Sha256, Sha256Js, Sha256Node } = __nccwpck_require__(99542);
+exports.Sha256 = Sha256;
+exports.Sha256Js = Sha256Js;
+exports.Sha256Node = Sha256Node;
+
+const BLOCK = 64;
+const DIGEST_LENGTH = 20;
+const INIT = new Int32Array([0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476, 0xc3d2e1f0]);
+const K = new Int32Array([0x5a827999, 0x6ed9eba1, 0x8f1bbcdc, 0xca62c1d6]);
+class Sha1Js {
+    digestLength = DIGEST_LENGTH;
+    state = Int32Array.from(INIT);
+    w;
+    buffer = new Uint8Array(BLOCK);
+    bufferLength = 0;
+    bytesHashed = 0;
+    finished = false;
+    inner;
+    outer;
+    constructor(secret) {
+        if (secret) {
+            const key = Sha1Js.normalizeKey(secret);
+            this.inner = new Sha1Js();
+            this.outer = new Sha1Js();
+            const pad = new Uint8Array(BLOCK * 2);
+            for (let i = 0; i < BLOCK; ++i) {
+                pad[i] = 0x36 ^ key[i];
+                pad[i + BLOCK] = 0x5c ^ key[i];
+            }
+            this.inner.update(pad.subarray(0, BLOCK));
+            this.outer.update(pad.subarray(BLOCK));
         }
-        const options = [];
-        for (const scheme of authSchemes) {
-            const { name: resolvedName, properties = {}, ...rest } = scheme;
-            const name = resolvedName.toLowerCase();
-            if (resolvedName !== name) {
-                console.warn(`HttpAuthScheme has been normalized with lowercasing: '${resolvedName}' to '${name}'`);
+    }
+    update(data) {
+        if (this.finished) {
+            throw new Error("Attempted to update an already finished HMAC.");
+        }
+        if (this.inner) {
+            this.inner.update(data);
+            return;
+        }
+        let pos = 0;
+        let { length } = data;
+        this.bytesHashed += length;
+        if (this.bufferLength > 0) {
+            while (length > 0 && this.bufferLength < BLOCK) {
+                this.buffer[this.bufferLength++] = data[pos++];
+                --length;
             }
-            let schemeId;
-            if (name === "sigv4a") {
-                schemeId = "aws.auth#sigv4a";
-                const sigv4Present = authSchemes.find((s) => {
-                    const name = s.name.toLowerCase();
-                    return name !== "sigv4a" && name.startsWith("sigv4");
-                });
-                if (SignatureV4MultiRegion.sigv4aDependency() === "none" && sigv4Present) {
-                    continue;
-                }
+            if (this.bufferLength === BLOCK) {
+                this.hashBuffer(this.buffer, 0);
+                this.bufferLength = 0;
             }
-            else if (name.startsWith("sigv4")) {
-                schemeId = "aws.auth#sigv4";
+        }
+        while (length >= BLOCK) {
+            this.hashBuffer(data, pos);
+            pos += BLOCK;
+            length -= BLOCK;
+        }
+        while (length > 0) {
+            this.buffer[this.bufferLength++] = data[pos++];
+            --length;
+        }
+    }
+    async digest() {
+        if (this.inner && this.outer) {
+            if (this.finished) {
+                throw new Error("Attempted to digest an already finished HMAC.");
+            }
+            this.finished = true;
+            const innerDigest = this.inner.digestSync();
+            this.outer.update(innerDigest);
+            return this.outer.digestSync();
+        }
+        return this.digestSync();
+    }
+    reset() {
+        this.state = Int32Array.from(INIT);
+        this.buffer = new Uint8Array(BLOCK);
+        this.bufferLength = 0;
+        this.bytesHashed = 0;
+    }
+    digestSync() {
+        const state = this.state.slice();
+        const buffer = this.buffer.slice();
+        let bufferLength = this.bufferLength;
+        const bitsHi = (this.bytesHashed / 0x20000000) | 0;
+        const bitsLo = this.bytesHashed << 3;
+        buffer[bufferLength++] = 0x80;
+        if (bufferLength > BLOCK - 8) {
+            for (let i = bufferLength; i < BLOCK; ++i) {
+                buffer[i] = 0;
+            }
+            this.hashBufferWith(state, buffer, 0);
+            bufferLength = 0;
+        }
+        for (let i = bufferLength; i < BLOCK - 8; ++i) {
+            buffer[i] = 0;
+        }
+        const v = new DataView(buffer.buffer, buffer.byteOffset, BLOCK);
+        v.setUint32(BLOCK - 8, bitsHi, false);
+        v.setUint32(BLOCK - 4, bitsLo, false);
+        this.hashBufferWith(state, buffer, 0);
+        const out = new Uint8Array(DIGEST_LENGTH);
+        out[0] = (state[0] >>> 24) & 0xff;
+        out[1] = (state[0] >>> 16) & 0xff;
+        out[2] = (state[0] >>> 8) & 0xff;
+        out[3] = state[0] & 0xff;
+        out[4] = (state[1] >>> 24) & 0xff;
+        out[5] = (state[1] >>> 16) & 0xff;
+        out[6] = (state[1] >>> 8) & 0xff;
+        out[7] = state[1] & 0xff;
+        out[8] = (state[2] >>> 24) & 0xff;
+        out[9] = (state[2] >>> 16) & 0xff;
+        out[10] = (state[2] >>> 8) & 0xff;
+        out[11] = state[2] & 0xff;
+        out[12] = (state[3] >>> 24) & 0xff;
+        out[13] = (state[3] >>> 16) & 0xff;
+        out[14] = (state[3] >>> 8) & 0xff;
+        out[15] = state[3] & 0xff;
+        out[16] = (state[4] >>> 24) & 0xff;
+        out[17] = (state[4] >>> 16) & 0xff;
+        out[18] = (state[4] >>> 8) & 0xff;
+        out[19] = state[4] & 0xff;
+        return out;
+    }
+    static normalizeKey(secret) {
+        const key = toUint8Array(secret);
+        if (key.byteLength > BLOCK) {
+            const h = new Sha1Js();
+            h.update(key);
+            const digest = h.digestSync();
+            const padded = new Uint8Array(BLOCK);
+            padded.set(digest);
+            return padded;
+        }
+        const padded = new Uint8Array(BLOCK);
+        padded.set(key);
+        return padded;
+    }
+    hashBuffer(data, offset) {
+        this.hashBufferWith(this.state, data, offset);
+    }
+    hashBufferWith(state, data, offset) {
+        const w = (this.w ??= new Int32Array(80));
+        let s0 = state[0], s1 = state[1], s2 = state[2], s3 = state[3], s4 = state[4];
+        for (let t = 0; t < 16; ++t) {
+            w[t] =
+                ((data[offset + t * 4] & 0xff) << 24) |
+                    ((data[offset + t * 4 + 1] & 0xff) << 16) |
+                    ((data[offset + t * 4 + 2] & 0xff) << 8) |
+                    (data[offset + t * 4 + 3] & 0xff);
+        }
+        for (let t = 16; t < 80; ++t) {
+            const x = w[t - 3] ^ w[t - 8] ^ w[t - 14] ^ w[t - 16];
+            w[t] = (x << 1) | (x >>> 31);
+        }
+        for (let t = 0; t < 80; ++t) {
+            const r = t < 20 ? 0 : t < 40 ? 1 : t < 60 ? 2 : 3;
+            const temp = (((((s0 << 5) | (s0 >>> 27)) +
+                (r === 0 ? (s1 & s2) ^ (~s1 & s3) : r === 2 ? (s1 & s2) ^ (s1 & s3) ^ (s2 & s3) : s1 ^ s2 ^ s3)) |
+                0) +
+                ((s4 + ((K[r] + w[t]) | 0)) | 0)) |
+                0;
+            s4 = s3;
+            s3 = s2;
+            s2 = (s1 << 30) | (s1 >>> 2);
+            s1 = s0;
+            s0 = temp;
+        }
+        state[0] = (state[0] + s0) | 0;
+        state[1] = (state[1] + s1) | 0;
+        state[2] = (state[2] + s2) | 0;
+        state[3] = (state[3] + s3) | 0;
+        state[4] = (state[4] + s4) | 0;
+    }
+}
+
+const hasNativeCrypto = (() => {
+    try {
+        createHash("sha1");
+        return true;
+    }
+    catch {
+        return false;
+    }
+})();
+const Sha1Node = hasNativeCrypto ? buildNativeClass() : Sha1Js;
+function buildNativeClass() {
+    return class Sha1Node {
+        digestLength = 20;
+        secret;
+        hash;
+        isHmac;
+        finished = false;
+        constructor(secret) {
+            this.secret = secret;
+            this.isHmac = !!secret;
+            this.hash = this.createHash();
+        }
+        update(data) {
+            if (this.finished) {
+                throw new Error("Attempted to update an already finished hash.");
+            }
+            this.hash.update(data);
+        }
+        async digest() {
+            let buf;
+            if (this.isHmac) {
+                this.finished = true;
+                buf = this.hash.digest();
             }
             else {
-                throw new Error(`Unknown HttpAuthScheme found in '@smithy.rules#endpointRuleSet': '${name}'`);
+                buf = this.hash.copy().digest();
             }
-            const createOption = createHttpAuthOptionFunctions[schemeId];
-            if (!createOption) {
-                throw new Error(`Could not find HttpAuthOption create function for '${schemeId}'`);
-            }
-            const option = createOption(authParameters);
-            option.schemeId = schemeId;
-            option.signingProperties = { ...(option.signingProperties || {}), ...rest, ...properties };
-            options.push(option);
+            return new Uint8Array(buf.buffer, buf.byteOffset, buf.byteLength);
         }
-        return options;
+        reset() {
+            this.hash = this.createHash();
+            this.finished = false;
+        }
+        createHash() {
+            return this.secret ? createHmac("sha1", toBuffer(this.secret)) : createHash("sha1");
+        }
     };
-    return endpointRuleSetHttpAuthSchemeProvider;
-};
-const _defaultS3HttpAuthSchemeProvider = (authParameters) => {
-    const options = [];
-    switch (authParameters.operation) {
-        default: {
-            options.push(createAwsAuthSigv4HttpAuthOption(authParameters));
-            options.push(createAwsAuthSigv4aHttpAuthOption(authParameters));
+}
+function toBuffer(data) {
+    if (typeof data === "string") {
+        return data;
+    }
+    if (ArrayBuffer.isView(data)) {
+        return Buffer.from(data.buffer, data.byteOffset, data.byteLength);
+    }
+    return Buffer.from(data);
+}
+
+const { digest, sign, importKey } = globalThis?.crypto?.subtle ?? {};
+const subtle = typeof digest === "function" && typeof sign === "function" && typeof importKey === "function"
+    ? globalThis.crypto.subtle
+    : undefined;
+const MAX_PENDING_BYTES = 8 * 1024 * 1024;
+class Sha1WebCrypto {
+    digestLength = 20;
+    secret;
+    pending = [];
+    pendingBytes = 0;
+    fallback;
+    finished = false;
+    constructor(secret) {
+        if (secret) {
+            this.secret = toUint8Array(secret);
         }
     }
-    return options;
-};
-exports.defaultS3HttpAuthSchemeProvider = createEndpointRuleSetHttpAuthSchemeProvider(defaultEndpointResolver, _defaultS3HttpAuthSchemeProvider, {
-    "aws.auth#sigv4": createAwsAuthSigv4HttpAuthOption,
-    "aws.auth#sigv4a": createAwsAuthSigv4aHttpAuthOption,
-});
-exports.resolveHttpAuthSchemeConfig = (config) => {
-    const config_0 = resolveAwsSdkSigV4Config(config);
-    const config_1 = resolveAwsSdkSigV4AConfig(config_0);
-    return Object.assign(config_1, {
-        authSchemePreference: normalizeProvider(config.authSchemePreference ?? []),
-    });
-};
+    update(data) {
+        if (this.finished) {
+            throw new Error("Attempted to update an already finished HMAC.");
+        }
+        if (this.fallback) {
+            this.fallback.update(data);
+            return;
+        }
+        this.pending.push(data.slice());
+        this.pendingBytes += data.byteLength;
+        if (this.pendingBytes >= MAX_PENDING_BYTES) {
+            this.switchToFallback();
+        }
+    }
+    async digest() {
+        if (this.fallback) {
+            return this.fallback.digest();
+        }
+        if (this.secret && this.finished) {
+            throw new Error("Attempted to digest an already finished HMAC.");
+        }
+        const data = concatBytes(this.pending);
+        if (subtle) {
+            if (this.secret) {
+                this.finished = true;
+                const key = await subtle.importKey("raw", this.secret, { name: "HMAC", hash: "SHA-1" }, false, ["sign"]);
+                const sig = await subtle.sign("HMAC", key, data);
+                return new Uint8Array(sig);
+            }
+            const hash = await subtle.digest("SHA-1", data);
+            return new Uint8Array(hash);
+        }
+        const sha1 = new Sha1Js(this.secret);
+        sha1.update(data);
+        return sha1.digest();
+    }
+    reset() {
+        this.pending = [];
+        this.pendingBytes = 0;
+        this.fallback = undefined;
+        this.finished = false;
+    }
+    switchToFallback() {
+        const sha1Js = new Sha1Js(this.secret);
+        for (const chunk of this.pending) {
+            sha1Js.update(chunk);
+        }
+        this.fallback = sha1Js;
+        this.pending = [];
+        this.pendingBytes = 0;
+    }
+}
+
+exports.Sha1 = Sha1Node;
+exports.Sha1Js = Sha1Js;
+exports.Sha1Node = Sha1Node;
+exports.Sha1WebCrypto = Sha1WebCrypto;
 
 
 /***/ }),
 
-/***/ 66363:
+/***/ 53711:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
-const { BinaryDecisionDiagram } = __nccwpck_require__(62085);
+const { getFlexibleChecksumsPlugin, NODE_RESPONSE_CHECKSUM_VALIDATION_CONFIG_OPTIONS, NODE_REQUEST_CHECKSUM_CALCULATION_CONFIG_OPTIONS, resolveFlexibleChecksumsConfig } = __nccwpck_require__(20238);
+const { awsEndpointFunctions, emitWarningIfUnsupportedVersion: emitWarningIfUnsupportedVersion$1, createDefaultUserAgentProvider, NODE_APP_ID_CONFIG_OPTIONS, getAwsRegionExtensionConfiguration, resolveAwsRegionExtensionConfiguration, resolveUserAgentConfig, resolveHostHeaderConfig, getUserAgentPlugin, getHostHeaderPlugin, getLoggerPlugin, getRecursionDetectionPlugin } = __nccwpck_require__(5152);
+const { getThrow200ExceptionsPlugin, getSsecPlugin, getLocationConstraintPlugin, getS3ExpiresMiddlewarePlugin, getCheckContentLengthHeaderPlugin, S3RestXmlProtocol, NODE_USE_ARN_REGION_CONFIG_OPTIONS, NODE_DISABLE_S3_EXPRESS_SESSION_AUTH_OPTIONS, resolveS3Config, getValidateBucketNamePlugin, getAddExpectContinuePlugin, getRegionRedirectMiddlewarePlugin, getS3ExpressPlugin, getS3ExpressHttpSigningPlugin } = __nccwpck_require__(45028);
+const { getHttpAuthSchemeEndpointRuleSetPlugin, DefaultIdentityProviderConfig, getHttpSigningPlugin, createPaginator } = __nccwpck_require__(90402);
+const { normalizeProvider, getSmithyContext, makeBuilder, ServiceException, NoOpLogger, emitWarningIfUnsupportedVersion, loadConfigsForDefaultMode, getDefaultExtensionConfiguration, resolveDefaultRuntimeConfig, Client, createWaiter, checkExceptions, WaiterState, createAggregatedClient } = __nccwpck_require__(92658);
+const { Command: $Command } = __nccwpck_require__(92658);
+exports.$Command = $Command;
+exports.__Client = Client;
+const { resolveDefaultsModeConfig, loadConfig, NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS, NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS, NODE_REGION_CONFIG_OPTIONS, NODE_REGION_CONFIG_FILE_OPTIONS, resolveRegionConfig } = __nccwpck_require__(47291);
+const { BinaryDecisionDiagram, EndpointCache, decideEndpoint, customEndpointFunctions, resolveParams, getEndpointPlugin, resolveEndpointConfig } = __nccwpck_require__(62085);
+const { eventStreamSerdeProvider, resolveEventStreamSerdeConfig } = __nccwpck_require__(56579);
+const { parseUrl, getHttpHandlerExtensionConfiguration, resolveHttpHandlerRuntimeConfig, getContentLengthPlugin } = __nccwpck_require__(93422);
+const { DEFAULT_RETRY_MODE, NODE_RETRY_MODE_CONFIG_OPTIONS, NODE_MAX_ATTEMPT_CONFIG_OPTIONS, resolveRetryConfig, getRetryPlugin } = __nccwpck_require__(23609);
+const { TypeRegistry, getSchemaSerdePlugin } = __nccwpck_require__(26890);
+const { resolveAwsSdkSigV4Config, resolveAwsSdkSigV4AConfig, AwsSdkSigV4Signer, AwsSdkSigV4ASigner, NODE_SIGV4A_CONFIG_OPTIONS, NODE_AUTH_SCHEME_PREFERENCE_OPTIONS } = __nccwpck_require__(97523);
+const { SignatureV4MultiRegion } = __nccwpck_require__(5785);
+const { defaultProvider } = __nccwpck_require__(5861);
+const { Sha256, Md5, readableStreamHasher } = __nccwpck_require__(99542);
+const { toUtf8, fromUtf8, sdkStreamMixin, getAwsChunkedEncodingStream, toBase64, fromBase64, calculateBodyLength } = __nccwpck_require__(92430);
+const { streamCollector, NodeHttpHandler } = __nccwpck_require__(61279);
+const { Sha1 } = __nccwpck_require__(63242);
+
 const aw = "ref", ax = "argv", ay = "backend", az = "authSchemes", aA = "disableDoubleEncoding", aB = "signingName", aC = "signingRegion", aD = "signingRegionSet";
 const a = -1, b = true, c = false, d = "isSet", e = "booleanEquals", f = "stringEquals", g = "coalesce", h = "substring", i = "", j = "aws.partition", k = "partitionResult", l = "accessPointSuffix", m = "regionPrefix", n = (n) => "outpostId_ssa_" + n + i, o = "hardwareType", p = "ite", q = "isValidHostLabel", s = "sigv4", t = "aws.isVirtualHostableS3Bucket", u = "url", v = "getAttr", w = "bucketArn", x = "--", y = "arnType", z = "accesspoint", A = (n) => "accessPointName_ssa_" + n + i, B = "s3-object-lambda", C = "s3-outposts", D = "bucketPartition", E = "us-east-1", F = "outpostType", G = "name", H = "s3", I = "{url#scheme}://{Bucket}.{url#authority}{url#path}", J = "{url#scheme}://{url#authority}{url#path}", K = "{url#scheme}://{url#authority}{url#normalizedPath}{Bucket}", L = "https://{Bucket}.s3-accelerate.{partitionResult#dnsSuffix}", M = "https://{Bucket}.s3.{partitionResult#dnsSuffix}", N = (n) => "{url#scheme}://{accessPointName_ssa_" + n + "}-{bucketArn#accountId}.{url#authority}{url#path}", O = (n) => "Invalid ARN: The access point name may only contain a-z, A-Z, 0-9 and `-`. Found: `{accessPointName_ssa_" + n + "}`", P = "sigv4a", Q = "{url#scheme}://{url#authority}{url#normalizedPath}{uri_encoded_bucket}", R = "https://s3.{partitionResult#dnsSuffix}/{uri_encoded_bucket}", S = "https://s3.{partitionResult#dnsSuffix}", T = { [aw]: "UseFIPS" }, U = { [aw]: "UseDualStack" }, V = { [aw]: "Bucket" }, W = { "fn": v, [ax]: [{ [aw]: k }, G] }, X = { [aw]: u }, Y = { [aw]: "Region" }, Z = { [aw]: w }, aa = { [aw]: y }, ab = { [aw]: "accessPointName_ssa_1" }, ac = { "fn": v, [ax]: [Z, "region"] }, ad = { [aw]: o }, ae = { "fn": v, [ax]: [Z, "service"] }, af = { "fn": v, [ax]: [Z, "accountId"] }, ag = { [ay]: "S3Express", [az]: [{ [aA]: true, [G]: "{_s3e_auth}", [aB]: "s3express", [aC]: "{Region}" }] }, ah = { [ay]: "S3Express", [az]: [{ [aA]: true, [G]: s, [aB]: "s3express", [aC]: "{Region}" }] }, ai = { [az]: [{ [aA]: true, [G]: P, [aB]: C, [aD]: ["*"] }, { [aA]: true, [G]: s, [aB]: C, [aC]: "{Region}" }] }, aj = { [az]: [{ [aA]: true, [G]: s, [aB]: H, [aC]: E }] }, ak = { [az]: [{ [aA]: true, [G]: s, [aB]: H, [aC]: "{Region}" }] }, al = { [az]: [{ [aA]: true, [G]: s, [aB]: B, [aC]: "{bucketArn#region}" }] }, am = { [az]: [{ [aA]: true, [G]: s, [aB]: H, [aC]: "{bucketArn#region}" }] }, an = { [az]: [{ [aA]: true, [G]: P, [aB]: C, [aD]: ["*"] }, { [aA]: true, [G]: s, [aB]: C, [aC]: "{bucketArn#region}" }] }, ao = { [az]: [{ [aA]: true, [G]: s, [aB]: B, [aC]: "{Region}" }] }, ap = [Y], aq = [{ [aw]: "Endpoint" }], as = [V], at = [V, 0, 7, true], au = [Z, "resourceId[1]"], av = ["*"];
 const _data = {
@@ -2017,17 +1719,8 @@ const nodes = new Int32Array([
     44, r + 15, 553,
     45, r + 15, r + 20,
 ]);
-exports.bdd = BinaryDecisionDiagram.from(nodes, root, _data.conditions, _data.results);
+const bdd = BinaryDecisionDiagram.from(nodes, root, _data.conditions, _data.results);
 
-
-/***/ }),
-
-/***/ 57526:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-const { awsEndpointFunctions } = __nccwpck_require__(5152);
-const { customEndpointFunctions, decideEndpoint, EndpointCache } = __nccwpck_require__(62085);
-const { bdd } = __nccwpck_require__(66363);
 const cache = new EndpointCache({
     size: 50,
     params: [
@@ -2047,7 +1740,7 @@ const cache = new EndpointCache({
         "UseS3ExpressControlEndpoint",
     ],
 });
-exports.defaultEndpointResolver = (endpointParams, context = {}) => {
+const defaultEndpointResolver = (endpointParams, context = {}) => {
     return cache.get(endpointParams, () => decideEndpoint(bdd, {
         endpointParams: endpointParams,
         logger: context.logger,
@@ -2055,33 +1748,123 @@ exports.defaultEndpointResolver = (endpointParams, context = {}) => {
 };
 customEndpointFunctions.aws = awsEndpointFunctions;
 
-
-/***/ }),
-
-/***/ 53711:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-var __exportStar = (m, e) => { Object.assign(e, m); };
-const { getAwsRegionExtensionConfiguration, resolveAwsRegionExtensionConfiguration, resolveUserAgentConfig, resolveHostHeaderConfig, getUserAgentPlugin, getHostHeaderPlugin, getLoggerPlugin, getRecursionDetectionPlugin } = __nccwpck_require__(5152);
-const { resolveFlexibleChecksumsConfig, getFlexibleChecksumsPlugin } = __nccwpck_require__(29836);
-const { getThrow200ExceptionsPlugin, resolveS3Config, getValidateBucketNamePlugin, getAddExpectContinuePlugin, getRegionRedirectMiddlewarePlugin, getS3ExpressPlugin, getS3ExpressHttpSigningPlugin, getSsecPlugin, getLocationConstraintPlugin, getS3ExpiresMiddlewarePlugin, getCheckContentLengthHeaderPlugin } = __nccwpck_require__(45028);
-const { getHttpAuthSchemeEndpointRuleSetPlugin, DefaultIdentityProviderConfig, getHttpSigningPlugin, createPaginator } = __nccwpck_require__(90402);
-const { Command, getDefaultExtensionConfiguration, resolveDefaultRuntimeConfig, Client, createWaiter, checkExceptions, WaiterState, createAggregatedClient } = __nccwpck_require__(92658);
-exports.$Command = Command;
-exports.__Client = Client;
-const { resolveRegionConfig } = __nccwpck_require__(47291);
-const { getEndpointPlugin, resolveEndpointConfig } = __nccwpck_require__(62085);
-const { resolveEventStreamSerdeConfig } = __nccwpck_require__(56579);
-const { getHttpHandlerExtensionConfiguration, resolveHttpHandlerRuntimeConfig, getContentLengthPlugin } = __nccwpck_require__(93422);
-const { resolveRetryConfig, getRetryPlugin } = __nccwpck_require__(23609);
-const { getSchemaSerdePlugin } = __nccwpck_require__(26890);
-const { resolveHttpAuthSchemeConfig, defaultS3HttpAuthSchemeParametersProvider } = __nccwpck_require__(7168);
-const { CreateSession$, AbortMultipartUpload$, CompleteMultipartUpload$, CopyObject$, CreateBucket$, CreateBucketMetadataConfiguration$, CreateBucketMetadataTableConfiguration$, CreateMultipartUpload$, DeleteBucketAnalyticsConfiguration$, DeleteBucket$, DeleteBucketCors$, DeleteBucketEncryption$, DeleteBucketIntelligentTieringConfiguration$, DeleteBucketInventoryConfiguration$, DeleteBucketLifecycle$, DeleteBucketMetadataConfiguration$, DeleteBucketMetadataTableConfiguration$, DeleteBucketMetricsConfiguration$, DeleteBucketOwnershipControls$, DeleteBucketPolicy$, DeleteBucketReplication$, DeleteBucketTagging$, DeleteBucketWebsite$, DeleteObjectAnnotation$, DeleteObject$, DeleteObjects$, DeleteObjectTagging$, DeletePublicAccessBlock$, GetBucketAbac$, GetBucketAccelerateConfiguration$, GetBucketAcl$, GetBucketAnalyticsConfiguration$, GetBucketCors$, GetBucketEncryption$, GetBucketIntelligentTieringConfiguration$, GetBucketInventoryConfiguration$, GetBucketLifecycleConfiguration$, GetBucketLocation$, GetBucketLogging$, GetBucketMetadataConfiguration$, GetBucketMetadataTableConfiguration$, GetBucketMetricsConfiguration$, GetBucketNotificationConfiguration$, GetBucketOwnershipControls$, GetBucketPolicy$, GetBucketPolicyStatus$, GetBucketReplication$, GetBucketRequestPayment$, GetBucketTagging$, GetBucketVersioning$, GetBucketWebsite$, GetObjectAcl$, GetObjectAnnotation$, GetObjectAttributes$, GetObject$, GetObjectLegalHold$, GetObjectLockConfiguration$, GetObjectRetention$, GetObjectTagging$, GetObjectTorrent$, GetPublicAccessBlock$, HeadBucket$, HeadObject$, ListBucketAnalyticsConfigurations$, ListBucketIntelligentTieringConfigurations$, ListBucketInventoryConfigurations$, ListBucketMetricsConfigurations$, ListBuckets$, ListDirectoryBuckets$, ListMultipartUploads$, ListObjectAnnotations$, ListObjects$, ListObjectsV2$, ListObjectVersions$, ListParts$, PutBucketAbac$, PutBucketAccelerateConfiguration$, PutBucketAcl$, PutBucketAnalyticsConfiguration$, PutBucketCors$, PutBucketEncryption$, PutBucketIntelligentTieringConfiguration$, PutBucketInventoryConfiguration$, PutBucketLifecycleConfiguration$, PutBucketLogging$, PutBucketMetricsConfiguration$, PutBucketNotificationConfiguration$, PutBucketOwnershipControls$, PutBucketPolicy$, PutBucketReplication$, PutBucketRequestPayment$, PutBucketTagging$, PutBucketVersioning$, PutBucketWebsite$, PutObjectAcl$, PutObjectAnnotation$, PutObject$, PutObjectLegalHold$, PutObjectLockConfiguration$, PutObjectRetention$, PutObjectTagging$, PutPublicAccessBlock$, RenameObject$, RestoreObject$, SelectObjectContent$, UpdateBucketMetadataAnnotationTableConfiguration$, UpdateBucketMetadataInventoryTableConfiguration$, UpdateBucketMetadataJournalTableConfiguration$, UpdateObjectEncryption$, UploadPart$, UploadPartCopy$, WriteGetObjectResponse$ } = __nccwpck_require__(20091);
-__exportStar(__nccwpck_require__(20091), exports);
-const { getRuntimeConfig } = __nccwpck_require__(35745);
-__exportStar(__nccwpck_require__(80631), exports);
-const { S3ServiceException } = __nccwpck_require__(98354);
-exports.S3ServiceException = S3ServiceException;
+const createEndpointRuleSetHttpAuthSchemeParametersProvider = (defaultHttpAuthSchemeParametersProvider) => async (config, context, input) => {
+    if (!input) {
+        throw new Error("Could not find `input` for `defaultEndpointRuleSetHttpAuthSchemeParametersProvider`");
+    }
+    const defaultParameters = await defaultHttpAuthSchemeParametersProvider(config, context, input);
+    const instructionsFn = getSmithyContext(context)?.commandInstance?.constructor
+        ?.getEndpointParameterInstructions;
+    if (!instructionsFn) {
+        throw new Error(`getEndpointParameterInstructions() is not defined on '${context.commandName}'`);
+    }
+    const endpointParameters = await resolveParams(input, { getEndpointParameterInstructions: instructionsFn }, config);
+    return Object.assign(defaultParameters, endpointParameters);
+};
+const _defaultS3HttpAuthSchemeParametersProvider = async (config, context, input) => {
+    return {
+        operation: getSmithyContext(context).operation,
+        region: await normalizeProvider(config.region)() || (() => {
+            throw new Error("expected `region` to be configured for `aws.auth#sigv4`");
+        })(),
+    };
+};
+const defaultS3HttpAuthSchemeParametersProvider = createEndpointRuleSetHttpAuthSchemeParametersProvider(_defaultS3HttpAuthSchemeParametersProvider);
+function createAwsAuthSigv4HttpAuthOption(authParameters) {
+    return {
+        schemeId: "aws.auth#sigv4",
+        signingProperties: {
+            name: "s3",
+            region: authParameters.region,
+        },
+        propertiesExtractor: (config, context) => ({
+            signingProperties: {
+                config,
+                context,
+            },
+        }),
+    };
+}
+function createAwsAuthSigv4aHttpAuthOption(authParameters) {
+    return {
+        schemeId: "aws.auth#sigv4a",
+        signingProperties: {
+            name: "s3",
+            region: authParameters.region,
+        },
+        propertiesExtractor: (config, context) => ({
+            signingProperties: {
+                config,
+                context,
+            },
+        }),
+    };
+}
+const createEndpointRuleSetHttpAuthSchemeProvider = (defaultEndpointResolver, defaultHttpAuthSchemeResolver, createHttpAuthOptionFunctions) => {
+    const endpointRuleSetHttpAuthSchemeProvider = (authParameters) => {
+        const endpoint = defaultEndpointResolver(authParameters);
+        const authSchemes = endpoint.properties?.authSchemes;
+        if (!authSchemes) {
+            return defaultHttpAuthSchemeResolver(authParameters);
+        }
+        const options = [];
+        for (const scheme of authSchemes) {
+            const { name: resolvedName, properties = {}, ...rest } = scheme;
+            const name = resolvedName.toLowerCase();
+            if (resolvedName !== name) {
+                console.warn(`HttpAuthScheme has been normalized with lowercasing: '${resolvedName}' to '${name}'`);
+            }
+            let schemeId;
+            if (name === "sigv4a") {
+                schemeId = "aws.auth#sigv4a";
+                const sigv4Present = authSchemes.find((s) => {
+                    const name = s.name.toLowerCase();
+                    return name !== "sigv4a" && name.startsWith("sigv4");
+                });
+                if (SignatureV4MultiRegion.sigv4aDependency() === "none" && sigv4Present) {
+                    continue;
+                }
+            }
+            else if (name.startsWith("sigv4")) {
+                schemeId = "aws.auth#sigv4";
+            }
+            else {
+                throw new Error(`Unknown HttpAuthScheme found in '@smithy.rules#endpointRuleSet': '${name}'`);
+            }
+            const createOption = createHttpAuthOptionFunctions[schemeId];
+            if (!createOption) {
+                throw new Error(`Could not find HttpAuthOption create function for '${schemeId}'`);
+            }
+            const option = createOption(authParameters);
+            option.schemeId = schemeId;
+            option.signingProperties = { ...(option.signingProperties || {}), ...rest, ...properties };
+            options.push(option);
+        }
+        return options;
+    };
+    return endpointRuleSetHttpAuthSchemeProvider;
+};
+const _defaultS3HttpAuthSchemeProvider = (authParameters) => {
+    const options = [];
+    switch (authParameters.operation) {
+        default: {
+            options.push(createAwsAuthSigv4HttpAuthOption(authParameters));
+            options.push(createAwsAuthSigv4aHttpAuthOption(authParameters));
+        }
+    }
+    return options;
+};
+const defaultS3HttpAuthSchemeProvider = createEndpointRuleSetHttpAuthSchemeProvider(defaultEndpointResolver, _defaultS3HttpAuthSchemeProvider, {
+    "aws.auth#sigv4": createAwsAuthSigv4HttpAuthOption,
+    "aws.auth#sigv4a": createAwsAuthSigv4aHttpAuthOption,
+});
+const resolveHttpAuthSchemeConfig = (config) => {
+    const config_0 = resolveAwsSdkSigV4Config(config);
+    const config_1 = resolveAwsSdkSigV4AConfig(config_0);
+    return Object.assign(config_1, {
+        authSchemePreference: normalizeProvider(config.authSchemePreference ?? []),
+    });
+};
 
 const resolveClientEndpointParameters = (options) => {
     return Object.assign(options, {
@@ -2108,3149 +1891,132 @@ const commonParams = {
     UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" },
 };
 
-class CreateSessionCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    DisableS3ExpressSessionAuth: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "CreateSession", {})
-    .n("S3Client", "CreateSessionCommand")
-    .sc(CreateSession$)
-    .build() {
-}
-
-const getHttpAuthExtensionConfiguration = (runtimeConfig) => {
-    const _httpAuthSchemes = runtimeConfig.httpAuthSchemes;
-    let _httpAuthSchemeProvider = runtimeConfig.httpAuthSchemeProvider;
-    let _credentials = runtimeConfig.credentials;
-    return {
-        setHttpAuthScheme(httpAuthScheme) {
-            const index = _httpAuthSchemes.findIndex((scheme) => scheme.schemeId === httpAuthScheme.schemeId);
-            if (index === -1) {
-                _httpAuthSchemes.push(httpAuthScheme);
-            }
-            else {
-                _httpAuthSchemes.splice(index, 1, httpAuthScheme);
-            }
-        },
-        httpAuthSchemes() {
-            return _httpAuthSchemes;
-        },
-        setHttpAuthSchemeProvider(httpAuthSchemeProvider) {
-            _httpAuthSchemeProvider = httpAuthSchemeProvider;
-        },
-        httpAuthSchemeProvider() {
-            return _httpAuthSchemeProvider;
-        },
-        setCredentials(credentials) {
-            _credentials = credentials;
-        },
-        credentials() {
-            return _credentials;
-        },
-    };
-};
-const resolveHttpAuthRuntimeConfig = (config) => {
-    return {
-        httpAuthSchemes: config.httpAuthSchemes(),
-        httpAuthSchemeProvider: config.httpAuthSchemeProvider(),
-        credentials: config.credentials(),
-    };
-};
-
-const resolveRuntimeExtensions = (runtimeConfig, extensions) => {
-    const extensionConfiguration = Object.assign(getAwsRegionExtensionConfiguration(runtimeConfig), getDefaultExtensionConfiguration(runtimeConfig), getHttpHandlerExtensionConfiguration(runtimeConfig), getHttpAuthExtensionConfiguration(runtimeConfig));
-    extensions.forEach((extension) => extension.configure(extensionConfiguration));
-    return Object.assign(runtimeConfig, resolveAwsRegionExtensionConfiguration(extensionConfiguration), resolveDefaultRuntimeConfig(extensionConfiguration), resolveHttpHandlerRuntimeConfig(extensionConfiguration), resolveHttpAuthRuntimeConfig(extensionConfiguration));
-};
-
-class S3Client extends Client {
-    config;
-    constructor(...[configuration]) {
-        const _config_0 = getRuntimeConfig(configuration || {});
-        super(_config_0);
-        this.initConfig = _config_0;
-        const _config_1 = resolveClientEndpointParameters(_config_0);
-        const _config_2 = resolveUserAgentConfig(_config_1);
-        const _config_3 = resolveFlexibleChecksumsConfig(_config_2);
-        const _config_4 = resolveRetryConfig(_config_3);
-        const _config_5 = resolveRegionConfig(_config_4);
-        const _config_6 = resolveHostHeaderConfig(_config_5);
-        const _config_7 = resolveEndpointConfig(_config_6);
-        const _config_8 = resolveEventStreamSerdeConfig(_config_7);
-        const _config_9 = resolveHttpAuthSchemeConfig(_config_8);
-        const _config_10 = resolveS3Config(_config_9, { session: [() => this, CreateSessionCommand] });
-        const _config_11 = resolveRuntimeExtensions(_config_10, configuration?.extensions || []);
-        this.config = _config_11;
-        this.middlewareStack.use(getSchemaSerdePlugin(this.config));
-        this.middlewareStack.use(getUserAgentPlugin(this.config));
-        this.middlewareStack.use(getRetryPlugin(this.config));
-        this.middlewareStack.use(getContentLengthPlugin(this.config));
-        this.middlewareStack.use(getHostHeaderPlugin(this.config));
-        this.middlewareStack.use(getLoggerPlugin(this.config));
-        this.middlewareStack.use(getRecursionDetectionPlugin(this.config));
-        this.middlewareStack.use(getHttpAuthSchemeEndpointRuleSetPlugin(this.config, {
-            httpAuthSchemeParametersProvider: defaultS3HttpAuthSchemeParametersProvider,
-            identityProviderConfigProvider: async (config) => new DefaultIdentityProviderConfig({
-                "aws.auth#sigv4": config.credentials,
-                "aws.auth#sigv4a": config.credentials,
-            }),
-        }));
-        this.middlewareStack.use(getHttpSigningPlugin(this.config));
-        this.middlewareStack.use(getValidateBucketNamePlugin(this.config));
-        this.middlewareStack.use(getAddExpectContinuePlugin(this.config));
-        this.middlewareStack.use(getRegionRedirectMiddlewarePlugin(this.config));
-        this.middlewareStack.use(getS3ExpressPlugin(this.config));
-        this.middlewareStack.use(getS3ExpressHttpSigningPlugin(this.config));
-    }
-    destroy() {
-        super.destroy();
-    }
-}
-
-class AbortMultipartUploadCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
+const command = makeBuilder(commonParams, "AmazonS3", "S3Client", getEndpointPlugin);
+const _ep0 = {
     Bucket: { type: "contextParams", name: "Bucket" },
     Key: { type: "contextParams", name: "Key" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "AbortMultipartUpload", {})
-    .n("S3Client", "AbortMultipartUploadCommand")
-    .sc(AbortMultipartUpload$)
-    .build() {
-}
-
-class CompleteMultipartUploadCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-    Key: { type: "contextParams", name: "Key" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-        getSsecPlugin(config),
-    ];
-})
-    .s("AmazonS3", "CompleteMultipartUpload", {})
-    .n("S3Client", "CompleteMultipartUploadCommand")
-    .sc(CompleteMultipartUpload$)
-    .build() {
-}
-
-class CopyObjectCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
+};
+const _ep1 = {
     DisableS3ExpressSessionAuth: { type: "staticContextParams", value: true },
     Bucket: { type: "contextParams", name: "Bucket" },
     Key: { type: "contextParams", name: "Key" },
     CopySource: { type: "contextParams", name: "CopySource" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-        getSsecPlugin(config),
-    ];
-})
-    .s("AmazonS3", "CopyObject", {})
-    .n("S3Client", "CopyObjectCommand")
-    .sc(CopyObject$)
-    .build() {
-}
-
-class CreateBucketCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
+};
+const _ep2 = {
     UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
     DisableAccessPoints: { type: "staticContextParams", value: true },
     Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-        getLocationConstraintPlugin(config),
-    ];
-})
-    .s("AmazonS3", "CreateBucket", {})
-    .n("S3Client", "CreateBucketCommand")
-    .sc(CreateBucket$)
-    .build() {
-}
-
-class CreateBucketMetadataConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
+};
+const _ep3 = {
     UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
     Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-    ];
-})
-    .s("AmazonS3", "CreateBucketMetadataConfiguration", {})
-    .n("S3Client", "CreateBucketMetadataConfigurationCommand")
-    .sc(CreateBucketMetadataConfiguration$)
-    .build() {
-}
-
-class CreateBucketMetadataTableConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-    ];
-})
-    .s("AmazonS3", "CreateBucketMetadataTableConfiguration", {})
-    .n("S3Client", "CreateBucketMetadataTableConfigurationCommand")
-    .sc(CreateBucketMetadataTableConfiguration$)
-    .build() {
-}
-
-class CreateMultipartUploadCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-    Key: { type: "contextParams", name: "Key" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-        getSsecPlugin(config),
-    ];
-})
-    .s("AmazonS3", "CreateMultipartUpload", {})
-    .n("S3Client", "CreateMultipartUploadCommand")
-    .sc(CreateMultipartUpload$)
-    .build() {
-}
-
-class DeleteBucketAnalyticsConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "DeleteBucketAnalyticsConfiguration", {})
-    .n("S3Client", "DeleteBucketAnalyticsConfigurationCommand")
-    .sc(DeleteBucketAnalyticsConfiguration$)
-    .build() {
-}
-
-class DeleteBucketCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "DeleteBucket", {})
-    .n("S3Client", "DeleteBucketCommand")
-    .sc(DeleteBucket$)
-    .build() {
-}
-
-class DeleteBucketCorsCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "DeleteBucketCors", {})
-    .n("S3Client", "DeleteBucketCorsCommand")
-    .sc(DeleteBucketCors$)
-    .build() {
-}
-
-class DeleteBucketEncryptionCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "DeleteBucketEncryption", {})
-    .n("S3Client", "DeleteBucketEncryptionCommand")
-    .sc(DeleteBucketEncryption$)
-    .build() {
-}
-
-class DeleteBucketIntelligentTieringConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "DeleteBucketIntelligentTieringConfiguration", {})
-    .n("S3Client", "DeleteBucketIntelligentTieringConfigurationCommand")
-    .sc(DeleteBucketIntelligentTieringConfiguration$)
-    .build() {
-}
-
-class DeleteBucketInventoryConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "DeleteBucketInventoryConfiguration", {})
-    .n("S3Client", "DeleteBucketInventoryConfigurationCommand")
-    .sc(DeleteBucketInventoryConfiguration$)
-    .build() {
-}
-
-class DeleteBucketLifecycleCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "DeleteBucketLifecycle", {})
-    .n("S3Client", "DeleteBucketLifecycleCommand")
-    .sc(DeleteBucketLifecycle$)
-    .build() {
-}
-
-class DeleteBucketMetadataConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "DeleteBucketMetadataConfiguration", {})
-    .n("S3Client", "DeleteBucketMetadataConfigurationCommand")
-    .sc(DeleteBucketMetadataConfiguration$)
-    .build() {
-}
-
-class DeleteBucketMetadataTableConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "DeleteBucketMetadataTableConfiguration", {})
-    .n("S3Client", "DeleteBucketMetadataTableConfigurationCommand")
-    .sc(DeleteBucketMetadataTableConfiguration$)
-    .build() {
-}
-
-class DeleteBucketMetricsConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "DeleteBucketMetricsConfiguration", {})
-    .n("S3Client", "DeleteBucketMetricsConfigurationCommand")
-    .sc(DeleteBucketMetricsConfiguration$)
-    .build() {
-}
-
-class DeleteBucketOwnershipControlsCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "DeleteBucketOwnershipControls", {})
-    .n("S3Client", "DeleteBucketOwnershipControlsCommand")
-    .sc(DeleteBucketOwnershipControls$)
-    .build() {
-}
-
-class DeleteBucketPolicyCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "DeleteBucketPolicy", {})
-    .n("S3Client", "DeleteBucketPolicyCommand")
-    .sc(DeleteBucketPolicy$)
-    .build() {
-}
-
-class DeleteBucketReplicationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "DeleteBucketReplication", {})
-    .n("S3Client", "DeleteBucketReplicationCommand")
-    .sc(DeleteBucketReplication$)
-    .build() {
-}
-
-class DeleteBucketTaggingCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "DeleteBucketTagging", {})
-    .n("S3Client", "DeleteBucketTaggingCommand")
-    .sc(DeleteBucketTagging$)
-    .build() {
-}
-
-class DeleteBucketWebsiteCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "DeleteBucketWebsite", {})
-    .n("S3Client", "DeleteBucketWebsiteCommand")
-    .sc(DeleteBucketWebsite$)
-    .build() {
-}
-
-class DeleteObjectAnnotationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "DeleteObjectAnnotation", {})
-    .n("S3Client", "DeleteObjectAnnotationCommand")
-    .sc(DeleteObjectAnnotation$)
-    .build() {
-}
-
-class DeleteObjectCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-    Key: { type: "contextParams", name: "Key" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "DeleteObject", {})
-    .n("S3Client", "DeleteObjectCommand")
-    .sc(DeleteObject$)
-    .build() {
-}
-
-class DeleteObjectsCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "DeleteObjects", {})
-    .n("S3Client", "DeleteObjectsCommand")
-    .sc(DeleteObjects$)
-    .build() {
-}
-
-class DeleteObjectTaggingCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "DeleteObjectTagging", {})
-    .n("S3Client", "DeleteObjectTaggingCommand")
-    .sc(DeleteObjectTagging$)
-    .build() {
-}
-
-class DeletePublicAccessBlockCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "DeletePublicAccessBlock", {})
-    .n("S3Client", "DeletePublicAccessBlockCommand")
-    .sc(DeletePublicAccessBlock$)
-    .build() {
-}
-
-class GetBucketAbacCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketAbac", {})
-    .n("S3Client", "GetBucketAbacCommand")
-    .sc(GetBucketAbac$)
-    .build() {
-}
-
-class GetBucketAccelerateConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketAccelerateConfiguration", {})
-    .n("S3Client", "GetBucketAccelerateConfigurationCommand")
-    .sc(GetBucketAccelerateConfiguration$)
-    .build() {
-}
-
-class GetBucketAclCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketAcl", {})
-    .n("S3Client", "GetBucketAclCommand")
-    .sc(GetBucketAcl$)
-    .build() {
-}
-
-class GetBucketAnalyticsConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketAnalyticsConfiguration", {})
-    .n("S3Client", "GetBucketAnalyticsConfigurationCommand")
-    .sc(GetBucketAnalyticsConfiguration$)
-    .build() {
-}
-
-class GetBucketCorsCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketCors", {})
-    .n("S3Client", "GetBucketCorsCommand")
-    .sc(GetBucketCors$)
-    .build() {
-}
-
-class GetBucketEncryptionCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketEncryption", {})
-    .n("S3Client", "GetBucketEncryptionCommand")
-    .sc(GetBucketEncryption$)
-    .build() {
-}
-
-class GetBucketIntelligentTieringConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketIntelligentTieringConfiguration", {})
-    .n("S3Client", "GetBucketIntelligentTieringConfigurationCommand")
-    .sc(GetBucketIntelligentTieringConfiguration$)
-    .build() {
-}
-
-class GetBucketInventoryConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketInventoryConfiguration", {})
-    .n("S3Client", "GetBucketInventoryConfigurationCommand")
-    .sc(GetBucketInventoryConfiguration$)
-    .build() {
-}
-
-class GetBucketLifecycleConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketLifecycleConfiguration", {})
-    .n("S3Client", "GetBucketLifecycleConfigurationCommand")
-    .sc(GetBucketLifecycleConfiguration$)
-    .build() {
-}
-
-class GetBucketLocationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketLocation", {})
-    .n("S3Client", "GetBucketLocationCommand")
-    .sc(GetBucketLocation$)
-    .build() {
-}
-
-class GetBucketLoggingCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketLogging", {})
-    .n("S3Client", "GetBucketLoggingCommand")
-    .sc(GetBucketLogging$)
-    .build() {
-}
-
-class GetBucketMetadataConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketMetadataConfiguration", {})
-    .n("S3Client", "GetBucketMetadataConfigurationCommand")
-    .sc(GetBucketMetadataConfiguration$)
-    .build() {
-}
-
-class GetBucketMetadataTableConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketMetadataTableConfiguration", {})
-    .n("S3Client", "GetBucketMetadataTableConfigurationCommand")
-    .sc(GetBucketMetadataTableConfiguration$)
-    .build() {
-}
-
-class GetBucketMetricsConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketMetricsConfiguration", {})
-    .n("S3Client", "GetBucketMetricsConfigurationCommand")
-    .sc(GetBucketMetricsConfiguration$)
-    .build() {
-}
-
-class GetBucketNotificationConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketNotificationConfiguration", {})
-    .n("S3Client", "GetBucketNotificationConfigurationCommand")
-    .sc(GetBucketNotificationConfiguration$)
-    .build() {
-}
-
-class GetBucketOwnershipControlsCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketOwnershipControls", {})
-    .n("S3Client", "GetBucketOwnershipControlsCommand")
-    .sc(GetBucketOwnershipControls$)
-    .build() {
-}
-
-class GetBucketPolicyCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "GetBucketPolicy", {})
-    .n("S3Client", "GetBucketPolicyCommand")
-    .sc(GetBucketPolicy$)
-    .build() {
-}
-
-class GetBucketPolicyStatusCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketPolicyStatus", {})
-    .n("S3Client", "GetBucketPolicyStatusCommand")
-    .sc(GetBucketPolicyStatus$)
-    .build() {
-}
-
-class GetBucketReplicationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketReplication", {})
-    .n("S3Client", "GetBucketReplicationCommand")
-    .sc(GetBucketReplication$)
-    .build() {
-}
-
-class GetBucketRequestPaymentCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketRequestPayment", {})
-    .n("S3Client", "GetBucketRequestPaymentCommand")
-    .sc(GetBucketRequestPayment$)
-    .build() {
-}
-
-class GetBucketTaggingCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketTagging", {})
-    .n("S3Client", "GetBucketTaggingCommand")
-    .sc(GetBucketTagging$)
-    .build() {
-}
-
-class GetBucketVersioningCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketVersioning", {})
-    .n("S3Client", "GetBucketVersioningCommand")
-    .sc(GetBucketVersioning$)
-    .build() {
-}
-
-class GetBucketWebsiteCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetBucketWebsite", {})
-    .n("S3Client", "GetBucketWebsiteCommand")
-    .sc(GetBucketWebsite$)
-    .build() {
-}
-
-class GetObjectAclCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-    Key: { type: "contextParams", name: "Key" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetObjectAcl", {})
-    .n("S3Client", "GetObjectAclCommand")
-    .sc(GetObjectAcl$)
-    .build() {
-}
-
-class GetObjectAnnotationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-    Key: { type: "contextParams", name: "Key" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestChecksumRequired: false,
-            requestValidationModeMember: 'ChecksumMode',
-            'responseAlgorithms': ['CRC64NVME', 'CRC32', 'CRC32C', 'SHA256', 'SHA1', 'SHA512', 'MD5', 'XXHASH64', 'XXHASH3', 'XXHASH128'],
-        }),
-    ];
-})
-    .s("AmazonS3", "GetObjectAnnotation", {})
-    .n("S3Client", "GetObjectAnnotationCommand")
-    .sc(GetObjectAnnotation$)
-    .build() {
-}
-
-class GetObjectAttributesCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-        getSsecPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetObjectAttributes", {})
-    .n("S3Client", "GetObjectAttributesCommand")
-    .sc(GetObjectAttributes$)
-    .build() {
-}
-
-class GetObjectCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-    Key: { type: "contextParams", name: "Key" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestChecksumRequired: false,
-            requestValidationModeMember: 'ChecksumMode',
-            'responseAlgorithms': ['CRC64NVME', 'CRC32', 'CRC32C', 'SHA256', 'SHA1', 'SHA512', 'MD5', 'XXHASH64', 'XXHASH3', 'XXHASH128'],
-        }),
-        getSsecPlugin(config),
-        getS3ExpiresMiddlewarePlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetObject", {})
-    .n("S3Client", "GetObjectCommand")
-    .sc(GetObject$)
-    .build() {
-}
-
-class GetObjectLegalHoldCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetObjectLegalHold", {})
-    .n("S3Client", "GetObjectLegalHoldCommand")
-    .sc(GetObjectLegalHold$)
-    .build() {
-}
-
-class GetObjectLockConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetObjectLockConfiguration", {})
-    .n("S3Client", "GetObjectLockConfigurationCommand")
-    .sc(GetObjectLockConfiguration$)
-    .build() {
-}
-
-class GetObjectRetentionCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetObjectRetention", {})
-    .n("S3Client", "GetObjectRetentionCommand")
-    .sc(GetObjectRetention$)
-    .build() {
-}
-
-class GetObjectTaggingCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetObjectTagging", {})
-    .n("S3Client", "GetObjectTaggingCommand")
-    .sc(GetObjectTagging$)
-    .build() {
-}
-
-class GetObjectTorrentCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "GetObjectTorrent", {})
-    .n("S3Client", "GetObjectTorrentCommand")
-    .sc(GetObjectTorrent$)
-    .build() {
-}
-
-class GetPublicAccessBlockCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "GetPublicAccessBlock", {})
-    .n("S3Client", "GetPublicAccessBlockCommand")
-    .sc(GetPublicAccessBlock$)
-    .build() {
-}
-
-class HeadBucketCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "HeadBucket", {})
-    .n("S3Client", "HeadBucketCommand")
-    .sc(HeadBucket$)
-    .build() {
-}
-
-class HeadObjectCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-    Key: { type: "contextParams", name: "Key" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-        getSsecPlugin(config),
-        getS3ExpiresMiddlewarePlugin(config),
-    ];
-})
-    .s("AmazonS3", "HeadObject", {})
-    .n("S3Client", "HeadObjectCommand")
-    .sc(HeadObject$)
-    .build() {
-}
-
-class ListBucketAnalyticsConfigurationsCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "ListBucketAnalyticsConfigurations", {})
-    .n("S3Client", "ListBucketAnalyticsConfigurationsCommand")
-    .sc(ListBucketAnalyticsConfigurations$)
-    .build() {
-}
-
-class ListBucketIntelligentTieringConfigurationsCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "ListBucketIntelligentTieringConfigurations", {})
-    .n("S3Client", "ListBucketIntelligentTieringConfigurationsCommand")
-    .sc(ListBucketIntelligentTieringConfigurations$)
-    .build() {
-}
-
-class ListBucketInventoryConfigurationsCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "ListBucketInventoryConfigurations", {})
-    .n("S3Client", "ListBucketInventoryConfigurationsCommand")
-    .sc(ListBucketInventoryConfigurations$)
-    .build() {
-}
-
-class ListBucketMetricsConfigurationsCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "ListBucketMetricsConfigurations", {})
-    .n("S3Client", "ListBucketMetricsConfigurationsCommand")
-    .sc(ListBucketMetricsConfigurations$)
-    .build() {
-}
-
-class ListBucketsCommand extends Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "ListBuckets", {})
-    .n("S3Client", "ListBucketsCommand")
-    .sc(ListBuckets$)
-    .build() {
-}
-
-class ListDirectoryBucketsCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "ListDirectoryBuckets", {})
-    .n("S3Client", "ListDirectoryBucketsCommand")
-    .sc(ListDirectoryBuckets$)
-    .build() {
-}
-
-class ListMultipartUploadsCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-    Prefix: { type: "contextParams", name: "Prefix" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "ListMultipartUploads", {})
-    .n("S3Client", "ListMultipartUploadsCommand")
-    .sc(ListMultipartUploads$)
-    .build() {
-}
-
-class ListObjectAnnotationsCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "ListObjectAnnotations", {})
-    .n("S3Client", "ListObjectAnnotationsCommand")
-    .sc(ListObjectAnnotations$)
-    .build() {
-}
-
-class ListObjectsCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-    Prefix: { type: "contextParams", name: "Prefix" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "ListObjects", {})
-    .n("S3Client", "ListObjectsCommand")
-    .sc(ListObjects$)
-    .build() {
-}
-
-class ListObjectsV2Command extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-    Prefix: { type: "contextParams", name: "Prefix" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "ListObjectsV2", {})
-    .n("S3Client", "ListObjectsV2Command")
-    .sc(ListObjectsV2$)
-    .build() {
-}
-
-class ListObjectVersionsCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-    Prefix: { type: "contextParams", name: "Prefix" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "ListObjectVersions", {})
-    .n("S3Client", "ListObjectVersionsCommand")
-    .sc(ListObjectVersions$)
-    .build() {
-}
-
-class ListPartsCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-    Key: { type: "contextParams", name: "Key" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-        getSsecPlugin(config),
-    ];
-})
-    .s("AmazonS3", "ListParts", {})
-    .n("S3Client", "ListPartsCommand")
-    .sc(ListParts$)
-    .build() {
-}
-
-class PutBucketAbacCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: false,
-        }),
-    ];
-})
-    .s("AmazonS3", "PutBucketAbac", {})
-    .n("S3Client", "PutBucketAbacCommand")
-    .sc(PutBucketAbac$)
-    .build() {
-}
-
-class PutBucketAccelerateConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: false,
-        }),
-    ];
-})
-    .s("AmazonS3", "PutBucketAccelerateConfiguration", {})
-    .n("S3Client", "PutBucketAccelerateConfigurationCommand")
-    .sc(PutBucketAccelerateConfiguration$)
-    .build() {
-}
-
-class PutBucketAclCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-    ];
-})
-    .s("AmazonS3", "PutBucketAcl", {})
-    .n("S3Client", "PutBucketAclCommand")
-    .sc(PutBucketAcl$)
-    .build() {
-}
-
-class PutBucketAnalyticsConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "PutBucketAnalyticsConfiguration", {})
-    .n("S3Client", "PutBucketAnalyticsConfigurationCommand")
-    .sc(PutBucketAnalyticsConfiguration$)
-    .build() {
-}
-
-class PutBucketCorsCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-    ];
-})
-    .s("AmazonS3", "PutBucketCors", {})
-    .n("S3Client", "PutBucketCorsCommand")
-    .sc(PutBucketCors$)
-    .build() {
-}
-
-class PutBucketEncryptionCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-    ];
-})
-    .s("AmazonS3", "PutBucketEncryption", {})
-    .n("S3Client", "PutBucketEncryptionCommand")
-    .sc(PutBucketEncryption$)
-    .build() {
-}
-
-class PutBucketIntelligentTieringConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "PutBucketIntelligentTieringConfiguration", {})
-    .n("S3Client", "PutBucketIntelligentTieringConfigurationCommand")
-    .sc(PutBucketIntelligentTieringConfiguration$)
-    .build() {
-}
-
-class PutBucketInventoryConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "PutBucketInventoryConfiguration", {})
-    .n("S3Client", "PutBucketInventoryConfigurationCommand")
-    .sc(PutBucketInventoryConfiguration$)
-    .build() {
-}
-
-class PutBucketLifecycleConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "PutBucketLifecycleConfiguration", {})
-    .n("S3Client", "PutBucketLifecycleConfigurationCommand")
-    .sc(PutBucketLifecycleConfiguration$)
-    .build() {
-}
-
-class PutBucketLoggingCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-    ];
-})
-    .s("AmazonS3", "PutBucketLogging", {})
-    .n("S3Client", "PutBucketLoggingCommand")
-    .sc(PutBucketLogging$)
-    .build() {
-}
-
-class PutBucketMetricsConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "PutBucketMetricsConfiguration", {})
-    .n("S3Client", "PutBucketMetricsConfigurationCommand")
-    .sc(PutBucketMetricsConfiguration$)
-    .build() {
-}
-
-class PutBucketNotificationConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "PutBucketNotificationConfiguration", {})
-    .n("S3Client", "PutBucketNotificationConfigurationCommand")
-    .sc(PutBucketNotificationConfiguration$)
-    .build() {
-}
-
-class PutBucketOwnershipControlsCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-    ];
-})
-    .s("AmazonS3", "PutBucketOwnershipControls", {})
-    .n("S3Client", "PutBucketOwnershipControlsCommand")
-    .sc(PutBucketOwnershipControls$)
-    .build() {
-}
-
-class PutBucketPolicyCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-    ];
-})
-    .s("AmazonS3", "PutBucketPolicy", {})
-    .n("S3Client", "PutBucketPolicyCommand")
-    .sc(PutBucketPolicy$)
-    .build() {
-}
-
-class PutBucketReplicationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-    ];
-})
-    .s("AmazonS3", "PutBucketReplication", {})
-    .n("S3Client", "PutBucketReplicationCommand")
-    .sc(PutBucketReplication$)
-    .build() {
-}
-
-class PutBucketRequestPaymentCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-    ];
-})
-    .s("AmazonS3", "PutBucketRequestPayment", {})
-    .n("S3Client", "PutBucketRequestPaymentCommand")
-    .sc(PutBucketRequestPayment$)
-    .build() {
-}
-
-class PutBucketTaggingCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-    ];
-})
-    .s("AmazonS3", "PutBucketTagging", {})
-    .n("S3Client", "PutBucketTaggingCommand")
-    .sc(PutBucketTagging$)
-    .build() {
-}
-
-class PutBucketVersioningCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-    ];
-})
-    .s("AmazonS3", "PutBucketVersioning", {})
-    .n("S3Client", "PutBucketVersioningCommand")
-    .sc(PutBucketVersioning$)
-    .build() {
-}
-
-class PutBucketWebsiteCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-    ];
-})
-    .s("AmazonS3", "PutBucketWebsite", {})
-    .n("S3Client", "PutBucketWebsiteCommand")
-    .sc(PutBucketWebsite$)
-    .build() {
-}
-
-class PutObjectAclCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-    Key: { type: "contextParams", name: "Key" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "PutObjectAcl", {})
-    .n("S3Client", "PutObjectAclCommand")
-    .sc(PutObjectAcl$)
-    .build() {
-}
-
-class PutObjectAnnotationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-    Key: { type: "contextParams", name: "Key" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: false,
-        }),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "PutObjectAnnotation", {})
-    .n("S3Client", "PutObjectAnnotationCommand")
-    .sc(PutObjectAnnotation$)
-    .build() {
-}
-
-class PutObjectCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-    Key: { type: "contextParams", name: "Key" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: false,
-        }),
-        getCheckContentLengthHeaderPlugin(config),
-        getThrow200ExceptionsPlugin(config),
-        getSsecPlugin(config),
-    ];
-})
-    .s("AmazonS3", "PutObject", {})
-    .n("S3Client", "PutObjectCommand")
-    .sc(PutObject$)
-    .build() {
-}
-
-class PutObjectLegalHoldCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "PutObjectLegalHold", {})
-    .n("S3Client", "PutObjectLegalHoldCommand")
-    .sc(PutObjectLegalHold$)
-    .build() {
-}
-
-class PutObjectLockConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "PutObjectLockConfiguration", {})
-    .n("S3Client", "PutObjectLockConfigurationCommand")
-    .sc(PutObjectLockConfiguration$)
-    .build() {
-}
-
-class PutObjectRetentionCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "PutObjectRetention", {})
-    .n("S3Client", "PutObjectRetentionCommand")
-    .sc(PutObjectRetention$)
-    .build() {
-}
-
-class PutObjectTaggingCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "PutObjectTagging", {})
-    .n("S3Client", "PutObjectTaggingCommand")
-    .sc(PutObjectTagging$)
-    .build() {
-}
-
-class PutPublicAccessBlockCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-    ];
-})
-    .s("AmazonS3", "PutPublicAccessBlock", {})
-    .n("S3Client", "PutPublicAccessBlockCommand")
-    .sc(PutPublicAccessBlock$)
-    .build() {
-}
-
-class RenameObjectCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-    Key: { type: "contextParams", name: "Key" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "RenameObject", {})
-    .n("S3Client", "RenameObjectCommand")
-    .sc(RenameObject$)
-    .build() {
-}
-
-class RestoreObjectCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: false,
-        }),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "RestoreObject", {})
-    .n("S3Client", "RestoreObjectCommand")
-    .sc(RestoreObject$)
-    .build() {
-}
-
-class SelectObjectContentCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getSsecPlugin(config),
-    ];
-})
-    .s("AmazonS3", "SelectObjectContent", {
-    eventStream: {
-        output: true,
-    },
-})
-    .n("S3Client", "SelectObjectContentCommand")
-    .sc(SelectObjectContent$)
-    .build() {
-}
-
-class UpdateBucketMetadataAnnotationTableConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-    ];
-})
-    .s("AmazonS3", "UpdateBucketMetadataAnnotationTableConfiguration", {})
-    .n("S3Client", "UpdateBucketMetadataAnnotationTableConfigurationCommand")
-    .sc(UpdateBucketMetadataAnnotationTableConfiguration$)
-    .build() {
-}
-
-class UpdateBucketMetadataInventoryTableConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-    ];
-})
-    .s("AmazonS3", "UpdateBucketMetadataInventoryTableConfiguration", {})
-    .n("S3Client", "UpdateBucketMetadataInventoryTableConfigurationCommand")
-    .sc(UpdateBucketMetadataInventoryTableConfiguration$)
-    .build() {
-}
-
-class UpdateBucketMetadataJournalTableConfigurationCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-    ];
-})
-    .s("AmazonS3", "UpdateBucketMetadataJournalTableConfiguration", {})
-    .n("S3Client", "UpdateBucketMetadataJournalTableConfigurationCommand")
-    .sc(UpdateBucketMetadataJournalTableConfiguration$)
-    .build() {
-}
-
-class UpdateObjectEncryptionCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: true,
-        }),
-        getThrow200ExceptionsPlugin(config),
-    ];
-})
-    .s("AmazonS3", "UpdateObjectEncryption", {})
-    .n("S3Client", "UpdateObjectEncryptionCommand")
-    .sc(UpdateObjectEncryption$)
-    .build() {
-}
-
-class UploadPartCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
-    Bucket: { type: "contextParams", name: "Bucket" },
-    Key: { type: "contextParams", name: "Key" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getFlexibleChecksumsPlugin(config, {
-            requestAlgorithmMember: { 'httpHeader': 'x-amz-sdk-checksum-algorithm', 'name': 'ChecksumAlgorithm' },
-            requestChecksumRequired: false,
-        }),
-        getThrow200ExceptionsPlugin(config),
-        getSsecPlugin(config),
-    ];
-})
-    .s("AmazonS3", "UploadPart", {})
-    .n("S3Client", "UploadPartCommand")
-    .sc(UploadPart$)
-    .build() {
-}
-
-class UploadPartCopyCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
+};
+const _ep4 = {
     DisableS3ExpressSessionAuth: { type: "staticContextParams", value: true },
     Bucket: { type: "contextParams", name: "Bucket" },
-})
-    .m(function (Command, cs, config, o) {
-    return [
-        getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
-        getThrow200ExceptionsPlugin(config),
-        getSsecPlugin(config),
-    ];
-})
-    .s("AmazonS3", "UploadPartCopy", {})
-    .n("S3Client", "UploadPartCopyCommand")
-    .sc(UploadPartCopy$)
-    .build() {
-}
-
-class WriteGetObjectResponseCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
+};
+const _ep5 = {
+    Bucket: { type: "contextParams", name: "Bucket" },
+};
+const _ep6 = {};
+const _ep7 = {
+    UseS3ExpressControlEndpoint: { type: "staticContextParams", value: true },
+};
+const _ep8 = {
+    Bucket: { type: "contextParams", name: "Bucket" },
+    Prefix: { type: "contextParams", name: "Prefix" },
+};
+const _ep9 = {
     UseObjectLambdaEndpoint: { type: "staticContextParams", value: true },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AmazonS3", "WriteGetObjectResponse", {})
-    .n("S3Client", "WriteGetObjectResponseCommand")
-    .sc(WriteGetObjectResponse$)
-    .build() {
-}
+};
+const _mw0 = (Command, cs, config, o) => [
+    getThrow200ExceptionsPlugin(config),
+];
+const _mw1 = (Command, cs, config, o) => [
+    getThrow200ExceptionsPlugin(config),
+    getSsecPlugin(config),
+];
+const _mw2 = (Command, cs, config, o) => [
+    getThrow200ExceptionsPlugin(config),
+    getLocationConstraintPlugin(config),
+];
+const _mw3 = (Command, cs, config, o) => [
+    getFlexibleChecksumsPlugin(config, {
+        requestAlgorithmMember: { "httpHeader": "x-amz-sdk-checksum-algorithm", "name": "ChecksumAlgorithm", },
+        requestChecksumRequired: true,
+    }),
+];
+const _mw4 = (Command, cs, config, o) => [];
+const _mw5 = (Command, cs, config, o) => [
+    getFlexibleChecksumsPlugin(config, {
+        requestAlgorithmMember: { "httpHeader": "x-amz-sdk-checksum-algorithm", "name": "ChecksumAlgorithm", },
+        requestChecksumRequired: true,
+    }),
+    getThrow200ExceptionsPlugin(config),
+];
+const _mw6 = (Command, cs, config, o) => [
+    getFlexibleChecksumsPlugin(config, {
+        requestChecksumRequired: false,
+        requestValidationModeMember: "ChecksumMode",
+        responseAlgorithms: ["CRC64NVME", "CRC32", "CRC32C", "SHA256", "SHA1", "SHA512", "MD5", "XXHASH64", "XXHASH3", "XXHASH128"],
+    }),
+];
+const _mw7 = (Command, cs, config, o) => [
+    getFlexibleChecksumsPlugin(config, {
+        requestChecksumRequired: false,
+        requestValidationModeMember: "ChecksumMode",
+        responseAlgorithms: ["CRC64NVME", "CRC32", "CRC32C", "SHA256", "SHA1", "SHA512", "MD5", "XXHASH64", "XXHASH3", "XXHASH128"],
+    }),
+    getSsecPlugin(config),
+    getS3ExpiresMiddlewarePlugin(config),
+];
+const _mw8 = (Command, cs, config, o) => [
+    getThrow200ExceptionsPlugin(config),
+    getSsecPlugin(config),
+    getS3ExpiresMiddlewarePlugin(config),
+];
+const _mw9 = (Command, cs, config, o) => [
+    getFlexibleChecksumsPlugin(config, {
+        requestAlgorithmMember: { "httpHeader": "x-amz-sdk-checksum-algorithm", "name": "ChecksumAlgorithm", },
+        requestChecksumRequired: false,
+    }),
+];
+const _mw10 = (Command, cs, config, o) => [
+    getFlexibleChecksumsPlugin(config, {
+        requestAlgorithmMember: { "httpHeader": "x-amz-sdk-checksum-algorithm", "name": "ChecksumAlgorithm", },
+        requestChecksumRequired: false,
+    }),
+    getThrow200ExceptionsPlugin(config),
+];
+const _mw11 = (Command, cs, config, o) => [
+    getFlexibleChecksumsPlugin(config, {
+        requestAlgorithmMember: { "httpHeader": "x-amz-sdk-checksum-algorithm", "name": "ChecksumAlgorithm", },
+        requestChecksumRequired: false,
+    }),
+    getCheckContentLengthHeaderPlugin(config),
+    getThrow200ExceptionsPlugin(config),
+    getSsecPlugin(config),
+];
+const _mw12 = (Command, cs, config, o) => [
+    getSsecPlugin(config),
+];
+const _mw13 = (Command, cs, config, o) => [
+    getFlexibleChecksumsPlugin(config, {
+        requestAlgorithmMember: { "httpHeader": "x-amz-sdk-checksum-algorithm", "name": "ChecksumAlgorithm", },
+        requestChecksumRequired: false,
+    }),
+    getThrow200ExceptionsPlugin(config),
+    getSsecPlugin(config),
+];
 
-const paginateListBuckets = createPaginator(S3Client, ListBucketsCommand, "ContinuationToken", "ContinuationToken", "MaxBuckets");
-
-const paginateListDirectoryBuckets = createPaginator(S3Client, ListDirectoryBucketsCommand, "ContinuationToken", "ContinuationToken", "MaxDirectoryBuckets");
-
-const paginateListObjectAnnotations = createPaginator(S3Client, ListObjectAnnotationsCommand, "ContinuationToken", "NextContinuationToken", "MaxAnnotationResults");
-
-const paginateListObjectsV2 = createPaginator(S3Client, ListObjectsV2Command, "ContinuationToken", "NextContinuationToken", "MaxKeys");
-
-const paginateListParts = createPaginator(S3Client, ListPartsCommand, "PartNumberMarker", "NextPartNumberMarker", "MaxParts");
-
-const checkState$3 = async (client, input) => {
-    let reason;
-    try {
-        let result = await client.send(new HeadBucketCommand(input));
-        reason = result;
-        return { state: WaiterState.SUCCESS, reason };
-    }
-    catch (exception) {
-        reason = exception;
-        if (exception.name === "NotFound") {
-            return { state: WaiterState.RETRY, reason };
-        }
-    }
-    return { state: WaiterState.RETRY, reason };
-};
-const waitForBucketExists = async (params, input) => {
-    const serviceDefaults = { minDelay: 5, maxDelay: 120 };
-    return createWaiter({ ...serviceDefaults, ...params }, input, checkState$3);
-};
-const waitUntilBucketExists = async (params, input) => {
-    const serviceDefaults = { minDelay: 5, maxDelay: 120 };
-    const result = await createWaiter({ ...serviceDefaults, ...params }, input, checkState$3);
-    return checkExceptions(result);
-};
-
-const checkState$2 = async (client, input) => {
-    let reason;
-    try {
-        let result = await client.send(new HeadBucketCommand(input));
-        reason = result;
-    }
-    catch (exception) {
-        reason = exception;
-        if (exception.name === "NotFound") {
-            return { state: WaiterState.SUCCESS, reason };
-        }
-    }
-    return { state: WaiterState.RETRY, reason };
-};
-const waitForBucketNotExists = async (params, input) => {
-    const serviceDefaults = { minDelay: 5, maxDelay: 120 };
-    return createWaiter({ ...serviceDefaults, ...params }, input, checkState$2);
-};
-const waitUntilBucketNotExists = async (params, input) => {
-    const serviceDefaults = { minDelay: 5, maxDelay: 120 };
-    const result = await createWaiter({ ...serviceDefaults, ...params }, input, checkState$2);
-    return checkExceptions(result);
-};
-
-const checkState$1 = async (client, input) => {
-    let reason;
-    try {
-        let result = await client.send(new HeadObjectCommand(input));
-        reason = result;
-        return { state: WaiterState.SUCCESS, reason };
-    }
-    catch (exception) {
-        reason = exception;
-        if (exception.name === "NotFound") {
-            return { state: WaiterState.RETRY, reason };
-        }
-    }
-    return { state: WaiterState.RETRY, reason };
-};
-const waitForObjectExists = async (params, input) => {
-    const serviceDefaults = { minDelay: 5, maxDelay: 120 };
-    return createWaiter({ ...serviceDefaults, ...params }, input, checkState$1);
-};
-const waitUntilObjectExists = async (params, input) => {
-    const serviceDefaults = { minDelay: 5, maxDelay: 120 };
-    const result = await createWaiter({ ...serviceDefaults, ...params }, input, checkState$1);
-    return checkExceptions(result);
-};
-
-const checkState = async (client, input) => {
-    let reason;
-    try {
-        let result = await client.send(new HeadObjectCommand(input));
-        reason = result;
-    }
-    catch (exception) {
-        reason = exception;
-        if (exception.name === "NotFound") {
-            return { state: WaiterState.SUCCESS, reason };
-        }
-    }
-    return { state: WaiterState.RETRY, reason };
-};
-const waitForObjectNotExists = async (params, input) => {
-    const serviceDefaults = { minDelay: 5, maxDelay: 120 };
-    return createWaiter({ ...serviceDefaults, ...params }, input, checkState);
-};
-const waitUntilObjectNotExists = async (params, input) => {
-    const serviceDefaults = { minDelay: 5, maxDelay: 120 };
-    const result = await createWaiter({ ...serviceDefaults, ...params }, input, checkState);
-    return checkExceptions(result);
-};
-
-const commands = {
-    AbortMultipartUploadCommand,
-    CompleteMultipartUploadCommand,
-    CopyObjectCommand,
-    CreateBucketCommand,
-    CreateBucketMetadataConfigurationCommand,
-    CreateBucketMetadataTableConfigurationCommand,
-    CreateMultipartUploadCommand,
-    CreateSessionCommand,
-    DeleteBucketCommand,
-    DeleteBucketAnalyticsConfigurationCommand,
-    DeleteBucketCorsCommand,
-    DeleteBucketEncryptionCommand,
-    DeleteBucketIntelligentTieringConfigurationCommand,
-    DeleteBucketInventoryConfigurationCommand,
-    DeleteBucketLifecycleCommand,
-    DeleteBucketMetadataConfigurationCommand,
-    DeleteBucketMetadataTableConfigurationCommand,
-    DeleteBucketMetricsConfigurationCommand,
-    DeleteBucketOwnershipControlsCommand,
-    DeleteBucketPolicyCommand,
-    DeleteBucketReplicationCommand,
-    DeleteBucketTaggingCommand,
-    DeleteBucketWebsiteCommand,
-    DeleteObjectCommand,
-    DeleteObjectAnnotationCommand,
-    DeleteObjectsCommand,
-    DeleteObjectTaggingCommand,
-    DeletePublicAccessBlockCommand,
-    GetBucketAbacCommand,
-    GetBucketAccelerateConfigurationCommand,
-    GetBucketAclCommand,
-    GetBucketAnalyticsConfigurationCommand,
-    GetBucketCorsCommand,
-    GetBucketEncryptionCommand,
-    GetBucketIntelligentTieringConfigurationCommand,
-    GetBucketInventoryConfigurationCommand,
-    GetBucketLifecycleConfigurationCommand,
-    GetBucketLocationCommand,
-    GetBucketLoggingCommand,
-    GetBucketMetadataConfigurationCommand,
-    GetBucketMetadataTableConfigurationCommand,
-    GetBucketMetricsConfigurationCommand,
-    GetBucketNotificationConfigurationCommand,
-    GetBucketOwnershipControlsCommand,
-    GetBucketPolicyCommand,
-    GetBucketPolicyStatusCommand,
-    GetBucketReplicationCommand,
-    GetBucketRequestPaymentCommand,
-    GetBucketTaggingCommand,
-    GetBucketVersioningCommand,
-    GetBucketWebsiteCommand,
-    GetObjectCommand,
-    GetObjectAclCommand,
-    GetObjectAnnotationCommand,
-    GetObjectAttributesCommand,
-    GetObjectLegalHoldCommand,
-    GetObjectLockConfigurationCommand,
-    GetObjectRetentionCommand,
-    GetObjectTaggingCommand,
-    GetObjectTorrentCommand,
-    GetPublicAccessBlockCommand,
-    HeadBucketCommand,
-    HeadObjectCommand,
-    ListBucketAnalyticsConfigurationsCommand,
-    ListBucketIntelligentTieringConfigurationsCommand,
-    ListBucketInventoryConfigurationsCommand,
-    ListBucketMetricsConfigurationsCommand,
-    ListBucketsCommand,
-    ListDirectoryBucketsCommand,
-    ListMultipartUploadsCommand,
-    ListObjectAnnotationsCommand,
-    ListObjectsCommand,
-    ListObjectsV2Command,
-    ListObjectVersionsCommand,
-    ListPartsCommand,
-    PutBucketAbacCommand,
-    PutBucketAccelerateConfigurationCommand,
-    PutBucketAclCommand,
-    PutBucketAnalyticsConfigurationCommand,
-    PutBucketCorsCommand,
-    PutBucketEncryptionCommand,
-    PutBucketIntelligentTieringConfigurationCommand,
-    PutBucketInventoryConfigurationCommand,
-    PutBucketLifecycleConfigurationCommand,
-    PutBucketLoggingCommand,
-    PutBucketMetricsConfigurationCommand,
-    PutBucketNotificationConfigurationCommand,
-    PutBucketOwnershipControlsCommand,
-    PutBucketPolicyCommand,
-    PutBucketReplicationCommand,
-    PutBucketRequestPaymentCommand,
-    PutBucketTaggingCommand,
-    PutBucketVersioningCommand,
-    PutBucketWebsiteCommand,
-    PutObjectCommand,
-    PutObjectAclCommand,
-    PutObjectAnnotationCommand,
-    PutObjectLegalHoldCommand,
-    PutObjectLockConfigurationCommand,
-    PutObjectRetentionCommand,
-    PutObjectTaggingCommand,
-    PutPublicAccessBlockCommand,
-    RenameObjectCommand,
-    RestoreObjectCommand,
-    SelectObjectContentCommand,
-    UpdateBucketMetadataAnnotationTableConfigurationCommand,
-    UpdateBucketMetadataInventoryTableConfigurationCommand,
-    UpdateBucketMetadataJournalTableConfigurationCommand,
-    UpdateObjectEncryptionCommand,
-    UploadPartCommand,
-    UploadPartCopyCommand,
-    WriteGetObjectResponseCommand,
-};
-const paginators = {
-    paginateListBuckets,
-    paginateListDirectoryBuckets,
-    paginateListObjectAnnotations,
-    paginateListObjectsV2,
-    paginateListParts,
-};
-const waiters = {
-    waitUntilBucketExists,
-    waitUntilBucketNotExists,
-    waitUntilObjectExists,
-    waitUntilObjectNotExists,
-};
-class S3 extends S3Client {
-}
-createAggregatedClient(commands, S3, { paginators, waiters });
-
-const BucketAbacStatus = {
-    Disabled: "Disabled",
-    Enabled: "Enabled",
-};
-const RequestCharged = {
-    requester: "requester",
-};
-const RequestPayer = {
-    requester: "requester",
-};
-const BucketAccelerateStatus = {
-    Enabled: "Enabled",
-    Suspended: "Suspended",
-};
-const Type = {
-    AmazonCustomerByEmail: "AmazonCustomerByEmail",
-    CanonicalUser: "CanonicalUser",
-    Group: "Group",
-};
-const Permission = {
-    FULL_CONTROL: "FULL_CONTROL",
-    READ: "READ",
-    READ_ACP: "READ_ACP",
-    WRITE: "WRITE",
-    WRITE_ACP: "WRITE_ACP",
-};
-const OwnerOverride = {
-    Destination: "Destination",
-};
-const ChecksumType = {
-    COMPOSITE: "COMPOSITE",
-    FULL_OBJECT: "FULL_OBJECT",
-};
-const ServerSideEncryption = {
-    AES256: "AES256",
-    aws_fsx: "aws:fsx",
-    aws_kms: "aws:kms",
-    aws_kms_dsse: "aws:kms:dsse",
-};
-const ObjectCannedACL = {
-    authenticated_read: "authenticated-read",
-    aws_exec_read: "aws-exec-read",
-    bucket_owner_full_control: "bucket-owner-full-control",
-    bucket_owner_read: "bucket-owner-read",
-    private: "private",
-    public_read: "public-read",
-    public_read_write: "public-read-write",
-};
-const AnnotationDirective = {
-    COPY: "COPY",
-    EXCLUDE: "EXCLUDE",
-};
-const ChecksumAlgorithm = {
-    CRC32: "CRC32",
-    CRC32C: "CRC32C",
-    CRC64NVME: "CRC64NVME",
-    MD5: "MD5",
-    SHA1: "SHA1",
-    SHA256: "SHA256",
-    SHA512: "SHA512",
-    XXHASH128: "XXHASH128",
-    XXHASH3: "XXHASH3",
-    XXHASH64: "XXHASH64",
-};
-const MetadataDirective = {
-    COPY: "COPY",
-    REPLACE: "REPLACE",
-};
-const ObjectLockLegalHoldStatus = {
-    OFF: "OFF",
-    ON: "ON",
-};
-const ObjectLockMode = {
-    COMPLIANCE: "COMPLIANCE",
-    GOVERNANCE: "GOVERNANCE",
-};
-const StorageClass = {
-    DEEP_ARCHIVE: "DEEP_ARCHIVE",
-    EXPRESS_ONEZONE: "EXPRESS_ONEZONE",
-    FSX_ONTAP: "FSX_ONTAP",
-    FSX_OPENZFS: "FSX_OPENZFS",
-    GLACIER: "GLACIER",
-    GLACIER_IR: "GLACIER_IR",
-    INTELLIGENT_TIERING: "INTELLIGENT_TIERING",
-    ONEZONE_IA: "ONEZONE_IA",
-    OUTPOSTS: "OUTPOSTS",
-    REDUCED_REDUNDANCY: "REDUCED_REDUNDANCY",
-    SNOW: "SNOW",
-    STANDARD: "STANDARD",
-    STANDARD_IA: "STANDARD_IA",
-};
-const TaggingDirective = {
-    COPY: "COPY",
-    REPLACE: "REPLACE",
-};
-const BucketCannedACL = {
-    authenticated_read: "authenticated-read",
-    private: "private",
-    public_read: "public-read",
-    public_read_write: "public-read-write",
-};
-const BucketNamespace = {
-    ACCOUNT_REGIONAL: "account-regional",
-    GLOBAL: "global",
-};
-const DataRedundancy = {
-    SingleAvailabilityZone: "SingleAvailabilityZone",
-    SingleLocalZone: "SingleLocalZone",
-};
-const BucketType = {
-    Directory: "Directory",
-};
-const LocationType = {
-    AvailabilityZone: "AvailabilityZone",
-    LocalZone: "LocalZone",
-};
-const BucketLocationConstraint = {
-    EU: "EU",
-    af_south_1: "af-south-1",
-    ap_east_1: "ap-east-1",
-    ap_east_2: "ap-east-2",
-    ap_northeast_1: "ap-northeast-1",
-    ap_northeast_2: "ap-northeast-2",
-    ap_northeast_3: "ap-northeast-3",
-    ap_south_1: "ap-south-1",
-    ap_south_2: "ap-south-2",
-    ap_southeast_1: "ap-southeast-1",
-    ap_southeast_2: "ap-southeast-2",
-    ap_southeast_3: "ap-southeast-3",
-    ap_southeast_4: "ap-southeast-4",
-    ap_southeast_5: "ap-southeast-5",
-    ap_southeast_6: "ap-southeast-6",
-    ap_southeast_7: "ap-southeast-7",
-    ca_central_1: "ca-central-1",
-    ca_west_1: "ca-west-1",
-    cn_north_1: "cn-north-1",
-    cn_northwest_1: "cn-northwest-1",
-    eu_central_1: "eu-central-1",
-    eu_central_2: "eu-central-2",
-    eu_north_1: "eu-north-1",
-    eu_south_1: "eu-south-1",
-    eu_south_2: "eu-south-2",
-    eu_west_1: "eu-west-1",
-    eu_west_2: "eu-west-2",
-    eu_west_3: "eu-west-3",
-    il_central_1: "il-central-1",
-    me_central_1: "me-central-1",
-    me_south_1: "me-south-1",
-    mx_central_1: "mx-central-1",
-    sa_east_1: "sa-east-1",
-    us_east_2: "us-east-2",
-    us_gov_east_1: "us-gov-east-1",
-    us_gov_west_1: "us-gov-west-1",
-    us_west_1: "us-west-1",
-    us_west_2: "us-west-2",
-};
-const ObjectOwnership = {
-    BucketOwnerEnforced: "BucketOwnerEnforced",
-    BucketOwnerPreferred: "BucketOwnerPreferred",
-    ObjectWriter: "ObjectWriter",
-};
-const AnnotationConfigurationState = {
-    DISABLED: "DISABLED",
-    ENABLED: "ENABLED",
-};
-const TableSseAlgorithm = {
-    AES256: "AES256",
-    aws_kms: "aws:kms",
-};
-const InventoryConfigurationState = {
-    DISABLED: "DISABLED",
-    ENABLED: "ENABLED",
-};
-const ExpirationState = {
-    DISABLED: "DISABLED",
-    ENABLED: "ENABLED",
-};
-const SessionMode = {
-    ReadOnly: "ReadOnly",
-    ReadWrite: "ReadWrite",
-};
-const AnalyticsS3ExportFileFormat = {
-    CSV: "CSV",
-};
-const StorageClassAnalysisSchemaVersion = {
-    V_1: "V_1",
-};
-const EncryptionType = {
-    NONE: "NONE",
-    SSE_C: "SSE-C",
-};
-const IntelligentTieringStatus = {
-    Disabled: "Disabled",
-    Enabled: "Enabled",
-};
-const IntelligentTieringAccessTier = {
-    ARCHIVE_ACCESS: "ARCHIVE_ACCESS",
-    DEEP_ARCHIVE_ACCESS: "DEEP_ARCHIVE_ACCESS",
-};
-const InventoryFormat = {
-    CSV: "CSV",
-    ORC: "ORC",
-    Parquet: "Parquet",
-};
-const InventoryIncludedObjectVersions = {
-    All: "All",
-    Current: "Current",
-};
-const InventoryOptionalField = {
-    BucketKeyStatus: "BucketKeyStatus",
-    ChecksumAlgorithm: "ChecksumAlgorithm",
-    ETag: "ETag",
-    EncryptionStatus: "EncryptionStatus",
-    IntelligentTieringAccessTier: "IntelligentTieringAccessTier",
-    IsMultipartUploaded: "IsMultipartUploaded",
-    LastModifiedDate: "LastModifiedDate",
-    LifecycleExpirationDate: "LifecycleExpirationDate",
-    ObjectAccessControlList: "ObjectAccessControlList",
-    ObjectLockLegalHoldStatus: "ObjectLockLegalHoldStatus",
-    ObjectLockMode: "ObjectLockMode",
-    ObjectLockRetainUntilDate: "ObjectLockRetainUntilDate",
-    ObjectOwner: "ObjectOwner",
-    ReplicationStatus: "ReplicationStatus",
-    Size: "Size",
-    StorageClass: "StorageClass",
-};
-const InventoryFrequency = {
-    Daily: "Daily",
-    Weekly: "Weekly",
-};
-const TransitionStorageClass = {
-    DEEP_ARCHIVE: "DEEP_ARCHIVE",
-    GLACIER: "GLACIER",
-    GLACIER_IR: "GLACIER_IR",
-    INTELLIGENT_TIERING: "INTELLIGENT_TIERING",
-    ONEZONE_IA: "ONEZONE_IA",
-    STANDARD_IA: "STANDARD_IA",
-};
-const ExpirationStatus = {
-    Disabled: "Disabled",
-    Enabled: "Enabled",
-};
-const TransitionDefaultMinimumObjectSize = {
-    all_storage_classes_128K: "all_storage_classes_128K",
-    varies_by_storage_class: "varies_by_storage_class",
-};
-const BucketLogsPermission = {
-    FULL_CONTROL: "FULL_CONTROL",
-    READ: "READ",
-    WRITE: "WRITE",
-};
-const PartitionDateSource = {
-    DeliveryTime: "DeliveryTime",
-    EventTime: "EventTime",
-};
-const S3TablesBucketType = {
-    aws: "aws",
-    customer: "customer",
-};
-const Event = {
-    s3_IntelligentTiering: "s3:IntelligentTiering",
-    s3_LifecycleExpiration_: "s3:LifecycleExpiration:*",
-    s3_LifecycleExpiration_Delete: "s3:LifecycleExpiration:Delete",
-    s3_LifecycleExpiration_DeleteMarkerCreated: "s3:LifecycleExpiration:DeleteMarkerCreated",
-    s3_LifecycleTransition: "s3:LifecycleTransition",
-    s3_ObjectAcl_Put: "s3:ObjectAcl:Put",
-    s3_ObjectAnnotation_: "s3:ObjectAnnotation:*",
-    s3_ObjectAnnotation_Delete: "s3:ObjectAnnotation:Delete",
-    s3_ObjectAnnotation_Put: "s3:ObjectAnnotation:Put",
-    s3_ObjectCreated_: "s3:ObjectCreated:*",
-    s3_ObjectCreated_CompleteMultipartUpload: "s3:ObjectCreated:CompleteMultipartUpload",
-    s3_ObjectCreated_Copy: "s3:ObjectCreated:Copy",
-    s3_ObjectCreated_Post: "s3:ObjectCreated:Post",
-    s3_ObjectCreated_Put: "s3:ObjectCreated:Put",
-    s3_ObjectRemoved_: "s3:ObjectRemoved:*",
-    s3_ObjectRemoved_Delete: "s3:ObjectRemoved:Delete",
-    s3_ObjectRemoved_DeleteMarkerCreated: "s3:ObjectRemoved:DeleteMarkerCreated",
-    s3_ObjectRestore_: "s3:ObjectRestore:*",
-    s3_ObjectRestore_Completed: "s3:ObjectRestore:Completed",
-    s3_ObjectRestore_Delete: "s3:ObjectRestore:Delete",
-    s3_ObjectRestore_Post: "s3:ObjectRestore:Post",
-    s3_ObjectTagging_: "s3:ObjectTagging:*",
-    s3_ObjectTagging_Delete: "s3:ObjectTagging:Delete",
-    s3_ObjectTagging_Put: "s3:ObjectTagging:Put",
-    s3_ReducedRedundancyLostObject: "s3:ReducedRedundancyLostObject",
-    s3_Replication_: "s3:Replication:*",
-    s3_Replication_OperationFailedReplication: "s3:Replication:OperationFailedReplication",
-    s3_Replication_OperationMissedThreshold: "s3:Replication:OperationMissedThreshold",
-    s3_Replication_OperationNotTracked: "s3:Replication:OperationNotTracked",
-    s3_Replication_OperationReplicatedAfterThreshold: "s3:Replication:OperationReplicatedAfterThreshold",
-};
-const FilterRuleName = {
-    prefix: "prefix",
-    suffix: "suffix",
-};
-const DeleteMarkerReplicationStatus = {
-    Disabled: "Disabled",
-    Enabled: "Enabled",
-};
-const MetricsStatus = {
-    Disabled: "Disabled",
-    Enabled: "Enabled",
-};
-const ReplicationTimeStatus = {
-    Disabled: "Disabled",
-    Enabled: "Enabled",
-};
-const ExistingObjectReplicationStatus = {
-    Disabled: "Disabled",
-    Enabled: "Enabled",
-};
-const ReplicaModificationsStatus = {
-    Disabled: "Disabled",
-    Enabled: "Enabled",
-};
-const SseKmsEncryptedObjectsStatus = {
-    Disabled: "Disabled",
-    Enabled: "Enabled",
-};
-const ReplicationRuleStatus = {
-    Disabled: "Disabled",
-    Enabled: "Enabled",
-};
-const Payer = {
-    BucketOwner: "BucketOwner",
-    Requester: "Requester",
-};
-const MFADeleteStatus = {
-    Disabled: "Disabled",
-    Enabled: "Enabled",
-};
-const BucketVersioningStatus = {
-    Enabled: "Enabled",
-    Suspended: "Suspended",
-};
-const Protocol = {
-    http: "http",
-    https: "https",
-};
-const ReplicationStatus = {
-    COMPLETE: "COMPLETE",
-    COMPLETED: "COMPLETED",
-    FAILED: "FAILED",
-    PENDING: "PENDING",
-    REPLICA: "REPLICA",
-};
-const ChecksumMode = {
-    ENABLED: "ENABLED",
-};
-const ObjectAttributes = {
-    CHECKSUM: "Checksum",
-    ETAG: "ETag",
-    OBJECT_PARTS: "ObjectParts",
-    OBJECT_SIZE: "ObjectSize",
-    STORAGE_CLASS: "StorageClass",
-};
-const ObjectLockEnabled = {
-    Enabled: "Enabled",
-};
-const ObjectLockRetentionMode = {
-    COMPLIANCE: "COMPLIANCE",
-    GOVERNANCE: "GOVERNANCE",
-};
-const ArchiveStatus = {
-    ARCHIVE_ACCESS: "ARCHIVE_ACCESS",
-    DEEP_ARCHIVE_ACCESS: "DEEP_ARCHIVE_ACCESS",
-};
-const EncodingType = {
-    url: "url",
-};
-const ObjectStorageClass = {
-    DEEP_ARCHIVE: "DEEP_ARCHIVE",
-    EXPRESS_ONEZONE: "EXPRESS_ONEZONE",
-    FSX_ONTAP: "FSX_ONTAP",
-    FSX_OPENZFS: "FSX_OPENZFS",
-    GLACIER: "GLACIER",
-    GLACIER_IR: "GLACIER_IR",
-    INTELLIGENT_TIERING: "INTELLIGENT_TIERING",
-    ONEZONE_IA: "ONEZONE_IA",
-    OUTPOSTS: "OUTPOSTS",
-    REDUCED_REDUNDANCY: "REDUCED_REDUNDANCY",
-    SNOW: "SNOW",
-    STANDARD: "STANDARD",
-    STANDARD_IA: "STANDARD_IA",
-};
-const OptionalObjectAttributes = {
-    RESTORE_STATUS: "RestoreStatus",
-};
-const ObjectVersionStorageClass = {
-    STANDARD: "STANDARD",
-};
-const MFADelete = {
-    Disabled: "Disabled",
-    Enabled: "Enabled",
-};
-const Tier = {
-    Bulk: "Bulk",
-    Expedited: "Expedited",
-    Standard: "Standard",
-};
-const ExpressionType = {
-    SQL: "SQL",
-};
-const CompressionType = {
-    BZIP2: "BZIP2",
-    GZIP: "GZIP",
-    NONE: "NONE",
-};
-const FileHeaderInfo = {
-    IGNORE: "IGNORE",
-    NONE: "NONE",
-    USE: "USE",
-};
-const JSONType = {
-    DOCUMENT: "DOCUMENT",
-    LINES: "LINES",
-};
-const QuoteFields = {
-    ALWAYS: "ALWAYS",
-    ASNEEDED: "ASNEEDED",
-};
-const RestoreRequestType = {
-    SELECT: "SELECT",
-};
-
-exports.AbortMultipartUploadCommand = AbortMultipartUploadCommand;
-exports.AnalyticsS3ExportFileFormat = AnalyticsS3ExportFileFormat;
-exports.AnnotationConfigurationState = AnnotationConfigurationState;
-exports.AnnotationDirective = AnnotationDirective;
-exports.ArchiveStatus = ArchiveStatus;
-exports.BucketAbacStatus = BucketAbacStatus;
-exports.BucketAccelerateStatus = BucketAccelerateStatus;
-exports.BucketCannedACL = BucketCannedACL;
-exports.BucketLocationConstraint = BucketLocationConstraint;
-exports.BucketLogsPermission = BucketLogsPermission;
-exports.BucketNamespace = BucketNamespace;
-exports.BucketType = BucketType;
-exports.BucketVersioningStatus = BucketVersioningStatus;
-exports.ChecksumAlgorithm = ChecksumAlgorithm;
-exports.ChecksumMode = ChecksumMode;
-exports.ChecksumType = ChecksumType;
-exports.CompleteMultipartUploadCommand = CompleteMultipartUploadCommand;
-exports.CompressionType = CompressionType;
-exports.CopyObjectCommand = CopyObjectCommand;
-exports.CreateBucketCommand = CreateBucketCommand;
-exports.CreateBucketMetadataConfigurationCommand = CreateBucketMetadataConfigurationCommand;
-exports.CreateBucketMetadataTableConfigurationCommand = CreateBucketMetadataTableConfigurationCommand;
-exports.CreateMultipartUploadCommand = CreateMultipartUploadCommand;
-exports.CreateSessionCommand = CreateSessionCommand;
-exports.DataRedundancy = DataRedundancy;
-exports.DeleteBucketAnalyticsConfigurationCommand = DeleteBucketAnalyticsConfigurationCommand;
-exports.DeleteBucketCommand = DeleteBucketCommand;
-exports.DeleteBucketCorsCommand = DeleteBucketCorsCommand;
-exports.DeleteBucketEncryptionCommand = DeleteBucketEncryptionCommand;
-exports.DeleteBucketIntelligentTieringConfigurationCommand = DeleteBucketIntelligentTieringConfigurationCommand;
-exports.DeleteBucketInventoryConfigurationCommand = DeleteBucketInventoryConfigurationCommand;
-exports.DeleteBucketLifecycleCommand = DeleteBucketLifecycleCommand;
-exports.DeleteBucketMetadataConfigurationCommand = DeleteBucketMetadataConfigurationCommand;
-exports.DeleteBucketMetadataTableConfigurationCommand = DeleteBucketMetadataTableConfigurationCommand;
-exports.DeleteBucketMetricsConfigurationCommand = DeleteBucketMetricsConfigurationCommand;
-exports.DeleteBucketOwnershipControlsCommand = DeleteBucketOwnershipControlsCommand;
-exports.DeleteBucketPolicyCommand = DeleteBucketPolicyCommand;
-exports.DeleteBucketReplicationCommand = DeleteBucketReplicationCommand;
-exports.DeleteBucketTaggingCommand = DeleteBucketTaggingCommand;
-exports.DeleteBucketWebsiteCommand = DeleteBucketWebsiteCommand;
-exports.DeleteMarkerReplicationStatus = DeleteMarkerReplicationStatus;
-exports.DeleteObjectAnnotationCommand = DeleteObjectAnnotationCommand;
-exports.DeleteObjectCommand = DeleteObjectCommand;
-exports.DeleteObjectTaggingCommand = DeleteObjectTaggingCommand;
-exports.DeleteObjectsCommand = DeleteObjectsCommand;
-exports.DeletePublicAccessBlockCommand = DeletePublicAccessBlockCommand;
-exports.EncodingType = EncodingType;
-exports.EncryptionType = EncryptionType;
-exports.Event = Event;
-exports.ExistingObjectReplicationStatus = ExistingObjectReplicationStatus;
-exports.ExpirationState = ExpirationState;
-exports.ExpirationStatus = ExpirationStatus;
-exports.ExpressionType = ExpressionType;
-exports.FileHeaderInfo = FileHeaderInfo;
-exports.FilterRuleName = FilterRuleName;
-exports.GetBucketAbacCommand = GetBucketAbacCommand;
-exports.GetBucketAccelerateConfigurationCommand = GetBucketAccelerateConfigurationCommand;
-exports.GetBucketAclCommand = GetBucketAclCommand;
-exports.GetBucketAnalyticsConfigurationCommand = GetBucketAnalyticsConfigurationCommand;
-exports.GetBucketCorsCommand = GetBucketCorsCommand;
-exports.GetBucketEncryptionCommand = GetBucketEncryptionCommand;
-exports.GetBucketIntelligentTieringConfigurationCommand = GetBucketIntelligentTieringConfigurationCommand;
-exports.GetBucketInventoryConfigurationCommand = GetBucketInventoryConfigurationCommand;
-exports.GetBucketLifecycleConfigurationCommand = GetBucketLifecycleConfigurationCommand;
-exports.GetBucketLocationCommand = GetBucketLocationCommand;
-exports.GetBucketLoggingCommand = GetBucketLoggingCommand;
-exports.GetBucketMetadataConfigurationCommand = GetBucketMetadataConfigurationCommand;
-exports.GetBucketMetadataTableConfigurationCommand = GetBucketMetadataTableConfigurationCommand;
-exports.GetBucketMetricsConfigurationCommand = GetBucketMetricsConfigurationCommand;
-exports.GetBucketNotificationConfigurationCommand = GetBucketNotificationConfigurationCommand;
-exports.GetBucketOwnershipControlsCommand = GetBucketOwnershipControlsCommand;
-exports.GetBucketPolicyCommand = GetBucketPolicyCommand;
-exports.GetBucketPolicyStatusCommand = GetBucketPolicyStatusCommand;
-exports.GetBucketReplicationCommand = GetBucketReplicationCommand;
-exports.GetBucketRequestPaymentCommand = GetBucketRequestPaymentCommand;
-exports.GetBucketTaggingCommand = GetBucketTaggingCommand;
-exports.GetBucketVersioningCommand = GetBucketVersioningCommand;
-exports.GetBucketWebsiteCommand = GetBucketWebsiteCommand;
-exports.GetObjectAclCommand = GetObjectAclCommand;
-exports.GetObjectAnnotationCommand = GetObjectAnnotationCommand;
-exports.GetObjectAttributesCommand = GetObjectAttributesCommand;
-exports.GetObjectCommand = GetObjectCommand;
-exports.GetObjectLegalHoldCommand = GetObjectLegalHoldCommand;
-exports.GetObjectLockConfigurationCommand = GetObjectLockConfigurationCommand;
-exports.GetObjectRetentionCommand = GetObjectRetentionCommand;
-exports.GetObjectTaggingCommand = GetObjectTaggingCommand;
-exports.GetObjectTorrentCommand = GetObjectTorrentCommand;
-exports.GetPublicAccessBlockCommand = GetPublicAccessBlockCommand;
-exports.HeadBucketCommand = HeadBucketCommand;
-exports.HeadObjectCommand = HeadObjectCommand;
-exports.IntelligentTieringAccessTier = IntelligentTieringAccessTier;
-exports.IntelligentTieringStatus = IntelligentTieringStatus;
-exports.InventoryConfigurationState = InventoryConfigurationState;
-exports.InventoryFormat = InventoryFormat;
-exports.InventoryFrequency = InventoryFrequency;
-exports.InventoryIncludedObjectVersions = InventoryIncludedObjectVersions;
-exports.InventoryOptionalField = InventoryOptionalField;
-exports.JSONType = JSONType;
-exports.ListBucketAnalyticsConfigurationsCommand = ListBucketAnalyticsConfigurationsCommand;
-exports.ListBucketIntelligentTieringConfigurationsCommand = ListBucketIntelligentTieringConfigurationsCommand;
-exports.ListBucketInventoryConfigurationsCommand = ListBucketInventoryConfigurationsCommand;
-exports.ListBucketMetricsConfigurationsCommand = ListBucketMetricsConfigurationsCommand;
-exports.ListBucketsCommand = ListBucketsCommand;
-exports.ListDirectoryBucketsCommand = ListDirectoryBucketsCommand;
-exports.ListMultipartUploadsCommand = ListMultipartUploadsCommand;
-exports.ListObjectAnnotationsCommand = ListObjectAnnotationsCommand;
-exports.ListObjectVersionsCommand = ListObjectVersionsCommand;
-exports.ListObjectsCommand = ListObjectsCommand;
-exports.ListObjectsV2Command = ListObjectsV2Command;
-exports.ListPartsCommand = ListPartsCommand;
-exports.LocationType = LocationType;
-exports.MFADelete = MFADelete;
-exports.MFADeleteStatus = MFADeleteStatus;
-exports.MetadataDirective = MetadataDirective;
-exports.MetricsStatus = MetricsStatus;
-exports.ObjectAttributes = ObjectAttributes;
-exports.ObjectCannedACL = ObjectCannedACL;
-exports.ObjectLockEnabled = ObjectLockEnabled;
-exports.ObjectLockLegalHoldStatus = ObjectLockLegalHoldStatus;
-exports.ObjectLockMode = ObjectLockMode;
-exports.ObjectLockRetentionMode = ObjectLockRetentionMode;
-exports.ObjectOwnership = ObjectOwnership;
-exports.ObjectStorageClass = ObjectStorageClass;
-exports.ObjectVersionStorageClass = ObjectVersionStorageClass;
-exports.OptionalObjectAttributes = OptionalObjectAttributes;
-exports.OwnerOverride = OwnerOverride;
-exports.PartitionDateSource = PartitionDateSource;
-exports.Payer = Payer;
-exports.Permission = Permission;
-exports.Protocol = Protocol;
-exports.PutBucketAbacCommand = PutBucketAbacCommand;
-exports.PutBucketAccelerateConfigurationCommand = PutBucketAccelerateConfigurationCommand;
-exports.PutBucketAclCommand = PutBucketAclCommand;
-exports.PutBucketAnalyticsConfigurationCommand = PutBucketAnalyticsConfigurationCommand;
-exports.PutBucketCorsCommand = PutBucketCorsCommand;
-exports.PutBucketEncryptionCommand = PutBucketEncryptionCommand;
-exports.PutBucketIntelligentTieringConfigurationCommand = PutBucketIntelligentTieringConfigurationCommand;
-exports.PutBucketInventoryConfigurationCommand = PutBucketInventoryConfigurationCommand;
-exports.PutBucketLifecycleConfigurationCommand = PutBucketLifecycleConfigurationCommand;
-exports.PutBucketLoggingCommand = PutBucketLoggingCommand;
-exports.PutBucketMetricsConfigurationCommand = PutBucketMetricsConfigurationCommand;
-exports.PutBucketNotificationConfigurationCommand = PutBucketNotificationConfigurationCommand;
-exports.PutBucketOwnershipControlsCommand = PutBucketOwnershipControlsCommand;
-exports.PutBucketPolicyCommand = PutBucketPolicyCommand;
-exports.PutBucketReplicationCommand = PutBucketReplicationCommand;
-exports.PutBucketRequestPaymentCommand = PutBucketRequestPaymentCommand;
-exports.PutBucketTaggingCommand = PutBucketTaggingCommand;
-exports.PutBucketVersioningCommand = PutBucketVersioningCommand;
-exports.PutBucketWebsiteCommand = PutBucketWebsiteCommand;
-exports.PutObjectAclCommand = PutObjectAclCommand;
-exports.PutObjectAnnotationCommand = PutObjectAnnotationCommand;
-exports.PutObjectCommand = PutObjectCommand;
-exports.PutObjectLegalHoldCommand = PutObjectLegalHoldCommand;
-exports.PutObjectLockConfigurationCommand = PutObjectLockConfigurationCommand;
-exports.PutObjectRetentionCommand = PutObjectRetentionCommand;
-exports.PutObjectTaggingCommand = PutObjectTaggingCommand;
-exports.PutPublicAccessBlockCommand = PutPublicAccessBlockCommand;
-exports.QuoteFields = QuoteFields;
-exports.RenameObjectCommand = RenameObjectCommand;
-exports.ReplicaModificationsStatus = ReplicaModificationsStatus;
-exports.ReplicationRuleStatus = ReplicationRuleStatus;
-exports.ReplicationStatus = ReplicationStatus;
-exports.ReplicationTimeStatus = ReplicationTimeStatus;
-exports.RequestCharged = RequestCharged;
-exports.RequestPayer = RequestPayer;
-exports.RestoreObjectCommand = RestoreObjectCommand;
-exports.RestoreRequestType = RestoreRequestType;
-exports.S3 = S3;
-exports.S3Client = S3Client;
-exports.S3TablesBucketType = S3TablesBucketType;
-exports.SelectObjectContentCommand = SelectObjectContentCommand;
-exports.ServerSideEncryption = ServerSideEncryption;
-exports.SessionMode = SessionMode;
-exports.SseKmsEncryptedObjectsStatus = SseKmsEncryptedObjectsStatus;
-exports.StorageClass = StorageClass;
-exports.StorageClassAnalysisSchemaVersion = StorageClassAnalysisSchemaVersion;
-exports.TableSseAlgorithm = TableSseAlgorithm;
-exports.TaggingDirective = TaggingDirective;
-exports.Tier = Tier;
-exports.TransitionDefaultMinimumObjectSize = TransitionDefaultMinimumObjectSize;
-exports.TransitionStorageClass = TransitionStorageClass;
-exports.Type = Type;
-exports.UpdateBucketMetadataAnnotationTableConfigurationCommand = UpdateBucketMetadataAnnotationTableConfigurationCommand;
-exports.UpdateBucketMetadataInventoryTableConfigurationCommand = UpdateBucketMetadataInventoryTableConfigurationCommand;
-exports.UpdateBucketMetadataJournalTableConfigurationCommand = UpdateBucketMetadataJournalTableConfigurationCommand;
-exports.UpdateObjectEncryptionCommand = UpdateObjectEncryptionCommand;
-exports.UploadPartCommand = UploadPartCommand;
-exports.UploadPartCopyCommand = UploadPartCopyCommand;
-exports.WriteGetObjectResponseCommand = WriteGetObjectResponseCommand;
-exports.paginateListBuckets = paginateListBuckets;
-exports.paginateListDirectoryBuckets = paginateListDirectoryBuckets;
-exports.paginateListObjectAnnotations = paginateListObjectAnnotations;
-exports.paginateListObjectsV2 = paginateListObjectsV2;
-exports.paginateListParts = paginateListParts;
-exports.waitForBucketExists = waitForBucketExists;
-exports.waitForBucketNotExists = waitForBucketNotExists;
-exports.waitForObjectExists = waitForObjectExists;
-exports.waitForObjectNotExists = waitForObjectNotExists;
-exports.waitUntilBucketExists = waitUntilBucketExists;
-exports.waitUntilBucketNotExists = waitUntilBucketNotExists;
-exports.waitUntilObjectExists = waitUntilObjectExists;
-exports.waitUntilObjectNotExists = waitUntilObjectNotExists;
-
-
-/***/ }),
-
-/***/ 98354:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-const { ServiceException: __ServiceException } = __nccwpck_require__(92658);
-exports.__ServiceException = __ServiceException;
-exports.S3ServiceException = class S3ServiceException extends __ServiceException {
+class S3ServiceException extends ServiceException {
     constructor(options) {
         super(options);
         Object.setPrototypeOf(this, S3ServiceException.prototype);
     }
-};
+}
 
-
-/***/ }),
-
-/***/ 80631:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-const { S3ServiceException: __BaseException } = __nccwpck_require__(98354);
-exports.NoSuchUpload = class NoSuchUpload extends __BaseException {
+class NoSuchUpload extends S3ServiceException {
     name = "NoSuchUpload";
     $fault = "client";
     constructor(opts) {
@@ -5261,8 +2027,8 @@ exports.NoSuchUpload = class NoSuchUpload extends __BaseException {
         });
         Object.setPrototypeOf(this, NoSuchUpload.prototype);
     }
-};
-exports.AccessDenied = class AccessDenied extends __BaseException {
+}
+class AccessDenied extends S3ServiceException {
     name = "AccessDenied";
     $fault = "client";
     constructor(opts) {
@@ -5273,8 +2039,8 @@ exports.AccessDenied = class AccessDenied extends __BaseException {
         });
         Object.setPrototypeOf(this, AccessDenied.prototype);
     }
-};
-exports.ObjectNotInActiveTierError = class ObjectNotInActiveTierError extends __BaseException {
+}
+class ObjectNotInActiveTierError extends S3ServiceException {
     name = "ObjectNotInActiveTierError";
     $fault = "client";
     constructor(opts) {
@@ -5285,8 +2051,8 @@ exports.ObjectNotInActiveTierError = class ObjectNotInActiveTierError extends __
         });
         Object.setPrototypeOf(this, ObjectNotInActiveTierError.prototype);
     }
-};
-exports.BucketAlreadyExists = class BucketAlreadyExists extends __BaseException {
+}
+class BucketAlreadyExists extends S3ServiceException {
     name = "BucketAlreadyExists";
     $fault = "client";
     constructor(opts) {
@@ -5297,8 +2063,8 @@ exports.BucketAlreadyExists = class BucketAlreadyExists extends __BaseException 
         });
         Object.setPrototypeOf(this, BucketAlreadyExists.prototype);
     }
-};
-exports.BucketAlreadyOwnedByYou = class BucketAlreadyOwnedByYou extends __BaseException {
+}
+class BucketAlreadyOwnedByYou extends S3ServiceException {
     name = "BucketAlreadyOwnedByYou";
     $fault = "client";
     constructor(opts) {
@@ -5309,8 +2075,8 @@ exports.BucketAlreadyOwnedByYou = class BucketAlreadyOwnedByYou extends __BaseEx
         });
         Object.setPrototypeOf(this, BucketAlreadyOwnedByYou.prototype);
     }
-};
-exports.NoSuchBucket = class NoSuchBucket extends __BaseException {
+}
+class NoSuchBucket extends S3ServiceException {
     name = "NoSuchBucket";
     $fault = "client";
     constructor(opts) {
@@ -5321,8 +2087,8 @@ exports.NoSuchBucket = class NoSuchBucket extends __BaseException {
         });
         Object.setPrototypeOf(this, NoSuchBucket.prototype);
     }
-};
-exports.NoSuchKey = class NoSuchKey extends __BaseException {
+}
+class NoSuchKey extends S3ServiceException {
     name = "NoSuchKey";
     $fault = "client";
     constructor(opts) {
@@ -5333,8 +2099,8 @@ exports.NoSuchKey = class NoSuchKey extends __BaseException {
         });
         Object.setPrototypeOf(this, NoSuchKey.prototype);
     }
-};
-exports.InvalidObjectState = class InvalidObjectState extends __BaseException {
+}
+class InvalidObjectState extends S3ServiceException {
     name = "InvalidObjectState";
     $fault = "client";
     StorageClass;
@@ -5349,8 +2115,8 @@ exports.InvalidObjectState = class InvalidObjectState extends __BaseException {
         this.StorageClass = opts.StorageClass;
         this.AccessTier = opts.AccessTier;
     }
-};
-exports.NoSuchAnnotation = class NoSuchAnnotation extends __BaseException {
+}
+class NoSuchAnnotation extends S3ServiceException {
     name = "NoSuchAnnotation";
     $fault = "client";
     constructor(opts) {
@@ -5361,8 +2127,8 @@ exports.NoSuchAnnotation = class NoSuchAnnotation extends __BaseException {
         });
         Object.setPrototypeOf(this, NoSuchAnnotation.prototype);
     }
-};
-exports.NotFound = class NotFound extends __BaseException {
+}
+class NotFound extends S3ServiceException {
     name = "NotFound";
     $fault = "client";
     constructor(opts) {
@@ -5373,8 +2139,8 @@ exports.NotFound = class NotFound extends __BaseException {
         });
         Object.setPrototypeOf(this, NotFound.prototype);
     }
-};
-exports.InvalidPrefix = class InvalidPrefix extends __BaseException {
+}
+class InvalidPrefix extends S3ServiceException {
     name = "InvalidPrefix";
     $fault = "client";
     constructor(opts) {
@@ -5385,8 +2151,8 @@ exports.InvalidPrefix = class InvalidPrefix extends __BaseException {
         });
         Object.setPrototypeOf(this, InvalidPrefix.prototype);
     }
-};
-exports.EncryptionTypeMismatch = class EncryptionTypeMismatch extends __BaseException {
+}
+class EncryptionTypeMismatch extends S3ServiceException {
     name = "EncryptionTypeMismatch";
     $fault = "client";
     constructor(opts) {
@@ -5397,8 +2163,8 @@ exports.EncryptionTypeMismatch = class EncryptionTypeMismatch extends __BaseExce
         });
         Object.setPrototypeOf(this, EncryptionTypeMismatch.prototype);
     }
-};
-exports.InvalidRequest = class InvalidRequest extends __BaseException {
+}
+class InvalidRequest extends S3ServiceException {
     name = "InvalidRequest";
     $fault = "client";
     constructor(opts) {
@@ -5409,8 +2175,8 @@ exports.InvalidRequest = class InvalidRequest extends __BaseException {
         });
         Object.setPrototypeOf(this, InvalidRequest.prototype);
     }
-};
-exports.InvalidWriteOffset = class InvalidWriteOffset extends __BaseException {
+}
+class InvalidWriteOffset extends S3ServiceException {
     name = "InvalidWriteOffset";
     $fault = "client";
     constructor(opts) {
@@ -5421,8 +2187,8 @@ exports.InvalidWriteOffset = class InvalidWriteOffset extends __BaseException {
         });
         Object.setPrototypeOf(this, InvalidWriteOffset.prototype);
     }
-};
-exports.TooManyParts = class TooManyParts extends __BaseException {
+}
+class TooManyParts extends S3ServiceException {
     name = "TooManyParts";
     $fault = "client";
     constructor(opts) {
@@ -5433,8 +2199,8 @@ exports.TooManyParts = class TooManyParts extends __BaseException {
         });
         Object.setPrototypeOf(this, TooManyParts.prototype);
     }
-};
-exports.AnnotationLimitExceeded = class AnnotationLimitExceeded extends __BaseException {
+}
+class AnnotationLimitExceeded extends S3ServiceException {
     name = "AnnotationLimitExceeded";
     $fault = "client";
     constructor(opts) {
@@ -5445,8 +2211,8 @@ exports.AnnotationLimitExceeded = class AnnotationLimitExceeded extends __BaseEx
         });
         Object.setPrototypeOf(this, AnnotationLimitExceeded.prototype);
     }
-};
-exports.AnnotationNameTooLong = class AnnotationNameTooLong extends __BaseException {
+}
+class AnnotationNameTooLong extends S3ServiceException {
     name = "AnnotationNameTooLong";
     $fault = "client";
     constructor(opts) {
@@ -5457,8 +2223,8 @@ exports.AnnotationNameTooLong = class AnnotationNameTooLong extends __BaseExcept
         });
         Object.setPrototypeOf(this, AnnotationNameTooLong.prototype);
     }
-};
-exports.InvalidAnnotationName = class InvalidAnnotationName extends __BaseException {
+}
+class InvalidAnnotationName extends S3ServiceException {
     name = "InvalidAnnotationName";
     $fault = "client";
     constructor(opts) {
@@ -5469,8 +2235,8 @@ exports.InvalidAnnotationName = class InvalidAnnotationName extends __BaseExcept
         });
         Object.setPrototypeOf(this, InvalidAnnotationName.prototype);
     }
-};
-exports.UnsupportedMediaType = class UnsupportedMediaType extends __BaseException {
+}
+class UnsupportedMediaType extends S3ServiceException {
     name = "UnsupportedMediaType";
     $fault = "client";
     constructor(opts) {
@@ -5481,8 +2247,8 @@ exports.UnsupportedMediaType = class UnsupportedMediaType extends __BaseExceptio
         });
         Object.setPrototypeOf(this, UnsupportedMediaType.prototype);
     }
-};
-exports.IdempotencyParameterMismatch = class IdempotencyParameterMismatch extends __BaseException {
+}
+class IdempotencyParameterMismatch extends S3ServiceException {
     name = "IdempotencyParameterMismatch";
     $fault = "client";
     constructor(opts) {
@@ -5493,8 +2259,8 @@ exports.IdempotencyParameterMismatch = class IdempotencyParameterMismatch extend
         });
         Object.setPrototypeOf(this, IdempotencyParameterMismatch.prototype);
     }
-};
-exports.ObjectAlreadyInActiveTierError = class ObjectAlreadyInActiveTierError extends __BaseException {
+}
+class ObjectAlreadyInActiveTierError extends S3ServiceException {
     name = "ObjectAlreadyInActiveTierError";
     $fault = "client";
     constructor(opts) {
@@ -5505,135 +2271,7 @@ exports.ObjectAlreadyInActiveTierError = class ObjectAlreadyInActiveTierError ex
         });
         Object.setPrototypeOf(this, ObjectAlreadyInActiveTierError.prototype);
     }
-};
-
-
-/***/ }),
-
-/***/ 35745:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-const packageInfo = __nccwpck_require__(27413);
-const { createDefaultUserAgentProvider, emitWarningIfUnsupportedVersion: awsCheckVersion, NODE_APP_ID_CONFIG_OPTIONS } = __nccwpck_require__(5152);
-const { NODE_AUTH_SCHEME_PREFERENCE_OPTIONS, NODE_SIGV4A_CONFIG_OPTIONS } = __nccwpck_require__(97523);
-const { defaultProvider: credentialDefaultProvider } = __nccwpck_require__(5861);
-const { NODE_REQUEST_CHECKSUM_CALCULATION_CONFIG_OPTIONS, NODE_RESPONSE_CHECKSUM_VALIDATION_CONFIG_OPTIONS } = __nccwpck_require__(29836);
-const { NODE_DISABLE_S3_EXPRESS_SESSION_AUTH_OPTIONS, NODE_USE_ARN_REGION_CONFIG_OPTIONS } = __nccwpck_require__(45028);
-const { readableStreamHasher: streamHasher } = __nccwpck_require__(99542);
-const { emitWarningIfUnsupportedVersion, loadConfigsForDefaultMode } = __nccwpck_require__(92658);
-const { loadConfig: loadNodeConfig, NODE_REGION_CONFIG_FILE_OPTIONS, NODE_REGION_CONFIG_OPTIONS, NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS, NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS, resolveDefaultsModeConfig } = __nccwpck_require__(47291);
-const { eventStreamSerdeProvider } = __nccwpck_require__(56579);
-const { DEFAULT_RETRY_MODE, NODE_MAX_ATTEMPT_CONFIG_OPTIONS, NODE_RETRY_MODE_CONFIG_OPTIONS } = __nccwpck_require__(23609);
-const { calculateBodyLength, Hash } = __nccwpck_require__(92430);
-const { NodeHttpHandler: RequestHandler, streamCollector } = __nccwpck_require__(61279);
-const { getRuntimeConfig: getSharedRuntimeConfig } = __nccwpck_require__(74070);
-const getRuntimeConfig = (config) => {
-    emitWarningIfUnsupportedVersion(process.version);
-    const defaultsMode = resolveDefaultsModeConfig(config);
-    const defaultConfigProvider = () => defaultsMode().then(loadConfigsForDefaultMode);
-    const clientSharedValues = getSharedRuntimeConfig(config);
-    awsCheckVersion(process.version);
-    const loaderConfig = {
-        profile: config?.profile,
-        logger: clientSharedValues.logger,
-    };
-    return {
-        ...clientSharedValues,
-        ...config,
-        runtime: "node",
-        defaultsMode,
-        authSchemePreference: config?.authSchemePreference ?? loadNodeConfig(NODE_AUTH_SCHEME_PREFERENCE_OPTIONS, loaderConfig),
-        bodyLengthChecker: config?.bodyLengthChecker ?? calculateBodyLength,
-        credentialDefaultProvider: config?.credentialDefaultProvider ?? credentialDefaultProvider,
-        defaultUserAgentProvider: config?.defaultUserAgentProvider ?? createDefaultUserAgentProvider({ serviceId: clientSharedValues.serviceId, clientVersion: packageInfo.version }),
-        disableS3ExpressSessionAuth: config?.disableS3ExpressSessionAuth ?? loadNodeConfig(NODE_DISABLE_S3_EXPRESS_SESSION_AUTH_OPTIONS, loaderConfig),
-        eventStreamSerdeProvider: config?.eventStreamSerdeProvider ?? eventStreamSerdeProvider,
-        maxAttempts: config?.maxAttempts ?? loadNodeConfig(NODE_MAX_ATTEMPT_CONFIG_OPTIONS, config),
-        md5: config?.md5 ?? Hash.bind(null, "md5"),
-        region: config?.region ?? loadNodeConfig(NODE_REGION_CONFIG_OPTIONS, { ...NODE_REGION_CONFIG_FILE_OPTIONS, ...loaderConfig }),
-        requestChecksumCalculation: config?.requestChecksumCalculation ?? loadNodeConfig(NODE_REQUEST_CHECKSUM_CALCULATION_CONFIG_OPTIONS, loaderConfig),
-        requestHandler: RequestHandler.create(config?.requestHandler ?? defaultConfigProvider),
-        responseChecksumValidation: config?.responseChecksumValidation ?? loadNodeConfig(NODE_RESPONSE_CHECKSUM_VALIDATION_CONFIG_OPTIONS, loaderConfig),
-        retryMode: config?.retryMode ??
-            loadNodeConfig({
-                ...NODE_RETRY_MODE_CONFIG_OPTIONS,
-                default: async () => (await defaultConfigProvider()).retryMode || DEFAULT_RETRY_MODE,
-            }, config),
-        sha1: config?.sha1 ?? Hash.bind(null, "sha1"),
-        sha256: config?.sha256 ?? Hash.bind(null, "sha256"),
-        sigv4aSigningRegionSet: config?.sigv4aSigningRegionSet ?? loadNodeConfig(NODE_SIGV4A_CONFIG_OPTIONS, loaderConfig),
-        streamCollector: config?.streamCollector ?? streamCollector,
-        streamHasher: config?.streamHasher ?? streamHasher,
-        useArnRegion: config?.useArnRegion ?? loadNodeConfig(NODE_USE_ARN_REGION_CONFIG_OPTIONS, loaderConfig),
-        useDualstackEndpoint: config?.useDualstackEndpoint ?? loadNodeConfig(NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS, loaderConfig),
-        useFipsEndpoint: config?.useFipsEndpoint ?? loadNodeConfig(NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS, loaderConfig),
-        userAgentAppId: config?.userAgentAppId ?? loadNodeConfig(NODE_APP_ID_CONFIG_OPTIONS, loaderConfig),
-    };
-};
-exports.getRuntimeConfig = getRuntimeConfig;
-
-
-/***/ }),
-
-/***/ 74070:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-const { AwsSdkSigV4ASigner, AwsSdkSigV4Signer } = __nccwpck_require__(97523);
-const { S3RestXmlProtocol } = __nccwpck_require__(45028);
-const { SignatureV4MultiRegion } = __nccwpck_require__(5785);
-const { NoOpLogger } = __nccwpck_require__(92658);
-const { parseUrl } = __nccwpck_require__(93422);
-const { fromBase64, fromUtf8, getAwsChunkedEncodingStream, sdkStreamMixin, toBase64, toUtf8 } = __nccwpck_require__(92430);
-const { defaultS3HttpAuthSchemeProvider } = __nccwpck_require__(7168);
-const { defaultEndpointResolver } = __nccwpck_require__(57526);
-const { errorTypeRegistries } = __nccwpck_require__(20091);
-exports.getRuntimeConfig = (config) => {
-    return {
-        apiVersion: "2006-03-01",
-        base64Decoder: config?.base64Decoder ?? fromBase64,
-        base64Encoder: config?.base64Encoder ?? toBase64,
-        disableHostPrefix: config?.disableHostPrefix ?? false,
-        endpointProvider: config?.endpointProvider ?? defaultEndpointResolver,
-        extensions: config?.extensions ?? [],
-        getAwsChunkedEncodingStream: config?.getAwsChunkedEncodingStream ?? getAwsChunkedEncodingStream,
-        httpAuthSchemeProvider: config?.httpAuthSchemeProvider ?? defaultS3HttpAuthSchemeProvider,
-        httpAuthSchemes: config?.httpAuthSchemes ?? [
-            {
-                schemeId: "aws.auth#sigv4",
-                identityProvider: (ipc) => ipc.getIdentityProvider("aws.auth#sigv4"),
-                signer: new AwsSdkSigV4Signer(),
-            },
-            {
-                schemeId: "aws.auth#sigv4a",
-                identityProvider: (ipc) => ipc.getIdentityProvider("aws.auth#sigv4a"),
-                signer: new AwsSdkSigV4ASigner(),
-            },
-        ],
-        logger: config?.logger ?? new NoOpLogger(),
-        protocol: config?.protocol ?? S3RestXmlProtocol,
-        protocolSettings: config?.protocolSettings ?? {
-            defaultNamespace: "com.amazonaws.s3",
-            errorTypeRegistries,
-            xmlNamespace: "http://s3.amazonaws.com/doc/2006-03-01/",
-            version: "2006-03-01",
-            serviceTarget: "AmazonS3",
-        },
-        sdkStreamMixin: config?.sdkStreamMixin ?? sdkStreamMixin,
-        serviceId: config?.serviceId ?? "S3",
-        signerConstructor: config?.signerConstructor ?? SignatureV4MultiRegion,
-        signingEscapePath: config?.signingEscapePath ?? false,
-        urlParser: config?.urlParser ?? parseUrl,
-        useArnRegion: config?.useArnRegion ?? undefined,
-        utf8Decoder: config?.utf8Decoder ?? fromUtf8,
-        utf8Encoder: config?.utf8Encoder ?? toUtf8,
-    };
-};
-
-
-/***/ }),
-
-/***/ 20091:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
+}
 
 const _A = "Account";
 const _AAO = "AnalyticsAndOperator";
@@ -6706,162 +3344,137 @@ const _xawob = "x-amz-write-offset-bytes";
 const _xawrl = "x-amz-website-redirect-location";
 const _xs = "xsi:type";
 const n0 = "com.amazonaws.s3";
-const { TypeRegistry } = __nccwpck_require__(26890);
-const { AccessDenied, AnnotationLimitExceeded, AnnotationNameTooLong, BucketAlreadyExists, BucketAlreadyOwnedByYou, EncryptionTypeMismatch, IdempotencyParameterMismatch, InvalidAnnotationName, InvalidObjectState, InvalidPrefix, InvalidRequest, InvalidWriteOffset, NoSuchAnnotation, NoSuchBucket, NoSuchKey, NoSuchUpload, NotFound, ObjectAlreadyInActiveTierError, ObjectNotInActiveTierError, TooManyParts, UnsupportedMediaType } = __nccwpck_require__(80631);
-const { S3ServiceException } = __nccwpck_require__(98354);
 const _s_registry = TypeRegistry.for(_s);
-const S3ServiceException$ = [-3, _s, "S3ServiceException", 0, [], []];
-exports.S3ServiceException$ = S3ServiceException$;
+var S3ServiceException$ = [-3, _s, "S3ServiceException", 0, [], []];
 _s_registry.registerError(S3ServiceException$, S3ServiceException);
 const n0_registry = TypeRegistry.for(n0);
-const AccessDenied$ = [-3, n0, _AD,
+var AccessDenied$ = [-3, n0, _AD,
     { [_e]: _c, [_hE]: 403 },
     [],
     []
 ];
-exports.AccessDenied$ = AccessDenied$;
 n0_registry.registerError(AccessDenied$, AccessDenied);
-const AnnotationLimitExceeded$ = [-3, n0, _ALE,
+var AnnotationLimitExceeded$ = [-3, n0, _ALE,
     { [_e]: _c, [_hE]: 400 },
     [],
     []
 ];
-exports.AnnotationLimitExceeded$ = AnnotationLimitExceeded$;
 n0_registry.registerError(AnnotationLimitExceeded$, AnnotationLimitExceeded);
-const AnnotationNameTooLong$ = [-3, n0, _ANTL,
+var AnnotationNameTooLong$ = [-3, n0, _ANTL,
     { [_e]: _c, [_hE]: 400 },
     [],
     []
 ];
-exports.AnnotationNameTooLong$ = AnnotationNameTooLong$;
 n0_registry.registerError(AnnotationNameTooLong$, AnnotationNameTooLong);
-const BucketAlreadyExists$ = [-3, n0, _BAE,
+var BucketAlreadyExists$ = [-3, n0, _BAE,
     { [_e]: _c, [_hE]: 409 },
     [],
     []
 ];
-exports.BucketAlreadyExists$ = BucketAlreadyExists$;
 n0_registry.registerError(BucketAlreadyExists$, BucketAlreadyExists);
-const BucketAlreadyOwnedByYou$ = [-3, n0, _BAOBY,
+var BucketAlreadyOwnedByYou$ = [-3, n0, _BAOBY,
     { [_e]: _c, [_hE]: 409 },
     [],
     []
 ];
-exports.BucketAlreadyOwnedByYou$ = BucketAlreadyOwnedByYou$;
 n0_registry.registerError(BucketAlreadyOwnedByYou$, BucketAlreadyOwnedByYou);
-const EncryptionTypeMismatch$ = [-3, n0, _ETM,
+var EncryptionTypeMismatch$ = [-3, n0, _ETM,
     { [_e]: _c, [_hE]: 400 },
     [],
     []
 ];
-exports.EncryptionTypeMismatch$ = EncryptionTypeMismatch$;
 n0_registry.registerError(EncryptionTypeMismatch$, EncryptionTypeMismatch);
-const IdempotencyParameterMismatch$ = [-3, n0, _IPM,
+var IdempotencyParameterMismatch$ = [-3, n0, _IPM,
     { [_e]: _c, [_hE]: 400 },
     [],
     []
 ];
-exports.IdempotencyParameterMismatch$ = IdempotencyParameterMismatch$;
 n0_registry.registerError(IdempotencyParameterMismatch$, IdempotencyParameterMismatch);
-const InvalidAnnotationName$ = [-3, n0, _IAN,
+var InvalidAnnotationName$ = [-3, n0, _IAN,
     { [_e]: _c, [_hE]: 400 },
     [],
     []
 ];
-exports.InvalidAnnotationName$ = InvalidAnnotationName$;
 n0_registry.registerError(InvalidAnnotationName$, InvalidAnnotationName);
-const InvalidObjectState$ = [-3, n0, _IOS,
+var InvalidObjectState$ = [-3, n0, _IOS,
     { [_e]: _c, [_hE]: 403 },
     [_SC, _AT],
     [0, 0]
 ];
-exports.InvalidObjectState$ = InvalidObjectState$;
 n0_registry.registerError(InvalidObjectState$, InvalidObjectState);
-const InvalidPrefix$ = [-3, n0, _IP,
+var InvalidPrefix$ = [-3, n0, _IP,
     { [_e]: _c, [_hE]: 400 },
     [],
     []
 ];
-exports.InvalidPrefix$ = InvalidPrefix$;
 n0_registry.registerError(InvalidPrefix$, InvalidPrefix);
-const InvalidRequest$ = [-3, n0, _IR,
+var InvalidRequest$ = [-3, n0, _IR,
     { [_e]: _c, [_hE]: 400 },
     [],
     []
 ];
-exports.InvalidRequest$ = InvalidRequest$;
 n0_registry.registerError(InvalidRequest$, InvalidRequest);
-const InvalidWriteOffset$ = [-3, n0, _IWO,
+var InvalidWriteOffset$ = [-3, n0, _IWO,
     { [_e]: _c, [_hE]: 400 },
     [],
     []
 ];
-exports.InvalidWriteOffset$ = InvalidWriteOffset$;
 n0_registry.registerError(InvalidWriteOffset$, InvalidWriteOffset);
-const NoSuchAnnotation$ = [-3, n0, _NSA,
+var NoSuchAnnotation$ = [-3, n0, _NSA,
     { [_e]: _c, [_hE]: 404 },
     [],
     []
 ];
-exports.NoSuchAnnotation$ = NoSuchAnnotation$;
 n0_registry.registerError(NoSuchAnnotation$, NoSuchAnnotation);
-const NoSuchBucket$ = [-3, n0, _NSB,
+var NoSuchBucket$ = [-3, n0, _NSB,
     { [_e]: _c, [_hE]: 404 },
     [],
     []
 ];
-exports.NoSuchBucket$ = NoSuchBucket$;
 n0_registry.registerError(NoSuchBucket$, NoSuchBucket);
-const NoSuchKey$ = [-3, n0, _NSK,
+var NoSuchKey$ = [-3, n0, _NSK,
     { [_e]: _c, [_hE]: 404 },
     [],
     []
 ];
-exports.NoSuchKey$ = NoSuchKey$;
 n0_registry.registerError(NoSuchKey$, NoSuchKey);
-const NoSuchUpload$ = [-3, n0, _NSU,
+var NoSuchUpload$ = [-3, n0, _NSU,
     { [_e]: _c, [_hE]: 404 },
     [],
     []
 ];
-exports.NoSuchUpload$ = NoSuchUpload$;
 n0_registry.registerError(NoSuchUpload$, NoSuchUpload);
-const NotFound$ = [-3, n0, _NF,
+var NotFound$ = [-3, n0, _NF,
     { [_e]: _c },
     [],
     []
 ];
-exports.NotFound$ = NotFound$;
 n0_registry.registerError(NotFound$, NotFound);
-const ObjectAlreadyInActiveTierError$ = [-3, n0, _OAIATE,
+var ObjectAlreadyInActiveTierError$ = [-3, n0, _OAIATE,
     { [_e]: _c, [_hE]: 403 },
     [],
     []
 ];
-exports.ObjectAlreadyInActiveTierError$ = ObjectAlreadyInActiveTierError$;
 n0_registry.registerError(ObjectAlreadyInActiveTierError$, ObjectAlreadyInActiveTierError);
-const ObjectNotInActiveTierError$ = [-3, n0, _ONIATE,
+var ObjectNotInActiveTierError$ = [-3, n0, _ONIATE,
     { [_e]: _c, [_hE]: 403 },
     [],
     []
 ];
-exports.ObjectNotInActiveTierError$ = ObjectNotInActiveTierError$;
 n0_registry.registerError(ObjectNotInActiveTierError$, ObjectNotInActiveTierError);
-const TooManyParts$ = [-3, n0, _TMP,
+var TooManyParts$ = [-3, n0, _TMP,
     { [_e]: _c, [_hE]: 400 },
     [],
     []
 ];
-exports.TooManyParts$ = TooManyParts$;
 n0_registry.registerError(TooManyParts$, TooManyParts);
-const UnsupportedMediaType$ = [-3, n0, _UMT,
+var UnsupportedMediaType$ = [-3, n0, _UMT,
     { [_e]: _c, [_hE]: 415 },
     [],
     []
 ];
-exports.UnsupportedMediaType$ = UnsupportedMediaType$;
 n0_registry.registerError(UnsupportedMediaType$, UnsupportedMediaType);
-exports.errorTypeRegistries = [
+const errorTypeRegistries = [
     _s_registry,
     n0_registry,
 ];
@@ -6872,2062 +3485,1717 @@ var SSECustomerKey = [0, n0, _SSECK, 8, 0];
 var SSEKMSEncryptionContext = [0, n0, _SSEKMSEC, 8, 0];
 var SSEKMSKeyId = [0, n0, _SSEKMSKI, 8, 0];
 var StreamingBlob = [0, n0, _SB, { [_st]: 1 }, 42];
-const AbacStatus$ = [3, n0, _AS,
+var AbacStatus$ = [3, n0, _AS,
     0,
     [_S],
     [0]
 ];
-exports.AbacStatus$ = AbacStatus$;
-const AbortIncompleteMultipartUpload$ = [3, n0, _AIMU,
+var AbortIncompleteMultipartUpload$ = [3, n0, _AIMU,
     0,
     [_DAI],
     [1]
 ];
-exports.AbortIncompleteMultipartUpload$ = AbortIncompleteMultipartUpload$;
-const AbortMultipartUploadOutput$ = [3, n0, _AMUO,
+var AbortMultipartUploadOutput$ = [3, n0, _AMUO,
     0,
     [_RC],
     [[0, { [_hH]: _xarc }]]
 ];
-exports.AbortMultipartUploadOutput$ = AbortMultipartUploadOutput$;
-const AbortMultipartUploadRequest$ = [3, n0, _AMUR,
+var AbortMultipartUploadRequest$ = [3, n0, _AMUR,
     0,
     [_B, _K, _UI, _RP, _EBO, _IMIT],
     [[0, 1], [0, 1], [0, { [_hQ]: _uI }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }], [6, { [_hH]: _xaimit }]], 3
 ];
-exports.AbortMultipartUploadRequest$ = AbortMultipartUploadRequest$;
-const AccelerateConfiguration$ = [3, n0, _AC,
+var AccelerateConfiguration$ = [3, n0, _AC,
     0,
     [_S],
     [0]
 ];
-exports.AccelerateConfiguration$ = AccelerateConfiguration$;
-const AccessControlPolicy$ = [3, n0, _ACP,
+var AccessControlPolicy$ = [3, n0, _ACP,
     0,
     [_G, _O],
     [[() => Grants, { [_xN]: _ACL }], () => Owner$]
 ];
-exports.AccessControlPolicy$ = AccessControlPolicy$;
-const AccessControlTranslation$ = [3, n0, _ACT,
+var AccessControlTranslation$ = [3, n0, _ACT,
     0,
     [_O],
     [0], 1
 ];
-exports.AccessControlTranslation$ = AccessControlTranslation$;
-const AnalyticsAndOperator$ = [3, n0, _AAO,
+var AnalyticsAndOperator$ = [3, n0, _AAO,
     0,
     [_P, _T],
     [0, [() => TagSet, { [_xF]: 1, [_xN]: _Ta }]]
 ];
-exports.AnalyticsAndOperator$ = AnalyticsAndOperator$;
-const AnalyticsConfiguration$ = [3, n0, _ACn,
+var AnalyticsConfiguration$ = [3, n0, _ACn,
     0,
     [_I, _SCA, _F],
     [0, () => StorageClassAnalysis$, [() => AnalyticsFilter$, 0]], 2
 ];
-exports.AnalyticsConfiguration$ = AnalyticsConfiguration$;
-const AnalyticsExportDestination$ = [3, n0, _AED,
+var AnalyticsExportDestination$ = [3, n0, _AED,
     0,
     [_SBD],
     [() => AnalyticsS3BucketDestination$], 1
 ];
-exports.AnalyticsExportDestination$ = AnalyticsExportDestination$;
-const AnalyticsS3BucketDestination$ = [3, n0, _ASBD,
+var AnalyticsS3BucketDestination$ = [3, n0, _ASBD,
     0,
     [_Fo, _B, _BAI, _P],
     [0, 0, 0, 0], 2
 ];
-exports.AnalyticsS3BucketDestination$ = AnalyticsS3BucketDestination$;
-const AnnotationEntry$ = [3, n0, _AE,
+var AnnotationEntry$ = [3, n0, _AE,
     0,
     [_AN, _LM, _Si, _ET, _CA, _RS],
     [0, 4, 1, 0, [64 | 0, { [_xF]: 1 }], 0], 3
 ];
-exports.AnnotationEntry$ = AnnotationEntry$;
-const AnnotationTableConfiguration$ = [3, n0, _ATC,
+var AnnotationTableConfiguration$ = [3, n0, _ATC,
     0,
     [_CS, _EC, _R],
     [0, () => MetadataTableEncryptionConfiguration$, 0], 1
 ];
-exports.AnnotationTableConfiguration$ = AnnotationTableConfiguration$;
-const AnnotationTableConfigurationResult$ = [3, n0, _ATCR,
+var AnnotationTableConfigurationResult$ = [3, n0, _ATCR,
     0,
     [_CS, _TS, _E, _TN, _TA, _R],
     [0, 0, () => ErrorDetails$, 0, 0, 0], 1
 ];
-exports.AnnotationTableConfigurationResult$ = AnnotationTableConfigurationResult$;
-const AnnotationTableConfigurationUpdates$ = [3, n0, _ATCU,
+var AnnotationTableConfigurationUpdates$ = [3, n0, _ATCU,
     0,
     [_CS, _EC, _R],
     [0, () => MetadataTableEncryptionConfiguration$, 0], 1
 ];
-exports.AnnotationTableConfigurationUpdates$ = AnnotationTableConfigurationUpdates$;
-const BlockedEncryptionTypes$ = [3, n0, _BET,
+var BlockedEncryptionTypes$ = [3, n0, _BET,
     0,
     [_ETn],
     [[() => EncryptionTypeList, { [_xF]: 1 }]]
 ];
-exports.BlockedEncryptionTypes$ = BlockedEncryptionTypes$;
-const Bucket$ = [3, n0, _B,
+var Bucket$ = [3, n0, _B,
     0,
     [_N, _CD, _BR, _BA],
     [0, 4, 0, 0]
 ];
-exports.Bucket$ = Bucket$;
-const BucketInfo$ = [3, n0, _BI,
+var BucketInfo$ = [3, n0, _BI,
     0,
     [_DR, _Ty],
     [0, 0]
 ];
-exports.BucketInfo$ = BucketInfo$;
-const BucketLifecycleConfiguration$ = [3, n0, _BLC,
+var BucketLifecycleConfiguration$ = [3, n0, _BLC,
     0,
     [_Ru],
     [[() => LifecycleRules, { [_xF]: 1, [_xN]: _Rul }]], 1
 ];
-exports.BucketLifecycleConfiguration$ = BucketLifecycleConfiguration$;
-const BucketLoggingStatus$ = [3, n0, _BLS,
+var BucketLoggingStatus$ = [3, n0, _BLS,
     0,
     [_LE],
     [[() => LoggingEnabled$, 0]]
 ];
-exports.BucketLoggingStatus$ = BucketLoggingStatus$;
-const Checksum$ = [3, n0, _C,
+var Checksum$ = [3, n0, _C,
     0,
     [_CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CT],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
-exports.Checksum$ = Checksum$;
-const CommonPrefix$ = [3, n0, _CP,
+var CommonPrefix$ = [3, n0, _CP,
     0,
     [_P],
     [0]
 ];
-exports.CommonPrefix$ = CommonPrefix$;
-const CompletedMultipartUpload$ = [3, n0, _CMU,
+var CompletedMultipartUpload$ = [3, n0, _CMU,
     0,
     [_Pa],
     [[() => CompletedPartList, { [_xF]: 1, [_xN]: _Par }]]
 ];
-exports.CompletedMultipartUpload$ = CompletedMultipartUpload$;
-const CompletedPart$ = [3, n0, _CPo,
+var CompletedPart$ = [3, n0, _CPo,
     0,
     [_ET, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _PN],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
 ];
-exports.CompletedPart$ = CompletedPart$;
-const CompleteMultipartUploadOutput$ = [3, n0, _CMUO,
+var CompleteMultipartUploadOutput$ = [3, n0, _CMUO,
     { [_xN]: _CMUR },
     [_L, _B, _K, _Ex, _ET, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CT, _SSE, _VI, _SSEKMSKI, _BKE, _RC],
     [0, 0, 0, [0, { [_hH]: _xae }], 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, [0, { [_hH]: _xasse }], [0, { [_hH]: _xavi }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xarc }]]
 ];
-exports.CompleteMultipartUploadOutput$ = CompleteMultipartUploadOutput$;
-const CompleteMultipartUploadRequest$ = [3, n0, _CMURo,
+var CompleteMultipartUploadRequest$ = [3, n0, _CMURo,
     0,
     [_B, _K, _UI, _MU, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CT, _MOS, _RP, _EBO, _IM, _INM, _SSECA, _SSECK, _SSECKMD],
     [[0, 1], [0, 1], [0, { [_hQ]: _uI }], [() => CompletedMultipartUpload$, { [_hP]: 1, [_xN]: _CMUo }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _xact }], [1, { [_hH]: _xamos }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _IM_ }], [0, { [_hH]: _INM_ }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }]], 3
 ];
-exports.CompleteMultipartUploadRequest$ = CompleteMultipartUploadRequest$;
-const Condition$ = [3, n0, _Co,
+var Condition$ = [3, n0, _Co,
     0,
     [_HECRE, _KPE],
     [0, 0]
 ];
-exports.Condition$ = Condition$;
-const ContinuationEvent$ = [3, n0, _CE,
+var ContinuationEvent$ = [3, n0, _CE,
     0,
     [],
     []
 ];
-exports.ContinuationEvent$ = ContinuationEvent$;
-const CopyObjectOutput$ = [3, n0, _COO,
+var CopyObjectOutput$ = [3, n0, _COO,
     0,
     [_COR, _Ex, _CSVI, _VI, _SSE, _SSECA, _SSECKMD, _SSEKMSKI, _SSEKMSEC, _BKE, _RC],
     [[() => CopyObjectResult$, 16], [0, { [_hH]: _xae }], [0, { [_hH]: _xacsvi }], [0, { [_hH]: _xavi }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xarc }]]
 ];
-exports.CopyObjectOutput$ = CopyObjectOutput$;
-const CopyObjectRequest$ = [3, n0, _CORo,
+var CopyObjectRequest$ = [3, n0, _CORo,
     0,
     [_B, _CSo, _K, _ACL_, _CC, _CA, _CDo, _CEo, _CL, _CTo, _CSIM, _CSIMS, _CSINM, _CSIUS, _Exp, _GFC, _GR, _GRACP, _GWACP, _IM, _INM, _M, _MD, _TD, _ADn, _SSE, _SC, _WRL, _SSECA, _SSECK, _SSECKMD, _SSEKMSKI, _SSEKMSEC, _BKE, _CSSSECA, _CSSSECK, _CSSSECKMD, _RP, _Tag, _OLM, _OLRUD, _OLLHS, _EBO, _ESBO],
     [[0, 1], [0, { [_hH]: _xacs___ }], [0, 1], [0, { [_hH]: _xaa }], [0, { [_hH]: _CC_ }], [0, { [_hH]: _xaca }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [0, { [_hH]: _CT_ }], [0, { [_hH]: _xacsim }], [4, { [_hH]: _xacsims }], [0, { [_hH]: _xacsinm }], [4, { [_hH]: _xacsius }], [4, { [_hH]: _Exp }], [0, { [_hH]: _xagfc }], [0, { [_hH]: _xagr }], [0, { [_hH]: _xagra }], [0, { [_hH]: _xagwa }], [0, { [_hH]: _IM_ }], [0, { [_hH]: _INM_ }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xamd }], [0, { [_hH]: _xatd }], [0, { [_hH]: _xaoad }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xacssseca }], [() => CopySourceSSECustomerKey, { [_hH]: _xacssseck }], [0, { [_hH]: _xacssseckM }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xat }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xasebo }]], 3
 ];
-exports.CopyObjectRequest$ = CopyObjectRequest$;
-const CopyObjectResult$ = [3, n0, _COR,
+var CopyObjectResult$ = [3, n0, _COR,
     0,
     [_ET, _LM, _CT, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe],
     [0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
-exports.CopyObjectResult$ = CopyObjectResult$;
-const CopyPartResult$ = [3, n0, _CPR,
+var CopyPartResult$ = [3, n0, _CPR,
     0,
     [_ET, _LM, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe],
     [0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
-exports.CopyPartResult$ = CopyPartResult$;
-const CORSConfiguration$ = [3, n0, _CORSC,
+var CORSConfiguration$ = [3, n0, _CORSC,
     0,
     [_CORSR],
     [[() => CORSRules, { [_xF]: 1, [_xN]: _CORSRu }]], 1
 ];
-exports.CORSConfiguration$ = CORSConfiguration$;
-const CORSRule$ = [3, n0, _CORSRu,
+var CORSRule$ = [3, n0, _CORSRu,
     0,
     [_AM, _AO, _ID, _AH, _EH, _MAS],
     [[64 | 0, { [_xF]: 1, [_xN]: _AMl }], [64 | 0, { [_xF]: 1, [_xN]: _AOl }], 0, [64 | 0, { [_xF]: 1, [_xN]: _AHl }], [64 | 0, { [_xF]: 1, [_xN]: _EHx }], 1], 2
 ];
-exports.CORSRule$ = CORSRule$;
-const CreateBucketConfiguration$ = [3, n0, _CBC,
+var CreateBucketConfiguration$ = [3, n0, _CBC,
     0,
     [_LC, _L, _B, _T],
     [0, () => LocationInfo$, () => BucketInfo$, [() => TagSet, 0]]
 ];
-exports.CreateBucketConfiguration$ = CreateBucketConfiguration$;
-const CreateBucketMetadataConfigurationRequest$ = [3, n0, _CBMCR,
+var CreateBucketMetadataConfigurationRequest$ = [3, n0, _CBMCR,
     0,
     [_B, _MC, _CMDo, _CA, _EBO],
     [[0, 1], [() => MetadataConfiguration$, { [_hP]: 1, [_xN]: _MC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.CreateBucketMetadataConfigurationRequest$ = CreateBucketMetadataConfigurationRequest$;
-const CreateBucketMetadataTableConfigurationRequest$ = [3, n0, _CBMTCR,
+var CreateBucketMetadataTableConfigurationRequest$ = [3, n0, _CBMTCR,
     0,
     [_B, _MTC, _CMDo, _CA, _EBO],
     [[0, 1], [() => MetadataTableConfiguration$, { [_hP]: 1, [_xN]: _MTC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.CreateBucketMetadataTableConfigurationRequest$ = CreateBucketMetadataTableConfigurationRequest$;
-const CreateBucketOutput$ = [3, n0, _CBO,
+var CreateBucketOutput$ = [3, n0, _CBO,
     0,
     [_L, _BA],
     [[0, { [_hH]: _L }], [0, { [_hH]: _xaba }]]
 ];
-exports.CreateBucketOutput$ = CreateBucketOutput$;
-const CreateBucketRequest$ = [3, n0, _CBR,
+var CreateBucketRequest$ = [3, n0, _CBR,
     0,
     [_B, _ACL_, _CBC, _GFC, _GR, _GRACP, _GW, _GWACP, _OLEFB, _OO, _BN],
     [[0, 1], [0, { [_hH]: _xaa }], [() => CreateBucketConfiguration$, { [_hP]: 1, [_xN]: _CBC }], [0, { [_hH]: _xagfc }], [0, { [_hH]: _xagr }], [0, { [_hH]: _xagra }], [0, { [_hH]: _xagw }], [0, { [_hH]: _xagwa }], [2, { [_hH]: _xabole }], [0, { [_hH]: _xaoo }], [0, { [_hH]: _xabn }]], 1
 ];
-exports.CreateBucketRequest$ = CreateBucketRequest$;
-const CreateMultipartUploadOutput$ = [3, n0, _CMUOr,
+var CreateMultipartUploadOutput$ = [3, n0, _CMUOr,
     { [_xN]: _IMUR },
     [_ADb, _ARI, _B, _K, _UI, _SSE, _SSECA, _SSECKMD, _SSEKMSKI, _SSEKMSEC, _BKE, _RC, _CA, _CT],
     [[4, { [_hH]: _xaad }], [0, { [_hH]: _xaari }], [0, { [_xN]: _B }], 0, 0, [0, { [_hH]: _xasse }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xarc }], [0, { [_hH]: _xaca }], [0, { [_hH]: _xact }]]
 ];
-exports.CreateMultipartUploadOutput$ = CreateMultipartUploadOutput$;
-const CreateMultipartUploadRequest$ = [3, n0, _CMURr,
+var CreateMultipartUploadRequest$ = [3, n0, _CMURr,
     0,
     [_B, _K, _ACL_, _CC, _CDo, _CEo, _CL, _CTo, _Exp, _GFC, _GR, _GRACP, _GWACP, _M, _SSE, _SC, _WRL, _SSECA, _SSECK, _SSECKMD, _SSEKMSKI, _SSEKMSEC, _BKE, _RP, _Tag, _OLM, _OLRUD, _OLLHS, _EBO, _CA, _CT],
     [[0, 1], [0, 1], [0, { [_hH]: _xaa }], [0, { [_hH]: _CC_ }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [0, { [_hH]: _CT_ }], [4, { [_hH]: _Exp }], [0, { [_hH]: _xagfc }], [0, { [_hH]: _xagr }], [0, { [_hH]: _xagra }], [0, { [_hH]: _xagwa }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xat }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xaca }], [0, { [_hH]: _xact }]], 2
 ];
-exports.CreateMultipartUploadRequest$ = CreateMultipartUploadRequest$;
-const CreateSessionOutput$ = [3, n0, _CSO,
+var CreateSessionOutput$ = [3, n0, _CSO,
     { [_xN]: _CSR },
     [_Cr, _SSE, _SSEKMSKI, _SSEKMSEC, _BKE],
     [[() => SessionCredentials$, { [_xN]: _Cr }], [0, { [_hH]: _xasse }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }]], 1
 ];
-exports.CreateSessionOutput$ = CreateSessionOutput$;
-const CreateSessionRequest$ = [3, n0, _CSRr,
+var CreateSessionRequest$ = [3, n0, _CSRr,
     0,
     [_B, _SM, _SSE, _SSEKMSKI, _SSEKMSEC, _BKE],
     [[0, 1], [0, { [_hH]: _xacsm }], [0, { [_hH]: _xasse }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }]], 1
 ];
-exports.CreateSessionRequest$ = CreateSessionRequest$;
-const CSVInput$ = [3, n0, _CSVIn,
+var CSVInput$ = [3, n0, _CSVIn,
     0,
     [_FHI, _Com, _QEC, _RD, _FD, _QC, _AQRD],
     [0, 0, 0, 0, 0, 0, 2]
 ];
-exports.CSVInput$ = CSVInput$;
-const CSVOutput$ = [3, n0, _CSVO,
+var CSVOutput$ = [3, n0, _CSVO,
     0,
     [_QF, _QEC, _RD, _FD, _QC],
     [0, 0, 0, 0, 0]
 ];
-exports.CSVOutput$ = CSVOutput$;
-const DefaultRetention$ = [3, n0, _DRe,
+var DefaultRetention$ = [3, n0, _DRe,
     0,
     [_Mo, _D, _Y],
     [0, 1, 1]
 ];
-exports.DefaultRetention$ = DefaultRetention$;
-const Delete$ = [3, n0, _De,
+var Delete$ = [3, n0, _De,
     0,
     [_Ob, _Q],
     [[() => ObjectIdentifierList, { [_xF]: 1, [_xN]: _Obj }], 2], 1
 ];
-exports.Delete$ = Delete$;
-const DeleteBucketAnalyticsConfigurationRequest$ = [3, n0, _DBACR,
+var DeleteBucketAnalyticsConfigurationRequest$ = [3, n0, _DBACR,
     0,
     [_B, _I, _EBO],
     [[0, 1], [0, { [_hQ]: _i }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.DeleteBucketAnalyticsConfigurationRequest$ = DeleteBucketAnalyticsConfigurationRequest$;
-const DeleteBucketCorsRequest$ = [3, n0, _DBCR,
+var DeleteBucketCorsRequest$ = [3, n0, _DBCR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.DeleteBucketCorsRequest$ = DeleteBucketCorsRequest$;
-const DeleteBucketEncryptionRequest$ = [3, n0, _DBER,
+var DeleteBucketEncryptionRequest$ = [3, n0, _DBER,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.DeleteBucketEncryptionRequest$ = DeleteBucketEncryptionRequest$;
-const DeleteBucketIntelligentTieringConfigurationRequest$ = [3, n0, _DBITCR,
+var DeleteBucketIntelligentTieringConfigurationRequest$ = [3, n0, _DBITCR,
     0,
     [_B, _I, _EBO],
     [[0, 1], [0, { [_hQ]: _i }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.DeleteBucketIntelligentTieringConfigurationRequest$ = DeleteBucketIntelligentTieringConfigurationRequest$;
-const DeleteBucketInventoryConfigurationRequest$ = [3, n0, _DBICR,
+var DeleteBucketInventoryConfigurationRequest$ = [3, n0, _DBICR,
     0,
     [_B, _I, _EBO],
     [[0, 1], [0, { [_hQ]: _i }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.DeleteBucketInventoryConfigurationRequest$ = DeleteBucketInventoryConfigurationRequest$;
-const DeleteBucketLifecycleRequest$ = [3, n0, _DBLR,
+var DeleteBucketLifecycleRequest$ = [3, n0, _DBLR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.DeleteBucketLifecycleRequest$ = DeleteBucketLifecycleRequest$;
-const DeleteBucketMetadataConfigurationRequest$ = [3, n0, _DBMCR,
+var DeleteBucketMetadataConfigurationRequest$ = [3, n0, _DBMCR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.DeleteBucketMetadataConfigurationRequest$ = DeleteBucketMetadataConfigurationRequest$;
-const DeleteBucketMetadataTableConfigurationRequest$ = [3, n0, _DBMTCR,
+var DeleteBucketMetadataTableConfigurationRequest$ = [3, n0, _DBMTCR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.DeleteBucketMetadataTableConfigurationRequest$ = DeleteBucketMetadataTableConfigurationRequest$;
-const DeleteBucketMetricsConfigurationRequest$ = [3, n0, _DBMCRe,
+var DeleteBucketMetricsConfigurationRequest$ = [3, n0, _DBMCRe,
     0,
     [_B, _I, _EBO],
     [[0, 1], [0, { [_hQ]: _i }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.DeleteBucketMetricsConfigurationRequest$ = DeleteBucketMetricsConfigurationRequest$;
-const DeleteBucketOwnershipControlsRequest$ = [3, n0, _DBOCR,
+var DeleteBucketOwnershipControlsRequest$ = [3, n0, _DBOCR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.DeleteBucketOwnershipControlsRequest$ = DeleteBucketOwnershipControlsRequest$;
-const DeleteBucketPolicyRequest$ = [3, n0, _DBPR,
+var DeleteBucketPolicyRequest$ = [3, n0, _DBPR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.DeleteBucketPolicyRequest$ = DeleteBucketPolicyRequest$;
-const DeleteBucketReplicationRequest$ = [3, n0, _DBRR,
+var DeleteBucketReplicationRequest$ = [3, n0, _DBRR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.DeleteBucketReplicationRequest$ = DeleteBucketReplicationRequest$;
-const DeleteBucketRequest$ = [3, n0, _DBR,
+var DeleteBucketRequest$ = [3, n0, _DBR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.DeleteBucketRequest$ = DeleteBucketRequest$;
-const DeleteBucketTaggingRequest$ = [3, n0, _DBTR,
+var DeleteBucketTaggingRequest$ = [3, n0, _DBTR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.DeleteBucketTaggingRequest$ = DeleteBucketTaggingRequest$;
-const DeleteBucketWebsiteRequest$ = [3, n0, _DBWR,
+var DeleteBucketWebsiteRequest$ = [3, n0, _DBWR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.DeleteBucketWebsiteRequest$ = DeleteBucketWebsiteRequest$;
-const DeletedObject$ = [3, n0, _DO,
+var DeletedObject$ = [3, n0, _DO,
     0,
     [_K, _VI, _DM, _DMVI],
     [0, 0, 2, 0]
 ];
-exports.DeletedObject$ = DeletedObject$;
-const DeleteMarkerEntry$ = [3, n0, _DME,
+var DeleteMarkerEntry$ = [3, n0, _DME,
     0,
     [_O, _K, _VI, _IL, _LM],
     [() => Owner$, 0, 0, 2, 4]
 ];
-exports.DeleteMarkerEntry$ = DeleteMarkerEntry$;
-const DeleteMarkerReplication$ = [3, n0, _DMR,
+var DeleteMarkerReplication$ = [3, n0, _DMR,
     0,
     [_S],
     [0]
 ];
-exports.DeleteMarkerReplication$ = DeleteMarkerReplication$;
-const DeleteObjectAnnotationOutput$ = [3, n0, _DOAO,
+var DeleteObjectAnnotationOutput$ = [3, n0, _DOAO,
     0,
     [_OVI, _RC],
     [[0, { [_hH]: _xaovi }], [0, { [_hH]: _xarc }]]
 ];
-exports.DeleteObjectAnnotationOutput$ = DeleteObjectAnnotationOutput$;
-const DeleteObjectAnnotationRequest$ = [3, n0, _DOAR,
+var DeleteObjectAnnotationRequest$ = [3, n0, _DOAR,
     0,
     [_B, _K, _AN, _VI, _RP, _EBO, _OIM],
     [[0, 1], [0, 1], [0, { [_hQ]: _aN }], [0, { [_hQ]: _vI }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xaoim }]], 3
 ];
-exports.DeleteObjectAnnotationRequest$ = DeleteObjectAnnotationRequest$;
-const DeleteObjectOutput$ = [3, n0, _DOO,
+var DeleteObjectOutput$ = [3, n0, _DOO,
     0,
     [_DM, _VI, _RC],
     [[2, { [_hH]: _xadm }], [0, { [_hH]: _xavi }], [0, { [_hH]: _xarc }]]
 ];
-exports.DeleteObjectOutput$ = DeleteObjectOutput$;
-const DeleteObjectRequest$ = [3, n0, _DOR,
+var DeleteObjectRequest$ = [3, n0, _DOR,
     0,
     [_B, _K, _MFA, _VI, _RP, _BGR, _EBO, _IM, _IMLMT, _IMS],
     [[0, 1], [0, 1], [0, { [_hH]: _xam_ }], [0, { [_hQ]: _vI }], [0, { [_hH]: _xarp }], [2, { [_hH]: _xabgr }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _IM_ }], [6, { [_hH]: _xaimlmt }], [1, { [_hH]: _xaims }]], 2
 ];
-exports.DeleteObjectRequest$ = DeleteObjectRequest$;
-const DeleteObjectsOutput$ = [3, n0, _DOOe,
+var DeleteObjectsOutput$ = [3, n0, _DOOe,
     { [_xN]: _DRel },
     [_Del, _RC, _Er],
     [[() => DeletedObjects, { [_xF]: 1 }], [0, { [_hH]: _xarc }], [() => Errors, { [_xF]: 1, [_xN]: _E }]]
 ];
-exports.DeleteObjectsOutput$ = DeleteObjectsOutput$;
-const DeleteObjectsRequest$ = [3, n0, _DORe,
+var DeleteObjectsRequest$ = [3, n0, _DORe,
     0,
     [_B, _De, _MFA, _RP, _BGR, _EBO, _CA],
     [[0, 1], [() => Delete$, { [_hP]: 1, [_xN]: _De }], [0, { [_hH]: _xam_ }], [0, { [_hH]: _xarp }], [2, { [_hH]: _xabgr }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xasca }]], 2
 ];
-exports.DeleteObjectsRequest$ = DeleteObjectsRequest$;
-const DeleteObjectTaggingOutput$ = [3, n0, _DOTO,
+var DeleteObjectTaggingOutput$ = [3, n0, _DOTO,
     0,
     [_VI],
     [[0, { [_hH]: _xavi }]]
 ];
-exports.DeleteObjectTaggingOutput$ = DeleteObjectTaggingOutput$;
-const DeleteObjectTaggingRequest$ = [3, n0, _DOTR,
+var DeleteObjectTaggingRequest$ = [3, n0, _DOTR,
     0,
     [_B, _K, _VI, _EBO],
     [[0, 1], [0, 1], [0, { [_hQ]: _vI }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.DeleteObjectTaggingRequest$ = DeleteObjectTaggingRequest$;
-const DeletePublicAccessBlockRequest$ = [3, n0, _DPABR,
+var DeletePublicAccessBlockRequest$ = [3, n0, _DPABR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.DeletePublicAccessBlockRequest$ = DeletePublicAccessBlockRequest$;
-const Destination$ = [3, n0, _Des,
+var Destination$ = [3, n0, _Des,
     0,
     [_B, _A, _SC, _ACT, _EC, _RT, _Me],
     [0, 0, 0, () => AccessControlTranslation$, () => EncryptionConfiguration$, () => ReplicationTime$, () => Metrics$], 1
 ];
-exports.Destination$ = Destination$;
-const DestinationResult$ = [3, n0, _DRes,
+var DestinationResult$ = [3, n0, _DRes,
     0,
     [_TBT, _TBA, _TNa],
     [0, 0, 0]
 ];
-exports.DestinationResult$ = DestinationResult$;
-const Encryption$ = [3, n0, _En,
+var Encryption$ = [3, n0, _En,
     0,
     [_ETn, _KMSKI, _KMSC],
     [0, [() => SSEKMSKeyId, 0], 0], 1
 ];
-exports.Encryption$ = Encryption$;
-const EncryptionConfiguration$ = [3, n0, _EC,
+var EncryptionConfiguration$ = [3, n0, _EC,
     0,
     [_RKKID],
     [0]
 ];
-exports.EncryptionConfiguration$ = EncryptionConfiguration$;
-const EndEvent$ = [3, n0, _EE,
+var EndEvent$ = [3, n0, _EE,
     0,
     [],
     []
 ];
-exports.EndEvent$ = EndEvent$;
-const _Error$ = [3, n0, _E,
+var _Error$ = [3, n0, _E,
     0,
     [_K, _VI, _Cod, _Mes],
     [0, 0, 0, 0]
 ];
-exports._Error$ = _Error$;
-const ErrorDetails$ = [3, n0, _ED,
+var ErrorDetails$ = [3, n0, _ED,
     0,
     [_ECr, _EM],
     [0, 0]
 ];
-exports.ErrorDetails$ = ErrorDetails$;
-const ErrorDocument$ = [3, n0, _EDr,
+var ErrorDocument$ = [3, n0, _EDr,
     0,
     [_K],
     [0], 1
 ];
-exports.ErrorDocument$ = ErrorDocument$;
-const EventBridgeConfiguration$ = [3, n0, _EBC,
+var EventBridgeConfiguration$ = [3, n0, _EBC,
     0,
     [],
     []
 ];
-exports.EventBridgeConfiguration$ = EventBridgeConfiguration$;
-const ExistingObjectReplication$ = [3, n0, _EOR,
+var ExistingObjectReplication$ = [3, n0, _EOR,
     0,
     [_S],
     [0], 1
 ];
-exports.ExistingObjectReplication$ = ExistingObjectReplication$;
-const FilterRule$ = [3, n0, _FR,
+var FilterRule$ = [3, n0, _FR,
     0,
     [_N, _V],
     [0, 0]
 ];
-exports.FilterRule$ = FilterRule$;
-const GetBucketAbacOutput$ = [3, n0, _GBAO,
+var GetBucketAbacOutput$ = [3, n0, _GBAO,
     0,
     [_AS],
     [[() => AbacStatus$, 16]]
 ];
-exports.GetBucketAbacOutput$ = GetBucketAbacOutput$;
-const GetBucketAbacRequest$ = [3, n0, _GBAR,
+var GetBucketAbacRequest$ = [3, n0, _GBAR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetBucketAbacRequest$ = GetBucketAbacRequest$;
-const GetBucketAccelerateConfigurationOutput$ = [3, n0, _GBACO,
+var GetBucketAccelerateConfigurationOutput$ = [3, n0, _GBACO,
     { [_xN]: _AC },
     [_S, _RC],
     [0, [0, { [_hH]: _xarc }]]
 ];
-exports.GetBucketAccelerateConfigurationOutput$ = GetBucketAccelerateConfigurationOutput$;
-const GetBucketAccelerateConfigurationRequest$ = [3, n0, _GBACR,
+var GetBucketAccelerateConfigurationRequest$ = [3, n0, _GBACR,
     0,
     [_B, _EBO, _RP],
     [[0, 1], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xarp }]], 1
 ];
-exports.GetBucketAccelerateConfigurationRequest$ = GetBucketAccelerateConfigurationRequest$;
-const GetBucketAclOutput$ = [3, n0, _GBAOe,
+var GetBucketAclOutput$ = [3, n0, _GBAOe,
     { [_xN]: _ACP },
     [_O, _G],
     [() => Owner$, [() => Grants, { [_xN]: _ACL }]]
 ];
-exports.GetBucketAclOutput$ = GetBucketAclOutput$;
-const GetBucketAclRequest$ = [3, n0, _GBARe,
+var GetBucketAclRequest$ = [3, n0, _GBARe,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetBucketAclRequest$ = GetBucketAclRequest$;
-const GetBucketAnalyticsConfigurationOutput$ = [3, n0, _GBACOe,
+var GetBucketAnalyticsConfigurationOutput$ = [3, n0, _GBACOe,
     0,
     [_ACn],
     [[() => AnalyticsConfiguration$, 16]]
 ];
-exports.GetBucketAnalyticsConfigurationOutput$ = GetBucketAnalyticsConfigurationOutput$;
-const GetBucketAnalyticsConfigurationRequest$ = [3, n0, _GBACRe,
+var GetBucketAnalyticsConfigurationRequest$ = [3, n0, _GBACRe,
     0,
     [_B, _I, _EBO],
     [[0, 1], [0, { [_hQ]: _i }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.GetBucketAnalyticsConfigurationRequest$ = GetBucketAnalyticsConfigurationRequest$;
-const GetBucketCorsOutput$ = [3, n0, _GBCO,
+var GetBucketCorsOutput$ = [3, n0, _GBCO,
     { [_xN]: _CORSC },
     [_CORSR],
     [[() => CORSRules, { [_xF]: 1, [_xN]: _CORSRu }]]
 ];
-exports.GetBucketCorsOutput$ = GetBucketCorsOutput$;
-const GetBucketCorsRequest$ = [3, n0, _GBCR,
+var GetBucketCorsRequest$ = [3, n0, _GBCR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetBucketCorsRequest$ = GetBucketCorsRequest$;
-const GetBucketEncryptionOutput$ = [3, n0, _GBEO,
+var GetBucketEncryptionOutput$ = [3, n0, _GBEO,
     0,
     [_SSEC],
     [[() => ServerSideEncryptionConfiguration$, 16]]
 ];
-exports.GetBucketEncryptionOutput$ = GetBucketEncryptionOutput$;
-const GetBucketEncryptionRequest$ = [3, n0, _GBER,
+var GetBucketEncryptionRequest$ = [3, n0, _GBER,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetBucketEncryptionRequest$ = GetBucketEncryptionRequest$;
-const GetBucketIntelligentTieringConfigurationOutput$ = [3, n0, _GBITCO,
+var GetBucketIntelligentTieringConfigurationOutput$ = [3, n0, _GBITCO,
     0,
     [_ITC],
     [[() => IntelligentTieringConfiguration$, 16]]
 ];
-exports.GetBucketIntelligentTieringConfigurationOutput$ = GetBucketIntelligentTieringConfigurationOutput$;
-const GetBucketIntelligentTieringConfigurationRequest$ = [3, n0, _GBITCR,
+var GetBucketIntelligentTieringConfigurationRequest$ = [3, n0, _GBITCR,
     0,
     [_B, _I, _EBO],
     [[0, 1], [0, { [_hQ]: _i }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.GetBucketIntelligentTieringConfigurationRequest$ = GetBucketIntelligentTieringConfigurationRequest$;
-const GetBucketInventoryConfigurationOutput$ = [3, n0, _GBICO,
+var GetBucketInventoryConfigurationOutput$ = [3, n0, _GBICO,
     0,
     [_IC],
     [[() => InventoryConfiguration$, 16]]
 ];
-exports.GetBucketInventoryConfigurationOutput$ = GetBucketInventoryConfigurationOutput$;
-const GetBucketInventoryConfigurationRequest$ = [3, n0, _GBICR,
+var GetBucketInventoryConfigurationRequest$ = [3, n0, _GBICR,
     0,
     [_B, _I, _EBO],
     [[0, 1], [0, { [_hQ]: _i }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.GetBucketInventoryConfigurationRequest$ = GetBucketInventoryConfigurationRequest$;
-const GetBucketLifecycleConfigurationOutput$ = [3, n0, _GBLCO,
+var GetBucketLifecycleConfigurationOutput$ = [3, n0, _GBLCO,
     { [_xN]: _LCi },
     [_Ru, _TDMOS],
     [[() => LifecycleRules, { [_xF]: 1, [_xN]: _Rul }], [0, { [_hH]: _xatdmos }]]
 ];
-exports.GetBucketLifecycleConfigurationOutput$ = GetBucketLifecycleConfigurationOutput$;
-const GetBucketLifecycleConfigurationRequest$ = [3, n0, _GBLCR,
+var GetBucketLifecycleConfigurationRequest$ = [3, n0, _GBLCR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetBucketLifecycleConfigurationRequest$ = GetBucketLifecycleConfigurationRequest$;
-const GetBucketLocationOutput$ = [3, n0, _GBLO,
+var GetBucketLocationOutput$ = [3, n0, _GBLO,
     { [_xN]: _LC },
     [_LC],
     [0]
 ];
-exports.GetBucketLocationOutput$ = GetBucketLocationOutput$;
-const GetBucketLocationRequest$ = [3, n0, _GBLR,
+var GetBucketLocationRequest$ = [3, n0, _GBLR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetBucketLocationRequest$ = GetBucketLocationRequest$;
-const GetBucketLoggingOutput$ = [3, n0, _GBLOe,
+var GetBucketLoggingOutput$ = [3, n0, _GBLOe,
     { [_xN]: _BLS },
     [_LE],
     [[() => LoggingEnabled$, 0]]
 ];
-exports.GetBucketLoggingOutput$ = GetBucketLoggingOutput$;
-const GetBucketLoggingRequest$ = [3, n0, _GBLRe,
+var GetBucketLoggingRequest$ = [3, n0, _GBLRe,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetBucketLoggingRequest$ = GetBucketLoggingRequest$;
-const GetBucketMetadataConfigurationOutput$ = [3, n0, _GBMCO,
+var GetBucketMetadataConfigurationOutput$ = [3, n0, _GBMCO,
     0,
     [_GBMCR],
     [[() => GetBucketMetadataConfigurationResult$, 16]]
 ];
-exports.GetBucketMetadataConfigurationOutput$ = GetBucketMetadataConfigurationOutput$;
-const GetBucketMetadataConfigurationRequest$ = [3, n0, _GBMCRe,
+var GetBucketMetadataConfigurationRequest$ = [3, n0, _GBMCRe,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetBucketMetadataConfigurationRequest$ = GetBucketMetadataConfigurationRequest$;
-const GetBucketMetadataConfigurationResult$ = [3, n0, _GBMCR,
+var GetBucketMetadataConfigurationResult$ = [3, n0, _GBMCR,
     0,
     [_MCR],
     [() => MetadataConfigurationResult$], 1
 ];
-exports.GetBucketMetadataConfigurationResult$ = GetBucketMetadataConfigurationResult$;
-const GetBucketMetadataTableConfigurationOutput$ = [3, n0, _GBMTCO,
+var GetBucketMetadataTableConfigurationOutput$ = [3, n0, _GBMTCO,
     0,
     [_GBMTCR],
     [[() => GetBucketMetadataTableConfigurationResult$, 16]]
 ];
-exports.GetBucketMetadataTableConfigurationOutput$ = GetBucketMetadataTableConfigurationOutput$;
-const GetBucketMetadataTableConfigurationRequest$ = [3, n0, _GBMTCRe,
+var GetBucketMetadataTableConfigurationRequest$ = [3, n0, _GBMTCRe,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetBucketMetadataTableConfigurationRequest$ = GetBucketMetadataTableConfigurationRequest$;
-const GetBucketMetadataTableConfigurationResult$ = [3, n0, _GBMTCR,
+var GetBucketMetadataTableConfigurationResult$ = [3, n0, _GBMTCR,
     0,
     [_MTCR, _S, _E],
     [() => MetadataTableConfigurationResult$, 0, () => ErrorDetails$], 2
 ];
-exports.GetBucketMetadataTableConfigurationResult$ = GetBucketMetadataTableConfigurationResult$;
-const GetBucketMetricsConfigurationOutput$ = [3, n0, _GBMCOe,
+var GetBucketMetricsConfigurationOutput$ = [3, n0, _GBMCOe,
     0,
     [_MCe],
     [[() => MetricsConfiguration$, 16]]
 ];
-exports.GetBucketMetricsConfigurationOutput$ = GetBucketMetricsConfigurationOutput$;
-const GetBucketMetricsConfigurationRequest$ = [3, n0, _GBMCRet,
+var GetBucketMetricsConfigurationRequest$ = [3, n0, _GBMCRet,
     0,
     [_B, _I, _EBO],
     [[0, 1], [0, { [_hQ]: _i }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.GetBucketMetricsConfigurationRequest$ = GetBucketMetricsConfigurationRequest$;
-const GetBucketNotificationConfigurationRequest$ = [3, n0, _GBNCR,
+var GetBucketNotificationConfigurationRequest$ = [3, n0, _GBNCR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetBucketNotificationConfigurationRequest$ = GetBucketNotificationConfigurationRequest$;
-const GetBucketOwnershipControlsOutput$ = [3, n0, _GBOCO,
+var GetBucketOwnershipControlsOutput$ = [3, n0, _GBOCO,
     0,
     [_OC],
     [[() => OwnershipControls$, 16]]
 ];
-exports.GetBucketOwnershipControlsOutput$ = GetBucketOwnershipControlsOutput$;
-const GetBucketOwnershipControlsRequest$ = [3, n0, _GBOCR,
+var GetBucketOwnershipControlsRequest$ = [3, n0, _GBOCR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetBucketOwnershipControlsRequest$ = GetBucketOwnershipControlsRequest$;
-const GetBucketPolicyOutput$ = [3, n0, _GBPO,
+var GetBucketPolicyOutput$ = [3, n0, _GBPO,
     0,
     [_Po],
     [[0, 16]]
 ];
-exports.GetBucketPolicyOutput$ = GetBucketPolicyOutput$;
-const GetBucketPolicyRequest$ = [3, n0, _GBPR,
+var GetBucketPolicyRequest$ = [3, n0, _GBPR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetBucketPolicyRequest$ = GetBucketPolicyRequest$;
-const GetBucketPolicyStatusOutput$ = [3, n0, _GBPSO,
+var GetBucketPolicyStatusOutput$ = [3, n0, _GBPSO,
     0,
     [_PS],
     [[() => PolicyStatus$, 16]]
 ];
-exports.GetBucketPolicyStatusOutput$ = GetBucketPolicyStatusOutput$;
-const GetBucketPolicyStatusRequest$ = [3, n0, _GBPSR,
+var GetBucketPolicyStatusRequest$ = [3, n0, _GBPSR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetBucketPolicyStatusRequest$ = GetBucketPolicyStatusRequest$;
-const GetBucketReplicationOutput$ = [3, n0, _GBRO,
+var GetBucketReplicationOutput$ = [3, n0, _GBRO,
     0,
     [_RCe],
     [[() => ReplicationConfiguration$, 16]]
 ];
-exports.GetBucketReplicationOutput$ = GetBucketReplicationOutput$;
-const GetBucketReplicationRequest$ = [3, n0, _GBRR,
+var GetBucketReplicationRequest$ = [3, n0, _GBRR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetBucketReplicationRequest$ = GetBucketReplicationRequest$;
-const GetBucketRequestPaymentOutput$ = [3, n0, _GBRPO,
+var GetBucketRequestPaymentOutput$ = [3, n0, _GBRPO,
     { [_xN]: _RPC },
     [_Pay],
     [0]
 ];
-exports.GetBucketRequestPaymentOutput$ = GetBucketRequestPaymentOutput$;
-const GetBucketRequestPaymentRequest$ = [3, n0, _GBRPR,
+var GetBucketRequestPaymentRequest$ = [3, n0, _GBRPR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetBucketRequestPaymentRequest$ = GetBucketRequestPaymentRequest$;
-const GetBucketTaggingOutput$ = [3, n0, _GBTO,
+var GetBucketTaggingOutput$ = [3, n0, _GBTO,
     { [_xN]: _Tag },
     [_TSa],
     [[() => TagSet, 0]], 1
 ];
-exports.GetBucketTaggingOutput$ = GetBucketTaggingOutput$;
-const GetBucketTaggingRequest$ = [3, n0, _GBTR,
+var GetBucketTaggingRequest$ = [3, n0, _GBTR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetBucketTaggingRequest$ = GetBucketTaggingRequest$;
-const GetBucketVersioningOutput$ = [3, n0, _GBVO,
+var GetBucketVersioningOutput$ = [3, n0, _GBVO,
     { [_xN]: _VC },
     [_S, _MFAD],
     [0, [0, { [_xN]: _MDf }]]
 ];
-exports.GetBucketVersioningOutput$ = GetBucketVersioningOutput$;
-const GetBucketVersioningRequest$ = [3, n0, _GBVR,
+var GetBucketVersioningRequest$ = [3, n0, _GBVR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetBucketVersioningRequest$ = GetBucketVersioningRequest$;
-const GetBucketWebsiteOutput$ = [3, n0, _GBWO,
+var GetBucketWebsiteOutput$ = [3, n0, _GBWO,
     { [_xN]: _WC },
     [_RART, _IDn, _EDr, _RR],
     [() => RedirectAllRequestsTo$, () => IndexDocument$, () => ErrorDocument$, [() => RoutingRules, 0]]
 ];
-exports.GetBucketWebsiteOutput$ = GetBucketWebsiteOutput$;
-const GetBucketWebsiteRequest$ = [3, n0, _GBWR,
+var GetBucketWebsiteRequest$ = [3, n0, _GBWR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetBucketWebsiteRequest$ = GetBucketWebsiteRequest$;
-const GetObjectAclOutput$ = [3, n0, _GOAO,
+var GetObjectAclOutput$ = [3, n0, _GOAO,
     { [_xN]: _ACP },
     [_O, _G, _RC],
     [() => Owner$, [() => Grants, { [_xN]: _ACL }], [0, { [_hH]: _xarc }]]
 ];
-exports.GetObjectAclOutput$ = GetObjectAclOutput$;
-const GetObjectAclRequest$ = [3, n0, _GOAR,
+var GetObjectAclRequest$ = [3, n0, _GOAR,
     0,
     [_B, _K, _VI, _RP, _EBO],
     [[0, 1], [0, 1], [0, { [_hQ]: _vI }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.GetObjectAclRequest$ = GetObjectAclRequest$;
-const GetObjectAnnotationOutput$ = [3, n0, _GOAOe,
+var GetObjectAnnotationOutput$ = [3, n0, _GOAOe,
     0,
     [_AP, _OVI, _LM, _CLo, _ET, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CT, _SSE, _RC, _RS],
     [[() => StreamingBlob, 16], [0, { [_hH]: _xaovi }], [4, { [_hH]: _LM_ }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _ET }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _xact }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xarc }], [0, { [_hH]: _xars }]]
 ];
-exports.GetObjectAnnotationOutput$ = GetObjectAnnotationOutput$;
-const GetObjectAnnotationRequest$ = [3, n0, _GOARe,
+var GetObjectAnnotationRequest$ = [3, n0, _GOARe,
     0,
     [_B, _K, _AN, _VI, _RP, _EBO, _CMh],
     [[0, 1], [0, 1], [0, { [_hQ]: _aN }], [0, { [_hQ]: _vI }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xacm_ }]], 3
 ];
-exports.GetObjectAnnotationRequest$ = GetObjectAnnotationRequest$;
-const GetObjectAttributesOutput$ = [3, n0, _GOAOet,
+var GetObjectAttributesOutput$ = [3, n0, _GOAOet,
     { [_xN]: _GOARet },
     [_DM, _LM, _VI, _RC, _ET, _C, _OP, _SC, _OS],
     [[2, { [_hH]: _xadm }], [4, { [_hH]: _LM_ }], [0, { [_hH]: _xavi }], [0, { [_hH]: _xarc }], 0, () => Checksum$, [() => GetObjectAttributesParts$, 0], 0, 1]
 ];
-exports.GetObjectAttributesOutput$ = GetObjectAttributesOutput$;
-const GetObjectAttributesParts$ = [3, n0, _GOAP,
+var GetObjectAttributesParts$ = [3, n0, _GOAP,
     0,
     [_TPC, _PNM, _NPNM, _MP, _IT, _Pa],
     [[1, { [_xN]: _PC }], 0, 0, 1, 2, [() => PartsList, { [_xF]: 1, [_xN]: _Par }]]
 ];
-exports.GetObjectAttributesParts$ = GetObjectAttributesParts$;
-const GetObjectAttributesRequest$ = [3, n0, _GOARetb,
+var GetObjectAttributesRequest$ = [3, n0, _GOARetb,
     0,
     [_B, _K, _OA, _VI, _MP, _PNM, _SSECA, _SSECK, _SSECKMD, _RP, _EBO],
     [[0, 1], [0, 1], [64 | 0, { [_hH]: _xaoa }], [0, { [_hQ]: _vI }], [1, { [_hH]: _xamp }], [0, { [_hH]: _xapnm }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }]], 3
 ];
-exports.GetObjectAttributesRequest$ = GetObjectAttributesRequest$;
-const GetObjectLegalHoldOutput$ = [3, n0, _GOLHO,
+var GetObjectLegalHoldOutput$ = [3, n0, _GOLHO,
     0,
     [_LH],
     [[() => ObjectLockLegalHold$, { [_hP]: 1, [_xN]: _LH }]]
 ];
-exports.GetObjectLegalHoldOutput$ = GetObjectLegalHoldOutput$;
-const GetObjectLegalHoldRequest$ = [3, n0, _GOLHR,
+var GetObjectLegalHoldRequest$ = [3, n0, _GOLHR,
     0,
     [_B, _K, _VI, _RP, _EBO],
     [[0, 1], [0, 1], [0, { [_hQ]: _vI }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.GetObjectLegalHoldRequest$ = GetObjectLegalHoldRequest$;
-const GetObjectLockConfigurationOutput$ = [3, n0, _GOLCO,
+var GetObjectLockConfigurationOutput$ = [3, n0, _GOLCO,
     0,
     [_OLC],
     [[() => ObjectLockConfiguration$, 16]]
 ];
-exports.GetObjectLockConfigurationOutput$ = GetObjectLockConfigurationOutput$;
-const GetObjectLockConfigurationRequest$ = [3, n0, _GOLCR,
+var GetObjectLockConfigurationRequest$ = [3, n0, _GOLCR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetObjectLockConfigurationRequest$ = GetObjectLockConfigurationRequest$;
-const GetObjectOutput$ = [3, n0, _GOO,
+var GetObjectOutput$ = [3, n0, _GOO,
     0,
     [_Bo, _DM, _AR, _Ex, _Re, _LM, _CLo, _ET, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CT, _MM, _VI, _CC, _CDo, _CEo, _CL, _CR, _CTo, _Exp, _ES, _WRL, _SSE, _M, _SSECA, _SSECKMD, _SSEKMSKI, _BKE, _SC, _RC, _RS, _PC, _TC, _OLM, _OLRUD, _OLLHS],
     [[() => StreamingBlob, 16], [2, { [_hH]: _xadm }], [0, { [_hH]: _ar }], [0, { [_hH]: _xae }], [0, { [_hH]: _xar }], [4, { [_hH]: _LM_ }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _ET }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _xact }], [1, { [_hH]: _xamm }], [0, { [_hH]: _xavi }], [0, { [_hH]: _CC_ }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [0, { [_hH]: _CR_ }], [0, { [_hH]: _CT_ }], [4, { [_hH]: _Exp }], [0, { [_hH]: _ES }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasse }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xarc }], [0, { [_hH]: _xars }], [1, { [_hH]: _xampc }], [1, { [_hH]: _xatc }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }]]
 ];
-exports.GetObjectOutput$ = GetObjectOutput$;
-const GetObjectRequest$ = [3, n0, _GOR,
+var GetObjectRequest$ = [3, n0, _GOR,
     0,
     [_B, _K, _IM, _IMSf, _INM, _IUS, _Ra, _RCC, _RCD, _RCE, _RCL, _RCT, _RE, _VI, _SSECA, _SSECK, _SSECKMD, _RP, _PN, _EBO, _CMh],
     [[0, 1], [0, 1], [0, { [_hH]: _IM_ }], [4, { [_hH]: _IMS_ }], [0, { [_hH]: _INM_ }], [4, { [_hH]: _IUS_ }], [0, { [_hH]: _Ra }], [0, { [_hQ]: _rcc }], [0, { [_hQ]: _rcd }], [0, { [_hQ]: _rce }], [0, { [_hQ]: _rcl }], [0, { [_hQ]: _rct }], [6, { [_hQ]: _re }], [0, { [_hQ]: _vI }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [0, { [_hH]: _xarp }], [1, { [_hQ]: _pN }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xacm_ }]], 2
 ];
-exports.GetObjectRequest$ = GetObjectRequest$;
-const GetObjectRetentionOutput$ = [3, n0, _GORO,
+var GetObjectRetentionOutput$ = [3, n0, _GORO,
     0,
     [_Ret],
     [[() => ObjectLockRetention$, { [_hP]: 1, [_xN]: _Ret }]]
 ];
-exports.GetObjectRetentionOutput$ = GetObjectRetentionOutput$;
-const GetObjectRetentionRequest$ = [3, n0, _GORR,
+var GetObjectRetentionRequest$ = [3, n0, _GORR,
     0,
     [_B, _K, _VI, _RP, _EBO],
     [[0, 1], [0, 1], [0, { [_hQ]: _vI }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.GetObjectRetentionRequest$ = GetObjectRetentionRequest$;
-const GetObjectTaggingOutput$ = [3, n0, _GOTO,
+var GetObjectTaggingOutput$ = [3, n0, _GOTO,
     { [_xN]: _Tag },
     [_TSa, _VI],
     [[() => TagSet, 0], [0, { [_hH]: _xavi }]], 1
 ];
-exports.GetObjectTaggingOutput$ = GetObjectTaggingOutput$;
-const GetObjectTaggingRequest$ = [3, n0, _GOTR,
+var GetObjectTaggingRequest$ = [3, n0, _GOTR,
     0,
     [_B, _K, _VI, _EBO, _RP],
     [[0, 1], [0, 1], [0, { [_hQ]: _vI }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xarp }]], 2
 ];
-exports.GetObjectTaggingRequest$ = GetObjectTaggingRequest$;
-const GetObjectTorrentOutput$ = [3, n0, _GOTOe,
+var GetObjectTorrentOutput$ = [3, n0, _GOTOe,
     0,
     [_Bo, _RC],
     [[() => StreamingBlob, 16], [0, { [_hH]: _xarc }]]
 ];
-exports.GetObjectTorrentOutput$ = GetObjectTorrentOutput$;
-const GetObjectTorrentRequest$ = [3, n0, _GOTRe,
+var GetObjectTorrentRequest$ = [3, n0, _GOTRe,
     0,
     [_B, _K, _RP, _EBO],
     [[0, 1], [0, 1], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.GetObjectTorrentRequest$ = GetObjectTorrentRequest$;
-const GetPublicAccessBlockOutput$ = [3, n0, _GPABO,
+var GetPublicAccessBlockOutput$ = [3, n0, _GPABO,
     0,
     [_PABC],
     [[() => PublicAccessBlockConfiguration$, 16]]
 ];
-exports.GetPublicAccessBlockOutput$ = GetPublicAccessBlockOutput$;
-const GetPublicAccessBlockRequest$ = [3, n0, _GPABR,
+var GetPublicAccessBlockRequest$ = [3, n0, _GPABR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.GetPublicAccessBlockRequest$ = GetPublicAccessBlockRequest$;
-const GlacierJobParameters$ = [3, n0, _GJP,
+var GlacierJobParameters$ = [3, n0, _GJP,
     0,
     [_Ti],
     [0], 1
 ];
-exports.GlacierJobParameters$ = GlacierJobParameters$;
-const Grant$ = [3, n0, _Gr,
+var Grant$ = [3, n0, _Gr,
     0,
     [_Gra, _Pe],
     [[() => Grantee$, { [_xNm]: [_x, _hi] }], 0]
 ];
-exports.Grant$ = Grant$;
-const Grantee$ = [3, n0, _Gra,
+var Grantee$ = [3, n0, _Gra,
     0,
     [_Ty, _DN, _EA, _ID, _URI],
     [[0, { [_xA]: 1, [_xN]: _xs }], 0, 0, 0, 0], 1
 ];
-exports.Grantee$ = Grantee$;
-const HeadBucketOutput$ = [3, n0, _HBO,
+var HeadBucketOutput$ = [3, n0, _HBO,
     0,
     [_BA, _BLT, _BLN, _BR, _APA],
     [[0, { [_hH]: _xaba }], [0, { [_hH]: _xablt }], [0, { [_hH]: _xabln }], [0, { [_hH]: _xabr }], [2, { [_hH]: _xaapa }]]
 ];
-exports.HeadBucketOutput$ = HeadBucketOutput$;
-const HeadBucketRequest$ = [3, n0, _HBR,
+var HeadBucketRequest$ = [3, n0, _HBR,
     0,
     [_B, _EBO],
     [[0, 1], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.HeadBucketRequest$ = HeadBucketRequest$;
-const HeadObjectOutput$ = [3, n0, _HOO,
+var HeadObjectOutput$ = [3, n0, _HOO,
     0,
     [_DM, _AR, _Ex, _Re, _ASr, _LM, _CLo, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CT, _ET, _MM, _VI, _CC, _CDo, _CEo, _CL, _CTo, _CR, _Exp, _ES, _WRL, _SSE, _M, _SSECA, _SSECKMD, _SSEKMSKI, _BKE, _SC, _RC, _RS, _PC, _TC, _OLM, _OLRUD, _OLLHS],
     [[2, { [_hH]: _xadm }], [0, { [_hH]: _ar }], [0, { [_hH]: _xae }], [0, { [_hH]: _xar }], [0, { [_hH]: _xaas }], [4, { [_hH]: _LM_ }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _xact }], [0, { [_hH]: _ET }], [1, { [_hH]: _xamm }], [0, { [_hH]: _xavi }], [0, { [_hH]: _CC_ }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [0, { [_hH]: _CT_ }], [0, { [_hH]: _CR_ }], [4, { [_hH]: _Exp }], [0, { [_hH]: _ES }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasse }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xarc }], [0, { [_hH]: _xars }], [1, { [_hH]: _xampc }], [1, { [_hH]: _xatc }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }]]
 ];
-exports.HeadObjectOutput$ = HeadObjectOutput$;
-const HeadObjectRequest$ = [3, n0, _HOR,
+var HeadObjectRequest$ = [3, n0, _HOR,
     0,
     [_B, _K, _IM, _IMSf, _INM, _IUS, _Ra, _RCC, _RCD, _RCE, _RCL, _RCT, _RE, _VI, _SSECA, _SSECK, _SSECKMD, _RP, _PN, _EBO, _CMh],
     [[0, 1], [0, 1], [0, { [_hH]: _IM_ }], [4, { [_hH]: _IMS_ }], [0, { [_hH]: _INM_ }], [4, { [_hH]: _IUS_ }], [0, { [_hH]: _Ra }], [0, { [_hQ]: _rcc }], [0, { [_hQ]: _rcd }], [0, { [_hQ]: _rce }], [0, { [_hQ]: _rcl }], [0, { [_hQ]: _rct }], [6, { [_hQ]: _re }], [0, { [_hQ]: _vI }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [0, { [_hH]: _xarp }], [1, { [_hQ]: _pN }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xacm_ }]], 2
 ];
-exports.HeadObjectRequest$ = HeadObjectRequest$;
-const IndexDocument$ = [3, n0, _IDn,
+var IndexDocument$ = [3, n0, _IDn,
     0,
     [_Su],
     [0], 1
 ];
-exports.IndexDocument$ = IndexDocument$;
-const Initiator$ = [3, n0, _In,
+var Initiator$ = [3, n0, _In,
     0,
     [_ID, _DN],
     [0, 0]
 ];
-exports.Initiator$ = Initiator$;
-const InputSerialization$ = [3, n0, _IS,
+var InputSerialization$ = [3, n0, _IS,
     0,
     [_CSV, _CTom, _JSON, _Parq],
     [() => CSVInput$, 0, () => JSONInput$, () => ParquetInput$]
 ];
-exports.InputSerialization$ = InputSerialization$;
-const IntelligentTieringAndOperator$ = [3, n0, _ITAO,
+var IntelligentTieringAndOperator$ = [3, n0, _ITAO,
     0,
     [_P, _T],
     [0, [() => TagSet, { [_xF]: 1, [_xN]: _Ta }]]
 ];
-exports.IntelligentTieringAndOperator$ = IntelligentTieringAndOperator$;
-const IntelligentTieringConfiguration$ = [3, n0, _ITC,
+var IntelligentTieringConfiguration$ = [3, n0, _ITC,
     0,
     [_I, _S, _Tie, _F],
     [0, 0, [() => TieringList, { [_xF]: 1, [_xN]: _Tier }], [() => IntelligentTieringFilter$, 0]], 3
 ];
-exports.IntelligentTieringConfiguration$ = IntelligentTieringConfiguration$;
-const IntelligentTieringFilter$ = [3, n0, _ITF,
+var IntelligentTieringFilter$ = [3, n0, _ITF,
     0,
     [_P, _Ta, _An],
     [0, () => Tag$, [() => IntelligentTieringAndOperator$, 0]]
 ];
-exports.IntelligentTieringFilter$ = IntelligentTieringFilter$;
-const InventoryConfiguration$ = [3, n0, _IC,
+var InventoryConfiguration$ = [3, n0, _IC,
     0,
     [_Des, _IE, _I, _IOV, _Sc, _F, _OF],
     [[() => InventoryDestination$, 0], 2, 0, 0, () => InventorySchedule$, () => InventoryFilter$, [() => InventoryOptionalFields, 0]], 5
 ];
-exports.InventoryConfiguration$ = InventoryConfiguration$;
-const InventoryDestination$ = [3, n0, _IDnv,
+var InventoryDestination$ = [3, n0, _IDnv,
     0,
     [_SBD],
     [[() => InventoryS3BucketDestination$, 0]], 1
 ];
-exports.InventoryDestination$ = InventoryDestination$;
-const InventoryEncryption$ = [3, n0, _IEn,
+var InventoryEncryption$ = [3, n0, _IEn,
     0,
     [_SSES, _SSEKMS],
     [[() => SSES3$, { [_xN]: _SS }], [() => SSEKMS$, { [_xN]: _SK }]]
 ];
-exports.InventoryEncryption$ = InventoryEncryption$;
-const InventoryFilter$ = [3, n0, _IF,
+var InventoryFilter$ = [3, n0, _IF,
     0,
     [_P],
     [0], 1
 ];
-exports.InventoryFilter$ = InventoryFilter$;
-const InventoryS3BucketDestination$ = [3, n0, _ISBD,
+var InventoryS3BucketDestination$ = [3, n0, _ISBD,
     0,
     [_B, _Fo, _AI, _P, _En],
     [0, 0, 0, 0, [() => InventoryEncryption$, 0]], 2
 ];
-exports.InventoryS3BucketDestination$ = InventoryS3BucketDestination$;
-const InventorySchedule$ = [3, n0, _ISn,
+var InventorySchedule$ = [3, n0, _ISn,
     0,
     [_Fr],
     [0], 1
 ];
-exports.InventorySchedule$ = InventorySchedule$;
-const InventoryTableConfiguration$ = [3, n0, _ITCn,
+var InventoryTableConfiguration$ = [3, n0, _ITCn,
     0,
     [_CS, _EC],
     [0, () => MetadataTableEncryptionConfiguration$], 1
 ];
-exports.InventoryTableConfiguration$ = InventoryTableConfiguration$;
-const InventoryTableConfigurationResult$ = [3, n0, _ITCR,
+var InventoryTableConfigurationResult$ = [3, n0, _ITCR,
     0,
     [_CS, _TS, _E, _TN, _TA],
     [0, 0, () => ErrorDetails$, 0, 0], 1
 ];
-exports.InventoryTableConfigurationResult$ = InventoryTableConfigurationResult$;
-const InventoryTableConfigurationUpdates$ = [3, n0, _ITCU,
+var InventoryTableConfigurationUpdates$ = [3, n0, _ITCU,
     0,
     [_CS, _EC],
     [0, () => MetadataTableEncryptionConfiguration$], 1
 ];
-exports.InventoryTableConfigurationUpdates$ = InventoryTableConfigurationUpdates$;
-const JournalTableConfiguration$ = [3, n0, _JTC,
+var JournalTableConfiguration$ = [3, n0, _JTC,
     0,
     [_REe, _EC],
     [() => RecordExpiration$, () => MetadataTableEncryptionConfiguration$], 1
 ];
-exports.JournalTableConfiguration$ = JournalTableConfiguration$;
-const JournalTableConfigurationResult$ = [3, n0, _JTCR,
+var JournalTableConfigurationResult$ = [3, n0, _JTCR,
     0,
     [_TS, _TN, _REe, _E, _TA],
     [0, 0, () => RecordExpiration$, () => ErrorDetails$, 0], 3
 ];
-exports.JournalTableConfigurationResult$ = JournalTableConfigurationResult$;
-const JournalTableConfigurationUpdates$ = [3, n0, _JTCU,
+var JournalTableConfigurationUpdates$ = [3, n0, _JTCU,
     0,
     [_REe],
     [() => RecordExpiration$], 1
 ];
-exports.JournalTableConfigurationUpdates$ = JournalTableConfigurationUpdates$;
-const JSONInput$ = [3, n0, _JSONI,
+var JSONInput$ = [3, n0, _JSONI,
     0,
     [_Ty],
     [0]
 ];
-exports.JSONInput$ = JSONInput$;
-const JSONOutput$ = [3, n0, _JSONO,
+var JSONOutput$ = [3, n0, _JSONO,
     0,
     [_RD],
     [0]
 ];
-exports.JSONOutput$ = JSONOutput$;
-const LambdaFunctionConfiguration$ = [3, n0, _LFC,
+var LambdaFunctionConfiguration$ = [3, n0, _LFC,
     0,
     [_LFA, _Ev, _I, _F],
     [[0, { [_xN]: _CF }], [64 | 0, { [_xF]: 1, [_xN]: _Eve }], 0, [() => NotificationConfigurationFilter$, 0]], 2
 ];
-exports.LambdaFunctionConfiguration$ = LambdaFunctionConfiguration$;
-const LifecycleExpiration$ = [3, n0, _LEi,
+var LifecycleExpiration$ = [3, n0, _LEi,
     0,
     [_Da, _D, _EODM],
     [5, 1, 2]
 ];
-exports.LifecycleExpiration$ = LifecycleExpiration$;
-const LifecycleRule$ = [3, n0, _LR,
+var LifecycleRule$ = [3, n0, _LR,
     0,
     [_S, _Ex, _ID, _P, _F, _Tr, _NVT, _NVE, _AIMU],
     [0, () => LifecycleExpiration$, 0, 0, [() => LifecycleRuleFilter$, 0], [() => TransitionList, { [_xF]: 1, [_xN]: _Tra }], [() => NoncurrentVersionTransitionList, { [_xF]: 1, [_xN]: _NVTo }], () => NoncurrentVersionExpiration$, () => AbortIncompleteMultipartUpload$], 1
 ];
-exports.LifecycleRule$ = LifecycleRule$;
-const LifecycleRuleAndOperator$ = [3, n0, _LRAO,
+var LifecycleRuleAndOperator$ = [3, n0, _LRAO,
     0,
     [_P, _T, _OSGT, _OSLT],
     [0, [() => TagSet, { [_xF]: 1, [_xN]: _Ta }], 1, 1]
 ];
-exports.LifecycleRuleAndOperator$ = LifecycleRuleAndOperator$;
-const LifecycleRuleFilter$ = [3, n0, _LRF,
+var LifecycleRuleFilter$ = [3, n0, _LRF,
     0,
     [_P, _Ta, _OSGT, _OSLT, _An],
     [0, () => Tag$, 1, 1, [() => LifecycleRuleAndOperator$, 0]]
 ];
-exports.LifecycleRuleFilter$ = LifecycleRuleFilter$;
-const ListBucketAnalyticsConfigurationsOutput$ = [3, n0, _LBACO,
+var ListBucketAnalyticsConfigurationsOutput$ = [3, n0, _LBACO,
     { [_xN]: _LBACR },
     [_IT, _CTon, _NCT, _ACLn],
     [2, 0, 0, [() => AnalyticsConfigurationList, { [_xF]: 1, [_xN]: _ACn }]]
 ];
-exports.ListBucketAnalyticsConfigurationsOutput$ = ListBucketAnalyticsConfigurationsOutput$;
-const ListBucketAnalyticsConfigurationsRequest$ = [3, n0, _LBACRi,
+var ListBucketAnalyticsConfigurationsRequest$ = [3, n0, _LBACRi,
     0,
     [_B, _CTon, _EBO],
     [[0, 1], [0, { [_hQ]: _ct }], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.ListBucketAnalyticsConfigurationsRequest$ = ListBucketAnalyticsConfigurationsRequest$;
-const ListBucketIntelligentTieringConfigurationsOutput$ = [3, n0, _LBITCO,
+var ListBucketIntelligentTieringConfigurationsOutput$ = [3, n0, _LBITCO,
     0,
     [_IT, _CTon, _NCT, _ITCL],
     [2, 0, 0, [() => IntelligentTieringConfigurationList, { [_xF]: 1, [_xN]: _ITC }]]
 ];
-exports.ListBucketIntelligentTieringConfigurationsOutput$ = ListBucketIntelligentTieringConfigurationsOutput$;
-const ListBucketIntelligentTieringConfigurationsRequest$ = [3, n0, _LBITCR,
+var ListBucketIntelligentTieringConfigurationsRequest$ = [3, n0, _LBITCR,
     0,
     [_B, _CTon, _EBO],
     [[0, 1], [0, { [_hQ]: _ct }], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.ListBucketIntelligentTieringConfigurationsRequest$ = ListBucketIntelligentTieringConfigurationsRequest$;
-const ListBucketInventoryConfigurationsOutput$ = [3, n0, _LBICO,
+var ListBucketInventoryConfigurationsOutput$ = [3, n0, _LBICO,
     { [_xN]: _LICR },
     [_CTon, _ICL, _IT, _NCT],
     [0, [() => InventoryConfigurationList, { [_xF]: 1, [_xN]: _IC }], 2, 0]
 ];
-exports.ListBucketInventoryConfigurationsOutput$ = ListBucketInventoryConfigurationsOutput$;
-const ListBucketInventoryConfigurationsRequest$ = [3, n0, _LBICR,
+var ListBucketInventoryConfigurationsRequest$ = [3, n0, _LBICR,
     0,
     [_B, _CTon, _EBO],
     [[0, 1], [0, { [_hQ]: _ct }], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.ListBucketInventoryConfigurationsRequest$ = ListBucketInventoryConfigurationsRequest$;
-const ListBucketMetricsConfigurationsOutput$ = [3, n0, _LBMCO,
+var ListBucketMetricsConfigurationsOutput$ = [3, n0, _LBMCO,
     { [_xN]: _LMCR },
     [_IT, _CTon, _NCT, _MCL],
     [2, 0, 0, [() => MetricsConfigurationList, { [_xF]: 1, [_xN]: _MCe }]]
 ];
-exports.ListBucketMetricsConfigurationsOutput$ = ListBucketMetricsConfigurationsOutput$;
-const ListBucketMetricsConfigurationsRequest$ = [3, n0, _LBMCR,
+var ListBucketMetricsConfigurationsRequest$ = [3, n0, _LBMCR,
     0,
     [_B, _CTon, _EBO],
     [[0, 1], [0, { [_hQ]: _ct }], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.ListBucketMetricsConfigurationsRequest$ = ListBucketMetricsConfigurationsRequest$;
-const ListBucketsOutput$ = [3, n0, _LBO,
+var ListBucketsOutput$ = [3, n0, _LBO,
     { [_xN]: _LAMBR },
     [_Bu, _O, _CTon, _P],
     [[() => Buckets, 0], () => Owner$, 0, 0]
 ];
-exports.ListBucketsOutput$ = ListBucketsOutput$;
-const ListBucketsRequest$ = [3, n0, _LBR,
+var ListBucketsRequest$ = [3, n0, _LBR,
     0,
     [_MB, _CTon, _P, _BR],
     [[1, { [_hQ]: _mb }], [0, { [_hQ]: _ct }], [0, { [_hQ]: _p }], [0, { [_hQ]: _br }]]
 ];
-exports.ListBucketsRequest$ = ListBucketsRequest$;
-const ListDirectoryBucketsOutput$ = [3, n0, _LDBO,
+var ListDirectoryBucketsOutput$ = [3, n0, _LDBO,
     { [_xN]: _LAMDBR },
     [_Bu, _CTon],
     [[() => Buckets, 0], 0]
 ];
-exports.ListDirectoryBucketsOutput$ = ListDirectoryBucketsOutput$;
-const ListDirectoryBucketsRequest$ = [3, n0, _LDBR,
+var ListDirectoryBucketsRequest$ = [3, n0, _LDBR,
     0,
     [_CTon, _MDB],
     [[0, { [_hQ]: _ct }], [1, { [_hQ]: _mdb }]]
 ];
-exports.ListDirectoryBucketsRequest$ = ListDirectoryBucketsRequest$;
-const ListMultipartUploadsOutput$ = [3, n0, _LMUO,
+var ListMultipartUploadsOutput$ = [3, n0, _LMUO,
     { [_xN]: _LMUR },
     [_B, _KM, _UIM, _NKM, _P, _Deli, _NUIM, _MUa, _IT, _U, _CPom, _ETnc, _RC],
     [0, 0, 0, 0, 0, 0, 0, 1, 2, [() => MultipartUploadList, { [_xF]: 1, [_xN]: _Up }], [() => CommonPrefixList, { [_xF]: 1 }], 0, [0, { [_hH]: _xarc }]]
 ];
-exports.ListMultipartUploadsOutput$ = ListMultipartUploadsOutput$;
-const ListMultipartUploadsRequest$ = [3, n0, _LMURi,
+var ListMultipartUploadsRequest$ = [3, n0, _LMURi,
     0,
     [_B, _Deli, _ETnc, _KM, _MUa, _P, _UIM, _EBO, _RP],
     [[0, 1], [0, { [_hQ]: _d }], [0, { [_hQ]: _et }], [0, { [_hQ]: _km }], [1, { [_hQ]: _mu }], [0, { [_hQ]: _p }], [0, { [_hQ]: _uim }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xarp }]], 1
 ];
-exports.ListMultipartUploadsRequest$ = ListMultipartUploadsRequest$;
-const ListObjectAnnotationsOutput$ = [3, n0, _LOAO,
+var ListObjectAnnotationsOutput$ = [3, n0, _LOAO,
     0,
     [_Ann, _B, _K, _OVI, _APn, _MAR, _ACnn, _CTon, _NCT, _RC],
     [[() => AnnotationList, 0], 0, 0, [0, { [_hH]: _xaovi }], 0, 1, 1, 0, 0, [0, { [_hH]: _xarc }]]
 ];
-exports.ListObjectAnnotationsOutput$ = ListObjectAnnotationsOutput$;
-const ListObjectAnnotationsRequest$ = [3, n0, _LOAR,
+var ListObjectAnnotationsRequest$ = [3, n0, _LOAR,
     0,
     [_B, _K, _VI, _MAR, _APn, _CTon, _RP, _EBO],
     [[0, 1], [0, 1], [0, { [_hQ]: _vI }], [1, { [_hQ]: _mar }], [0, { [_hQ]: _ap }], [0, { [_hQ]: _ct }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.ListObjectAnnotationsRequest$ = ListObjectAnnotationsRequest$;
-const ListObjectsOutput$ = [3, n0, _LOO,
+var ListObjectsOutput$ = [3, n0, _LOO,
     { [_xN]: _LBRi },
     [_IT, _Ma, _NM, _Con, _N, _P, _Deli, _MK, _CPom, _ETnc, _RC],
     [2, 0, 0, [() => ObjectList, { [_xF]: 1 }], 0, 0, 0, 1, [() => CommonPrefixList, { [_xF]: 1 }], 0, [0, { [_hH]: _xarc }]]
 ];
-exports.ListObjectsOutput$ = ListObjectsOutput$;
-const ListObjectsRequest$ = [3, n0, _LOR,
+var ListObjectsRequest$ = [3, n0, _LOR,
     0,
     [_B, _Deli, _ETnc, _Ma, _MK, _P, _RP, _EBO, _OOA],
     [[0, 1], [0, { [_hQ]: _d }], [0, { [_hQ]: _et }], [0, { [_hQ]: _m }], [1, { [_hQ]: _mk }], [0, { [_hQ]: _p }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }], [64 | 0, { [_hH]: _xaooa }]], 1
 ];
-exports.ListObjectsRequest$ = ListObjectsRequest$;
-const ListObjectsV2Output$ = [3, n0, _LOVO,
+var ListObjectsV2Output$ = [3, n0, _LOVO,
     { [_xN]: _LBRi },
     [_IT, _Con, _N, _P, _Deli, _MK, _CPom, _ETnc, _KC, _CTon, _NCT, _SA, _RC],
     [2, [() => ObjectList, { [_xF]: 1 }], 0, 0, 0, 1, [() => CommonPrefixList, { [_xF]: 1 }], 0, 1, 0, 0, 0, [0, { [_hH]: _xarc }]]
 ];
-exports.ListObjectsV2Output$ = ListObjectsV2Output$;
-const ListObjectsV2Request$ = [3, n0, _LOVR,
+var ListObjectsV2Request$ = [3, n0, _LOVR,
     0,
     [_B, _Deli, _ETnc, _MK, _P, _CTon, _FO, _SA, _RP, _EBO, _OOA],
     [[0, 1], [0, { [_hQ]: _d }], [0, { [_hQ]: _et }], [1, { [_hQ]: _mk }], [0, { [_hQ]: _p }], [0, { [_hQ]: _ct }], [2, { [_hQ]: _fo }], [0, { [_hQ]: _sa }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }], [64 | 0, { [_hH]: _xaooa }]], 1
 ];
-exports.ListObjectsV2Request$ = ListObjectsV2Request$;
-const ListObjectVersionsOutput$ = [3, n0, _LOVOi,
+var ListObjectVersionsOutput$ = [3, n0, _LOVOi,
     { [_xN]: _LVR },
     [_IT, _KM, _VIM, _NKM, _NVIM, _Ve, _DMe, _N, _P, _Deli, _MK, _CPom, _ETnc, _RC],
     [2, 0, 0, 0, 0, [() => ObjectVersionList, { [_xF]: 1, [_xN]: _Ver }], [() => DeleteMarkers, { [_xF]: 1, [_xN]: _DM }], 0, 0, 0, 1, [() => CommonPrefixList, { [_xF]: 1 }], 0, [0, { [_hH]: _xarc }]]
 ];
-exports.ListObjectVersionsOutput$ = ListObjectVersionsOutput$;
-const ListObjectVersionsRequest$ = [3, n0, _LOVRi,
+var ListObjectVersionsRequest$ = [3, n0, _LOVRi,
     0,
     [_B, _Deli, _ETnc, _KM, _MK, _P, _VIM, _EBO, _RP, _OOA],
     [[0, 1], [0, { [_hQ]: _d }], [0, { [_hQ]: _et }], [0, { [_hQ]: _km }], [1, { [_hQ]: _mk }], [0, { [_hQ]: _p }], [0, { [_hQ]: _vim }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xarp }], [64 | 0, { [_hH]: _xaooa }]], 1
 ];
-exports.ListObjectVersionsRequest$ = ListObjectVersionsRequest$;
-const ListPartsOutput$ = [3, n0, _LPO,
+var ListPartsOutput$ = [3, n0, _LPO,
     { [_xN]: _LPR },
     [_ADb, _ARI, _B, _K, _UI, _PNM, _NPNM, _MP, _IT, _Pa, _In, _O, _SC, _RC, _CA, _CT],
     [[4, { [_hH]: _xaad }], [0, { [_hH]: _xaari }], 0, 0, 0, 0, 0, 1, 2, [() => Parts, { [_xF]: 1, [_xN]: _Par }], () => Initiator$, () => Owner$, 0, [0, { [_hH]: _xarc }], 0, 0]
 ];
-exports.ListPartsOutput$ = ListPartsOutput$;
-const ListPartsRequest$ = [3, n0, _LPRi,
+var ListPartsRequest$ = [3, n0, _LPRi,
     0,
     [_B, _K, _UI, _MP, _PNM, _RP, _EBO, _SSECA, _SSECK, _SSECKMD],
     [[0, 1], [0, 1], [0, { [_hQ]: _uI }], [1, { [_hQ]: _mp }], [0, { [_hQ]: _pnm }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }]], 3
 ];
-exports.ListPartsRequest$ = ListPartsRequest$;
-const LocationInfo$ = [3, n0, _LI,
+var LocationInfo$ = [3, n0, _LI,
     0,
     [_Ty, _N],
     [0, 0]
 ];
-exports.LocationInfo$ = LocationInfo$;
-const LoggingEnabled$ = [3, n0, _LE,
+var LoggingEnabled$ = [3, n0, _LE,
     0,
     [_TB, _TP, _TG, _TOKF],
     [0, 0, [() => TargetGrants, 0], [() => TargetObjectKeyFormat$, 0]], 2
 ];
-exports.LoggingEnabled$ = LoggingEnabled$;
-const MetadataConfiguration$ = [3, n0, _MC,
+var MetadataConfiguration$ = [3, n0, _MC,
     0,
     [_JTC, _ITCn, _ATC],
     [() => JournalTableConfiguration$, () => InventoryTableConfiguration$, () => AnnotationTableConfiguration$], 1
 ];
-exports.MetadataConfiguration$ = MetadataConfiguration$;
-const MetadataConfigurationResult$ = [3, n0, _MCR,
+var MetadataConfigurationResult$ = [3, n0, _MCR,
     0,
     [_DRes, _JTCR, _ITCR, _ATCR],
     [() => DestinationResult$, () => JournalTableConfigurationResult$, () => InventoryTableConfigurationResult$, () => AnnotationTableConfigurationResult$], 1
 ];
-exports.MetadataConfigurationResult$ = MetadataConfigurationResult$;
-const MetadataEntry$ = [3, n0, _ME,
+var MetadataEntry$ = [3, n0, _ME,
     0,
     [_N, _V],
     [0, 0]
 ];
-exports.MetadataEntry$ = MetadataEntry$;
-const MetadataTableConfiguration$ = [3, n0, _MTC,
+var MetadataTableConfiguration$ = [3, n0, _MTC,
     0,
     [_STD],
     [() => S3TablesDestination$], 1
 ];
-exports.MetadataTableConfiguration$ = MetadataTableConfiguration$;
-const MetadataTableConfigurationResult$ = [3, n0, _MTCR,
+var MetadataTableConfigurationResult$ = [3, n0, _MTCR,
     0,
     [_STDR],
     [() => S3TablesDestinationResult$], 1
 ];
-exports.MetadataTableConfigurationResult$ = MetadataTableConfigurationResult$;
-const MetadataTableEncryptionConfiguration$ = [3, n0, _MTEC,
+var MetadataTableEncryptionConfiguration$ = [3, n0, _MTEC,
     0,
     [_SAs, _KKA],
     [0, 0], 1
 ];
-exports.MetadataTableEncryptionConfiguration$ = MetadataTableEncryptionConfiguration$;
-const Metrics$ = [3, n0, _Me,
+var Metrics$ = [3, n0, _Me,
     0,
     [_S, _ETv],
     [0, () => ReplicationTimeValue$], 1
 ];
-exports.Metrics$ = Metrics$;
-const MetricsAndOperator$ = [3, n0, _MAO,
+var MetricsAndOperator$ = [3, n0, _MAO,
     0,
     [_P, _T, _APAc],
     [0, [() => TagSet, { [_xF]: 1, [_xN]: _Ta }], 0]
 ];
-exports.MetricsAndOperator$ = MetricsAndOperator$;
-const MetricsConfiguration$ = [3, n0, _MCe,
+var MetricsConfiguration$ = [3, n0, _MCe,
     0,
     [_I, _F],
     [0, [() => MetricsFilter$, 0]], 1
 ];
-exports.MetricsConfiguration$ = MetricsConfiguration$;
-const MultipartUpload$ = [3, n0, _MU,
+var MultipartUpload$ = [3, n0, _MU,
     0,
     [_UI, _K, _Ini, _SC, _O, _In, _CA, _CT],
     [0, 0, 4, 0, () => Owner$, () => Initiator$, 0, 0]
 ];
-exports.MultipartUpload$ = MultipartUpload$;
-const NoncurrentVersionExpiration$ = [3, n0, _NVE,
+var NoncurrentVersionExpiration$ = [3, n0, _NVE,
     0,
     [_ND, _NNV],
     [1, 1]
 ];
-exports.NoncurrentVersionExpiration$ = NoncurrentVersionExpiration$;
-const NoncurrentVersionTransition$ = [3, n0, _NVTo,
+var NoncurrentVersionTransition$ = [3, n0, _NVTo,
     0,
     [_ND, _SC, _NNV],
     [1, 0, 1]
 ];
-exports.NoncurrentVersionTransition$ = NoncurrentVersionTransition$;
-const NotificationConfiguration$ = [3, n0, _NC,
+var NotificationConfiguration$ = [3, n0, _NC,
     0,
     [_TCo, _QCu, _LFCa, _EBC],
     [[() => TopicConfigurationList, { [_xF]: 1, [_xN]: _TCop }], [() => QueueConfigurationList, { [_xF]: 1, [_xN]: _QCue }], [() => LambdaFunctionConfigurationList, { [_xF]: 1, [_xN]: _CFC }], () => EventBridgeConfiguration$]
 ];
-exports.NotificationConfiguration$ = NotificationConfiguration$;
-const NotificationConfigurationFilter$ = [3, n0, _NCF,
+var NotificationConfigurationFilter$ = [3, n0, _NCF,
     0,
     [_K],
     [[() => S3KeyFilter$, { [_xN]: _SKe }]]
 ];
-exports.NotificationConfigurationFilter$ = NotificationConfigurationFilter$;
-const _Object$ = [3, n0, _Obj,
+var _Object$ = [3, n0, _Obj,
     0,
     [_K, _LM, _ET, _CA, _CT, _Si, _SC, _O, _RSe],
     [0, 4, 0, [64 | 0, { [_xF]: 1 }], 0, 1, 0, () => Owner$, () => RestoreStatus$]
 ];
-exports._Object$ = _Object$;
-const ObjectIdentifier$ = [3, n0, _OI,
+var ObjectIdentifier$ = [3, n0, _OI,
     0,
     [_K, _VI, _ET, _LMT, _Si],
     [0, 0, 0, 6, 1], 1
 ];
-exports.ObjectIdentifier$ = ObjectIdentifier$;
-const ObjectLockConfiguration$ = [3, n0, _OLC,
+var ObjectLockConfiguration$ = [3, n0, _OLC,
     0,
     [_OLE, _Rul],
     [0, () => ObjectLockRule$]
 ];
-exports.ObjectLockConfiguration$ = ObjectLockConfiguration$;
-const ObjectLockLegalHold$ = [3, n0, _OLLH,
+var ObjectLockLegalHold$ = [3, n0, _OLLH,
     0,
     [_S],
     [0]
 ];
-exports.ObjectLockLegalHold$ = ObjectLockLegalHold$;
-const ObjectLockRetention$ = [3, n0, _OLR,
+var ObjectLockRetention$ = [3, n0, _OLR,
     0,
     [_Mo, _RUD],
     [0, 5]
 ];
-exports.ObjectLockRetention$ = ObjectLockRetention$;
-const ObjectLockRule$ = [3, n0, _OLRb,
+var ObjectLockRule$ = [3, n0, _OLRb,
     0,
     [_DRe],
     [() => DefaultRetention$]
 ];
-exports.ObjectLockRule$ = ObjectLockRule$;
-const ObjectPart$ = [3, n0, _OPb,
+var ObjectPart$ = [3, n0, _OPb,
     0,
     [_PN, _Si, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe],
     [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
-exports.ObjectPart$ = ObjectPart$;
-const ObjectVersion$ = [3, n0, _OV,
+var ObjectVersion$ = [3, n0, _OV,
     0,
     [_ET, _CA, _CT, _Si, _SC, _K, _VI, _IL, _LM, _O, _RSe],
     [0, [64 | 0, { [_xF]: 1 }], 0, 1, 0, 0, 0, 2, 4, () => Owner$, () => RestoreStatus$]
 ];
-exports.ObjectVersion$ = ObjectVersion$;
-const OutputLocation$ = [3, n0, _OL,
+var OutputLocation$ = [3, n0, _OL,
     0,
     [_S_],
     [[() => S3Location$, 0]]
 ];
-exports.OutputLocation$ = OutputLocation$;
-const OutputSerialization$ = [3, n0, _OSu,
+var OutputSerialization$ = [3, n0, _OSu,
     0,
     [_CSV, _JSON],
     [() => CSVOutput$, () => JSONOutput$]
 ];
-exports.OutputSerialization$ = OutputSerialization$;
-const Owner$ = [3, n0, _O,
+var Owner$ = [3, n0, _O,
     0,
     [_DN, _ID],
     [0, 0]
 ];
-exports.Owner$ = Owner$;
-const OwnershipControls$ = [3, n0, _OC,
+var OwnershipControls$ = [3, n0, _OC,
     0,
     [_Ru],
     [[() => OwnershipControlsRules, { [_xF]: 1, [_xN]: _Rul }]], 1
 ];
-exports.OwnershipControls$ = OwnershipControls$;
-const OwnershipControlsRule$ = [3, n0, _OCR,
+var OwnershipControlsRule$ = [3, n0, _OCR,
     0,
     [_OO],
     [0], 1
 ];
-exports.OwnershipControlsRule$ = OwnershipControlsRule$;
-const ParquetInput$ = [3, n0, _PI,
+var ParquetInput$ = [3, n0, _PI,
     0,
     [],
     []
 ];
-exports.ParquetInput$ = ParquetInput$;
-const Part$ = [3, n0, _Par,
+var Part$ = [3, n0, _Par,
     0,
     [_PN, _LM, _ET, _Si, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe],
     [1, 4, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
-exports.Part$ = Part$;
-const PartitionedPrefix$ = [3, n0, _PP,
+var PartitionedPrefix$ = [3, n0, _PP,
     { [_xN]: _PP },
     [_PDS],
     [0]
 ];
-exports.PartitionedPrefix$ = PartitionedPrefix$;
-const PolicyStatus$ = [3, n0, _PS,
+var PolicyStatus$ = [3, n0, _PS,
     0,
     [_IPs],
     [[2, { [_xN]: _IPs }]]
 ];
-exports.PolicyStatus$ = PolicyStatus$;
-const Progress$ = [3, n0, _Pr,
+var Progress$ = [3, n0, _Pr,
     0,
     [_BS, _BP, _BRy],
     [1, 1, 1]
 ];
-exports.Progress$ = Progress$;
-const ProgressEvent$ = [3, n0, _PE,
+var ProgressEvent$ = [3, n0, _PE,
     0,
     [_Det],
     [[() => Progress$, { [_eP]: 1 }]]
 ];
-exports.ProgressEvent$ = ProgressEvent$;
-const PublicAccessBlockConfiguration$ = [3, n0, _PABC,
+var PublicAccessBlockConfiguration$ = [3, n0, _PABC,
     0,
     [_BPA, _IPA, _BPP, _RPB],
     [[2, { [_xN]: _BPA }], [2, { [_xN]: _IPA }], [2, { [_xN]: _BPP }], [2, { [_xN]: _RPB }]]
 ];
-exports.PublicAccessBlockConfiguration$ = PublicAccessBlockConfiguration$;
-const PutBucketAbacRequest$ = [3, n0, _PBAR,
+var PutBucketAbacRequest$ = [3, n0, _PBAR,
     0,
     [_B, _AS, _CMDo, _CA, _EBO],
     [[0, 1], [() => AbacStatus$, { [_hP]: 1, [_xN]: _AS }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.PutBucketAbacRequest$ = PutBucketAbacRequest$;
-const PutBucketAccelerateConfigurationRequest$ = [3, n0, _PBACR,
+var PutBucketAccelerateConfigurationRequest$ = [3, n0, _PBACR,
     0,
     [_B, _AC, _EBO, _CA],
     [[0, 1], [() => AccelerateConfiguration$, { [_hP]: 1, [_xN]: _AC }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xasca }]], 2
 ];
-exports.PutBucketAccelerateConfigurationRequest$ = PutBucketAccelerateConfigurationRequest$;
-const PutBucketAclRequest$ = [3, n0, _PBARu,
+var PutBucketAclRequest$ = [3, n0, _PBARu,
     0,
     [_B, _ACL_, _ACP, _CMDo, _CA, _GFC, _GR, _GRACP, _GW, _GWACP, _EBO],
     [[0, 1], [0, { [_hH]: _xaa }], [() => AccessControlPolicy$, { [_hP]: 1, [_xN]: _ACP }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xagfc }], [0, { [_hH]: _xagr }], [0, { [_hH]: _xagra }], [0, { [_hH]: _xagw }], [0, { [_hH]: _xagwa }], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.PutBucketAclRequest$ = PutBucketAclRequest$;
-const PutBucketAnalyticsConfigurationRequest$ = [3, n0, _PBACRu,
+var PutBucketAnalyticsConfigurationRequest$ = [3, n0, _PBACRu,
     0,
     [_B, _I, _ACn, _EBO],
     [[0, 1], [0, { [_hQ]: _i }], [() => AnalyticsConfiguration$, { [_hP]: 1, [_xN]: _ACn }], [0, { [_hH]: _xaebo }]], 3
 ];
-exports.PutBucketAnalyticsConfigurationRequest$ = PutBucketAnalyticsConfigurationRequest$;
-const PutBucketCorsRequest$ = [3, n0, _PBCR,
+var PutBucketCorsRequest$ = [3, n0, _PBCR,
     0,
     [_B, _CORSC, _CMDo, _CA, _EBO],
     [[0, 1], [() => CORSConfiguration$, { [_hP]: 1, [_xN]: _CORSC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.PutBucketCorsRequest$ = PutBucketCorsRequest$;
-const PutBucketEncryptionRequest$ = [3, n0, _PBER,
+var PutBucketEncryptionRequest$ = [3, n0, _PBER,
     0,
     [_B, _SSEC, _CMDo, _CA, _EBO],
     [[0, 1], [() => ServerSideEncryptionConfiguration$, { [_hP]: 1, [_xN]: _SSEC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.PutBucketEncryptionRequest$ = PutBucketEncryptionRequest$;
-const PutBucketIntelligentTieringConfigurationRequest$ = [3, n0, _PBITCR,
+var PutBucketIntelligentTieringConfigurationRequest$ = [3, n0, _PBITCR,
     0,
     [_B, _I, _ITC, _EBO],
     [[0, 1], [0, { [_hQ]: _i }], [() => IntelligentTieringConfiguration$, { [_hP]: 1, [_xN]: _ITC }], [0, { [_hH]: _xaebo }]], 3
 ];
-exports.PutBucketIntelligentTieringConfigurationRequest$ = PutBucketIntelligentTieringConfigurationRequest$;
-const PutBucketInventoryConfigurationRequest$ = [3, n0, _PBICR,
+var PutBucketInventoryConfigurationRequest$ = [3, n0, _PBICR,
     0,
     [_B, _I, _IC, _EBO],
     [[0, 1], [0, { [_hQ]: _i }], [() => InventoryConfiguration$, { [_hP]: 1, [_xN]: _IC }], [0, { [_hH]: _xaebo }]], 3
 ];
-exports.PutBucketInventoryConfigurationRequest$ = PutBucketInventoryConfigurationRequest$;
-const PutBucketLifecycleConfigurationOutput$ = [3, n0, _PBLCO,
+var PutBucketLifecycleConfigurationOutput$ = [3, n0, _PBLCO,
     0,
     [_TDMOS],
     [[0, { [_hH]: _xatdmos }]]
 ];
-exports.PutBucketLifecycleConfigurationOutput$ = PutBucketLifecycleConfigurationOutput$;
-const PutBucketLifecycleConfigurationRequest$ = [3, n0, _PBLCR,
+var PutBucketLifecycleConfigurationRequest$ = [3, n0, _PBLCR,
     0,
     [_B, _CA, _LCi, _EBO, _TDMOS],
     [[0, 1], [0, { [_hH]: _xasca }], [() => BucketLifecycleConfiguration$, { [_hP]: 1, [_xN]: _LCi }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xatdmos }]], 1
 ];
-exports.PutBucketLifecycleConfigurationRequest$ = PutBucketLifecycleConfigurationRequest$;
-const PutBucketLoggingRequest$ = [3, n0, _PBLR,
+var PutBucketLoggingRequest$ = [3, n0, _PBLR,
     0,
     [_B, _BLS, _CMDo, _CA, _EBO],
     [[0, 1], [() => BucketLoggingStatus$, { [_hP]: 1, [_xN]: _BLS }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.PutBucketLoggingRequest$ = PutBucketLoggingRequest$;
-const PutBucketMetricsConfigurationRequest$ = [3, n0, _PBMCR,
+var PutBucketMetricsConfigurationRequest$ = [3, n0, _PBMCR,
     0,
     [_B, _I, _MCe, _EBO],
     [[0, 1], [0, { [_hQ]: _i }], [() => MetricsConfiguration$, { [_hP]: 1, [_xN]: _MCe }], [0, { [_hH]: _xaebo }]], 3
 ];
-exports.PutBucketMetricsConfigurationRequest$ = PutBucketMetricsConfigurationRequest$;
-const PutBucketNotificationConfigurationRequest$ = [3, n0, _PBNCR,
+var PutBucketNotificationConfigurationRequest$ = [3, n0, _PBNCR,
     0,
     [_B, _NC, _EBO, _SDV],
     [[0, 1], [() => NotificationConfiguration$, { [_hP]: 1, [_xN]: _NC }], [0, { [_hH]: _xaebo }], [2, { [_hH]: _xasdv }]], 2
 ];
-exports.PutBucketNotificationConfigurationRequest$ = PutBucketNotificationConfigurationRequest$;
-const PutBucketOwnershipControlsRequest$ = [3, n0, _PBOCR,
+var PutBucketOwnershipControlsRequest$ = [3, n0, _PBOCR,
     0,
     [_B, _OC, _CMDo, _EBO, _CA],
     [[0, 1], [() => OwnershipControls$, { [_hP]: 1, [_xN]: _OC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xasca }]], 2
 ];
-exports.PutBucketOwnershipControlsRequest$ = PutBucketOwnershipControlsRequest$;
-const PutBucketPolicyRequest$ = [3, n0, _PBPR,
+var PutBucketPolicyRequest$ = [3, n0, _PBPR,
     0,
     [_B, _Po, _CMDo, _CA, _CRSBA, _EBO],
     [[0, 1], [0, 16], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [2, { [_hH]: _xacrsba }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.PutBucketPolicyRequest$ = PutBucketPolicyRequest$;
-const PutBucketReplicationRequest$ = [3, n0, _PBRR,
+var PutBucketReplicationRequest$ = [3, n0, _PBRR,
     0,
     [_B, _RCe, _CMDo, _CA, _To, _EBO],
     [[0, 1], [() => ReplicationConfiguration$, { [_hP]: 1, [_xN]: _RCe }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xabolt }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.PutBucketReplicationRequest$ = PutBucketReplicationRequest$;
-const PutBucketRequestPaymentRequest$ = [3, n0, _PBRPR,
+var PutBucketRequestPaymentRequest$ = [3, n0, _PBRPR,
     0,
     [_B, _RPC, _CMDo, _CA, _EBO],
     [[0, 1], [() => RequestPaymentConfiguration$, { [_hP]: 1, [_xN]: _RPC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.PutBucketRequestPaymentRequest$ = PutBucketRequestPaymentRequest$;
-const PutBucketTaggingRequest$ = [3, n0, _PBTR,
+var PutBucketTaggingRequest$ = [3, n0, _PBTR,
     0,
     [_B, _Tag, _CMDo, _CA, _EBO],
     [[0, 1], [() => Tagging$, { [_hP]: 1, [_xN]: _Tag }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.PutBucketTaggingRequest$ = PutBucketTaggingRequest$;
-const PutBucketVersioningRequest$ = [3, n0, _PBVR,
+var PutBucketVersioningRequest$ = [3, n0, _PBVR,
     0,
     [_B, _VC, _CMDo, _CA, _MFA, _EBO],
     [[0, 1], [() => VersioningConfiguration$, { [_hP]: 1, [_xN]: _VC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xam_ }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.PutBucketVersioningRequest$ = PutBucketVersioningRequest$;
-const PutBucketWebsiteRequest$ = [3, n0, _PBWR,
+var PutBucketWebsiteRequest$ = [3, n0, _PBWR,
     0,
     [_B, _WC, _CMDo, _CA, _EBO],
     [[0, 1], [() => WebsiteConfiguration$, { [_hP]: 1, [_xN]: _WC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.PutBucketWebsiteRequest$ = PutBucketWebsiteRequest$;
-const PutObjectAclOutput$ = [3, n0, _POAO,
+var PutObjectAclOutput$ = [3, n0, _POAO,
     0,
     [_RC],
     [[0, { [_hH]: _xarc }]]
 ];
-exports.PutObjectAclOutput$ = PutObjectAclOutput$;
-const PutObjectAclRequest$ = [3, n0, _POAR,
+var PutObjectAclRequest$ = [3, n0, _POAR,
     0,
     [_B, _K, _ACL_, _ACP, _CMDo, _CA, _GFC, _GR, _GRACP, _GW, _GWACP, _RP, _VI, _EBO],
     [[0, 1], [0, 1], [0, { [_hH]: _xaa }], [() => AccessControlPolicy$, { [_hP]: 1, [_xN]: _ACP }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xagfc }], [0, { [_hH]: _xagr }], [0, { [_hH]: _xagra }], [0, { [_hH]: _xagw }], [0, { [_hH]: _xagwa }], [0, { [_hH]: _xarp }], [0, { [_hQ]: _vI }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.PutObjectAclRequest$ = PutObjectAclRequest$;
-const PutObjectAnnotationOutput$ = [3, n0, _POAOu,
+var PutObjectAnnotationOutput$ = [3, n0, _POAOu,
     0,
     [_K, _AN, _OVI, _ET, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CT, _SSE, _RC],
     [0, 0, [0, { [_hH]: _xaovi }], [0, { [_hH]: _ET }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _xact }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xarc }]]
 ];
-exports.PutObjectAnnotationOutput$ = PutObjectAnnotationOutput$;
-const PutObjectAnnotationRequest$ = [3, n0, _POARu,
+var PutObjectAnnotationRequest$ = [3, n0, _POARu,
     0,
     [_B, _K, _AN, _AP, _VI, _OIM, _CA, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CMDo, _RP, _EBO],
     [[0, 1], [0, 1], [0, { [_hQ]: _aN }], [() => StreamingBlob, 16], [0, { [_hQ]: _vI }], [0, { [_hH]: _xaoim }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _CM }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }]], 4
 ];
-exports.PutObjectAnnotationRequest$ = PutObjectAnnotationRequest$;
-const PutObjectLegalHoldOutput$ = [3, n0, _POLHO,
+var PutObjectLegalHoldOutput$ = [3, n0, _POLHO,
     0,
     [_RC],
     [[0, { [_hH]: _xarc }]]
 ];
-exports.PutObjectLegalHoldOutput$ = PutObjectLegalHoldOutput$;
-const PutObjectLegalHoldRequest$ = [3, n0, _POLHR,
+var PutObjectLegalHoldRequest$ = [3, n0, _POLHR,
     0,
     [_B, _K, _LH, _RP, _VI, _CMDo, _CA, _EBO],
     [[0, 1], [0, 1], [() => ObjectLockLegalHold$, { [_hP]: 1, [_xN]: _LH }], [0, { [_hH]: _xarp }], [0, { [_hQ]: _vI }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.PutObjectLegalHoldRequest$ = PutObjectLegalHoldRequest$;
-const PutObjectLockConfigurationOutput$ = [3, n0, _POLCO,
+var PutObjectLockConfigurationOutput$ = [3, n0, _POLCO,
     0,
     [_RC],
     [[0, { [_hH]: _xarc }]]
 ];
-exports.PutObjectLockConfigurationOutput$ = PutObjectLockConfigurationOutput$;
-const PutObjectLockConfigurationRequest$ = [3, n0, _POLCR,
+var PutObjectLockConfigurationRequest$ = [3, n0, _POLCR,
     0,
     [_B, _OLC, _RP, _To, _CMDo, _CA, _EBO],
     [[0, 1], [() => ObjectLockConfiguration$, { [_hP]: 1, [_xN]: _OLC }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xabolt }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 1
 ];
-exports.PutObjectLockConfigurationRequest$ = PutObjectLockConfigurationRequest$;
-const PutObjectOutput$ = [3, n0, _POO,
+var PutObjectOutput$ = [3, n0, _POO,
     0,
     [_Ex, _ET, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CT, _SSE, _VI, _SSECA, _SSECKMD, _SSEKMSKI, _SSEKMSEC, _BKE, _Si, _RC],
     [[0, { [_hH]: _xae }], [0, { [_hH]: _ET }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _xact }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xavi }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }], [1, { [_hH]: _xaos }], [0, { [_hH]: _xarc }]]
 ];
-exports.PutObjectOutput$ = PutObjectOutput$;
-const PutObjectRequest$ = [3, n0, _POR,
+var PutObjectRequest$ = [3, n0, _POR,
     0,
     [_B, _K, _ACL_, _Bo, _CC, _CDo, _CEo, _CL, _CLo, _CMDo, _CTo, _CA, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _Exp, _IM, _INM, _GFC, _GR, _GRACP, _GWACP, _WOB, _M, _SSE, _SC, _WRL, _SSECA, _SSECK, _SSECKMD, _SSEKMSKI, _SSEKMSEC, _BKE, _RP, _Tag, _OLM, _OLRUD, _OLLHS, _EBO],
     [[0, 1], [0, 1], [0, { [_hH]: _xaa }], [() => StreamingBlob, 16], [0, { [_hH]: _CC_ }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _CM }], [0, { [_hH]: _CT_ }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [4, { [_hH]: _Exp }], [0, { [_hH]: _IM_ }], [0, { [_hH]: _INM_ }], [0, { [_hH]: _xagfc }], [0, { [_hH]: _xagr }], [0, { [_hH]: _xagra }], [0, { [_hH]: _xagwa }], [1, { [_hH]: _xawob }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xat }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.PutObjectRequest$ = PutObjectRequest$;
-const PutObjectRetentionOutput$ = [3, n0, _PORO,
+var PutObjectRetentionOutput$ = [3, n0, _PORO,
     0,
     [_RC],
     [[0, { [_hH]: _xarc }]]
 ];
-exports.PutObjectRetentionOutput$ = PutObjectRetentionOutput$;
-const PutObjectRetentionRequest$ = [3, n0, _PORR,
+var PutObjectRetentionRequest$ = [3, n0, _PORR,
     0,
     [_B, _K, _Ret, _RP, _VI, _BGR, _CMDo, _CA, _EBO],
     [[0, 1], [0, 1], [() => ObjectLockRetention$, { [_hP]: 1, [_xN]: _Ret }], [0, { [_hH]: _xarp }], [0, { [_hQ]: _vI }], [2, { [_hH]: _xabgr }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.PutObjectRetentionRequest$ = PutObjectRetentionRequest$;
-const PutObjectTaggingOutput$ = [3, n0, _POTO,
+var PutObjectTaggingOutput$ = [3, n0, _POTO,
     0,
     [_VI],
     [[0, { [_hH]: _xavi }]]
 ];
-exports.PutObjectTaggingOutput$ = PutObjectTaggingOutput$;
-const PutObjectTaggingRequest$ = [3, n0, _POTR,
+var PutObjectTaggingRequest$ = [3, n0, _POTR,
     0,
     [_B, _K, _Tag, _VI, _CMDo, _CA, _EBO, _RP],
     [[0, 1], [0, 1], [() => Tagging$, { [_hP]: 1, [_xN]: _Tag }], [0, { [_hQ]: _vI }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xarp }]], 3
 ];
-exports.PutObjectTaggingRequest$ = PutObjectTaggingRequest$;
-const PutPublicAccessBlockRequest$ = [3, n0, _PPABR,
+var PutPublicAccessBlockRequest$ = [3, n0, _PPABR,
     0,
     [_B, _PABC, _CMDo, _CA, _EBO],
     [[0, 1], [() => PublicAccessBlockConfiguration$, { [_hP]: 1, [_xN]: _PABC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.PutPublicAccessBlockRequest$ = PutPublicAccessBlockRequest$;
-const QueueConfiguration$ = [3, n0, _QCue,
+var QueueConfiguration$ = [3, n0, _QCue,
     0,
     [_QA, _Ev, _I, _F],
     [[0, { [_xN]: _Qu }], [64 | 0, { [_xF]: 1, [_xN]: _Eve }], 0, [() => NotificationConfigurationFilter$, 0]], 2
 ];
-exports.QueueConfiguration$ = QueueConfiguration$;
-const RecordExpiration$ = [3, n0, _REe,
+var RecordExpiration$ = [3, n0, _REe,
     0,
     [_Ex, _D],
     [0, 1], 1
 ];
-exports.RecordExpiration$ = RecordExpiration$;
-const RecordsEvent$ = [3, n0, _REec,
+var RecordsEvent$ = [3, n0, _REec,
     0,
     [_Payl],
     [[21, { [_eP]: 1 }]]
 ];
-exports.RecordsEvent$ = RecordsEvent$;
-const Redirect$ = [3, n0, _Red,
+var Redirect$ = [3, n0, _Red,
     0,
     [_HN, _HRC, _Pro, _RKPW, _RKW],
     [0, 0, 0, 0, 0]
 ];
-exports.Redirect$ = Redirect$;
-const RedirectAllRequestsTo$ = [3, n0, _RART,
+var RedirectAllRequestsTo$ = [3, n0, _RART,
     0,
     [_HN, _Pro],
     [0, 0], 1
 ];
-exports.RedirectAllRequestsTo$ = RedirectAllRequestsTo$;
-const RenameObjectOutput$ = [3, n0, _ROO,
+var RenameObjectOutput$ = [3, n0, _ROO,
     0,
     [],
     []
 ];
-exports.RenameObjectOutput$ = RenameObjectOutput$;
-const RenameObjectRequest$ = [3, n0, _ROR,
+var RenameObjectRequest$ = [3, n0, _ROR,
     0,
     [_B, _K, _RSen, _DIM, _DINM, _DIMS, _DIUS, _SIM, _SINM, _SIMS, _SIUS, _CTl],
     [[0, 1], [0, 1], [0, { [_hH]: _xars_ }], [0, { [_hH]: _IM_ }], [0, { [_hH]: _INM_ }], [4, { [_hH]: _IMS_ }], [4, { [_hH]: _IUS_ }], [0, { [_hH]: _xarsim }], [0, { [_hH]: _xarsinm }], [6, { [_hH]: _xarsims }], [6, { [_hH]: _xarsius }], [0, { [_hH]: _xact_, [_iT]: 1 }]], 3
 ];
-exports.RenameObjectRequest$ = RenameObjectRequest$;
-const ReplicaModifications$ = [3, n0, _RM,
+var ReplicaModifications$ = [3, n0, _RM,
     0,
     [_S],
     [0], 1
 ];
-exports.ReplicaModifications$ = ReplicaModifications$;
-const ReplicationConfiguration$ = [3, n0, _RCe,
+var ReplicationConfiguration$ = [3, n0, _RCe,
     0,
     [_R, _Ru],
     [0, [() => ReplicationRules, { [_xF]: 1, [_xN]: _Rul }]], 2
 ];
-exports.ReplicationConfiguration$ = ReplicationConfiguration$;
-const ReplicationRule$ = [3, n0, _RRe,
+var ReplicationRule$ = [3, n0, _RRe,
     0,
     [_S, _Des, _ID, _Pri, _P, _F, _SSC, _EOR, _DMR],
     [0, () => Destination$, 0, 1, 0, [() => ReplicationRuleFilter$, 0], () => SourceSelectionCriteria$, () => ExistingObjectReplication$, () => DeleteMarkerReplication$], 2
 ];
-exports.ReplicationRule$ = ReplicationRule$;
-const ReplicationRuleAndOperator$ = [3, n0, _RRAO,
+var ReplicationRuleAndOperator$ = [3, n0, _RRAO,
     0,
     [_P, _T],
     [0, [() => TagSet, { [_xF]: 1, [_xN]: _Ta }]]
 ];
-exports.ReplicationRuleAndOperator$ = ReplicationRuleAndOperator$;
-const ReplicationRuleFilter$ = [3, n0, _RRF,
+var ReplicationRuleFilter$ = [3, n0, _RRF,
     0,
     [_P, _Ta, _An],
     [0, () => Tag$, [() => ReplicationRuleAndOperator$, 0]]
 ];
-exports.ReplicationRuleFilter$ = ReplicationRuleFilter$;
-const ReplicationTime$ = [3, n0, _RT,
+var ReplicationTime$ = [3, n0, _RT,
     0,
     [_S, _Tim],
     [0, () => ReplicationTimeValue$], 2
 ];
-exports.ReplicationTime$ = ReplicationTime$;
-const ReplicationTimeValue$ = [3, n0, _RTV,
+var ReplicationTimeValue$ = [3, n0, _RTV,
     0,
     [_Mi],
     [1]
 ];
-exports.ReplicationTimeValue$ = ReplicationTimeValue$;
-const RequestPaymentConfiguration$ = [3, n0, _RPC,
+var RequestPaymentConfiguration$ = [3, n0, _RPC,
     0,
     [_Pay],
     [0], 1
 ];
-exports.RequestPaymentConfiguration$ = RequestPaymentConfiguration$;
-const RequestProgress$ = [3, n0, _RPe,
+var RequestProgress$ = [3, n0, _RPe,
     0,
     [_Ena],
     [2]
 ];
-exports.RequestProgress$ = RequestProgress$;
-const RestoreObjectOutput$ = [3, n0, _ROOe,
+var RestoreObjectOutput$ = [3, n0, _ROOe,
     0,
     [_RC, _ROP],
     [[0, { [_hH]: _xarc }], [0, { [_hH]: _xarop }]]
 ];
-exports.RestoreObjectOutput$ = RestoreObjectOutput$;
-const RestoreObjectRequest$ = [3, n0, _RORe,
+var RestoreObjectRequest$ = [3, n0, _RORe,
     0,
     [_B, _K, _VI, _RRes, _RP, _CA, _EBO],
     [[0, 1], [0, 1], [0, { [_hQ]: _vI }], [() => RestoreRequest$, { [_hP]: 1, [_xN]: _RRes }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.RestoreObjectRequest$ = RestoreObjectRequest$;
-const RestoreRequest$ = [3, n0, _RRes,
+var RestoreRequest$ = [3, n0, _RRes,
     0,
     [_D, _GJP, _Ty, _Ti, _Desc, _SP, _OL],
     [1, () => GlacierJobParameters$, 0, 0, 0, () => SelectParameters$, [() => OutputLocation$, 0]]
 ];
-exports.RestoreRequest$ = RestoreRequest$;
-const RestoreStatus$ = [3, n0, _RSe,
+var RestoreStatus$ = [3, n0, _RSe,
     0,
     [_IRIP, _RED],
     [2, 4]
 ];
-exports.RestoreStatus$ = RestoreStatus$;
-const RoutingRule$ = [3, n0, _RRo,
+var RoutingRule$ = [3, n0, _RRo,
     0,
     [_Red, _Co],
     [() => Redirect$, () => Condition$], 1
 ];
-exports.RoutingRule$ = RoutingRule$;
-const S3KeyFilter$ = [3, n0, _SKF,
+var S3KeyFilter$ = [3, n0, _SKF,
     0,
     [_FRi],
     [[() => FilterRuleList, { [_xF]: 1, [_xN]: _FR }]]
 ];
-exports.S3KeyFilter$ = S3KeyFilter$;
-const S3Location$ = [3, n0, _SL,
+var S3Location$ = [3, n0, _SL,
     0,
     [_BNu, _P, _En, _CACL, _ACL, _Tag, _UM, _SC],
     [0, 0, [() => Encryption$, 0], 0, [() => Grants, 0], [() => Tagging$, 0], [() => UserMetadata, 0], 0], 2
 ];
-exports.S3Location$ = S3Location$;
-const S3TablesDestination$ = [3, n0, _STD,
+var S3TablesDestination$ = [3, n0, _STD,
     0,
     [_TBA, _TN],
     [0, 0], 2
 ];
-exports.S3TablesDestination$ = S3TablesDestination$;
-const S3TablesDestinationResult$ = [3, n0, _STDR,
+var S3TablesDestinationResult$ = [3, n0, _STDR,
     0,
     [_TBA, _TN, _TA, _TNa],
     [0, 0, 0, 0], 4
 ];
-exports.S3TablesDestinationResult$ = S3TablesDestinationResult$;
-const ScanRange$ = [3, n0, _SR,
+var ScanRange$ = [3, n0, _SR,
     0,
     [_St, _End],
     [1, 1]
 ];
-exports.ScanRange$ = ScanRange$;
-const SelectObjectContentOutput$ = [3, n0, _SOCO,
+var SelectObjectContentOutput$ = [3, n0, _SOCO,
     0,
     [_Payl],
     [[() => SelectObjectContentEventStream$, 16]]
 ];
-exports.SelectObjectContentOutput$ = SelectObjectContentOutput$;
-const SelectObjectContentRequest$ = [3, n0, _SOCR,
+var SelectObjectContentRequest$ = [3, n0, _SOCR,
     0,
     [_B, _K, _Expr, _ETx, _IS, _OSu, _SSECA, _SSECK, _SSECKMD, _RPe, _SR, _EBO],
     [[0, 1], [0, 1], 0, 0, () => InputSerialization$, () => OutputSerialization$, [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], () => RequestProgress$, () => ScanRange$, [0, { [_hH]: _xaebo }]], 6
 ];
-exports.SelectObjectContentRequest$ = SelectObjectContentRequest$;
-const SelectParameters$ = [3, n0, _SP,
+var SelectParameters$ = [3, n0, _SP,
     0,
     [_IS, _ETx, _Expr, _OSu],
     [() => InputSerialization$, 0, 0, () => OutputSerialization$], 4
 ];
-exports.SelectParameters$ = SelectParameters$;
-const ServerSideEncryptionByDefault$ = [3, n0, _SSEBD,
+var ServerSideEncryptionByDefault$ = [3, n0, _SSEBD,
     0,
     [_SSEA, _KMSMKID],
     [0, [() => SSEKMSKeyId, 0]], 1
 ];
-exports.ServerSideEncryptionByDefault$ = ServerSideEncryptionByDefault$;
-const ServerSideEncryptionConfiguration$ = [3, n0, _SSEC,
+var ServerSideEncryptionConfiguration$ = [3, n0, _SSEC,
     0,
     [_Ru],
     [[() => ServerSideEncryptionRules, { [_xF]: 1, [_xN]: _Rul }]], 1
 ];
-exports.ServerSideEncryptionConfiguration$ = ServerSideEncryptionConfiguration$;
-const ServerSideEncryptionRule$ = [3, n0, _SSER,
+var ServerSideEncryptionRule$ = [3, n0, _SSER,
     0,
     [_ASSEBD, _BKE, _BET],
     [[() => ServerSideEncryptionByDefault$, 0], 2, [() => BlockedEncryptionTypes$, 0]]
 ];
-exports.ServerSideEncryptionRule$ = ServerSideEncryptionRule$;
-const SessionCredentials$ = [3, n0, _SCe,
+var SessionCredentials$ = [3, n0, _SCe,
     0,
     [_AKI, _SAK, _ST, _Ex],
     [[0, { [_xN]: _AKI }], [() => SessionCredentialValue, { [_xN]: _SAK }], [() => SessionCredentialValue, { [_xN]: _ST }], [4, { [_xN]: _Ex }]], 4
 ];
-exports.SessionCredentials$ = SessionCredentials$;
-const SimplePrefix$ = [3, n0, _SPi,
+var SimplePrefix$ = [3, n0, _SPi,
     { [_xN]: _SPi },
     [],
     []
 ];
-exports.SimplePrefix$ = SimplePrefix$;
-const SourceSelectionCriteria$ = [3, n0, _SSC,
+var SourceSelectionCriteria$ = [3, n0, _SSC,
     0,
     [_SKEO, _RM],
     [() => SseKmsEncryptedObjects$, () => ReplicaModifications$]
 ];
-exports.SourceSelectionCriteria$ = SourceSelectionCriteria$;
-const SSEKMS$ = [3, n0, _SSEKMS,
+var SSEKMS$ = [3, n0, _SSEKMS,
     { [_xN]: _SK },
     [_KI],
     [[() => SSEKMSKeyId, 0]], 1
 ];
-exports.SSEKMS$ = SSEKMS$;
-const SseKmsEncryptedObjects$ = [3, n0, _SKEO,
+var SseKmsEncryptedObjects$ = [3, n0, _SKEO,
     0,
     [_S],
     [0], 1
 ];
-exports.SseKmsEncryptedObjects$ = SseKmsEncryptedObjects$;
-const SSEKMSEncryption$ = [3, n0, _SSEKMSE,
+var SSEKMSEncryption$ = [3, n0, _SSEKMSE,
     { [_xN]: _SK },
     [_KMSKA, _BKE],
     [[() => NonEmptyKmsKeyArnString, 0], 2], 1
 ];
-exports.SSEKMSEncryption$ = SSEKMSEncryption$;
-const SSES3$ = [3, n0, _SSES,
+var SSES3$ = [3, n0, _SSES,
     { [_xN]: _SS },
     [],
     []
 ];
-exports.SSES3$ = SSES3$;
-const Stats$ = [3, n0, _Sta,
+var Stats$ = [3, n0, _Sta,
     0,
     [_BS, _BP, _BRy],
     [1, 1, 1]
 ];
-exports.Stats$ = Stats$;
-const StatsEvent$ = [3, n0, _SE,
+var StatsEvent$ = [3, n0, _SE,
     0,
     [_Det],
     [[() => Stats$, { [_eP]: 1 }]]
 ];
-exports.StatsEvent$ = StatsEvent$;
-const StorageClassAnalysis$ = [3, n0, _SCA,
+var StorageClassAnalysis$ = [3, n0, _SCA,
     0,
     [_DE],
     [() => StorageClassAnalysisDataExport$]
 ];
-exports.StorageClassAnalysis$ = StorageClassAnalysis$;
-const StorageClassAnalysisDataExport$ = [3, n0, _SCADE,
+var StorageClassAnalysisDataExport$ = [3, n0, _SCADE,
     0,
     [_OSV, _Des],
     [0, () => AnalyticsExportDestination$], 2
 ];
-exports.StorageClassAnalysisDataExport$ = StorageClassAnalysisDataExport$;
-const Tag$ = [3, n0, _Ta,
+var Tag$ = [3, n0, _Ta,
     0,
     [_K, _V],
     [0, 0], 2
 ];
-exports.Tag$ = Tag$;
-const Tagging$ = [3, n0, _Tag,
+var Tagging$ = [3, n0, _Tag,
     0,
     [_TSa],
     [[() => TagSet, 0]], 1
 ];
-exports.Tagging$ = Tagging$;
-const TargetGrant$ = [3, n0, _TGa,
+var TargetGrant$ = [3, n0, _TGa,
     0,
     [_Gra, _Pe],
     [[() => Grantee$, { [_xNm]: [_x, _hi] }], 0]
 ];
-exports.TargetGrant$ = TargetGrant$;
-const TargetObjectKeyFormat$ = [3, n0, _TOKF,
+var TargetObjectKeyFormat$ = [3, n0, _TOKF,
     0,
     [_SPi, _PP],
     [[() => SimplePrefix$, { [_xN]: _SPi }], [() => PartitionedPrefix$, { [_xN]: _PP }]]
 ];
-exports.TargetObjectKeyFormat$ = TargetObjectKeyFormat$;
-const Tiering$ = [3, n0, _Tier,
+var Tiering$ = [3, n0, _Tier,
     0,
     [_D, _AT],
     [1, 0], 2
 ];
-exports.Tiering$ = Tiering$;
-const TopicConfiguration$ = [3, n0, _TCop,
+var TopicConfiguration$ = [3, n0, _TCop,
     0,
     [_TAo, _Ev, _I, _F],
     [[0, { [_xN]: _Top }], [64 | 0, { [_xF]: 1, [_xN]: _Eve }], 0, [() => NotificationConfigurationFilter$, 0]], 2
 ];
-exports.TopicConfiguration$ = TopicConfiguration$;
-const Transition$ = [3, n0, _Tra,
+var Transition$ = [3, n0, _Tra,
     0,
     [_Da, _D, _SC],
     [5, 1, 0]
 ];
-exports.Transition$ = Transition$;
-const UpdateBucketMetadataAnnotationTableConfigurationRequest$ = [3, n0, _UBMATCR,
+var UpdateBucketMetadataAnnotationTableConfigurationRequest$ = [3, n0, _UBMATCR,
     0,
     [_B, _ATC, _CMDo, _CA, _EBO],
     [[0, 1], [() => AnnotationTableConfigurationUpdates$, { [_hP]: 1, [_xN]: _ATC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.UpdateBucketMetadataAnnotationTableConfigurationRequest$ = UpdateBucketMetadataAnnotationTableConfigurationRequest$;
-const UpdateBucketMetadataInventoryTableConfigurationRequest$ = [3, n0, _UBMITCR,
+var UpdateBucketMetadataInventoryTableConfigurationRequest$ = [3, n0, _UBMITCR,
     0,
     [_B, _ITCn, _CMDo, _CA, _EBO],
     [[0, 1], [() => InventoryTableConfigurationUpdates$, { [_hP]: 1, [_xN]: _ITCn }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.UpdateBucketMetadataInventoryTableConfigurationRequest$ = UpdateBucketMetadataInventoryTableConfigurationRequest$;
-const UpdateBucketMetadataJournalTableConfigurationRequest$ = [3, n0, _UBMJTCR,
+var UpdateBucketMetadataJournalTableConfigurationRequest$ = [3, n0, _UBMJTCR,
     0,
     [_B, _JTC, _CMDo, _CA, _EBO],
     [[0, 1], [() => JournalTableConfigurationUpdates$, { [_hP]: 1, [_xN]: _JTC }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xaebo }]], 2
 ];
-exports.UpdateBucketMetadataJournalTableConfigurationRequest$ = UpdateBucketMetadataJournalTableConfigurationRequest$;
-const UpdateObjectEncryptionRequest$ = [3, n0, _UOER,
+var UpdateObjectEncryptionRequest$ = [3, n0, _UOER,
     0,
     [_B, _K, _OE, _VI, _RP, _EBO, _CMDo, _CA],
     [[0, 1], [0, 1], [() => ObjectEncryption$, 16], [0, { [_hQ]: _vI }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }]], 3
 ];
-exports.UpdateObjectEncryptionRequest$ = UpdateObjectEncryptionRequest$;
-const UpdateObjectEncryptionResponse$ = [3, n0, _UOERp,
+var UpdateObjectEncryptionResponse$ = [3, n0, _UOERp,
     0,
     [_RC],
     [[0, { [_hH]: _xarc }]]
 ];
-exports.UpdateObjectEncryptionResponse$ = UpdateObjectEncryptionResponse$;
-const UploadPartCopyOutput$ = [3, n0, _UPCO,
+var UploadPartCopyOutput$ = [3, n0, _UPCO,
     0,
     [_CSVI, _CPR, _SSE, _SSECA, _SSECKMD, _SSEKMSKI, _BKE, _RC],
     [[0, { [_hH]: _xacsvi }], [() => CopyPartResult$, 16], [0, { [_hH]: _xasse }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xarc }]]
 ];
-exports.UploadPartCopyOutput$ = UploadPartCopyOutput$;
-const UploadPartCopyRequest$ = [3, n0, _UPCR,
+var UploadPartCopyRequest$ = [3, n0, _UPCR,
     0,
     [_B, _CSo, _K, _PN, _UI, _CSIM, _CSIMS, _CSINM, _CSIUS, _CSRo, _SSECA, _SSECK, _SSECKMD, _CSSSECA, _CSSSECK, _CSSSECKMD, _RP, _EBO, _ESBO],
     [[0, 1], [0, { [_hH]: _xacs___ }], [0, 1], [1, { [_hQ]: _pN }], [0, { [_hQ]: _uI }], [0, { [_hH]: _xacsim }], [4, { [_hH]: _xacsims }], [0, { [_hH]: _xacsinm }], [4, { [_hH]: _xacsius }], [0, { [_hH]: _xacsr }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [0, { [_hH]: _xacssseca }], [() => CopySourceSSECustomerKey, { [_hH]: _xacssseck }], [0, { [_hH]: _xacssseckM }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xasebo }]], 5
 ];
-exports.UploadPartCopyRequest$ = UploadPartCopyRequest$;
-const UploadPartOutput$ = [3, n0, _UPO,
+var UploadPartOutput$ = [3, n0, _UPO,
     0,
     [_SSE, _ET, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _SSECA, _SSECKMD, _SSEKMSKI, _BKE, _RC],
     [[0, { [_hH]: _xasse }], [0, { [_hH]: _ET }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xarc }]]
 ];
-exports.UploadPartOutput$ = UploadPartOutput$;
-const UploadPartRequest$ = [3, n0, _UPR,
+var UploadPartRequest$ = [3, n0, _UPR,
     0,
     [_B, _K, _PN, _UI, _Bo, _CLo, _CMDo, _CA, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _SSECA, _SSECK, _SSECKMD, _RP, _EBO],
     [[0, 1], [0, 1], [1, { [_hQ]: _pN }], [0, { [_hQ]: _uI }], [() => StreamingBlob, 16], [1, { [_hH]: _CL__ }], [0, { [_hH]: _CM }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xaebo }]], 4
 ];
-exports.UploadPartRequest$ = UploadPartRequest$;
-const VersioningConfiguration$ = [3, n0, _VC,
+var VersioningConfiguration$ = [3, n0, _VC,
     0,
     [_MFAD, _S],
     [[0, { [_xN]: _MDf }], 0]
 ];
-exports.VersioningConfiguration$ = VersioningConfiguration$;
-const WebsiteConfiguration$ = [3, n0, _WC,
+var WebsiteConfiguration$ = [3, n0, _WC,
     0,
     [_EDr, _IDn, _RART, _RR],
     [() => ErrorDocument$, () => IndexDocument$, () => RedirectAllRequestsTo$, [() => RoutingRules, 0]]
 ];
-exports.WebsiteConfiguration$ = WebsiteConfiguration$;
-const WriteGetObjectResponseRequest$ = [3, n0, _WGORR,
+var WriteGetObjectResponseRequest$ = [3, n0, _WGORR,
     0,
     [_RReq, _RTe, _Bo, _SCt, _ECr, _EM, _AR, _CC, _CDo, _CEo, _CL, _CLo, _CR, _CTo, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _DM, _ET, _Exp, _Ex, _LM, _MM, _M, _OLM, _OLLHS, _OLRUD, _PC, _RS, _RC, _Re, _SSE, _SSECA, _SSEKMSKI, _SSECKMD, _SC, _TC, _VI, _BKE],
     [[0, { [_hL]: 1, [_hH]: _xarr }], [0, { [_hH]: _xart }], [() => StreamingBlob, 16], [1, { [_hH]: _xafs }], [0, { [_hH]: _xafec }], [0, { [_hH]: _xafem }], [0, { [_hH]: _xafhar }], [0, { [_hH]: _xafhCC }], [0, { [_hH]: _xafhCD }], [0, { [_hH]: _xafhCE }], [0, { [_hH]: _xafhCL }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _xafhCR }], [0, { [_hH]: _xafhCT }], [0, { [_hH]: _xafhxacc }], [0, { [_hH]: _xafhxacc_ }], [0, { [_hH]: _xafhxacc__ }], [0, { [_hH]: _xafhxacs }], [0, { [_hH]: _xafhxacs_ }], [0, { [_hH]: _xafhxacs__ }], [0, { [_hH]: _xafhxacm }], [0, { [_hH]: _xafhxacx }], [0, { [_hH]: _xafhxacx_ }], [0, { [_hH]: _xafhxacx__ }], [2, { [_hH]: _xafhxadm }], [0, { [_hH]: _xafhE }], [4, { [_hH]: _xafhE_ }], [0, { [_hH]: _xafhxae }], [4, { [_hH]: _xafhLM }], [1, { [_hH]: _xafhxamm }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xafhxaolm }], [0, { [_hH]: _xafhxaollh }], [5, { [_hH]: _xafhxaolrud }], [1, { [_hH]: _xafhxampc }], [0, { [_hH]: _xafhxars }], [0, { [_hH]: _xafhxarc }], [0, { [_hH]: _xafhxar }], [0, { [_hH]: _xafhxasse }], [0, { [_hH]: _xafhxasseca }], [() => SSEKMSKeyId, { [_hH]: _xafhxasseakki }], [0, { [_hH]: _xafhxasseckM }], [0, { [_hH]: _xafhxasc }], [1, { [_hH]: _xafhxatc }], [0, { [_hH]: _xafhxavi }], [2, { [_hH]: _xafhxassebke }]], 2
 ];
-exports.WriteGetObjectResponseRequest$ = WriteGetObjectResponseRequest$;
 var __Unit = "unit";
-var AllowedHeaders = (/* unused pure expression or super */ null && (64 | 0));
-var AllowedMethods = (/* unused pure expression or super */ null && (64 | 0));
-var AllowedOrigins = (/* unused pure expression or super */ null && (64 | 0));
 var AnalyticsConfigurationList = [1, n0, _ACLn,
     0, [() => AnalyticsConfiguration$,
         0]
@@ -8940,7 +5208,6 @@ var Buckets = [1, n0, _Bu,
     0, [() => Bucket$,
         { [_xN]: _B }]
 ];
-var ChecksumAlgorithmList = (/* unused pure expression or super */ null && (64 | 0));
 var CommonPrefixList = [1, n0, _CPL,
     0, () => CommonPrefix$
 ];
@@ -8964,8 +5231,6 @@ var EncryptionTypeList = [1, n0, _ETL,
 var Errors = [1, n0, _Er,
     0, () => _Error$
 ];
-var EventList = (/* unused pure expression or super */ null && (64 | 0));
-var ExposeHeaders = (/* unused pure expression or super */ null && (64 | 0));
 var FilterRuleList = [1, n0, _FRL,
     0, () => FilterRule$
 ];
@@ -9003,7 +5268,6 @@ var MultipartUploadList = [1, n0, _MUL,
 var NoncurrentVersionTransitionList = [1, n0, _NVTL,
     0, () => NoncurrentVersionTransition$
 ];
-var ObjectAttributesList = (/* unused pure expression or super */ null && (64 | 0));
 var ObjectIdentifierList = [1, n0, _OIL,
     0, () => ObjectIdentifier$
 ];
@@ -9015,7 +5279,6 @@ var ObjectVersionList = [1, n0, _OVL,
     0, [() => ObjectVersion$,
         0]
 ];
-var OptionalObjectAttributesList = (/* unused pure expression or super */ null && (64 | 0));
 var OwnershipControlsRules = [1, n0, _OCRw,
     0, () => OwnershipControlsRule$
 ];
@@ -9063,367 +5326,2247 @@ var UserMetadata = [1, n0, _UM,
     0, [() => MetadataEntry$,
         { [_xN]: _ME }]
 ];
-var Metadata = (/* unused pure expression or super */ null && (128 | 0));
-const AnalyticsFilter$ = [4, n0, _AF,
+var AnalyticsFilter$ = [4, n0, _AF,
     0,
     [_P, _Ta, _An],
     [0, () => Tag$, [() => AnalyticsAndOperator$, 0]]
 ];
-exports.AnalyticsFilter$ = AnalyticsFilter$;
-const MetricsFilter$ = [4, n0, _MF,
+var MetricsFilter$ = [4, n0, _MF,
     0,
     [_P, _Ta, _APAc, _An],
     [0, () => Tag$, 0, [() => MetricsAndOperator$, 0]]
 ];
-exports.MetricsFilter$ = MetricsFilter$;
-const ObjectEncryption$ = [4, n0, _OE,
+var ObjectEncryption$ = [4, n0, _OE,
     0,
     [_SSEKMS],
     [[() => SSEKMSEncryption$, { [_xN]: _SK }]]
 ];
-exports.ObjectEncryption$ = ObjectEncryption$;
-const SelectObjectContentEventStream$ = [4, n0, _SOCES,
+var SelectObjectContentEventStream$ = [4, n0, _SOCES,
     { [_st]: 1 },
     [_Rec, _Sta, _Pr, _Cont, _End],
     [[() => RecordsEvent$, 0], [() => StatsEvent$, 0], [() => ProgressEvent$, 0], () => ContinuationEvent$, () => EndEvent$]
 ];
-exports.SelectObjectContentEventStream$ = SelectObjectContentEventStream$;
-exports.AbortMultipartUpload$ = [9, n0, _AMU,
+var AbortMultipartUpload$ = [9, n0, _AMU,
     { [_h]: ["DELETE", "/{Key+}?x-id=AbortMultipartUpload", 204] }, () => AbortMultipartUploadRequest$, () => AbortMultipartUploadOutput$
 ];
-exports.CompleteMultipartUpload$ = [9, n0, _CMUo,
+var CompleteMultipartUpload$ = [9, n0, _CMUo,
     { [_h]: ["POST", "/{Key+}", 200] }, () => CompleteMultipartUploadRequest$, () => CompleteMultipartUploadOutput$
 ];
-exports.CopyObject$ = [9, n0, _CO,
+var CopyObject$ = [9, n0, _CO,
     { [_h]: ["PUT", "/{Key+}?x-id=CopyObject", 200] }, () => CopyObjectRequest$, () => CopyObjectOutput$
 ];
-exports.CreateBucket$ = [9, n0, _CB,
+var CreateBucket$ = [9, n0, _CB,
     { [_h]: ["PUT", "/", 200] }, () => CreateBucketRequest$, () => CreateBucketOutput$
 ];
-exports.CreateBucketMetadataConfiguration$ = [9, n0, _CBMC,
+var CreateBucketMetadataConfiguration$ = [9, n0, _CBMC,
     { [_hC]: "-", [_h]: ["POST", "/?metadataConfiguration", 200] }, () => CreateBucketMetadataConfigurationRequest$, () => __Unit
 ];
-exports.CreateBucketMetadataTableConfiguration$ = [9, n0, _CBMTC,
+var CreateBucketMetadataTableConfiguration$ = [9, n0, _CBMTC,
     { [_hC]: "-", [_h]: ["POST", "/?metadataTable", 200] }, () => CreateBucketMetadataTableConfigurationRequest$, () => __Unit
 ];
-exports.CreateMultipartUpload$ = [9, n0, _CMUr,
+var CreateMultipartUpload$ = [9, n0, _CMUr,
     { [_h]: ["POST", "/{Key+}?uploads", 200] }, () => CreateMultipartUploadRequest$, () => CreateMultipartUploadOutput$
 ];
-exports.CreateSession$ = [9, n0, _CSr,
+var CreateSession$ = [9, n0, _CSr,
     { [_h]: ["GET", "/?session", 200] }, () => CreateSessionRequest$, () => CreateSessionOutput$
 ];
-exports.DeleteBucket$ = [9, n0, _DB,
+var DeleteBucket$ = [9, n0, _DB,
     { [_h]: ["DELETE", "/", 204] }, () => DeleteBucketRequest$, () => __Unit
 ];
-exports.DeleteBucketAnalyticsConfiguration$ = [9, n0, _DBAC,
+var DeleteBucketAnalyticsConfiguration$ = [9, n0, _DBAC,
     { [_h]: ["DELETE", "/?analytics", 204] }, () => DeleteBucketAnalyticsConfigurationRequest$, () => __Unit
 ];
-exports.DeleteBucketCors$ = [9, n0, _DBC,
+var DeleteBucketCors$ = [9, n0, _DBC,
     { [_h]: ["DELETE", "/?cors", 204] }, () => DeleteBucketCorsRequest$, () => __Unit
 ];
-exports.DeleteBucketEncryption$ = [9, n0, _DBE,
+var DeleteBucketEncryption$ = [9, n0, _DBE,
     { [_h]: ["DELETE", "/?encryption", 204] }, () => DeleteBucketEncryptionRequest$, () => __Unit
 ];
-exports.DeleteBucketIntelligentTieringConfiguration$ = [9, n0, _DBITC,
+var DeleteBucketIntelligentTieringConfiguration$ = [9, n0, _DBITC,
     { [_h]: ["DELETE", "/?intelligent-tiering", 204] }, () => DeleteBucketIntelligentTieringConfigurationRequest$, () => __Unit
 ];
-exports.DeleteBucketInventoryConfiguration$ = [9, n0, _DBIC,
+var DeleteBucketInventoryConfiguration$ = [9, n0, _DBIC,
     { [_h]: ["DELETE", "/?inventory", 204] }, () => DeleteBucketInventoryConfigurationRequest$, () => __Unit
 ];
-exports.DeleteBucketLifecycle$ = [9, n0, _DBL,
+var DeleteBucketLifecycle$ = [9, n0, _DBL,
     { [_h]: ["DELETE", "/?lifecycle", 204] }, () => DeleteBucketLifecycleRequest$, () => __Unit
 ];
-exports.DeleteBucketMetadataConfiguration$ = [9, n0, _DBMC,
+var DeleteBucketMetadataConfiguration$ = [9, n0, _DBMC,
     { [_h]: ["DELETE", "/?metadataConfiguration", 204] }, () => DeleteBucketMetadataConfigurationRequest$, () => __Unit
 ];
-exports.DeleteBucketMetadataTableConfiguration$ = [9, n0, _DBMTC,
+var DeleteBucketMetadataTableConfiguration$ = [9, n0, _DBMTC,
     { [_h]: ["DELETE", "/?metadataTable", 204] }, () => DeleteBucketMetadataTableConfigurationRequest$, () => __Unit
 ];
-exports.DeleteBucketMetricsConfiguration$ = [9, n0, _DBMCe,
+var DeleteBucketMetricsConfiguration$ = [9, n0, _DBMCe,
     { [_h]: ["DELETE", "/?metrics", 204] }, () => DeleteBucketMetricsConfigurationRequest$, () => __Unit
 ];
-exports.DeleteBucketOwnershipControls$ = [9, n0, _DBOC,
+var DeleteBucketOwnershipControls$ = [9, n0, _DBOC,
     { [_h]: ["DELETE", "/?ownershipControls", 204] }, () => DeleteBucketOwnershipControlsRequest$, () => __Unit
 ];
-exports.DeleteBucketPolicy$ = [9, n0, _DBP,
+var DeleteBucketPolicy$ = [9, n0, _DBP,
     { [_h]: ["DELETE", "/?policy", 204] }, () => DeleteBucketPolicyRequest$, () => __Unit
 ];
-exports.DeleteBucketReplication$ = [9, n0, _DBRe,
+var DeleteBucketReplication$ = [9, n0, _DBRe,
     { [_h]: ["DELETE", "/?replication", 204] }, () => DeleteBucketReplicationRequest$, () => __Unit
 ];
-exports.DeleteBucketTagging$ = [9, n0, _DBT,
+var DeleteBucketTagging$ = [9, n0, _DBT,
     { [_h]: ["DELETE", "/?tagging", 204] }, () => DeleteBucketTaggingRequest$, () => __Unit
 ];
-exports.DeleteBucketWebsite$ = [9, n0, _DBW,
+var DeleteBucketWebsite$ = [9, n0, _DBW,
     { [_h]: ["DELETE", "/?website", 204] }, () => DeleteBucketWebsiteRequest$, () => __Unit
 ];
-exports.DeleteObject$ = [9, n0, _DOel,
+var DeleteObject$ = [9, n0, _DOel,
     { [_h]: ["DELETE", "/{Key+}?x-id=DeleteObject", 204] }, () => DeleteObjectRequest$, () => DeleteObjectOutput$
 ];
-exports.DeleteObjectAnnotation$ = [9, n0, _DOA,
+var DeleteObjectAnnotation$ = [9, n0, _DOA,
     { [_h]: ["DELETE", "/{Key+}?annotation", 204] }, () => DeleteObjectAnnotationRequest$, () => DeleteObjectAnnotationOutput$
 ];
-exports.DeleteObjects$ = [9, n0, _DOele,
+var DeleteObjects$ = [9, n0, _DOele,
     { [_hC]: "-", [_h]: ["POST", "/?delete", 200] }, () => DeleteObjectsRequest$, () => DeleteObjectsOutput$
 ];
-exports.DeleteObjectTagging$ = [9, n0, _DOT,
+var DeleteObjectTagging$ = [9, n0, _DOT,
     { [_h]: ["DELETE", "/{Key+}?tagging", 204] }, () => DeleteObjectTaggingRequest$, () => DeleteObjectTaggingOutput$
 ];
-exports.DeletePublicAccessBlock$ = [9, n0, _DPAB,
+var DeletePublicAccessBlock$ = [9, n0, _DPAB,
     { [_h]: ["DELETE", "/?publicAccessBlock", 204] }, () => DeletePublicAccessBlockRequest$, () => __Unit
 ];
-exports.GetBucketAbac$ = [9, n0, _GBA,
+var GetBucketAbac$ = [9, n0, _GBA,
     { [_h]: ["GET", "/?abac", 200] }, () => GetBucketAbacRequest$, () => GetBucketAbacOutput$
 ];
-exports.GetBucketAccelerateConfiguration$ = [9, n0, _GBAC,
+var GetBucketAccelerateConfiguration$ = [9, n0, _GBAC,
     { [_h]: ["GET", "/?accelerate", 200] }, () => GetBucketAccelerateConfigurationRequest$, () => GetBucketAccelerateConfigurationOutput$
 ];
-exports.GetBucketAcl$ = [9, n0, _GBAe,
+var GetBucketAcl$ = [9, n0, _GBAe,
     { [_h]: ["GET", "/?acl", 200] }, () => GetBucketAclRequest$, () => GetBucketAclOutput$
 ];
-exports.GetBucketAnalyticsConfiguration$ = [9, n0, _GBACe,
+var GetBucketAnalyticsConfiguration$ = [9, n0, _GBACe,
     { [_h]: ["GET", "/?analytics&x-id=GetBucketAnalyticsConfiguration", 200] }, () => GetBucketAnalyticsConfigurationRequest$, () => GetBucketAnalyticsConfigurationOutput$
 ];
-exports.GetBucketCors$ = [9, n0, _GBC,
+var GetBucketCors$ = [9, n0, _GBC,
     { [_h]: ["GET", "/?cors", 200] }, () => GetBucketCorsRequest$, () => GetBucketCorsOutput$
 ];
-exports.GetBucketEncryption$ = [9, n0, _GBE,
+var GetBucketEncryption$ = [9, n0, _GBE,
     { [_h]: ["GET", "/?encryption", 200] }, () => GetBucketEncryptionRequest$, () => GetBucketEncryptionOutput$
 ];
-exports.GetBucketIntelligentTieringConfiguration$ = [9, n0, _GBITC,
+var GetBucketIntelligentTieringConfiguration$ = [9, n0, _GBITC,
     { [_h]: ["GET", "/?intelligent-tiering&x-id=GetBucketIntelligentTieringConfiguration", 200] }, () => GetBucketIntelligentTieringConfigurationRequest$, () => GetBucketIntelligentTieringConfigurationOutput$
 ];
-exports.GetBucketInventoryConfiguration$ = [9, n0, _GBIC,
+var GetBucketInventoryConfiguration$ = [9, n0, _GBIC,
     { [_h]: ["GET", "/?inventory&x-id=GetBucketInventoryConfiguration", 200] }, () => GetBucketInventoryConfigurationRequest$, () => GetBucketInventoryConfigurationOutput$
 ];
-exports.GetBucketLifecycleConfiguration$ = [9, n0, _GBLC,
+var GetBucketLifecycleConfiguration$ = [9, n0, _GBLC,
     { [_h]: ["GET", "/?lifecycle", 200] }, () => GetBucketLifecycleConfigurationRequest$, () => GetBucketLifecycleConfigurationOutput$
 ];
-exports.GetBucketLocation$ = [9, n0, _GBL,
+var GetBucketLocation$ = [9, n0, _GBL,
     { [_h]: ["GET", "/?location", 200] }, () => GetBucketLocationRequest$, () => GetBucketLocationOutput$
 ];
-exports.GetBucketLogging$ = [9, n0, _GBLe,
+var GetBucketLogging$ = [9, n0, _GBLe,
     { [_h]: ["GET", "/?logging", 200] }, () => GetBucketLoggingRequest$, () => GetBucketLoggingOutput$
 ];
-exports.GetBucketMetadataConfiguration$ = [9, n0, _GBMC,
+var GetBucketMetadataConfiguration$ = [9, n0, _GBMC,
     { [_h]: ["GET", "/?metadataConfiguration", 200] }, () => GetBucketMetadataConfigurationRequest$, () => GetBucketMetadataConfigurationOutput$
 ];
-exports.GetBucketMetadataTableConfiguration$ = [9, n0, _GBMTC,
+var GetBucketMetadataTableConfiguration$ = [9, n0, _GBMTC,
     { [_h]: ["GET", "/?metadataTable", 200] }, () => GetBucketMetadataTableConfigurationRequest$, () => GetBucketMetadataTableConfigurationOutput$
 ];
-exports.GetBucketMetricsConfiguration$ = [9, n0, _GBMCe,
+var GetBucketMetricsConfiguration$ = [9, n0, _GBMCe,
     { [_h]: ["GET", "/?metrics&x-id=GetBucketMetricsConfiguration", 200] }, () => GetBucketMetricsConfigurationRequest$, () => GetBucketMetricsConfigurationOutput$
 ];
-exports.GetBucketNotificationConfiguration$ = [9, n0, _GBNC,
+var GetBucketNotificationConfiguration$ = [9, n0, _GBNC,
     { [_h]: ["GET", "/?notification", 200] }, () => GetBucketNotificationConfigurationRequest$, () => NotificationConfiguration$
 ];
-exports.GetBucketOwnershipControls$ = [9, n0, _GBOC,
+var GetBucketOwnershipControls$ = [9, n0, _GBOC,
     { [_h]: ["GET", "/?ownershipControls", 200] }, () => GetBucketOwnershipControlsRequest$, () => GetBucketOwnershipControlsOutput$
 ];
-exports.GetBucketPolicy$ = [9, n0, _GBP,
+var GetBucketPolicy$ = [9, n0, _GBP,
     { [_h]: ["GET", "/?policy", 200] }, () => GetBucketPolicyRequest$, () => GetBucketPolicyOutput$
 ];
-exports.GetBucketPolicyStatus$ = [9, n0, _GBPS,
+var GetBucketPolicyStatus$ = [9, n0, _GBPS,
     { [_h]: ["GET", "/?policyStatus", 200] }, () => GetBucketPolicyStatusRequest$, () => GetBucketPolicyStatusOutput$
 ];
-exports.GetBucketReplication$ = [9, n0, _GBR,
+var GetBucketReplication$ = [9, n0, _GBR,
     { [_h]: ["GET", "/?replication", 200] }, () => GetBucketReplicationRequest$, () => GetBucketReplicationOutput$
 ];
-exports.GetBucketRequestPayment$ = [9, n0, _GBRP,
+var GetBucketRequestPayment$ = [9, n0, _GBRP,
     { [_h]: ["GET", "/?requestPayment", 200] }, () => GetBucketRequestPaymentRequest$, () => GetBucketRequestPaymentOutput$
 ];
-exports.GetBucketTagging$ = [9, n0, _GBT,
+var GetBucketTagging$ = [9, n0, _GBT,
     { [_h]: ["GET", "/?tagging", 200] }, () => GetBucketTaggingRequest$, () => GetBucketTaggingOutput$
 ];
-exports.GetBucketVersioning$ = [9, n0, _GBV,
+var GetBucketVersioning$ = [9, n0, _GBV,
     { [_h]: ["GET", "/?versioning", 200] }, () => GetBucketVersioningRequest$, () => GetBucketVersioningOutput$
 ];
-exports.GetBucketWebsite$ = [9, n0, _GBW,
+var GetBucketWebsite$ = [9, n0, _GBW,
     { [_h]: ["GET", "/?website", 200] }, () => GetBucketWebsiteRequest$, () => GetBucketWebsiteOutput$
 ];
-exports.GetObject$ = [9, n0, _GO,
+var GetObject$ = [9, n0, _GO,
     { [_hC]: "-", [_h]: ["GET", "/{Key+}?x-id=GetObject", 200] }, () => GetObjectRequest$, () => GetObjectOutput$
 ];
-exports.GetObjectAcl$ = [9, n0, _GOA,
+var GetObjectAcl$ = [9, n0, _GOA,
     { [_h]: ["GET", "/{Key+}?acl", 200] }, () => GetObjectAclRequest$, () => GetObjectAclOutput$
 ];
-exports.GetObjectAnnotation$ = [9, n0, _GOAe,
+var GetObjectAnnotation$ = [9, n0, _GOAe,
     { [_hC]: "-", [_h]: ["GET", "/{Key+}?annotation&x-id=GetObjectAnnotation", 200] }, () => GetObjectAnnotationRequest$, () => GetObjectAnnotationOutput$
 ];
-exports.GetObjectAttributes$ = [9, n0, _GOAet,
+var GetObjectAttributes$ = [9, n0, _GOAet,
     { [_h]: ["GET", "/{Key+}?attributes", 200] }, () => GetObjectAttributesRequest$, () => GetObjectAttributesOutput$
 ];
-exports.GetObjectLegalHold$ = [9, n0, _GOLH,
+var GetObjectLegalHold$ = [9, n0, _GOLH,
     { [_h]: ["GET", "/{Key+}?legal-hold", 200] }, () => GetObjectLegalHoldRequest$, () => GetObjectLegalHoldOutput$
 ];
-exports.GetObjectLockConfiguration$ = [9, n0, _GOLC,
+var GetObjectLockConfiguration$ = [9, n0, _GOLC,
     { [_h]: ["GET", "/?object-lock", 200] }, () => GetObjectLockConfigurationRequest$, () => GetObjectLockConfigurationOutput$
 ];
-exports.GetObjectRetention$ = [9, n0, _GORe,
+var GetObjectRetention$ = [9, n0, _GORe,
     { [_h]: ["GET", "/{Key+}?retention", 200] }, () => GetObjectRetentionRequest$, () => GetObjectRetentionOutput$
 ];
-exports.GetObjectTagging$ = [9, n0, _GOT,
+var GetObjectTagging$ = [9, n0, _GOT,
     { [_h]: ["GET", "/{Key+}?tagging", 200] }, () => GetObjectTaggingRequest$, () => GetObjectTaggingOutput$
 ];
-exports.GetObjectTorrent$ = [9, n0, _GOTe,
+var GetObjectTorrent$ = [9, n0, _GOTe,
     { [_h]: ["GET", "/{Key+}?torrent", 200] }, () => GetObjectTorrentRequest$, () => GetObjectTorrentOutput$
 ];
-exports.GetPublicAccessBlock$ = [9, n0, _GPAB,
+var GetPublicAccessBlock$ = [9, n0, _GPAB,
     { [_h]: ["GET", "/?publicAccessBlock", 200] }, () => GetPublicAccessBlockRequest$, () => GetPublicAccessBlockOutput$
 ];
-exports.HeadBucket$ = [9, n0, _HB,
+var HeadBucket$ = [9, n0, _HB,
     { [_h]: ["HEAD", "/", 200] }, () => HeadBucketRequest$, () => HeadBucketOutput$
 ];
-exports.HeadObject$ = [9, n0, _HO,
+var HeadObject$ = [9, n0, _HO,
     { [_h]: ["HEAD", "/{Key+}", 200] }, () => HeadObjectRequest$, () => HeadObjectOutput$
 ];
-exports.ListBucketAnalyticsConfigurations$ = [9, n0, _LBAC,
+var ListBucketAnalyticsConfigurations$ = [9, n0, _LBAC,
     { [_h]: ["GET", "/?analytics&x-id=ListBucketAnalyticsConfigurations", 200] }, () => ListBucketAnalyticsConfigurationsRequest$, () => ListBucketAnalyticsConfigurationsOutput$
 ];
-exports.ListBucketIntelligentTieringConfigurations$ = [9, n0, _LBITC,
+var ListBucketIntelligentTieringConfigurations$ = [9, n0, _LBITC,
     { [_h]: ["GET", "/?intelligent-tiering&x-id=ListBucketIntelligentTieringConfigurations", 200] }, () => ListBucketIntelligentTieringConfigurationsRequest$, () => ListBucketIntelligentTieringConfigurationsOutput$
 ];
-exports.ListBucketInventoryConfigurations$ = [9, n0, _LBIC,
+var ListBucketInventoryConfigurations$ = [9, n0, _LBIC,
     { [_h]: ["GET", "/?inventory&x-id=ListBucketInventoryConfigurations", 200] }, () => ListBucketInventoryConfigurationsRequest$, () => ListBucketInventoryConfigurationsOutput$
 ];
-exports.ListBucketMetricsConfigurations$ = [9, n0, _LBMC,
+var ListBucketMetricsConfigurations$ = [9, n0, _LBMC,
     { [_h]: ["GET", "/?metrics&x-id=ListBucketMetricsConfigurations", 200] }, () => ListBucketMetricsConfigurationsRequest$, () => ListBucketMetricsConfigurationsOutput$
 ];
-exports.ListBuckets$ = [9, n0, _LB,
+var ListBuckets$ = [9, n0, _LB,
     { [_h]: ["GET", "/?x-id=ListBuckets", 200] }, () => ListBucketsRequest$, () => ListBucketsOutput$
 ];
-exports.ListDirectoryBuckets$ = [9, n0, _LDB,
+var ListDirectoryBuckets$ = [9, n0, _LDB,
     { [_h]: ["GET", "/?x-id=ListDirectoryBuckets", 200] }, () => ListDirectoryBucketsRequest$, () => ListDirectoryBucketsOutput$
 ];
-exports.ListMultipartUploads$ = [9, n0, _LMU,
+var ListMultipartUploads$ = [9, n0, _LMU,
     { [_h]: ["GET", "/?uploads", 200] }, () => ListMultipartUploadsRequest$, () => ListMultipartUploadsOutput$
 ];
-exports.ListObjectAnnotations$ = [9, n0, _LOA,
+var ListObjectAnnotations$ = [9, n0, _LOA,
     { [_h]: ["GET", "/{Key+}?annotation&x-id=ListObjectAnnotations", 200] }, () => ListObjectAnnotationsRequest$, () => ListObjectAnnotationsOutput$
 ];
-exports.ListObjects$ = [9, n0, _LO,
+var ListObjects$ = [9, n0, _LO,
     { [_h]: ["GET", "/", 200] }, () => ListObjectsRequest$, () => ListObjectsOutput$
 ];
-exports.ListObjectsV2$ = [9, n0, _LOV,
+var ListObjectsV2$ = [9, n0, _LOV,
     { [_h]: ["GET", "/?list-type=2", 200] }, () => ListObjectsV2Request$, () => ListObjectsV2Output$
 ];
-exports.ListObjectVersions$ = [9, n0, _LOVi,
+var ListObjectVersions$ = [9, n0, _LOVi,
     { [_h]: ["GET", "/?versions", 200] }, () => ListObjectVersionsRequest$, () => ListObjectVersionsOutput$
 ];
-exports.ListParts$ = [9, n0, _LP,
+var ListParts$ = [9, n0, _LP,
     { [_h]: ["GET", "/{Key+}?x-id=ListParts", 200] }, () => ListPartsRequest$, () => ListPartsOutput$
 ];
-exports.PutBucketAbac$ = [9, n0, _PBA,
+var PutBucketAbac$ = [9, n0, _PBA,
     { [_hC]: "-", [_h]: ["PUT", "/?abac", 200] }, () => PutBucketAbacRequest$, () => __Unit
 ];
-exports.PutBucketAccelerateConfiguration$ = [9, n0, _PBAC,
+var PutBucketAccelerateConfiguration$ = [9, n0, _PBAC,
     { [_hC]: "-", [_h]: ["PUT", "/?accelerate", 200] }, () => PutBucketAccelerateConfigurationRequest$, () => __Unit
 ];
-exports.PutBucketAcl$ = [9, n0, _PBAu,
+var PutBucketAcl$ = [9, n0, _PBAu,
     { [_hC]: "-", [_h]: ["PUT", "/?acl", 200] }, () => PutBucketAclRequest$, () => __Unit
 ];
-exports.PutBucketAnalyticsConfiguration$ = [9, n0, _PBACu,
+var PutBucketAnalyticsConfiguration$ = [9, n0, _PBACu,
     { [_h]: ["PUT", "/?analytics", 200] }, () => PutBucketAnalyticsConfigurationRequest$, () => __Unit
 ];
-exports.PutBucketCors$ = [9, n0, _PBC,
+var PutBucketCors$ = [9, n0, _PBC,
     { [_hC]: "-", [_h]: ["PUT", "/?cors", 200] }, () => PutBucketCorsRequest$, () => __Unit
 ];
-exports.PutBucketEncryption$ = [9, n0, _PBE,
+var PutBucketEncryption$ = [9, n0, _PBE,
     { [_hC]: "-", [_h]: ["PUT", "/?encryption", 200] }, () => PutBucketEncryptionRequest$, () => __Unit
 ];
-exports.PutBucketIntelligentTieringConfiguration$ = [9, n0, _PBITC,
+var PutBucketIntelligentTieringConfiguration$ = [9, n0, _PBITC,
     { [_h]: ["PUT", "/?intelligent-tiering", 200] }, () => PutBucketIntelligentTieringConfigurationRequest$, () => __Unit
 ];
-exports.PutBucketInventoryConfiguration$ = [9, n0, _PBIC,
+var PutBucketInventoryConfiguration$ = [9, n0, _PBIC,
     { [_h]: ["PUT", "/?inventory", 200] }, () => PutBucketInventoryConfigurationRequest$, () => __Unit
 ];
-exports.PutBucketLifecycleConfiguration$ = [9, n0, _PBLC,
+var PutBucketLifecycleConfiguration$ = [9, n0, _PBLC,
     { [_hC]: "-", [_h]: ["PUT", "/?lifecycle", 200] }, () => PutBucketLifecycleConfigurationRequest$, () => PutBucketLifecycleConfigurationOutput$
 ];
-exports.PutBucketLogging$ = [9, n0, _PBL,
+var PutBucketLogging$ = [9, n0, _PBL,
     { [_hC]: "-", [_h]: ["PUT", "/?logging", 200] }, () => PutBucketLoggingRequest$, () => __Unit
 ];
-exports.PutBucketMetricsConfiguration$ = [9, n0, _PBMC,
+var PutBucketMetricsConfiguration$ = [9, n0, _PBMC,
     { [_h]: ["PUT", "/?metrics", 200] }, () => PutBucketMetricsConfigurationRequest$, () => __Unit
 ];
-exports.PutBucketNotificationConfiguration$ = [9, n0, _PBNC,
+var PutBucketNotificationConfiguration$ = [9, n0, _PBNC,
     { [_h]: ["PUT", "/?notification", 200] }, () => PutBucketNotificationConfigurationRequest$, () => __Unit
 ];
-exports.PutBucketOwnershipControls$ = [9, n0, _PBOC,
+var PutBucketOwnershipControls$ = [9, n0, _PBOC,
     { [_hC]: "-", [_h]: ["PUT", "/?ownershipControls", 200] }, () => PutBucketOwnershipControlsRequest$, () => __Unit
 ];
-exports.PutBucketPolicy$ = [9, n0, _PBP,
+var PutBucketPolicy$ = [9, n0, _PBP,
     { [_hC]: "-", [_h]: ["PUT", "/?policy", 200] }, () => PutBucketPolicyRequest$, () => __Unit
 ];
-exports.PutBucketReplication$ = [9, n0, _PBR,
+var PutBucketReplication$ = [9, n0, _PBR,
     { [_hC]: "-", [_h]: ["PUT", "/?replication", 200] }, () => PutBucketReplicationRequest$, () => __Unit
 ];
-exports.PutBucketRequestPayment$ = [9, n0, _PBRP,
+var PutBucketRequestPayment$ = [9, n0, _PBRP,
     { [_hC]: "-", [_h]: ["PUT", "/?requestPayment", 200] }, () => PutBucketRequestPaymentRequest$, () => __Unit
 ];
-exports.PutBucketTagging$ = [9, n0, _PBT,
+var PutBucketTagging$ = [9, n0, _PBT,
     { [_hC]: "-", [_h]: ["PUT", "/?tagging", 200] }, () => PutBucketTaggingRequest$, () => __Unit
 ];
-exports.PutBucketVersioning$ = [9, n0, _PBV,
+var PutBucketVersioning$ = [9, n0, _PBV,
     { [_hC]: "-", [_h]: ["PUT", "/?versioning", 200] }, () => PutBucketVersioningRequest$, () => __Unit
 ];
-exports.PutBucketWebsite$ = [9, n0, _PBW,
+var PutBucketWebsite$ = [9, n0, _PBW,
     { [_hC]: "-", [_h]: ["PUT", "/?website", 200] }, () => PutBucketWebsiteRequest$, () => __Unit
 ];
-exports.PutObject$ = [9, n0, _PO,
+var PutObject$ = [9, n0, _PO,
     { [_hC]: "-", [_h]: ["PUT", "/{Key+}?x-id=PutObject", 200] }, () => PutObjectRequest$, () => PutObjectOutput$
 ];
-exports.PutObjectAcl$ = [9, n0, _POA,
+var PutObjectAcl$ = [9, n0, _POA,
     { [_hC]: "-", [_h]: ["PUT", "/{Key+}?acl", 200] }, () => PutObjectAclRequest$, () => PutObjectAclOutput$
 ];
-exports.PutObjectAnnotation$ = [9, n0, _POAu,
+var PutObjectAnnotation$ = [9, n0, _POAu,
     { [_hC]: "-", [_h]: ["PUT", "/{Key+}?annotation", 200] }, () => PutObjectAnnotationRequest$, () => PutObjectAnnotationOutput$
 ];
-exports.PutObjectLegalHold$ = [9, n0, _POLH,
+var PutObjectLegalHold$ = [9, n0, _POLH,
     { [_hC]: "-", [_h]: ["PUT", "/{Key+}?legal-hold", 200] }, () => PutObjectLegalHoldRequest$, () => PutObjectLegalHoldOutput$
 ];
-exports.PutObjectLockConfiguration$ = [9, n0, _POLC,
+var PutObjectLockConfiguration$ = [9, n0, _POLC,
     { [_hC]: "-", [_h]: ["PUT", "/?object-lock", 200] }, () => PutObjectLockConfigurationRequest$, () => PutObjectLockConfigurationOutput$
 ];
-exports.PutObjectRetention$ = [9, n0, _PORu,
+var PutObjectRetention$ = [9, n0, _PORu,
     { [_hC]: "-", [_h]: ["PUT", "/{Key+}?retention", 200] }, () => PutObjectRetentionRequest$, () => PutObjectRetentionOutput$
 ];
-exports.PutObjectTagging$ = [9, n0, _POT,
+var PutObjectTagging$ = [9, n0, _POT,
     { [_hC]: "-", [_h]: ["PUT", "/{Key+}?tagging", 200] }, () => PutObjectTaggingRequest$, () => PutObjectTaggingOutput$
 ];
-exports.PutPublicAccessBlock$ = [9, n0, _PPAB,
+var PutPublicAccessBlock$ = [9, n0, _PPAB,
     { [_hC]: "-", [_h]: ["PUT", "/?publicAccessBlock", 200] }, () => PutPublicAccessBlockRequest$, () => __Unit
 ];
-exports.RenameObject$ = [9, n0, _RO,
+var RenameObject$ = [9, n0, _RO,
     { [_h]: ["PUT", "/{Key+}?renameObject", 200] }, () => RenameObjectRequest$, () => RenameObjectOutput$
 ];
-exports.RestoreObject$ = [9, n0, _ROe,
+var RestoreObject$ = [9, n0, _ROe,
     { [_hC]: "-", [_h]: ["POST", "/{Key+}?restore", 200] }, () => RestoreObjectRequest$, () => RestoreObjectOutput$
 ];
-exports.SelectObjectContent$ = [9, n0, _SOC,
+var SelectObjectContent$ = [9, n0, _SOC,
     { [_h]: ["POST", "/{Key+}?select&select-type=2", 200] }, () => SelectObjectContentRequest$, () => SelectObjectContentOutput$
 ];
-exports.UpdateBucketMetadataAnnotationTableConfiguration$ = [9, n0, _UBMATC,
+var UpdateBucketMetadataAnnotationTableConfiguration$ = [9, n0, _UBMATC,
     { [_hC]: "-", [_h]: ["PUT", "/?metadataAnnotationTable", 200] }, () => UpdateBucketMetadataAnnotationTableConfigurationRequest$, () => __Unit
 ];
-exports.UpdateBucketMetadataInventoryTableConfiguration$ = [9, n0, _UBMITC,
+var UpdateBucketMetadataInventoryTableConfiguration$ = [9, n0, _UBMITC,
     { [_hC]: "-", [_h]: ["PUT", "/?metadataInventoryTable", 200] }, () => UpdateBucketMetadataInventoryTableConfigurationRequest$, () => __Unit
 ];
-exports.UpdateBucketMetadataJournalTableConfiguration$ = [9, n0, _UBMJTC,
+var UpdateBucketMetadataJournalTableConfiguration$ = [9, n0, _UBMJTC,
     { [_hC]: "-", [_h]: ["PUT", "/?metadataJournalTable", 200] }, () => UpdateBucketMetadataJournalTableConfigurationRequest$, () => __Unit
 ];
-exports.UpdateObjectEncryption$ = [9, n0, _UOE,
+var UpdateObjectEncryption$ = [9, n0, _UOE,
     { [_hC]: "-", [_h]: ["PUT", "/{Key+}?encryption", 200] }, () => UpdateObjectEncryptionRequest$, () => UpdateObjectEncryptionResponse$
 ];
-exports.UploadPart$ = [9, n0, _UP,
+var UploadPart$ = [9, n0, _UP,
     { [_hC]: "-", [_h]: ["PUT", "/{Key+}?x-id=UploadPart", 200] }, () => UploadPartRequest$, () => UploadPartOutput$
 ];
-exports.UploadPartCopy$ = [9, n0, _UPC,
+var UploadPartCopy$ = [9, n0, _UPC,
     { [_h]: ["PUT", "/{Key+}?x-id=UploadPartCopy", 200] }, () => UploadPartCopyRequest$, () => UploadPartCopyOutput$
 ];
-exports.WriteGetObjectResponse$ = [9, n0, _WGOR,
+var WriteGetObjectResponse$ = [9, n0, _WGOR,
     { [_en]: ["{RequestRoute}."], [_h]: ["POST", "/WriteGetObjectResponse", 200] }, () => WriteGetObjectResponseRequest$, () => __Unit
 ];
+
+class CreateSessionCommand extends command(_ep4, _mw0, "CreateSession", CreateSession$) {
+}
+
+var version = "3.1094.0";
+var packageInfo = {
+	version: version};
+
+const getRuntimeConfig$1 = (config) => {
+    return {
+        apiVersion: "2006-03-01",
+        base64Decoder: config?.base64Decoder ?? fromBase64,
+        base64Encoder: config?.base64Encoder ?? toBase64,
+        disableHostPrefix: config?.disableHostPrefix ?? false,
+        endpointProvider: config?.endpointProvider ?? defaultEndpointResolver,
+        extensions: config?.extensions ?? [],
+        getAwsChunkedEncodingStream: config?.getAwsChunkedEncodingStream ?? getAwsChunkedEncodingStream,
+        httpAuthSchemeProvider: config?.httpAuthSchemeProvider ?? defaultS3HttpAuthSchemeProvider,
+        httpAuthSchemes: config?.httpAuthSchemes ?? [
+            {
+                schemeId: "aws.auth#sigv4",
+                identityProvider: (ipc) => ipc.getIdentityProvider("aws.auth#sigv4"),
+                signer: new AwsSdkSigV4Signer(),
+            },
+            {
+                schemeId: "aws.auth#sigv4a",
+                identityProvider: (ipc) => ipc.getIdentityProvider("aws.auth#sigv4a"),
+                signer: new AwsSdkSigV4ASigner(),
+            },
+        ],
+        logger: config?.logger ?? new NoOpLogger(),
+        md5: config?.md5 ?? Md5,
+        protocol: config?.protocol ?? S3RestXmlProtocol,
+        protocolSettings: config?.protocolSettings ?? {
+            defaultNamespace: "com.amazonaws.s3",
+            errorTypeRegistries,
+            xmlNamespace: "http://s3.amazonaws.com/doc/2006-03-01/",
+            version: "2006-03-01",
+            serviceTarget: "AmazonS3",
+        },
+        sdkStreamMixin: config?.sdkStreamMixin ?? sdkStreamMixin,
+        serviceId: config?.serviceId ?? "S3",
+        sha1: config?.sha1 ?? Sha1,
+        sha256: config?.sha256 ?? Sha256,
+        signerConstructor: config?.signerConstructor ?? SignatureV4MultiRegion,
+        signingEscapePath: config?.signingEscapePath ?? false,
+        urlParser: config?.urlParser ?? parseUrl,
+        useArnRegion: config?.useArnRegion ?? undefined,
+        utf8Decoder: config?.utf8Decoder ?? fromUtf8,
+        utf8Encoder: config?.utf8Encoder ?? toUtf8,
+    };
+};
+
+const getRuntimeConfig = (config) => {
+    emitWarningIfUnsupportedVersion(process.version);
+    const defaultsMode = resolveDefaultsModeConfig(config);
+    const defaultConfigProvider = () => defaultsMode().then(loadConfigsForDefaultMode);
+    const clientSharedValues = getRuntimeConfig$1(config);
+    emitWarningIfUnsupportedVersion$1(process.version);
+    const loaderConfig = {
+        profile: config?.profile,
+        logger: clientSharedValues.logger,
+    };
+    return {
+        ...clientSharedValues,
+        ...config,
+        runtime: "node",
+        defaultsMode,
+        authSchemePreference: config?.authSchemePreference ?? loadConfig(NODE_AUTH_SCHEME_PREFERENCE_OPTIONS, loaderConfig),
+        bodyLengthChecker: config?.bodyLengthChecker ?? calculateBodyLength,
+        credentialDefaultProvider: config?.credentialDefaultProvider ?? defaultProvider,
+        defaultUserAgentProvider: config?.defaultUserAgentProvider ?? createDefaultUserAgentProvider({ serviceId: clientSharedValues.serviceId, clientVersion: packageInfo.version }),
+        disableS3ExpressSessionAuth: config?.disableS3ExpressSessionAuth ?? loadConfig(NODE_DISABLE_S3_EXPRESS_SESSION_AUTH_OPTIONS, loaderConfig),
+        eventStreamSerdeProvider: config?.eventStreamSerdeProvider ?? eventStreamSerdeProvider,
+        maxAttempts: config?.maxAttempts ?? loadConfig(NODE_MAX_ATTEMPT_CONFIG_OPTIONS, config),
+        region: config?.region ?? loadConfig(NODE_REGION_CONFIG_OPTIONS, { ...NODE_REGION_CONFIG_FILE_OPTIONS, ...loaderConfig }),
+        requestChecksumCalculation: config?.requestChecksumCalculation ?? loadConfig(NODE_REQUEST_CHECKSUM_CALCULATION_CONFIG_OPTIONS, loaderConfig),
+        requestHandler: NodeHttpHandler.create(config?.requestHandler ?? defaultConfigProvider),
+        responseChecksumValidation: config?.responseChecksumValidation ?? loadConfig(NODE_RESPONSE_CHECKSUM_VALIDATION_CONFIG_OPTIONS, loaderConfig),
+        retryMode: config?.retryMode ??
+            loadConfig({
+                ...NODE_RETRY_MODE_CONFIG_OPTIONS,
+                default: async () => (await defaultConfigProvider()).retryMode || DEFAULT_RETRY_MODE,
+            }, config),
+        sigv4aSigningRegionSet: config?.sigv4aSigningRegionSet ?? loadConfig(NODE_SIGV4A_CONFIG_OPTIONS, loaderConfig),
+        streamCollector: config?.streamCollector ?? streamCollector,
+        streamHasher: config?.streamHasher ?? readableStreamHasher,
+        useArnRegion: config?.useArnRegion ?? loadConfig(NODE_USE_ARN_REGION_CONFIG_OPTIONS, loaderConfig),
+        useDualstackEndpoint: config?.useDualstackEndpoint ?? loadConfig(NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS, loaderConfig),
+        useFipsEndpoint: config?.useFipsEndpoint ?? loadConfig(NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS, loaderConfig),
+        userAgentAppId: config?.userAgentAppId ?? loadConfig(NODE_APP_ID_CONFIG_OPTIONS, loaderConfig),
+    };
+};
+
+const getHttpAuthExtensionConfiguration = (runtimeConfig) => {
+    const _httpAuthSchemes = runtimeConfig.httpAuthSchemes;
+    let _httpAuthSchemeProvider = runtimeConfig.httpAuthSchemeProvider;
+    let _credentials = runtimeConfig.credentials;
+    return {
+        setHttpAuthScheme(httpAuthScheme) {
+            const index = _httpAuthSchemes.findIndex((scheme) => scheme.schemeId === httpAuthScheme.schemeId);
+            if (index === -1) {
+                _httpAuthSchemes.push(httpAuthScheme);
+            }
+            else {
+                _httpAuthSchemes.splice(index, 1, httpAuthScheme);
+            }
+        },
+        httpAuthSchemes() {
+            return _httpAuthSchemes;
+        },
+        setHttpAuthSchemeProvider(httpAuthSchemeProvider) {
+            _httpAuthSchemeProvider = httpAuthSchemeProvider;
+        },
+        httpAuthSchemeProvider() {
+            return _httpAuthSchemeProvider;
+        },
+        setCredentials(credentials) {
+            _credentials = credentials;
+        },
+        credentials() {
+            return _credentials;
+        },
+    };
+};
+const resolveHttpAuthRuntimeConfig = (config) => {
+    return {
+        httpAuthSchemes: config.httpAuthSchemes(),
+        httpAuthSchemeProvider: config.httpAuthSchemeProvider(),
+        credentials: config.credentials(),
+    };
+};
+
+const resolveRuntimeExtensions = (runtimeConfig, extensions) => {
+    const extensionConfiguration = Object.assign(getAwsRegionExtensionConfiguration(runtimeConfig), getDefaultExtensionConfiguration(runtimeConfig), getHttpHandlerExtensionConfiguration(runtimeConfig), getHttpAuthExtensionConfiguration(runtimeConfig));
+    extensions.forEach((extension) => extension.configure(extensionConfiguration));
+    return Object.assign(runtimeConfig, resolveAwsRegionExtensionConfiguration(extensionConfiguration), resolveDefaultRuntimeConfig(extensionConfiguration), resolveHttpHandlerRuntimeConfig(extensionConfiguration), resolveHttpAuthRuntimeConfig(extensionConfiguration));
+};
+
+class S3Client extends Client {
+    config;
+    constructor(...[configuration]) {
+        const _config_0 = getRuntimeConfig(configuration || {});
+        super(_config_0);
+        this.initConfig = _config_0;
+        const _config_1 = resolveClientEndpointParameters(_config_0);
+        const _config_2 = resolveUserAgentConfig(_config_1);
+        const _config_3 = resolveFlexibleChecksumsConfig(_config_2);
+        const _config_4 = resolveRetryConfig(_config_3);
+        const _config_5 = resolveRegionConfig(_config_4);
+        const _config_6 = resolveHostHeaderConfig(_config_5);
+        const _config_7 = resolveEndpointConfig(_config_6);
+        const _config_8 = resolveEventStreamSerdeConfig(_config_7);
+        const _config_9 = resolveHttpAuthSchemeConfig(_config_8);
+        const _config_10 = resolveS3Config(_config_9, { session: [() => this, CreateSessionCommand] });
+        const _config_11 = resolveRuntimeExtensions(_config_10, configuration?.extensions || []);
+        this.config = _config_11;
+        this.middlewareStack.use(getSchemaSerdePlugin(this.config));
+        this.middlewareStack.use(getUserAgentPlugin(this.config));
+        this.middlewareStack.use(getRetryPlugin(this.config));
+        this.middlewareStack.use(getContentLengthPlugin(this.config));
+        this.middlewareStack.use(getHostHeaderPlugin(this.config));
+        this.middlewareStack.use(getLoggerPlugin(this.config));
+        this.middlewareStack.use(getRecursionDetectionPlugin(this.config));
+        this.middlewareStack.use(getHttpAuthSchemeEndpointRuleSetPlugin(this.config, {
+            httpAuthSchemeParametersProvider: defaultS3HttpAuthSchemeParametersProvider,
+            identityProviderConfigProvider: async (config) => new DefaultIdentityProviderConfig({
+                "aws.auth#sigv4": config.credentials,
+                "aws.auth#sigv4a": config.credentials,
+            }),
+        }));
+        this.middlewareStack.use(getHttpSigningPlugin(this.config));
+        this.middlewareStack.use(getValidateBucketNamePlugin(this.config));
+        this.middlewareStack.use(getAddExpectContinuePlugin(this.config));
+        this.middlewareStack.use(getRegionRedirectMiddlewarePlugin(this.config));
+        this.middlewareStack.use(getS3ExpressPlugin(this.config));
+        this.middlewareStack.use(getS3ExpressHttpSigningPlugin(this.config));
+    }
+    destroy() {
+        super.destroy();
+    }
+}
+
+class AbortMultipartUploadCommand extends command(_ep0, _mw0, "AbortMultipartUpload", AbortMultipartUpload$) {
+}
+
+class CompleteMultipartUploadCommand extends command(_ep0, _mw1, "CompleteMultipartUpload", CompleteMultipartUpload$) {
+}
+
+class CopyObjectCommand extends command(_ep1, _mw1, "CopyObject", CopyObject$) {
+}
+
+class CreateBucketCommand extends command(_ep2, _mw2, "CreateBucket", CreateBucket$) {
+}
+
+class CreateBucketMetadataConfigurationCommand extends command(_ep3, _mw3, "CreateBucketMetadataConfiguration", CreateBucketMetadataConfiguration$) {
+}
+
+class CreateBucketMetadataTableConfigurationCommand extends command(_ep3, _mw3, "CreateBucketMetadataTableConfiguration", CreateBucketMetadataTableConfiguration$) {
+}
+
+class CreateMultipartUploadCommand extends command(_ep0, _mw1, "CreateMultipartUpload", CreateMultipartUpload$) {
+}
+
+class DeleteBucketAnalyticsConfigurationCommand extends command(_ep3, _mw4, "DeleteBucketAnalyticsConfiguration", DeleteBucketAnalyticsConfiguration$) {
+}
+
+class DeleteBucketCommand extends command(_ep3, _mw4, "DeleteBucket", DeleteBucket$) {
+}
+
+class DeleteBucketCorsCommand extends command(_ep3, _mw4, "DeleteBucketCors", DeleteBucketCors$) {
+}
+
+class DeleteBucketEncryptionCommand extends command(_ep3, _mw4, "DeleteBucketEncryption", DeleteBucketEncryption$) {
+}
+
+class DeleteBucketIntelligentTieringConfigurationCommand extends command(_ep3, _mw4, "DeleteBucketIntelligentTieringConfiguration", DeleteBucketIntelligentTieringConfiguration$) {
+}
+
+class DeleteBucketInventoryConfigurationCommand extends command(_ep3, _mw4, "DeleteBucketInventoryConfiguration", DeleteBucketInventoryConfiguration$) {
+}
+
+class DeleteBucketLifecycleCommand extends command(_ep3, _mw4, "DeleteBucketLifecycle", DeleteBucketLifecycle$) {
+}
+
+class DeleteBucketMetadataConfigurationCommand extends command(_ep3, _mw4, "DeleteBucketMetadataConfiguration", DeleteBucketMetadataConfiguration$) {
+}
+
+class DeleteBucketMetadataTableConfigurationCommand extends command(_ep3, _mw4, "DeleteBucketMetadataTableConfiguration", DeleteBucketMetadataTableConfiguration$) {
+}
+
+class DeleteBucketMetricsConfigurationCommand extends command(_ep3, _mw4, "DeleteBucketMetricsConfiguration", DeleteBucketMetricsConfiguration$) {
+}
+
+class DeleteBucketOwnershipControlsCommand extends command(_ep3, _mw4, "DeleteBucketOwnershipControls", DeleteBucketOwnershipControls$) {
+}
+
+class DeleteBucketPolicyCommand extends command(_ep3, _mw4, "DeleteBucketPolicy", DeleteBucketPolicy$) {
+}
+
+class DeleteBucketReplicationCommand extends command(_ep3, _mw4, "DeleteBucketReplication", DeleteBucketReplication$) {
+}
+
+class DeleteBucketTaggingCommand extends command(_ep3, _mw4, "DeleteBucketTagging", DeleteBucketTagging$) {
+}
+
+class DeleteBucketWebsiteCommand extends command(_ep3, _mw4, "DeleteBucketWebsite", DeleteBucketWebsite$) {
+}
+
+class DeleteObjectAnnotationCommand extends command(_ep5, _mw0, "DeleteObjectAnnotation", DeleteObjectAnnotation$) {
+}
+
+class DeleteObjectCommand extends command(_ep0, _mw0, "DeleteObject", DeleteObject$) {
+}
+
+class DeleteObjectsCommand extends command(_ep5, _mw5, "DeleteObjects", DeleteObjects$) {
+}
+
+class DeleteObjectTaggingCommand extends command(_ep5, _mw0, "DeleteObjectTagging", DeleteObjectTagging$) {
+}
+
+class DeletePublicAccessBlockCommand extends command(_ep3, _mw4, "DeletePublicAccessBlock", DeletePublicAccessBlock$) {
+}
+
+class GetBucketAbacCommand extends command(_ep5, _mw0, "GetBucketAbac", GetBucketAbac$) {
+}
+
+class GetBucketAccelerateConfigurationCommand extends command(_ep3, _mw0, "GetBucketAccelerateConfiguration", GetBucketAccelerateConfiguration$) {
+}
+
+class GetBucketAclCommand extends command(_ep3, _mw0, "GetBucketAcl", GetBucketAcl$) {
+}
+
+class GetBucketAnalyticsConfigurationCommand extends command(_ep3, _mw0, "GetBucketAnalyticsConfiguration", GetBucketAnalyticsConfiguration$) {
+}
+
+class GetBucketCorsCommand extends command(_ep3, _mw0, "GetBucketCors", GetBucketCors$) {
+}
+
+class GetBucketEncryptionCommand extends command(_ep3, _mw0, "GetBucketEncryption", GetBucketEncryption$) {
+}
+
+class GetBucketIntelligentTieringConfigurationCommand extends command(_ep3, _mw0, "GetBucketIntelligentTieringConfiguration", GetBucketIntelligentTieringConfiguration$) {
+}
+
+class GetBucketInventoryConfigurationCommand extends command(_ep3, _mw0, "GetBucketInventoryConfiguration", GetBucketInventoryConfiguration$) {
+}
+
+class GetBucketLifecycleConfigurationCommand extends command(_ep3, _mw0, "GetBucketLifecycleConfiguration", GetBucketLifecycleConfiguration$) {
+}
+
+class GetBucketLocationCommand extends command(_ep3, _mw0, "GetBucketLocation", GetBucketLocation$) {
+}
+
+class GetBucketLoggingCommand extends command(_ep3, _mw0, "GetBucketLogging", GetBucketLogging$) {
+}
+
+class GetBucketMetadataConfigurationCommand extends command(_ep3, _mw0, "GetBucketMetadataConfiguration", GetBucketMetadataConfiguration$) {
+}
+
+class GetBucketMetadataTableConfigurationCommand extends command(_ep3, _mw0, "GetBucketMetadataTableConfiguration", GetBucketMetadataTableConfiguration$) {
+}
+
+class GetBucketMetricsConfigurationCommand extends command(_ep3, _mw0, "GetBucketMetricsConfiguration", GetBucketMetricsConfiguration$) {
+}
+
+class GetBucketNotificationConfigurationCommand extends command(_ep3, _mw0, "GetBucketNotificationConfiguration", GetBucketNotificationConfiguration$) {
+}
+
+class GetBucketOwnershipControlsCommand extends command(_ep3, _mw0, "GetBucketOwnershipControls", GetBucketOwnershipControls$) {
+}
+
+class GetBucketPolicyCommand extends command(_ep3, _mw4, "GetBucketPolicy", GetBucketPolicy$) {
+}
+
+class GetBucketPolicyStatusCommand extends command(_ep3, _mw0, "GetBucketPolicyStatus", GetBucketPolicyStatus$) {
+}
+
+class GetBucketReplicationCommand extends command(_ep3, _mw0, "GetBucketReplication", GetBucketReplication$) {
+}
+
+class GetBucketRequestPaymentCommand extends command(_ep3, _mw0, "GetBucketRequestPayment", GetBucketRequestPayment$) {
+}
+
+class GetBucketTaggingCommand extends command(_ep3, _mw0, "GetBucketTagging", GetBucketTagging$) {
+}
+
+class GetBucketVersioningCommand extends command(_ep3, _mw0, "GetBucketVersioning", GetBucketVersioning$) {
+}
+
+class GetBucketWebsiteCommand extends command(_ep3, _mw0, "GetBucketWebsite", GetBucketWebsite$) {
+}
+
+class GetObjectAclCommand extends command(_ep0, _mw0, "GetObjectAcl", GetObjectAcl$) {
+}
+
+class GetObjectAnnotationCommand extends command(_ep0, _mw6, "GetObjectAnnotation", GetObjectAnnotation$) {
+}
+
+class GetObjectAttributesCommand extends command(_ep5, _mw1, "GetObjectAttributes", GetObjectAttributes$) {
+}
+
+class GetObjectCommand extends command(_ep0, _mw7, "GetObject", GetObject$) {
+}
+
+class GetObjectLegalHoldCommand extends command(_ep5, _mw0, "GetObjectLegalHold", GetObjectLegalHold$) {
+}
+
+class GetObjectLockConfigurationCommand extends command(_ep5, _mw0, "GetObjectLockConfiguration", GetObjectLockConfiguration$) {
+}
+
+class GetObjectRetentionCommand extends command(_ep5, _mw0, "GetObjectRetention", GetObjectRetention$) {
+}
+
+class GetObjectTaggingCommand extends command(_ep5, _mw0, "GetObjectTagging", GetObjectTagging$) {
+}
+
+class GetObjectTorrentCommand extends command(_ep5, _mw4, "GetObjectTorrent", GetObjectTorrent$) {
+}
+
+class GetPublicAccessBlockCommand extends command(_ep3, _mw0, "GetPublicAccessBlock", GetPublicAccessBlock$) {
+}
+
+class HeadBucketCommand extends command(_ep5, _mw0, "HeadBucket", HeadBucket$) {
+}
+
+class HeadObjectCommand extends command(_ep0, _mw8, "HeadObject", HeadObject$) {
+}
+
+class ListBucketAnalyticsConfigurationsCommand extends command(_ep3, _mw0, "ListBucketAnalyticsConfigurations", ListBucketAnalyticsConfigurations$) {
+}
+
+class ListBucketIntelligentTieringConfigurationsCommand extends command(_ep3, _mw0, "ListBucketIntelligentTieringConfigurations", ListBucketIntelligentTieringConfigurations$) {
+}
+
+class ListBucketInventoryConfigurationsCommand extends command(_ep3, _mw0, "ListBucketInventoryConfigurations", ListBucketInventoryConfigurations$) {
+}
+
+class ListBucketMetricsConfigurationsCommand extends command(_ep3, _mw0, "ListBucketMetricsConfigurations", ListBucketMetricsConfigurations$) {
+}
+
+class ListBucketsCommand extends command(_ep6, _mw0, "ListBuckets", ListBuckets$) {
+}
+
+class ListDirectoryBucketsCommand extends command(_ep7, _mw0, "ListDirectoryBuckets", ListDirectoryBuckets$) {
+}
+
+class ListMultipartUploadsCommand extends command(_ep8, _mw0, "ListMultipartUploads", ListMultipartUploads$) {
+}
+
+class ListObjectAnnotationsCommand extends command(_ep5, _mw0, "ListObjectAnnotations", ListObjectAnnotations$) {
+}
+
+class ListObjectsCommand extends command(_ep8, _mw0, "ListObjects", ListObjects$) {
+}
+
+class ListObjectsV2Command extends command(_ep8, _mw0, "ListObjectsV2", ListObjectsV2$) {
+}
+
+class ListObjectVersionsCommand extends command(_ep8, _mw0, "ListObjectVersions", ListObjectVersions$) {
+}
+
+class ListPartsCommand extends command(_ep0, _mw1, "ListParts", ListParts$) {
+}
+
+class PutBucketAbacCommand extends command(_ep5, _mw9, "PutBucketAbac", PutBucketAbac$) {
+}
+
+class PutBucketAccelerateConfigurationCommand extends command(_ep3, _mw9, "PutBucketAccelerateConfiguration", PutBucketAccelerateConfiguration$) {
+}
+
+class PutBucketAclCommand extends command(_ep3, _mw3, "PutBucketAcl", PutBucketAcl$) {
+}
+
+class PutBucketAnalyticsConfigurationCommand extends command(_ep3, _mw4, "PutBucketAnalyticsConfiguration", PutBucketAnalyticsConfiguration$) {
+}
+
+class PutBucketCorsCommand extends command(_ep3, _mw3, "PutBucketCors", PutBucketCors$) {
+}
+
+class PutBucketEncryptionCommand extends command(_ep3, _mw3, "PutBucketEncryption", PutBucketEncryption$) {
+}
+
+class PutBucketIntelligentTieringConfigurationCommand extends command(_ep3, _mw4, "PutBucketIntelligentTieringConfiguration", PutBucketIntelligentTieringConfiguration$) {
+}
+
+class PutBucketInventoryConfigurationCommand extends command(_ep3, _mw4, "PutBucketInventoryConfiguration", PutBucketInventoryConfiguration$) {
+}
+
+class PutBucketLifecycleConfigurationCommand extends command(_ep3, _mw5, "PutBucketLifecycleConfiguration", PutBucketLifecycleConfiguration$) {
+}
+
+class PutBucketLoggingCommand extends command(_ep3, _mw3, "PutBucketLogging", PutBucketLogging$) {
+}
+
+class PutBucketMetricsConfigurationCommand extends command(_ep3, _mw4, "PutBucketMetricsConfiguration", PutBucketMetricsConfiguration$) {
+}
+
+class PutBucketNotificationConfigurationCommand extends command(_ep3, _mw4, "PutBucketNotificationConfiguration", PutBucketNotificationConfiguration$) {
+}
+
+class PutBucketOwnershipControlsCommand extends command(_ep3, _mw3, "PutBucketOwnershipControls", PutBucketOwnershipControls$) {
+}
+
+class PutBucketPolicyCommand extends command(_ep3, _mw3, "PutBucketPolicy", PutBucketPolicy$) {
+}
+
+class PutBucketReplicationCommand extends command(_ep3, _mw3, "PutBucketReplication", PutBucketReplication$) {
+}
+
+class PutBucketRequestPaymentCommand extends command(_ep3, _mw3, "PutBucketRequestPayment", PutBucketRequestPayment$) {
+}
+
+class PutBucketTaggingCommand extends command(_ep3, _mw3, "PutBucketTagging", PutBucketTagging$) {
+}
+
+class PutBucketVersioningCommand extends command(_ep3, _mw3, "PutBucketVersioning", PutBucketVersioning$) {
+}
+
+class PutBucketWebsiteCommand extends command(_ep3, _mw3, "PutBucketWebsite", PutBucketWebsite$) {
+}
+
+class PutObjectAclCommand extends command(_ep0, _mw5, "PutObjectAcl", PutObjectAcl$) {
+}
+
+class PutObjectAnnotationCommand extends command(_ep0, _mw10, "PutObjectAnnotation", PutObjectAnnotation$) {
+}
+
+class PutObjectCommand extends command(_ep0, _mw11, "PutObject", PutObject$) {
+}
+
+class PutObjectLegalHoldCommand extends command(_ep5, _mw5, "PutObjectLegalHold", PutObjectLegalHold$) {
+}
+
+class PutObjectLockConfigurationCommand extends command(_ep5, _mw5, "PutObjectLockConfiguration", PutObjectLockConfiguration$) {
+}
+
+class PutObjectRetentionCommand extends command(_ep5, _mw5, "PutObjectRetention", PutObjectRetention$) {
+}
+
+class PutObjectTaggingCommand extends command(_ep5, _mw5, "PutObjectTagging", PutObjectTagging$) {
+}
+
+class PutPublicAccessBlockCommand extends command(_ep3, _mw3, "PutPublicAccessBlock", PutPublicAccessBlock$) {
+}
+
+class RenameObjectCommand extends command(_ep0, _mw0, "RenameObject", RenameObject$) {
+}
+
+class RestoreObjectCommand extends command(_ep5, _mw10, "RestoreObject", RestoreObject$) {
+}
+
+class SelectObjectContentCommand extends command(_ep5, _mw12, "SelectObjectContent", SelectObjectContent$) {
+}
+
+class UpdateBucketMetadataAnnotationTableConfigurationCommand extends command(_ep3, _mw3, "UpdateBucketMetadataAnnotationTableConfiguration", UpdateBucketMetadataAnnotationTableConfiguration$) {
+}
+
+class UpdateBucketMetadataInventoryTableConfigurationCommand extends command(_ep3, _mw3, "UpdateBucketMetadataInventoryTableConfiguration", UpdateBucketMetadataInventoryTableConfiguration$) {
+}
+
+class UpdateBucketMetadataJournalTableConfigurationCommand extends command(_ep3, _mw3, "UpdateBucketMetadataJournalTableConfiguration", UpdateBucketMetadataJournalTableConfiguration$) {
+}
+
+class UpdateObjectEncryptionCommand extends command(_ep5, _mw5, "UpdateObjectEncryption", UpdateObjectEncryption$) {
+}
+
+class UploadPartCommand extends command(_ep0, _mw13, "UploadPart", UploadPart$) {
+}
+
+class UploadPartCopyCommand extends command(_ep4, _mw1, "UploadPartCopy", UploadPartCopy$) {
+}
+
+class WriteGetObjectResponseCommand extends command(_ep9, _mw4, "WriteGetObjectResponse", WriteGetObjectResponse$) {
+}
+
+const paginateListBuckets = createPaginator(S3Client, ListBucketsCommand, "ContinuationToken", "ContinuationToken", "MaxBuckets");
+
+const paginateListDirectoryBuckets = createPaginator(S3Client, ListDirectoryBucketsCommand, "ContinuationToken", "ContinuationToken", "MaxDirectoryBuckets");
+
+const paginateListObjectAnnotations = createPaginator(S3Client, ListObjectAnnotationsCommand, "ContinuationToken", "NextContinuationToken", "MaxAnnotationResults");
+
+const paginateListObjectsV2 = createPaginator(S3Client, ListObjectsV2Command, "ContinuationToken", "NextContinuationToken", "MaxKeys");
+
+const paginateListParts = createPaginator(S3Client, ListPartsCommand, "PartNumberMarker", "NextPartNumberMarker", "MaxParts");
+
+const checkState$3 = async (client, input) => {
+    let reason;
+    try {
+        let result = await client.send(new HeadBucketCommand(input));
+        reason = result;
+        return { state: WaiterState.SUCCESS, reason };
+    }
+    catch (exception) {
+        reason = exception;
+        if (exception.name === "NotFound") {
+            return { state: WaiterState.RETRY, reason };
+        }
+    }
+    return { state: WaiterState.RETRY, reason };
+};
+const waitForBucketExists = async (params, input) => {
+    const serviceDefaults = { minDelay: 5, maxDelay: 120 };
+    return createWaiter({ ...serviceDefaults, ...params }, input, checkState$3);
+};
+const waitUntilBucketExists = async (params, input) => {
+    const serviceDefaults = { minDelay: 5, maxDelay: 120 };
+    const result = await createWaiter({ ...serviceDefaults, ...params }, input, checkState$3);
+    return checkExceptions(result);
+};
+
+const checkState$2 = async (client, input) => {
+    let reason;
+    try {
+        let result = await client.send(new HeadBucketCommand(input));
+        reason = result;
+    }
+    catch (exception) {
+        reason = exception;
+        if (exception.name === "NotFound") {
+            return { state: WaiterState.SUCCESS, reason };
+        }
+    }
+    return { state: WaiterState.RETRY, reason };
+};
+const waitForBucketNotExists = async (params, input) => {
+    const serviceDefaults = { minDelay: 5, maxDelay: 120 };
+    return createWaiter({ ...serviceDefaults, ...params }, input, checkState$2);
+};
+const waitUntilBucketNotExists = async (params, input) => {
+    const serviceDefaults = { minDelay: 5, maxDelay: 120 };
+    const result = await createWaiter({ ...serviceDefaults, ...params }, input, checkState$2);
+    return checkExceptions(result);
+};
+
+const checkState$1 = async (client, input) => {
+    let reason;
+    try {
+        let result = await client.send(new HeadObjectCommand(input));
+        reason = result;
+        return { state: WaiterState.SUCCESS, reason };
+    }
+    catch (exception) {
+        reason = exception;
+        if (exception.name === "NotFound") {
+            return { state: WaiterState.RETRY, reason };
+        }
+    }
+    return { state: WaiterState.RETRY, reason };
+};
+const waitForObjectExists = async (params, input) => {
+    const serviceDefaults = { minDelay: 5, maxDelay: 120 };
+    return createWaiter({ ...serviceDefaults, ...params }, input, checkState$1);
+};
+const waitUntilObjectExists = async (params, input) => {
+    const serviceDefaults = { minDelay: 5, maxDelay: 120 };
+    const result = await createWaiter({ ...serviceDefaults, ...params }, input, checkState$1);
+    return checkExceptions(result);
+};
+
+const checkState = async (client, input) => {
+    let reason;
+    try {
+        let result = await client.send(new HeadObjectCommand(input));
+        reason = result;
+    }
+    catch (exception) {
+        reason = exception;
+        if (exception.name === "NotFound") {
+            return { state: WaiterState.SUCCESS, reason };
+        }
+    }
+    return { state: WaiterState.RETRY, reason };
+};
+const waitForObjectNotExists = async (params, input) => {
+    const serviceDefaults = { minDelay: 5, maxDelay: 120 };
+    return createWaiter({ ...serviceDefaults, ...params }, input, checkState);
+};
+const waitUntilObjectNotExists = async (params, input) => {
+    const serviceDefaults = { minDelay: 5, maxDelay: 120 };
+    const result = await createWaiter({ ...serviceDefaults, ...params }, input, checkState);
+    return checkExceptions(result);
+};
+
+const commands = {
+    AbortMultipartUploadCommand,
+    CompleteMultipartUploadCommand,
+    CopyObjectCommand,
+    CreateBucketCommand,
+    CreateBucketMetadataConfigurationCommand,
+    CreateBucketMetadataTableConfigurationCommand,
+    CreateMultipartUploadCommand,
+    CreateSessionCommand,
+    DeleteBucketCommand,
+    DeleteBucketAnalyticsConfigurationCommand,
+    DeleteBucketCorsCommand,
+    DeleteBucketEncryptionCommand,
+    DeleteBucketIntelligentTieringConfigurationCommand,
+    DeleteBucketInventoryConfigurationCommand,
+    DeleteBucketLifecycleCommand,
+    DeleteBucketMetadataConfigurationCommand,
+    DeleteBucketMetadataTableConfigurationCommand,
+    DeleteBucketMetricsConfigurationCommand,
+    DeleteBucketOwnershipControlsCommand,
+    DeleteBucketPolicyCommand,
+    DeleteBucketReplicationCommand,
+    DeleteBucketTaggingCommand,
+    DeleteBucketWebsiteCommand,
+    DeleteObjectCommand,
+    DeleteObjectAnnotationCommand,
+    DeleteObjectsCommand,
+    DeleteObjectTaggingCommand,
+    DeletePublicAccessBlockCommand,
+    GetBucketAbacCommand,
+    GetBucketAccelerateConfigurationCommand,
+    GetBucketAclCommand,
+    GetBucketAnalyticsConfigurationCommand,
+    GetBucketCorsCommand,
+    GetBucketEncryptionCommand,
+    GetBucketIntelligentTieringConfigurationCommand,
+    GetBucketInventoryConfigurationCommand,
+    GetBucketLifecycleConfigurationCommand,
+    GetBucketLocationCommand,
+    GetBucketLoggingCommand,
+    GetBucketMetadataConfigurationCommand,
+    GetBucketMetadataTableConfigurationCommand,
+    GetBucketMetricsConfigurationCommand,
+    GetBucketNotificationConfigurationCommand,
+    GetBucketOwnershipControlsCommand,
+    GetBucketPolicyCommand,
+    GetBucketPolicyStatusCommand,
+    GetBucketReplicationCommand,
+    GetBucketRequestPaymentCommand,
+    GetBucketTaggingCommand,
+    GetBucketVersioningCommand,
+    GetBucketWebsiteCommand,
+    GetObjectCommand,
+    GetObjectAclCommand,
+    GetObjectAnnotationCommand,
+    GetObjectAttributesCommand,
+    GetObjectLegalHoldCommand,
+    GetObjectLockConfigurationCommand,
+    GetObjectRetentionCommand,
+    GetObjectTaggingCommand,
+    GetObjectTorrentCommand,
+    GetPublicAccessBlockCommand,
+    HeadBucketCommand,
+    HeadObjectCommand,
+    ListBucketAnalyticsConfigurationsCommand,
+    ListBucketIntelligentTieringConfigurationsCommand,
+    ListBucketInventoryConfigurationsCommand,
+    ListBucketMetricsConfigurationsCommand,
+    ListBucketsCommand,
+    ListDirectoryBucketsCommand,
+    ListMultipartUploadsCommand,
+    ListObjectAnnotationsCommand,
+    ListObjectsCommand,
+    ListObjectsV2Command,
+    ListObjectVersionsCommand,
+    ListPartsCommand,
+    PutBucketAbacCommand,
+    PutBucketAccelerateConfigurationCommand,
+    PutBucketAclCommand,
+    PutBucketAnalyticsConfigurationCommand,
+    PutBucketCorsCommand,
+    PutBucketEncryptionCommand,
+    PutBucketIntelligentTieringConfigurationCommand,
+    PutBucketInventoryConfigurationCommand,
+    PutBucketLifecycleConfigurationCommand,
+    PutBucketLoggingCommand,
+    PutBucketMetricsConfigurationCommand,
+    PutBucketNotificationConfigurationCommand,
+    PutBucketOwnershipControlsCommand,
+    PutBucketPolicyCommand,
+    PutBucketReplicationCommand,
+    PutBucketRequestPaymentCommand,
+    PutBucketTaggingCommand,
+    PutBucketVersioningCommand,
+    PutBucketWebsiteCommand,
+    PutObjectCommand,
+    PutObjectAclCommand,
+    PutObjectAnnotationCommand,
+    PutObjectLegalHoldCommand,
+    PutObjectLockConfigurationCommand,
+    PutObjectRetentionCommand,
+    PutObjectTaggingCommand,
+    PutPublicAccessBlockCommand,
+    RenameObjectCommand,
+    RestoreObjectCommand,
+    SelectObjectContentCommand,
+    UpdateBucketMetadataAnnotationTableConfigurationCommand,
+    UpdateBucketMetadataInventoryTableConfigurationCommand,
+    UpdateBucketMetadataJournalTableConfigurationCommand,
+    UpdateObjectEncryptionCommand,
+    UploadPartCommand,
+    UploadPartCopyCommand,
+    WriteGetObjectResponseCommand,
+};
+const paginators = {
+    paginateListBuckets,
+    paginateListDirectoryBuckets,
+    paginateListObjectAnnotations,
+    paginateListObjectsV2,
+    paginateListParts,
+};
+const waiters = {
+    waitUntilBucketExists,
+    waitUntilBucketNotExists,
+    waitUntilObjectExists,
+    waitUntilObjectNotExists,
+};
+class S3 extends S3Client {
+}
+createAggregatedClient(commands, S3, { paginators, waiters });
+
+const BucketAbacStatus = {
+    Disabled: "Disabled",
+    Enabled: "Enabled",
+};
+const RequestCharged = {
+    requester: "requester",
+};
+const RequestPayer = {
+    requester: "requester",
+};
+const BucketAccelerateStatus = {
+    Enabled: "Enabled",
+    Suspended: "Suspended",
+};
+const Type = {
+    AmazonCustomerByEmail: "AmazonCustomerByEmail",
+    CanonicalUser: "CanonicalUser",
+    Group: "Group",
+};
+const Permission = {
+    FULL_CONTROL: "FULL_CONTROL",
+    READ: "READ",
+    READ_ACP: "READ_ACP",
+    WRITE: "WRITE",
+    WRITE_ACP: "WRITE_ACP",
+};
+const OwnerOverride = {
+    Destination: "Destination",
+};
+const ChecksumType = {
+    COMPOSITE: "COMPOSITE",
+    FULL_OBJECT: "FULL_OBJECT",
+};
+const ServerSideEncryption = {
+    AES256: "AES256",
+    aws_fsx: "aws:fsx",
+    aws_kms: "aws:kms",
+    aws_kms_dsse: "aws:kms:dsse",
+};
+const ObjectCannedACL = {
+    authenticated_read: "authenticated-read",
+    aws_exec_read: "aws-exec-read",
+    bucket_owner_full_control: "bucket-owner-full-control",
+    bucket_owner_read: "bucket-owner-read",
+    private: "private",
+    public_read: "public-read",
+    public_read_write: "public-read-write",
+};
+const AnnotationDirective = {
+    COPY: "COPY",
+    EXCLUDE: "EXCLUDE",
+};
+const ChecksumAlgorithm = {
+    CRC32: "CRC32",
+    CRC32C: "CRC32C",
+    CRC64NVME: "CRC64NVME",
+    MD5: "MD5",
+    SHA1: "SHA1",
+    SHA256: "SHA256",
+    SHA512: "SHA512",
+    XXHASH128: "XXHASH128",
+    XXHASH3: "XXHASH3",
+    XXHASH64: "XXHASH64",
+};
+const MetadataDirective = {
+    COPY: "COPY",
+    REPLACE: "REPLACE",
+};
+const ObjectLockLegalHoldStatus = {
+    OFF: "OFF",
+    ON: "ON",
+};
+const ObjectLockMode = {
+    COMPLIANCE: "COMPLIANCE",
+    GOVERNANCE: "GOVERNANCE",
+};
+const StorageClass = {
+    DEEP_ARCHIVE: "DEEP_ARCHIVE",
+    EXPRESS_ONEZONE: "EXPRESS_ONEZONE",
+    FSX_ONTAP: "FSX_ONTAP",
+    FSX_OPENZFS: "FSX_OPENZFS",
+    GLACIER: "GLACIER",
+    GLACIER_IR: "GLACIER_IR",
+    INTELLIGENT_TIERING: "INTELLIGENT_TIERING",
+    ONEZONE_IA: "ONEZONE_IA",
+    OUTPOSTS: "OUTPOSTS",
+    REDUCED_REDUNDANCY: "REDUCED_REDUNDANCY",
+    SNOW: "SNOW",
+    STANDARD: "STANDARD",
+    STANDARD_IA: "STANDARD_IA",
+};
+const TaggingDirective = {
+    COPY: "COPY",
+    REPLACE: "REPLACE",
+};
+const BucketCannedACL = {
+    authenticated_read: "authenticated-read",
+    private: "private",
+    public_read: "public-read",
+    public_read_write: "public-read-write",
+};
+const BucketNamespace = {
+    ACCOUNT_REGIONAL: "account-regional",
+    GLOBAL: "global",
+};
+const DataRedundancy = {
+    SingleAvailabilityZone: "SingleAvailabilityZone",
+    SingleLocalZone: "SingleLocalZone",
+};
+const BucketType = {
+    Directory: "Directory",
+};
+const LocationType = {
+    AvailabilityZone: "AvailabilityZone",
+    LocalZone: "LocalZone",
+};
+const BucketLocationConstraint = {
+    EU: "EU",
+    af_south_1: "af-south-1",
+    ap_east_1: "ap-east-1",
+    ap_east_2: "ap-east-2",
+    ap_northeast_1: "ap-northeast-1",
+    ap_northeast_2: "ap-northeast-2",
+    ap_northeast_3: "ap-northeast-3",
+    ap_south_1: "ap-south-1",
+    ap_south_2: "ap-south-2",
+    ap_southeast_1: "ap-southeast-1",
+    ap_southeast_2: "ap-southeast-2",
+    ap_southeast_3: "ap-southeast-3",
+    ap_southeast_4: "ap-southeast-4",
+    ap_southeast_5: "ap-southeast-5",
+    ap_southeast_6: "ap-southeast-6",
+    ap_southeast_7: "ap-southeast-7",
+    ca_central_1: "ca-central-1",
+    ca_west_1: "ca-west-1",
+    cn_north_1: "cn-north-1",
+    cn_northwest_1: "cn-northwest-1",
+    eu_central_1: "eu-central-1",
+    eu_central_2: "eu-central-2",
+    eu_north_1: "eu-north-1",
+    eu_south_1: "eu-south-1",
+    eu_south_2: "eu-south-2",
+    eu_west_1: "eu-west-1",
+    eu_west_2: "eu-west-2",
+    eu_west_3: "eu-west-3",
+    il_central_1: "il-central-1",
+    me_central_1: "me-central-1",
+    me_south_1: "me-south-1",
+    mx_central_1: "mx-central-1",
+    sa_east_1: "sa-east-1",
+    us_east_2: "us-east-2",
+    us_gov_east_1: "us-gov-east-1",
+    us_gov_west_1: "us-gov-west-1",
+    us_west_1: "us-west-1",
+    us_west_2: "us-west-2",
+};
+const ObjectOwnership = {
+    BucketOwnerEnforced: "BucketOwnerEnforced",
+    BucketOwnerPreferred: "BucketOwnerPreferred",
+    ObjectWriter: "ObjectWriter",
+};
+const AnnotationConfigurationState = {
+    DISABLED: "DISABLED",
+    ENABLED: "ENABLED",
+};
+const TableSseAlgorithm = {
+    AES256: "AES256",
+    aws_kms: "aws:kms",
+};
+const InventoryConfigurationState = {
+    DISABLED: "DISABLED",
+    ENABLED: "ENABLED",
+};
+const ExpirationState = {
+    DISABLED: "DISABLED",
+    ENABLED: "ENABLED",
+};
+const SessionMode = {
+    ReadOnly: "ReadOnly",
+    ReadWrite: "ReadWrite",
+};
+const AnalyticsS3ExportFileFormat = {
+    CSV: "CSV",
+};
+const StorageClassAnalysisSchemaVersion = {
+    V_1: "V_1",
+};
+const EncryptionType = {
+    NONE: "NONE",
+    SSE_C: "SSE-C",
+};
+const IntelligentTieringStatus = {
+    Disabled: "Disabled",
+    Enabled: "Enabled",
+};
+const IntelligentTieringAccessTier = {
+    ARCHIVE_ACCESS: "ARCHIVE_ACCESS",
+    DEEP_ARCHIVE_ACCESS: "DEEP_ARCHIVE_ACCESS",
+};
+const InventoryFormat = {
+    CSV: "CSV",
+    ORC: "ORC",
+    Parquet: "Parquet",
+};
+const InventoryIncludedObjectVersions = {
+    All: "All",
+    Current: "Current",
+};
+const InventoryOptionalField = {
+    BucketKeyStatus: "BucketKeyStatus",
+    ChecksumAlgorithm: "ChecksumAlgorithm",
+    ETag: "ETag",
+    EncryptionStatus: "EncryptionStatus",
+    IntelligentTieringAccessTier: "IntelligentTieringAccessTier",
+    IsMultipartUploaded: "IsMultipartUploaded",
+    LastModifiedDate: "LastModifiedDate",
+    LifecycleExpirationDate: "LifecycleExpirationDate",
+    ObjectAccessControlList: "ObjectAccessControlList",
+    ObjectLockLegalHoldStatus: "ObjectLockLegalHoldStatus",
+    ObjectLockMode: "ObjectLockMode",
+    ObjectLockRetainUntilDate: "ObjectLockRetainUntilDate",
+    ObjectOwner: "ObjectOwner",
+    ReplicationStatus: "ReplicationStatus",
+    Size: "Size",
+    StorageClass: "StorageClass",
+};
+const InventoryFrequency = {
+    Daily: "Daily",
+    Weekly: "Weekly",
+};
+const TransitionStorageClass = {
+    DEEP_ARCHIVE: "DEEP_ARCHIVE",
+    GLACIER: "GLACIER",
+    GLACIER_IR: "GLACIER_IR",
+    INTELLIGENT_TIERING: "INTELLIGENT_TIERING",
+    ONEZONE_IA: "ONEZONE_IA",
+    STANDARD_IA: "STANDARD_IA",
+};
+const ExpirationStatus = {
+    Disabled: "Disabled",
+    Enabled: "Enabled",
+};
+const TransitionDefaultMinimumObjectSize = {
+    all_storage_classes_128K: "all_storage_classes_128K",
+    varies_by_storage_class: "varies_by_storage_class",
+};
+const BucketLogsPermission = {
+    FULL_CONTROL: "FULL_CONTROL",
+    READ: "READ",
+    WRITE: "WRITE",
+};
+const PartitionDateSource = {
+    DeliveryTime: "DeliveryTime",
+    EventTime: "EventTime",
+};
+const S3TablesBucketType = {
+    aws: "aws",
+    customer: "customer",
+};
+const Event = {
+    s3_IntelligentTiering: "s3:IntelligentTiering",
+    s3_LifecycleExpiration_: "s3:LifecycleExpiration:*",
+    s3_LifecycleExpiration_Delete: "s3:LifecycleExpiration:Delete",
+    s3_LifecycleExpiration_DeleteMarkerCreated: "s3:LifecycleExpiration:DeleteMarkerCreated",
+    s3_LifecycleTransition: "s3:LifecycleTransition",
+    s3_ObjectAcl_Put: "s3:ObjectAcl:Put",
+    s3_ObjectAnnotation_: "s3:ObjectAnnotation:*",
+    s3_ObjectAnnotation_Delete: "s3:ObjectAnnotation:Delete",
+    s3_ObjectAnnotation_Put: "s3:ObjectAnnotation:Put",
+    s3_ObjectCreated_: "s3:ObjectCreated:*",
+    s3_ObjectCreated_CompleteMultipartUpload: "s3:ObjectCreated:CompleteMultipartUpload",
+    s3_ObjectCreated_Copy: "s3:ObjectCreated:Copy",
+    s3_ObjectCreated_Post: "s3:ObjectCreated:Post",
+    s3_ObjectCreated_Put: "s3:ObjectCreated:Put",
+    s3_ObjectRemoved_: "s3:ObjectRemoved:*",
+    s3_ObjectRemoved_Delete: "s3:ObjectRemoved:Delete",
+    s3_ObjectRemoved_DeleteMarkerCreated: "s3:ObjectRemoved:DeleteMarkerCreated",
+    s3_ObjectRestore_: "s3:ObjectRestore:*",
+    s3_ObjectRestore_Completed: "s3:ObjectRestore:Completed",
+    s3_ObjectRestore_Delete: "s3:ObjectRestore:Delete",
+    s3_ObjectRestore_Post: "s3:ObjectRestore:Post",
+    s3_ObjectTagging_: "s3:ObjectTagging:*",
+    s3_ObjectTagging_Delete: "s3:ObjectTagging:Delete",
+    s3_ObjectTagging_Put: "s3:ObjectTagging:Put",
+    s3_ReducedRedundancyLostObject: "s3:ReducedRedundancyLostObject",
+    s3_Replication_: "s3:Replication:*",
+    s3_Replication_OperationFailedReplication: "s3:Replication:OperationFailedReplication",
+    s3_Replication_OperationMissedThreshold: "s3:Replication:OperationMissedThreshold",
+    s3_Replication_OperationNotTracked: "s3:Replication:OperationNotTracked",
+    s3_Replication_OperationReplicatedAfterThreshold: "s3:Replication:OperationReplicatedAfterThreshold",
+};
+const FilterRuleName = {
+    prefix: "prefix",
+    suffix: "suffix",
+};
+const DeleteMarkerReplicationStatus = {
+    Disabled: "Disabled",
+    Enabled: "Enabled",
+};
+const MetricsStatus = {
+    Disabled: "Disabled",
+    Enabled: "Enabled",
+};
+const ReplicationTimeStatus = {
+    Disabled: "Disabled",
+    Enabled: "Enabled",
+};
+const ExistingObjectReplicationStatus = {
+    Disabled: "Disabled",
+    Enabled: "Enabled",
+};
+const ReplicaModificationsStatus = {
+    Disabled: "Disabled",
+    Enabled: "Enabled",
+};
+const SseKmsEncryptedObjectsStatus = {
+    Disabled: "Disabled",
+    Enabled: "Enabled",
+};
+const ReplicationRuleStatus = {
+    Disabled: "Disabled",
+    Enabled: "Enabled",
+};
+const Payer = {
+    BucketOwner: "BucketOwner",
+    Requester: "Requester",
+};
+const MFADeleteStatus = {
+    Disabled: "Disabled",
+    Enabled: "Enabled",
+};
+const BucketVersioningStatus = {
+    Enabled: "Enabled",
+    Suspended: "Suspended",
+};
+const Protocol = {
+    http: "http",
+    https: "https",
+};
+const ReplicationStatus = {
+    COMPLETE: "COMPLETE",
+    COMPLETED: "COMPLETED",
+    FAILED: "FAILED",
+    PENDING: "PENDING",
+    REPLICA: "REPLICA",
+};
+const ChecksumMode = {
+    ENABLED: "ENABLED",
+};
+const ObjectAttributes = {
+    CHECKSUM: "Checksum",
+    ETAG: "ETag",
+    OBJECT_PARTS: "ObjectParts",
+    OBJECT_SIZE: "ObjectSize",
+    STORAGE_CLASS: "StorageClass",
+};
+const ObjectLockEnabled = {
+    Enabled: "Enabled",
+};
+const ObjectLockRetentionMode = {
+    COMPLIANCE: "COMPLIANCE",
+    GOVERNANCE: "GOVERNANCE",
+};
+const ArchiveStatus = {
+    ARCHIVE_ACCESS: "ARCHIVE_ACCESS",
+    DEEP_ARCHIVE_ACCESS: "DEEP_ARCHIVE_ACCESS",
+};
+const EncodingType = {
+    url: "url",
+};
+const ObjectStorageClass = {
+    DEEP_ARCHIVE: "DEEP_ARCHIVE",
+    EXPRESS_ONEZONE: "EXPRESS_ONEZONE",
+    FSX_ONTAP: "FSX_ONTAP",
+    FSX_OPENZFS: "FSX_OPENZFS",
+    GLACIER: "GLACIER",
+    GLACIER_IR: "GLACIER_IR",
+    INTELLIGENT_TIERING: "INTELLIGENT_TIERING",
+    ONEZONE_IA: "ONEZONE_IA",
+    OUTPOSTS: "OUTPOSTS",
+    REDUCED_REDUNDANCY: "REDUCED_REDUNDANCY",
+    SNOW: "SNOW",
+    STANDARD: "STANDARD",
+    STANDARD_IA: "STANDARD_IA",
+};
+const OptionalObjectAttributes = {
+    RESTORE_STATUS: "RestoreStatus",
+};
+const ObjectVersionStorageClass = {
+    STANDARD: "STANDARD",
+};
+const MFADelete = {
+    Disabled: "Disabled",
+    Enabled: "Enabled",
+};
+const Tier = {
+    Bulk: "Bulk",
+    Expedited: "Expedited",
+    Standard: "Standard",
+};
+const ExpressionType = {
+    SQL: "SQL",
+};
+const CompressionType = {
+    BZIP2: "BZIP2",
+    GZIP: "GZIP",
+    NONE: "NONE",
+};
+const FileHeaderInfo = {
+    IGNORE: "IGNORE",
+    NONE: "NONE",
+    USE: "USE",
+};
+const JSONType = {
+    DOCUMENT: "DOCUMENT",
+    LINES: "LINES",
+};
+const QuoteFields = {
+    ALWAYS: "ALWAYS",
+    ASNEEDED: "ASNEEDED",
+};
+const RestoreRequestType = {
+    SELECT: "SELECT",
+};
+
+exports.AbacStatus$ = AbacStatus$;
+exports.AbortIncompleteMultipartUpload$ = AbortIncompleteMultipartUpload$;
+exports.AbortMultipartUpload$ = AbortMultipartUpload$;
+exports.AbortMultipartUploadCommand = AbortMultipartUploadCommand;
+exports.AbortMultipartUploadOutput$ = AbortMultipartUploadOutput$;
+exports.AbortMultipartUploadRequest$ = AbortMultipartUploadRequest$;
+exports.AccelerateConfiguration$ = AccelerateConfiguration$;
+exports.AccessControlPolicy$ = AccessControlPolicy$;
+exports.AccessControlTranslation$ = AccessControlTranslation$;
+exports.AccessDenied = AccessDenied;
+exports.AccessDenied$ = AccessDenied$;
+exports.AnalyticsAndOperator$ = AnalyticsAndOperator$;
+exports.AnalyticsConfiguration$ = AnalyticsConfiguration$;
+exports.AnalyticsExportDestination$ = AnalyticsExportDestination$;
+exports.AnalyticsFilter$ = AnalyticsFilter$;
+exports.AnalyticsS3BucketDestination$ = AnalyticsS3BucketDestination$;
+exports.AnalyticsS3ExportFileFormat = AnalyticsS3ExportFileFormat;
+exports.AnnotationConfigurationState = AnnotationConfigurationState;
+exports.AnnotationDirective = AnnotationDirective;
+exports.AnnotationEntry$ = AnnotationEntry$;
+exports.AnnotationLimitExceeded = AnnotationLimitExceeded;
+exports.AnnotationLimitExceeded$ = AnnotationLimitExceeded$;
+exports.AnnotationNameTooLong = AnnotationNameTooLong;
+exports.AnnotationNameTooLong$ = AnnotationNameTooLong$;
+exports.AnnotationTableConfiguration$ = AnnotationTableConfiguration$;
+exports.AnnotationTableConfigurationResult$ = AnnotationTableConfigurationResult$;
+exports.AnnotationTableConfigurationUpdates$ = AnnotationTableConfigurationUpdates$;
+exports.ArchiveStatus = ArchiveStatus;
+exports.BlockedEncryptionTypes$ = BlockedEncryptionTypes$;
+exports.Bucket$ = Bucket$;
+exports.BucketAbacStatus = BucketAbacStatus;
+exports.BucketAccelerateStatus = BucketAccelerateStatus;
+exports.BucketAlreadyExists = BucketAlreadyExists;
+exports.BucketAlreadyExists$ = BucketAlreadyExists$;
+exports.BucketAlreadyOwnedByYou = BucketAlreadyOwnedByYou;
+exports.BucketAlreadyOwnedByYou$ = BucketAlreadyOwnedByYou$;
+exports.BucketCannedACL = BucketCannedACL;
+exports.BucketInfo$ = BucketInfo$;
+exports.BucketLifecycleConfiguration$ = BucketLifecycleConfiguration$;
+exports.BucketLocationConstraint = BucketLocationConstraint;
+exports.BucketLoggingStatus$ = BucketLoggingStatus$;
+exports.BucketLogsPermission = BucketLogsPermission;
+exports.BucketNamespace = BucketNamespace;
+exports.BucketType = BucketType;
+exports.BucketVersioningStatus = BucketVersioningStatus;
+exports.CORSConfiguration$ = CORSConfiguration$;
+exports.CORSRule$ = CORSRule$;
+exports.CSVInput$ = CSVInput$;
+exports.CSVOutput$ = CSVOutput$;
+exports.Checksum$ = Checksum$;
+exports.ChecksumAlgorithm = ChecksumAlgorithm;
+exports.ChecksumMode = ChecksumMode;
+exports.ChecksumType = ChecksumType;
+exports.CommonPrefix$ = CommonPrefix$;
+exports.CompleteMultipartUpload$ = CompleteMultipartUpload$;
+exports.CompleteMultipartUploadCommand = CompleteMultipartUploadCommand;
+exports.CompleteMultipartUploadOutput$ = CompleteMultipartUploadOutput$;
+exports.CompleteMultipartUploadRequest$ = CompleteMultipartUploadRequest$;
+exports.CompletedMultipartUpload$ = CompletedMultipartUpload$;
+exports.CompletedPart$ = CompletedPart$;
+exports.CompressionType = CompressionType;
+exports.Condition$ = Condition$;
+exports.ContinuationEvent$ = ContinuationEvent$;
+exports.CopyObject$ = CopyObject$;
+exports.CopyObjectCommand = CopyObjectCommand;
+exports.CopyObjectOutput$ = CopyObjectOutput$;
+exports.CopyObjectRequest$ = CopyObjectRequest$;
+exports.CopyObjectResult$ = CopyObjectResult$;
+exports.CopyPartResult$ = CopyPartResult$;
+exports.CreateBucket$ = CreateBucket$;
+exports.CreateBucketCommand = CreateBucketCommand;
+exports.CreateBucketConfiguration$ = CreateBucketConfiguration$;
+exports.CreateBucketMetadataConfiguration$ = CreateBucketMetadataConfiguration$;
+exports.CreateBucketMetadataConfigurationCommand = CreateBucketMetadataConfigurationCommand;
+exports.CreateBucketMetadataConfigurationRequest$ = CreateBucketMetadataConfigurationRequest$;
+exports.CreateBucketMetadataTableConfiguration$ = CreateBucketMetadataTableConfiguration$;
+exports.CreateBucketMetadataTableConfigurationCommand = CreateBucketMetadataTableConfigurationCommand;
+exports.CreateBucketMetadataTableConfigurationRequest$ = CreateBucketMetadataTableConfigurationRequest$;
+exports.CreateBucketOutput$ = CreateBucketOutput$;
+exports.CreateBucketRequest$ = CreateBucketRequest$;
+exports.CreateMultipartUpload$ = CreateMultipartUpload$;
+exports.CreateMultipartUploadCommand = CreateMultipartUploadCommand;
+exports.CreateMultipartUploadOutput$ = CreateMultipartUploadOutput$;
+exports.CreateMultipartUploadRequest$ = CreateMultipartUploadRequest$;
+exports.CreateSession$ = CreateSession$;
+exports.CreateSessionCommand = CreateSessionCommand;
+exports.CreateSessionOutput$ = CreateSessionOutput$;
+exports.CreateSessionRequest$ = CreateSessionRequest$;
+exports.DataRedundancy = DataRedundancy;
+exports.DefaultRetention$ = DefaultRetention$;
+exports.Delete$ = Delete$;
+exports.DeleteBucket$ = DeleteBucket$;
+exports.DeleteBucketAnalyticsConfiguration$ = DeleteBucketAnalyticsConfiguration$;
+exports.DeleteBucketAnalyticsConfigurationCommand = DeleteBucketAnalyticsConfigurationCommand;
+exports.DeleteBucketAnalyticsConfigurationRequest$ = DeleteBucketAnalyticsConfigurationRequest$;
+exports.DeleteBucketCommand = DeleteBucketCommand;
+exports.DeleteBucketCors$ = DeleteBucketCors$;
+exports.DeleteBucketCorsCommand = DeleteBucketCorsCommand;
+exports.DeleteBucketCorsRequest$ = DeleteBucketCorsRequest$;
+exports.DeleteBucketEncryption$ = DeleteBucketEncryption$;
+exports.DeleteBucketEncryptionCommand = DeleteBucketEncryptionCommand;
+exports.DeleteBucketEncryptionRequest$ = DeleteBucketEncryptionRequest$;
+exports.DeleteBucketIntelligentTieringConfiguration$ = DeleteBucketIntelligentTieringConfiguration$;
+exports.DeleteBucketIntelligentTieringConfigurationCommand = DeleteBucketIntelligentTieringConfigurationCommand;
+exports.DeleteBucketIntelligentTieringConfigurationRequest$ = DeleteBucketIntelligentTieringConfigurationRequest$;
+exports.DeleteBucketInventoryConfiguration$ = DeleteBucketInventoryConfiguration$;
+exports.DeleteBucketInventoryConfigurationCommand = DeleteBucketInventoryConfigurationCommand;
+exports.DeleteBucketInventoryConfigurationRequest$ = DeleteBucketInventoryConfigurationRequest$;
+exports.DeleteBucketLifecycle$ = DeleteBucketLifecycle$;
+exports.DeleteBucketLifecycleCommand = DeleteBucketLifecycleCommand;
+exports.DeleteBucketLifecycleRequest$ = DeleteBucketLifecycleRequest$;
+exports.DeleteBucketMetadataConfiguration$ = DeleteBucketMetadataConfiguration$;
+exports.DeleteBucketMetadataConfigurationCommand = DeleteBucketMetadataConfigurationCommand;
+exports.DeleteBucketMetadataConfigurationRequest$ = DeleteBucketMetadataConfigurationRequest$;
+exports.DeleteBucketMetadataTableConfiguration$ = DeleteBucketMetadataTableConfiguration$;
+exports.DeleteBucketMetadataTableConfigurationCommand = DeleteBucketMetadataTableConfigurationCommand;
+exports.DeleteBucketMetadataTableConfigurationRequest$ = DeleteBucketMetadataTableConfigurationRequest$;
+exports.DeleteBucketMetricsConfiguration$ = DeleteBucketMetricsConfiguration$;
+exports.DeleteBucketMetricsConfigurationCommand = DeleteBucketMetricsConfigurationCommand;
+exports.DeleteBucketMetricsConfigurationRequest$ = DeleteBucketMetricsConfigurationRequest$;
+exports.DeleteBucketOwnershipControls$ = DeleteBucketOwnershipControls$;
+exports.DeleteBucketOwnershipControlsCommand = DeleteBucketOwnershipControlsCommand;
+exports.DeleteBucketOwnershipControlsRequest$ = DeleteBucketOwnershipControlsRequest$;
+exports.DeleteBucketPolicy$ = DeleteBucketPolicy$;
+exports.DeleteBucketPolicyCommand = DeleteBucketPolicyCommand;
+exports.DeleteBucketPolicyRequest$ = DeleteBucketPolicyRequest$;
+exports.DeleteBucketReplication$ = DeleteBucketReplication$;
+exports.DeleteBucketReplicationCommand = DeleteBucketReplicationCommand;
+exports.DeleteBucketReplicationRequest$ = DeleteBucketReplicationRequest$;
+exports.DeleteBucketRequest$ = DeleteBucketRequest$;
+exports.DeleteBucketTagging$ = DeleteBucketTagging$;
+exports.DeleteBucketTaggingCommand = DeleteBucketTaggingCommand;
+exports.DeleteBucketTaggingRequest$ = DeleteBucketTaggingRequest$;
+exports.DeleteBucketWebsite$ = DeleteBucketWebsite$;
+exports.DeleteBucketWebsiteCommand = DeleteBucketWebsiteCommand;
+exports.DeleteBucketWebsiteRequest$ = DeleteBucketWebsiteRequest$;
+exports.DeleteMarkerEntry$ = DeleteMarkerEntry$;
+exports.DeleteMarkerReplication$ = DeleteMarkerReplication$;
+exports.DeleteMarkerReplicationStatus = DeleteMarkerReplicationStatus;
+exports.DeleteObject$ = DeleteObject$;
+exports.DeleteObjectAnnotation$ = DeleteObjectAnnotation$;
+exports.DeleteObjectAnnotationCommand = DeleteObjectAnnotationCommand;
+exports.DeleteObjectAnnotationOutput$ = DeleteObjectAnnotationOutput$;
+exports.DeleteObjectAnnotationRequest$ = DeleteObjectAnnotationRequest$;
+exports.DeleteObjectCommand = DeleteObjectCommand;
+exports.DeleteObjectOutput$ = DeleteObjectOutput$;
+exports.DeleteObjectRequest$ = DeleteObjectRequest$;
+exports.DeleteObjectTagging$ = DeleteObjectTagging$;
+exports.DeleteObjectTaggingCommand = DeleteObjectTaggingCommand;
+exports.DeleteObjectTaggingOutput$ = DeleteObjectTaggingOutput$;
+exports.DeleteObjectTaggingRequest$ = DeleteObjectTaggingRequest$;
+exports.DeleteObjects$ = DeleteObjects$;
+exports.DeleteObjectsCommand = DeleteObjectsCommand;
+exports.DeleteObjectsOutput$ = DeleteObjectsOutput$;
+exports.DeleteObjectsRequest$ = DeleteObjectsRequest$;
+exports.DeletePublicAccessBlock$ = DeletePublicAccessBlock$;
+exports.DeletePublicAccessBlockCommand = DeletePublicAccessBlockCommand;
+exports.DeletePublicAccessBlockRequest$ = DeletePublicAccessBlockRequest$;
+exports.DeletedObject$ = DeletedObject$;
+exports.Destination$ = Destination$;
+exports.DestinationResult$ = DestinationResult$;
+exports.EncodingType = EncodingType;
+exports.Encryption$ = Encryption$;
+exports.EncryptionConfiguration$ = EncryptionConfiguration$;
+exports.EncryptionType = EncryptionType;
+exports.EncryptionTypeMismatch = EncryptionTypeMismatch;
+exports.EncryptionTypeMismatch$ = EncryptionTypeMismatch$;
+exports.EndEvent$ = EndEvent$;
+exports.ErrorDetails$ = ErrorDetails$;
+exports.ErrorDocument$ = ErrorDocument$;
+exports.Event = Event;
+exports.EventBridgeConfiguration$ = EventBridgeConfiguration$;
+exports.ExistingObjectReplication$ = ExistingObjectReplication$;
+exports.ExistingObjectReplicationStatus = ExistingObjectReplicationStatus;
+exports.ExpirationState = ExpirationState;
+exports.ExpirationStatus = ExpirationStatus;
+exports.ExpressionType = ExpressionType;
+exports.FileHeaderInfo = FileHeaderInfo;
+exports.FilterRule$ = FilterRule$;
+exports.FilterRuleName = FilterRuleName;
+exports.GetBucketAbac$ = GetBucketAbac$;
+exports.GetBucketAbacCommand = GetBucketAbacCommand;
+exports.GetBucketAbacOutput$ = GetBucketAbacOutput$;
+exports.GetBucketAbacRequest$ = GetBucketAbacRequest$;
+exports.GetBucketAccelerateConfiguration$ = GetBucketAccelerateConfiguration$;
+exports.GetBucketAccelerateConfigurationCommand = GetBucketAccelerateConfigurationCommand;
+exports.GetBucketAccelerateConfigurationOutput$ = GetBucketAccelerateConfigurationOutput$;
+exports.GetBucketAccelerateConfigurationRequest$ = GetBucketAccelerateConfigurationRequest$;
+exports.GetBucketAcl$ = GetBucketAcl$;
+exports.GetBucketAclCommand = GetBucketAclCommand;
+exports.GetBucketAclOutput$ = GetBucketAclOutput$;
+exports.GetBucketAclRequest$ = GetBucketAclRequest$;
+exports.GetBucketAnalyticsConfiguration$ = GetBucketAnalyticsConfiguration$;
+exports.GetBucketAnalyticsConfigurationCommand = GetBucketAnalyticsConfigurationCommand;
+exports.GetBucketAnalyticsConfigurationOutput$ = GetBucketAnalyticsConfigurationOutput$;
+exports.GetBucketAnalyticsConfigurationRequest$ = GetBucketAnalyticsConfigurationRequest$;
+exports.GetBucketCors$ = GetBucketCors$;
+exports.GetBucketCorsCommand = GetBucketCorsCommand;
+exports.GetBucketCorsOutput$ = GetBucketCorsOutput$;
+exports.GetBucketCorsRequest$ = GetBucketCorsRequest$;
+exports.GetBucketEncryption$ = GetBucketEncryption$;
+exports.GetBucketEncryptionCommand = GetBucketEncryptionCommand;
+exports.GetBucketEncryptionOutput$ = GetBucketEncryptionOutput$;
+exports.GetBucketEncryptionRequest$ = GetBucketEncryptionRequest$;
+exports.GetBucketIntelligentTieringConfiguration$ = GetBucketIntelligentTieringConfiguration$;
+exports.GetBucketIntelligentTieringConfigurationCommand = GetBucketIntelligentTieringConfigurationCommand;
+exports.GetBucketIntelligentTieringConfigurationOutput$ = GetBucketIntelligentTieringConfigurationOutput$;
+exports.GetBucketIntelligentTieringConfigurationRequest$ = GetBucketIntelligentTieringConfigurationRequest$;
+exports.GetBucketInventoryConfiguration$ = GetBucketInventoryConfiguration$;
+exports.GetBucketInventoryConfigurationCommand = GetBucketInventoryConfigurationCommand;
+exports.GetBucketInventoryConfigurationOutput$ = GetBucketInventoryConfigurationOutput$;
+exports.GetBucketInventoryConfigurationRequest$ = GetBucketInventoryConfigurationRequest$;
+exports.GetBucketLifecycleConfiguration$ = GetBucketLifecycleConfiguration$;
+exports.GetBucketLifecycleConfigurationCommand = GetBucketLifecycleConfigurationCommand;
+exports.GetBucketLifecycleConfigurationOutput$ = GetBucketLifecycleConfigurationOutput$;
+exports.GetBucketLifecycleConfigurationRequest$ = GetBucketLifecycleConfigurationRequest$;
+exports.GetBucketLocation$ = GetBucketLocation$;
+exports.GetBucketLocationCommand = GetBucketLocationCommand;
+exports.GetBucketLocationOutput$ = GetBucketLocationOutput$;
+exports.GetBucketLocationRequest$ = GetBucketLocationRequest$;
+exports.GetBucketLogging$ = GetBucketLogging$;
+exports.GetBucketLoggingCommand = GetBucketLoggingCommand;
+exports.GetBucketLoggingOutput$ = GetBucketLoggingOutput$;
+exports.GetBucketLoggingRequest$ = GetBucketLoggingRequest$;
+exports.GetBucketMetadataConfiguration$ = GetBucketMetadataConfiguration$;
+exports.GetBucketMetadataConfigurationCommand = GetBucketMetadataConfigurationCommand;
+exports.GetBucketMetadataConfigurationOutput$ = GetBucketMetadataConfigurationOutput$;
+exports.GetBucketMetadataConfigurationRequest$ = GetBucketMetadataConfigurationRequest$;
+exports.GetBucketMetadataConfigurationResult$ = GetBucketMetadataConfigurationResult$;
+exports.GetBucketMetadataTableConfiguration$ = GetBucketMetadataTableConfiguration$;
+exports.GetBucketMetadataTableConfigurationCommand = GetBucketMetadataTableConfigurationCommand;
+exports.GetBucketMetadataTableConfigurationOutput$ = GetBucketMetadataTableConfigurationOutput$;
+exports.GetBucketMetadataTableConfigurationRequest$ = GetBucketMetadataTableConfigurationRequest$;
+exports.GetBucketMetadataTableConfigurationResult$ = GetBucketMetadataTableConfigurationResult$;
+exports.GetBucketMetricsConfiguration$ = GetBucketMetricsConfiguration$;
+exports.GetBucketMetricsConfigurationCommand = GetBucketMetricsConfigurationCommand;
+exports.GetBucketMetricsConfigurationOutput$ = GetBucketMetricsConfigurationOutput$;
+exports.GetBucketMetricsConfigurationRequest$ = GetBucketMetricsConfigurationRequest$;
+exports.GetBucketNotificationConfiguration$ = GetBucketNotificationConfiguration$;
+exports.GetBucketNotificationConfigurationCommand = GetBucketNotificationConfigurationCommand;
+exports.GetBucketNotificationConfigurationRequest$ = GetBucketNotificationConfigurationRequest$;
+exports.GetBucketOwnershipControls$ = GetBucketOwnershipControls$;
+exports.GetBucketOwnershipControlsCommand = GetBucketOwnershipControlsCommand;
+exports.GetBucketOwnershipControlsOutput$ = GetBucketOwnershipControlsOutput$;
+exports.GetBucketOwnershipControlsRequest$ = GetBucketOwnershipControlsRequest$;
+exports.GetBucketPolicy$ = GetBucketPolicy$;
+exports.GetBucketPolicyCommand = GetBucketPolicyCommand;
+exports.GetBucketPolicyOutput$ = GetBucketPolicyOutput$;
+exports.GetBucketPolicyRequest$ = GetBucketPolicyRequest$;
+exports.GetBucketPolicyStatus$ = GetBucketPolicyStatus$;
+exports.GetBucketPolicyStatusCommand = GetBucketPolicyStatusCommand;
+exports.GetBucketPolicyStatusOutput$ = GetBucketPolicyStatusOutput$;
+exports.GetBucketPolicyStatusRequest$ = GetBucketPolicyStatusRequest$;
+exports.GetBucketReplication$ = GetBucketReplication$;
+exports.GetBucketReplicationCommand = GetBucketReplicationCommand;
+exports.GetBucketReplicationOutput$ = GetBucketReplicationOutput$;
+exports.GetBucketReplicationRequest$ = GetBucketReplicationRequest$;
+exports.GetBucketRequestPayment$ = GetBucketRequestPayment$;
+exports.GetBucketRequestPaymentCommand = GetBucketRequestPaymentCommand;
+exports.GetBucketRequestPaymentOutput$ = GetBucketRequestPaymentOutput$;
+exports.GetBucketRequestPaymentRequest$ = GetBucketRequestPaymentRequest$;
+exports.GetBucketTagging$ = GetBucketTagging$;
+exports.GetBucketTaggingCommand = GetBucketTaggingCommand;
+exports.GetBucketTaggingOutput$ = GetBucketTaggingOutput$;
+exports.GetBucketTaggingRequest$ = GetBucketTaggingRequest$;
+exports.GetBucketVersioning$ = GetBucketVersioning$;
+exports.GetBucketVersioningCommand = GetBucketVersioningCommand;
+exports.GetBucketVersioningOutput$ = GetBucketVersioningOutput$;
+exports.GetBucketVersioningRequest$ = GetBucketVersioningRequest$;
+exports.GetBucketWebsite$ = GetBucketWebsite$;
+exports.GetBucketWebsiteCommand = GetBucketWebsiteCommand;
+exports.GetBucketWebsiteOutput$ = GetBucketWebsiteOutput$;
+exports.GetBucketWebsiteRequest$ = GetBucketWebsiteRequest$;
+exports.GetObject$ = GetObject$;
+exports.GetObjectAcl$ = GetObjectAcl$;
+exports.GetObjectAclCommand = GetObjectAclCommand;
+exports.GetObjectAclOutput$ = GetObjectAclOutput$;
+exports.GetObjectAclRequest$ = GetObjectAclRequest$;
+exports.GetObjectAnnotation$ = GetObjectAnnotation$;
+exports.GetObjectAnnotationCommand = GetObjectAnnotationCommand;
+exports.GetObjectAnnotationOutput$ = GetObjectAnnotationOutput$;
+exports.GetObjectAnnotationRequest$ = GetObjectAnnotationRequest$;
+exports.GetObjectAttributes$ = GetObjectAttributes$;
+exports.GetObjectAttributesCommand = GetObjectAttributesCommand;
+exports.GetObjectAttributesOutput$ = GetObjectAttributesOutput$;
+exports.GetObjectAttributesParts$ = GetObjectAttributesParts$;
+exports.GetObjectAttributesRequest$ = GetObjectAttributesRequest$;
+exports.GetObjectCommand = GetObjectCommand;
+exports.GetObjectLegalHold$ = GetObjectLegalHold$;
+exports.GetObjectLegalHoldCommand = GetObjectLegalHoldCommand;
+exports.GetObjectLegalHoldOutput$ = GetObjectLegalHoldOutput$;
+exports.GetObjectLegalHoldRequest$ = GetObjectLegalHoldRequest$;
+exports.GetObjectLockConfiguration$ = GetObjectLockConfiguration$;
+exports.GetObjectLockConfigurationCommand = GetObjectLockConfigurationCommand;
+exports.GetObjectLockConfigurationOutput$ = GetObjectLockConfigurationOutput$;
+exports.GetObjectLockConfigurationRequest$ = GetObjectLockConfigurationRequest$;
+exports.GetObjectOutput$ = GetObjectOutput$;
+exports.GetObjectRequest$ = GetObjectRequest$;
+exports.GetObjectRetention$ = GetObjectRetention$;
+exports.GetObjectRetentionCommand = GetObjectRetentionCommand;
+exports.GetObjectRetentionOutput$ = GetObjectRetentionOutput$;
+exports.GetObjectRetentionRequest$ = GetObjectRetentionRequest$;
+exports.GetObjectTagging$ = GetObjectTagging$;
+exports.GetObjectTaggingCommand = GetObjectTaggingCommand;
+exports.GetObjectTaggingOutput$ = GetObjectTaggingOutput$;
+exports.GetObjectTaggingRequest$ = GetObjectTaggingRequest$;
+exports.GetObjectTorrent$ = GetObjectTorrent$;
+exports.GetObjectTorrentCommand = GetObjectTorrentCommand;
+exports.GetObjectTorrentOutput$ = GetObjectTorrentOutput$;
+exports.GetObjectTorrentRequest$ = GetObjectTorrentRequest$;
+exports.GetPublicAccessBlock$ = GetPublicAccessBlock$;
+exports.GetPublicAccessBlockCommand = GetPublicAccessBlockCommand;
+exports.GetPublicAccessBlockOutput$ = GetPublicAccessBlockOutput$;
+exports.GetPublicAccessBlockRequest$ = GetPublicAccessBlockRequest$;
+exports.GlacierJobParameters$ = GlacierJobParameters$;
+exports.Grant$ = Grant$;
+exports.Grantee$ = Grantee$;
+exports.HeadBucket$ = HeadBucket$;
+exports.HeadBucketCommand = HeadBucketCommand;
+exports.HeadBucketOutput$ = HeadBucketOutput$;
+exports.HeadBucketRequest$ = HeadBucketRequest$;
+exports.HeadObject$ = HeadObject$;
+exports.HeadObjectCommand = HeadObjectCommand;
+exports.HeadObjectOutput$ = HeadObjectOutput$;
+exports.HeadObjectRequest$ = HeadObjectRequest$;
+exports.IdempotencyParameterMismatch = IdempotencyParameterMismatch;
+exports.IdempotencyParameterMismatch$ = IdempotencyParameterMismatch$;
+exports.IndexDocument$ = IndexDocument$;
+exports.Initiator$ = Initiator$;
+exports.InputSerialization$ = InputSerialization$;
+exports.IntelligentTieringAccessTier = IntelligentTieringAccessTier;
+exports.IntelligentTieringAndOperator$ = IntelligentTieringAndOperator$;
+exports.IntelligentTieringConfiguration$ = IntelligentTieringConfiguration$;
+exports.IntelligentTieringFilter$ = IntelligentTieringFilter$;
+exports.IntelligentTieringStatus = IntelligentTieringStatus;
+exports.InvalidAnnotationName = InvalidAnnotationName;
+exports.InvalidAnnotationName$ = InvalidAnnotationName$;
+exports.InvalidObjectState = InvalidObjectState;
+exports.InvalidObjectState$ = InvalidObjectState$;
+exports.InvalidPrefix = InvalidPrefix;
+exports.InvalidPrefix$ = InvalidPrefix$;
+exports.InvalidRequest = InvalidRequest;
+exports.InvalidRequest$ = InvalidRequest$;
+exports.InvalidWriteOffset = InvalidWriteOffset;
+exports.InvalidWriteOffset$ = InvalidWriteOffset$;
+exports.InventoryConfiguration$ = InventoryConfiguration$;
+exports.InventoryConfigurationState = InventoryConfigurationState;
+exports.InventoryDestination$ = InventoryDestination$;
+exports.InventoryEncryption$ = InventoryEncryption$;
+exports.InventoryFilter$ = InventoryFilter$;
+exports.InventoryFormat = InventoryFormat;
+exports.InventoryFrequency = InventoryFrequency;
+exports.InventoryIncludedObjectVersions = InventoryIncludedObjectVersions;
+exports.InventoryOptionalField = InventoryOptionalField;
+exports.InventoryS3BucketDestination$ = InventoryS3BucketDestination$;
+exports.InventorySchedule$ = InventorySchedule$;
+exports.InventoryTableConfiguration$ = InventoryTableConfiguration$;
+exports.InventoryTableConfigurationResult$ = InventoryTableConfigurationResult$;
+exports.InventoryTableConfigurationUpdates$ = InventoryTableConfigurationUpdates$;
+exports.JSONInput$ = JSONInput$;
+exports.JSONOutput$ = JSONOutput$;
+exports.JSONType = JSONType;
+exports.JournalTableConfiguration$ = JournalTableConfiguration$;
+exports.JournalTableConfigurationResult$ = JournalTableConfigurationResult$;
+exports.JournalTableConfigurationUpdates$ = JournalTableConfigurationUpdates$;
+exports.LambdaFunctionConfiguration$ = LambdaFunctionConfiguration$;
+exports.LifecycleExpiration$ = LifecycleExpiration$;
+exports.LifecycleRule$ = LifecycleRule$;
+exports.LifecycleRuleAndOperator$ = LifecycleRuleAndOperator$;
+exports.LifecycleRuleFilter$ = LifecycleRuleFilter$;
+exports.ListBucketAnalyticsConfigurations$ = ListBucketAnalyticsConfigurations$;
+exports.ListBucketAnalyticsConfigurationsCommand = ListBucketAnalyticsConfigurationsCommand;
+exports.ListBucketAnalyticsConfigurationsOutput$ = ListBucketAnalyticsConfigurationsOutput$;
+exports.ListBucketAnalyticsConfigurationsRequest$ = ListBucketAnalyticsConfigurationsRequest$;
+exports.ListBucketIntelligentTieringConfigurations$ = ListBucketIntelligentTieringConfigurations$;
+exports.ListBucketIntelligentTieringConfigurationsCommand = ListBucketIntelligentTieringConfigurationsCommand;
+exports.ListBucketIntelligentTieringConfigurationsOutput$ = ListBucketIntelligentTieringConfigurationsOutput$;
+exports.ListBucketIntelligentTieringConfigurationsRequest$ = ListBucketIntelligentTieringConfigurationsRequest$;
+exports.ListBucketInventoryConfigurations$ = ListBucketInventoryConfigurations$;
+exports.ListBucketInventoryConfigurationsCommand = ListBucketInventoryConfigurationsCommand;
+exports.ListBucketInventoryConfigurationsOutput$ = ListBucketInventoryConfigurationsOutput$;
+exports.ListBucketInventoryConfigurationsRequest$ = ListBucketInventoryConfigurationsRequest$;
+exports.ListBucketMetricsConfigurations$ = ListBucketMetricsConfigurations$;
+exports.ListBucketMetricsConfigurationsCommand = ListBucketMetricsConfigurationsCommand;
+exports.ListBucketMetricsConfigurationsOutput$ = ListBucketMetricsConfigurationsOutput$;
+exports.ListBucketMetricsConfigurationsRequest$ = ListBucketMetricsConfigurationsRequest$;
+exports.ListBuckets$ = ListBuckets$;
+exports.ListBucketsCommand = ListBucketsCommand;
+exports.ListBucketsOutput$ = ListBucketsOutput$;
+exports.ListBucketsRequest$ = ListBucketsRequest$;
+exports.ListDirectoryBuckets$ = ListDirectoryBuckets$;
+exports.ListDirectoryBucketsCommand = ListDirectoryBucketsCommand;
+exports.ListDirectoryBucketsOutput$ = ListDirectoryBucketsOutput$;
+exports.ListDirectoryBucketsRequest$ = ListDirectoryBucketsRequest$;
+exports.ListMultipartUploads$ = ListMultipartUploads$;
+exports.ListMultipartUploadsCommand = ListMultipartUploadsCommand;
+exports.ListMultipartUploadsOutput$ = ListMultipartUploadsOutput$;
+exports.ListMultipartUploadsRequest$ = ListMultipartUploadsRequest$;
+exports.ListObjectAnnotations$ = ListObjectAnnotations$;
+exports.ListObjectAnnotationsCommand = ListObjectAnnotationsCommand;
+exports.ListObjectAnnotationsOutput$ = ListObjectAnnotationsOutput$;
+exports.ListObjectAnnotationsRequest$ = ListObjectAnnotationsRequest$;
+exports.ListObjectVersions$ = ListObjectVersions$;
+exports.ListObjectVersionsCommand = ListObjectVersionsCommand;
+exports.ListObjectVersionsOutput$ = ListObjectVersionsOutput$;
+exports.ListObjectVersionsRequest$ = ListObjectVersionsRequest$;
+exports.ListObjects$ = ListObjects$;
+exports.ListObjectsCommand = ListObjectsCommand;
+exports.ListObjectsOutput$ = ListObjectsOutput$;
+exports.ListObjectsRequest$ = ListObjectsRequest$;
+exports.ListObjectsV2$ = ListObjectsV2$;
+exports.ListObjectsV2Command = ListObjectsV2Command;
+exports.ListObjectsV2Output$ = ListObjectsV2Output$;
+exports.ListObjectsV2Request$ = ListObjectsV2Request$;
+exports.ListParts$ = ListParts$;
+exports.ListPartsCommand = ListPartsCommand;
+exports.ListPartsOutput$ = ListPartsOutput$;
+exports.ListPartsRequest$ = ListPartsRequest$;
+exports.LocationInfo$ = LocationInfo$;
+exports.LocationType = LocationType;
+exports.LoggingEnabled$ = LoggingEnabled$;
+exports.MFADelete = MFADelete;
+exports.MFADeleteStatus = MFADeleteStatus;
+exports.MetadataConfiguration$ = MetadataConfiguration$;
+exports.MetadataConfigurationResult$ = MetadataConfigurationResult$;
+exports.MetadataDirective = MetadataDirective;
+exports.MetadataEntry$ = MetadataEntry$;
+exports.MetadataTableConfiguration$ = MetadataTableConfiguration$;
+exports.MetadataTableConfigurationResult$ = MetadataTableConfigurationResult$;
+exports.MetadataTableEncryptionConfiguration$ = MetadataTableEncryptionConfiguration$;
+exports.Metrics$ = Metrics$;
+exports.MetricsAndOperator$ = MetricsAndOperator$;
+exports.MetricsConfiguration$ = MetricsConfiguration$;
+exports.MetricsFilter$ = MetricsFilter$;
+exports.MetricsStatus = MetricsStatus;
+exports.MultipartUpload$ = MultipartUpload$;
+exports.NoSuchAnnotation = NoSuchAnnotation;
+exports.NoSuchAnnotation$ = NoSuchAnnotation$;
+exports.NoSuchBucket = NoSuchBucket;
+exports.NoSuchBucket$ = NoSuchBucket$;
+exports.NoSuchKey = NoSuchKey;
+exports.NoSuchKey$ = NoSuchKey$;
+exports.NoSuchUpload = NoSuchUpload;
+exports.NoSuchUpload$ = NoSuchUpload$;
+exports.NoncurrentVersionExpiration$ = NoncurrentVersionExpiration$;
+exports.NoncurrentVersionTransition$ = NoncurrentVersionTransition$;
+exports.NotFound = NotFound;
+exports.NotFound$ = NotFound$;
+exports.NotificationConfiguration$ = NotificationConfiguration$;
+exports.NotificationConfigurationFilter$ = NotificationConfigurationFilter$;
+exports.ObjectAlreadyInActiveTierError = ObjectAlreadyInActiveTierError;
+exports.ObjectAlreadyInActiveTierError$ = ObjectAlreadyInActiveTierError$;
+exports.ObjectAttributes = ObjectAttributes;
+exports.ObjectCannedACL = ObjectCannedACL;
+exports.ObjectEncryption$ = ObjectEncryption$;
+exports.ObjectIdentifier$ = ObjectIdentifier$;
+exports.ObjectLockConfiguration$ = ObjectLockConfiguration$;
+exports.ObjectLockEnabled = ObjectLockEnabled;
+exports.ObjectLockLegalHold$ = ObjectLockLegalHold$;
+exports.ObjectLockLegalHoldStatus = ObjectLockLegalHoldStatus;
+exports.ObjectLockMode = ObjectLockMode;
+exports.ObjectLockRetention$ = ObjectLockRetention$;
+exports.ObjectLockRetentionMode = ObjectLockRetentionMode;
+exports.ObjectLockRule$ = ObjectLockRule$;
+exports.ObjectNotInActiveTierError = ObjectNotInActiveTierError;
+exports.ObjectNotInActiveTierError$ = ObjectNotInActiveTierError$;
+exports.ObjectOwnership = ObjectOwnership;
+exports.ObjectPart$ = ObjectPart$;
+exports.ObjectStorageClass = ObjectStorageClass;
+exports.ObjectVersion$ = ObjectVersion$;
+exports.ObjectVersionStorageClass = ObjectVersionStorageClass;
+exports.OptionalObjectAttributes = OptionalObjectAttributes;
+exports.OutputLocation$ = OutputLocation$;
+exports.OutputSerialization$ = OutputSerialization$;
+exports.Owner$ = Owner$;
+exports.OwnerOverride = OwnerOverride;
+exports.OwnershipControls$ = OwnershipControls$;
+exports.OwnershipControlsRule$ = OwnershipControlsRule$;
+exports.ParquetInput$ = ParquetInput$;
+exports.Part$ = Part$;
+exports.PartitionDateSource = PartitionDateSource;
+exports.PartitionedPrefix$ = PartitionedPrefix$;
+exports.Payer = Payer;
+exports.Permission = Permission;
+exports.PolicyStatus$ = PolicyStatus$;
+exports.Progress$ = Progress$;
+exports.ProgressEvent$ = ProgressEvent$;
+exports.Protocol = Protocol;
+exports.PublicAccessBlockConfiguration$ = PublicAccessBlockConfiguration$;
+exports.PutBucketAbac$ = PutBucketAbac$;
+exports.PutBucketAbacCommand = PutBucketAbacCommand;
+exports.PutBucketAbacRequest$ = PutBucketAbacRequest$;
+exports.PutBucketAccelerateConfiguration$ = PutBucketAccelerateConfiguration$;
+exports.PutBucketAccelerateConfigurationCommand = PutBucketAccelerateConfigurationCommand;
+exports.PutBucketAccelerateConfigurationRequest$ = PutBucketAccelerateConfigurationRequest$;
+exports.PutBucketAcl$ = PutBucketAcl$;
+exports.PutBucketAclCommand = PutBucketAclCommand;
+exports.PutBucketAclRequest$ = PutBucketAclRequest$;
+exports.PutBucketAnalyticsConfiguration$ = PutBucketAnalyticsConfiguration$;
+exports.PutBucketAnalyticsConfigurationCommand = PutBucketAnalyticsConfigurationCommand;
+exports.PutBucketAnalyticsConfigurationRequest$ = PutBucketAnalyticsConfigurationRequest$;
+exports.PutBucketCors$ = PutBucketCors$;
+exports.PutBucketCorsCommand = PutBucketCorsCommand;
+exports.PutBucketCorsRequest$ = PutBucketCorsRequest$;
+exports.PutBucketEncryption$ = PutBucketEncryption$;
+exports.PutBucketEncryptionCommand = PutBucketEncryptionCommand;
+exports.PutBucketEncryptionRequest$ = PutBucketEncryptionRequest$;
+exports.PutBucketIntelligentTieringConfiguration$ = PutBucketIntelligentTieringConfiguration$;
+exports.PutBucketIntelligentTieringConfigurationCommand = PutBucketIntelligentTieringConfigurationCommand;
+exports.PutBucketIntelligentTieringConfigurationRequest$ = PutBucketIntelligentTieringConfigurationRequest$;
+exports.PutBucketInventoryConfiguration$ = PutBucketInventoryConfiguration$;
+exports.PutBucketInventoryConfigurationCommand = PutBucketInventoryConfigurationCommand;
+exports.PutBucketInventoryConfigurationRequest$ = PutBucketInventoryConfigurationRequest$;
+exports.PutBucketLifecycleConfiguration$ = PutBucketLifecycleConfiguration$;
+exports.PutBucketLifecycleConfigurationCommand = PutBucketLifecycleConfigurationCommand;
+exports.PutBucketLifecycleConfigurationOutput$ = PutBucketLifecycleConfigurationOutput$;
+exports.PutBucketLifecycleConfigurationRequest$ = PutBucketLifecycleConfigurationRequest$;
+exports.PutBucketLogging$ = PutBucketLogging$;
+exports.PutBucketLoggingCommand = PutBucketLoggingCommand;
+exports.PutBucketLoggingRequest$ = PutBucketLoggingRequest$;
+exports.PutBucketMetricsConfiguration$ = PutBucketMetricsConfiguration$;
+exports.PutBucketMetricsConfigurationCommand = PutBucketMetricsConfigurationCommand;
+exports.PutBucketMetricsConfigurationRequest$ = PutBucketMetricsConfigurationRequest$;
+exports.PutBucketNotificationConfiguration$ = PutBucketNotificationConfiguration$;
+exports.PutBucketNotificationConfigurationCommand = PutBucketNotificationConfigurationCommand;
+exports.PutBucketNotificationConfigurationRequest$ = PutBucketNotificationConfigurationRequest$;
+exports.PutBucketOwnershipControls$ = PutBucketOwnershipControls$;
+exports.PutBucketOwnershipControlsCommand = PutBucketOwnershipControlsCommand;
+exports.PutBucketOwnershipControlsRequest$ = PutBucketOwnershipControlsRequest$;
+exports.PutBucketPolicy$ = PutBucketPolicy$;
+exports.PutBucketPolicyCommand = PutBucketPolicyCommand;
+exports.PutBucketPolicyRequest$ = PutBucketPolicyRequest$;
+exports.PutBucketReplication$ = PutBucketReplication$;
+exports.PutBucketReplicationCommand = PutBucketReplicationCommand;
+exports.PutBucketReplicationRequest$ = PutBucketReplicationRequest$;
+exports.PutBucketRequestPayment$ = PutBucketRequestPayment$;
+exports.PutBucketRequestPaymentCommand = PutBucketRequestPaymentCommand;
+exports.PutBucketRequestPaymentRequest$ = PutBucketRequestPaymentRequest$;
+exports.PutBucketTagging$ = PutBucketTagging$;
+exports.PutBucketTaggingCommand = PutBucketTaggingCommand;
+exports.PutBucketTaggingRequest$ = PutBucketTaggingRequest$;
+exports.PutBucketVersioning$ = PutBucketVersioning$;
+exports.PutBucketVersioningCommand = PutBucketVersioningCommand;
+exports.PutBucketVersioningRequest$ = PutBucketVersioningRequest$;
+exports.PutBucketWebsite$ = PutBucketWebsite$;
+exports.PutBucketWebsiteCommand = PutBucketWebsiteCommand;
+exports.PutBucketWebsiteRequest$ = PutBucketWebsiteRequest$;
+exports.PutObject$ = PutObject$;
+exports.PutObjectAcl$ = PutObjectAcl$;
+exports.PutObjectAclCommand = PutObjectAclCommand;
+exports.PutObjectAclOutput$ = PutObjectAclOutput$;
+exports.PutObjectAclRequest$ = PutObjectAclRequest$;
+exports.PutObjectAnnotation$ = PutObjectAnnotation$;
+exports.PutObjectAnnotationCommand = PutObjectAnnotationCommand;
+exports.PutObjectAnnotationOutput$ = PutObjectAnnotationOutput$;
+exports.PutObjectAnnotationRequest$ = PutObjectAnnotationRequest$;
+exports.PutObjectCommand = PutObjectCommand;
+exports.PutObjectLegalHold$ = PutObjectLegalHold$;
+exports.PutObjectLegalHoldCommand = PutObjectLegalHoldCommand;
+exports.PutObjectLegalHoldOutput$ = PutObjectLegalHoldOutput$;
+exports.PutObjectLegalHoldRequest$ = PutObjectLegalHoldRequest$;
+exports.PutObjectLockConfiguration$ = PutObjectLockConfiguration$;
+exports.PutObjectLockConfigurationCommand = PutObjectLockConfigurationCommand;
+exports.PutObjectLockConfigurationOutput$ = PutObjectLockConfigurationOutput$;
+exports.PutObjectLockConfigurationRequest$ = PutObjectLockConfigurationRequest$;
+exports.PutObjectOutput$ = PutObjectOutput$;
+exports.PutObjectRequest$ = PutObjectRequest$;
+exports.PutObjectRetention$ = PutObjectRetention$;
+exports.PutObjectRetentionCommand = PutObjectRetentionCommand;
+exports.PutObjectRetentionOutput$ = PutObjectRetentionOutput$;
+exports.PutObjectRetentionRequest$ = PutObjectRetentionRequest$;
+exports.PutObjectTagging$ = PutObjectTagging$;
+exports.PutObjectTaggingCommand = PutObjectTaggingCommand;
+exports.PutObjectTaggingOutput$ = PutObjectTaggingOutput$;
+exports.PutObjectTaggingRequest$ = PutObjectTaggingRequest$;
+exports.PutPublicAccessBlock$ = PutPublicAccessBlock$;
+exports.PutPublicAccessBlockCommand = PutPublicAccessBlockCommand;
+exports.PutPublicAccessBlockRequest$ = PutPublicAccessBlockRequest$;
+exports.QueueConfiguration$ = QueueConfiguration$;
+exports.QuoteFields = QuoteFields;
+exports.RecordExpiration$ = RecordExpiration$;
+exports.RecordsEvent$ = RecordsEvent$;
+exports.Redirect$ = Redirect$;
+exports.RedirectAllRequestsTo$ = RedirectAllRequestsTo$;
+exports.RenameObject$ = RenameObject$;
+exports.RenameObjectCommand = RenameObjectCommand;
+exports.RenameObjectOutput$ = RenameObjectOutput$;
+exports.RenameObjectRequest$ = RenameObjectRequest$;
+exports.ReplicaModifications$ = ReplicaModifications$;
+exports.ReplicaModificationsStatus = ReplicaModificationsStatus;
+exports.ReplicationConfiguration$ = ReplicationConfiguration$;
+exports.ReplicationRule$ = ReplicationRule$;
+exports.ReplicationRuleAndOperator$ = ReplicationRuleAndOperator$;
+exports.ReplicationRuleFilter$ = ReplicationRuleFilter$;
+exports.ReplicationRuleStatus = ReplicationRuleStatus;
+exports.ReplicationStatus = ReplicationStatus;
+exports.ReplicationTime$ = ReplicationTime$;
+exports.ReplicationTimeStatus = ReplicationTimeStatus;
+exports.ReplicationTimeValue$ = ReplicationTimeValue$;
+exports.RequestCharged = RequestCharged;
+exports.RequestPayer = RequestPayer;
+exports.RequestPaymentConfiguration$ = RequestPaymentConfiguration$;
+exports.RequestProgress$ = RequestProgress$;
+exports.RestoreObject$ = RestoreObject$;
+exports.RestoreObjectCommand = RestoreObjectCommand;
+exports.RestoreObjectOutput$ = RestoreObjectOutput$;
+exports.RestoreObjectRequest$ = RestoreObjectRequest$;
+exports.RestoreRequest$ = RestoreRequest$;
+exports.RestoreRequestType = RestoreRequestType;
+exports.RestoreStatus$ = RestoreStatus$;
+exports.RoutingRule$ = RoutingRule$;
+exports.S3 = S3;
+exports.S3Client = S3Client;
+exports.S3KeyFilter$ = S3KeyFilter$;
+exports.S3Location$ = S3Location$;
+exports.S3ServiceException = S3ServiceException;
+exports.S3ServiceException$ = S3ServiceException$;
+exports.S3TablesBucketType = S3TablesBucketType;
+exports.S3TablesDestination$ = S3TablesDestination$;
+exports.S3TablesDestinationResult$ = S3TablesDestinationResult$;
+exports.SSEKMS$ = SSEKMS$;
+exports.SSEKMSEncryption$ = SSEKMSEncryption$;
+exports.SSES3$ = SSES3$;
+exports.ScanRange$ = ScanRange$;
+exports.SelectObjectContent$ = SelectObjectContent$;
+exports.SelectObjectContentCommand = SelectObjectContentCommand;
+exports.SelectObjectContentEventStream$ = SelectObjectContentEventStream$;
+exports.SelectObjectContentOutput$ = SelectObjectContentOutput$;
+exports.SelectObjectContentRequest$ = SelectObjectContentRequest$;
+exports.SelectParameters$ = SelectParameters$;
+exports.ServerSideEncryption = ServerSideEncryption;
+exports.ServerSideEncryptionByDefault$ = ServerSideEncryptionByDefault$;
+exports.ServerSideEncryptionConfiguration$ = ServerSideEncryptionConfiguration$;
+exports.ServerSideEncryptionRule$ = ServerSideEncryptionRule$;
+exports.SessionCredentials$ = SessionCredentials$;
+exports.SessionMode = SessionMode;
+exports.SimplePrefix$ = SimplePrefix$;
+exports.SourceSelectionCriteria$ = SourceSelectionCriteria$;
+exports.SseKmsEncryptedObjects$ = SseKmsEncryptedObjects$;
+exports.SseKmsEncryptedObjectsStatus = SseKmsEncryptedObjectsStatus;
+exports.Stats$ = Stats$;
+exports.StatsEvent$ = StatsEvent$;
+exports.StorageClass = StorageClass;
+exports.StorageClassAnalysis$ = StorageClassAnalysis$;
+exports.StorageClassAnalysisDataExport$ = StorageClassAnalysisDataExport$;
+exports.StorageClassAnalysisSchemaVersion = StorageClassAnalysisSchemaVersion;
+exports.TableSseAlgorithm = TableSseAlgorithm;
+exports.Tag$ = Tag$;
+exports.Tagging$ = Tagging$;
+exports.TaggingDirective = TaggingDirective;
+exports.TargetGrant$ = TargetGrant$;
+exports.TargetObjectKeyFormat$ = TargetObjectKeyFormat$;
+exports.Tier = Tier;
+exports.Tiering$ = Tiering$;
+exports.TooManyParts = TooManyParts;
+exports.TooManyParts$ = TooManyParts$;
+exports.TopicConfiguration$ = TopicConfiguration$;
+exports.Transition$ = Transition$;
+exports.TransitionDefaultMinimumObjectSize = TransitionDefaultMinimumObjectSize;
+exports.TransitionStorageClass = TransitionStorageClass;
+exports.Type = Type;
+exports.UnsupportedMediaType = UnsupportedMediaType;
+exports.UnsupportedMediaType$ = UnsupportedMediaType$;
+exports.UpdateBucketMetadataAnnotationTableConfiguration$ = UpdateBucketMetadataAnnotationTableConfiguration$;
+exports.UpdateBucketMetadataAnnotationTableConfigurationCommand = UpdateBucketMetadataAnnotationTableConfigurationCommand;
+exports.UpdateBucketMetadataAnnotationTableConfigurationRequest$ = UpdateBucketMetadataAnnotationTableConfigurationRequest$;
+exports.UpdateBucketMetadataInventoryTableConfiguration$ = UpdateBucketMetadataInventoryTableConfiguration$;
+exports.UpdateBucketMetadataInventoryTableConfigurationCommand = UpdateBucketMetadataInventoryTableConfigurationCommand;
+exports.UpdateBucketMetadataInventoryTableConfigurationRequest$ = UpdateBucketMetadataInventoryTableConfigurationRequest$;
+exports.UpdateBucketMetadataJournalTableConfiguration$ = UpdateBucketMetadataJournalTableConfiguration$;
+exports.UpdateBucketMetadataJournalTableConfigurationCommand = UpdateBucketMetadataJournalTableConfigurationCommand;
+exports.UpdateBucketMetadataJournalTableConfigurationRequest$ = UpdateBucketMetadataJournalTableConfigurationRequest$;
+exports.UpdateObjectEncryption$ = UpdateObjectEncryption$;
+exports.UpdateObjectEncryptionCommand = UpdateObjectEncryptionCommand;
+exports.UpdateObjectEncryptionRequest$ = UpdateObjectEncryptionRequest$;
+exports.UpdateObjectEncryptionResponse$ = UpdateObjectEncryptionResponse$;
+exports.UploadPart$ = UploadPart$;
+exports.UploadPartCommand = UploadPartCommand;
+exports.UploadPartCopy$ = UploadPartCopy$;
+exports.UploadPartCopyCommand = UploadPartCopyCommand;
+exports.UploadPartCopyOutput$ = UploadPartCopyOutput$;
+exports.UploadPartCopyRequest$ = UploadPartCopyRequest$;
+exports.UploadPartOutput$ = UploadPartOutput$;
+exports.UploadPartRequest$ = UploadPartRequest$;
+exports.VersioningConfiguration$ = VersioningConfiguration$;
+exports.WebsiteConfiguration$ = WebsiteConfiguration$;
+exports.WriteGetObjectResponse$ = WriteGetObjectResponse$;
+exports.WriteGetObjectResponseCommand = WriteGetObjectResponseCommand;
+exports.WriteGetObjectResponseRequest$ = WriteGetObjectResponseRequest$;
+exports._Error$ = _Error$;
+exports._Object$ = _Object$;
+exports.errorTypeRegistries = errorTypeRegistries;
+exports.paginateListBuckets = paginateListBuckets;
+exports.paginateListDirectoryBuckets = paginateListDirectoryBuckets;
+exports.paginateListObjectAnnotations = paginateListObjectAnnotations;
+exports.paginateListObjectsV2 = paginateListObjectsV2;
+exports.paginateListParts = paginateListParts;
+exports.waitForBucketExists = waitForBucketExists;
+exports.waitForBucketNotExists = waitForBucketNotExists;
+exports.waitForObjectExists = waitForObjectExists;
+exports.waitForObjectNotExists = waitForObjectNotExists;
+exports.waitUntilBucketExists = waitUntilBucketExists;
+exports.waitUntilBucketNotExists = waitUntilBucketNotExists;
+exports.waitUntilObjectExists = waitUntilObjectExists;
+exports.waitUntilObjectNotExists = waitUntilObjectNotExists;
 
 
 /***/ }),
@@ -9437,20 +7580,18 @@ const { InvokeStore } = __nccwpck_require__(29320);
 const { normalizeProvider } = __nccwpck_require__(90402);
 const { platform, release } = __nccwpck_require__(48161);
 const { versions, env } = __nccwpck_require__(1708);
-const { booleanSelector, SelectorType, loadConfig, NODE_REGION_CONFIG_OPTIONS, NODE_REGION_CONFIG_FILE_OPTIONS } = __nccwpck_require__(47291);
+const { isValidHostLabel, isIpAddress, customEndpointFunctions } = __nccwpck_require__(62085);
+const { EndpointError, resolveEndpoint } = __nccwpck_require__(62085);
+exports.EndpointError = EndpointError;
+exports.isIpAddress = isIpAddress;
+exports.resolveEndpoint = resolveEndpoint;
+const { loadConfig, NODE_REGION_CONFIG_OPTIONS, NODE_REGION_CONFIG_FILE_OPTIONS } = __nccwpck_require__(47291);
 const { REGION_ENV_NAME, REGION_INI_NAME, resolveRegionConfig } = __nccwpck_require__(47291);
 exports.NODE_REGION_CONFIG_FILE_OPTIONS = NODE_REGION_CONFIG_FILE_OPTIONS;
 exports.NODE_REGION_CONFIG_OPTIONS = NODE_REGION_CONFIG_OPTIONS;
 exports.REGION_ENV_NAME = REGION_ENV_NAME;
 exports.REGION_INI_NAME = REGION_INI_NAME;
 exports.resolveRegionConfig = resolveRegionConfig;
-const { readFile } = __nccwpck_require__(51455);
-const { normalize, sep, join } = __nccwpck_require__(76760);
-const { isValidHostLabel, isIpAddress, customEndpointFunctions } = __nccwpck_require__(62085);
-const { EndpointError, resolveEndpoint } = __nccwpck_require__(62085);
-exports.EndpointError = EndpointError;
-exports.isIpAddress = isIpAddress;
-exports.resolveEndpoint = resolveEndpoint;
 
 const state = {
     warningEmitted: false,
@@ -9600,39 +7741,68 @@ const getLoggerPlugin = (options) => ({
 
 const recursionDetectionMiddlewareOptions = {
     step: "build",
-    tags: ["RECURSION_DETECTION"],
+    tags: ["RECURSION_DETECTION", "TRACE_CONTEXT_PROPAGATION"],
     name: "recursionDetectionMiddleware",
     override: true,
     priority: "low",
 };
 
-const TRACE_ID_HEADER_NAME = "X-Amzn-Trace-Id";
-const ENV_LAMBDA_FUNCTION_NAME = "AWS_LAMBDA_FUNCTION_NAME";
-const ENV_TRACE_ID = "_X_AMZN_TRACE_ID";
+const AWS_LAMBDA_FUNCTION_NAME = "AWS_LAMBDA_FUNCTION_NAME";
+const _X_AMZN_TRACE_ID = "_X_AMZN_TRACE_ID";
+const X_AMZN_TRACE_ID = "X-Amzn-Trace-Id";
+const TRACEPARENT = "traceparent";
+const TRACESTATE = "tracestate";
+const BAGGAGE = "baggage";
 const recursionDetectionMiddleware = () => (next) => async (args) => {
     const { request } = args;
     if (!HttpRequest.isInstance(request)) {
         return next(args);
     }
-    const traceIdHeader = Object.keys(request.headers ?? {}).find((h) => h.toLowerCase() === TRACE_ID_HEADER_NAME.toLowerCase()) ??
-        TRACE_ID_HEADER_NAME;
-    if (request.headers.hasOwnProperty(traceIdHeader)) {
-        return next(args);
+    let invokeStore;
+    {
+        const traceIdHeader = Object.keys(request.headers ?? {}).find((h) => h.toLowerCase() === X_AMZN_TRACE_ID.toLowerCase()) ??
+            X_AMZN_TRACE_ID;
+        if (!request.headers.hasOwnProperty(traceIdHeader)) {
+            const functionName = process.env[AWS_LAMBDA_FUNCTION_NAME];
+            const traceIdFromEnv = process.env[_X_AMZN_TRACE_ID];
+            invokeStore ??= await InvokeStore.getInstanceAsync();
+            const traceIdFromInvokeStore = invokeStore?.getXRayTraceId();
+            const traceId = traceIdFromInvokeStore ?? traceIdFromEnv;
+            const nonEmptyString = (str) => typeof str === "string" && str.length > 0;
+            if (nonEmptyString(functionName) && nonEmptyString(traceId)) {
+                request.headers[X_AMZN_TRACE_ID] = traceId;
+            }
+        }
     }
-    const functionName = process.env[ENV_LAMBDA_FUNCTION_NAME];
-    const traceIdFromEnv = process.env[ENV_TRACE_ID];
-    const invokeStore = await InvokeStore.getInstanceAsync();
-    const traceIdFromInvokeStore = invokeStore?.getXRayTraceId();
-    const traceId = traceIdFromInvokeStore ?? traceIdFromEnv;
-    const nonEmptyString = (str) => typeof str === "string" && str.length > 0;
-    if (nonEmptyString(functionName) && nonEmptyString(traceId)) {
-        request.headers[TRACE_ID_HEADER_NAME] = traceId;
+    {
+        sanitizeTraceHeaders(request.headers);
+        const existingTraceparent = request.headers[TRACEPARENT];
+        if (!existingTraceparent) {
+            const traceparent = (invokeStore ??= await InvokeStore.getInstanceAsync())?.getTraceparent?.();
+            if (traceparent) {
+                request.headers[TRACEPARENT] = traceparent;
+                const tracestate = invokeStore?.getTracestate?.();
+                if (tracestate) {
+                    request.headers[TRACESTATE] = tracestate;
+                }
+                const baggage = invokeStore?.getBaggage?.();
+                if (baggage) {
+                    request.headers[BAGGAGE] = baggage;
+                }
+            }
+        }
     }
-    return next({
-        ...args,
-        request,
-    });
+    return next(args);
 };
+function sanitizeTraceHeaders(headers) {
+    for (const header of Object.keys(headers)) {
+        const lower = header.toLowerCase();
+        if (header !== lower && (lower === TRACEPARENT || lower === TRACESTATE || lower === BAGGAGE)) {
+            headers[lower] = headers[header];
+            delete headers[header];
+        }
+    }
+}
 
 const getRecursionDetectionPlugin = (options) => ({
     applyToStack: (clientStack) => {
@@ -10149,115 +8319,6 @@ const getRuntimeUserAgentPair = () => {
     return ["md/nodejs", versions.node];
 };
 
-const getNodeModulesParentDirs = (dirname) => {
-    const cwd = process.cwd();
-    if (!dirname) {
-        return [cwd];
-    }
-    const normalizedPath = normalize(dirname);
-    const parts = normalizedPath.split(sep);
-    const nodeModulesIndex = parts.indexOf("node_modules");
-    const parentDir = nodeModulesIndex !== -1 ? parts.slice(0, nodeModulesIndex).join(sep) : normalizedPath;
-    if (cwd === parentDir) {
-        return [cwd];
-    }
-    return [parentDir, cwd];
-};
-
-const SEMVER_REGEX = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*)?$/;
-const getSanitizedTypeScriptVersion = (version = "") => {
-    const match = version.match(SEMVER_REGEX);
-    if (!match) {
-        return undefined;
-    }
-    const [major, minor, patch, prerelease] = [match[1], match[2], match[3], match[4]];
-    return prerelease ? `${major}.${minor}.${patch}-${prerelease}` : `${major}.${minor}.${patch}`;
-};
-
-const ALLOWED_PREFIXES = ["^", "~", ">=", "<=", ">", "<"];
-const ALLOWED_DIST_TAGS = ["latest", "beta", "dev", "rc", "insiders", "next"];
-const getSanitizedDevTypeScriptVersion = (version = "") => {
-    if (ALLOWED_DIST_TAGS.includes(version)) {
-        return version;
-    }
-    const prefix = ALLOWED_PREFIXES.find((p) => version.startsWith(p)) ?? "";
-    const sanitizedTypeScriptVersion = getSanitizedTypeScriptVersion(version.slice(prefix.length));
-    if (!sanitizedTypeScriptVersion) {
-        return undefined;
-    }
-    return `${prefix}${sanitizedTypeScriptVersion}`;
-};
-
-let tscVersion;
-const TS_PACKAGE_JSON = join("node_modules", "typescript", "package.json");
-const getTypeScriptUserAgentPair = async () => {
-    if (tscVersion === null) {
-        return undefined;
-    }
-    else if (typeof tscVersion === "string") {
-        return ["md/tsc", tscVersion];
-    }
-    let isTypeScriptDetectionDisabled = false;
-    try {
-        isTypeScriptDetectionDisabled =
-            booleanSelector(process.env, "AWS_SDK_JS_TYPESCRIPT_DETECTION_DISABLED", SelectorType.ENV) || false;
-    }
-    catch { }
-    if (isTypeScriptDetectionDisabled) {
-        tscVersion = null;
-        return undefined;
-    }
-    const dirname = typeof __dirname !== "undefined" ? __dirname : undefined;
-    const nodeModulesParentDirs = getNodeModulesParentDirs(dirname);
-    let versionFromApp;
-    for (const nodeModulesParentDir of nodeModulesParentDirs) {
-        try {
-            const appPackageJsonPath = join(nodeModulesParentDir, "package.json");
-            const packageJson = await readFile(appPackageJsonPath, "utf-8");
-            const { dependencies, devDependencies } = JSON.parse(packageJson);
-            const version = devDependencies?.typescript ?? dependencies?.typescript;
-            if (typeof version !== "string") {
-                continue;
-            }
-            versionFromApp = version;
-            break;
-        }
-        catch {
-        }
-    }
-    if (!versionFromApp) {
-        tscVersion = null;
-        return undefined;
-    }
-    let versionFromNodeModules;
-    for (const nodeModulesParentDir of nodeModulesParentDirs) {
-        try {
-            const tsPackageJsonPath = join(nodeModulesParentDir, TS_PACKAGE_JSON);
-            const packageJson = await readFile(tsPackageJsonPath, "utf-8");
-            const { version } = JSON.parse(packageJson);
-            const sanitizedVersion = getSanitizedTypeScriptVersion(version);
-            if (typeof sanitizedVersion !== "string") {
-                continue;
-            }
-            versionFromNodeModules = sanitizedVersion;
-            break;
-        }
-        catch {
-        }
-    }
-    if (versionFromNodeModules) {
-        tscVersion = versionFromNodeModules;
-        return ["md/tsc", tscVersion];
-    }
-    const sanitizedVersion = getSanitizedDevTypeScriptVersion(versionFromApp);
-    if (typeof sanitizedVersion !== "string") {
-        tscVersion = null;
-        return undefined;
-    }
-    tscVersion = `dev_${sanitizedVersion}`;
-    return ["md/tsc", tscVersion];
-};
-
 const crtAvailability = {
     isCrtAvailable: false,
 };
@@ -10279,10 +8340,6 @@ const createDefaultUserAgentProvider = ({ serviceId, clientVersion }) => {
             ["lang/js"],
             runtimeUserAgentPair,
         ];
-        const typescriptUserAgentPair = await getTypeScriptUserAgentPair();
-        if (typescriptUserAgentPair) {
-            sections.push(typescriptUserAgentPair);
-        }
         const crtAvailable = isCrtAvailable();
         if (crtAvailable) {
             sections.push(crtAvailable);
@@ -10508,24 +8565,30 @@ exports.userAgentMiddleware = userAgentMiddleware;
 /***/ 97523:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
-const { HttpResponse, HttpRequest } = __nccwpck_require__(93422);
-const { normalizeProvider, memoizeIdentityProvider, isIdentityExpired, doesIdentityRequireRefresh } = __nccwpck_require__(90402);
-const { ProviderError } = __nccwpck_require__(47291);
+const { ProviderError, booleanSelector, SelectorType, loadConfig } = __nccwpck_require__(47291);
 const { setCredentialFeature } = __nccwpck_require__(5152);
+const { normalizeProvider, memoizeIdentityProvider, isIdentityExpired, doesIdentityRequireRefresh } = __nccwpck_require__(90402);
 const { SignatureV4 } = __nccwpck_require__(75118);
+const { HttpResponse, HttpRequest } = __nccwpck_require__(93422);
 
-const getDateHeader = (response) => HttpResponse.isInstance(response) ? response.headers?.date ?? response.headers?.Date : undefined;
+const getDateHeader = (response) => HttpResponse.isInstance(response) ? (response.headers?.date ?? response.headers?.Date) : undefined;
+const getAgeHeader = (response) => HttpResponse.isInstance(response) ? (response.headers?.age ?? response.headers?.Age) : undefined;
 
 const getSkewCorrectedDate = (systemClockOffset) => new Date(Date.now() + systemClockOffset);
 
-const isClockSkewed = (clockTime, systemClockOffset) => Math.abs(getSkewCorrectedDate(systemClockOffset).getTime() - clockTime) >= 300000;
-
-const getUpdatedSystemClockOffset = (clockTime, currentSystemClockOffset) => {
-    const clockTimeInMs = Date.parse(clockTime);
-    if (isClockSkewed(clockTimeInMs, currentSystemClockOffset)) {
-        return clockTimeInMs - Date.now();
+const getUpdatedSystemClockOffset = (clockTime, currentSystemClockOffset, timeRequestSent, ageHeader) => {
+    if (ageHeader !== undefined) {
+        return currentSystemClockOffset;
     }
-    return currentSystemClockOffset;
+    const serverTime = Date.parse(clockTime);
+    const timeResponseReceived = Date.now();
+    if (timeRequestSent !== undefined && timeResponseReceived - timeRequestSent > 900_000) {
+        return currentSystemClockOffset;
+    }
+    const candidateSkew = timeRequestSent !== undefined
+        ? serverTime - (timeRequestSent + timeResponseReceived) / 2
+        : serverTime - timeResponseReceived;
+    return candidateSkew;
 };
 
 const throwSigningPropertyError = (name, property) => {
@@ -10567,9 +8630,14 @@ class AwsSdkSigV4Signer {
                 signingName = second?.signingName ?? signingName;
             }
         }
-        signingProperties._preRequestSystemClockOffset = config.systemClockOffset;
+        const noSkewCorrection = (await config.disableClockSkewCorrection?.()) === true;
+        signingProperties._disableClockSkewCorrection = noSkewCorrection;
+        if (!noSkewCorrection) {
+            signingProperties._preRequestSystemClockOffset = config.systemClockOffset;
+            signingProperties._requestSentAt = Date.now();
+        }
         const signedRequest = await signer.sign(httpRequest, {
-            signingDate: getSkewCorrectedDate(config.systemClockOffset),
+            signingDate: noSkewCorrection ? new Date() : getSkewCorrectedDate(config.systemClockOffset),
             signingRegion: signingRegion,
             signingService: signingName,
         });
@@ -10578,27 +8646,36 @@ class AwsSdkSigV4Signer {
     errorHandler(signingProperties) {
         return (error) => {
             const errorException = error;
-            const serverTime = errorException.ServerTime ?? getDateHeader(errorException.$response);
-            if (serverTime) {
-                const config = throwSigningPropertyError("config", signingProperties.config);
-                const preRequestOffset = signingProperties._preRequestSystemClockOffset;
-                const newOffset = getUpdatedSystemClockOffset(serverTime, config.systemClockOffset);
-                const isLocalCorrection = newOffset !== config.systemClockOffset;
-                const isConcurrentCorrection = preRequestOffset !== undefined && preRequestOffset !== newOffset;
-                const clockSkewCorrected = isLocalCorrection || isConcurrentCorrection;
-                if (clockSkewCorrected && errorException.$metadata) {
+            if (!signingProperties._disableClockSkewCorrection) {
+                const serverTime = errorException.ServerTime ?? getDateHeader(errorException.$response);
+                if (serverTime) {
+                    const config = throwSigningPropertyError("config", signingProperties.config);
+                    const preRequestOffset = signingProperties._preRequestSystemClockOffset;
+                    const timeRequestSent = signingProperties._requestSentAt;
+                    const ageHeader = getAgeHeader(errorException.$response);
+                    const newOffset = getUpdatedSystemClockOffset(serverTime, config.systemClockOffset, timeRequestSent, ageHeader);
                     config.systemClockOffset = newOffset;
-                    errorException.$metadata.clockSkewCorrected = true;
+                    const skewExceedsThreshold = Math.abs(newOffset) >= 240_000;
+                    const isLocalCorrection = newOffset !== preRequestOffset;
+                    const isConcurrentCorrection = preRequestOffset !== undefined && preRequestOffset !== newOffset;
+                    if (skewExceedsThreshold && (isLocalCorrection || isConcurrentCorrection) && errorException.$metadata) {
+                        errorException.$metadata.clockSkewCorrected = true;
+                    }
                 }
             }
             throw error;
         };
     }
     successHandler(httpResponse, signingProperties) {
+        if (signingProperties._disableClockSkewCorrection) {
+            return;
+        }
         const dateHeader = getDateHeader(httpResponse);
         if (dateHeader) {
             const config = throwSigningPropertyError("config", signingProperties.config);
-            config.systemClockOffset = getUpdatedSystemClockOffset(dateHeader, config.systemClockOffset);
+            const timeRequestSent = signingProperties._requestSentAt;
+            const ageHeader = getAgeHeader(httpResponse);
+            config.systemClockOffset = getUpdatedSystemClockOffset(dateHeader, config.systemClockOffset, timeRequestSent, ageHeader);
         }
     }
 }
@@ -10613,9 +8690,14 @@ class AwsSdkSigV4ASigner extends AwsSdkSigV4Signer {
         const configResolvedSigningRegionSet = await config.sigv4aSigningRegionSet?.();
         const multiRegionOverride = (configResolvedSigningRegionSet ??
             signingRegionSet ?? [signingRegion]).join(",");
-        signingProperties._preRequestSystemClockOffset = config.systemClockOffset;
+        const noSkewCorrection = (await config.disableClockSkewCorrection?.()) === true;
+        signingProperties._disableClockSkewCorrection = noSkewCorrection;
+        if (!noSkewCorrection) {
+            signingProperties._preRequestSystemClockOffset = config.systemClockOffset;
+            signingProperties._requestSentAt = Date.now();
+        }
         const signedRequest = await signer.sign(httpRequest, {
-            signingDate: getSkewCorrectedDate(config.systemClockOffset),
+            signingDate: noSkewCorrection ? new Date() : getSkewCorrectedDate(config.systemClockOffset),
             signingRegion: multiRegionOverride,
             signingService: signingName,
         });
@@ -10672,7 +8754,7 @@ const NODE_SIGV4A_CONFIG_OPTIONS = {
     default: undefined,
 };
 
-const resolveAwsSdkSigV4Config = (config) => {
+const bindResolveAwsSdkSigV4Config = (defaultDisableClockSkewCorrection) => (config) => {
     let inputCredentials = config.credentials;
     let isUserSupplied = !!config.credentials;
     let resolvedCredentials = undefined;
@@ -10770,11 +8852,11 @@ const resolveAwsSdkSigV4Config = (config) => {
         systemClockOffset,
         signingEscapePath,
         signer,
+        disableClockSkewCorrection: normalizeProvider(config.disableClockSkewCorrection ?? defaultDisableClockSkewCorrection),
     });
     return resolvedConfig;
 };
-const resolveAWSSDKSigV4Config = resolveAwsSdkSigV4Config;
-function normalizeCredentialProvider(config, { credentials, credentialDefaultProvider, }) {
+function normalizeCredentialProvider(config, { credentials, credentialDefaultProvider }) {
     let credentialsProvider;
     if (credentials) {
         if (!credentials?.memoized) {
@@ -10808,6 +8890,19 @@ function bindCallerConfig(config, credentialsProvider) {
     fn.configBound = true;
     return fn;
 }
+
+const ENV_DISABLE_CLOCK_SKEW_CORRECTION = "AWS_DISABLE_CLOCK_SKEW_CORRECTION";
+const CONFIG_DISABLE_CLOCK_SKEW_CORRECTION = "disable_clock_skew_correction";
+const NODE_DISABLE_CLOCK_SKEW_CORRECTION_CONFIG_OPTIONS = {
+    environmentVariableSelector: (env) => booleanSelector(env, ENV_DISABLE_CLOCK_SKEW_CORRECTION, SelectorType.ENV),
+    configFileSelector: (profile) => booleanSelector(profile, CONFIG_DISABLE_CLOCK_SKEW_CORRECTION, SelectorType.CONFIG),
+    default: false,
+};
+
+const DEFAULT_DISABLE_CLOCK_SKEW_CORRECTION = loadConfig(NODE_DISABLE_CLOCK_SKEW_CORRECTION_CONFIG_OPTIONS);
+
+const resolveAwsSdkSigV4Config = bindResolveAwsSdkSigV4Config(DEFAULT_DISABLE_CLOCK_SKEW_CORRECTION);
+const resolveAWSSDKSigV4Config = resolveAwsSdkSigV4Config;
 
 exports.AWSSDKSigV4Signer = AWSSDKSigV4Signer;
 exports.AwsSdkSigV4ASigner = AwsSdkSigV4ASigner;
@@ -11123,24 +9218,100 @@ function jsonReviver(key, value, context) {
     return value;
 }
 
-const collectBodyString = (streamBody, context) => collectBody(streamBody, context).then((body) => (context?.utf8Encoder ?? toUtf8)(body));
-
-const parseJsonBody = (streamBody, context) => collectBodyString(streamBody, context).then((encoded) => {
-    if (encoded.length) {
-        try {
-            return JSON.parse(encoded);
+const REVIVER_SYMBOL = Symbol.for("@aws-sdk/reviver");
+function needsReviver(schema) {
+    const ns = NormalizedSchema.of(schema);
+    const raw = ns.getSchema();
+    if (Array.isArray(raw) && ns.isStructSchema()) {
+        if (REVIVER_SYMBOL in raw) {
+            return raw[REVIVER_SYMBOL];
         }
-        catch (e) {
-            if (e?.name === "SyntaxError") {
-                Object.defineProperty(e, "$responseBodyText", {
-                    value: encoded,
-                });
+        const result = _check(ns, new Set());
+        raw[REVIVER_SYMBOL] = result;
+        return result;
+    }
+    return _check(ns, new Set());
+}
+function _check(ns, seen) {
+    const raw = ns.getSchema();
+    if (seen.has(raw)) {
+        return false;
+    }
+    seen.add(raw);
+    if (ns.isBigIntegerSchema() || ns.isBigDecimalSchema()) {
+        return true;
+    }
+    if (ns.isStructSchema()) {
+        for (const [, memberSchema] of ns.structIterator()) {
+            if (_check(memberSchema, seen)) {
+                return true;
             }
-            throw e;
         }
     }
-    return {};
-});
+    else if (ns.isListSchema() || ns.isMapSchema()) {
+        if (_check(ns.getValueSchema(), seen)) {
+            return true;
+        }
+    }
+    else if (ns.isDocumentSchema()) {
+        return true;
+    }
+    return false;
+}
+
+const collectBodyString = (streamBody, context) => collectBody(streamBody, context).then((body) => (context?.utf8Encoder ?? toUtf8)(body));
+
+let canParseBuffer;
+function detectBufferParsing() {
+    if (canParseBuffer === undefined) {
+        try {
+            if (typeof Buffer !== "function") {
+                canParseBuffer = false;
+            }
+            else {
+                const result = JSON.parse(Buffer.from([0x7b, 0x7d]));
+                canParseBuffer = result !== null && typeof result === "object";
+            }
+        }
+        catch {
+            canParseBuffer = false;
+        }
+    }
+    return canParseBuffer;
+}
+
+async function parseJsonBody(streamBody, context, schema) {
+    let parsingInput;
+    if (detectBufferParsing() && typeof streamBody?.[Symbol.asyncIterator] === "function") {
+        const buffer = await collectBody(streamBody, context);
+        if (typeof Buffer === "function") {
+            if (Buffer.isBuffer(buffer)) {
+                parsingInput = buffer;
+            }
+            else {
+                parsingInput = Buffer.from(buffer.buffer, buffer.byteOffset, buffer.byteLength);
+            }
+        }
+    }
+    if (!parsingInput) {
+        parsingInput = await collectBodyString(streamBody, context);
+    }
+    if (parsingInput.length === 0) {
+        return {};
+    }
+    const reviver = schema && needsReviver(schema) ? jsonReviver : undefined;
+    try {
+        return JSON.parse(parsingInput, reviver);
+    }
+    catch (e) {
+        if (e?.name === "SyntaxError") {
+            Object.defineProperty(e, "$responseBodyText", {
+                value: typeof parsingInput === "string" ? parsingInput : parsingInput.toString("utf8"),
+            });
+        }
+        throw e;
+    }
+}
 const parseJsonErrorBody = async (errorBody, context) => {
     const value = await parseJsonBody(errorBody, context);
     value.message = value.message ?? value.Message;
@@ -11194,6 +9365,10 @@ const loadErrorCode = ({ headers }, data, order) => {
     }
 };
 
+function writeKey(obj) {
+    Object.defineProperty(obj, "__proto__", { value: undefined, writable: true, enumerable: true, configurable: true });
+}
+
 class JsonShapeDeserializer extends SerdeContextConfig {
     settings;
     constructor(settings) {
@@ -11201,7 +9376,8 @@ class JsonShapeDeserializer extends SerdeContextConfig {
         this.settings = settings;
     }
     async read(schema, data) {
-        return this._read(schema, typeof data === "string" ? JSON.parse(data, jsonReviver) : await parseJsonBody(data, this.serdeContext));
+        const reviver = needsReviver(schema) ? jsonReviver : undefined;
+        return this._read(schema, typeof data === "string" ? JSON.parse(data, reviver) : await parseJsonBody(data, this.serdeContext, schema));
     }
     readObject(schema, data) {
         return this._read(schema, data);
@@ -11242,7 +9418,7 @@ class JsonShapeDeserializer extends SerdeContextConfig {
                 else if (typeof record.__type === "string") {
                     for (const k in record) {
                         const v = record[k];
-                        const t = jsonName ? nameMap[k] ?? k : k;
+                        const t = jsonName ? (nameMap[k] ?? k) : k;
                         if (!(t in out)) {
                             out[t] = v;
                         }
@@ -11262,6 +9438,9 @@ class JsonShapeDeserializer extends SerdeContextConfig {
                 const mapMember = ns.getValueSchema();
                 const out = {};
                 for (const _k in value) {
+                    if (_k === "__proto__") {
+                        writeKey(out);
+                    }
                     out[_k] = this._read(mapMember, value[_k]);
                 }
                 return out;
@@ -11320,6 +9499,9 @@ class JsonShapeDeserializer extends SerdeContextConfig {
             if (isObject) {
                 const out = Array.isArray(value) ? [] : {};
                 for (const k in value) {
+                    if (k === "__proto__") {
+                        writeKey(out);
+                    }
                     const v = value[k];
                     if (v instanceof NumericValue) {
                         out[k] = v;
@@ -11445,13 +9627,16 @@ class JsonShapeSerializer extends SerdeContextConfig {
                     const { $unknown } = record;
                     if (Array.isArray($unknown)) {
                         const [k, v] = $unknown;
+                        if (k === "__proto__") {
+                            writeKey(out);
+                        }
                         out[k] = this._write(15, v);
                     }
                 }
                 else if (typeof record.__type === "string") {
                     for (const k in record) {
                         const v = record[k];
-                        const targetKey = jsonName ? nameMap[k] ?? k : k;
+                        const targetKey = jsonName ? (nameMap[k] ?? k) : k;
                         if (!(targetKey in out)) {
                             out[targetKey] = this._write(15, v);
                         }
@@ -11477,6 +9662,9 @@ class JsonShapeSerializer extends SerdeContextConfig {
                 for (const _k in value) {
                     const _v = value[_k];
                     if (sparse || _v != null) {
+                        if (_k === "__proto__") {
+                            writeKey(out);
+                        }
                         out[_k] = this._write(mapMember, _v);
                     }
                 }
@@ -11542,6 +9730,9 @@ class JsonShapeSerializer extends SerdeContextConfig {
                 const out = Array.isArray(value) ? [] : {};
                 for (const k in value) {
                     const v = value[k];
+                    if (k === "__proto__") {
+                        writeKey(out);
+                    }
                     if (v instanceof NumericValue) {
                         this.useReplacer = true;
                         out[k] = v;
@@ -11865,6 +10056,9 @@ class XmlShapeDeserializer extends SerdeContextConfig {
                 for (const entry of entries) {
                     const key = entry[keyProperty];
                     const value = entry[valueProperty];
+                    if (key === "__proto__") {
+                        writeKey(buffer);
+                    }
                     buffer[key] = this.readSchema(memberNs, value);
                 }
                 return buffer;
@@ -11878,8 +10072,8 @@ class XmlShapeDeserializer extends SerdeContextConfig {
                 for (const [memberName, memberSchema] of ns.structIterator()) {
                     const memberTraits = memberSchema.getMergedTraits();
                     const xmlObjectKey = !memberTraits.httpPayload
-                        ? memberSchema.getMemberTraits().xmlName ?? memberName
-                        : memberTraits.xmlName ?? memberSchema.getName();
+                        ? (memberSchema.getMemberTraits().xmlName ?? memberName)
+                        : (memberTraits.xmlName ?? memberSchema.getName());
                     if (union) {
                         unionSerde.mark(xmlObjectKey);
                     }
@@ -12361,8 +10555,8 @@ class XmlShapeSerializer extends SerdeContextConfig {
     writeStruct(ns, value, parentXmlns) {
         const traits = ns.getMergedTraits();
         const name = ns.isMemberSchema() && !traits.httpPayload
-            ? ns.getMemberTraits().xmlName ?? ns.getMemberName()
-            : traits.xmlName ?? ns.getName();
+            ? (ns.getMemberTraits().xmlName ?? ns.getMemberName())
+            : (traits.xmlName ?? ns.getName());
         if (!name || !ns.isStructSchema()) {
             throw new Error(`@aws-sdk/core/protocols - xml serializer, cannot write struct with empty name or non-struct, schema=${ns.getName(true)}.`);
         }
@@ -12431,10 +10625,10 @@ class XmlShapeSerializer extends SerdeContextConfig {
             }
             else if (listValueSchema.isStructSchema()) {
                 const struct = this.writeStruct(listValueSchema, value, xmlns);
-                container.addChildNode(struct.withName(flat ? listTraits.xmlName ?? listMember.getMemberName() : listValueTraits.xmlName ?? "member"));
+                container.addChildNode(struct.withName(flat ? (listTraits.xmlName ?? listMember.getMemberName()) : (listValueTraits.xmlName ?? "member")));
             }
             else {
-                const listItemNode = XmlNode.of(flat ? listTraits.xmlName ?? listMember.getMemberName() : listValueTraits.xmlName ?? "member");
+                const listItemNode = XmlNode.of(flat ? (listTraits.xmlName ?? listMember.getMemberName()) : (listValueTraits.xmlName ?? "member"));
                 this.writeSimpleInto(listValueSchema, value, listItemNode, xmlns);
                 container.addChildNode(listItemNode);
             }
@@ -12854,16 +11048,20 @@ exports.fromEnv = fromEnv;
 
 /***/ }),
 
-/***/ 1509:
+/***/ 98605:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
+const { setCredentialFeature } = __nccwpck_require__(5152);
 const { CredentialsProviderError } = __nccwpck_require__(47291);
-const LOOPBACK_CIDR_IPv4 = "127.0.0.0/8";
-const LOOPBACK_CIDR_IPv6 = "::1/128";
+const { NodeHttpHandler } = __nccwpck_require__(61279);
+const fs = __nccwpck_require__(51455);
+const { HttpRequest } = __nccwpck_require__(93422);
+const { sdkStreamMixin, parseRfc3339DateTime } = __nccwpck_require__(92430);
+
 const ECS_CONTAINER_HOST = "169.254.170.2";
 const EKS_CONTAINER_HOST_IPv4 = "169.254.170.23";
 const EKS_CONTAINER_HOST_IPv6 = "[fd00:ec2::23]";
-exports.checkUrl = (url, logger) => {
+const checkUrl = (url, logger) => {
     if (url.protocol === "https:") {
         return;
     }
@@ -12900,95 +11098,7 @@ exports.checkUrl = (url, logger) => {
   - EKS container host 169.254.170.23 or [fd00:ec2::23]`, { logger });
 };
 
-
-/***/ }),
-
-/***/ 68712:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-const { setCredentialFeature } = __nccwpck_require__(5152);
-const { CredentialsProviderError } = __nccwpck_require__(47291);
-const { NodeHttpHandler } = __nccwpck_require__(61279);
-const fs = __nccwpck_require__(51455);
-const { checkUrl } = __nccwpck_require__(1509);
-const { createGetRequest, getCredentials } = __nccwpck_require__(78914);
-const { retryWrapper } = __nccwpck_require__(51122);
-const AWS_CONTAINER_CREDENTIALS_RELATIVE_URI = "AWS_CONTAINER_CREDENTIALS_RELATIVE_URI";
-const DEFAULT_LINK_LOCAL_HOST = "http://169.254.170.2";
-const AWS_CONTAINER_CREDENTIALS_FULL_URI = "AWS_CONTAINER_CREDENTIALS_FULL_URI";
-const AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE = "AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE";
-const AWS_CONTAINER_AUTHORIZATION_TOKEN = "AWS_CONTAINER_AUTHORIZATION_TOKEN";
-exports.fromHttp = (options = {}) => {
-    options.logger?.debug("@aws-sdk/credential-provider-http - fromHttp");
-    let host;
-    const relative = options.awsContainerCredentialsRelativeUri ?? process.env[AWS_CONTAINER_CREDENTIALS_RELATIVE_URI];
-    const full = options.awsContainerCredentialsFullUri ?? process.env[AWS_CONTAINER_CREDENTIALS_FULL_URI];
-    const token = options.awsContainerAuthorizationToken ?? process.env[AWS_CONTAINER_AUTHORIZATION_TOKEN];
-    const tokenFile = options.awsContainerAuthorizationTokenFile ?? process.env[AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE];
-    const warn = options.logger?.constructor?.name === "NoOpLogger" || !options.logger?.warn
-        ? console.warn
-        : options.logger.warn.bind(options.logger);
-    if (relative && full) {
-        warn("@aws-sdk/credential-provider-http: " +
-            "you have set both awsContainerCredentialsRelativeUri and awsContainerCredentialsFullUri.");
-        warn("awsContainerCredentialsFullUri will take precedence.");
-    }
-    if (token && tokenFile) {
-        warn("@aws-sdk/credential-provider-http: " +
-            "you have set both awsContainerAuthorizationToken and awsContainerAuthorizationTokenFile.");
-        warn("awsContainerAuthorizationToken will take precedence.");
-    }
-    if (full) {
-        host = full;
-    }
-    else if (relative) {
-        host = `${DEFAULT_LINK_LOCAL_HOST}${relative}`;
-    }
-    else {
-        throw new CredentialsProviderError(`No HTTP credential provider host provided.
-Set AWS_CONTAINER_CREDENTIALS_FULL_URI or AWS_CONTAINER_CREDENTIALS_RELATIVE_URI.`, { logger: options.logger });
-    }
-    const url = new URL(host);
-    checkUrl(url, options.logger);
-    const requestHandler = NodeHttpHandler.create({ connectionTimeout: options.timeout ?? 1000 });
-    const requestTimeout = options.timeout ?? 1000;
-    const provider = retryWrapper(async () => {
-        const request = createGetRequest(url);
-        if (token) {
-            request.headers.Authorization = token;
-        }
-        else if (tokenFile) {
-            request.headers.Authorization = (await fs.readFile(tokenFile)).toString();
-        }
-        try {
-            const result = await requestHandler.handle(request, { requestTimeout });
-            return getCredentials(result.response).then((creds) => setCredentialFeature(creds, "CREDENTIALS_HTTP", "z"));
-        }
-        catch (e) {
-            throw new CredentialsProviderError(String(e), { logger: options.logger });
-        }
-    }, options.maxRetries ?? 3, options.timeout ?? 1000);
-    return async () => {
-        try {
-            return await provider();
-        }
-        finally {
-            requestHandler.destroy?.();
-        }
-    };
-};
-
-
-/***/ }),
-
-/***/ 78914:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-const { CredentialsProviderError } = __nccwpck_require__(47291);
-const { HttpRequest } = __nccwpck_require__(93422);
-const { parseRfc3339DateTime } = __nccwpck_require__(92430);
-const { sdkStreamMixin } = __nccwpck_require__(92430);
-exports.createGetRequest = function createGetRequest(url) {
+function createGetRequest(url) {
     return new HttpRequest({
         protocol: url.protocol,
         hostname: url.hostname,
@@ -13000,8 +11110,8 @@ exports.createGetRequest = function createGetRequest(url) {
         }, {}),
         fragment: url.hash,
     });
-};
-exports.getCredentials = async function getCredentials(response, logger) {
+}
+async function getCredentials(response, logger) {
     const stream = sdkStreamMixin(response.body);
     const str = await stream.transformToString();
     if (response.statusCode === 200) {
@@ -13032,15 +11142,9 @@ exports.getCredentials = async function getCredentials(response, logger) {
         });
     }
     throw new CredentialsProviderError(`Server responded with status: ${response.statusCode}`, { logger });
-};
+}
 
-
-/***/ }),
-
-/***/ 51122:
-/***/ ((__unused_webpack_module, exports) => {
-
-exports.retryWrapper = (toRetry, maxRetries, delayMs) => {
+const retryWrapper = (toRetry, maxRetries, delayMs) => {
     return async () => {
         for (let i = 0; i < maxRetries; ++i) {
             try {
@@ -13054,13 +11158,77 @@ exports.retryWrapper = (toRetry, maxRetries, delayMs) => {
     };
 };
 
+const AWS_CONTAINER_CREDENTIALS_RELATIVE_URI = "AWS_CONTAINER_CREDENTIALS_RELATIVE_URI";
+const DEFAULT_LINK_LOCAL_HOST = "http://169.254.170.2";
+const AWS_CONTAINER_CREDENTIALS_FULL_URI = "AWS_CONTAINER_CREDENTIALS_FULL_URI";
+const AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE = "AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE";
+const AWS_CONTAINER_AUTHORIZATION_TOKEN = "AWS_CONTAINER_AUTHORIZATION_TOKEN";
+const fromHttp = (options = {}) => {
+    options.logger?.debug("@aws-sdk/credential-provider-http - fromHttp");
+    let host;
+    const relative = options.awsContainerCredentialsRelativeUri ?? process.env[AWS_CONTAINER_CREDENTIALS_RELATIVE_URI];
+    const full = options.awsContainerCredentialsFullUri ?? process.env[AWS_CONTAINER_CREDENTIALS_FULL_URI];
+    const token = options.awsContainerAuthorizationToken ?? process.env[AWS_CONTAINER_AUTHORIZATION_TOKEN];
+    const tokenFile = options.awsContainerAuthorizationTokenFile ?? process.env[AWS_CONTAINER_AUTHORIZATION_TOKEN_FILE];
+    const warn = options.logger?.constructor?.name === "NoOpLogger" || !options.logger?.warn
+        ? console.warn
+        : options.logger.warn.bind(options.logger);
+    if (relative && full) {
+        warn("@aws-sdk/credential-provider-http: " +
+            "you have set both awsContainerCredentialsRelativeUri and awsContainerCredentialsFullUri.");
+        warn("awsContainerCredentialsRelativeUri will take precedence.");
+    }
+    if (token && tokenFile) {
+        warn("@aws-sdk/credential-provider-http: " +
+            "you have set both awsContainerAuthorizationToken and awsContainerAuthorizationTokenFile.");
+        warn("awsContainerAuthorizationTokenFile will take precedence.");
+    }
+    if (relative) {
+        host = `${DEFAULT_LINK_LOCAL_HOST}${relative}`;
+    }
+    else if (full) {
+        host = full;
+    }
+    else {
+        throw new CredentialsProviderError(`No HTTP credential provider host provided.
+Set AWS_CONTAINER_CREDENTIALS_FULL_URI or AWS_CONTAINER_CREDENTIALS_RELATIVE_URI.`, { logger: options.logger });
+    }
+    const url = new URL(host);
+    checkUrl(url, options.logger);
+    const requestHandler = NodeHttpHandler.create({ connectionTimeout: options.timeout ?? 1000 });
+    const requestTimeout = options.timeout ?? 1000;
+    const provider = retryWrapper(async () => {
+        const request = createGetRequest(url);
+        if (tokenFile) {
+            request.headers.Authorization = validateToken((await fs.readFile(tokenFile)).toString());
+        }
+        else if (token) {
+            request.headers.Authorization = validateToken(token);
+        }
+        try {
+            const result = await requestHandler.handle(request, { requestTimeout });
+            return getCredentials(result.response).then((creds) => setCredentialFeature(creds, "CREDENTIALS_HTTP", "z"));
+        }
+        catch (e) {
+            throw new CredentialsProviderError(String(e), { logger: options.logger });
+        }
+    }, options.maxRetries ?? 3, options.timeout ?? 1000);
+    return async () => {
+        try {
+            return await provider();
+        }
+        finally {
+            requestHandler.destroy?.();
+        }
+    };
+};
+const validateToken = (token) => {
+    if (token.includes("\r\n")) {
+        throw new CredentialsProviderError("Authorization token contains invalid \\r\\n sequence.");
+    }
+    return token;
+};
 
-/***/ }),
-
-/***/ 98605:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-const { fromHttp } = __nccwpck_require__(68712);
 exports.fromHttp = fromHttp;
 
 
@@ -13071,7 +11239,6 @@ exports.fromHttp = fromHttp;
 
 const { CredentialsProviderError, chain, getProfileName, parseKnownFiles } = __nccwpck_require__(47291);
 const { setCredentialFeature } = __nccwpck_require__(5152);
-const { fromLoginCredentials } = __nccwpck_require__(84072);
 
 const resolveCredentialSource = (credentialSource, profileName, logger) => {
     const sourceProvidersMap = {
@@ -13183,6 +11350,7 @@ const isLoginProfile = (data) => {
     return Boolean(data && data.login_session);
 };
 const resolveLoginCredentials = async (profileName, options, callerClientConfig) => {
+    const { fromLoginCredentials } = __nccwpck_require__(84072);
     const credentials = await fromLoginCredentials({
         ...options,
         profile: profileName,
@@ -13394,12 +11562,12 @@ class LoginCredentialsFetcher {
                 ...token,
                 accessToken: {
                     ...token.accessToken,
-                    accessKeyId: accessKeyId,
-                    secretAccessKey: secretAccessKey,
-                    sessionToken: sessionToken,
+                    accessKeyId,
+                    secretAccessKey,
+                    sessionToken,
                     expiresAt: expiration.toISOString(),
                 },
-                refreshToken: refreshToken,
+                refreshToken,
             };
             await this.saveToken(updatedToken);
             const newAccessToken = updatedToken.accessToken;
@@ -14055,46 +12223,14 @@ exports.SSOClient = SSOClient;
 
 /***/ }),
 
-/***/ 88079:
+/***/ 29956:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 const { setCredentialFeature } = __nccwpck_require__(5152);
 const { CredentialsProviderError, externalDataInterceptor } = __nccwpck_require__(47291);
 const { readFileSync } = __nccwpck_require__(73024);
-const { fromWebToken } = __nccwpck_require__(34453);
-const ENV_TOKEN_FILE = "AWS_WEB_IDENTITY_TOKEN_FILE";
-const ENV_ROLE_ARN = "AWS_ROLE_ARN";
-const ENV_ROLE_SESSION_NAME = "AWS_ROLE_SESSION_NAME";
-exports.fromTokenFile = (init = {}) => async (awsIdentityProperties) => {
-    init.logger?.debug("@aws-sdk/credential-provider-web-identity - fromTokenFile");
-    const webIdentityTokenFile = init?.webIdentityTokenFile ?? process.env[ENV_TOKEN_FILE];
-    const roleArn = init?.roleArn ?? process.env[ENV_ROLE_ARN];
-    const roleSessionName = init?.roleSessionName ?? process.env[ENV_ROLE_SESSION_NAME];
-    if (!webIdentityTokenFile || !roleArn) {
-        throw new CredentialsProviderError("Web identity configuration not specified", {
-            logger: init.logger,
-        });
-    }
-    const credentials = await fromWebToken({
-        ...init,
-        webIdentityToken: externalDataInterceptor?.getTokenRecord?.()[webIdentityTokenFile] ??
-            readFileSync(webIdentityTokenFile, { encoding: "ascii" }),
-        roleArn,
-        roleSessionName,
-    })(awsIdentityProperties);
-    if (webIdentityTokenFile === process.env[ENV_TOKEN_FILE]) {
-        setCredentialFeature(credentials, "CREDENTIALS_ENV_VARS_STS_WEB_ID_TOKEN", "h");
-    }
-    return credentials;
-};
 
-
-/***/ }),
-
-/***/ 34453:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-exports.fromWebToken = (init) => async (awsIdentityProperties) => {
+const fromWebToken = (init) => async (awsIdentityProperties) => {
     init.logger?.debug("@aws-sdk/credential-provider-web-identity - fromWebToken");
     const { roleArn, roleSessionName, webIdentityToken, providerId, policyArns, policy, durationSeconds } = init;
     let { roleAssumerWithWebIdentity } = init;
@@ -14120,15 +12256,34 @@ exports.fromWebToken = (init) => async (awsIdentityProperties) => {
     });
 };
 
+const ENV_TOKEN_FILE = "AWS_WEB_IDENTITY_TOKEN_FILE";
+const ENV_ROLE_ARN = "AWS_ROLE_ARN";
+const ENV_ROLE_SESSION_NAME = "AWS_ROLE_SESSION_NAME";
+const fromTokenFile = (init = {}) => async (awsIdentityProperties) => {
+    init.logger?.debug("@aws-sdk/credential-provider-web-identity - fromTokenFile");
+    const webIdentityTokenFile = init?.webIdentityTokenFile ?? process.env[ENV_TOKEN_FILE];
+    const roleArn = init?.roleArn ?? process.env[ENV_ROLE_ARN];
+    const roleSessionName = init?.roleSessionName ?? process.env[ENV_ROLE_SESSION_NAME];
+    if (!webIdentityTokenFile || !roleArn) {
+        throw new CredentialsProviderError("Web identity configuration not specified", {
+            logger: init.logger,
+        });
+    }
+    const credentials = await fromWebToken({
+        ...init,
+        webIdentityToken: externalDataInterceptor?.getTokenRecord?.()[webIdentityTokenFile] ??
+            readFileSync(webIdentityTokenFile, { encoding: "ascii" }),
+        roleArn,
+        roleSessionName,
+    })(awsIdentityProperties);
+    if (webIdentityTokenFile === process.env[ENV_TOKEN_FILE]) {
+        setCredentialFeature(credentials, "CREDENTIALS_ENV_VARS_STS_WEB_ID_TOKEN", "h");
+    }
+    return credentials;
+};
 
-/***/ }),
-
-/***/ 29956:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-var __exportStar = (m, e) => { Object.assign(e, m); };
-__exportStar(__nccwpck_require__(88079), exports);
-__exportStar(__nccwpck_require__(34453), exports);
+exports.fromTokenFile = fromTokenFile;
+exports.fromWebToken = fromWebToken;
 
 
 /***/ }),
@@ -14141,8 +12296,24 @@ const { toEndpointV1, getEndpointFromInstructions } = __nccwpck_require__(62085)
 const { extendedEncodeURIComponent } = __nccwpck_require__(93422);
 const { EventEmitter } = __nccwpck_require__(24434);
 const { Buffer } = __nccwpck_require__(20181);
-const { runtimeConfig } = __nccwpck_require__(248);
+const { lstatSync, ReadStream } = __nccwpck_require__(73024);
 const { Readable } = __nccwpck_require__(2203);
+
+const runtimeConfigShared = {
+    lstatSync: () => { },
+    isFileReadStream(f) {
+        return false;
+    },
+};
+
+const runtimeConfig = {
+    ...runtimeConfigShared,
+    runtime: "node",
+    lstatSync,
+    isFileReadStream(f) {
+        return f instanceof ReadStream;
+    },
+};
 
 const byteLength = (input) => {
     if (input == null) {
@@ -14645,61 +12816,6 @@ to input.params.ContentLength in bytes.
 }
 
 exports._ = Upload;
-
-
-/***/ }),
-
-/***/ 248:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-const { lstatSync, ReadStream } = __nccwpck_require__(73024);
-const { runtimeConfigShared: shared } = __nccwpck_require__(98905);
-exports.runtimeConfig = {
-    ...shared,
-    runtime: "node",
-    lstatSync,
-    isFileReadStream(f) {
-        return f instanceof ReadStream;
-    },
-};
-
-
-/***/ }),
-
-/***/ 98905:
-/***/ ((__unused_webpack_module, exports) => {
-
-exports.runtimeConfigShared = {
-    lstatSync: () => { },
-    isFileReadStream(f) {
-        return false;
-    },
-};
-
-
-/***/ }),
-
-/***/ 29836:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-const { CONFIG_REQUEST_CHECKSUM_CALCULATION, CONFIG_RESPONSE_CHECKSUM_VALIDATION, ChecksumAlgorithm, ChecksumLocation, DEFAULT_CHECKSUM_ALGORITHM, DEFAULT_REQUEST_CHECKSUM_CALCULATION, DEFAULT_RESPONSE_CHECKSUM_VALIDATION, ENV_REQUEST_CHECKSUM_CALCULATION, ENV_RESPONSE_CHECKSUM_VALIDATION, NODE_REQUEST_CHECKSUM_CALCULATION_CONFIG_OPTIONS, NODE_RESPONSE_CHECKSUM_VALIDATION_CONFIG_OPTIONS, RequestChecksumCalculation, ResponseChecksumValidation, flexibleChecksumsMiddleware, flexibleChecksumsMiddlewareOptions, getFlexibleChecksumsPlugin, resolveFlexibleChecksumsConfig } = __nccwpck_require__(36251);
-exports.CONFIG_REQUEST_CHECKSUM_CALCULATION = CONFIG_REQUEST_CHECKSUM_CALCULATION;
-exports.CONFIG_RESPONSE_CHECKSUM_VALIDATION = CONFIG_RESPONSE_CHECKSUM_VALIDATION;
-exports.ChecksumAlgorithm = ChecksumAlgorithm;
-exports.ChecksumLocation = ChecksumLocation;
-exports.DEFAULT_CHECKSUM_ALGORITHM = DEFAULT_CHECKSUM_ALGORITHM;
-exports.DEFAULT_REQUEST_CHECKSUM_CALCULATION = DEFAULT_REQUEST_CHECKSUM_CALCULATION;
-exports.DEFAULT_RESPONSE_CHECKSUM_VALIDATION = DEFAULT_RESPONSE_CHECKSUM_VALIDATION;
-exports.ENV_REQUEST_CHECKSUM_CALCULATION = ENV_REQUEST_CHECKSUM_CALCULATION;
-exports.ENV_RESPONSE_CHECKSUM_VALIDATION = ENV_RESPONSE_CHECKSUM_VALIDATION;
-exports.NODE_REQUEST_CHECKSUM_CALCULATION_CONFIG_OPTIONS = NODE_REQUEST_CHECKSUM_CALCULATION_CONFIG_OPTIONS;
-exports.NODE_RESPONSE_CHECKSUM_VALIDATION_CONFIG_OPTIONS = NODE_RESPONSE_CHECKSUM_VALIDATION_CONFIG_OPTIONS;
-exports.RequestChecksumCalculation = RequestChecksumCalculation;
-exports.ResponseChecksumValidation = ResponseChecksumValidation;
-exports.flexibleChecksumsMiddleware = flexibleChecksumsMiddleware;
-exports.flexibleChecksumsMiddlewareOptions = flexibleChecksumsMiddlewareOptions;
-exports.getFlexibleChecksumsPlugin = getFlexibleChecksumsPlugin;
-exports.resolveFlexibleChecksumsConfig = resolveFlexibleChecksumsConfig;
 
 
 /***/ }),
@@ -15756,8 +13872,9 @@ exports.validateRegion = validateRegion;
 
 const { awsEndpointFunctions, emitWarningIfUnsupportedVersion: emitWarningIfUnsupportedVersion$1, createDefaultUserAgentProvider, NODE_APP_ID_CONFIG_OPTIONS, getAwsRegionExtensionConfiguration, resolveAwsRegionExtensionConfiguration, resolveUserAgentConfig, resolveHostHeaderConfig, getUserAgentPlugin, getHostHeaderPlugin, getLoggerPlugin, getRecursionDetectionPlugin } = __nccwpck_require__(5152);
 const { NoAuthSigner, getHttpAuthSchemeEndpointRuleSetPlugin, DefaultIdentityProviderConfig, getHttpSigningPlugin } = __nccwpck_require__(90402);
-const { normalizeProvider, getSmithyContext, ServiceException, NoOpLogger, emitWarningIfUnsupportedVersion, loadConfigsForDefaultMode, getDefaultExtensionConfiguration, resolveDefaultRuntimeConfig, Client, Command, createAggregatedClient } = __nccwpck_require__(92658);
-exports.$Command = Command;
+const { normalizeProvider, getSmithyContext, ServiceException, NoOpLogger, emitWarningIfUnsupportedVersion, loadConfigsForDefaultMode, getDefaultExtensionConfiguration, resolveDefaultRuntimeConfig, Client, makeBuilder, createAggregatedClient } = __nccwpck_require__(92658);
+const { Command: $Command } = __nccwpck_require__(92658);
+exports.$Command = $Command;
 exports.__Client = Client;
 const { resolveDefaultsModeConfig, loadConfig, NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS, NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS, NODE_REGION_CONFIG_OPTIONS, NODE_REGION_CONFIG_FILE_OPTIONS, resolveRegionConfig } = __nccwpck_require__(47291);
 const { BinaryDecisionDiagram, EndpointCache, decideEndpoint, customEndpointFunctions, resolveEndpointConfig, getEndpointPlugin } = __nccwpck_require__(62085);
@@ -15765,9 +13882,10 @@ const { parseUrl, getHttpHandlerExtensionConfiguration, resolveHttpHandlerRuntim
 const { DEFAULT_RETRY_MODE, NODE_RETRY_MODE_CONFIG_OPTIONS, NODE_MAX_ATTEMPT_CONFIG_OPTIONS, resolveRetryConfig, getRetryPlugin } = __nccwpck_require__(23609);
 const { TypeRegistry, getSchemaSerdePlugin } = __nccwpck_require__(26890);
 const { resolveAwsSdkSigV4Config, AwsSdkSigV4Signer, NODE_AUTH_SCHEME_PREFERENCE_OPTIONS } = __nccwpck_require__(97523);
-const { toUtf8, fromUtf8, toBase64, fromBase64, Hash, calculateBodyLength } = __nccwpck_require__(92430);
+const { toUtf8, fromUtf8, toBase64, fromBase64, calculateBodyLength } = __nccwpck_require__(92430);
 const { streamCollector, NodeHttpHandler } = __nccwpck_require__(61279);
 const { AwsRestJsonProtocol } = __nccwpck_require__(37288);
+const { Sha256 } = __nccwpck_require__(99542);
 
 const defaultSigninHttpAuthSchemeParametersProvider = async (config, context, input) => {
     return {
@@ -15800,10 +13918,11 @@ function createSmithyApiNoAuthHttpAuthOption(authParameters) {
 const defaultSigninHttpAuthSchemeProvider = (authParameters) => {
     const options = [];
     switch (authParameters.operation) {
-        case "CreateOAuth2Token": {
-            options.push(createSmithyApiNoAuthHttpAuthOption());
-            break;
-        }
+        case "CreateOAuth2Token":
+            {
+                options.push(createSmithyApiNoAuthHttpAuthOption());
+                break;
+            }
         default: {
             options.push(createAwsAuthSigv4HttpAuthOption(authParameters));
         }
@@ -15831,58 +13950,61 @@ const commonParams = {
     UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" },
 };
 
-var version = "3.997.22";
+var version = "3.997.34";
 var packageInfo = {
 	version: version};
 
-const p = "ref";
-const a = -1, b = true, c = "isSet", d = "booleanEquals", e = "PartitionResult", f = "stringEquals", g = "getAttr", h = "https://signin.{Region}.{PartitionResult#dualStackDnsSuffix}", i = { [p]: "Endpoint" }, j = { "fn": g, "argv": [{ [p]: e }, "name"] }, k = { [p]: e }, l = { [p]: "Region" }, m = { "authSchemes": [{ "name": "sigv4", "signingName": "signin", "signingRegion": "{Region}" }] }, n = {}, o = [l];
+const s = "ref";
+const a = -1, b = false, c = true, d = "isSet", e = "booleanEquals", f = "coalesce", g = "PartitionResult", h = "stringEquals", i = "getAttr", j = "https://signin.{Region}.{PartitionResult#dualStackDnsSuffix}", k = { [s]: "Endpoint" }, l = { "fn": i, "argv": [{ [s]: g }, "name"] }, m = { [s]: "Region" }, n = { [s]: g }, o = { "authSchemes": [{ "name": "sigv4", "signingName": "signin", "signingRegion": "{Region}" }] }, p = {}, q = [m];
 const _data = {
     conditions: [
-        [c, o],
-        [d, [{ fn: "coalesce", argv: [{ [p]: "IsControlPlane" }, false] }, b]],
-        [c, [i]],
-        ["aws.partition", o, e],
-        [d, [{ [p]: "UseFIPS" }, b]],
-        [d, [{ [p]: "UseDualStack" }, b]],
-        [f, [j, "aws"]],
-        [f, [j, "aws-cn"]],
-        [d, [{ fn: g, argv: [k, "supportsDualStack"] }, b]],
-        [f, [l, "us-gov-west-1"]],
-        [f, [j, "aws-us-gov"]],
-        [d, [{ fn: g, argv: [k, "supportsFIPS"] }, b]],
-        [f, [j, "aws-iso"]],
-        [f, [j, "aws-iso-b"]],
-        [f, [j, "aws-iso-f"]],
-        [f, [j, "aws-iso-e"]],
-        [f, [j, "aws-eusc"]]
+        [d, q],
+        [e, [{ fn: f, argv: [{ [s]: "IsControlPlane" }, b] }, c]],
+        [d, [k]],
+        ["aws.partition", q, g],
+        [e, [{ [s]: "UseFIPS" }, c]],
+        [h, [l, "aws"]],
+        [e, [{ fn: f, argv: [{ [s]: "IsOAuthEndpoint" }, b] }, c]],
+        [e, [{ [s]: "UseDualStack" }, c]],
+        [h, [l, "aws-cn"]],
+        [h, [m, "us-gov-west-1"]],
+        [h, [l, "aws-us-gov"]],
+        [e, [{ fn: i, argv: [n, "supportsFIPS"] }, c]],
+        [h, [l, "aws-iso"]],
+        [h, [l, "aws-iso-b"]],
+        [h, [l, "aws-iso-f"]],
+        [h, [l, "aws-iso-e"]],
+        [h, [l, "aws-eusc"]],
+        [e, [{ fn: i, argv: [n, "supportsDualStack"] }, c]]
     ],
     results: [
         [a],
-        ["https://signin.{Region}.api.aws", m],
-        ["https://signin.{Region}.api.amazonwebservices.com.cn", m],
-        [h, m],
-        ["https://{Region}.signin.aws.amazon.com", n],
-        ["https://{Region}.signin.amazonaws.cn", n],
-        ["https://{Region}.signin.amazonaws-us-gov.com", n],
-        ["https://{Region}.signin.c2shome.ic.gov", n],
-        ["https://{Region}.signin.sc2shome.sgov.gov", n],
-        ["https://{Region}.signin.csphome.hci.ic.gov", n],
-        ["https://{Region}.signin.csphome.adc-e.uk", n],
-        ["https://{Region}.signin.amazonaws-eusc.eu", n],
-        ["https://signin-fips.amazonaws-us-gov.com", n],
-        ["https://{Region}.signin-fips.amazonaws-us-gov.com", n],
-        ["https://{Region}.signin.{PartitionResult#dnsSuffix}", n],
+        ["https://signin.{Region}.api.aws", o],
+        ["https://signin.{Region}.api.amazonwebservices.com.cn", o],
+        [j, o],
+        [a, "FIPS endpoints are not supported for OAuth operations. Disable FIPS or use a non-OAuth operation."],
+        ["https://{Region}.oauth.signin.aws", o],
+        ["https://{Region}.signin.aws.amazon.com", p],
+        ["https://{Region}.signin.amazonaws.cn", p],
+        ["https://{Region}.signin.amazonaws-us-gov.com", p],
+        ["https://{Region}.signin.c2shome.ic.gov", p],
+        ["https://{Region}.signin.sc2shome.sgov.gov", p],
+        ["https://{Region}.signin.csphome.hci.ic.gov", p],
+        ["https://{Region}.signin.csphome.adc-e.uk", p],
+        ["https://{Region}.signin.amazonaws-eusc.eu", p],
+        ["https://signin-fips.amazonaws-us-gov.com", p],
+        ["https://{Region}.signin-fips.amazonaws-us-gov.com", p],
+        ["https://{Region}.signin.{PartitionResult#dnsSuffix}", p],
         [a, "Invalid Configuration: FIPS and custom endpoint are not supported"],
         [a, "Invalid Configuration: Dualstack and custom endpoint are not supported"],
-        [i, n],
-        ["https://signin-fips.{Region}.{PartitionResult#dualStackDnsSuffix}", n],
+        [k, p],
+        ["https://signin-fips.{Region}.{PartitionResult#dualStackDnsSuffix}", p],
         [a, "FIPS and DualStack are enabled, but this partition does not support one or both"],
-        ["https://signin-fips.{Region}.{PartitionResult#dnsSuffix}", n],
+        ["https://signin-fips.{Region}.{PartitionResult#dnsSuffix}", p],
         [a, "FIPS is enabled but this partition does not support FIPS"],
-        [h, n],
+        [j, p],
         [a, "DualStack is enabled but this partition does not support DualStack"],
-        ["https://signin.{Region}.{PartitionResult#dnsSuffix}", n],
+        ["https://signin.{Region}.{PartitionResult#dnsSuffix}", p],
         [a, "Invalid Configuration: Missing Region"]
     ]
 };
@@ -15890,44 +14012,51 @@ const root = 2;
 const r = 100_000_000;
 const nodes = new Int32Array([
     -1, 1, -1,
-    0, 4, 3,
-    2, 30, r + 25,
-    1, 24, 5,
-    2, 30, 6,
-    3, 7, 26,
-    4, 18, 8,
-    5, 17, 9,
-    6, r + 4, 10,
-    7, r + 5, 11,
-    10, r + 6, 12,
-    12, r + 7, 13,
-    13, r + 8, 14,
-    14, r + 9, 15,
-    15, r + 10, 16,
-    16, r + 11, r + 14,
-    8, r + 22, r + 23,
-    5, 22, 19,
-    9, r + 12, 20,
-    10, r + 13, 21,
-    11, r + 20, r + 21,
-    8, 23, r + 19,
-    11, r + 18, r + 19,
-    2, 29, 25,
-    3, 32, 26,
-    4, 27, r + 25,
-    5, r + 25, 28,
-    9, r + 12, r + 25,
-    3, 32, 30,
-    4, r + 15, 31,
-    5, r + 16, r + 17,
-    6, r + 1, 33,
-    7, r + 2, r + 3,
+    0, 6, 3,
+    2, 36, 4,
+    4, 5, r + 27,
+    6, r + 4, r + 27,
+    1, 29, 7,
+    2, 36, 8,
+    3, 9, 31,
+    4, 22, 10,
+    5, 19, 11,
+    7, 21, 12,
+    8, r + 7, 13,
+    10, r + 8, 14,
+    12, r + 9, 15,
+    13, r + 10, 16,
+    14, r + 11, 17,
+    15, r + 12, 18,
+    16, r + 13, r + 16,
+    6, r + 5, 20,
+    7, 21, r + 6,
+    17, r + 24, r + 25,
+    6, r + 4, 23,
+    7, 27, 24,
+    9, r + 14, 25,
+    10, r + 15, 26,
+    11, r + 22, r + 23,
+    11, 28, r + 21,
+    17, r + 20, r + 21,
+    2, 35, 30,
+    3, 39, 31,
+    4, 32, r + 27,
+    6, r + 4, 33,
+    7, r + 27, 34,
+    9, r + 14, r + 27,
+    3, 39, 36,
+    4, 38, 37,
+    7, r + 18, r + 19,
+    6, r + 4, r + 17,
+    5, r + 1, 40,
+    8, r + 2, r + 3,
 ]);
 const bdd = BinaryDecisionDiagram.from(nodes, root, _data.conditions, _data.results);
 
 const cache = new EndpointCache({
     size: 50,
-    params: ["Endpoint", "IsControlPlane", "Region", "UseDualStack", "UseFIPS"],
+    params: ["Endpoint", "IsControlPlane", "IsOAuthEndpoint", "Region", "UseDualStack", "UseFIPS"],
 });
 const defaultEndpointResolver = (endpointParams, context = {}) => {
     return cache.get(endpointParams, () => decideEndpoint(bdd, {
@@ -16008,24 +14137,32 @@ const _COATR = "CreateOAuth2TokenRequest";
 const _COATRB = "CreateOAuth2TokenRequestBody";
 const _COATRBr = "CreateOAuth2TokenResponseBody";
 const _COATRr = "CreateOAuth2TokenResponse";
+const _COATWIAM = "CreateOAuth2TokenWithIAM";
+const _COATWIAMR = "CreateOAuth2TokenWithIAMRequest";
+const _COATWIAMRr = "CreateOAuth2TokenWithIAMResponse";
 const _ISE = "InternalServerException";
+const _OAAT = "OAuthAccessToken";
 const _RT = "RefreshToken";
 const _TMRE = "TooManyRequestsError";
 const _VE = "ValidationException";
 const _aKI = "accessKeyId";
 const _aT = "accessToken";
+const _at = "access_token";
 const _c = "client";
 const _cI = "clientId";
 const _cV = "codeVerifier";
 const _co = "code";
 const _e = "error";
 const _eI = "expiresIn";
+const _ei = "expires_in";
 const _gT = "grantType";
+const _gt = "grant_type";
 const _h = "http";
 const _hE = "httpError";
 const _iT = "idToken";
 const _jN = "jsonName";
 const _m = "message";
+const _r = "resource";
 const _rT = "refreshToken";
 const _rU = "redirectUri";
 const _s = "smithy.ts.sdk.synthetic.com.amazonaws.signin";
@@ -16035,6 +14172,7 @@ const _se = "server";
 const _tI = "tokenInput";
 const _tO = "tokenOutput";
 const _tT = "tokenType";
+const _tt = "token_type";
 const n0 = "com.amazonaws.signin";
 const _s_registry = TypeRegistry.for(_s);
 var SigninServiceException$ = [-3, _s, "SigninServiceException", 0, [], []];
@@ -16068,6 +14206,7 @@ const errorTypeRegistries = [
     _s_registry,
     n0_registry,
 ];
+var OAuthAccessToken = [0, n0, _OAAT, 8, 0];
 var RefreshToken = [0, n0, _RT, 8, 0];
 var AccessToken$ = [3, n0, _AT,
     8,
@@ -16094,8 +14233,21 @@ var CreateOAuth2TokenResponseBody$ = [3, n0, _COATRBr,
     [_aT, _tT, _eI, _rT, _iT],
     [[() => AccessToken$, { [_jN]: _aT }], [0, { [_jN]: _tT }], [1, { [_jN]: _eI }], [() => RefreshToken, { [_jN]: _rT }], [0, { [_jN]: _iT }]], 4
 ];
+var CreateOAuth2TokenWithIAMRequest$ = [3, n0, _COATWIAMR,
+    0,
+    [_gT, _r],
+    [[0, { [_jN]: _gt }], 0], 2
+];
+var CreateOAuth2TokenWithIAMResponse$ = [3, n0, _COATWIAMRr,
+    0,
+    [_aT, _tT, _eI],
+    [[() => OAuthAccessToken, { [_jN]: _at }], [0, { [_jN]: _tt }], [1, { [_jN]: _ei }]], 3
+];
 var CreateOAuth2Token$ = [9, n0, _COAT,
     { [_h]: ["POST", "/v1/token", 200] }, () => CreateOAuth2TokenRequest$, () => CreateOAuth2TokenResponse$
+];
+var CreateOAuth2TokenWithIAM$ = [9, n0, _COATWIAM,
+    { [_h]: ["POST", "/v1/token?x-amz-client-auth-method=iam", 200] }, () => CreateOAuth2TokenWithIAMRequest$, () => CreateOAuth2TokenWithIAMResponse$
 ];
 
 const getRuntimeConfig$1 = (config) => {
@@ -16128,6 +14280,7 @@ const getRuntimeConfig$1 = (config) => {
             serviceTarget: "Signin",
         },
         serviceId: config?.serviceId ?? "Signin",
+        sha256: config?.sha256 ?? Sha256,
         urlParser: config?.urlParser ?? parseUrl,
         utf8Decoder: config?.utf8Decoder ?? fromUtf8,
         utf8Encoder: config?.utf8Encoder ?? toUtf8,
@@ -16160,7 +14313,6 @@ const getRuntimeConfig = (config) => {
                 ...NODE_RETRY_MODE_CONFIG_OPTIONS,
                 default: async () => (await defaultConfigProvider()).retryMode || DEFAULT_RETRY_MODE,
             }, config),
-        sha256: config?.sha256 ?? Hash.bind(null, "sha256"),
         streamCollector: config?.streamCollector ?? streamCollector,
         useDualstackEndpoint: config?.useDualstackEndpoint ?? loadConfig(NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS, loaderConfig),
         useFipsEndpoint: config?.useFipsEndpoint ?? loadConfig(NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS, loaderConfig),
@@ -16248,23 +14400,24 @@ class SigninClient extends Client {
     }
 }
 
-class CreateOAuth2TokenCommand extends Command
-    .classBuilder()
-    .ep({
-    ...commonParams,
+const command = makeBuilder(commonParams, "Signin", "SigninClient", getEndpointPlugin);
+const _ep0 = {
     IsControlPlane: { type: "staticContextParams", value: false },
-})
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("Signin", "CreateOAuth2Token", {})
-    .n("SigninClient", "CreateOAuth2TokenCommand")
-    .sc(CreateOAuth2Token$)
-    .build() {
+};
+const _ep1 = {
+    IsOAuthEndpoint: { type: "staticContextParams", value: true },
+};
+const _mw0 = (Command, cs, config, o) => [];
+
+class CreateOAuth2TokenCommand extends command(_ep0, _mw0, "CreateOAuth2Token", CreateOAuth2Token$) {
+}
+
+class CreateOAuth2TokenWithIAMCommand extends command(_ep1, _mw0, "CreateOAuth2TokenWithIAM", CreateOAuth2TokenWithIAM$) {
 }
 
 const commands = {
     CreateOAuth2TokenCommand,
+    CreateOAuth2TokenWithIAMCommand,
 };
 class Signin extends SigninClient {
 }
@@ -16291,6 +14444,10 @@ exports.CreateOAuth2TokenRequest$ = CreateOAuth2TokenRequest$;
 exports.CreateOAuth2TokenRequestBody$ = CreateOAuth2TokenRequestBody$;
 exports.CreateOAuth2TokenResponse$ = CreateOAuth2TokenResponse$;
 exports.CreateOAuth2TokenResponseBody$ = CreateOAuth2TokenResponseBody$;
+exports.CreateOAuth2TokenWithIAM$ = CreateOAuth2TokenWithIAM$;
+exports.CreateOAuth2TokenWithIAMCommand = CreateOAuth2TokenWithIAMCommand;
+exports.CreateOAuth2TokenWithIAMRequest$ = CreateOAuth2TokenWithIAMRequest$;
+exports.CreateOAuth2TokenWithIAMResponse$ = CreateOAuth2TokenWithIAMResponse$;
 exports.InternalServerException = InternalServerException;
 exports.InternalServerException$ = InternalServerException$;
 exports.OAuth2ErrorCode = OAuth2ErrorCode;
@@ -16312,8 +14469,9 @@ exports.errorTypeRegistries = errorTypeRegistries;
 
 const { awsEndpointFunctions, emitWarningIfUnsupportedVersion: emitWarningIfUnsupportedVersion$1, createDefaultUserAgentProvider, NODE_APP_ID_CONFIG_OPTIONS, getAwsRegionExtensionConfiguration, resolveAwsRegionExtensionConfiguration, resolveUserAgentConfig, resolveHostHeaderConfig, getUserAgentPlugin, getHostHeaderPlugin, getLoggerPlugin, getRecursionDetectionPlugin } = __nccwpck_require__(5152);
 const { NoAuthSigner, getHttpAuthSchemeEndpointRuleSetPlugin, DefaultIdentityProviderConfig, getHttpSigningPlugin } = __nccwpck_require__(90402);
-const { normalizeProvider, getSmithyContext, ServiceException, NoOpLogger, emitWarningIfUnsupportedVersion, loadConfigsForDefaultMode, getDefaultExtensionConfiguration, resolveDefaultRuntimeConfig, Client, Command, createAggregatedClient } = __nccwpck_require__(92658);
-exports.$Command = Command;
+const { normalizeProvider, getSmithyContext, ServiceException, NoOpLogger, emitWarningIfUnsupportedVersion, loadConfigsForDefaultMode, getDefaultExtensionConfiguration, resolveDefaultRuntimeConfig, Client, makeBuilder, createAggregatedClient } = __nccwpck_require__(92658);
+const { Command: $Command } = __nccwpck_require__(92658);
+exports.$Command = $Command;
 exports.__Client = Client;
 const { resolveDefaultsModeConfig, loadConfig, NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS, NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS, NODE_REGION_CONFIG_OPTIONS, NODE_REGION_CONFIG_FILE_OPTIONS, resolveRegionConfig } = __nccwpck_require__(47291);
 const { BinaryDecisionDiagram, EndpointCache, decideEndpoint, customEndpointFunctions, resolveEndpointConfig, getEndpointPlugin } = __nccwpck_require__(62085);
@@ -16321,9 +14479,10 @@ const { parseUrl, getHttpHandlerExtensionConfiguration, resolveHttpHandlerRuntim
 const { DEFAULT_RETRY_MODE, NODE_RETRY_MODE_CONFIG_OPTIONS, NODE_MAX_ATTEMPT_CONFIG_OPTIONS, resolveRetryConfig, getRetryPlugin } = __nccwpck_require__(23609);
 const { TypeRegistry, getSchemaSerdePlugin } = __nccwpck_require__(26890);
 const { resolveAwsSdkSigV4Config, AwsSdkSigV4Signer, NODE_AUTH_SCHEME_PREFERENCE_OPTIONS } = __nccwpck_require__(97523);
-const { toUtf8, fromUtf8, toBase64, fromBase64, Hash, calculateBodyLength } = __nccwpck_require__(92430);
+const { toUtf8, fromUtf8, toBase64, fromBase64, calculateBodyLength } = __nccwpck_require__(92430);
 const { streamCollector, NodeHttpHandler } = __nccwpck_require__(61279);
 const { AwsRestJsonProtocol } = __nccwpck_require__(37288);
+const { Sha256 } = __nccwpck_require__(99542);
 
 const defaultSSOOIDCHttpAuthSchemeParametersProvider = async (config, context, input) => {
     return {
@@ -16356,10 +14515,11 @@ function createSmithyApiNoAuthHttpAuthOption(authParameters) {
 const defaultSSOOIDCHttpAuthSchemeProvider = (authParameters) => {
     const options = [];
     switch (authParameters.operation) {
-        case "CreateToken": {
-            options.push(createSmithyApiNoAuthHttpAuthOption());
-            break;
-        }
+        case "CreateToken":
+            {
+                options.push(createSmithyApiNoAuthHttpAuthOption());
+                break;
+            }
         default: {
             options.push(createAwsAuthSigv4HttpAuthOption(authParameters));
         }
@@ -16387,7 +14547,7 @@ const commonParams = {
     UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" },
 };
 
-var version = "3.997.22";
+var version = "3.997.34";
 var packageInfo = {
 	version: version};
 
@@ -16804,6 +14964,7 @@ const getRuntimeConfig$1 = (config) => {
             serviceTarget: "AWSSSOOIDCService",
         },
         serviceId: config?.serviceId ?? "SSO OIDC",
+        sha256: config?.sha256 ?? Sha256,
         urlParser: config?.urlParser ?? parseUrl,
         utf8Decoder: config?.utf8Decoder ?? fromUtf8,
         utf8Encoder: config?.utf8Encoder ?? toUtf8,
@@ -16836,7 +14997,6 @@ const getRuntimeConfig = (config) => {
                 ...NODE_RETRY_MODE_CONFIG_OPTIONS,
                 default: async () => (await defaultConfigProvider()).retryMode || DEFAULT_RETRY_MODE,
             }, config),
-        sha256: config?.sha256 ?? Hash.bind(null, "sha256"),
         streamCollector: config?.streamCollector ?? streamCollector,
         useDualstackEndpoint: config?.useDualstackEndpoint ?? loadConfig(NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS, loaderConfig),
         useFipsEndpoint: config?.useFipsEndpoint ?? loadConfig(NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS, loaderConfig),
@@ -16924,16 +15084,11 @@ class SSOOIDCClient extends Client {
     }
 }
 
-class CreateTokenCommand extends Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AWSSSOOIDCService", "CreateToken", {})
-    .n("SSOOIDCClient", "CreateTokenCommand")
-    .sc(CreateToken$)
-    .build() {
+const command = makeBuilder(commonParams, "AWSSSOOIDCService", "SSOOIDCClient", getEndpointPlugin);
+const _ep0 = {};
+const _mw0 = (Command, cs, config, o) => [];
+
+class CreateTokenCommand extends command(_ep0, _mw0, "CreateToken", CreateToken$) {
 }
 
 const commands = {
@@ -16995,8 +15150,9 @@ exports.errorTypeRegistries = errorTypeRegistries;
 
 const { awsEndpointFunctions, emitWarningIfUnsupportedVersion: emitWarningIfUnsupportedVersion$1, createDefaultUserAgentProvider, NODE_APP_ID_CONFIG_OPTIONS, getAwsRegionExtensionConfiguration, resolveAwsRegionExtensionConfiguration, resolveUserAgentConfig, resolveHostHeaderConfig, getUserAgentPlugin, getHostHeaderPlugin, getLoggerPlugin, getRecursionDetectionPlugin } = __nccwpck_require__(5152);
 const { NoAuthSigner, getHttpAuthSchemeEndpointRuleSetPlugin, DefaultIdentityProviderConfig, getHttpSigningPlugin } = __nccwpck_require__(90402);
-const { normalizeProvider, getSmithyContext, ServiceException, NoOpLogger, emitWarningIfUnsupportedVersion, loadConfigsForDefaultMode, getDefaultExtensionConfiguration, resolveDefaultRuntimeConfig, Client, Command, createAggregatedClient } = __nccwpck_require__(92658);
-exports.$Command = Command;
+const { normalizeProvider, getSmithyContext, ServiceException, NoOpLogger, emitWarningIfUnsupportedVersion, loadConfigsForDefaultMode, getDefaultExtensionConfiguration, resolveDefaultRuntimeConfig, Client, makeBuilder, createAggregatedClient } = __nccwpck_require__(92658);
+const { Command: $Command } = __nccwpck_require__(92658);
+exports.$Command = $Command;
 exports.__Client = Client;
 const { resolveDefaultsModeConfig, loadConfig, NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS, NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS, NODE_REGION_CONFIG_OPTIONS, NODE_REGION_CONFIG_FILE_OPTIONS, resolveRegionConfig } = __nccwpck_require__(47291);
 const { BinaryDecisionDiagram, EndpointCache, decideEndpoint, customEndpointFunctions, resolveEndpointConfig, getEndpointPlugin } = __nccwpck_require__(62085);
@@ -17004,9 +15160,10 @@ const { parseUrl, getHttpHandlerExtensionConfiguration, resolveHttpHandlerRuntim
 const { DEFAULT_RETRY_MODE, NODE_RETRY_MODE_CONFIG_OPTIONS, NODE_MAX_ATTEMPT_CONFIG_OPTIONS, resolveRetryConfig, getRetryPlugin } = __nccwpck_require__(23609);
 const { TypeRegistry, getSchemaSerdePlugin } = __nccwpck_require__(26890);
 const { resolveAwsSdkSigV4Config, AwsSdkSigV4Signer, NODE_AUTH_SCHEME_PREFERENCE_OPTIONS } = __nccwpck_require__(97523);
-const { toUtf8, fromUtf8, toBase64, fromBase64, Hash, calculateBodyLength } = __nccwpck_require__(92430);
+const { toUtf8, fromUtf8, toBase64, fromBase64, calculateBodyLength } = __nccwpck_require__(92430);
 const { streamCollector, NodeHttpHandler } = __nccwpck_require__(61279);
 const { AwsRestJsonProtocol } = __nccwpck_require__(37288);
+const { Sha256 } = __nccwpck_require__(99542);
 
 const defaultSSOHttpAuthSchemeParametersProvider = async (config, context, input) => {
     return {
@@ -17039,10 +15196,11 @@ function createSmithyApiNoAuthHttpAuthOption(authParameters) {
 const defaultSSOHttpAuthSchemeProvider = (authParameters) => {
     const options = [];
     switch (authParameters.operation) {
-        case "GetRoleCredentials": {
-            options.push(createSmithyApiNoAuthHttpAuthOption());
-            break;
-        }
+        case "GetRoleCredentials":
+            {
+                options.push(createSmithyApiNoAuthHttpAuthOption());
+                break;
+            }
         default: {
             options.push(createAwsAuthSigv4HttpAuthOption(authParameters));
         }
@@ -17070,7 +15228,7 @@ const commonParams = {
     UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" },
 };
 
-var version = "3.997.22";
+var version = "3.997.34";
 var packageInfo = {
 	version: version};
 
@@ -17306,6 +15464,7 @@ const getRuntimeConfig$1 = (config) => {
             serviceTarget: "SWBPortalService",
         },
         serviceId: config?.serviceId ?? "SSO",
+        sha256: config?.sha256 ?? Sha256,
         urlParser: config?.urlParser ?? parseUrl,
         utf8Decoder: config?.utf8Decoder ?? fromUtf8,
         utf8Encoder: config?.utf8Encoder ?? toUtf8,
@@ -17338,7 +15497,6 @@ const getRuntimeConfig = (config) => {
                 ...NODE_RETRY_MODE_CONFIG_OPTIONS,
                 default: async () => (await defaultConfigProvider()).retryMode || DEFAULT_RETRY_MODE,
             }, config),
-        sha256: config?.sha256 ?? Hash.bind(null, "sha256"),
         streamCollector: config?.streamCollector ?? streamCollector,
         useDualstackEndpoint: config?.useDualstackEndpoint ?? loadConfig(NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS, loaderConfig),
         useFipsEndpoint: config?.useFipsEndpoint ?? loadConfig(NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS, loaderConfig),
@@ -17426,16 +15584,11 @@ class SSOClient extends Client {
     }
 }
 
-class GetRoleCredentialsCommand extends Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("SWBPortalService", "GetRoleCredentials", {})
-    .n("SSOClient", "GetRoleCredentialsCommand")
-    .sc(GetRoleCredentials$)
-    .build() {
+const command = makeBuilder(commonParams, "SWBPortalService", "SSOClient", getEndpointPlugin);
+const _ep0 = {};
+const _mw0 = (Command, cs, config, o) => [];
+
+class GetRoleCredentialsCommand extends command(_ep0, _mw0, "GetRoleCredentials", GetRoleCredentials$) {
 }
 
 const commands = {
@@ -17472,8 +15625,9 @@ exports.errorTypeRegistries = errorTypeRegistries;
 
 const { awsEndpointFunctions, emitWarningIfUnsupportedVersion: emitWarningIfUnsupportedVersion$1, createDefaultUserAgentProvider, NODE_APP_ID_CONFIG_OPTIONS, getAwsRegionExtensionConfiguration, resolveAwsRegionExtensionConfiguration, resolveUserAgentConfig, resolveHostHeaderConfig, getUserAgentPlugin, getHostHeaderPlugin, getLoggerPlugin, getRecursionDetectionPlugin, setCredentialFeature, stsRegionDefaultResolver } = __nccwpck_require__(5152);
 const { NoAuthSigner, getHttpAuthSchemeEndpointRuleSetPlugin, DefaultIdentityProviderConfig, getHttpSigningPlugin } = __nccwpck_require__(90402);
-const { normalizeProvider, getSmithyContext, ServiceException, NoOpLogger, emitWarningIfUnsupportedVersion, loadConfigsForDefaultMode, getDefaultExtensionConfiguration, resolveDefaultRuntimeConfig, Client, Command, createAggregatedClient } = __nccwpck_require__(92658);
-exports.$Command = Command;
+const { normalizeProvider, getSmithyContext, ServiceException, NoOpLogger, emitWarningIfUnsupportedVersion, loadConfigsForDefaultMode, getDefaultExtensionConfiguration, resolveDefaultRuntimeConfig, Client, makeBuilder, createAggregatedClient } = __nccwpck_require__(92658);
+const { Command: $Command } = __nccwpck_require__(92658);
+exports.$Command = $Command;
 exports.__Client = Client;
 const { resolveDefaultsModeConfig, loadConfig, NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS, NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS, NODE_REGION_CONFIG_OPTIONS, NODE_REGION_CONFIG_FILE_OPTIONS, resolveRegionConfig } = __nccwpck_require__(47291);
 const { BinaryDecisionDiagram, EndpointCache, decideEndpoint, customEndpointFunctions, resolveParams, resolveEndpointConfig, getEndpointPlugin } = __nccwpck_require__(62085);
@@ -17482,9 +15636,10 @@ const { DEFAULT_RETRY_MODE, NODE_RETRY_MODE_CONFIG_OPTIONS, NODE_MAX_ATTEMPT_CON
 const { TypeRegistry, getSchemaSerdePlugin } = __nccwpck_require__(26890);
 const { resolveAwsSdkSigV4Config, resolveAwsSdkSigV4AConfig, AwsSdkSigV4Signer, AwsSdkSigV4ASigner, NODE_SIGV4A_CONFIG_OPTIONS, NODE_AUTH_SCHEME_PREFERENCE_OPTIONS } = __nccwpck_require__(97523);
 const { SignatureV4MultiRegion } = __nccwpck_require__(5785);
-const { toUtf8, fromUtf8, toBase64, fromBase64, Hash, calculateBodyLength } = __nccwpck_require__(92430);
+const { toUtf8, fromUtf8, toBase64, fromBase64, calculateBodyLength } = __nccwpck_require__(92430);
 const { streamCollector, NodeHttpHandler } = __nccwpck_require__(61279);
 const { AwsQueryProtocol } = __nccwpck_require__(37288);
+const { Sha256 } = __nccwpck_require__(99542);
 
 const q = "ref";
 const a = -1, b = true, c = "isSet", d = "PartitionResult", e = "booleanEquals", f = "stringEquals", g = "getAttr", h = "us-east-1", i = "sigv4", j = "sts", k = "https://sts.{Region}.{PartitionResult#dnsSuffix}", l = { [q]: "Endpoint" }, m = { [q]: "Region" }, n = { [q]: d }, o = {}, p = [m];
@@ -17728,7 +15883,7 @@ const commonParams = {
     UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" },
 };
 
-var version = "3.997.22";
+var version = "3.997.34";
 var packageInfo = {
 	version: version};
 
@@ -18033,6 +16188,7 @@ const getRuntimeConfig$1 = (config) => {
             serviceTarget: "AWSSecurityTokenServiceV20110615",
         },
         serviceId: config?.serviceId ?? "STS",
+        sha256: config?.sha256 ?? Sha256,
         signerConstructor: config?.signerConstructor ?? SignatureV4MultiRegion,
         urlParser: config?.urlParser ?? parseUrl,
         utf8Decoder: config?.utf8Decoder ?? fromUtf8,
@@ -18083,7 +16239,6 @@ const getRuntimeConfig = (config) => {
                 ...NODE_RETRY_MODE_CONFIG_OPTIONS,
                 default: async () => (await defaultConfigProvider()).retryMode || DEFAULT_RETRY_MODE,
             }, config),
-        sha256: config?.sha256 ?? Hash.bind(null, "sha256"),
         sigv4aSigningRegionSet: config?.sigv4aSigningRegionSet ?? loadConfig(NODE_SIGV4A_CONFIG_OPTIONS, loaderConfig),
         streamCollector: config?.streamCollector ?? streamCollector,
         useDualstackEndpoint: config?.useDualstackEndpoint ?? loadConfig(NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS, loaderConfig),
@@ -18173,28 +16328,14 @@ class STSClient extends Client {
     }
 }
 
-class AssumeRoleCommand extends Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AWSSecurityTokenServiceV20110615", "AssumeRole", {})
-    .n("STSClient", "AssumeRoleCommand")
-    .sc(AssumeRole$)
-    .build() {
+const command = makeBuilder(commonParams, "AWSSecurityTokenServiceV20110615", "STSClient", getEndpointPlugin);
+const _ep0 = {};
+const _mw0 = (Command, cs, config, o) => [];
+
+class AssumeRoleCommand extends command(_ep0, _mw0, "AssumeRole", AssumeRole$) {
 }
 
-class AssumeRoleWithWebIdentityCommand extends Command
-    .classBuilder()
-    .ep(commonParams)
-    .m(function (Command, cs, config, o) {
-    return [getEndpointPlugin(config, Command.getEndpointParameterInstructions())];
-})
-    .s("AWSSecurityTokenServiceV20110615", "AssumeRoleWithWebIdentity", {})
-    .n("STSClient", "AssumeRoleWithWebIdentityCommand")
-    .sc(AssumeRoleWithWebIdentity$)
-    .build() {
+class AssumeRoleWithWebIdentityCommand extends command(_ep0, _mw0, "AssumeRoleWithWebIdentity", AssumeRoleWithWebIdentity$) {
 }
 
 const commands = {
@@ -18688,10 +16829,7 @@ exports.nodeProvider = nodeProvider;
 /***/ }),
 
 /***/ 94274:
-/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
-
-const { parseXML } = __nccwpck_require__(43343);
-exports.parseXML = parseXML;
+/***/ ((__unused_webpack_module, exports) => {
 
 const ATTR_ESCAPE_RE = /[&<>"]/g;
 const ATTR_ESCAPE_MAP = {
@@ -18817,19 +16955,13 @@ class XmlNode {
     }
 }
 
-exports.XmlNode = XmlNode;
-exports.XmlText = XmlText;
-
-
-/***/ }),
-
-/***/ 43343:
-/***/ ((__unused_webpack_module, exports) => {
-
-exports.parseXML = function parseXML(xml) {
+function writeKey(obj) {
+    Object.defineProperty(obj, "__proto__", { value: undefined, writable: true, enumerable: true, configurable: true });
+}
+function parseXML(xml) {
     const state = new AwsXmlParser(xml);
     return state.parse();
-};
+}
 class AwsXmlParser {
     x;
     i = 0;
@@ -18911,7 +17043,7 @@ class AwsXmlParser {
             tag += p.x[p.i++];
         }
         let hasAttrs = false;
-        const attrs = Object.create(null);
+        const attrs = {};
         while (p.i < p.z) {
             p.trim();
             if (">/".includes(p.x[p.i])) {
@@ -18927,6 +17059,9 @@ class AwsXmlParser {
             }
             ++p.i;
             p.trim();
+            if (name === "__proto__") {
+                writeKey(attrs);
+            }
             attrs[name] = p.readAttrValue();
             hasAttrs = true;
         }
@@ -18939,7 +17074,6 @@ class AwsXmlParser {
                 throw new Error("@aws-sdk XML parse error: expected > at the end of self-closing tag.");
             }
             ++p.i;
-            Object.setPrototypeOf(attrs, Object.prototype);
             return { tag, value: hasAttrs ? attrs : "" };
         }
         if (p.x[p.i] !== ">") {
@@ -18995,7 +17129,7 @@ class AwsXmlParser {
             }
             return { tag, value: text };
         }
-        const obj = Object.create(null);
+        const obj = {};
         for (const text of textParts) {
             if (text.trim() === "" && text.includes("\n")) {
                 continue;
@@ -19003,6 +17137,9 @@ class AwsXmlParser {
             obj["#text"] = "#text" in obj ? obj["#text"] + text : text;
         }
         for (const child of childTags) {
+            if (child.tag === "__proto__") {
+                writeKey(obj);
+            }
             if (child.tag in obj) {
                 if (Array.isArray(obj[child.tag])) {
                     obj[child.tag].push(child.value);
@@ -19016,9 +17153,11 @@ class AwsXmlParser {
             }
         }
         for (const [k, v] of Object.entries(attrs)) {
+            if (k === "__proto__") {
+                writeKey(obj);
+            }
             obj[k] = v;
         }
-        Object.setPrototypeOf(obj, Object.prototype);
         return { tag, value: obj };
     }
     static ENTITIES = {
@@ -19061,6 +17200,10 @@ class AwsXmlParser {
     }
 }
 
+exports.XmlNode = XmlNode;
+exports.XmlText = XmlText;
+exports.parseXML = parseXML;
+
 
 /***/ }),
 
@@ -19073,6 +17216,9 @@ const PROTECTED_KEYS = {
     REQUEST_ID: Symbol.for("_AWS_LAMBDA_REQUEST_ID"),
     X_RAY_TRACE_ID: Symbol.for("_AWS_LAMBDA_X_RAY_TRACE_ID"),
     TENANT_ID: Symbol.for("_AWS_LAMBDA_TENANT_ID"),
+    TRACEPARENT: Symbol.for("_AWS_LAMBDA_TRACEPARENT"),
+    TRACESTATE: Symbol.for("_AWS_LAMBDA_TRACESTATE"),
+    BAGGAGE: Symbol.for("_AWS_LAMBDA_BAGGAGE"),
 };
 const NO_GLOBAL_AWS_LAMBDA = ["true", "1"].includes(process.env?.AWS_LAMBDA_NODEJS_NO_GLOBAL_AWSLAMBDA ?? "");
 if (!NO_GLOBAL_AWS_LAMBDA) {
@@ -19091,6 +17237,15 @@ class InvokeStoreBase {
     }
     getTenantId() {
         return this.get(PROTECTED_KEYS.TENANT_ID);
+    }
+    getTraceparent() {
+        return this.get(PROTECTED_KEYS.TRACEPARENT);
+    }
+    getTracestate() {
+        return this.get(PROTECTED_KEYS.TRACESTATE);
+    }
+    getBaggage() {
+        return this.get(PROTECTED_KEYS.BAGGAGE);
     }
 }
 class InvokeStoreSingle extends InvokeStoreBase {
@@ -36008,7 +34163,7 @@ function bytesToFloat16(a, b) {
 }
 function decodeMap(at, to) {
     const mapDataLength = decodeCount(at, to);
-    if (mapDataLength < 15) {
+    if (mapDataLength < 25) {
         return decodeMapSmall(at, to, mapDataLength);
     }
     return decodeMapLarge(at, to, mapDataLength);
@@ -36767,7 +34922,7 @@ const buildHttpRpcRequest = async (context, headers, path, resolvedHostname, bod
         try {
             contents.headers["content-length"] = String(calculateBodyLength(body));
         }
-        catch (e) { }
+        catch (ignored) { }
     }
     return new HttpRequest(contents);
 };
@@ -37016,7 +35171,7 @@ class SmithyRpcV2CborProtocol extends RpcProtocol {
             try {
                 request.headers["content-length"] = String(request.body.byteLength);
             }
-            catch (e) { }
+            catch (ignored) { }
         }
         const { service, operation } = getSmithyContext(context);
         const path = `/service/${service}/operation/${operation}`;
@@ -37048,7 +35203,7 @@ class SmithyRpcV2CborProtocol extends RpcProtocol {
         try {
             errorSchema = registry.getSchema(errorName);
         }
-        catch (e) {
+        catch (ignored) {
             if (dataObject.Message) {
                 dataObject.message = dataObject.Message;
             }
@@ -37101,7 +35256,9 @@ exports.tagSymbol = tagSymbol;
 
 const { createReadStream } = __nccwpck_require__(73024);
 const { Writable } = __nccwpck_require__(57075);
-const { toUint8Array, fromUtf8 } = __nccwpck_require__(92430);
+const { toUint8Array, concatBytes } = __nccwpck_require__(92430);
+const { createHash, createHmac } = __nccwpck_require__(77598);
+const zlib = __nccwpck_require__(38522);
 
 async function blobReader(blob, onChunk, chunkSize = 1024 * 1024) {
     const size = blob.size;
@@ -37180,178 +35337,496 @@ const readableStreamHasher = (hashCtor, readableStream) => {
     });
 };
 
-const BLOCK_SIZE = 64;
-const DIGEST_LENGTH = 16;
-const INIT = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476];
-
-class Md5 {
-    state;
-    buffer;
-    bufferLength;
-    bytesHashed;
-    finished;
-    constructor() {
-        this.reset();
-    }
+class Md5Js {
+    digestLength = 16;
+    state = Uint32Array.from(INIT$1);
+    writeBuffer = new DataView(new ArrayBuffer(64));
+    bufferLength = 0;
+    bytesHashed = 0;
     update(sourceData) {
-        if (isEmptyData(sourceData)) {
+        const data = toUint8Array(sourceData);
+        let pos = 0;
+        let len = data.byteLength;
+        this.bytesHashed += len;
+        while (len > 0) {
+            this.writeBuffer.setUint8(this.bufferLength++, data[pos++]);
+            --len;
+            if (this.bufferLength === 64) {
+                compress(this.state, this.writeBuffer);
+                this.bufferLength = 0;
+            }
+        }
+    }
+    async digest() {
+        const state = Uint32Array.from(this.state);
+        const buf = new DataView(this.writeBuffer.buffer.slice(0));
+        let bufLen = this.bufferLength;
+        const bits = this.bytesHashed * 8;
+        buf.setUint8(bufLen++, 0x80);
+        if (this.bufferLength % 64 >= 56) {
+            for (let i = bufLen; i < 64; ++i) {
+                buf.setUint8(i, 0);
+            }
+            compress(state, buf);
+            bufLen = 0;
+        }
+        for (let i = bufLen; i < 56; ++i) {
+            buf.setUint8(i, 0);
+        }
+        buf.setUint32(56, bits >>> 0, true);
+        buf.setUint32(60, Math.floor(bits / 2 ** 32), true);
+        compress(state, buf);
+        const out = new Uint8Array(16);
+        const view = new DataView(out.buffer);
+        for (let i = 0; i < 4; ++i) {
+            view.setUint32(i * 4, state[i], true);
+        }
+        return out;
+    }
+    reset() {
+        this.state.set(INIT$1);
+        this.writeBuffer = new DataView(new ArrayBuffer(64));
+        this.bufferLength = 0;
+        this.bytesHashed = 0;
+    }
+}
+const INIT$1 = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476];
+const M = 0xffffffff;
+const S = Uint8Array.of(7, 12, 17, 22, 5, 9, 14, 20, 4, 11, 16, 23, 6, 10, 15, 21);
+const T = Array.from({ length: 64 }, (_, i) => (Math.abs(Math.sin(i + 1)) * 2 ** 32) >>> 0);
+function compress(state, block) {
+    let a = state[0], b = state[1], c = state[2], d = state[3];
+    for (let i = 0; i < 64; ++i) {
+        let f, g;
+        if (i < 16) {
+            f = (b & c) | (~b & d);
+            g = i;
+        }
+        else if (i < 32) {
+            f = (d & b) | (c & ~d);
+            g = (5 * i + 1) % 16;
+        }
+        else if (i < 48) {
+            f = b ^ c ^ d;
+            g = (3 * i + 5) % 16;
+        }
+        else {
+            f = c ^ (b | ~d);
+            g = (7 * i) % 16;
+        }
+        const x = block.getUint32(g * 4, true);
+        const tmp = d;
+        d = c;
+        c = b;
+        const s = S[(i >> 4) * 4 + (i & 3)];
+        const sum = (((a + f) & M) + ((x + T[i]) & M)) & M;
+        b = (b + (((sum << s) | (sum >>> (32 - s))) >>> 0)) & M;
+        a = tmp;
+    }
+    state[0] = (state[0] + a) & M;
+    state[1] = (state[1] + b) & M;
+    state[2] = (state[2] + c) & M;
+    state[3] = (state[3] + d) & M;
+}
+
+const hasNativeCrypto$1 = (() => {
+    try {
+        createHash("md5");
+        return true;
+    }
+    catch {
+        return false;
+    }
+})();
+const Md5Node = hasNativeCrypto$1 ? buildNativeClass$2() : Md5Js;
+function buildNativeClass$2() {
+    return class Md5Node {
+        digestLength = 16;
+        hash = createHash("md5");
+        update(data) {
+            this.hash.update(toUint8Array(data));
+        }
+        async digest() {
+            const buf = this.hash.copy().digest();
+            return new Uint8Array(buf.buffer, buf.byteOffset, buf.byteLength);
+        }
+        reset() {
+            this.hash = createHash("md5");
+        }
+    };
+}
+
+const CRC32_TABLE = new Uint32Array(256);
+for (let i = 0; i < 256; ++i) {
+    let c = i;
+    for (let j = 0; j < 8; ++j) {
+        c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1;
+    }
+    CRC32_TABLE[i] = c >>> 0;
+}
+const ONES = 0xffff_ffff;
+class Crc32Js {
+    digestLength = 4;
+    checksum = ONES;
+    update(data) {
+        for (let i = 0; i < data.length; ++i) {
+            this.checksum = (this.checksum >>> 8) ^ CRC32_TABLE[(this.checksum ^ data[i]) & 0xff];
+        }
+    }
+    digestSync() {
+        return (this.checksum ^ ONES) >>> 0;
+    }
+    async digest() {
+        const value = this.digestSync();
+        const out = new Uint8Array(4);
+        new DataView(out.buffer).setUint32(0, value, false);
+        return out;
+    }
+    reset() {
+        this.checksum = ONES;
+    }
+}
+
+const zlibCrc32 = typeof zlib.crc32 === "function" ? zlib.crc32 : undefined;
+const Crc32Node = zlibCrc32 ? buildNativeClass$1(zlibCrc32) : Crc32Js;
+function buildNativeClass$1(nativeCrc32) {
+    return class Crc32Node {
+        digestLength = 4;
+        value = 0;
+        update(data) {
+            this.value = nativeCrc32(data, this.value);
+        }
+        digestSync() {
+            return this.value >>> 0;
+        }
+        async digest() {
+            const out = new Uint8Array(4);
+            new DataView(out.buffer).setUint32(0, this.digestSync(), false);
+            return out;
+        }
+        reset() {
+            this.value = 0;
+        }
+    };
+}
+
+const BLOCK = 64;
+const DIGEST_LENGTH = 32;
+const MAX_HASHABLE_LENGTH = 2 ** 53 - 1;
+class Sha256Js {
+    digestLength = DIGEST_LENGTH;
+    state = Int32Array.from(INIT);
+    w;
+    buffer = new Uint8Array(64);
+    bufferLength = 0;
+    bytesHashed = 0;
+    finished = false;
+    inner;
+    outer;
+    constructor(secret) {
+        if (secret) {
+            const key = Sha256Js.normalizeKey(secret);
+            this.inner = new Sha256Js();
+            this.outer = new Sha256Js();
+            const { inner, outer } = this;
+            const pad = new Uint8Array(BLOCK * 2);
+            for (let i = 0; i < BLOCK; ++i) {
+                pad[i] = 0x36 ^ key[i];
+                pad[i + BLOCK] = 0x5c ^ key[i];
+            }
+            inner.update(pad.subarray(0, BLOCK));
+            outer.update(pad.subarray(BLOCK));
+        }
+    }
+    update(data) {
+        if (this.finished) {
+            throw new Error("Attempted to update an already finished HMAC.");
+        }
+        if (this.inner) {
+            this.inner.update(data);
             return;
         }
-        else if (this.finished) {
-            throw new Error("Attempted to update an already finished hash.");
-        }
-        const data = convertToBuffer(sourceData);
+        const chunk = toUint8Array(data);
         let position = 0;
-        let { byteLength } = data;
+        let { byteLength } = chunk;
         this.bytesHashed += byteLength;
+        if (this.bytesHashed * 8 > MAX_HASHABLE_LENGTH) {
+            throw new Error("Cannot hash more than 2^53 - 1 bits");
+        }
         while (byteLength > 0) {
-            this.buffer.setUint8(this.bufferLength++, data[position++]);
+            this.buffer[this.bufferLength++] = chunk[position++];
             byteLength--;
-            if (this.bufferLength === BLOCK_SIZE) {
+            if (this.bufferLength === BLOCK) {
                 this.hashBuffer();
                 this.bufferLength = 0;
             }
         }
     }
     async digest() {
-        if (!this.finished) {
-            const { buffer, bufferLength: undecoratedLength, bytesHashed } = this;
-            const bitsHashed = bytesHashed * 8;
-            buffer.setUint8(this.bufferLength++, 0b10000000);
-            if (undecoratedLength % BLOCK_SIZE >= BLOCK_SIZE - 8) {
-                for (let i = this.bufferLength; i < BLOCK_SIZE; i++) {
-                    buffer.setUint8(i, 0);
-                }
-                this.hashBuffer();
-                this.bufferLength = 0;
+        const { inner, outer } = this;
+        if (inner && outer) {
+            if (this.finished) {
+                throw new Error("Attempted to digest an already finished HMAC.");
             }
-            for (let i = this.bufferLength; i < BLOCK_SIZE - 8; i++) {
-                buffer.setUint8(i, 0);
-            }
-            buffer.setUint32(BLOCK_SIZE - 8, bitsHashed >>> 0, true);
-            buffer.setUint32(BLOCK_SIZE - 4, Math.floor(bitsHashed / 0x100000000), true);
-            this.hashBuffer();
             this.finished = true;
+            const innerDigest = inner.digestSync();
+            outer.update(innerDigest);
+            return outer.digestSync();
         }
-        const out = new DataView(new ArrayBuffer(DIGEST_LENGTH));
-        for (let i = 0; i < 4; i++) {
-            out.setUint32(i * 4, this.state[i], true);
-        }
-        return new Uint8Array(out.buffer, out.byteOffset, out.byteLength);
-    }
-    hashBuffer() {
-        const { buffer, state } = this;
-        let a = state[0], b = state[1], c = state[2], d = state[3];
-        a = ff(a, b, c, d, buffer.getUint32(0, true), 7, 0xd76aa478);
-        d = ff(d, a, b, c, buffer.getUint32(4, true), 12, 0xe8c7b756);
-        c = ff(c, d, a, b, buffer.getUint32(8, true), 17, 0x242070db);
-        b = ff(b, c, d, a, buffer.getUint32(12, true), 22, 0xc1bdceee);
-        a = ff(a, b, c, d, buffer.getUint32(16, true), 7, 0xf57c0faf);
-        d = ff(d, a, b, c, buffer.getUint32(20, true), 12, 0x4787c62a);
-        c = ff(c, d, a, b, buffer.getUint32(24, true), 17, 0xa8304613);
-        b = ff(b, c, d, a, buffer.getUint32(28, true), 22, 0xfd469501);
-        a = ff(a, b, c, d, buffer.getUint32(32, true), 7, 0x698098d8);
-        d = ff(d, a, b, c, buffer.getUint32(36, true), 12, 0x8b44f7af);
-        c = ff(c, d, a, b, buffer.getUint32(40, true), 17, 0xffff5bb1);
-        b = ff(b, c, d, a, buffer.getUint32(44, true), 22, 0x895cd7be);
-        a = ff(a, b, c, d, buffer.getUint32(48, true), 7, 0x6b901122);
-        d = ff(d, a, b, c, buffer.getUint32(52, true), 12, 0xfd987193);
-        c = ff(c, d, a, b, buffer.getUint32(56, true), 17, 0xa679438e);
-        b = ff(b, c, d, a, buffer.getUint32(60, true), 22, 0x49b40821);
-        a = gg(a, b, c, d, buffer.getUint32(4, true), 5, 0xf61e2562);
-        d = gg(d, a, b, c, buffer.getUint32(24, true), 9, 0xc040b340);
-        c = gg(c, d, a, b, buffer.getUint32(44, true), 14, 0x265e5a51);
-        b = gg(b, c, d, a, buffer.getUint32(0, true), 20, 0xe9b6c7aa);
-        a = gg(a, b, c, d, buffer.getUint32(20, true), 5, 0xd62f105d);
-        d = gg(d, a, b, c, buffer.getUint32(40, true), 9, 0x02441453);
-        c = gg(c, d, a, b, buffer.getUint32(60, true), 14, 0xd8a1e681);
-        b = gg(b, c, d, a, buffer.getUint32(16, true), 20, 0xe7d3fbc8);
-        a = gg(a, b, c, d, buffer.getUint32(36, true), 5, 0x21e1cde6);
-        d = gg(d, a, b, c, buffer.getUint32(56, true), 9, 0xc33707d6);
-        c = gg(c, d, a, b, buffer.getUint32(12, true), 14, 0xf4d50d87);
-        b = gg(b, c, d, a, buffer.getUint32(32, true), 20, 0x455a14ed);
-        a = gg(a, b, c, d, buffer.getUint32(52, true), 5, 0xa9e3e905);
-        d = gg(d, a, b, c, buffer.getUint32(8, true), 9, 0xfcefa3f8);
-        c = gg(c, d, a, b, buffer.getUint32(28, true), 14, 0x676f02d9);
-        b = gg(b, c, d, a, buffer.getUint32(48, true), 20, 0x8d2a4c8a);
-        a = hh(a, b, c, d, buffer.getUint32(20, true), 4, 0xfffa3942);
-        d = hh(d, a, b, c, buffer.getUint32(32, true), 11, 0x8771f681);
-        c = hh(c, d, a, b, buffer.getUint32(44, true), 16, 0x6d9d6122);
-        b = hh(b, c, d, a, buffer.getUint32(56, true), 23, 0xfde5380c);
-        a = hh(a, b, c, d, buffer.getUint32(4, true), 4, 0xa4beea44);
-        d = hh(d, a, b, c, buffer.getUint32(16, true), 11, 0x4bdecfa9);
-        c = hh(c, d, a, b, buffer.getUint32(28, true), 16, 0xf6bb4b60);
-        b = hh(b, c, d, a, buffer.getUint32(40, true), 23, 0xbebfbc70);
-        a = hh(a, b, c, d, buffer.getUint32(52, true), 4, 0x289b7ec6);
-        d = hh(d, a, b, c, buffer.getUint32(0, true), 11, 0xeaa127fa);
-        c = hh(c, d, a, b, buffer.getUint32(12, true), 16, 0xd4ef3085);
-        b = hh(b, c, d, a, buffer.getUint32(24, true), 23, 0x04881d05);
-        a = hh(a, b, c, d, buffer.getUint32(36, true), 4, 0xd9d4d039);
-        d = hh(d, a, b, c, buffer.getUint32(48, true), 11, 0xe6db99e5);
-        c = hh(c, d, a, b, buffer.getUint32(60, true), 16, 0x1fa27cf8);
-        b = hh(b, c, d, a, buffer.getUint32(8, true), 23, 0xc4ac5665);
-        a = ii(a, b, c, d, buffer.getUint32(0, true), 6, 0xf4292244);
-        d = ii(d, a, b, c, buffer.getUint32(28, true), 10, 0x432aff97);
-        c = ii(c, d, a, b, buffer.getUint32(56, true), 15, 0xab9423a7);
-        b = ii(b, c, d, a, buffer.getUint32(20, true), 21, 0xfc93a039);
-        a = ii(a, b, c, d, buffer.getUint32(48, true), 6, 0x655b59c3);
-        d = ii(d, a, b, c, buffer.getUint32(12, true), 10, 0x8f0ccc92);
-        c = ii(c, d, a, b, buffer.getUint32(40, true), 15, 0xffeff47d);
-        b = ii(b, c, d, a, buffer.getUint32(4, true), 21, 0x85845dd1);
-        a = ii(a, b, c, d, buffer.getUint32(32, true), 6, 0x6fa87e4f);
-        d = ii(d, a, b, c, buffer.getUint32(60, true), 10, 0xfe2ce6e0);
-        c = ii(c, d, a, b, buffer.getUint32(24, true), 15, 0xa3014314);
-        b = ii(b, c, d, a, buffer.getUint32(52, true), 21, 0x4e0811a1);
-        a = ii(a, b, c, d, buffer.getUint32(16, true), 6, 0xf7537e82);
-        d = ii(d, a, b, c, buffer.getUint32(44, true), 10, 0xbd3af235);
-        c = ii(c, d, a, b, buffer.getUint32(8, true), 15, 0x2ad7d2bb);
-        b = ii(b, c, d, a, buffer.getUint32(36, true), 21, 0xeb86d391);
-        state[0] = (a + state[0]) & 0xffffffff;
-        state[1] = (b + state[1]) & 0xffffffff;
-        state[2] = (c + state[2]) & 0xffffffff;
-        state[3] = (d + state[3]) & 0xffffffff;
+        return this.digestSync();
     }
     reset() {
-        this.state = Uint32Array.from(INIT);
-        this.buffer = new DataView(new ArrayBuffer(BLOCK_SIZE));
+        this.state = Int32Array.from(INIT);
+        this.buffer = new Uint8Array(64);
         this.bufferLength = 0;
         this.bytesHashed = 0;
-        this.finished = false;
+    }
+    digestSync() {
+        const state = this.state.slice();
+        const buffer = this.buffer.slice();
+        let bufferLength = this.bufferLength;
+        const bitsHashed = this.bytesHashed * 8;
+        const bufferView = new DataView(buffer.buffer, buffer.byteOffset, buffer.byteLength);
+        bufferView.setUint8(bufferLength++, 0x80);
+        if ((bufferLength - 1) % BLOCK >= BLOCK - 8) {
+            for (let i = bufferLength; i < BLOCK; ++i) {
+                bufferView.setUint8(i, 0);
+            }
+            this.hashBufferWith(state, buffer);
+            bufferLength = 0;
+        }
+        for (let i = bufferLength; i < BLOCK - 8; ++i) {
+            bufferView.setUint8(i, 0);
+        }
+        bufferView.setUint32(BLOCK - 8, Math.floor(bitsHashed / 0x100000000), false);
+        bufferView.setUint32(BLOCK - 4, bitsHashed, false);
+        this.hashBufferWith(state, buffer);
+        const out = new Uint8Array(DIGEST_LENGTH);
+        for (let i = 0; i < 8; ++i) {
+            out[i * 4] = (state[i] >>> 24) & 0xff;
+            out[i * 4 + 1] = (state[i] >>> 16) & 0xff;
+            out[i * 4 + 2] = (state[i] >>> 8) & 0xff;
+            out[i * 4 + 3] = (state[i] >>> 0) & 0xff;
+        }
+        return out;
+    }
+    static normalizeKey(secret) {
+        const key = toUint8Array(secret);
+        if (key.byteLength > BLOCK) {
+            const h = new Sha256Js();
+            h.update(key);
+            const out = h.digestSync();
+            const padded = new Uint8Array(BLOCK);
+            padded.set(out);
+            return padded;
+        }
+        if (key.byteLength < BLOCK) {
+            const padded = new Uint8Array(BLOCK);
+            padded.set(key);
+            return padded;
+        }
+        return key;
+    }
+    hashBuffer() {
+        this.hashBufferWith(this.state, this.buffer);
+    }
+    hashBufferWith(state, buffer) {
+        const w = (this.w ??= new Int32Array(64));
+        let s0 = state[0], s1 = state[1], s2 = state[2], s3 = state[3], s4 = state[4], s5 = state[5], s6 = state[6], s7 = state[7];
+        for (let i = 0; i < BLOCK; ++i) {
+            if (i < 16) {
+                w[i] =
+                    ((buffer[i * 4] & 0xff) << 24) |
+                        ((buffer[i * 4 + 1] & 0xff) << 16) |
+                        ((buffer[i * 4 + 2] & 0xff) << 8) |
+                        (buffer[i * 4 + 3] & 0xff);
+            }
+            else {
+                let u = w[i - 2];
+                const t1 = ((u >>> 17) | (u << 15)) ^ ((u >>> 19) | (u << 13)) ^ (u >>> 10);
+                u = w[i - 15];
+                const t2 = ((u >>> 7) | (u << 25)) ^ ((u >>> 18) | (u << 14)) ^ (u >>> 3);
+                w[i] = ((t1 + w[i - 7]) | 0) + ((t2 + w[i - 16]) | 0);
+            }
+            const t1 = ((((((s4 >>> 6) | (s4 << 26)) ^ ((s4 >>> 11) | (s4 << 21)) ^ ((s4 >>> 25) | (s4 << 7))) +
+                ((s4 & s5) ^ (~s4 & s6))) |
+                0) +
+                ((s7 + ((K[i] + w[i]) | 0)) | 0)) |
+                0;
+            const t2 = ((((s0 >>> 2) | (s0 << 30)) ^ ((s0 >>> 13) | (s0 << 19)) ^ ((s0 >>> 22) | (s0 << 10))) +
+                ((s0 & s1) ^ (s0 & s2) ^ (s1 & s2))) |
+                0;
+            s7 = s6;
+            s6 = s5;
+            s5 = s4;
+            s4 = (s3 + t1) | 0;
+            s3 = s2;
+            s2 = s1;
+            s1 = s0;
+            s0 = (t1 + t2) | 0;
+        }
+        state[0] += s0;
+        state[1] += s1;
+        state[2] += s2;
+        state[3] += s3;
+        state[4] += s4;
+        state[5] += s5;
+        state[6] += s6;
+        state[7] += s7;
     }
 }
-function cmn(q, a, b, x, s, t) {
-    a = (((a + q) & 0xffffffff) + ((x + t) & 0xffffffff)) & 0xffffffff;
-    return (((a << s) | (a >>> (32 - s))) + b) & 0xffffffff;
-}
-function ff(a, b, c, d, x, s, t) {
-    return cmn((b & c) | (~b & d), a, b, x, s, t);
-}
-function gg(a, b, c, d, x, s, t) {
-    return cmn((b & d) | (c & ~d), a, b, x, s, t);
-}
-function hh(a, b, c, d, x, s, t) {
-    return cmn(b ^ c ^ d, a, b, x, s, t);
-}
-function ii(a, b, c, d, x, s, t) {
-    return cmn(c ^ (b | ~d), a, b, x, s, t);
-}
-function isEmptyData(data) {
-    if (typeof data === "string") {
-        return data.length === 0;
+const INIT = new Int32Array([
+    0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19,
+]);
+const K = new Int32Array([
+    0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+    0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+    0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+    0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+    0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+    0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+    0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+    0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2,
+]);
+
+const hasNativeCrypto = (() => {
+    try {
+        createHash("sha256");
+        return true;
     }
-    return data.byteLength === 0;
+    catch {
+        return false;
+    }
+})();
+const Sha256Node = hasNativeCrypto ? buildNativeClass() : Sha256Js;
+function buildNativeClass() {
+    return class Sha256Node {
+        digestLength = 32;
+        secret;
+        hash;
+        isHmac;
+        finished = false;
+        constructor(secret) {
+            this.secret = secret;
+            this.isHmac = !!secret;
+            this.hash = this.createHash();
+        }
+        update(data) {
+            if (this.finished) {
+                throw new Error("Attempted to update an already finished hash.");
+            }
+            this.hash.update(data);
+        }
+        async digest() {
+            let buf;
+            if (this.isHmac) {
+                this.finished = true;
+                buf = this.hash.digest();
+            }
+            else {
+                buf = this.hash.copy().digest();
+            }
+            return new Uint8Array(buf.buffer, buf.byteOffset, buf.byteLength);
+        }
+        reset() {
+            this.hash = this.createHash();
+            this.finished = false;
+        }
+        createHash() {
+            return this.secret ? createHmac("sha256", toBuffer(this.secret)) : createHash("sha256");
+        }
+    };
 }
-function convertToBuffer(data) {
+function toBuffer(data) {
     if (typeof data === "string") {
-        return fromUtf8(data);
+        return data;
     }
     if (ArrayBuffer.isView(data)) {
-        return new Uint8Array(data.buffer, data.byteOffset, data.byteLength / Uint8Array.BYTES_PER_ELEMENT);
+        return Buffer.from(data.buffer, data.byteOffset, data.byteLength);
     }
-    return new Uint8Array(data);
+    return Buffer.from(data);
 }
 
-exports.Md5 = Md5;
+const { digest, sign, importKey } = globalThis?.crypto?.subtle ?? {};
+const subtle = typeof digest === "function" && typeof sign === "function" && typeof importKey === "function"
+    ? globalThis.crypto.subtle
+    : undefined;
+const MAX_PENDING_BYTES = 8 * 1024 * 1024;
+class Sha256WebCrypto {
+    digestLength = 32;
+    secret;
+    pending = [];
+    pendingBytes = 0;
+    fallback;
+    finished = false;
+    constructor(secret) {
+        if (secret) {
+            this.secret = toUint8Array(secret);
+        }
+    }
+    update(data) {
+        if (this.finished) {
+            throw new Error("Attempted to update an already finished HMAC.");
+        }
+        if (this.fallback) {
+            this.fallback.update(data);
+            return;
+        }
+        this.pending.push(data.slice());
+        this.pendingBytes += data.byteLength;
+        if (this.pendingBytes >= MAX_PENDING_BYTES) {
+            this.switchToFallback();
+        }
+    }
+    async digest() {
+        if (this.fallback) {
+            return this.fallback.digest();
+        }
+        if (this.secret && this.finished) {
+            throw new Error("Attempted to digest an already finished HMAC.");
+        }
+        const data = concatBytes(this.pending);
+        if (subtle) {
+            if (this.secret) {
+                this.finished = true;
+                const key = await subtle.importKey("raw", this.secret, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+                const sig = await subtle.sign("HMAC", key, data);
+                return new Uint8Array(sig);
+            }
+            const hash = await subtle.digest("SHA-256", data);
+            return new Uint8Array(hash);
+        }
+        const sha256 = new Sha256Js(this.secret);
+        sha256.update(data);
+        return sha256.digest();
+    }
+    reset() {
+        this.pending = [];
+        this.pendingBytes = 0;
+        this.fallback = undefined;
+        this.finished = false;
+    }
+    switchToFallback() {
+        const sha256Js = new Sha256Js(this.secret);
+        for (const chunk of this.pending) {
+            sha256Js.update(chunk);
+        }
+        this.fallback = sha256Js;
+        this.pending = [];
+        this.pendingBytes = 0;
+    }
+}
+
+exports.Crc32 = Crc32Node;
+exports.Crc32Js = Crc32Js;
+exports.Crc32Node = Crc32Node;
+exports.Md5 = Md5Node;
+exports.Md5Js = Md5Js;
+exports.Md5Node = Md5Node;
+exports.Sha256 = Sha256Node;
+exports.Sha256Js = Sha256Js;
+exports.Sha256Node = Sha256Node;
+exports.Sha256WebCrypto = Sha256WebCrypto;
 exports.blobHasher = blobHasher;
 exports.blobReader = blobReader;
 exports.fileStreamHasher = fileStreamHasher;
@@ -38455,6 +36930,23 @@ const _json = (obj) => {
     return obj;
 };
 
+function makeBuilder(common, service, name, ep) {
+    return function makeCommand(added, plugins, op, $, smithyContext = {}) {
+        const epMerged = Object.assign({}, common, added);
+        return Command.classBuilder()
+            .ep(epMerged)
+            .m(function (CommandCtor, clientStack, config, options) {
+            const list = plugins.call(this, CommandCtor, clientStack, config, options);
+            list.unshift(ep(config, CommandCtor.getEndpointParameterInstructions()));
+            return list;
+        })
+            .s(service, op, smithyContext)
+            .n(name, op.charAt(0).toUpperCase() + op.slice(1) + "Command")
+            .sc($)
+            .build();
+    };
+}
+
 exports.Client = Client;
 exports.Command = Command;
 exports.NoOpLogger = NoOpLogger;
@@ -38479,6 +36971,7 @@ exports.invalidFunction = invalidFunction;
 exports.invalidProvider = invalidProvider;
 exports.isSerializableHeaderValue = isSerializableHeaderValue;
 exports.loadConfigsForDefaultMode = loadConfigsForDefaultMode;
+exports.makeBuilder = makeBuilder;
 exports.map = map;
 exports.resolveChecksumRuntimeConfig = resolveChecksumRuntimeConfig;
 exports.resolveDefaultRuntimeConfig = resolveDefaultRuntimeConfig;
@@ -38706,7 +37199,7 @@ const getConfigFilepath = () => process.env[ENV_CONFIG_PATH] || join(getHomeDir(
 const ENV_CREDENTIALS_PATH = "AWS_SHARED_CREDENTIALS_FILE";
 const getCredentialsFilepath = () => process.env[ENV_CREDENTIALS_PATH] || join(getHomeDir(), ".aws", "credentials");
 
-const prefixKeyRegex = /^([\w-]+)\s(["'])?([\w-@\+\.%:/]+)\2$/;
+const prefixKeyRegex = /^([\w-]+)\s(["'])?([\w-@+.%:/]+)\2$/;
 const profileNameBlockList = ["__proto__", "profile __proto__"];
 const parseIni = (iniData) => {
     const map = {};
@@ -38854,7 +37347,7 @@ function getSelectorName(functionString) {
         constants.delete("ENV");
         return [...constants].join(", ");
     }
-    catch (e) {
+    catch (ignored) {
         return functionString;
     }
 }
@@ -38969,12 +37462,118 @@ const resolveEndpointsConfig = (input) => {
     });
 };
 
+const AWS_EXECUTION_ENV = "AWS_EXECUTION_ENV";
+const AWS_REGION_ENV = "AWS_REGION";
+const AWS_DEFAULT_REGION_ENV = "AWS_DEFAULT_REGION";
+const ENV_IMDS_DISABLED = "AWS_EC2_METADATA_DISABLED";
+const DEFAULTS_MODE_OPTIONS = ["in-region", "cross-region", "mobile", "standard", "legacy"];
+const IMDS_REGION_PATH = "/latest/meta-data/placement/region";
+const IMDS_TOKEN_PATH = "/latest/api/token";
+const X_AWS_EC2_METADATA_TOKEN = "x-aws-ec2-metadata-token";
+const X_AWS_EC2_METADATA_TOKEN_TTL = "x-aws-ec2-metadata-token-ttl-seconds";
+
+const TIMEOUT_MS = 1000;
+const NEG_CACHE_TTL_MS = 60_000;
+let negativeCacheUntil = 0;
+const getInstanceMetadataRegion = async () => {
+    if (process.env[ENV_IMDS_DISABLED]) {
+        return undefined;
+    }
+    if (Date.now() < negativeCacheUntil) {
+        return undefined;
+    }
+    try {
+        const endpoint = resolveImdsEndpoint();
+        const token = (await imdsRequest({
+            ...endpoint,
+            path: IMDS_TOKEN_PATH,
+            method: "PUT",
+            headers: {
+                [X_AWS_EC2_METADATA_TOKEN_TTL]: "21600",
+            },
+        })).toString();
+        const region = (await imdsRequest({
+            ...endpoint,
+            path: IMDS_REGION_PATH,
+            method: "GET",
+            headers: {
+                [X_AWS_EC2_METADATA_TOKEN]: token,
+            },
+        }))
+            .toString()
+            .trim();
+        return region || cacheNegativeAndReturnUndefined();
+    }
+    catch {
+        return cacheNegativeAndReturnUndefined();
+    }
+};
+const cacheNegativeAndReturnUndefined = () => {
+    negativeCacheUntil = Date.now() + NEG_CACHE_TTL_MS;
+    return undefined;
+};
+const resolveImdsEndpoint = () => {
+    const envEndpoint = process.env.AWS_EC2_METADATA_SERVICE_ENDPOINT;
+    if (envEndpoint) {
+        const url = new URL(envEndpoint);
+        return {
+            hostname: url.hostname.replace(/^\[(.+)]$/, "$1"),
+            port: url.port ? Number(url.port) : undefined,
+        };
+    }
+    if (process.env.AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE === "IPv6") {
+        return { hostname: "fd00:ec2::254" };
+    }
+    return { hostname: "169.254.169.254" };
+};
+const imdsRequest = async (options) => {
+    const { request } = __nccwpck_require__(37067);
+    return new Promise((resolve, reject) => {
+        const req = request({
+            hostname: options.hostname,
+            port: options.port,
+            path: options.path,
+            method: options.method,
+            headers: options.headers,
+            timeout: TIMEOUT_MS,
+            signal: AbortSignal.timeout(TIMEOUT_MS),
+        });
+        req.on("error", (err) => {
+            reject(err);
+            req.destroy();
+        });
+        req.on("timeout", () => {
+            reject(new Error("TimeoutError from instance metadata service"));
+            req.destroy();
+        });
+        req.on("response", (res) => {
+            const { statusCode = 400 } = res;
+            if (statusCode < 200 || statusCode >= 300) {
+                reject(Object.assign(new Error("Error response received from instance metadata service"), { statusCode }));
+                req.destroy();
+                return;
+            }
+            const chunks = [];
+            res.on("data", (chunk) => chunks.push(chunk));
+            res.on("end", () => {
+                resolve(Buffer.concat(chunks));
+                req.destroy();
+            });
+        });
+        req.end();
+    });
+};
+
 const REGION_ENV_NAME = "AWS_REGION";
 const REGION_INI_NAME = "region";
 const NODE_REGION_CONFIG_OPTIONS = {
     environmentVariableSelector: (env) => env[REGION_ENV_NAME],
     configFileSelector: (profile) => profile[REGION_INI_NAME],
-    default: () => {
+    default: async () => {
+        const region = await getInstanceMetadataRegion();
+        if (region) {
+            return region;
+        }
         throw new Error("Region is missing");
     },
 };
@@ -39052,7 +37651,7 @@ const getResolvedSigningRegion = (hostname, { signingRegion, regionRegex, useFip
 
 const getRegionInfo = (region, { useFipsEndpoint = false, useDualstackEndpoint = false, signingService, regionHash, partitionHash, }) => {
     const partition = getResolvedPartition(region, { partitionHash });
-    const resolvedRegion = region in regionHash ? region : partitionHash[partition]?.endpoint ?? region;
+    const resolvedRegion = region in regionHash ? region : (partitionHash[partition]?.endpoint ?? region);
     const hostnameOptions = { useFipsEndpoint, useDualstackEndpoint };
     const regionHostname = getHostnameFromVariants(regionHash[resolvedRegion]?.variants, hostnameOptions);
     const partitionHostname = getHostnameFromVariants(partitionHash[partition]?.variants, hostnameOptions);
@@ -39075,13 +37674,6 @@ const getRegionInfo = (region, { useFipsEndpoint = false, useDualstackEndpoint =
         }),
     };
 };
-
-const AWS_EXECUTION_ENV = "AWS_EXECUTION_ENV";
-const AWS_REGION_ENV = "AWS_REGION";
-const AWS_DEFAULT_REGION_ENV = "AWS_DEFAULT_REGION";
-const ENV_IMDS_DISABLED = "AWS_EC2_METADATA_DISABLED";
-const DEFAULTS_MODE_OPTIONS = ["in-region", "cross-region", "mobile", "standard", "legacy"];
-const IMDS_REGION_PATH = "/latest/meta-data/placement/region";
 
 const AWS_DEFAULTS_MODE_ENV = "AWS_DEFAULTS_MODE";
 const AWS_DEFAULTS_MODE_CONFIG = "defaults_mode";
@@ -39132,61 +37724,7 @@ const inferPhysicalRegion = async () => {
     if (process.env[AWS_EXECUTION_ENV] && (process.env[AWS_REGION_ENV] || process.env[AWS_DEFAULT_REGION_ENV])) {
         return process.env[AWS_REGION_ENV] ?? process.env[AWS_DEFAULT_REGION_ENV];
     }
-    if (!process.env[ENV_IMDS_DISABLED]) {
-        try {
-            const endpoint = await getImdsEndpoint();
-            return (await imdsHttpGet({ hostname: endpoint.hostname, path: IMDS_REGION_PATH })).toString();
-        }
-        catch (e) {
-        }
-    }
-};
-const getImdsEndpoint = async () => {
-    const envEndpoint = process.env.AWS_EC2_METADATA_SERVICE_ENDPOINT;
-    if (envEndpoint) {
-        const url = new URL(envEndpoint);
-        return { hostname: url.hostname, path: url.pathname };
-    }
-    const envMode = process.env.AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE;
-    if (envMode === "IPv6") {
-        return { hostname: "fd00:ec2::254", path: "/" };
-    }
-    return { hostname: "169.254.169.254", path: "/" };
-};
-const imdsHttpGet = async ({ hostname, path }) => {
-    const { request } = __nccwpck_require__(37067);
-    return new Promise((resolve, reject) => {
-        const req = request({
-            method: "GET",
-            hostname: hostname.replace(/^\[(.+)]$/, "$1"),
-            path,
-            timeout: 1000,
-            signal: AbortSignal.timeout(1000),
-        });
-        req.on("error", (err) => {
-            reject(err);
-            req.destroy();
-        });
-        req.on("timeout", () => {
-            reject(new Error("TimeoutError from instance metadata service"));
-            req.destroy();
-        });
-        req.on("response", (res) => {
-            const { statusCode = 400 } = res;
-            if (statusCode < 200 || 300 <= statusCode) {
-                reject(Object.assign(new Error("Error response received from instance metadata service"), { statusCode }));
-                req.destroy();
-                return;
-            }
-            const chunks = [];
-            res.on("data", (chunk) => chunks.push(chunk));
-            res.on("end", () => {
-                resolve(Buffer.concat(chunks));
-                req.destroy();
-            });
-        });
-        req.end();
-    });
+    return getInstanceMetadataRegion();
 };
 
 exports.CONFIG_PREFIX_SEPARATOR = CONFIG_PREFIX_SEPARATOR;
@@ -39238,7 +37776,7 @@ exports.resolveRegionConfig = resolveRegionConfig;
 /***/ 62085:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
-const { CONFIG_PREFIX_SEPARATOR, loadConfig } = __nccwpck_require__(47291);
+const { CONFIG_PREFIX_SEPARATOR, booleanSelector, SelectorType, loadConfig } = __nccwpck_require__(47291);
 const { toEndpointV1, getSmithyContext, normalizeProvider, isValidHostLabel } = __nccwpck_require__(34534);
 exports.isValidHostLabel = isValidHostLabel;
 exports.middlewareEndpointToEndpointV1 = toEndpointV1;
@@ -39259,14 +37797,16 @@ const getEndpointUrlConfig = (serviceId) => ({
         return undefined;
     },
     configFileSelector: (profile, config) => {
-        if (config && profile.services) {
-            const servicesSection = config[["services", profile.services].join(CONFIG_PREFIX_SEPARATOR)];
-            if (servicesSection) {
-                const servicePrefixParts = serviceId.split(" ").map((w) => w.toLowerCase());
-                const endpointUrl = servicesSection[[servicePrefixParts.join("_"), CONFIG_ENDPOINT_URL].join(CONFIG_PREFIX_SEPARATOR)];
-                if (endpointUrl)
-                    return endpointUrl;
+        if (profile.services) {
+            const servicesSectionKey = ["services", profile.services].join(CONFIG_PREFIX_SEPARATOR);
+            if (!config || !config[servicesSectionKey]) {
+                throw new Error(`The services section "${profile.services}" specified in the profile is not present in the shared configuration file.`);
             }
+            const servicesSection = config[servicesSectionKey];
+            const servicePrefixParts = serviceId.split(" ").map((w) => w.toLowerCase());
+            const endpointUrl = servicesSection[[servicePrefixParts.join("_"), CONFIG_ENDPOINT_URL].join(CONFIG_PREFIX_SEPARATOR)];
+            if (endpointUrl)
+                return endpointUrl;
         }
         const endpointUrl = profile[CONFIG_ENDPOINT_URL];
         if (endpointUrl)
@@ -39276,7 +37816,21 @@ const getEndpointUrlConfig = (serviceId) => ({
     default: undefined,
 });
 
-const getEndpointFromConfig = async (serviceId) => loadConfig(getEndpointUrlConfig(serviceId ?? ""))();
+const ENV_IGNORE_CONFIGURED_ENDPOINT_URLS = "AWS_IGNORE_CONFIGURED_ENDPOINT_URLS";
+const CONFIG_IGNORE_CONFIGURED_ENDPOINT_URLS = "ignore_configured_endpoint_urls";
+const ignoreConfiguredEndpointUrlsConfigSelectors = {
+    environmentVariableSelector: (env) => booleanSelector(env, ENV_IGNORE_CONFIGURED_ENDPOINT_URLS, SelectorType.ENV),
+    configFileSelector: (profile) => booleanSelector(profile, CONFIG_IGNORE_CONFIGURED_ENDPOINT_URLS, SelectorType.CONFIG),
+    default: false,
+};
+
+const getEndpointFromConfig = async (serviceId) => {
+    const ignore = await loadConfig(ignoreConfiguredEndpointUrlsConfigSelectors)();
+    if (ignore) {
+        return undefined;
+    }
+    return loadConfig(getEndpointUrlConfig(serviceId ?? ""))();
+};
 
 const resolveParamsForS3 = async (endpointParams) => {
     const bucket = endpointParams?.Bucket || "";
@@ -39300,7 +37854,7 @@ const resolveParamsForS3 = async (endpointParams) => {
     }
     return endpointParams;
 };
-const DOMAIN_PATTERN = /^[a-z0-9][a-z0-9\.\-]{1,61}[a-z0-9]$/;
+const DOMAIN_PATTERN = /^[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$/;
 const IP_ADDRESS_PATTERN = /(\d+\.){3}\d+/;
 const DOTS_PATTERN = /\.\./;
 const isDnsCompatibleBucketName = (bucketName) => DOMAIN_PATTERN.test(bucketName) && !IP_ADDRESS_PATTERN.test(bucketName) && !DOTS_PATTERN.test(bucketName);
@@ -39367,7 +37921,7 @@ const createConfigValueProvider = (configKey, canonicalEndpointParamKey, config,
 
 function bindGetEndpointFromInstructions(getEndpointFromConfig) {
     return async (commandInput, instructionsSupplier, clientConfig, context) => {
-        if (!clientConfig.isCustomEndpoint) {
+        if (!clientConfig.isCustomEndpoint && !clientConfig.ignoreConfiguredEndpointUrls) {
             let endpointFromConfig;
             if (clientConfig.serviceConfiguredEndpoint) {
                 endpointFromConfig = await clientConfig.serviceConfiguredEndpoint();
@@ -39378,6 +37932,7 @@ function bindGetEndpointFromInstructions(getEndpointFromConfig) {
             if (endpointFromConfig) {
                 clientConfig.endpoint = () => Promise.resolve(toEndpointV1(endpointFromConfig));
                 clientConfig.isCustomEndpoint = true;
+                context?.logger?.debug?.(`@smithy/core/endpoints - resolved endpoint from config: ${endpointFromConfig}`);
             }
         }
         const endpointParams = await resolveParams(commandInput, instructionsSupplier, clientConfig);
@@ -39508,6 +38063,7 @@ function bindResolveEndpointConfig(getEndpointFromConfig) {
             isCustomEndpoint,
             useDualstackEndpoint: normalizeProvider(useDualstackEndpoint ?? false),
             useFipsEndpoint: normalizeProvider(useFipsEndpoint ?? false),
+            ignoreConfiguredEndpointUrls: !!input.ignoreConfiguredEndpointUrls,
         });
         let configuredEndpointPromise = undefined;
         resolvedConfig.serviceConfiguredEndpoint = async () => {
@@ -39689,7 +38245,7 @@ const parseURL = (value) => {
             }
             return new URL(value);
         }
-        catch (error) {
+        catch (ignored) {
             return null;
         }
     })();
@@ -40103,9 +38659,10 @@ exports.resolveParams = resolveParams;
 /***/ 56579:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
-const { Crc32 } = __nccwpck_require__(62110);
+const { Crc32 } = __nccwpck_require__(99542);
 const { toHex, fromHex, toUtf8, fromUtf8 } = __nccwpck_require__(92430);
 const { Readable } = __nccwpck_require__(57075);
+const { TypeRegistry } = __nccwpck_require__(26890);
 
 class Int64 {
     bytes;
@@ -40175,27 +38732,27 @@ class HeaderMarshaller {
     formatHeaderValue(header) {
         switch (header.type) {
             case "boolean":
-                return Uint8Array.from([header.value ? 0 : 1]);
+                return Uint8Array.from([header.value ? HEADER_VALUE_TYPE.boolTrue : HEADER_VALUE_TYPE.boolFalse]);
             case "byte":
-                return Uint8Array.from([2, header.value]);
+                return Uint8Array.from([HEADER_VALUE_TYPE.byte, header.value]);
             case "short":
                 const shortView = new DataView(new ArrayBuffer(3));
-                shortView.setUint8(0, 3);
+                shortView.setUint8(0, HEADER_VALUE_TYPE.short);
                 shortView.setInt16(1, header.value, false);
                 return new Uint8Array(shortView.buffer);
             case "integer":
                 const intView = new DataView(new ArrayBuffer(5));
-                intView.setUint8(0, 4);
+                intView.setUint8(0, HEADER_VALUE_TYPE.integer);
                 intView.setInt32(1, header.value, false);
                 return new Uint8Array(intView.buffer);
             case "long":
                 const longBytes = new Uint8Array(9);
-                longBytes[0] = 5;
+                longBytes[0] = HEADER_VALUE_TYPE.long;
                 longBytes.set(header.value.bytes, 1);
                 return longBytes;
             case "binary":
                 const binView = new DataView(new ArrayBuffer(3 + header.value.byteLength));
-                binView.setUint8(0, 6);
+                binView.setUint8(0, HEADER_VALUE_TYPE.byteArray);
                 binView.setUint16(1, header.value.byteLength, false);
                 const binBytes = new Uint8Array(binView.buffer);
                 binBytes.set(header.value, 3);
@@ -40203,14 +38760,14 @@ class HeaderMarshaller {
             case "string":
                 const utf8Bytes = this.fromUtf8(header.value);
                 const strView = new DataView(new ArrayBuffer(3 + utf8Bytes.byteLength));
-                strView.setUint8(0, 7);
+                strView.setUint8(0, HEADER_VALUE_TYPE.string);
                 strView.setUint16(1, utf8Bytes.byteLength, false);
                 const strBytes = new Uint8Array(strView.buffer);
                 strBytes.set(utf8Bytes, 3);
                 return strBytes;
             case "timestamp":
                 const tsBytes = new Uint8Array(9);
-                tsBytes[0] = 8;
+                tsBytes[0] = HEADER_VALUE_TYPE.timestamp;
                 tsBytes.set(Int64.fromNumber(header.value.valueOf()).bytes, 1);
                 return tsBytes;
             case "uuid":
@@ -40218,8 +38775,8 @@ class HeaderMarshaller {
                     throw new Error(`Invalid UUID received: ${header.value}`);
                 }
                 const uuidBytes = new Uint8Array(17);
-                uuidBytes[0] = 9;
-                uuidBytes.set(fromHex(header.value.replace(/\-/g, "")), 1);
+                uuidBytes[0] = HEADER_VALUE_TYPE.uuid;
+                uuidBytes.set(fromHex(header.value.replace(/-/g, "")), 1);
                 return uuidBytes;
         }
     }
@@ -40231,46 +38788,46 @@ class HeaderMarshaller {
             const name = this.toUtf8(new Uint8Array(headers.buffer, headers.byteOffset + position, nameLength));
             position += nameLength;
             switch (headers.getUint8(position++)) {
-                case 0:
+                case HEADER_VALUE_TYPE.boolTrue:
                     out[name] = {
                         type: BOOLEAN_TAG,
                         value: true,
                     };
                     break;
-                case 1:
+                case HEADER_VALUE_TYPE.boolFalse:
                     out[name] = {
                         type: BOOLEAN_TAG,
                         value: false,
                     };
                     break;
-                case 2:
+                case HEADER_VALUE_TYPE.byte:
                     out[name] = {
                         type: BYTE_TAG,
                         value: headers.getInt8(position++),
                     };
                     break;
-                case 3:
+                case HEADER_VALUE_TYPE.short:
                     out[name] = {
                         type: SHORT_TAG,
                         value: headers.getInt16(position, false),
                     };
                     position += 2;
                     break;
-                case 4:
+                case HEADER_VALUE_TYPE.integer:
                     out[name] = {
                         type: INT_TAG,
                         value: headers.getInt32(position, false),
                     };
                     position += 4;
                     break;
-                case 5:
+                case HEADER_VALUE_TYPE.long:
                     out[name] = {
                         type: LONG_TAG,
                         value: new Int64(new Uint8Array(headers.buffer, headers.byteOffset + position, 8)),
                     };
                     position += 8;
                     break;
-                case 6:
+                case HEADER_VALUE_TYPE.byteArray:
                     const binaryLength = headers.getUint16(position, false);
                     position += 2;
                     out[name] = {
@@ -40279,7 +38836,7 @@ class HeaderMarshaller {
                     };
                     position += binaryLength;
                     break;
-                case 7:
+                case HEADER_VALUE_TYPE.string:
                     const stringLength = headers.getUint16(position, false);
                     position += 2;
                     out[name] = {
@@ -40288,14 +38845,14 @@ class HeaderMarshaller {
                     };
                     position += stringLength;
                     break;
-                case 8:
+                case HEADER_VALUE_TYPE.timestamp:
                     out[name] = {
                         type: TIMESTAMP_TAG,
                         value: new Date(new Int64(new Uint8Array(headers.buffer, headers.byteOffset + position, 8)).valueOf()),
                     };
                     position += 8;
                     break;
-                case 9:
+                case HEADER_VALUE_TYPE.uuid:
                     const uuidBytes = new Uint8Array(headers.buffer, headers.byteOffset + position, 16);
                     position += 16;
                     out[name] = {
@@ -40350,13 +38907,14 @@ function splitMessage({ byteLength, byteOffset, buffer }) {
     const headerLength = view.getUint32(PRELUDE_MEMBER_LENGTH, false);
     const expectedPreludeChecksum = view.getUint32(PRELUDE_LENGTH, false);
     const expectedMessageChecksum = view.getUint32(byteLength - CHECKSUM_LENGTH, false);
-    const checksummer = new Crc32().update(new Uint8Array(buffer, byteOffset, PRELUDE_LENGTH));
-    if (expectedPreludeChecksum !== checksummer.digest()) {
-        throw new Error(`The prelude checksum specified in the message (${expectedPreludeChecksum}) does not match the calculated CRC32 checksum (${checksummer.digest()})`);
+    const checksummer = new Crc32();
+    checksummer.update(new Uint8Array(buffer, byteOffset, PRELUDE_LENGTH));
+    if (expectedPreludeChecksum !== checksummer.digestSync()) {
+        throw new Error(`The prelude checksum specified in the message (${expectedPreludeChecksum}) does not match the calculated CRC32 checksum (${checksummer.digestSync()})`);
     }
     checksummer.update(new Uint8Array(buffer, byteOffset + PRELUDE_LENGTH, byteLength - (PRELUDE_LENGTH + CHECKSUM_LENGTH)));
-    if (expectedMessageChecksum !== checksummer.digest()) {
-        throw new Error(`The message checksum (${checksummer.digest()}) did not match the expected value of ${expectedMessageChecksum}`);
+    if (expectedMessageChecksum !== checksummer.digestSync()) {
+        throw new Error(`The message checksum (${checksummer.digestSync()}) did not match the expected value of ${expectedMessageChecksum}`);
     }
     return {
         headers: new DataView(buffer, byteOffset + PRELUDE_LENGTH + CHECKSUM_LENGTH, headerLength),
@@ -40412,10 +38970,12 @@ class EventStreamCodec {
         const checksum = new Crc32();
         view.setUint32(0, length, false);
         view.setUint32(4, headers.byteLength, false);
-        view.setUint32(8, checksum.update(out.subarray(0, 8)).digest(), false);
+        checksum.update(out.subarray(0, 8));
+        view.setUint32(8, checksum.digestSync(), false);
         out.set(headers, 12);
         out.set(body, headers.byteLength + 12);
-        view.setUint32(length - 4, checksum.update(out.subarray(8, length - 4)).digest(), false);
+        checksum.update(out.subarray(8, length - 4));
+        view.setUint32(length - 4, checksum.digestSync(), false);
         return out;
     }
     decode(message) {
@@ -40718,12 +39278,14 @@ class EventStreamSerde {
     deserializer;
     serdeContext;
     defaultContentType;
-    constructor({ marshaller, serializer, deserializer, serdeContext, defaultContentType, }) {
+    compositeErrorRegistry;
+    constructor({ marshaller, serializer, deserializer, serdeContext, defaultContentType, compositeErrorRegistry, }) {
         this.marshaller = marshaller;
         this.serializer = serializer;
         this.deserializer = deserializer;
         this.serdeContext = serdeContext;
         this.defaultContentType = defaultContentType;
+        this.compositeErrorRegistry = compositeErrorRegistry;
     }
     async serializeEventStream({ eventStream, requestSchema, initialRequest, }) {
         const marshaller = this.marshaller;
@@ -40839,16 +39401,9 @@ class EventStreamSerde {
                             }
                         }
                     }
-                    if (hasBindings) {
-                        return {
-                            [unionMember]: out,
-                        };
-                    }
-                    if (body.byteLength === 0) {
-                        return {
-                            [unionMember]: {},
-                        };
-                    }
+                    return {
+                        [unionMember]: await this.readEventMember(eventStreamSchema, body, hasBindings, out),
+                    };
                 }
                 return {
                     [unionMember]: await this.deserializer.read(eventStreamSchema, body),
@@ -40887,6 +39442,33 @@ class EventStreamSerde {
                 }
             },
         };
+    }
+    async readEventMember(eventStreamSchema, body, hasBindings, out) {
+        let ErrCtor;
+        const staticStructuralSchema = eventStreamSchema.getSchema();
+        if (Array.isArray(staticStructuralSchema) && staticStructuralSchema[0] === -3) {
+            const namespace = staticStructuralSchema[1];
+            const nsRegistry = TypeRegistry.for(namespace);
+            this.compositeErrorRegistry?.copyFrom(nsRegistry);
+            ErrCtor = (this.compositeErrorRegistry ?? nsRegistry)?.getErrorCtor(staticStructuralSchema);
+        }
+        const dataObject = hasBindings
+            ? out
+            : body.byteLength === 0
+                ? {}
+                : await this.deserializer.read(eventStreamSchema, body);
+        if (ErrCtor) {
+            const message = dataObject.message ?? dataObject.Message ?? "Unknown";
+            const metadata = {};
+            const $fault = eventStreamSchema.getMergedTraits().error;
+            if ($fault) {
+                metadata.$fault = $fault;
+            }
+            return Object.assign(new ErrCtor({}), metadata, {
+                message,
+            }, dataObject);
+        }
+        return dataObject;
     }
     writeEventBody(unionMember, unionSchema, event) {
         const serializer = this.serializer;
@@ -41001,8 +39583,8 @@ exports.universalEventStreamSerdeProvider = eventStreamSerdeProvider$1;
 
 const { Uint8ArrayBlobAdapter, sdkStreamMixin, splitEvery, splitHeader, fromBase64, _parseEpochTimestamp, _parseRfc7231DateTime, _parseRfc3339DateTimeWithOffset, LazyJsonString, NumericValue, toUtf8, fromUtf8, generateIdempotencyToken, toBase64, dateToUtcString, quoteHeader } = __nccwpck_require__(92430);
 const { TypeRegistry, NormalizedSchema, translateTraits } = __nccwpck_require__(26890);
-const { HttpRequest, HttpResponse } = __nccwpck_require__(34534);
-const { isValidHostname, parseQueryString, parseUrl } = __nccwpck_require__(34534);
+const { HttpRequest, HttpResponse, isValidHostname } = __nccwpck_require__(34534);
+const { parseQueryString, parseUrl } = __nccwpck_require__(34534);
 exports.HttpRequest = HttpRequest;
 exports.HttpResponse = HttpResponse;
 exports.isValidHostname = isValidHostname;
@@ -41117,6 +39699,9 @@ class HttpProtocol extends SerdeContext {
                     hostPrefix = hostPrefix.replace(`{${name}}`, replacement);
                 }
                 request.hostname = hostPrefix + request.hostname;
+                if (!isValidHostname(request.hostname)) {
+                    throw new Error(`[${request.hostname}] is not a valid hostname.`);
+                }
             }
         }
     }
@@ -41153,6 +39738,7 @@ class HttpProtocol extends SerdeContext {
             deserializer: this.deserializer,
             serdeContext: this.serdeContext,
             defaultContentType: this.getDefaultContentType(),
+            compositeErrorRegistry: this.compositeErrorRegistry,
         });
     }
     resolveEventStreamMarshaller(importedProvider) {
@@ -41963,7 +40549,7 @@ function contentLengthMiddleware(bodyLengthChecker) {
                         [CONTENT_LENGTH_HEADER]: String(length),
                     };
                 }
-                catch (error) {
+                catch (ignored) {
                 }
             }
         }
@@ -42227,7 +40813,7 @@ function bindRetryMiddleware(isStreamingPayload) {
                     try {
                         retryToken = await retryStrategy.refreshRetryTokenForRetry(retryToken, retryErrorInfo);
                     }
-                    catch (refreshError) {
+                    catch (ignoredRefreshError) {
                         if (!lastError.$metadata) {
                             lastError.$metadata = {};
                         }
@@ -42545,7 +41131,7 @@ let StandardRetryStrategy$1 = class StandardRetryStrategy {
         try {
             return await this.maxAttemptsProvider();
         }
-        catch (error) {
+        catch (ignored) {
             console.warn(`Max attempts provider could not resolve. Using default of ${DEFAULT_MAX_ATTEMPTS}`);
             return DEFAULT_MAX_ATTEMPTS;
         }
@@ -42672,7 +41258,7 @@ class StandardRetryStrategy {
         try {
             maxAttempts = await this.maxAttemptsProvider();
         }
-        catch (error) {
+        catch (ignored) {
             maxAttempts = DEFAULT_MAX_ATTEMPTS;
         }
         return maxAttempts;
@@ -42935,7 +41521,7 @@ const schemaDeserializationMiddleware = (config) => (next, context) => async (ar
             try {
                 error.message += "\n  " + hint;
             }
-            catch (e) {
+            catch (ignored) {
                 if (!context.logger || context.logger?.constructor?.name === "NoOpLogger") {
                     console.warn(hint);
                 }
@@ -42960,7 +41546,7 @@ const schemaDeserializationMiddleware = (config) => (next, context) => async (ar
                     };
                 }
             }
-            catch (e) {
+            catch (ignored) {
             }
         }
         throw error;
@@ -43099,7 +41685,7 @@ class ErrorSchema extends StructureSchema {
     ctor;
     symbol = ErrorSchema.symbol;
 }
-const error = (namespace, name, traits, memberNames, memberList, ctor) => Schema.assign(new ErrorSchema(), {
+const error = (namespace, name, traits, memberNames, memberList, _ctor) => Schema.assign(new ErrorSchema(), {
     name,
     namespace,
     traits,
@@ -43351,7 +41937,7 @@ class NormalizedSchema {
         const schema = this.getSchema();
         const memberSchema = isDoc
             ? 15
-            : schema[4] ?? 0;
+            : (schema[4] ?? 0);
         return member([memberSchema, 0], "key");
     }
     getValueSchema() {
@@ -43614,7 +42200,7 @@ const { createHmac, createHash, getRandomValues } = __nccwpck_require__(77598);
 const { ReadStream, lstatSync, fstatSync } = __nccwpck_require__(73024);
 const { HttpResponse } = __nccwpck_require__(34534);
 const { toEndpointV1 } = __nccwpck_require__(62085);
-const { Duplex, Readable, Writable, PassThrough } = __nccwpck_require__(57075);
+const { Readable, Writable, PassThrough } = __nccwpck_require__(57075);
 
 const isArrayBuffer = (arg) => (typeof ArrayBuffer === "function" && arg instanceof ArrayBuffer) ||
     Object.prototype.toString.call(arg) === "[object ArrayBuffer]";
@@ -43633,7 +42219,7 @@ const fromString = (input, encoding) => {
 };
 
 const BASE64_REGEX = /^[A-Za-z0-9+/]*={0,2}$/;
-const fromBase64$1 = (input) => {
+const fromBase64 = (input) => {
     if ((input.length * 3) % 4 !== 0) {
         throw new TypeError(`Incorrect padding on base64 string.`);
     }
@@ -43730,7 +42316,7 @@ function bindV4(getRandomValues) {
     };
 }
 
-const copyDocumentWithTransform = (source, schemaRef, transform = (_) => _) => source;
+const copyDocumentWithTransform = (source, _schemaRef, _transform = (_) => _) => source;
 
 const parseBoolean = (value) => {
     switch (value) {
@@ -44000,7 +42586,7 @@ const parseRfc3339DateTime = (value) => {
     const day = parseDateValue(dayStr, "day", 1, 31);
     return buildDate(year, month, day, { hours, minutes, seconds, fractionalMilliseconds });
 };
-const RFC3339_WITH_OFFSET$1 = new RegExp(/^(\d{4})-(\d{2})-(\d{2})[tT](\d{2}):(\d{2}):(\d{2})(?:\.(\d+))?(([-+]\d{2}\:\d{2})|[zZ])$/);
+const RFC3339_WITH_OFFSET$1 = new RegExp(/^(\d{4})-(\d{2})-(\d{2})[tT](\d{2}):(\d{2}):(\d{2})(?:\.(\d+))?(([-+]\d{2}:\d{2})|[zZ])$/);
 const parseRfc3339DateTimeWithOffset = (value) => {
     if (value === null || value === undefined) {
         return undefined;
@@ -44443,6 +43029,9 @@ const calculateBodyLength = (body) => {
 };
 
 const toUint8Array = (data) => {
+    if (data instanceof Uint8Array) {
+        return data;
+    }
     if (typeof data === "string") {
         return fromUtf8$1(data);
     }
@@ -44451,6 +43040,22 @@ const toUint8Array = (data) => {
     }
     return new Uint8Array(data);
 };
+
+function concatBytes(arrays, length) {
+    if (length === undefined) {
+        length = 0;
+        for (const bytes of arrays) {
+            length += bytes.byteLength;
+        }
+    }
+    const result = new Uint8Array(length);
+    let offset = 0;
+    for (const buf of arrays) {
+        result.set(buf, offset);
+        offset += buf.byteLength;
+    }
+    return result;
+}
 
 const deserializerMiddleware = (options, deserializer) => (next, context) => async (args) => {
     const { response } = await next(args);
@@ -44473,7 +43078,7 @@ const deserializerMiddleware = (options, deserializer) => (next, context) => asy
             try {
                 error.message += "\n  " + hint;
             }
-            catch (e) {
+            catch (ignored) {
                 if (!context.logger || context.logger?.constructor?.name === "NoOpLogger") {
                     console.warn(hint);
                 }
@@ -44498,7 +43103,7 @@ const deserializerMiddleware = (options, deserializer) => (next, context) => asy
                     };
                 }
             }
-            catch (e) {
+            catch (ignored) {
             }
         }
         throw error;
@@ -44580,62 +43185,80 @@ function castSourceData(toCast, encoding) {
     return fromArrayBuffer(toCast);
 }
 
-let ChecksumStream$1 = class ChecksumStream extends Duplex {
+let ChecksumStream$1 = class ChecksumStream extends Readable {
     expectedChecksum;
     checksumSourceLocation;
     checksum;
     source;
     base64Encoder;
-    pendingCallback = null;
     constructor({ expectedChecksum, checksum, source, checksumSourceLocation, base64Encoder, }) {
         super();
-        if (typeof source.pipe === "function") {
-            this.source = source;
-        }
-        else {
+        if (typeof source.pipe !== "function") {
             throw new Error(`@smithy/util-stream: unsupported source type ${source?.constructor?.name ?? source} in ChecksumStream.`);
         }
+        this.source = source;
         this.base64Encoder = base64Encoder ?? toBase64$1;
         this.expectedChecksum = expectedChecksum;
         this.checksum = checksum;
         this.checksumSourceLocation = checksumSourceLocation;
-        this.source.pipe(this);
+        this.source.on("data", this.onSourceData);
+        this.source.on("end", this.onSourceEnd);
+        this.source.on("error", this.onSourceError);
+        this.source.on("close", this.onSourceClose);
+        this.source.pause();
     }
-    _read(size) {
-        if (this.pendingCallback) {
-            const callback = this.pendingCallback;
-            this.pendingCallback = null;
-            callback();
+    onSourceData = (chunk) => {
+        if (this.destroyed) {
+            return;
         }
-    }
-    _write(chunk, encoding, callback) {
         try {
             this.checksum.update(chunk);
-            const canPushMore = this.push(chunk);
-            if (!canPushMore) {
-                this.pendingCallback = callback;
-                return;
-            }
         }
         catch (e) {
-            return callback(e);
+            this.destroy(e);
+            return;
         }
-        return callback();
-    }
-    async _final(callback) {
+        if (!this.push(chunk)) {
+            this.source.pause();
+        }
+    };
+    onSourceEnd = async () => {
+        if (this.destroyed) {
+            return;
+        }
         try {
             const digest = await this.checksum.digest();
             const received = this.base64Encoder(digest);
             if (this.expectedChecksum !== received) {
-                return callback(new Error(`Checksum mismatch: expected "${this.expectedChecksum}" but received "${received}"` +
+                this.destroy(new Error(`Checksum mismatch: expected "${this.expectedChecksum}" but received "${received}"` +
                     ` in response header "${this.checksumSourceLocation}".`));
+                return;
             }
         }
         catch (e) {
-            return callback(e);
+            this.destroy(e);
+            return;
         }
         this.push(null);
-        return callback();
+    };
+    onSourceError = (error) => {
+        this.destroy(error);
+    };
+    onSourceClose = () => {
+        if (!this.destroyed && !this.source.readableEnded) {
+            this.destroy(new Error("Connection lost or stream closed before all data was received."));
+        }
+    };
+    _read(_size) {
+        this.source.resume();
+    }
+    _destroy(error, callback) {
+        this.source?.removeListener("data", this.onSourceData);
+        this.source?.removeListener("end", this.onSourceEnd);
+        this.source?.removeListener("error", this.onSourceError);
+        this.source?.removeListener("close", this.onSourceClose);
+        this.source?.destroy();
+        callback(error);
     }
 };
 
@@ -44648,7 +43271,7 @@ const isBlob = (blob) => {
 const fromUtf8 = (input) => new TextEncoder().encode(input);
 
 const chars = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/`;
-const alphabetByEncoding = Object.entries(chars).reduce((acc, [i, c]) => {
+Object.entries(chars).reduce((acc, [i, c]) => {
     acc[c] = Number(i);
     return acc;
 }, {});
@@ -45026,7 +43649,7 @@ const headStream = (stream, bytes) => {
         });
         collector.on("error", reject);
         collector.on("finish", function () {
-            const bytes = new Uint8Array(Buffer.concat(this.buffers));
+            const bytes = concatBytes(this.buffers);
             resolve(bytes);
         });
     });
@@ -45058,93 +43681,30 @@ const toUtf8 = (input) => {
     return new TextDecoder("utf-8").decode(input);
 };
 
-const fromBase64 = (input) => {
-    let totalByteLength = (input.length / 4) * 3;
-    if (input.slice(-2) === "==") {
-        totalByteLength -= 2;
-    }
-    else if (input.slice(-1) === "=") {
-        totalByteLength--;
-    }
-    const out = new ArrayBuffer(totalByteLength);
-    const dataView = new DataView(out);
-    for (let i = 0; i < input.length; i += 4) {
-        let bits = 0;
-        let bitLength = 0;
-        for (let j = i, limit = i + 3; j <= limit; j++) {
-            if (input[j] !== "=") {
-                if (!(input[j] in alphabetByEncoding)) {
-                    throw new TypeError(`Invalid character ${input[j]} in base64 string.`);
-                }
-                bits |= alphabetByEncoding[input[j]] << ((limit - j) * bitsPerLetter);
-                bitLength += bitsPerLetter;
-            }
-            else {
-                bits >>= bitsPerLetter;
-            }
-        }
-        const chunkOffset = (i / 4) * 3;
-        bits >>= bitLength % bitsPerByte;
-        const byteLength = Math.floor(bitLength / bitsPerByte);
-        for (let k = 0; k < byteLength; k++) {
-            const offset = (byteLength - k - 1) * bitsPerByte;
-            dataView.setUint8(chunkOffset + k, (bits & (255 << offset)) >> offset);
-        }
-    }
-    return new Uint8Array(out);
-};
-
 const streamCollector$1 = async (stream) => {
-    if ((typeof Blob === "function" && stream instanceof Blob) || stream.constructor?.name === "Blob") {
-        if (Blob.prototype.arrayBuffer !== undefined) {
-            return new Uint8Array(await stream.arrayBuffer());
-        }
+    if (isBlob(stream)) {
         return collectBlob(stream);
     }
-    return collectStream(stream);
+    return collectReadableStream(stream);
 };
 async function collectBlob(blob) {
-    const base64 = await readToBase64(blob);
-    const arrayBuffer = fromBase64(base64);
-    return new Uint8Array(arrayBuffer);
+    return blob.arrayBuffer().then((ab) => new Uint8Array(ab));
 }
-async function collectStream(stream) {
+async function collectReadableStream(stream) {
     const chunks = [];
     const reader = stream.getReader();
-    let isDone = false;
     let length = 0;
-    while (!isDone) {
+    while (true) {
         const { done, value } = await reader.read();
         if (value) {
             chunks.push(value);
             length += value.length;
         }
-        isDone = done;
+        if (done) {
+            break;
+        }
     }
-    const collected = new Uint8Array(length);
-    let offset = 0;
-    for (const chunk of chunks) {
-        collected.set(chunk, offset);
-        offset += chunk.length;
-    }
-    return collected;
-}
-function readToBase64(blob) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            if (reader.readyState !== 2) {
-                return reject(new Error("Reader aborted too early"));
-            }
-            const result = (reader.result ?? "");
-            const commaIndex = result.indexOf(",");
-            const dataOffset = commaIndex > -1 ? commaIndex + 1 : result.length;
-            resolve(result.substring(dataOffset));
-        };
-        reader.onabort = () => reject(new Error("Read aborted"));
-        reader.onerror = () => reject(reader.error);
-        reader.readAsDataURL(blob);
-    });
+    return concatBytes(chunks, length);
 }
 
 const ERR_MSG_STREAM_HAS_BEEN_TRANSFORMED$1 = "The stream has already been transformed.";
@@ -45207,6 +43767,28 @@ const sdkStreamMixin$1 = (stream) => {
 };
 const isBlobInstance = (stream) => typeof Blob === "function" && stream instanceof Blob;
 
+const streamCollector = (stream) => {
+    if (isBlob(stream)) {
+        return collectBlob(stream);
+    }
+    if (isReadableStream(stream)) {
+        return collectReadableStream(stream);
+    }
+    return new Promise((resolve, reject) => {
+        const collector = new Collector();
+        const nodeStream = stream;
+        nodeStream.pipe(collector);
+        nodeStream.on("error", (err) => {
+            collector.end();
+            reject(err);
+        });
+        collector.on("error", reject);
+        collector.on("finish", function () {
+            const bytes = concatBytes(this.bufferedBytes);
+            resolve(bytes);
+        });
+    });
+};
 class Collector extends Writable {
     bufferedBytes = [];
     _write(chunk, encoding, callback) {
@@ -45214,46 +43796,6 @@ class Collector extends Writable {
         callback();
     }
 }
-const isReadableStreamInstance = (stream) => typeof ReadableStream === "function" && stream instanceof ReadableStream;
-async function collectReadableStream(stream) {
-    const chunks = [];
-    const reader = stream.getReader();
-    let isDone = false;
-    let length = 0;
-    while (!isDone) {
-        const { done, value } = await reader.read();
-        if (value) {
-            chunks.push(value);
-            length += value.length;
-        }
-        isDone = done;
-    }
-    const collected = new Uint8Array(length);
-    let offset = 0;
-    for (const chunk of chunks) {
-        collected.set(chunk, offset);
-        offset += chunk.length;
-    }
-    return collected;
-}
-const streamCollector = (stream) => {
-    if (isReadableStreamInstance(stream)) {
-        return collectReadableStream(stream);
-    }
-    return new Promise((resolve, reject) => {
-        const collector = new Collector();
-        stream.pipe(collector);
-        stream.on("error", (err) => {
-            collector.end();
-            reject(err);
-        });
-        collector.on("error", reject);
-        collector.on("finish", function () {
-            const bytes = new Uint8Array(Buffer.concat(this.bufferedBytes));
-            resolve(bytes);
-        });
-    });
-};
 
 const ERR_MSG_STREAM_HAS_BEEN_TRANSFORMED = "The stream has already been transformed.";
 const sdkStreamMixin = (stream) => {
@@ -45261,7 +43803,7 @@ const sdkStreamMixin = (stream) => {
         try {
             return sdkStreamMixin$1(stream);
         }
-        catch (e) {
+        catch (ignored) {
             const name = stream?.__proto__?.constructor?.name || stream;
             throw new Error(`Unexpected stream implementation, expect Stream.Readable instance, got ${name}`);
         }
@@ -45321,7 +43863,7 @@ async function splitStream(stream) {
     return [stream1, stream2];
 }
 
-class Uint8ArrayBlobAdapter extends bindUint8ArrayBlobAdapter(toUtf8$1, fromUtf8$1, toBase64$1, fromBase64$1) {
+class Uint8ArrayBlobAdapter extends bindUint8ArrayBlobAdapter(toUtf8$1, fromUtf8$1, toBase64$1, fromBase64) {
 }
 const _getRandomValues = getRandomValues;
 const v4 = bindV4(_getRandomValues);
@@ -45336,6 +43878,7 @@ exports._parseEpochTimestamp = _parseEpochTimestamp;
 exports._parseRfc3339DateTimeWithOffset = _parseRfc3339DateTimeWithOffset;
 exports._parseRfc7231DateTime = _parseRfc7231DateTime;
 exports.calculateBodyLength = calculateBodyLength;
+exports.concatBytes = concatBytes;
 exports.copyDocumentWithTransform = copyDocumentWithTransform;
 exports.createBufferedReadable = createBufferedReadable;
 exports.createChecksumStream = createChecksumStream;
@@ -45355,7 +43898,7 @@ exports.expectShort = expectShort;
 exports.expectString = expectString;
 exports.expectUnion = expectUnion;
 exports.fromArrayBuffer = fromArrayBuffer;
-exports.fromBase64 = fromBase64$1;
+exports.fromBase64 = fromBase64;
 exports.fromHex = fromHex;
 exports.fromString = fromString;
 exports.fromUtf8 = fromUtf8$1;
@@ -45384,6 +43927,7 @@ exports.serializerMiddlewareOption = serializerMiddlewareOption;
 exports.splitEvery = splitEvery;
 exports.splitHeader = splitHeader;
 exports.splitStream = splitStream;
+exports.streamCollector = streamCollector;
 exports.strictParseByte = strictParseByte;
 exports.strictParseDouble = strictParseDouble;
 exports.strictParseFloat = strictParseFloat;
@@ -45507,7 +44051,7 @@ const isValidHostLabel = (value, allowSubDomains = false) => {
 };
 
 function isValidHostname(hostname) {
-    const hostPattern = /^[a-z0-9][a-z0-9\.\-]*[a-z0-9]$/;
+    const hostPattern = /^[a-z0-9][a-z0-9.-]*[a-z0-9]$/;
     return hostPattern.test(hostname);
 }
 
@@ -45970,12 +44514,12 @@ exports.providerConfigFromInit = providerConfigFromInit;
 /***/ 61279:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
-
-
-var node_https = __nccwpck_require__(44708);
-var protocols = __nccwpck_require__(93422);
-var node_stream = __nccwpck_require__(57075);
-var http2 = __nccwpck_require__(32467);
+const { buildQueryString, HttpResponse } = __nccwpck_require__(93422);
+const node_https = __nccwpck_require__(44708);
+const { Readable } = __nccwpck_require__(57075);
+const http2 = __nccwpck_require__(32467);
+const { streamCollector } = __nccwpck_require__(92430);
+exports.streamCollector = streamCollector;
 
 function buildAbortError(abortSignal) {
     const reason = abortSignal && typeof abortSignal === "object" && "reason" in abortSignal
@@ -46147,7 +44691,7 @@ async function writeRequestBody(httpRequest, request, maxContinueTimeoutMs = MIN
     }
 }
 function writeBody(httpRequest, body) {
-    if (body instanceof node_stream.Readable) {
+    if (body instanceof Readable) {
         body.pipe(httpRequest);
         return;
     }
@@ -46283,7 +44827,7 @@ or increase socketAcquisitionWarningTimeout=(millis) in the NodeHttpHandler conf
             socketWarningTimeoutId = timing.setTimeout(() => {
                 this.socketWarningTimestamp = NodeHttpHandler.checkSocketUsage(agent, this.socketWarningTimestamp, config.logger);
             }, config.socketAcquisitionWarningTimeout ?? (config.requestTimeout ?? 2000) + (config.connectionTimeout ?? 1000));
-            const queryString = request.query ? protocols.buildQueryString(request.query) : "";
+            const queryString = request.query ? buildQueryString(request.query) : "";
             let auth = undefined;
             if (request.username != null || request.password != null) {
                 const username = request.username ?? "";
@@ -46315,7 +44859,7 @@ or increase socketAcquisitionWarningTimeout=(millis) in the NodeHttpHandler conf
             };
             const requestFunc = isSSL ? node_https.request : hRequest;
             const req = requestFunc(nodeHttpsOptions, (res) => {
-                const httpResponse = new protocols.HttpResponse({
+                const httpResponse = new HttpResponse({
                     statusCode: res.statusCode || -1,
                     reason: res.statusMessage,
                     headers: getTransformedHeaders(res.headers),
@@ -46386,7 +44930,8 @@ or increase socketAcquisitionWarningTimeout=(millis) in the NodeHttpHandler conf
             socketAcquisitionWarningTimeout,
             throwOnRequestTimeout,
             httpAgentProvider: async () => {
-                const { Agent, request } = await Promise.resolve(/* import() */).then(__nccwpck_require__.t.bind(__nccwpck_require__, 37067, 23));
+                const node_http = __nccwpck_require__(37067);
+                const { Agent, request } = node_http.default ?? node_http;
                 hRequest = request;
                 hAgent = Agent;
                 if (httpAgent instanceof hAgent || typeof httpAgent?.destroy === "function") {
@@ -46638,6 +45183,7 @@ class NodeHttp2ConnectionManager {
     }
 }
 
+const { constants } = http2;
 class NodeHttp2Handler {
     config;
     configProvider;
@@ -46722,7 +45268,7 @@ class NodeHttp2Handler {
                 fulfilled = true;
                 reject(err);
             };
-            const queryString = query ? protocols.buildQueryString(query) : "";
+            const queryString = query ? buildQueryString(query) : "";
             let path = request.path;
             if (queryString) {
                 path += `?${queryString}`;
@@ -46732,8 +45278,8 @@ class NodeHttp2Handler {
             }
             const clientHttp2Stream = session.request({
                 ...request.headers,
-                [http2.constants.HTTP2_HEADER_PATH]: path,
-                [http2.constants.HTTP2_HEADER_METHOD]: method,
+                [constants.HTTP2_HEADER_PATH]: path,
+                [constants.HTTP2_HEADER_METHOD]: method,
             });
             if (effectiveRequestTimeout) {
                 clientHttp2Stream.setTimeout(effectiveRequestTimeout, () => {
@@ -46766,7 +45312,7 @@ class NodeHttp2Handler {
                 rejectWithDestroy(new Error(`HTTP/2 stream is abnormally aborted in mid-communication with result code ${clientHttp2Stream.rstCode}.`));
             });
             clientHttp2Stream.on("response", (headers) => {
-                const httpResponse = new protocols.HttpResponse({
+                const httpResponse = new HttpResponse({
                     statusCode: headers[":status"] ?? -1,
                     headers: getTransformedHeaders(headers),
                     body: clientHttp2Stream,
@@ -46805,59 +45351,9 @@ class NodeHttp2Handler {
     }
 }
 
-class Collector extends node_stream.Writable {
-    bufferedBytes = [];
-    _write(chunk, encoding, callback) {
-        this.bufferedBytes.push(chunk);
-        callback();
-    }
-}
-
-const streamCollector = (stream) => {
-    if (isReadableStreamInstance(stream)) {
-        return collectReadableStream(stream);
-    }
-    return new Promise((resolve, reject) => {
-        const collector = new Collector();
-        stream.pipe(collector);
-        stream.on("error", (err) => {
-            collector.end();
-            reject(err);
-        });
-        collector.on("error", reject);
-        collector.on("finish", function () {
-            const bytes = new Uint8Array(Buffer.concat(this.bufferedBytes));
-            resolve(bytes);
-        });
-    });
-};
-const isReadableStreamInstance = (stream) => typeof ReadableStream === "function" && stream instanceof ReadableStream;
-async function collectReadableStream(stream) {
-    const chunks = [];
-    const reader = stream.getReader();
-    let isDone = false;
-    let length = 0;
-    while (!isDone) {
-        const { done, value } = await reader.read();
-        if (value) {
-            chunks.push(value);
-            length += value.length;
-        }
-        isDone = done;
-    }
-    const collected = new Uint8Array(length);
-    let offset = 0;
-    for (const chunk of chunks) {
-        collected.set(chunk, offset);
-        offset += chunk.length;
-    }
-    return collected;
-}
-
 exports.DEFAULT_REQUEST_TIMEOUT = DEFAULT_REQUEST_TIMEOUT;
 exports.NodeHttp2Handler = NodeHttp2Handler;
 exports.NodeHttpHandler = NodeHttpHandler;
-exports.streamCollector = streamCollector;
 
 
 /***/ }),
@@ -46865,17 +45361,15 @@ exports.streamCollector = streamCollector;
 /***/ 75118:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
-
-
-var serde = __nccwpck_require__(92430);
-var client = __nccwpck_require__(92658);
-var protocols = __nccwpck_require__(93422);
+const { fromUtf8, fromHex, toHex, toUint8Array, isArrayBuffer } = __nccwpck_require__(92430);
+const { normalizeProvider } = __nccwpck_require__(92658);
+const { escapeUri, HttpRequest } = __nccwpck_require__(93422);
 
 class HeaderFormatter {
     format(headers) {
         const chunks = [];
         for (const headerName of Object.keys(headers)) {
-            const bytes = serde.fromUtf8(headerName);
+            const bytes = fromUtf8(headerName);
             chunks.push(Uint8Array.from([bytes.byteLength]), bytes, this.formatHeaderValue(headers[headerName]));
         }
         const out = new Uint8Array(chunks.reduce((carry, bytes) => carry + bytes.byteLength, 0));
@@ -46889,42 +45383,42 @@ class HeaderFormatter {
     formatHeaderValue(header) {
         switch (header.type) {
             case "boolean":
-                return Uint8Array.from([header.value ? 0 : 1]);
+                return Uint8Array.from([header.value ? HEADER_VALUE_TYPE.boolTrue : HEADER_VALUE_TYPE.boolFalse]);
             case "byte":
-                return Uint8Array.from([2, header.value]);
+                return Uint8Array.from([HEADER_VALUE_TYPE.byte, header.value]);
             case "short":
                 const shortView = new DataView(new ArrayBuffer(3));
-                shortView.setUint8(0, 3);
+                shortView.setUint8(0, HEADER_VALUE_TYPE.short);
                 shortView.setInt16(1, header.value, false);
                 return new Uint8Array(shortView.buffer);
             case "integer":
                 const intView = new DataView(new ArrayBuffer(5));
-                intView.setUint8(0, 4);
+                intView.setUint8(0, HEADER_VALUE_TYPE.integer);
                 intView.setInt32(1, header.value, false);
                 return new Uint8Array(intView.buffer);
             case "long":
                 const longBytes = new Uint8Array(9);
-                longBytes[0] = 5;
+                longBytes[0] = HEADER_VALUE_TYPE.long;
                 longBytes.set(header.value.bytes, 1);
                 return longBytes;
             case "binary":
                 const binView = new DataView(new ArrayBuffer(3 + header.value.byteLength));
-                binView.setUint8(0, 6);
+                binView.setUint8(0, HEADER_VALUE_TYPE.byteArray);
                 binView.setUint16(1, header.value.byteLength, false);
                 const binBytes = new Uint8Array(binView.buffer);
                 binBytes.set(header.value, 3);
                 return binBytes;
             case "string":
-                const utf8Bytes = serde.fromUtf8(header.value);
+                const utf8Bytes = fromUtf8(header.value);
                 const strView = new DataView(new ArrayBuffer(3 + utf8Bytes.byteLength));
-                strView.setUint8(0, 7);
+                strView.setUint8(0, HEADER_VALUE_TYPE.string);
                 strView.setUint16(1, utf8Bytes.byteLength, false);
                 const strBytes = new Uint8Array(strView.buffer);
                 strBytes.set(utf8Bytes, 3);
                 return strBytes;
             case "timestamp":
                 const tsBytes = new Uint8Array(9);
-                tsBytes[0] = 8;
+                tsBytes[0] = HEADER_VALUE_TYPE.timestamp;
                 tsBytes.set(Int64.fromNumber(header.value.valueOf()).bytes, 1);
                 return tsBytes;
             case "uuid":
@@ -46932,8 +45426,8 @@ class HeaderFormatter {
                     throw new Error(`Invalid UUID received: ${header.value}`);
                 }
                 const uuidBytes = new Uint8Array(17);
-                uuidBytes[0] = 9;
-                uuidBytes.set(serde.fromHex(header.value.replace(/\-/g, "")), 1);
+                uuidBytes[0] = HEADER_VALUE_TYPE.uuid;
+                uuidBytes.set(fromHex(header.value.replace(/-/g, "")), 1);
                 return uuidBytes;
         }
     }
@@ -46979,7 +45473,7 @@ class Int64 {
         if (negative) {
             negate(bytes);
         }
-        return parseInt(serde.toHex(bytes), 16) * (negative ? -1 : 1);
+        return parseInt(toHex(bytes), 16) * (negative ? -1 : 1);
     }
     toString() {
         return String(this.valueOf());
@@ -47047,16 +45541,16 @@ const getCanonicalQuery = ({ query = {} }) => {
         if (key.toLowerCase() === SIGNATURE_HEADER) {
             continue;
         }
-        const encodedKey = protocols.escapeUri(key);
+        const encodedKey = escapeUri(key);
         keys.push(encodedKey);
         const value = query[key];
         if (typeof value === "string") {
-            serialized[encodedKey] = `${encodedKey}=${protocols.escapeUri(value)}`;
+            serialized[encodedKey] = `${encodedKey}=${escapeUri(value)}`;
         }
         else if (Array.isArray(value)) {
             serialized[encodedKey] = value
                 .slice(0)
-                .reduce((encoded, value) => encoded.concat([`${encodedKey}=${protocols.escapeUri(value)}`]), [])
+                .reduce((encoded, value) => encoded.concat([`${encodedKey}=${escapeUri(value)}`]), [])
                 .sort()
                 .join("&");
         }
@@ -47096,8 +45590,8 @@ class SignatureV4Base {
         this.sha256 = sha256;
         this.uriEscapePath = uriEscapePath;
         this.applyChecksum = typeof applyChecksum === "boolean" ? applyChecksum : true;
-        this.regionProvider = client.normalizeProvider(region);
-        this.credentialProvider = client.normalizeProvider(credentials);
+        this.regionProvider = normalizeProvider(region);
+        this.credentialProvider = normalizeProvider(credentials);
     }
     createCanonicalRequest(request, canonicalHeaders, payloadHash) {
         const sortedHeaders = Object.keys(canonicalHeaders).sort();
@@ -47111,12 +45605,12 @@ ${payloadHash}`;
     }
     async createStringToSign(longDate, credentialScope, canonicalRequest, algorithmIdentifier) {
         const hash = new this.sha256();
-        hash.update(serde.toUint8Array(canonicalRequest));
+        hash.update(toUint8Array(canonicalRequest));
         const hashedRequest = await hash.digest();
         return `${algorithmIdentifier}
 ${longDate}
 ${credentialScope}
-${serde.toHex(hashedRequest)}`;
+${toHex(hashedRequest)}`;
     }
     getCanonicalPath({ path }) {
         if (this.uriEscapePath) {
@@ -47134,7 +45628,7 @@ ${serde.toHex(hashedRequest)}`;
                 }
             }
             const normalizedPath = `${path?.startsWith("/") ? "/" : ""}${normalizedPathSegments.join("/")}${normalizedPathSegments.length > 0 && path?.endsWith("/") ? "/" : ""}`;
-            const doubleEncoded = protocols.escapeUri(normalizedPath);
+            const doubleEncoded = escapeUri(normalizedPath);
             return doubleEncoded.replace(/%2F/g, "/");
         }
         return path;
@@ -47147,7 +45641,7 @@ ${serde.toHex(hashedRequest)}`;
         }
     }
     formatDate(now) {
-        const longDate = iso8601(now).replace(/[\-:]/g, "");
+        const longDate = iso8601(now).replace(/[-:]/g, "");
         return {
             longDate,
             shortDate: longDate.slice(0, 8),
@@ -47163,7 +45657,7 @@ const cacheQueue = [];
 const createScope = (shortDate, region, service) => `${shortDate}/${region}/${service}/${KEY_TYPE_IDENTIFIER}`;
 const getSigningKey = async (sha256Constructor, credentials, shortDate, region, service) => {
     const credsHash = await hmac(sha256Constructor, credentials.secretAccessKey, credentials.accessKeyId);
-    const cacheKey = `${shortDate}:${region}:${service}:${serde.toHex(credsHash)}:${credentials.sessionToken}`;
+    const cacheKey = `${shortDate}:${region}:${service}:${toHex(credsHash)}:${credentials.sessionToken}`;
     if (cacheKey in signingKeyCache) {
         return signingKeyCache[cacheKey];
     }
@@ -47185,7 +45679,7 @@ const clearCredentialCache = () => {
 };
 const hmac = (ctor, secret, data) => {
     const hash = new ctor(secret);
-    hash.update(serde.toUint8Array(data));
+    hash.update(toUint8Array(data));
     return hash.digest();
 };
 
@@ -47218,10 +45712,10 @@ const getPayloadHash = async ({ headers, body }, hashConstructor) => {
     if (body == undefined) {
         return "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
     }
-    else if (typeof body === "string" || ArrayBuffer.isView(body) || serde.isArrayBuffer(body)) {
+    else if (typeof body === "string" || ArrayBuffer.isView(body) || isArrayBuffer(body)) {
         const hashCtor = new hashConstructor();
-        hashCtor.update(serde.toUint8Array(body));
-        return serde.toHex(await hashCtor.digest());
+        hashCtor.update(toUint8Array(body));
+        return toHex(await hashCtor.digest());
     }
     return UNSIGNED_PAYLOAD;
 };
@@ -47237,7 +45731,7 @@ const hasHeader = (soughtHeader, headers) => {
 };
 
 const moveHeadersToQuery = (request, options = {}) => {
-    const { headers, query = {} } = protocols.HttpRequest.clone(request);
+    const { headers, query = {} } = HttpRequest.clone(request);
     for (const name of Object.keys(headers)) {
         const lname = name.toLowerCase();
         if ((lname.slice(0, 6) === "x-amz-" && !options.unhoistableHeaders?.has(lname)) ||
@@ -47254,7 +45748,7 @@ const moveHeadersToQuery = (request, options = {}) => {
 };
 
 const prepareRequest = (request) => {
-    request = protocols.HttpRequest.clone(request);
+    request = HttpRequest.clone(request);
     for (const headerName of Object.keys(request.headers)) {
         if (GENERATED_HEADERS.indexOf(headerName.toLowerCase()) > -1) {
             delete request.headers[headerName];
@@ -47319,7 +45813,7 @@ class SignatureV4 extends SignatureV4Base {
         const hashedPayload = await getPayloadHash({ headers: {}, body: payload }, this.sha256);
         const hash = new this.sha256();
         hash.update(headers);
-        const hashedHeaders = serde.toHex(await hash.digest());
+        const hashedHeaders = toHex(await hash.digest());
         const stringToSign = [
             EVENT_ALGORITHM_IDENTIFIER,
             longDate,
@@ -47356,8 +45850,8 @@ class SignatureV4 extends SignatureV4Base {
         const region = signingRegion ?? (await this.regionProvider());
         const { shortDate } = this.formatDate(signingDate);
         const hash = new this.sha256(await this.getSigningKey(credentials, region, shortDate, signingService));
-        hash.update(serde.toUint8Array(stringToSign));
-        return serde.toHex(await hash.digest());
+        hash.update(toUint8Array(stringToSign));
+        return toHex(await hash.digest());
     }
     async signRequest(requestToSign, { signingDate = new Date(), signableHeaders, unsignableHeaders, signingRegion, signingService, } = {}) {
         const credentials = await this.credentialProvider();
@@ -47386,8 +45880,8 @@ class SignatureV4 extends SignatureV4Base {
     async getSignature(longDate, credentialScope, keyPromise, canonicalRequest) {
         const stringToSign = await this.createStringToSign(longDate, credentialScope, canonicalRequest, ALGORITHM_IDENTIFIER);
         const hash = new this.sha256(await keyPromise);
-        hash.update(serde.toUint8Array(stringToSign));
-        return serde.toHex(await hash.digest());
+        hash.update(toUint8Array(stringToSign));
+        return toHex(await hash.digest());
     }
     getSigningKey(credentials, region, shortDate, service) {
         return getSigningKey(this.sha256, credentials, shortDate, region, service || this.service);
@@ -54584,6 +53078,514 @@ if (typeof SharedArrayBuffer !== 'undefined' && typeof Atomics !== 'undefined') 
 
 }
 
+
+/***/ }),
+
+/***/ 68089:
+/***/ (function(module, __unused_webpack_exports, __nccwpck_require__) {
+
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+const events_1 = __nccwpck_require__(24434);
+const debug_1 = __importDefault(__nccwpck_require__(2830));
+const promisify_1 = __importDefault(__nccwpck_require__(44401));
+const debug = debug_1.default('agent-base');
+function isAgent(v) {
+    return Boolean(v) && typeof v.addRequest === 'function';
+}
+function isSecureEndpoint() {
+    const { stack } = new Error();
+    if (typeof stack !== 'string')
+        return false;
+    return stack.split('\n').some(l => l.indexOf('(https.js:') !== -1 || l.indexOf('node:https:') !== -1);
+}
+function createAgent(callback, opts) {
+    return new createAgent.Agent(callback, opts);
+}
+(function (createAgent) {
+    /**
+     * Base `http.Agent` implementation.
+     * No pooling/keep-alive is implemented by default.
+     *
+     * @param {Function} callback
+     * @api public
+     */
+    class Agent extends events_1.EventEmitter {
+        constructor(callback, _opts) {
+            super();
+            let opts = _opts;
+            if (typeof callback === 'function') {
+                this.callback = callback;
+            }
+            else if (callback) {
+                opts = callback;
+            }
+            // Timeout for the socket to be returned from the callback
+            this.timeout = null;
+            if (opts && typeof opts.timeout === 'number') {
+                this.timeout = opts.timeout;
+            }
+            // These aren't actually used by `agent-base`, but are required
+            // for the TypeScript definition files in `@types/node` :/
+            this.maxFreeSockets = 1;
+            this.maxSockets = 1;
+            this.maxTotalSockets = Infinity;
+            this.sockets = {};
+            this.freeSockets = {};
+            this.requests = {};
+            this.options = {};
+        }
+        get defaultPort() {
+            if (typeof this.explicitDefaultPort === 'number') {
+                return this.explicitDefaultPort;
+            }
+            return isSecureEndpoint() ? 443 : 80;
+        }
+        set defaultPort(v) {
+            this.explicitDefaultPort = v;
+        }
+        get protocol() {
+            if (typeof this.explicitProtocol === 'string') {
+                return this.explicitProtocol;
+            }
+            return isSecureEndpoint() ? 'https:' : 'http:';
+        }
+        set protocol(v) {
+            this.explicitProtocol = v;
+        }
+        callback(req, opts, fn) {
+            throw new Error('"agent-base" has no default implementation, you must subclass and override `callback()`');
+        }
+        /**
+         * Called by node-core's "_http_client.js" module when creating
+         * a new HTTP request with this Agent instance.
+         *
+         * @api public
+         */
+        addRequest(req, _opts) {
+            const opts = Object.assign({}, _opts);
+            if (typeof opts.secureEndpoint !== 'boolean') {
+                opts.secureEndpoint = isSecureEndpoint();
+            }
+            if (opts.host == null) {
+                opts.host = 'localhost';
+            }
+            if (opts.port == null) {
+                opts.port = opts.secureEndpoint ? 443 : 80;
+            }
+            if (opts.protocol == null) {
+                opts.protocol = opts.secureEndpoint ? 'https:' : 'http:';
+            }
+            if (opts.host && opts.path) {
+                // If both a `host` and `path` are specified then it's most
+                // likely the result of a `url.parse()` call... we need to
+                // remove the `path` portion so that `net.connect()` doesn't
+                // attempt to open that as a unix socket file.
+                delete opts.path;
+            }
+            delete opts.agent;
+            delete opts.hostname;
+            delete opts._defaultAgent;
+            delete opts.defaultPort;
+            delete opts.createConnection;
+            // Hint to use "Connection: close"
+            // XXX: non-documented `http` module API :(
+            req._last = true;
+            req.shouldKeepAlive = false;
+            let timedOut = false;
+            let timeoutId = null;
+            const timeoutMs = opts.timeout || this.timeout;
+            const onerror = (err) => {
+                if (req._hadError)
+                    return;
+                req.emit('error', err);
+                // For Safety. Some additional errors might fire later on
+                // and we need to make sure we don't double-fire the error event.
+                req._hadError = true;
+            };
+            const ontimeout = () => {
+                timeoutId = null;
+                timedOut = true;
+                const err = new Error(`A "socket" was not created for HTTP request before ${timeoutMs}ms`);
+                err.code = 'ETIMEOUT';
+                onerror(err);
+            };
+            const callbackError = (err) => {
+                if (timedOut)
+                    return;
+                if (timeoutId !== null) {
+                    clearTimeout(timeoutId);
+                    timeoutId = null;
+                }
+                onerror(err);
+            };
+            const onsocket = (socket) => {
+                if (timedOut)
+                    return;
+                if (timeoutId != null) {
+                    clearTimeout(timeoutId);
+                    timeoutId = null;
+                }
+                if (isAgent(socket)) {
+                    // `socket` is actually an `http.Agent` instance, so
+                    // relinquish responsibility for this `req` to the Agent
+                    // from here on
+                    debug('Callback returned another Agent instance %o', socket.constructor.name);
+                    socket.addRequest(req, opts);
+                    return;
+                }
+                if (socket) {
+                    socket.once('free', () => {
+                        this.freeSocket(socket, opts);
+                    });
+                    req.onSocket(socket);
+                    return;
+                }
+                const err = new Error(`no Duplex stream was returned to agent-base for \`${req.method} ${req.path}\``);
+                onerror(err);
+            };
+            if (typeof this.callback !== 'function') {
+                onerror(new Error('`callback` is not defined'));
+                return;
+            }
+            if (!this.promisifiedCallback) {
+                if (this.callback.length >= 3) {
+                    debug('Converting legacy callback function to promise');
+                    this.promisifiedCallback = promisify_1.default(this.callback);
+                }
+                else {
+                    this.promisifiedCallback = this.callback;
+                }
+            }
+            if (typeof timeoutMs === 'number' && timeoutMs > 0) {
+                timeoutId = setTimeout(ontimeout, timeoutMs);
+            }
+            if ('port' in opts && typeof opts.port !== 'number') {
+                opts.port = Number(opts.port);
+            }
+            try {
+                debug('Resolving socket for %o request: %o', opts.protocol, `${req.method} ${req.path}`);
+                Promise.resolve(this.promisifiedCallback(req, opts)).then(onsocket, callbackError);
+            }
+            catch (err) {
+                Promise.reject(err).catch(callbackError);
+            }
+        }
+        freeSocket(socket, opts) {
+            debug('Freeing socket %o %o', socket.constructor.name, opts);
+            socket.destroy();
+        }
+        destroy() {
+            debug('Destroying agent %o', this.constructor.name);
+        }
+    }
+    createAgent.Agent = Agent;
+    // So that `instanceof` works correctly
+    createAgent.prototype = createAgent.Agent.prototype;
+})(createAgent || (createAgent = {}));
+module.exports = createAgent;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 44401:
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+function promisify(fn) {
+    return function (req, opts) {
+        return new Promise((resolve, reject) => {
+            fn.call(this, req, opts, (err, rtn) => {
+                if (err) {
+                    reject(err);
+                }
+                else {
+                    resolve(rtn);
+                }
+            });
+        });
+    };
+}
+exports["default"] = promisify;
+//# sourceMappingURL=promisify.js.map
+
+/***/ }),
+
+/***/ 19870:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const net_1 = __importDefault(__nccwpck_require__(69278));
+const tls_1 = __importDefault(__nccwpck_require__(64756));
+const url_1 = __importDefault(__nccwpck_require__(87016));
+const assert_1 = __importDefault(__nccwpck_require__(42613));
+const debug_1 = __importDefault(__nccwpck_require__(2830));
+const agent_base_1 = __nccwpck_require__(68089);
+const parse_proxy_response_1 = __importDefault(__nccwpck_require__(55989));
+const debug = debug_1.default('https-proxy-agent:agent');
+/**
+ * The `HttpsProxyAgent` implements an HTTP Agent subclass that connects to
+ * the specified "HTTP(s) proxy server" in order to proxy HTTPS requests.
+ *
+ * Outgoing HTTP requests are first tunneled through the proxy server using the
+ * `CONNECT` HTTP request method to establish a connection to the proxy server,
+ * and then the proxy server connects to the destination target and issues the
+ * HTTP request from the proxy server.
+ *
+ * `https:` requests have their socket connection upgraded to TLS once
+ * the connection to the proxy server has been established.
+ *
+ * @api public
+ */
+class HttpsProxyAgent extends agent_base_1.Agent {
+    constructor(_opts) {
+        let opts;
+        if (typeof _opts === 'string') {
+            opts = url_1.default.parse(_opts);
+        }
+        else {
+            opts = _opts;
+        }
+        if (!opts) {
+            throw new Error('an HTTP(S) proxy server `host` and `port` must be specified!');
+        }
+        debug('creating new HttpsProxyAgent instance: %o', opts);
+        super(opts);
+        const proxy = Object.assign({}, opts);
+        // If `true`, then connect to the proxy server over TLS.
+        // Defaults to `false`.
+        this.secureProxy = opts.secureProxy || isHTTPS(proxy.protocol);
+        // Prefer `hostname` over `host`, and set the `port` if needed.
+        proxy.host = proxy.hostname || proxy.host;
+        if (typeof proxy.port === 'string') {
+            proxy.port = parseInt(proxy.port, 10);
+        }
+        if (!proxy.port && proxy.host) {
+            proxy.port = this.secureProxy ? 443 : 80;
+        }
+        // ALPN is supported by Node.js >= v5.
+        // attempt to negotiate http/1.1 for proxy servers that support http/2
+        if (this.secureProxy && !('ALPNProtocols' in proxy)) {
+            proxy.ALPNProtocols = ['http 1.1'];
+        }
+        if (proxy.host && proxy.path) {
+            // If both a `host` and `path` are specified then it's most likely
+            // the result of a `url.parse()` call... we need to remove the
+            // `path` portion so that `net.connect()` doesn't attempt to open
+            // that as a Unix socket file.
+            delete proxy.path;
+            delete proxy.pathname;
+        }
+        this.proxy = proxy;
+    }
+    /**
+     * Called when the node-core HTTP client library is creating a
+     * new HTTP request.
+     *
+     * @api protected
+     */
+    callback(req, opts) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { proxy, secureProxy } = this;
+            // Create a socket connection to the proxy server.
+            let socket;
+            if (secureProxy) {
+                debug('Creating `tls.Socket`: %o', proxy);
+                socket = tls_1.default.connect(proxy);
+            }
+            else {
+                debug('Creating `net.Socket`: %o', proxy);
+                socket = net_1.default.connect(proxy);
+            }
+            const headers = Object.assign({}, proxy.headers);
+            const hostname = `${opts.host}:${opts.port}`;
+            let payload = `CONNECT ${hostname} HTTP/1.1\r\n`;
+            // Inject the `Proxy-Authorization` header if necessary.
+            if (proxy.auth) {
+                headers['Proxy-Authorization'] = `Basic ${Buffer.from(proxy.auth).toString('base64')}`;
+            }
+            // The `Host` header should only include the port
+            // number when it is not the default port.
+            let { host, port, secureEndpoint } = opts;
+            if (!isDefaultPort(port, secureEndpoint)) {
+                host += `:${port}`;
+            }
+            headers.Host = host;
+            headers.Connection = 'close';
+            for (const name of Object.keys(headers)) {
+                payload += `${name}: ${headers[name]}\r\n`;
+            }
+            const proxyResponsePromise = parse_proxy_response_1.default(socket);
+            socket.write(`${payload}\r\n`);
+            const { statusCode, buffered } = yield proxyResponsePromise;
+            if (statusCode === 200) {
+                req.once('socket', resume);
+                if (opts.secureEndpoint) {
+                    // The proxy is connecting to a TLS server, so upgrade
+                    // this socket connection to a TLS connection.
+                    debug('Upgrading socket connection to TLS');
+                    const servername = opts.servername || opts.host;
+                    return tls_1.default.connect(Object.assign(Object.assign({}, omit(opts, 'host', 'hostname', 'path', 'port')), { socket,
+                        servername }));
+                }
+                return socket;
+            }
+            // Some other status code that's not 200... need to re-play the HTTP
+            // header "data" events onto the socket once the HTTP machinery is
+            // attached so that the node core `http` can parse and handle the
+            // error status code.
+            // Close the original socket, and a new "fake" socket is returned
+            // instead, so that the proxy doesn't get the HTTP request
+            // written to it (which may contain `Authorization` headers or other
+            // sensitive data).
+            //
+            // See: https://hackerone.com/reports/541502
+            socket.destroy();
+            const fakeSocket = new net_1.default.Socket({ writable: false });
+            fakeSocket.readable = true;
+            // Need to wait for the "socket" event to re-play the "data" events.
+            req.once('socket', (s) => {
+                debug('replaying proxy buffer for failed request');
+                assert_1.default(s.listenerCount('data') > 0);
+                // Replay the "buffered" Buffer onto the fake `socket`, since at
+                // this point the HTTP module machinery has been hooked up for
+                // the user.
+                s.push(buffered);
+                s.push(null);
+            });
+            return fakeSocket;
+        });
+    }
+}
+exports["default"] = HttpsProxyAgent;
+function resume(socket) {
+    socket.resume();
+}
+function isDefaultPort(port, secure) {
+    return Boolean((!secure && port === 80) || (secure && port === 443));
+}
+function isHTTPS(protocol) {
+    return typeof protocol === 'string' ? /^https:?$/i.test(protocol) : false;
+}
+function omit(obj, ...keys) {
+    const ret = {};
+    let key;
+    for (key in obj) {
+        if (!keys.includes(key)) {
+            ret[key] = obj[key];
+        }
+    }
+    return ret;
+}
+//# sourceMappingURL=agent.js.map
+
+/***/ }),
+
+/***/ 78996:
+/***/ (function(module, __unused_webpack_exports, __nccwpck_require__) {
+
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+const agent_1 = __importDefault(__nccwpck_require__(19870));
+function createHttpsProxyAgent(opts) {
+    return new agent_1.default(opts);
+}
+(function (createHttpsProxyAgent) {
+    createHttpsProxyAgent.HttpsProxyAgent = agent_1.default;
+    createHttpsProxyAgent.prototype = agent_1.default.prototype;
+})(createHttpsProxyAgent || (createHttpsProxyAgent = {}));
+module.exports = createHttpsProxyAgent;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ 55989:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const debug_1 = __importDefault(__nccwpck_require__(2830));
+const debug = debug_1.default('https-proxy-agent:parse-proxy-response');
+function parseProxyResponse(socket) {
+    return new Promise((resolve, reject) => {
+        // we need to buffer any HTTP traffic that happens with the proxy before we get
+        // the CONNECT response, so that if the response is anything other than an "200"
+        // response code, then we can re-play the "data" events on the socket once the
+        // HTTP parser is hooked up...
+        let buffersLength = 0;
+        const buffers = [];
+        function read() {
+            const b = socket.read();
+            if (b)
+                ondata(b);
+            else
+                socket.once('readable', read);
+        }
+        function cleanup() {
+            socket.removeListener('end', onend);
+            socket.removeListener('error', onerror);
+            socket.removeListener('close', onclose);
+            socket.removeListener('readable', read);
+        }
+        function onclose(err) {
+            debug('onclose had error %o', err);
+        }
+        function onend() {
+            debug('onend');
+        }
+        function onerror(err) {
+            cleanup();
+            debug('onerror %o', err);
+            reject(err);
+        }
+        function ondata(b) {
+            buffers.push(b);
+            buffersLength += b.length;
+            const buffered = Buffer.concat(buffers, buffersLength);
+            const endOfHeaders = buffered.indexOf('\r\n\r\n');
+            if (endOfHeaders === -1) {
+                // keep buffering
+                debug('have not received end of HTTP headers yet...');
+                read();
+                return;
+            }
+            const firstLine = buffered.toString('ascii', 0, buffered.indexOf('\r\n'));
+            const statusCode = +firstLine.split(' ')[1];
+            debug('got proxy server response: %o', firstLine);
+            resolve({
+                statusCode,
+                buffered
+            });
+        }
+        socket.on('error', onerror);
+        socket.on('close', onclose);
+        socket.on('end', onend);
+        read();
+    });
+}
+exports["default"] = parseProxyResponse;
+//# sourceMappingURL=parse-proxy-response.js.map
 
 /***/ }),
 
@@ -67214,12 +66216,12 @@ internals.serializer = function () {
                     value = annotated;
                 }
                 else {
-                    for (const errorKey in annotations.errors) {
+                    for (const errorKey of Object.keys(annotations.errors)) {
                         value[`${errorKey}_$key$_${annotations.errors[errorKey].sort().join(', ')}_$end$_`] = value[errorKey];
                         value[errorKey] = undefined;
                     }
 
-                    for (const missingKey in annotations.missing) {
+                    for (const missingKey of Object.keys(annotations.missing)) {
                         value[`_$miss$_${missingKey}|${annotations.missing[missingKey]}_$end$_`] = '__missing__';
                     }
                 }
@@ -67367,7 +66369,7 @@ internals.Base = class {
 
         for (const rule of this._rules) {
             const definition = this._definition.rules[rule.name];
-            if (definition.jsonSchema && typesOverlap) {
+            if (definition.jsonSchema && typesOverlap && !rule._resolve.length) {
                 schema = definition.jsonSchema(rule, schema, isOnly, mode, subOptions);
             }
         }
@@ -67493,7 +66495,7 @@ internals.Base = class {
 
         const obj = this.clone();
         obj.$_terms.alterations = obj.$_terms.alterations || [];
-        for (const target in targets) {
+        for (const target of Object.keys(targets)) {
             const adjuster = targets[target];
             assert(typeof adjuster === 'function', 'Alteration adjuster for', target, 'must be a function');
             obj.$_terms.alterations.push({ target, adjuster });
@@ -67828,7 +66830,7 @@ internals.Base = class {
 
         // Terms
 
-        for (const key in source.$_terms) {
+        for (const key of Object.keys(source.$_terms)) {
             const terms = source.$_terms[key];
             if (!terms) {
                 if (!obj.$_terms[key]) {
@@ -67932,7 +66934,7 @@ internals.Base = class {
             const original = obj._rules[i];
             const rule = clone(original);
 
-            for (const name in options) {
+            for (const name of Object.keys(options)) {
                 def.modifiers[name](rule, options[name]);
                 assert(rule.name === original.name, 'Cannot change rule name');
             }
@@ -68012,7 +67014,7 @@ internals.Base = class {
         assert(options && typeof options === 'object', 'Invalid options');
         assert(options.name && typeof options.name === 'string', 'Invalid rule name');
 
-        for (const key in options) {
+        for (const key of Object.keys(options)) {
             assert(key[0] !== '_', 'Cannot set private rule properties');
         }
 
@@ -68032,7 +67034,7 @@ internals.Base = class {
         if (args) {
             assert(Object.keys(args).length === 1 || Object.keys(args).length === this._definition.rules[rule.name].args.length, 'Invalid rule definition for', this.type, rule.name);
 
-            for (const key in args) {
+            for (const key of Object.keys(args)) {
                 let arg = args[key];
 
                 if (definition.argsByName) {
@@ -68242,15 +67244,17 @@ internals.Base = class {
         target._cache = null;
 
         target.$_terms = {};
-        for (const key in this.$_terms) {
+        for (const key of Object.keys(this.$_terms)) {
             target.$_terms[key] = this.$_terms[key] ? this.$_terms[key].slice() : null;
         }
 
         // Backwards compatibility
 
         target.$_super = {};
-        for (const override in this.$_super) {
-            target.$_super[override] = this._super[override].bind(target);
+        if (this.$_super) {
+            for (const override of Object.keys(this.$_super)) {
+                target.$_super[override] = this._super[override].bind(target);
+            }
         }
 
         return target;
@@ -68262,7 +67266,7 @@ internals.Base = class {
         obj._reset();
 
         const terms = obj._definition.terms;
-        for (const name in terms) {
+        for (const name of Object.keys(terms)) {
             const term = terms[name];
             obj.$_terms[name] = term.init;
         }
@@ -69115,7 +68119,7 @@ internals.walk = function (schema) {
 
     assert(Object.getPrototypeOf(schema) === Object.getPrototypeOf({}), 'Schema can only contain plain objects');
 
-    for (const key in schema) {
+    for (const key of Object.keys(schema)) {
         const compiler = internals.walk(schema[key]);
         if (compiler) {
             return compiler;
@@ -69566,7 +68570,7 @@ exports.type = function (from, options) {
 
     const terms = Object.assign({}, parent.terms);
     if (def.terms) {
-        for (const name in def.terms) {                                     // Only apply own terms
+        for (const name of Object.keys(def.terms)) {                        // Only apply own terms
             const term = def.terms[name];
             assert(schema.$_terms[name] === undefined, 'Invalid term override for', def.type, name);
             schema.$_terms[name] = term.init;
@@ -69610,7 +68614,7 @@ exports.type = function (from, options) {
 
     const rules = Object.assign({}, parent.rules);
     if (def.rules) {
-        for (const name in def.rules) {
+        for (const name of Object.keys(def.rules)) {
             const rule = def.rules[name];
             assert(typeof rule === 'object', 'Invalid rule definition for', def.type, name);
 
@@ -69670,7 +68674,7 @@ exports.type = function (from, options) {
 
     const modifiers = Object.assign({}, parent.modifiers);
     if (def.modifiers) {
-        for (const name in def.modifiers) {
+        for (const name of Object.keys(def.modifiers)) {
             assert(!prototype[name], 'Rule conflict in', def.type, name);
 
             const modifier = def.modifiers[name];
@@ -69693,7 +68697,7 @@ exports.type = function (from, options) {
     if (def.overrides) {
         prototype._super = base;
         schema.$_super = {};                                                            // Backwards compatibility
-        for (const override in def.overrides) {
+        for (const override of Object.keys(def.overrides)) {
             assert(base[override], 'Cannot override missing', override);
             def.overrides[override][Common.symbols.parent] = base[override];
             schema.$_super[override] = base[override].bind(schema);                     // Backwards compatibility
@@ -69928,7 +68932,7 @@ internals.root = function () {
 
     // Aliases
 
-    for (const alias in internals.aliases) {
+    for (const alias of Object.keys(internals.aliases)) {
         const target = internals.aliases[alias];
         root[alias] = root[target];
     }
@@ -70061,7 +69065,7 @@ internals.methods = {
             types[type] = this[type]();
         }
 
-        for (const target in internals.aliases) {
+        for (const target of Object.keys(internals.aliases)) {
             types[target] = this[target]();
         }
 
@@ -70171,7 +69175,7 @@ exports.describe = function (schema) {
 
     // Flags
 
-    for (const flag in schema._flags) {
+    for (const flag of Object.keys(schema._flags)) {
         if (flag[0] !== '_') {
             desc.flags[flag] = internals.describe(schema._flags[flag]);
         }
@@ -70211,7 +69215,7 @@ exports.describe = function (schema) {
 
         const item = { name: rule.name };
 
-        for (const custom in def.modifiers) {
+        for (const custom of Object.keys(def.modifiers)) {
             if (rule[custom] !== undefined) {
                 item[custom] = internals.describe(rule[custom]);
             }
@@ -70219,7 +69223,7 @@ exports.describe = function (schema) {
 
         if (rule.args) {
             item.args = {};
-            for (const key in rule.args) {
+            for (const key of Object.keys(rule.args)) {
                 const arg = rule.args[key];
                 if (key === 'options' &&
                     !Object.keys(arg).length) {
@@ -70244,7 +69248,7 @@ exports.describe = function (schema) {
 
     // Terms (must be last to verify no name conflicts)
 
-    for (const term in schema.$_terms) {
+    for (const term of Object.keys(schema.$_terms)) {
         if (term[0] === '_') {
             continue;
         }
@@ -70366,7 +69370,7 @@ internals.describe = function (item, options = {}) {
     }
 
     const normalized = {};
-    for (const key in item) {
+    for (const key of Object.keys(item)) {
         const value = item[key];
         if (value === undefined) {
             continue;
@@ -70405,7 +69409,7 @@ internals.Builder = class {
         // Flags
 
         if (desc.flags) {
-            for (const flag in desc.flags) {
+            for (const flag of Object.keys(desc.flags)) {
                 const setter = def.flags[flag] && def.flags[flag].setter || flag;
                 assert(typeof schema[setter] === 'function', 'Invalid flag', flag, 'for type', desc.type);
                 schema = schema[setter](this.build(desc.flags[flag]));
@@ -70437,7 +69441,7 @@ internals.Builder = class {
                 const args = [];
                 if (rule.args) {
                     const built = {};
-                    for (const key in rule.args) {
+                    for (const key of Object.keys(rule.args)) {
                         built[key] = this.build(rule.args[key], { assign: key });
                     }
 
@@ -70462,7 +69466,7 @@ internals.Builder = class {
                 // Ruleset
 
                 const options = {};
-                for (const custom in def.modifiers) {
+                for (const custom of Object.keys(def.modifiers)) {
                     if (rule[custom] !== undefined) {
                         options[custom] = this.build(rule[custom]);
                     }
@@ -70477,7 +69481,7 @@ internals.Builder = class {
         // Terms
 
         const terms = {};
-        for (const key in desc) {
+        for (const key of Object.keys(desc)) {
             if (['allow', 'flags', 'invalid', 'whens', 'preferences', 'rules', 'type'].includes(key)) {
                 continue;
             }
@@ -70502,7 +69506,7 @@ internals.Builder = class {
 
             if (typeof manifest === 'object') {
                 terms[key] = {};
-                for (const name in desc[key]) {
+                for (const name of Object.keys(desc[key])) {
                     const value = desc[key][name];
                     terms[key][name] = this.parse(value);
                 }
@@ -70593,7 +69597,7 @@ internals.Builder = class {
         }
 
         const normalized = {};
-        for (const key in desc) {
+        for (const key of Object.keys(desc)) {
             normalized[key] = this.build(desc[key], { assign: key });
         }
 
@@ -70656,7 +69660,7 @@ exports.compile = function (messages, target) {
 
     target = target ? clone(target) : {};
 
-    for (let code in messages) {
+    for (const code of Object.keys(messages)) {
         const message = messages[code];
 
         if (code === 'root' ||
@@ -70678,18 +69682,18 @@ exports.compile = function (messages, target) {
         const language = code;
         target[language] = target[language] || {};
 
-        for (code in message) {
-            const localized = message[code];
+        for (const key of Object.keys(message)) {
+            const localized = message[key];
 
-            if (code === 'root' ||
+            if (key === 'root' ||
                 Template.isTemplate(localized)) {
 
-                target[language][code] = localized;
+                target[language][key] = localized;
                 continue;
             }
 
-            assert(typeof localized === 'string', 'Invalid message for', code, 'in', language);
-            target[language][code] = new Template(localized);
+            assert(typeof localized === 'string', 'Invalid message for', key, 'in', language);
+            target[language][key] = new Template(localized);
         }
     }
 
@@ -70702,7 +69706,7 @@ exports.decompile = function (messages) {
     // By error code { 'number.min': <string | template> }
 
     const target = {};
-    for (let code in messages) {
+    for (const code of Object.keys(messages)) {
         const message = messages[code];
 
         if (code === 'root') {
@@ -70720,15 +69724,15 @@ exports.decompile = function (messages) {
         const language = code;
         target[language] = {};
 
-        for (code in message) {
-            const localized = message[code];
+        for (const key of Object.keys(message)) {
+            const localized = message[key];
 
-            if (code === 'root') {
+            if (key === 'root') {
                 target[language].root = localized;
                 continue;
             }
 
-            target[language][code] = localized.describe({ compact: true });
+            target[language][key] = localized.describe({ compact: true });
         }
     }
 
@@ -70762,7 +69766,7 @@ exports.merge = function (base, extended) {
 
     const target = clone(base);
 
-    for (let code in extended) {
+    for (const code of Object.keys(extended)) {
         const message = extended[code];
 
         if (code === 'root' ||
@@ -70784,18 +69788,18 @@ exports.merge = function (base, extended) {
         const language = code;
         target[language] = target[language] || {};
 
-        for (code in message) {
-            const localized = message[code];
+        for (const key of Object.keys(message)) {
+            const localized = message[key];
 
-            if (code === 'root' ||
+            if (key === 'root' ||
                 Template.isTemplate(localized)) {
 
-                target[language][code] = localized;
+                target[language][key] = localized;
                 continue;
             }
 
-            assert(typeof localized === 'string', 'Invalid message for', code, 'in', language);
-            target[language][code] = new Template(localized);
+            assert(typeof localized === 'string', 'Invalid message for', key, 'in', language);
+            target[language][key] = new Template(localized);
         }
     }
 
@@ -70981,7 +69985,7 @@ exports.schema = function (schema, options) {
 
     let obj;
 
-    for (const name in schema._flags) {
+    for (const name of Object.keys(schema._flags)) {
         if (name[0] === '_') {
             continue;
         }
@@ -71009,7 +70013,7 @@ exports.schema = function (schema, options) {
         }
     }
 
-    for (const name in schema.$_terms) {
+    for (const name of Object.keys(schema.$_terms)) {
         if (name[0] === '_') {
             continue;
         }
@@ -71061,7 +70065,7 @@ internals.scan = function (item, source, options, _path, _key) {
         return result;
     }
 
-    for (const key in item) {
+    for (const key of Object.keys(item)) {
         if (key[0] === '_') {
             continue;
         }
@@ -72988,6 +71992,9 @@ module.exports = Any.extend({
             if (matchMode === 'one') {
                 res.oneOf = matches;
             }
+            else if (matchMode === 'all') {
+                res.allOf = matches;
+            }
             else {
                 res.anyOf = matches;
             }
@@ -73356,7 +72363,7 @@ module.exports = Base.extend({
 
         build(obj, desc) {
 
-            for (const key in desc) {
+            for (const key of Object.keys(desc)) {
                 const values = desc[key];
 
                 if (['examples', 'externals', 'metas', 'notes', 'tags'].includes(key)) {
@@ -73518,7 +72525,7 @@ module.exports = Any.extend({
 
             if (ordered.length) {
                 res.unevaluatedItems = items;
-                res.minItems = ordered.length;
+                internals.setOrderedMinItems(res, ordered);
             }
             else {
                 res.items = items;
@@ -73528,7 +72535,7 @@ module.exports = Any.extend({
             // No additional items allowed beyond the ordered ones
 
             res.unevaluatedItems = false;
-            res.minItems = ordered.length;
+            internals.setOrderedMinItems(res, ordered);
             res.maxItems = ordered.length;
         }
 
@@ -73536,7 +72543,9 @@ module.exports = Any.extend({
 
         const contains = [];
         for (const rule of schema._rules) {
-            if (rule.name === 'has') {
+            if (rule.name === 'has' &&
+                !rule.args.schema._refs.refs.length) {
+
                 contains.push(rule.args.schema.$_jsonSchema(mode, options));
             }
         }
@@ -74085,7 +73094,9 @@ module.exports = Any.extend({
             },
             jsonSchema(rule, res) {
 
-                res.uniqueItems = true;
+                if (!rule.args.comparator) {
+                    res.uniqueItems = true;
+                }
 
                 return res;
             },
@@ -74192,6 +73203,29 @@ module.exports = Any.extend({
 
 
 // Helpers
+
+internals.setOrderedMinItems = function (res, ordered) {
+
+    // Ordered items are optional by default; the array only needs to reach the
+    // last explicitly required position.
+    const minItems = internals.orderedMinItems(ordered);
+    if (minItems) {
+        res.minItems = minItems;
+    }
+};
+
+
+internals.orderedMinItems = function (ordered) {
+
+    for (let i = ordered.length - 1; i >= 0; --i) {
+        if (ordered[i]._flags.presence === 'required') {
+            return i + 1;
+        }
+    }
+
+    return 0;
+};
+
 
 internals.fillMissedErrors = function (schema, errors, requireds, value, state, prefs) {
 
@@ -75105,6 +74139,11 @@ module.exports = Any.extend({
             for (const child of schema.$_terms.keys) {
                 const jsonSchema = child.schema.$_jsonSchema(mode, options);
                 res.properties[child.key] = jsonSchema;
+
+                if (child.schema._flags.id) {
+                    options.$defs[child.schema._flags.id] = jsonSchema;
+                }
+
                 if (child.schema._flags.presence === 'required' ||
                     (mode === 'output' && child.schema._flags.default !== undefined)) {
 
@@ -75364,7 +74403,7 @@ module.exports = Any.extend({
                 }
                 else {
                     obj.$_terms.keys = obj.$_terms.keys ? obj.$_terms.keys.filter((child) => !schema.hasOwnProperty(child.key)) : new internals.Keys();
-                    for (const key in schema) {
+                    for (const key of Object.keys(schema)) {
                         Common.tryWithPath(() => obj.$_terms.keys.push({ key, schema: this.$_compile(schema[key]) }), key);
                     }
                 }
@@ -75714,8 +74753,15 @@ internals.clone = function (value, prefs) {
             return Clone(value, { shallow: true });
         }
 
-        const clone = Object.create(Object.getPrototypeOf(value));
+        const proto = Object.getPrototypeOf(value);
+        const clone = Object.create(proto);
         Object.assign(clone, value);
+
+        // Restore the prototype in case of pre-existing prototype pollution
+        if (Object.getPrototypeOf(clone) !== proto) {
+            Object.setPrototypeOf(clone, proto);
+        }
+
         return clone;
     }
 
@@ -75964,7 +75010,7 @@ internals.rename = function (schema, value, state, prefs, errors) {
             }
         }
         else {
-            for (const from in value) {
+            for (const from of Object.keys(value)) {
                 if (value[from] === undefined &&
                     rename.options.ignoreUndefined) {
 
@@ -77593,7 +76639,19 @@ module.exports = Any.extend({
             },
             jsonSchema(rule, res) {
 
-                res.pattern = rule.args.regex.source;
+                const pattern = rule.args.regex.source;
+
+                if (res.allOf) {
+                    res.allOf.push({ pattern });
+                }
+                else if (res.pattern !== undefined) {
+                    res.allOf = [{ pattern: res.pattern }, { pattern }];
+                    delete res.pattern;
+                }
+                else {
+                    res.pattern = pattern;
+                }
+
                 return res;
             },
             args: ['regex', 'options'],
@@ -92961,6 +92019,9 @@ class Range {
   }
 
   parseRange (range) {
+    // strip build metadata so it can't bleed into the version
+    range = range.replace(BUILDSTRIPRE, '')
+
     // memoize range parsing for performance.
     // this is a very hot path, and fully deterministic.
     const memoOpts =
@@ -93086,12 +92147,16 @@ const debug = __nccwpck_require__(1159)
 const SemVer = __nccwpck_require__(7163)
 const {
   safeRe: re,
+  src,
   t,
   comparatorTrimReplace,
   tildeTrimReplace,
   caretTrimReplace,
 } = __nccwpck_require__(95471)
 const { FLAG_INCLUDE_PRERELEASE, FLAG_LOOSE } = __nccwpck_require__(45101)
+
+// unbounded global build-metadata stripper used by parseRange
+const BUILDSTRIPRE = new RegExp(src[t.BUILD], 'g')
 
 const isNullSet = c => c.value === '<0.0.0-0'
 const isAny = c => c.value === ''
@@ -93133,6 +92198,11 @@ const parseComparator = (comp, options) => {
 
 const isX = id => !id || id.toLowerCase() === 'x' || id === '*'
 
+const invalidXRangeOrder = (M, m, p) => (
+  (isX(M) && !isX(m)) ||
+  (isX(m) && p && !isX(p))
+)
+
 // ~, ~> --> * (any, kinda silly)
 // ~2, ~2.x, ~2.x.x, ~>2, ~>2.x ~>2.x.x --> >=2.0.0 <3.0.0-0
 // ~2.0, ~2.0.x, ~>2.0, ~>2.0.x --> >=2.0.0 <2.1.0-0
@@ -93150,6 +92220,10 @@ const replaceTildes = (comp, options) => {
 
 const replaceTilde = (comp, options) => {
   const r = options.loose ? re[t.TILDELOOSE] : re[t.TILDE]
+  // if we're including prereleases in the match, then the lower bound is
+  // -0, the lowest possible prerelease value, just like x-ranges and carets.
+  // this keeps `~1.2` equivalent to the `1.2.x` x-range it's documented as.
+  const z = options.includePrerelease ? '-0' : ''
   return comp.replace(r, (_, M, m, p, pr) => {
     debug('tilde', comp, _, M, m, p, pr)
     let ret
@@ -93157,10 +92231,10 @@ const replaceTilde = (comp, options) => {
     if (isX(M)) {
       ret = ''
     } else if (isX(m)) {
-      ret = `>=${M}.0.0 <${+M + 1}.0.0-0`
+      ret = `>=${M}.0.0${z} <${+M + 1}.0.0-0`
     } else if (isX(p)) {
       // ~1.2 == >=1.2.0 <1.3.0-0
-      ret = `>=${M}.${m}.0 <${M}.${+m + 1}.0-0`
+      ret = `>=${M}.${m}.0${z} <${M}.${+m + 1}.0-0`
     } else if (pr) {
       debug('replaceTilde pr', pr)
       ret = `>=${M}.${m}.${p}-${pr
@@ -93229,10 +92303,10 @@ const replaceCaret = (comp, options) => {
       if (M === '0') {
         if (m === '0') {
           ret = `>=${M}.${m}.${p
-          }${z} <${M}.${m}.${+p + 1}-0`
+          } <${M}.${m}.${+p + 1}-0`
         } else {
           ret = `>=${M}.${m}.${p
-          }${z} <${M}.${+m + 1}.0-0`
+          } <${M}.${+m + 1}.0-0`
         }
       } else {
         ret = `>=${M}.${m}.${p
@@ -93258,6 +92332,10 @@ const replaceXRange = (comp, options) => {
   const r = options.loose ? re[t.XRANGELOOSE] : re[t.XRANGE]
   return comp.replace(r, (ret, gtlt, M, m, p, pr) => {
     debug('xRange', comp, ret, gtlt, M, m, p, pr)
+    if (invalidXRangeOrder(M, m, p)) {
+      return comp
+    }
+
     const xM = isX(M)
     const xm = xM || isX(m)
     const xp = xm || isX(p)
@@ -93433,6 +92511,22 @@ const { safeRe: re, t } = __nccwpck_require__(95471)
 
 const parseOptions = __nccwpck_require__(70356)
 const { compareIdentifiers } = __nccwpck_require__(73348)
+
+const isPrereleaseIdentifier = (prerelease, identifier) => {
+  const identifiers = identifier.split('.')
+  if (identifiers.length > prerelease.length) {
+    return false
+  }
+
+  for (let i = 0; i < identifiers.length; i++) {
+    if (compareIdentifiers(prerelease[i], identifiers[i]) !== 0) {
+      return false
+    }
+  }
+
+  return true
+}
+
 class SemVer {
   constructor (version, options) {
     options = parseOptions(options)
@@ -93736,8 +92830,9 @@ class SemVer {
           if (identifierBase === false) {
             prerelease = [identifier]
           }
-          if (compareIdentifiers(this.prerelease[0], identifier) === 0) {
-            if (isNaN(this.prerelease[1])) {
+          if (isPrereleaseIdentifier(this.prerelease, identifier)) {
+            const prereleaseBase = this.prerelease[identifier.split('.').length]
+            if (isNaN(prereleaseBase)) {
               this.prerelease = prerelease
             }
           } else {
@@ -95321,7 +94416,7 @@ const simpleSubset = (sub, dom, options) => {
         if (higher === c && higher !== gt) {
           return false
         }
-      } else if (gt.operator === '>=' && !satisfies(gt.semver, String(c), options)) {
+      } else if (gt.operator === '>=' && !c.test(gt.semver)) {
         return false
       }
     }
@@ -95339,7 +94434,7 @@ const simpleSubset = (sub, dom, options) => {
         if (lower === c && lower !== lt) {
           return false
         }
-      } else if (lt.operator === '<=' && !satisfies(lt.semver, String(c), options)) {
+      } else if (lt.operator === '<=' && !c.test(lt.semver)) {
         return false
       }
     }
@@ -96574,464 +95669,6 @@ function waitDiff (state, index, expected, timeout, done) {
 }
 
 module.exports = { wait, waitDiff }
-
-
-/***/ }),
-
-/***/ 61860:
-/***/ ((module) => {
-
-/******************************************************************************
-Copyright (c) Microsoft Corporation.
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
-***************************************************************************** */
-/* global global, define, Symbol, Reflect, Promise, SuppressedError, Iterator */
-var __extends;
-var __assign;
-var __rest;
-var __decorate;
-var __param;
-var __esDecorate;
-var __runInitializers;
-var __propKey;
-var __setFunctionName;
-var __metadata;
-var __awaiter;
-var __generator;
-var __exportStar;
-var __values;
-var __read;
-var __spread;
-var __spreadArrays;
-var __spreadArray;
-var __await;
-var __asyncGenerator;
-var __asyncDelegator;
-var __asyncValues;
-var __makeTemplateObject;
-var __importStar;
-var __importDefault;
-var __classPrivateFieldGet;
-var __classPrivateFieldSet;
-var __classPrivateFieldIn;
-var __createBinding;
-var __addDisposableResource;
-var __disposeResources;
-var __rewriteRelativeImportExtension;
-(function (factory) {
-    var root = typeof global === "object" ? global : typeof self === "object" ? self : typeof this === "object" ? this : {};
-    if (typeof define === "function" && define.amd) {
-        define("tslib", ["exports"], function (exports) { factory(createExporter(root, createExporter(exports))); });
-    }
-    else if ( true && typeof module.exports === "object") {
-        factory(createExporter(root, createExporter(module.exports)));
-    }
-    else {
-        factory(createExporter(root));
-    }
-    function createExporter(exports, previous) {
-        if (exports !== root) {
-            if (typeof Object.create === "function") {
-                Object.defineProperty(exports, "__esModule", { value: true });
-            }
-            else {
-                exports.__esModule = true;
-            }
-        }
-        return function (id, v) { return exports[id] = previous ? previous(id, v) : v; };
-    }
-})
-(function (exporter) {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-
-    __extends = function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-
-    __assign = Object.assign || function (t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-        }
-        return t;
-    };
-
-    __rest = function (s, e) {
-        var t = {};
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-            t[p] = s[p];
-        if (s != null && typeof Object.getOwnPropertySymbols === "function")
-            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-                if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                    t[p[i]] = s[p[i]];
-            }
-        return t;
-    };
-
-    __decorate = function (decorators, target, key, desc) {
-        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-        return c > 3 && r && Object.defineProperty(target, key, r), r;
-    };
-
-    __param = function (paramIndex, decorator) {
-        return function (target, key) { decorator(target, key, paramIndex); }
-    };
-
-    __esDecorate = function (ctor, descriptorIn, decorators, contextIn, initializers, extraInitializers) {
-        function accept(f) { if (f !== void 0 && typeof f !== "function") throw new TypeError("Function expected"); return f; }
-        var kind = contextIn.kind, key = kind === "getter" ? "get" : kind === "setter" ? "set" : "value";
-        var target = !descriptorIn && ctor ? contextIn["static"] ? ctor : ctor.prototype : null;
-        var descriptor = descriptorIn || (target ? Object.getOwnPropertyDescriptor(target, contextIn.name) : {});
-        var _, done = false;
-        for (var i = decorators.length - 1; i >= 0; i--) {
-            var context = {};
-            for (var p in contextIn) context[p] = p === "access" ? {} : contextIn[p];
-            for (var p in contextIn.access) context.access[p] = contextIn.access[p];
-            context.addInitializer = function (f) { if (done) throw new TypeError("Cannot add initializers after decoration has completed"); extraInitializers.push(accept(f || null)); };
-            var result = (0, decorators[i])(kind === "accessor" ? { get: descriptor.get, set: descriptor.set } : descriptor[key], context);
-            if (kind === "accessor") {
-                if (result === void 0) continue;
-                if (result === null || typeof result !== "object") throw new TypeError("Object expected");
-                if (_ = accept(result.get)) descriptor.get = _;
-                if (_ = accept(result.set)) descriptor.set = _;
-                if (_ = accept(result.init)) initializers.unshift(_);
-            }
-            else if (_ = accept(result)) {
-                if (kind === "field") initializers.unshift(_);
-                else descriptor[key] = _;
-            }
-        }
-        if (target) Object.defineProperty(target, contextIn.name, descriptor);
-        done = true;
-    };
-
-    __runInitializers = function (thisArg, initializers, value) {
-        var useValue = arguments.length > 2;
-        for (var i = 0; i < initializers.length; i++) {
-            value = useValue ? initializers[i].call(thisArg, value) : initializers[i].call(thisArg);
-        }
-        return useValue ? value : void 0;
-    };
-
-    __propKey = function (x) {
-        return typeof x === "symbol" ? x : "".concat(x);
-    };
-
-    __setFunctionName = function (f, name, prefix) {
-        if (typeof name === "symbol") name = name.description ? "[".concat(name.description, "]") : "";
-        return Object.defineProperty(f, "name", { configurable: true, value: prefix ? "".concat(prefix, " ", name) : name });
-    };
-
-    __metadata = function (metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
-    };
-
-    __awaiter = function (thisArg, _arguments, P, generator) {
-        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-        return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-            function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-            step((generator = generator.apply(thisArg, _arguments || [])).next());
-        });
-    };
-
-    __generator = function (thisArg, body) {
-        var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
-        return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-        function verb(n) { return function (v) { return step([n, v]); }; }
-        function step(op) {
-            if (f) throw new TypeError("Generator is already executing.");
-            while (g && (g = 0, op[0] && (_ = 0)), _) try {
-                if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-                if (y = 0, t) op = [op[0] & 2, t.value];
-                switch (op[0]) {
-                    case 0: case 1: t = op; break;
-                    case 4: _.label++; return { value: op[1], done: false };
-                    case 5: _.label++; y = op[1]; op = [0]; continue;
-                    case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                    default:
-                        if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                        if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                        if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                        if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                        if (t[2]) _.ops.pop();
-                        _.trys.pop(); continue;
-                }
-                op = body.call(thisArg, _);
-            } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-            if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-        }
-    };
-
-    __exportStar = function(m, o) {
-        for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p)) __createBinding(o, m, p);
-    };
-
-    __createBinding = Object.create ? (function(o, m, k, k2) {
-        if (k2 === undefined) k2 = k;
-        var desc = Object.getOwnPropertyDescriptor(m, k);
-        if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-            desc = { enumerable: true, get: function() { return m[k]; } };
-        }
-        Object.defineProperty(o, k2, desc);
-    }) : (function(o, m, k, k2) {
-        if (k2 === undefined) k2 = k;
-        o[k2] = m[k];
-    });
-
-    __values = function (o) {
-        var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-        if (m) return m.call(o);
-        if (o && typeof o.length === "number") return {
-            next: function () {
-                if (o && i >= o.length) o = void 0;
-                return { value: o && o[i++], done: !o };
-            }
-        };
-        throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-    };
-
-    __read = function (o, n) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m) return o;
-        var i = m.call(o), r, ar = [], e;
-        try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
-        }
-        catch (error) { e = { error: error }; }
-        finally {
-            try {
-                if (r && !r.done && (m = i["return"])) m.call(i);
-            }
-            finally { if (e) throw e.error; }
-        }
-        return ar;
-    };
-
-    /** @deprecated */
-    __spread = function () {
-        for (var ar = [], i = 0; i < arguments.length; i++)
-            ar = ar.concat(__read(arguments[i]));
-        return ar;
-    };
-
-    /** @deprecated */
-    __spreadArrays = function () {
-        for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-        for (var r = Array(s), k = 0, i = 0; i < il; i++)
-            for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-                r[k] = a[j];
-        return r;
-    };
-
-    __spreadArray = function (to, from, pack) {
-        if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-            if (ar || !(i in from)) {
-                if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-                ar[i] = from[i];
-            }
-        }
-        return to.concat(ar || Array.prototype.slice.call(from));
-    };
-
-    __await = function (v) {
-        return this instanceof __await ? (this.v = v, this) : new __await(v);
-    };
-
-    __asyncGenerator = function (thisArg, _arguments, generator) {
-        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
-        var g = generator.apply(thisArg, _arguments || []), i, q = [];
-        return i = Object.create((typeof AsyncIterator === "function" ? AsyncIterator : Object).prototype), verb("next"), verb("throw"), verb("return", awaitReturn), i[Symbol.asyncIterator] = function () { return this; }, i;
-        function awaitReturn(f) { return function (v) { return Promise.resolve(v).then(f, reject); }; }
-        function verb(n, f) { if (g[n]) { i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; if (f) i[n] = f(i[n]); } }
-        function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
-        function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
-        function fulfill(value) { resume("next", value); }
-        function reject(value) { resume("throw", value); }
-        function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
-    };
-
-    __asyncDelegator = function (o) {
-        var i, p;
-        return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
-        function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: false } : f ? f(v) : v; } : f; }
-    };
-
-    __asyncValues = function (o) {
-        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
-        var m = o[Symbol.asyncIterator], i;
-        return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
-        function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
-        function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
-    };
-
-    __makeTemplateObject = function (cooked, raw) {
-        if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-        return cooked;
-    };
-
-    var __setModuleDefault = Object.create ? (function(o, v) {
-        Object.defineProperty(o, "default", { enumerable: true, value: v });
-    }) : function(o, v) {
-        o["default"] = v;
-    };
-
-    var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function (o) {
-            var ar = [];
-            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
-            return ar;
-        };
-        return ownKeys(o);
-    };
-
-    __importStar = function (mod) {
-        if (mod && mod.__esModule) return mod;
-        var result = {};
-        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
-        __setModuleDefault(result, mod);
-        return result;
-    };
-
-    __importDefault = function (mod) {
-        return (mod && mod.__esModule) ? mod : { "default": mod };
-    };
-
-    __classPrivateFieldGet = function (receiver, state, kind, f) {
-        if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
-        if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
-        return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
-    };
-
-    __classPrivateFieldSet = function (receiver, state, value, kind, f) {
-        if (kind === "m") throw new TypeError("Private method is not writable");
-        if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
-        if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
-        return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
-    };
-
-    __classPrivateFieldIn = function (state, receiver) {
-        if (receiver === null || (typeof receiver !== "object" && typeof receiver !== "function")) throw new TypeError("Cannot use 'in' operator on non-object");
-        return typeof state === "function" ? receiver === state : state.has(receiver);
-    };
-
-    __addDisposableResource = function (env, value, async) {
-        if (value !== null && value !== void 0) {
-            if (typeof value !== "object" && typeof value !== "function") throw new TypeError("Object expected.");
-            var dispose, inner;
-            if (async) {
-                if (!Symbol.asyncDispose) throw new TypeError("Symbol.asyncDispose is not defined.");
-                dispose = value[Symbol.asyncDispose];
-            }
-            if (dispose === void 0) {
-                if (!Symbol.dispose) throw new TypeError("Symbol.dispose is not defined.");
-                dispose = value[Symbol.dispose];
-                if (async) inner = dispose;
-            }
-            if (typeof dispose !== "function") throw new TypeError("Object not disposable.");
-            if (inner) dispose = function() { try { inner.call(this); } catch (e) { return Promise.reject(e); } };
-            env.stack.push({ value: value, dispose: dispose, async: async });
-        }
-        else if (async) {
-            env.stack.push({ async: true });
-        }
-        return value;
-    };
-
-    var _SuppressedError = typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
-        var e = new Error(message);
-        return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
-    };
-
-    __disposeResources = function (env) {
-        function fail(e) {
-            env.error = env.hasError ? new _SuppressedError(e, env.error, "An error was suppressed during disposal.") : e;
-            env.hasError = true;
-        }
-        var r, s = 0;
-        function next() {
-            while (r = env.stack.pop()) {
-                try {
-                    if (!r.async && s === 1) return s = 0, env.stack.push(r), Promise.resolve().then(next);
-                    if (r.dispose) {
-                        var result = r.dispose.call(r.value);
-                        if (r.async) return s |= 2, Promise.resolve(result).then(next, function(e) { fail(e); return next(); });
-                    }
-                    else s |= 1;
-                }
-                catch (e) {
-                    fail(e);
-                }
-            }
-            if (s === 1) return env.hasError ? Promise.reject(env.error) : Promise.resolve();
-            if (env.hasError) throw env.error;
-        }
-        return next();
-    };
-
-    __rewriteRelativeImportExtension = function (path, preserveJsx) {
-        if (typeof path === "string" && /^\.\.?\//.test(path)) {
-            return path.replace(/\.(tsx)$|((?:\.d)?)((?:\.[^./]+?)?)\.([cm]?)ts$/i, function (m, tsx, d, ext, cm) {
-                return tsx ? preserveJsx ? ".jsx" : ".js" : d && (!ext || !cm) ? m : (d + ext + "." + cm.toLowerCase() + "js");
-            });
-        }
-        return path;
-    };
-
-    exporter("__extends", __extends);
-    exporter("__assign", __assign);
-    exporter("__rest", __rest);
-    exporter("__decorate", __decorate);
-    exporter("__param", __param);
-    exporter("__esDecorate", __esDecorate);
-    exporter("__runInitializers", __runInitializers);
-    exporter("__propKey", __propKey);
-    exporter("__setFunctionName", __setFunctionName);
-    exporter("__metadata", __metadata);
-    exporter("__awaiter", __awaiter);
-    exporter("__generator", __generator);
-    exporter("__exportStar", __exportStar);
-    exporter("__createBinding", __createBinding);
-    exporter("__values", __values);
-    exporter("__read", __read);
-    exporter("__spread", __spread);
-    exporter("__spreadArrays", __spreadArrays);
-    exporter("__spreadArray", __spreadArray);
-    exporter("__await", __await);
-    exporter("__asyncGenerator", __asyncGenerator);
-    exporter("__asyncDelegator", __asyncDelegator);
-    exporter("__asyncValues", __asyncValues);
-    exporter("__makeTemplateObject", __makeTemplateObject);
-    exporter("__importStar", __importStar);
-    exporter("__importDefault", __importDefault);
-    exporter("__classPrivateFieldGet", __classPrivateFieldGet);
-    exporter("__classPrivateFieldSet", __classPrivateFieldSet);
-    exporter("__classPrivateFieldIn", __classPrivateFieldIn);
-    exporter("__addDisposableResource", __addDisposableResource);
-    exporter("__disposeResources", __disposeResources);
-    exporter("__rewriteRelativeImportExtension", __rewriteRelativeImportExtension);
-});
-
-0 && (0);
 
 
 /***/ }),
@@ -133240,7 +131877,7 @@ module.exports = {
 
 
 
-const VERSION = '5.8.5'
+const VERSION = '5.10.0'
 
 const Avvio = __nccwpck_require__(92586)
 const http = __nccwpck_require__(37067)
@@ -133273,7 +131910,8 @@ const {
   kChildLoggerFactory,
   kGenReqId,
   kErrorHandlerAlreadySet,
-  kHandlerTimeout
+  kHandlerTimeout,
+  kLogController
 } = __nccwpck_require__(34582)
 
 const { createServer } = __nccwpck_require__(80744)
@@ -133284,7 +131922,7 @@ const decorator = __nccwpck_require__(69564)
 const ContentTypeParser = __nccwpck_require__(40967)
 const SchemaController = __nccwpck_require__(58597)
 const { Hooks, hookRunnerApplication, supportedHooks } = __nccwpck_require__(27571)
-const { createChildLogger, defaultChildLoggerFactory, createLogger } = __nccwpck_require__(39868)
+const { createChildLogger, defaultChildLoggerFactory, createLogger, createLogController, LogController } = __nccwpck_require__(39868)
 const pluginUtils = __nccwpck_require__(10100)
 const { getGenReqId, reqIdGenFactory } = __nccwpck_require__(80833)
 const { buildRouting, validateBodyLimitOption, buildRouterOptions } = __nccwpck_require__(16806)
@@ -133303,6 +131941,7 @@ const { defaultInitOptions } = getSecuredInitialConfig
 const {
   FST_ERR_ASYNC_CONSTRAINT,
   FST_ERR_BAD_URL,
+  FST_ERR_MAX_PARAM_LENGTH,
   FST_ERR_OPTIONS_NOT_OBJ,
   FST_ERR_QSP_NOT_FN,
   FST_ERR_SCHEMA_CONTROLLER_BUCKET_OPT_NOT_FN,
@@ -133318,7 +131957,7 @@ const {
 } = errorCodes
 
 const { buildErrorHandler } = __nccwpck_require__(11252)
-const { FSTWRN004 } = __nccwpck_require__(45054)
+const { FSTWRN004, FSTDEP023, FSTDEP024 } = __nccwpck_require__(45054)
 
 const initChannel = diagnostics.channel('fastify.initialization')
 
@@ -133329,10 +131968,10 @@ function fastify (serverOptions) {
   const {
     options,
     genReqId,
-    disableRequestLogging,
+    logController,
     hasLogger,
     initialConfig
-  } = processOptions(serverOptions, defaultRoute, onBadUrl)
+  } = processOptions(serverOptions, defaultRoute, onBadUrl, onMaxParamLength)
 
   // Default router
   const router = buildRouting(options.routerOptions)
@@ -133455,6 +132094,7 @@ function fastify (serverOptions) {
     },
     // expose logger instance
     log: options.logger,
+    [kLogController]: logController,
     // type provider
     withTypeProvider,
     // hooks
@@ -133621,8 +132261,7 @@ function fastify (serverOptions) {
       hookRunnerApplication('preClose', fastify[kAvvioBoot], fastify, function () {
         if (fastify[kState].listening) {
           /* istanbul ignore next: Cannot test this without Node.js core support */
-          if (forceCloseConnections === 'idle') {
-            // Not needed in Node 19
+          if (forceCloseConnections === 'idle' && options.serverFactory) {
             instance.server.closeIdleConnections()
             /* istanbul ignore next: Cannot test this without Node.js core support */
           } else if (serverHasCloseAllConnections && forceCloseConnections) {
@@ -133663,8 +132302,8 @@ function fastify (serverOptions) {
     })
   })
 
-  // Create bad URL context
-  const onBadUrlContext = new Context({
+  // Create route event (bad URL, max param length, etc) context
+  const routeEventContext = new Context({
     server: fastify,
     config: {}
   })
@@ -133877,16 +132516,13 @@ function fastify (serverOptions) {
 
   function onBadUrl (path, req, res) {
     if (options.frameworkErrors) {
-      const id = getGenReqId(onBadUrlContext.server, req)
-      const childLogger = createChildLogger(onBadUrlContext, options.logger, req, id)
+      const id = getGenReqId(routeEventContext.server, req)
+      const childLogger = createChildLogger(routeEventContext, options.logger, req, id)
 
-      const request = new Request(id, null, req, null, childLogger, onBadUrlContext)
+      const request = new Request(id, null, req, null, childLogger, routeEventContext)
       const reply = new Reply(res, request, childLogger)
 
-      const resolvedDisableRequestLogging = typeof disableRequestLogging === 'function' ? disableRequestLogging(req) : disableRequestLogging
-      if (resolvedDisableRequestLogging === false) {
-        childLogger.info({ req: request }, 'incoming request')
-      }
+      routeEventContext.server[kLogController].incomingRequest(request, reply)
 
       return options.frameworkErrors(new FST_ERR_BAD_URL(path), request, reply)
     }
@@ -133903,21 +132539,43 @@ function fastify (serverOptions) {
     res.end(body)
   }
 
+  function onMaxParamLength (path, req, res) {
+    if (options.frameworkErrors) {
+      const id = getGenReqId(routeEventContext.server, req)
+      const childLogger = createChildLogger(routeEventContext, options.logger, req, id)
+
+      const request = new Request(id, null, req, null, childLogger, routeEventContext)
+      const reply = new Reply(res, request, childLogger)
+
+      routeEventContext.server[kLogController].incomingRequest(request, reply)
+
+      return options.frameworkErrors(new FST_ERR_MAX_PARAM_LENGTH(path), request, reply)
+    }
+    const body = JSON.stringify({
+      error: 'Bad Request',
+      code: 'FST_ERR_MAX_PARAM_LENGTH',
+      message: `'${path}' is exceeding the max param length`,
+      statusCode: 414
+    })
+    res.writeHead(414, {
+      'Content-Type': 'application/json',
+      'Content-Length': Buffer.byteLength(body)
+    })
+    res.end(body)
+  }
+
   function buildAsyncConstraintCallback (isAsync, req, res) {
     if (isAsync === false) return undefined
     return function onAsyncConstraintError (err) {
       if (err) {
         if (options.frameworkErrors) {
-          const id = getGenReqId(onBadUrlContext.server, req)
-          const childLogger = createChildLogger(onBadUrlContext, options.logger, req, id)
+          const id = getGenReqId(routeEventContext.server, req)
+          const childLogger = createChildLogger(routeEventContext, options.logger, req, id)
 
-          const request = new Request(id, null, req, null, childLogger, onBadUrlContext)
+          const request = new Request(id, null, req, null, childLogger, routeEventContext)
           const reply = new Reply(res, request, childLogger)
 
-          const resolvedDisableRequestLogging = typeof disableRequestLogging === 'function' ? disableRequestLogging(req) : disableRequestLogging
-          if (resolvedDisableRequestLogging === false) {
-            childLogger.info({ req: request }, 'incoming request')
-          }
+          routeEventContext.server[kLogController].incomingRequest(request, reply)
 
           return options.frameworkErrors(new FST_ERR_ASYNC_CONSTRAINT(), request, reply)
         }
@@ -133988,7 +132646,7 @@ function fastify (serverOptions) {
     if (!options.allowErrorHandlerOverride && this[kErrorHandlerAlreadySet]) {
       throw new FST_ERR_ERROR_HANDLER_ALREADY_SET()
     } else if (this[kErrorHandlerAlreadySet]) {
-      FSTWRN004("To disable this behavior, set 'allowErrorHandlerOverride' to false or ignore this message. For more information, visit: https://fastify.dev/docs/latest/Reference/Server/#allowerrorhandleroverride")
+      FSTWRN004()
     }
 
     this[kErrorHandlerAlreadySet] = true
@@ -134061,7 +132719,7 @@ function fastify (serverOptions) {
   }
 }
 
-function processOptions (options, defaultRoute, onBadUrl) {
+function processOptions (options, defaultRoute, onBadUrl, onMaxParamLength) {
   // Options validations
   if (options && typeof options !== 'object') {
     throw new FST_ERR_OPTIONS_NOT_OBJ()
@@ -134088,9 +132746,13 @@ function processOptions (options, defaultRoute, onBadUrl) {
 
   const requestIdHeader = typeof options.requestIdHeader === 'string' && options.requestIdHeader.length !== 0 ? options.requestIdHeader.toLowerCase() : (options.requestIdHeader === true && 'request-id')
   const genReqId = reqIdGenFactory(requestIdHeader, options.genReqId)
-  const requestIdLogLabel = options.requestIdLogLabel || 'reqId'
+  if (options.requestIdLogLabel !== undefined) {
+    FSTDEP024()
+  }
   options.bodyLimit = options.bodyLimit || defaultInitOptions.bodyLimit
-  const disableRequestLogging = options.disableRequestLogging || false
+  if (options.disableRequestLogging !== undefined) {
+    FSTDEP023()
+  }
 
   const ajvOptions = Object.assign({
     customOptions: {},
@@ -134106,6 +132768,10 @@ function processOptions (options, defaultRoute, onBadUrl) {
 
   const { logger, hasLogger } = createLogger(options)
 
+  // the internal logger uses the input logger to execute the logging. This allows the user
+  // to customize every internal log line
+  const logController = createLogController(options)
+
   // Update the options with the fixed values
   options.connectionTimeout = options.connectionTimeout || defaultInitOptions.connectionTimeout
   options.keepAliveTimeout = options.keepAliveTimeout || defaultInitOptions.keepAliveTimeout
@@ -134113,8 +132779,6 @@ function processOptions (options, defaultRoute, onBadUrl) {
   options.requestTimeout = options.requestTimeout || defaultInitOptions.requestTimeout
   options.logger = logger
   options.requestIdHeader = requestIdHeader
-  options.requestIdLogLabel = requestIdLogLabel
-  options.disableRequestLogging = disableRequestLogging
   options.ajv = ajvOptions
   options.clientErrorHandler = options.clientErrorHandler || defaultClientErrorHandler
   options.allowErrorHandlerOverride = options.allowErrorHandlerOverride ?? defaultInitOptions.allowErrorHandlerOverride
@@ -134130,6 +132794,7 @@ function processOptions (options, defaultRoute, onBadUrl) {
   options.routerOptions = buildRouterOptions(options, {
     defaultRoute,
     onBadUrl,
+    onMaxParamLength,
     ignoreTrailingSlash: defaultInitOptions.ignoreTrailingSlash,
     ignoreDuplicateSlashes: defaultInitOptions.ignoreDuplicateSlashes,
     maxParamLength: defaultInitOptions.maxParamLength,
@@ -134141,7 +132806,7 @@ function processOptions (options, defaultRoute, onBadUrl) {
   return {
     options,
     genReqId,
-    disableRequestLogging,
+    logController,
     hasLogger,
     initialConfig
   }
@@ -134221,6 +132886,7 @@ function validateSchemaErrorFormatter (schemaErrorFormatter) {
  */
 module.exports = fastify
 module.exports.errorCodes = errorCodes
+module.exports.LogController = LogController
 module.exports.fastify = fastify
 module.exports["default"] = fastify
 
@@ -135623,6 +134289,8 @@ ContentTypeParser.prototype.existingParser = function (contentType) {
 
 ContentTypeParser.prototype.getParser = function (contentType) {
   if (typeof contentType === 'string') {
+    const cached = this.cache.get(contentType)
+    if (cached !== undefined) return cached
     contentType = new ContentType(contentType)
   }
   const ct = contentType.toString()
@@ -135921,9 +134589,11 @@ module.exports[kTestInternals] = { rawBody }
 /***/ }),
 
 /***/ 62935:
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 
+
+const { LruMap: Lru } = __nccwpck_require__(70904)
 
 /**
  * keyValuePairsReg is used to split the parameters list into associated
@@ -135961,6 +134631,12 @@ const typeNameReg = /^[\w!#$%&'*+.^`|~-]+$/
 const subtypeNameReg = /^[\w!#$%&'*+.^`|~-]+\s*$/
 
 /**
+ * Content-Type internal shared cache
+ * @type {Lru<ContentType>}
+ */
+const cache = new Lru(100)
+
+/**
  * ContentType parses and represents the value of the content-type header.
  *
  * @see https://httpwg.org/specs/rfc9110.html#media.type
@@ -135973,6 +134649,27 @@ class ContentType {
   #subtype = ''
   #parameters = new Map()
   #string
+
+  /**
+   * The shared cache of ContentType instances. The cache is used to avoid
+   * creating multiple instances of ContentType for the same header value.
+   * @type {Lru<ContentType>}
+   */
+  static get cache () { return cache }
+
+  /**
+   * Create a ContentType instance from a header value. If the value has been
+   * previously parsed, the cached instance will be returned.
+   * @param {string} headerValue
+   * @returns {ContentType | undefined}
+   */
+  static from (headerValue) {
+    let contentType = cache.get(headerValue)
+    if (contentType !== undefined) return contentType
+    contentType = new ContentType(headerValue)
+    cache.set(headerValue, contentType)
+    return contentType
+  }
 
   constructor (headerValue) {
     if (headerValue == null || headerValue === '' || headerValue === 'undefined') {
@@ -136031,7 +134728,11 @@ class ContentType {
 
     let matches = keyValuePairsReg.exec(paramsList)
     while (matches) {
-      const key = matches[1]
+      // https://httpwg.org/specs/rfc9110.html#parameter
+      // Parameter names are case-insensitive.
+      const key = matches[1].toLowerCase()
+      // Parameter values might or might not be case-sensitive,
+      // depending on the semantics of the parameter name.
       const value = matches[2]
       if (value[0] === '"') {
         if (value.at(-1) !== '"') {
@@ -136098,7 +134799,6 @@ const {
   kSchemaErrorFormatter,
   kErrorHandler,
   kChildLoggerFactory,
-  kOptions,
   kReply,
   kRequest,
   kBodyLimit,
@@ -136116,7 +134816,6 @@ function Context ({
   schema,
   handler,
   config,
-  requestIdLogLabel,
   childLoggerFactory,
   errorHandler,
   bodyLimit,
@@ -136148,7 +134847,6 @@ function Context ({
   this.onRequestAbort = null
   this.config = config
   this.errorHandler = errorHandler || server[kErrorHandler]
-  this.requestIdLogLabel = requestIdLogLabel || server[kOptions].requestIdLogLabel
   this.childLoggerFactory = childLoggerFactory || server[kChildLoggerFactory]
   this._middie = null
   this._parserOptions = {
@@ -136244,7 +134942,7 @@ function getInstanceDecorator (name) {
 
 function decorateConstructor (konstructor, name, fn, dependencies) {
   const instance = konstructor.prototype
-  if (Object.hasOwn(instance, name) || hasKey(konstructor, name)) {
+  if (Object.hasOwn(instance, name) || hasKey(konstructor, name) || hasInstanceProperty(konstructor, name)) {
     throw new FST_ERR_DEC_ALREADY_PRESENT(name)
   }
 
@@ -136284,19 +134982,27 @@ function checkExistence (instance, name) {
 }
 
 function hasKey (fn, name) {
-  if (fn.props) {
-    return fn.props.find(({ key }) => key === name)
+  return fn.props ? fn.props.some(p => p.key === name) : false
+}
+
+function hasInstanceProperty (konstructor, name) {
+  let k = konstructor
+  while (k) {
+    if (k.instanceProperties && k.instanceProperties.has(name)) return true
+    k = k.parent
   }
   return false
 }
 
 function checkRequestExistence (name) {
   if (name && hasKey(this[kRequest], name)) return true
+  if (name && hasInstanceProperty(this[kRequest], name)) return true
   return checkExistence(this[kRequest].prototype, name)
 }
 
 function checkReplyExistence (name) {
   if (name && hasKey(this[kReply], name)) return true
+  if (name && hasInstanceProperty(this[kReply], name)) return true
   return checkExistence(this[kReply].prototype, name)
 }
 
@@ -136364,7 +135070,8 @@ const {
   kReplyNextErrorHandler,
   kReplyIsRunningOnErrorHook,
   kRouteContext,
-  kDisableRequestLogging
+  kLogController,
+  kDiagnosticsStore
 } = __nccwpck_require__(34582)
 
 const {
@@ -136375,7 +135082,6 @@ const {
 const { getSchemaSerializer } = __nccwpck_require__(16255)
 
 const serializeError = __nccwpck_require__(59534)
-
 const rootErrorHandler = {
   func: defaultErrorHandler,
   toJSON () {
@@ -136392,12 +135098,7 @@ function handleError (reply, error, cb) {
       try {
         reply.raw.writeHead(reply.raw.statusCode, reply[kReplyHeaders])
       } catch (error) {
-        if (!reply.log[kDisableRequestLogging]) {
-          reply.log.warn(
-            { req: reply.request, res: reply, err: error },
-            error?.message
-          )
-        }
+        reply.server[kLogController].writeHeadError(error, reply.request, reply)
         reply.raw.writeHead(reply.raw.statusCode)
       }
       reply.raw.end(payload)
@@ -136425,7 +135126,8 @@ function handleError (reply, error, cb) {
     const result = func(error, reply.request, reply)
     if (result !== undefined) {
       if (result !== null && typeof result.then === 'function') {
-        wrapThenable(result, reply)
+        const store = reply[kDiagnosticsStore] || null
+        wrapThenable(result, reply, store)
       } else {
         reply.send(result)
       }
@@ -136438,21 +135140,7 @@ function handleError (reply, error, cb) {
 function defaultErrorHandler (error, request, reply) {
   setErrorHeaders(error, reply)
   setErrorStatusCode(reply, error)
-  if (reply.statusCode < 500) {
-    if (!reply.log[kDisableRequestLogging]) {
-      reply.log.info(
-        { res: reply, err: error },
-        error?.message
-      )
-    }
-  } else {
-    if (!reply.log[kDisableRequestLogging]) {
-      reply.log.error(
-        { req: request, res: reply, err: error },
-        error?.message
-      )
-    }
-  }
+  request.server[kLogController].defaultErrorLog(error, request, reply)
   reply.send(error)
 }
 
@@ -136478,10 +135166,10 @@ function fallbackErrorHandler (error, reply, cb) {
       }))
     }
   } catch (err) {
-    if (!reply.log[kDisableRequestLogging]) {
-      // error is always FST_ERR_SCH_SERIALIZATION_BUILD because this is called from route/compileSchemasForSerialization
-      reply.log.error({ err, statusCode: res.statusCode }, 'The serializer for the given status code failed')
-    }
+    // error is always FST_ERR_SCH_SERIALIZATION_BUILD
+    // because this is called from route/compileSchemasForSerialization
+    reply.server[kLogController].serializerError(err, reply.request, reply, { statusCode: res.statusCode })
+
     reply.code(500)
     payload = serializeError(new FST_ERR_FAILED_ERROR_SERIALIZATION(err.message, error.message))
   }
@@ -136539,7 +135227,7 @@ module.exports = {
 
   
 
-  const Serializer = __nccwpck_require__(67538)
+  const Serializer = __nccwpck_require__(66508)
   const serializerState = {"mode":"standalone"}
   const serializer = Serializer.restoreFromState(serializerState)
 
@@ -136576,93 +135264,93 @@ const asInteger = serializer.asInteger.bind(serializer)
     const JSON_STR_NULL = 'null'
   
     
-  
-    // #
-    function anonymous0 (input) {
-      const obj = (input && typeof input.toJSON === 'function')
+      // #
+      function anonymous0 (input) {
+        const obj = (input && typeof input.toJSON === 'function')
     ? input.toJSON()
     : input
   
-      if (obj === null) return JSON_STR_EMPTY_OBJECT
+        if (obj === null) return JSON_STR_EMPTY_OBJECT
+        let json = ''
 
-      let value
-let json = JSON_STR_BEGIN_OBJECT
-let addComma = false
+        json += JSON_STR_BEGIN_OBJECT
+let addComma_0 = false
 
-      value = obj["statusCode"]
-      if (value !== undefined) {
-        !addComma && (addComma = true) || (json += JSON_STR_COMMA)
-        json += "\"statusCode\":"
-        json += asNumber(value)
-      }
+          const value_statusCode_1 = obj["statusCode"]
+          if (value_statusCode_1 !== undefined) {
+            !addComma_0 && (addComma_0 = true) || (json += JSON_STR_COMMA)
+            json += "\"statusCode\":"
+            json += asNumber(value_statusCode_1)
+          }
 
-      value = obj["code"]
-      if (value !== undefined) {
-        !addComma && (addComma = true) || (json += JSON_STR_COMMA)
-        json += "\"code\":"
-        
-        if (typeof value !== 'string') {
-          if (value === null) {
+          const value_code_2 = obj["code"]
+          if (value_code_2 !== undefined) {
+            !addComma_0 && (addComma_0 = true) || (json += JSON_STR_COMMA)
+            json += "\"code\":"
+            
+        if (typeof value_code_2 !== 'string') {
+          if (value_code_2 === null) {
             json += JSON_STR_EMPTY_STRING
-          } else if (value instanceof Date) {
-            json += JSON_STR_QUOTE + value.toISOString() + JSON_STR_QUOTE
-          } else if (value instanceof RegExp) {
-            json += asString(value.source)
+          } else if (value_code_2 instanceof Date) {
+            json += JSON_STR_QUOTE + value_code_2.toISOString() + JSON_STR_QUOTE
+          } else if (value_code_2 instanceof RegExp) {
+            json += asString(value_code_2.source)
           } else {
-            json += asString(value.toString())
+            json += asString(value_code_2.toString())
           }
         } else {
-          json += asString(value)
+          json += asString(value_code_2)
         }
         
-      }
+          }
 
-      value = obj["error"]
-      if (value !== undefined) {
-        !addComma && (addComma = true) || (json += JSON_STR_COMMA)
-        json += "\"error\":"
-        
-        if (typeof value !== 'string') {
-          if (value === null) {
+          const value_error_3 = obj["error"]
+          if (value_error_3 !== undefined) {
+            !addComma_0 && (addComma_0 = true) || (json += JSON_STR_COMMA)
+            json += "\"error\":"
+            
+        if (typeof value_error_3 !== 'string') {
+          if (value_error_3 === null) {
             json += JSON_STR_EMPTY_STRING
-          } else if (value instanceof Date) {
-            json += JSON_STR_QUOTE + value.toISOString() + JSON_STR_QUOTE
-          } else if (value instanceof RegExp) {
-            json += asString(value.source)
+          } else if (value_error_3 instanceof Date) {
+            json += JSON_STR_QUOTE + value_error_3.toISOString() + JSON_STR_QUOTE
+          } else if (value_error_3 instanceof RegExp) {
+            json += asString(value_error_3.source)
           } else {
-            json += asString(value.toString())
+            json += asString(value_error_3.toString())
           }
         } else {
-          json += asString(value)
+          json += asString(value_error_3)
         }
         
-      }
+          }
 
-      value = obj["message"]
-      if (value !== undefined) {
-        !addComma && (addComma = true) || (json += JSON_STR_COMMA)
-        json += "\"message\":"
-        
-        if (typeof value !== 'string') {
-          if (value === null) {
+          const value_message_4 = obj["message"]
+          if (value_message_4 !== undefined) {
+            !addComma_0 && (addComma_0 = true) || (json += JSON_STR_COMMA)
+            json += "\"message\":"
+            
+        if (typeof value_message_4 !== 'string') {
+          if (value_message_4 === null) {
             json += JSON_STR_EMPTY_STRING
-          } else if (value instanceof Date) {
-            json += JSON_STR_QUOTE + value.toISOString() + JSON_STR_QUOTE
-          } else if (value instanceof RegExp) {
-            json += asString(value.source)
+          } else if (value_message_4 instanceof Date) {
+            json += JSON_STR_QUOTE + value_message_4.toISOString() + JSON_STR_QUOTE
+          } else if (value_message_4 instanceof RegExp) {
+            json += asString(value_message_4.source)
           } else {
-            json += asString(value.toString())
+            json += asString(value_message_4.toString())
           }
         } else {
-          json += asString(value)
+          json += asString(value_message_4)
         }
         
-      }
+          }
 
-    return json + JSON_STR_END_OBJECT
+    json += JSON_STR_END_OBJECT
   
-    }
-  
+        return json
+      }
+    
     const main = anonymous0
     return main
     
@@ -136941,6 +135629,13 @@ const codes = {
     TypeError
   ),
 
+  FST_ERR_LOG_INVALID_LOG_CONTROLLER: createError(
+    'FST_ERR_LOG_INVALID_LOG_CONTROLLER',
+    "logController option must be an instance of LogController, got '%s'.",
+    500,
+    TypeError
+  ),
+
   /**
    * reply
   */
@@ -137062,6 +135757,12 @@ const codes = {
     400,
     URIError
   ),
+  FST_ERR_MAX_PARAM_LENGTH: createError(
+    'FST_ERR_MAX_PARAM_LENGTH',
+    "'%s' is exceeding the max param length",
+    414,
+    URIError
+  ),
   FST_ERR_ASYNC_CONSTRAINT: createError(
     'FST_ERR_ASYNC_CONSTRAINT',
     'Unexpected error from async constraint',
@@ -137105,6 +135806,12 @@ const codes = {
     'FST_ERR_ROUTE_METHOD_NOT_SUPPORTED',
     '%s method is not supported.',
     500
+  ),
+  FST_ERR_ROUTE_LOG_LEVEL_INVALID: createError(
+    'FST_ERR_ROUTE_LOG_LEVEL_INVALID',
+    "Log level for '%s:%s' route must be a valid logger level. Received: '%s'",
+    500,
+    TypeError
   ),
   FST_ERR_ROUTE_BODY_VALIDATION_SCHEMA_NOT_SUPPORTED: createError(
     'FST_ERR_ROUTE_BODY_VALIDATION_SCHEMA_NOT_SUPPORTED',
@@ -137168,7 +135875,10 @@ const codes = {
     500,
     TypeError
   ),
-
+  FST_ERR_PLUGIN_DEPENDENCY_NOT_REGISTERED: createError(
+    'FST_ERR_PLUGIN_DEPENDENCY_NOT_REGISTERED',
+    "The dependency '%s' of plugin '%s' is not registered"
+  ),
   /**
    *  Avvio Errors
    */
@@ -137232,7 +135942,8 @@ const {
   kFourOhFourLevelInstance,
   kFourOhFourContext,
   kHooks,
-  kErrorHandler
+  kErrorHandler,
+  kLogController
 } = __nccwpck_require__(34582)
 const { lifecycleHooks } = __nccwpck_require__(27571)
 const { buildErrorHandler } = __nccwpck_require__(11252)
@@ -137250,11 +135961,15 @@ const { getGenReqId } = __nccwpck_require__(80833)
  * kFourOhFourContext: the context in the reply object where the handler will be executed
  */
 function fourOhFour (options) {
-  const { logger, disableRequestLogging } = options
+  const { logger } = options
 
   // 404 router, used for handling encapsulated 404 handlers
-  const router = FindMyWay({ onBadUrl: createOnBadUrl(), defaultRoute: fourOhFourFallBack })
-  let _onBadUrlHandler = null
+  const router = FindMyWay({
+    onBadUrl: createRouteEventHandler(),
+    onMaxParamLength: createRouteEventHandler(),
+    defaultRoute: fourOhFourFallBack
+  })
+  let _routeEventHandler = null
 
   return { router, setNotFoundHandler, setContext, arrange404 }
 
@@ -137264,32 +135979,29 @@ function fourOhFour (options) {
     instance[kCanSetNotFoundHandler] = true
     // we need to bind instance for the context
     router.onBadUrl = router.onBadUrl.bind(instance)
+    router.onMaxParamLength = router.onMaxParamLength.bind(instance)
     router.defaultRoute = router.defaultRoute.bind(instance)
   }
 
   function basic404 (request, reply) {
+    request.server[kLogController].routeNotFound(request, reply)
     const { url, method } = request.raw
-    const message = `Route ${method}:${url} not found`
-    const resolvedDisableRequestLogging = typeof disableRequestLogging === 'function' ? disableRequestLogging(request.raw) : disableRequestLogging
-    if (!resolvedDisableRequestLogging) {
-      request.log.info(message)
-    }
     reply.code(404).send({
-      message,
+      message: `Route ${method}:${url} not found`,
       error: 'Not Found',
       statusCode: 404
     })
   }
 
-  function createOnBadUrl () {
-    return function onBadUrl (path, req, res) {
+  function createRouteEventHandler () {
+    return function onRouteEvent (path, req, res) {
       const fourOhFourContext = this[kFourOhFourLevelInstance][kFourOhFourContext]
       const id = getGenReqId(fourOhFourContext.server, req)
       const childLogger = createChildLogger(fourOhFourContext, logger, req, id)
       const request = new Request(id, null, req, null, childLogger, fourOhFourContext)
       const reply = new Reply(res, request, childLogger)
 
-      _onBadUrlHandler(request, reply)
+      _routeEventHandler(request, reply)
     }
   }
 
@@ -137342,12 +136054,12 @@ function fourOhFour (options) {
     if (handler) {
       this[kFourOhFourLevelInstance][kCanSetNotFoundHandler] = false
       handler = handler.bind(this)
-      // update onBadUrl handler
-      _onBadUrlHandler = handler
+      // update route event handler
+      _routeEventHandler = handler
     } else {
       handler = basic404
-      // update onBadUrl handler
-      _onBadUrlHandler = basic404
+      // update route event handler
+      _routeEventHandler = basic404
     }
 
     this.after((notHandledErr, done) => {
@@ -137397,11 +136109,12 @@ function fourOhFour (options) {
     const id = getGenReqId(fourOhFourContext.server, req)
     const childLogger = createChildLogger(fourOhFourContext, logger, req, id)
 
-    childLogger.info({ req }, 'incoming request')
-
     const request = new Request(id, null, req, null, childLogger, fourOhFourContext)
     const reply = new Reply(res, request, childLogger)
 
+    fourOhFourContext.server[kLogController].incomingRequest(request, reply)
+
+    // Since this could be a bug, we log it without checking if the logging is disabled
     request.log.warn('the default handler for 404 did not catch this, this is likely a fastify bug, please report it')
     request.log.warn(router.prettyPrint())
     reply.code(404).send(new FST_ERR_NOT_FOUND())
@@ -137419,7 +136132,6 @@ module.exports = fourOhFour
 
 
 const diagnostics = __nccwpck_require__(53053)
-const ContentType = __nccwpck_require__(62935)
 const wrapThenable = __nccwpck_require__(47191)
 const { validate: validateSchema } = __nccwpck_require__(85272)
 const { preValidationHookRunner, preHandlerHookRunner } = __nccwpck_require__(27571)
@@ -137429,8 +136141,11 @@ const {
   kReplyIsError,
   kRouteContext,
   kFourOhFourContext,
-  kSupportedHTTPMethods
+  kSupportedHTTPMethods,
+  kRequestContentType,
+  kDiagnosticsStore
 } = __nccwpck_require__(34582)
+const ContentType = __nccwpck_require__(62935)
 
 const channels = diagnostics.tracingChannel('fastify.request.handler')
 
@@ -137469,13 +136184,17 @@ function handleRequest (err, request, reply) {
       return
     }
 
-    const contentType = new ContentType(ctHeader)
-    if (contentType.isValid === false) {
+    // Conditional assignment to avoid creating a new ContentType instance
+    // It can be assigned when accessing the .mediaType in hooks
+    if (!request[kRequestContentType]) {
+      request[kRequestContentType] = ContentType.from(ctHeader)
+    }
+    if (request[kRequestContentType].isValid === false) {
       reply[kReplyIsError] = true
       reply.status(415).send(new FST_ERR_CTP_INVALID_MEDIA_TYPE())
       return
     }
-    request[kRouteContext].contentTypeParser.run(contentType.toString(), handler, request, reply)
+    request[kRouteContext].contentTypeParser.run(request[kRequestContentType].toString(), handler, request, reply)
     return
   }
 
@@ -137560,6 +136279,7 @@ function preHandlerCallback (err, request, reply) {
         method: context.config.method
       }
     }
+    reply[kDiagnosticsStore] = store
     channels.start.runStores(store, preHandlerCallbackInner, undefined, err, request, reply, store)
   }
 }
@@ -138147,17 +136867,200 @@ module.exports.utils = { deepFreezeObject }
 
 /***/ }),
 
+/***/ 23082:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+
+
+const { defaultInitOptions } = __nccwpck_require__(17836)
+
+/**
+ * Internal logger layer that wraps Fastify's log calls with
+ * request-lifecycle awareness (disable-check, level selection).
+ * Keeps the surface intentionally small so hot paths stay fast.
+ *
+ * Users can extend this class to customize internal log lines.
+ */
+class LogController {
+  /**
+   * @param {object} [options]
+   * @param {boolean | ((req: object) => boolean)} [options.disableRequestLogging=false]
+   *   When `true` (or a function returning `true`), per-request log lines
+   *   (incoming, completed, errors) are suppressed.
+   * @param {string} [options.requestIdLogLabel='reqId']
+   *   The label used for the request identifier when logging the request.
+   */
+  constructor (options) {
+    const opts = options || {}
+    this.disableRequestLogging = opts.disableRequestLogging || defaultInitOptions.disableRequestLogging
+    this.isDisableRequestLoggingFunction = typeof this.disableRequestLogging === 'function'
+    this.requestIdLogLabel = opts.requestIdLogLabel || defaultInitOptions.requestIdLogLabel
+  }
+
+  /**
+   * Checks whether request logging is disabled for the given request.
+   *
+   * @param {object} req  Raw or Fastify request object.
+   * @returns {boolean}   `true` when logging should be skipped.
+   */
+  isLogDisabled (req) {
+    return this.isDisableRequestLoggingFunction
+      ? this.disableRequestLogging(req)
+      : this.disableRequestLogging
+  }
+
+  /**
+   * Logs an incoming request at `info` level.
+   *
+   * @param {object} request      Fastify request object.
+   * @param {object} reply        Fastify reply object.
+   * @param {object} [metadata]   Extra contextual data (unused).
+   */
+  incomingRequest (request, reply, metadata) {
+    if (this.isLogDisabled(request)) { return }
+
+    request.log.info({ req: request }, 'incoming request')
+  }
+
+  /**
+   * Logs the outcome of a completed request.
+   * Uses `error` level when an error is present, `info` otherwise.
+   *
+   * @param {Error | null} error  Error that occurred during the response, if any.
+   * @param {object} request      Fastify request object.
+   * @param {object} reply        Fastify reply object.
+   * @param {object} [metadata]   Extra contextual data (unused).
+   */
+  requestCompleted (error, request, reply, metadata) {
+    if (this.isLogDisabled(request)) { return }
+
+    if (error) {
+      reply.log.error({ res: reply, err: error, responseTime: reply.elapsedTime }, 'request errored')
+    } else {
+      reply.log.info({ res: reply, responseTime: reply.elapsedTime }, 'request completed')
+    }
+  }
+
+  /**
+   * Logs an error handled by the default error handler.
+   * Uses `error` for 5xx status codes, `info` for 4xx.
+   *
+   * @param {Error} error         The error being handled.
+   * @param {object} request      Fastify request object.
+   * @param {object} reply        Fastify reply object (must have `statusCode`).
+   * @param {object} [metadata]   Extra contextual data (unused).
+   */
+  defaultErrorLog (error, request, reply, metadata) {
+    if (this.isLogDisabled(request)) { return }
+
+    if (reply.statusCode >= 500) {
+      reply.log.error({ req: request, res: reply, err: error }, error?.message)
+    } else {
+      reply.log.info({ res: reply, err: error }, error?.message)
+    }
+  }
+
+  /**
+   * Logs stream-level errors that occur after headers have been sent.
+   * Premature closes are logged at `info`; other errors at `warn`.
+   *
+   * @param {Error} error         The stream error.
+   * @param {object} request      Fastify request object.
+   * @param {object} reply        Fastify reply object.
+   * @param {object} [metadata]   Extra contextual data (unused).
+   */
+  streamError (error, request, reply, metadata) {
+    if (this.isLogDisabled(request)) { return }
+
+    if (error.code === 'ERR_STREAM_PREMATURE_CLOSE') {
+      reply.log.info({ res: reply }, 'stream closed prematurely')
+    } else {
+      reply.log.warn({ err: error }, 'response terminated with an error with headers already sent')
+    }
+  }
+
+  /**
+   * Logs a "route not found" message at `info` level.
+   * Used by the default 404 handler.
+   *
+   * @param {object} request      Fastify request object.
+   * @param {object} reply        Fastify reply object.
+   * @param {object} [metadata]   Extra contextual data (unused).
+   */
+  routeNotFound (request, reply, metadata) {
+    if (this.isLogDisabled(request)) { return }
+
+    const { url, method } = request.raw
+    request.log.info(`Route ${method}:${url} not found`)
+  }
+
+  /**
+   * Logs a warning when writeHead fails during error handling.
+   *
+   * @param {Error} error         The error thrown by writeHead.
+   * @param {object} request      Fastify request object.
+   * @param {object} reply        Fastify reply object.
+   * @param {object} [metadata]   Extra contextual data (unused).
+   */
+  writeHeadError (error, request, reply, metadata) {
+    if (this.isLogDisabled(request)) { return }
+
+    reply.log.warn(
+      { req: request, res: reply, err: error },
+      error?.message
+    )
+  }
+
+  /**
+   * Logs an error when the serializer for a given status code fails.
+   *
+   * @param {Error} error         The serialization error.
+   * @param {object} request      Fastify request object.
+   * @param {object} reply        Fastify reply object.
+   * @param {object} metadata     Extra contextual data.
+   * @param {number} metadata.statusCode The status code that triggered the serializer.
+   */
+  serializerError (error, request, reply, metadata) {
+    if (this.isLogDisabled(request)) { return }
+
+    reply.log.error({ err: error, statusCode: metadata.statusCode }, 'The serializer for the given status code failed')
+  }
+
+  /**
+   * Logs a 503 Service Unavailable when the server is closing.
+   * Always emitted (not gated by `disableRequestLogging`).
+   *
+   * @param {import('../fastify').FastifyBaseLogger} logger
+   * @param {import('../fastify').FastifyInstance} server
+   */
+  serviceUnavailable (logger, server) {
+    logger.info({ res: { statusCode: 503 } }, 'request aborted - refusing to accept new requests as server is closing')
+  }
+}
+
+module.exports = { LogController }
+
+
+/***/ }),
+
 /***/ 39868:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 
 
+const { performance } = __nccwpck_require__(643)
+
 const {
   FST_ERR_LOG_LOGGER_AND_LOGGER_INSTANCE_PROVIDED,
   FST_ERR_LOG_INVALID_LOGGER_CONFIG,
   FST_ERR_LOG_INVALID_LOGGER_INSTANCE,
-  FST_ERR_LOG_INVALID_LOGGER
+  FST_ERR_LOG_INVALID_LOGGER,
+  FST_ERR_LOG_INVALID_LOG_CONTROLLER
 } = __nccwpck_require__(71036)
+const {
+  kLogController
+} = __nccwpck_require__(34582)
+const { LogController } = __nccwpck_require__(23082)
 
 /**
  * Utility for creating a child logger with the appropriate bindings, logger factory
@@ -138173,7 +137076,7 @@ const {
  */
 function createChildLogger (context, logger, req, reqId, loggerOpts) {
   const loggerBindings = {
-    [context.requestIdLogLabel]: reqId
+    [context.server[kLogController].requestIdLogLabel]: reqId
   }
   const child = context.childLoggerFactory.call(context.server, logger, loggerBindings, loggerOpts || {}, req)
 
@@ -138274,15 +137177,29 @@ function createLogger (options) {
   return { logger, hasLogger: true }
 }
 
+function createLogController (options) {
+  const userController = options.logController
+  if (!userController) {
+    return new LogController(options)
+  }
+
+  if (userController instanceof LogController) {
+    return userController
+  }
+
+  throw new FST_ERR_LOG_INVALID_LOG_CONTROLLER(typeof userController)
+}
+
 function now () {
-  const ts = process.hrtime()
-  return (ts[0] * 1e3) + (ts[1] / 1e6)
+  return performance.now()
 }
 
 module.exports = {
   createChildLogger,
   defaultChildLoggerFactory,
+  createLogController,
   createLogger,
+  LogController,
   validateLogger,
   now
 }
@@ -138469,7 +137386,8 @@ function buildRoutePrefix (instancePrefix, pluginPrefix) {
   if (instancePrefix.endsWith('/') && pluginPrefix[0] === '/') {
     // Remove the extra '/' to avoid: '/first//second'
     pluginPrefix = pluginPrefix.slice(1)
-  } else if (pluginPrefix[0] !== '/') {
+  } else if (pluginPrefix[0] !== '/' && !instancePrefix.endsWith('/')) {
+    // Add the missing '/' to avoid: '/firstsecond'
     pluginPrefix = '/' + pluginPrefix
   }
 
@@ -138494,7 +137412,8 @@ const { exist, existReply, existRequest } = __nccwpck_require__(69564)
 const {
   FST_ERR_PLUGIN_VERSION_MISMATCH,
   FST_ERR_PLUGIN_NOT_PRESENT_IN_INSTANCE,
-  FST_ERR_PLUGIN_INVALID_ASYNC_HANDLER
+  FST_ERR_PLUGIN_INVALID_ASYNC_HANDLER,
+  FST_ERR_PLUGIN_DEPENDENCY_NOT_REGISTERED
 } = __nccwpck_require__(71036)
 
 const rcRegex = /-(?:rc|pre|alpha).+$/u
@@ -138554,10 +137473,9 @@ function checkDependencies (fn) {
   assert(Array.isArray(dependencies), 'The dependencies should be an array of strings')
 
   dependencies.forEach(dependency => {
-    assert(
-      this[kRegisteredPlugins].indexOf(dependency) > -1,
-      `The dependency '${dependency}' of plugin '${meta.name}' is not registered`
-    )
+    if (!this[kRegisteredPlugins].includes(dependency)) {
+      throw new FST_ERR_PLUGIN_DEPENDENCY_NOT_REGISTERED(dependency, meta.name)
+    }
   })
 }
 
@@ -138706,7 +137624,6 @@ const {
   kReplyHasStatusCode,
   kReplyIsRunningOnErrorHook,
   kReplyNextErrorHandler,
-  kDisableRequestLogging,
   kSchemaResponse,
   kReplyCacheSerializeFns,
   kSchemaController,
@@ -138714,7 +137631,8 @@ const {
   kRouteContext,
   kTimeoutTimer,
   kOnAbort,
-  kRequestSignal
+  kRequestSignal,
+  kLogController
 } = __nccwpck_require__(34582)
 const {
   onSendHookRunner,
@@ -138748,8 +137666,10 @@ const {
   FST_ERR_DEC_UNDECLARED
 } = __nccwpck_require__(71036)
 const decorators = __nccwpck_require__(69564)
+const ContentType = __nccwpck_require__(62935)
 
 const toString = Object.prototype.toString
+const HTTP2_WRITE_CHUNK_SIZE = 64 * 1024
 
 function Reply (res, request, log) {
   this.raw = res
@@ -138765,6 +137685,7 @@ function Reply (res, request, log) {
   this.log = log
 }
 Reply.props = []
+Reply.instanceProperties = new Set(['raw', 'request', 'log'])
 
 Object.defineProperties(Reply.prototype, {
   [kRouteContext]: {
@@ -138823,6 +137744,14 @@ Reply.prototype.hijack = function () {
       this.request[kOnAbort] = null
     }
   }
+  // Clear socket._meta so hijacked replies (e.g. WebSocket upgrades) do not
+  // retain request/reply objects for the lifetime of the keep-alive socket
+  // when an onTimeout hook is registered.
+  const socket = this.request.raw.socket
+  if (socket?._meta?.request === this.request) {
+    socket.removeListener('timeout', socket._meta.onTimeout)
+    socket._meta = null
+  }
   return this
 }
 
@@ -138847,8 +137776,8 @@ Reply.prototype.send = function (payload) {
     return this
   }
 
-  const contentType = this.getHeader('content-type')
-  const hasContentType = contentType !== undefined
+  const contentType = ContentType.from(this.getHeader('content-type'))
+  const hasContentType = contentType.isEmpty === false
 
   if (payload !== null) {
     if (
@@ -138857,7 +137786,7 @@ Reply.prototype.send = function (payload) {
       // node:stream/web
       typeof payload.getReader === 'function' ||
       // Response
-      toString.call(payload) === '[object Response]'
+      (typeof payload === 'object' && toString.call(payload) === '[object Response]')
     ) {
       onSendHook(this, payload)
       return this
@@ -138889,18 +137818,17 @@ Reply.prototype.send = function (payload) {
     payload = this[kReplySerializer](payload)
 
     // The indexOf below also matches custom json mimetypes such as 'application/hal+json' or 'application/ld+json'
-  } else if (!hasContentType || contentType.indexOf('json') !== -1) {
+  } else if (!hasContentType || contentType.mediaType.indexOf('json') !== -1) {
     if (!hasContentType) {
       this[kReplyHeaders]['content-type'] = CONTENT_TYPE.JSON
-    } else if (contentType.indexOf('charset') === -1) {
+    } else if (contentType.parameters.has('charset') === false) {
+      // The lookup is case-insensitive because HTTP parameter names are
+      // case-insensitive (RFC 9110 section 5.6.6).
       // If user doesn't set charset, we will set charset to utf-8
-      const customContentType = contentType.trim()
-      if (customContentType.endsWith(';')) {
-        // custom content-type is ended with ';'
-        this[kReplyHeaders]['content-type'] = `${customContentType} charset=utf-8`
-      } else {
-        this[kReplyHeaders]['content-type'] = `${customContentType}; charset=utf-8`
-      }
+      const customContentType = contentType.toString()
+      // ContentType.toString already handle the trailing ;
+      // We can safely append the charset parameter to the end of the string
+      this[kReplyHeaders]['content-type'] = `${customContentType}; charset=utf-8`
     }
 
     if (typeof payload !== 'string') {
@@ -139283,7 +138211,7 @@ function onSendEnd (reply, payload) {
   // since Response contain status code, headers and body,
   // we need to update the status, add the headers and use it's body as payload
   // before continuing
-  if (toString.call(payload) === '[object Response]') {
+  if (payload != null && typeof payload === 'object' && toString.call(payload) === '[object Response]') {
     // https://developer.mozilla.org/en-US/docs/Web/API/Response/status
     if (typeof payload.status === 'number') {
       reply.code(payload.status)
@@ -139367,19 +138295,62 @@ function onSendEnd (reply, payload) {
 
   safeWriteHead(reply, statusCode)
   // write payload first
-  res.write(payload)
-  // then send trailers
-  sendTrailer(payload, res, reply)
+  writePayload(payload, res, reply)
 }
 
-function logStreamError (logger, err, res) {
-  if (err.code === 'ERR_STREAM_PREMATURE_CLOSE') {
-    if (!logger[kDisableRequestLogging]) {
-      logger.info({ res }, 'stream closed prematurely')
+function isHttp2Reply (reply) {
+  return reply.request.raw?.httpVersionMajor === 2
+}
+
+function writePayload (payload, res, reply) {
+  if (!isHttp2Reply(reply) || Buffer.byteLength(payload) <= HTTP2_WRITE_CHUNK_SIZE) {
+    if (reply[kReplyTrailers] === null) {
+      // end(payload) corks the socket, so headers, payload and the
+      // finishing chunk are flushed with a single write
+      res.end(payload, null, null) // avoid ArgumentsAdaptorTrampoline from V8
+      return
     }
-  } else {
-    logger.warn({ err }, 'response terminated with an error with headers already sent')
+    res.write(payload)
+    // then send trailers
+    sendTrailer(payload, res, reply)
+    return
   }
+
+  writeHttp2Payload(payload, res, () => {
+    // then send trailers
+    sendTrailer(payload, res, reply)
+  })
+}
+
+function writeHttp2Payload (payload, res, done) {
+  const buffer = Buffer.isBuffer(payload) ? payload : Buffer.from(payload)
+  let offset = 0
+
+  function writeChunk () {
+    while (offset < buffer.length) {
+      /* c8 ignore next 3 - defensive guard for aborted responses */
+      if (res.destroyed || res.writableEnded) {
+        return
+      }
+
+      const end = Math.min(offset + HTTP2_WRITE_CHUNK_SIZE, buffer.length)
+      const shouldContinue = res.write(buffer.subarray(offset, end))
+      offset = end
+
+      if (shouldContinue === false) {
+        res.once('drain', writeChunk)
+        return
+      }
+    }
+
+    done()
+  }
+
+  writeChunk()
+}
+
+function logStreamError (err, reply, res) {
+  reply.server[kLogController].streamError(err, reply.request, reply)
 }
 
 function sendWebStream (payload, res, reply) {
@@ -139396,7 +138367,7 @@ function sendWebStream (payload, res, reply) {
     if (sourceOpen) {
       if (err != null && res.headersSent && !errorLogged) {
         errorLogged = true
-        logStreamError(reply.log, err, res)
+        logStreamError(err, reply, res)
       }
       reader.cancel().catch(noop)
     }
@@ -139444,7 +138415,7 @@ function sendWebStream (payload, res, reply) {
     if (res.headersSent || reply.request.raw.aborted === true) {
       if (!errorLogged) {
         errorLogged = true
-        logStreamError(reply.log, err, reply)
+        logStreamError(err, reply, reply)
       }
       res.destroy()
     } else {
@@ -139468,7 +138439,7 @@ function sendStream (payload, res, reply) {
       if (res.headersSent || reply.request.raw.aborted === true) {
         if (!errorLogged) {
           errorLogged = true
-          logStreamError(reply.log, err, reply)
+          logStreamError(err, reply, reply)
         }
         res.destroy()
       } else {
@@ -139482,7 +138453,7 @@ function sendStream (payload, res, reply) {
     if (sourceOpen) {
       if (err != null && res.headersSent && !errorLogged) {
         errorLogged = true
-        logStreamError(reply.log, err, res)
+        logStreamError(err, reply, res)
       }
       if (typeof payload.destroy === 'function') {
         payload.destroy()
@@ -139520,10 +138491,12 @@ function sendTrailer (payload, res, reply) {
   const trailers = {}
   let handled = 0
   let skipped = true
+  let sent = false
   function send () {
     // add trailers when all handler handled
     /* istanbul ignore else */
-    if (handled === 0) {
+    if (handled === 0 && !sent) {
+      sent = true
       res.addTrailers(trailers)
       // we need to properly close the stream
       // after trailers sent
@@ -139536,9 +138509,10 @@ function sendTrailer (payload, res, reply) {
     skipped = false
     handled--
 
+    let cbAlreadyCalled = false
     function cb (err, value) {
-      // TODO: we may protect multiple callback calls
-      //       or mixing async-await with callback
+      if (cbAlreadyCalled) return
+      cbAlreadyCalled = true
       handled++
 
       // we can safely ignore error for trailer
@@ -139604,6 +138578,14 @@ function setupResponseListeners (reply) {
       }
     }
 
+    // Fix: release socket._meta so request/reply objects are not retained
+    // past the response on keep-alive connections.
+    const socket = reply.request.raw.socket
+    if (socket && socket._meta && socket._meta.request === reply.request) {
+      socket.removeListener('timeout', socket._meta.onTimeout)
+      socket._meta = null
+    }
+
     if (ctx && ctx.onResponse !== null) {
       onResponseHookRunner(
         ctx.onResponse,
@@ -139621,25 +138603,7 @@ function setupResponseListeners (reply) {
 }
 
 function onResponseCallback (err, request, reply) {
-  if (reply.log[kDisableRequestLogging]) {
-    return
-  }
-
-  const responseTime = reply.elapsedTime
-
-  if (err != null) {
-    reply.log.error({
-      res: reply,
-      err,
-      responseTime
-    }, 'request errored')
-    return
-  }
-
-  reply.log.info({
-    res: reply,
-    responseTime
-  }, 'request completed')
+  reply.server[kLogController].requestCompleted(err, request, reply)
 }
 
 function buildReply (R) {
@@ -139723,9 +138687,11 @@ module.exports.setupResponseListeners = setupResponseListeners
 /***/ }),
 
 /***/ 80833:
-/***/ ((module) => {
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 
+
+const { kGenReqId } = __nccwpck_require__(34582)
 
 /**
  * @callback GenerateRequestId
@@ -139749,7 +138715,8 @@ function reqIdGenFactory (requestIdHeader, optGenReqId) {
 }
 
 function getGenReqId (contextServer, req) {
-  return contextServer.genReqId(req)
+  // direct symbol access skips the `genReqId` getter indirection
+  return contextServer[kGenReqId](req)
 }
 
 function buildDefaultGenReqId () {
@@ -139796,6 +138763,7 @@ const {
   kSchemaController,
   kOptions,
   kRequestCacheValidateFns,
+  kRequestContentType,
   kRouteContext,
   kRequestOriginalUrl,
   kRequestSignal,
@@ -139803,6 +138771,7 @@ const {
 } = __nccwpck_require__(34582)
 const { FST_ERR_REQ_INVALID_VALIDATION_INVOCATION, FST_ERR_DEC_UNDECLARED } = __nccwpck_require__(71036)
 const decorators = __nccwpck_require__(69564)
+const ContentType = __nccwpck_require__(62935)
 
 const HTTP_PART_SYMBOL_MAP = {
   body: kSchemaBody,
@@ -139822,6 +138791,7 @@ function Request (id, params, req, query, log, context) {
   this.body = undefined
 }
 Request.props = []
+Request.instanceProperties = new Set(['id', 'params', 'raw', 'query', 'log', 'body'])
 
 function getTrustProxyFn (tp) {
   if (typeof tp === 'function') {
@@ -139903,8 +138873,8 @@ function buildRequestWithTrustProxy (R, trustProxy) {
     },
     host: {
       get () {
-        const socketAddr = this.raw.socket?.remoteAddress
-        if (this.headers['x-forwarded-host'] && socketAddr !== null && proxyFn(socketAddr, 0)) {
+        const socket = this.raw.socket
+        if (this.headers['x-forwarded-host'] && socket != null && proxyFn(socket.remoteAddress, 0)) {
           return getLastEntryInMultiHeaderValue(this.headers['x-forwarded-host'])
         }
         /**
@@ -139918,8 +138888,8 @@ function buildRequestWithTrustProxy (R, trustProxy) {
     },
     protocol: {
       get () {
-        const socketAddr = this.raw.socket?.remoteAddress
-        if (this.headers['x-forwarded-proto'] && socketAddr !== null && proxyFn(socketAddr, 0)) {
+        const socket = this.raw.socket
+        if (this.headers['x-forwarded-proto'] && socket != null && proxyFn(socket.remoteAddress, 0)) {
           return getLastEntryInMultiHeaderValue(this.headers['x-forwarded-proto'])
         }
         if (this.socket) {
@@ -140042,8 +139012,7 @@ Object.defineProperties(Request.prototype, {
   port: {
     get () {
       const portReg = /(?<port>:\d+)$/
-      const host = this.headers.host ?? this.headers[':authority'] ?? ''
-      const matches = portReg.exec(host)
+      const matches = portReg.exec(this.host)
       if (matches === null || matches[1] === undefined) {
         return null
       }
@@ -140066,6 +139035,14 @@ Object.defineProperties(Request.prototype, {
     },
     set (headers) {
       this.additionalHeaders = headers
+    }
+  },
+  mediaType: {
+    get () {
+      if (!this[kRequestContentType] && this.headers['content-type'] !== undefined) {
+        this[kRequestContentType] = ContentType.from(this.headers['content-type'])
+      }
+      return this[kRequestContentType]?.mediaType
     }
   },
   getValidationFunction: {
@@ -140204,6 +139181,7 @@ const {
   FST_ERR_ROUTE_MISSING_HANDLER,
   FST_ERR_ROUTE_METHOD_NOT_SUPPORTED,
   FST_ERR_ROUTE_METHOD_INVALID,
+  FST_ERR_ROUTE_LOG_LEVEL_INVALID,
   FST_ERR_ROUTE_BODY_VALIDATION_SCHEMA_NOT_SUPPORTED,
   FST_ERR_ROUTE_BODY_LIMIT_OPTION_NOT_INT,
   FST_ERR_ROUTE_HANDLER_TIMEOUT_OPTION_NOT_INT,
@@ -140222,7 +139200,6 @@ const {
   kReplySerializerDefault,
   kReplyIsError,
   kRequestPayloadStream,
-  kDisableRequestLogging,
   kSchemaErrorFormatter,
   kErrorHandler,
   kHasBeenDecorated,
@@ -140231,10 +139208,11 @@ const {
   kRouteContext,
   kRequestSignal,
   kTimeoutTimer,
-  kOnAbort
+  kOnAbort,
+  kLogController
 } = __nccwpck_require__(34582)
 const { buildErrorHandler } = __nccwpck_require__(11252)
-const { createChildLogger } = __nccwpck_require__(39868)
+const { createChildLogger, defaultChildLoggerFactory } = __nccwpck_require__(39868)
 const { getGenReqId } = __nccwpck_require__(80833)
 const { FSTDEP022 } = __nccwpck_require__(45054)
 
@@ -140248,6 +139226,7 @@ const routerKeys = [
   'ignoreTrailingSlash',
   'maxParamLength',
   'onBadUrl',
+  'onMaxParamLength',
   'querystringParser',
   'useSemicolonDelimiter'
 ]
@@ -140261,8 +139240,6 @@ function buildRouting (options) {
   let hasLogger
   let setupResponseListeners
   let throwIfAlreadyStarted
-  let disableRequestLogging
-  let disableRequestLoggingFn
   let ignoreTrailingSlash
   let ignoreDuplicateSlashes
   let return503OnClosing
@@ -140285,10 +139262,6 @@ function buildRouting (options) {
       throwIfAlreadyStarted = fastifyArgs.throwIfAlreadyStarted
 
       globalExposeHeadRoutes = options.exposeHeadRoutes
-      disableRequestLogging = options.disableRequestLogging
-      if (typeof disableRequestLogging === 'function') {
-        disableRequestLoggingFn = options.disableRequestLogging
-      }
 
       ignoreTrailingSlash = options.routerOptions.ignoreTrailingSlash
       ignoreDuplicateSlashes = options.routerOptions.ignoreDuplicateSlashes
@@ -140464,6 +139437,7 @@ function buildRouting (options) {
       opts.routePath = path
       opts.prefix = prefix
       opts.logLevel = opts.logLevel || this[kLogLevel]
+      validateLogLevelOption(opts.logLevel, opts.method, opts.url, logger)
 
       if (this[kLogSerializers] || opts.logSerializers) {
         opts.logSerializers = Object.assign(Object.create(this[kLogSerializers]), opts.logSerializers)
@@ -140545,7 +139519,8 @@ function buildRouting (options) {
         // any route insertion error created by fastify can be safely ignore
         // because it only duplicate route for head
         if (!context[kRouteByFastify]) {
-          const isDuplicatedRoute = error.message.includes(`Method '${opts.method}' already declared for route`)
+          const methods = Array.isArray(opts.method) ? opts.method : [opts.method]
+          const isDuplicatedRoute = methods.some(method => error.message.includes(`Method '${method}' already declared for route`))
           if (isDuplicatedRoute) {
             throw new FST_ERR_DUPLICATED_ROUTE(opts.method, opts.url)
           }
@@ -140639,16 +139614,21 @@ function buildRouting (options) {
   function routeHandler (req, res, params, context, query) {
     const id = getGenReqId(context.server, req)
 
-    const loggerOpts = {
-      level: context.logLevel
-    }
+    let childLogger
+    if (hasLogger === false && context.childLoggerFactory === defaultChildLoggerFactory) {
+      // the null logger children are the logger itself, so we can skip
+      // the child logger creation altogether
+      childLogger = logger
+    } else {
+      const loggerOpts = {
+        level: context.logLevel
+      }
 
-    if (context.logSerializers) {
-      loggerOpts.serializers = context.logSerializers
+      if (context.logSerializers) {
+        loggerOpts.serializers = context.logSerializers
+      }
+      childLogger = createChildLogger(context, logger, req, id, loggerOpts)
     }
-    const childLogger = createChildLogger(context, logger, req, id, loggerOpts)
-    // Set initial value; will be re-evaluated after FastifyRequest is constructed if it's a function
-    childLogger[kDisableRequestLogging] = disableRequestLoggingFn ? false : disableRequestLogging
 
     if (closing === true) {
       /* istanbul ignore next mac, windows */
@@ -140656,19 +139636,22 @@ function buildRouting (options) {
         res.setHeader('Connection', 'close')
       }
 
-      // TODO remove return503OnClosing after Node v18 goes EOL
-      /* istanbul ignore else */
+      // Load-shedding fast path during drain. server.close() and
+      // closeIdleConnections() only reap idle sockets; requests already
+      // pipelined or arriving on an active keep-alive connection still reach
+      // this point with closing === true. Short-circuiting with 503 avoids
+      // running the full handler chain (and any downstream calls) for work
+      // the load balancer should redirect elsewhere.
       if (return503OnClosing) {
-        // On Node v19 we cannot test this behavior as it won't be necessary
-        // anymore. It will close all the idle connections before they reach this
-        // stage.
         const headers = {
           'Content-Type': 'application/json',
           'Content-Length': '80'
         }
         res.writeHead(503, headers)
         res.end('{"error":"Service Unavailable","message":"Service Unavailable","statusCode":503}')
-        childLogger.info({ res: { statusCode: 503 } }, 'request aborted - refusing to accept new requests as server is closing')
+
+        context.server[kLogController].serviceUnavailable(childLogger, context.server)
+
         return
       }
     }
@@ -140693,16 +139676,7 @@ function buildRouting (options) {
     const request = new context.Request(id, params, req, query, childLogger, context)
     const reply = new context.Reply(res, request, childLogger)
 
-    // Evaluate disableRequestLogging after FastifyRequest is constructed
-    // so the caller has access to decorations and customizations
-    const resolvedDisableRequestLogging = disableRequestLoggingFn
-      ? disableRequestLoggingFn(request)
-      : disableRequestLogging
-    childLogger[kDisableRequestLogging] = resolvedDisableRequestLogging
-
-    if (resolvedDisableRequestLogging === false) {
-      childLogger.info({ req: request }, 'incoming request')
-    }
+    context.server[kLogController].incomingRequest(request, reply)
 
     // Handler timeout setup — only when configured (zero overhead otherwise)
     const handlerTimeout = context.handlerTimeout
@@ -140733,6 +139707,13 @@ function buildRouting (options) {
       setupResponseListeners(reply)
     }
 
+    if (context.onTimeout !== null) {
+      if (!request.raw.socket._meta) {
+        request.raw.socket.on('timeout', handleTimeout)
+      }
+      request.raw.socket._meta = { context, request, reply, onTimeout: handleTimeout }
+    }
+
     if (context.onRequest !== null) {
       onRequestHookRunner(
         context.onRequest,
@@ -140755,13 +139736,6 @@ function buildRouting (options) {
           )
         }
       })
-    }
-
-    if (context.onTimeout !== null) {
-      if (!request.raw.socket._meta) {
-        request.raw.socket.on('timeout', handleTimeout)
-      }
-      request.raw.socket._meta = { context, request, reply }
     }
   }
 }
@@ -140812,6 +139786,15 @@ function validateHandlerTimeoutOption (handlerTimeout) {
   if (handlerTimeout === undefined) return
   if (!Number.isInteger(handlerTimeout) || handlerTimeout <= 0) {
     throw new FST_ERR_ROUTE_HANDLER_TIMEOUT_OPTION_NOT_INT(handlerTimeout)
+  }
+}
+
+function validateLogLevelOption (logLevel, method, path, logger) {
+  if (logLevel == null || logLevel === '') return
+  if (logger?.levels?.values == null) return
+
+  if (typeof logLevel !== 'string' || logger.levels.values[logLevel] === undefined) {
+    throw new FST_ERR_ROUTE_LOG_LEVEL_INVALID(method, path, logLevel)
   }
 }
 
@@ -140904,7 +139887,7 @@ function buildSchemaController (parentSchemaCtrl, opts) {
     bucket: (opts && opts.bucket) || buildSchemas,
     compilersFactory,
     isCustomValidatorCompiler: typeof opts?.compilersFactory?.buildValidator === 'function',
-    isCustomSerializerCompiler: typeof opts?.compilersFactory?.buildValidator === 'function'
+    isCustomSerializerCompiler: typeof opts?.compilersFactory?.buildSerializer === 'function'
   }
 
   return new SchemaController(undefined, option)
@@ -141054,6 +140037,7 @@ const {
   FST_ERR_SCH_DUPLICATE,
   FST_ERR_SCH_CONTENT_MISSING_SCHEMA
 } = __nccwpck_require__(71036)
+const ContentType = __nccwpck_require__(62935)
 
 const SCHEMAS_SOURCE = ['params', 'body', 'querystring', 'query', 'headers']
 
@@ -141191,52 +140175,58 @@ function getSchemaSerializer (context, statusCode, contentType) {
     return false
   }
   if (responseSchemaDef[statusCode]) {
-    if (responseSchemaDef[statusCode].constructor === Object && contentType) {
-      const mediaName = contentType.split(';', 1)[0]
-      if (responseSchemaDef[statusCode][mediaName]) {
-        return responseSchemaDef[statusCode][mediaName]
-      }
+    if (responseSchemaDef[statusCode].constructor === Object) {
+      const ct = new ContentType(contentType)
+      if (ct.isValid) {
+        if (responseSchemaDef[statusCode][ct.mediaType]) {
+          return responseSchemaDef[statusCode][ct.mediaType]
+        }
 
-      // fallback to match all media-type
-      if (responseSchemaDef[statusCode]['*/*']) {
-        return responseSchemaDef[statusCode]['*/*']
-      }
+        // fallback to match all media-type
+        if (responseSchemaDef[statusCode]['*/*']) {
+          return responseSchemaDef[statusCode]['*/*']
+        }
 
-      return false
+        return false
+      }
     }
     return responseSchemaDef[statusCode]
   }
   const fallbackStatusCode = (statusCode + '')[0] + 'xx'
   if (responseSchemaDef[fallbackStatusCode]) {
-    if (responseSchemaDef[fallbackStatusCode].constructor === Object && contentType) {
-      const mediaName = contentType.split(';', 1)[0]
-      if (responseSchemaDef[fallbackStatusCode][mediaName]) {
-        return responseSchemaDef[fallbackStatusCode][mediaName]
-      }
+    if (responseSchemaDef[fallbackStatusCode].constructor === Object) {
+      const ct = new ContentType(contentType)
+      if (ct.isValid) {
+        if (responseSchemaDef[fallbackStatusCode][ct.mediaType]) {
+          return responseSchemaDef[fallbackStatusCode][ct.mediaType]
+        }
 
-      // fallback to match all media-type
-      if (responseSchemaDef[fallbackStatusCode]['*/*']) {
-        return responseSchemaDef[fallbackStatusCode]['*/*']
-      }
+        // fallback to match all media-type
+        if (responseSchemaDef[fallbackStatusCode]['*/*']) {
+          return responseSchemaDef[fallbackStatusCode]['*/*']
+        }
 
-      return false
+        return false
+      }
     }
 
     return responseSchemaDef[fallbackStatusCode]
   }
   if (responseSchemaDef.default) {
-    if (responseSchemaDef.default.constructor === Object && contentType) {
-      const mediaName = contentType.split(';', 1)[0]
-      if (responseSchemaDef.default[mediaName]) {
-        return responseSchemaDef.default[mediaName]
-      }
+    if (responseSchemaDef.default.constructor === Object) {
+      const ct = new ContentType(contentType)
+      if (ct.isValid) {
+        if (responseSchemaDef.default[ct.mediaType]) {
+          return responseSchemaDef.default[ct.mediaType]
+        }
 
-      // fallback to match all media-type
-      if (responseSchemaDef.default['*/*']) {
-        return responseSchemaDef.default['*/*']
-      }
+        // fallback to match all media-type
+        if (responseSchemaDef.default['*/*']) {
+          return responseSchemaDef.default['*/*']
+        }
 
-      return false
+        return false
+      }
     }
 
     return responseSchemaDef.default
@@ -141719,7 +140709,6 @@ const keys = {
   kContentTypeParser: Symbol('fastify.contentTypeParser'),
   kState: Symbol('fastify.state'),
   kOptions: Symbol('fastify.options'),
-  kDisableRequestLogging: Symbol('fastify.disableRequestLogging'),
   kPluginNameChain: Symbol('fastify.pluginNameChain'),
   kRouteContext: Symbol('fastify.context'),
   kGenReqId: Symbol('fastify.genReqId'),
@@ -141738,6 +140727,7 @@ const keys = {
   kRequestPayloadStream: Symbol('fastify.RequestPayloadStream'),
   kRequestAcceptVersion: Symbol('fastify.RequestAcceptVersion'),
   kRequestCacheValidateFns: Symbol('fastify.request.cache.validateFns'),
+  kRequestContentType: Symbol('fastify.request.contentType'),
   kRequestOriginalUrl: Symbol('fastify.request.originalUrl'),
   kRequestSignal: Symbol('fastify.request.signal'),
   kHandlerTimeout: Symbol('fastify.handlerTimeout'),
@@ -141771,7 +140761,9 @@ const keys = {
   kChildLoggerFactory: Symbol('fastify.childLoggerFactory'),
   kHasBeenDecorated: Symbol('fastify.hasBeenDecorated'),
   kKeepAliveConnections: Symbol('fastify.keepAliveConnections'),
-  kRouteByFastify: Symbol('fastify.routeByFastify')
+  kRouteByFastify: Symbol('fastify.routeByFastify'),
+  kLogController: Symbol('fastify.logController'),
+  kDiagnosticsStore: Symbol('fastify.diagnosticsStore')
 }
 
 module.exports = keys
@@ -141930,6 +140922,15 @@ function validateParam (validatorFunction, request, paramName) {
 function validate (context, request, execution) {
   const runExecution = execution === undefined
 
+  if (runExecution &&
+    context[paramsSchema] === undefined &&
+    context[bodySchema] === undefined &&
+    context[querystringSchema] === undefined &&
+    context[headersSchema] === undefined) {
+    // the route has no validation schemas
+    return false
+  }
+
   if (runExecution || !execution.skipParams) {
     const params = validateParam(context[paramsSchema], request, 'params')
     if (params) {
@@ -141946,9 +140947,7 @@ function validate (context, request, execution) {
     if (typeof context[bodySchema] === 'function') {
       validatorFunction = context[bodySchema]
     } else if (context[bodySchema]) {
-      // TODO: add request.contentType and reuse it here
-      const contentType = getEssenceMediaType(request.headers['content-type'])
-      const contentSchema = context[bodySchema][contentType]
+      const contentSchema = context[bodySchema][request.mediaType]
       if (contentSchema) {
         validatorFunction = contentSchema
       }
@@ -142046,16 +141045,6 @@ function wrapValidationError (result, dataVar, schemaErrorFormatter) {
   return error
 }
 
-/**
- * simple function to retrieve the essence media type
- * @param {string} header
- * @returns {string} Mimetype string.
- */
-function getEssenceMediaType (header) {
-  if (!header) return ''
-  return header.trimStart().split(/[ ;]/, 1)[0].trim().toLowerCase()
-}
-
 module.exports = {
   symbols: { bodySchema, querystringSchema, responseSchema, paramsSchema, headersSchema },
   compileSchemasForValidation,
@@ -142078,10 +141067,12 @@ const { createWarning } = __nccwpck_require__(50099)
  *   - FSTWRN001
  *   - FSTSEC001
  *   - FSTDEP022
+ *   - FSTDEP023
+ *   - FSTDEP024
  *
- * Deprecation Codes FSTDEP001 - FSTDEP021 were used by v4 and MUST NOT not be reused.
+ * Deprecation Codes FSTDEP001 - FSTDEP021 were used by v4 and MUST NOT be reused.
  *                             - FSTDEP022 is used by v5 and MUST NOT be reused.
- * Warning Codes FSTWRN001 - FSTWRN002 were used by v4 and MUST NOT not be reused.
+ * Warning Codes FSTWRN001 - FSTWRN002 were used by v4 and MUST NOT be reused.
  */
 
 const FSTWRN001 = createWarning({
@@ -142101,7 +141092,7 @@ const FSTWRN003 = createWarning({
 const FSTWRN004 = createWarning({
   name: 'FastifyWarning',
   code: 'FSTWRN004',
-  message: 'It seems that you are overriding an errorHandler in the same scope, which can lead to subtle bugs.',
+  message: 'It seems that you are overriding an errorHandler in the same scope, which can lead to subtle bugs. To disable this behavior, set \'allowErrorHandlerOverride\' to false. For more information, visit: https://fastify.dev/docs/latest/Reference/Server/#allowerrorhandleroverride',
   unlimited: true
 })
 
@@ -142119,12 +141110,28 @@ const FSTDEP022 = createWarning({
   unlimited: true
 })
 
+const FSTDEP023 = createWarning({
+  name: 'FastifyDeprecation',
+  code: 'FSTDEP023',
+  message: 'disableRequestLogging option is deprecated. Use the logController option with disableRequestLogging or isLogDisabled override instead. The disableRequestLogging top-level option will be removed in `fastify@6`.',
+  unlimited: true
+})
+
+const FSTDEP024 = createWarning({
+  name: 'FastifyDeprecation',
+  code: 'FSTDEP024',
+  message: 'requestIdLogLabel option is deprecated. Use the logController option with requestIdLogLabel instead. The requestIdLogLabel top-level option will be removed in `fastify@6`.',
+  unlimited: true
+})
+
 module.exports = {
   FSTWRN001,
   FSTWRN003,
   FSTWRN004,
   FSTSEC001,
-  FSTDEP022
+  FSTDEP022,
+  FSTDEP023,
+  FSTDEP024
 }
 
 
@@ -142217,6 +141224,154 @@ function wrapThenable (thenable, reply, store) {
 }
 
 module.exports = wrapThenable
+
+
+/***/ }),
+
+/***/ 66508:
+/***/ ((module) => {
+
+
+
+// eslint-disable-next-line
+const STR_ESCAPE = /[\u0000-\u001f\u0022\u005c\ud800-\udfff]/
+
+module.exports = class Serializer {
+  constructor (options) {
+    switch (options && options.rounding) {
+      case 'floor':
+        this.parseInteger = Math.floor
+        break
+      case 'ceil':
+        this.parseInteger = Math.ceil
+        break
+      case 'round':
+        this.parseInteger = Math.round
+        break
+      case 'trunc':
+      default:
+        this.parseInteger = Math.trunc
+        break
+    }
+    this._options = options
+  }
+
+  asInteger (i) {
+    if (Number.isInteger(i)) {
+      return '' + i
+    } else if (typeof i === 'bigint') {
+      return i.toString()
+    }
+    /* eslint no-undef: "off" */
+    const integer = this.parseInteger(i)
+    // check if number is Infinity or NaN
+    // eslint-disable-next-line no-self-compare
+    if (integer === Infinity || integer === -Infinity || integer !== integer) {
+      throw new Error(`The value "${i}" cannot be converted to an integer.`)
+    }
+    return '' + integer
+  }
+
+  asNumber (i) {
+    // fast cast to number
+    const num = Number(i)
+    // check if number is NaN
+    // eslint-disable-next-line no-self-compare
+    if (num !== num) {
+      throw new Error(`The value "${i}" cannot be converted to a number.`)
+    } else if (num === Infinity || num === -Infinity) {
+      return 'null'
+    } else {
+      return '' + num
+    }
+  }
+
+  asBoolean (bool) {
+    return bool && 'true' || 'false' // eslint-disable-line
+  }
+
+  asDateTime (date) {
+    if (date === null) return '""'
+    if (date instanceof Date) {
+      return '"' + date.toISOString() + '"'
+    }
+    if (typeof date === 'string') {
+      return '"' + date + '"'
+    }
+    throw new Error(`The value "${date}" cannot be converted to a date-time.`)
+  }
+
+  asDate (date) {
+    if (date === null) return '""'
+    if (date instanceof Date) {
+      return '"' + new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0, 10) + '"'
+    }
+    if (typeof date === 'string') {
+      return '"' + date + '"'
+    }
+    throw new Error(`The value "${date}" cannot be converted to a date.`)
+  }
+
+  asTime (date) {
+    if (date === null) return '""'
+    if (date instanceof Date) {
+      return '"' + new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(11, 19) + '"'
+    }
+    if (typeof date === 'string') {
+      return '"' + date + '"'
+    }
+    throw new Error(`The value "${date}" cannot be converted to a time.`)
+  }
+
+  asString (str) {
+    const len = str.length
+    if (len === 0) {
+      return '""'
+    } else if (len < 42) {
+      // magically escape strings for json
+      // relying on their charCodeAt
+      // everything below 32 needs JSON.stringify()
+      // every string that contain surrogate needs JSON.stringify()
+      // 34 and 92 happens all the time, so we
+      // have a fast case for them
+      let result = ''
+      let last = -1
+      let point = 255
+      for (let i = 0; i < len; i++) {
+        point = str.charCodeAt(i)
+        if (
+          point === 0x22 || // '"'
+          point === 0x5c // '\'
+        ) {
+          last === -1 && (last = 0)
+          result += str.slice(last, i) + '\\'
+          last = i
+        } else if (point < 32 || (point >= 0xD800 && point <= 0xDFFF)) {
+          // The current character is non-printable characters or a surrogate.
+          return JSON.stringify(str)
+        }
+      }
+      return (last === -1 && ('"' + str + '"')) || ('"' + result + str.slice(last) + '"')
+    } else if (len < 5000 && STR_ESCAPE.test(str) === false) {
+      // Only use the regular expression for shorter input. The overhead is otherwise too much.
+      return '"' + str + '"'
+    } else {
+      return JSON.stringify(str)
+    }
+  }
+
+  asUnsafeString (str) {
+    return '"' + str + '"'
+  }
+
+  getState () {
+    return this._options
+  }
+
+  static restoreFromState (state) {
+    return new Serializer(state)
+  }
+}
 
 
 /***/ }),
@@ -142675,6 +141830,7 @@ function Router (opts) {
   this.ignoreTrailingSlash = opts.ignoreTrailingSlash || false
   this.ignoreDuplicateSlashes = opts.ignoreDuplicateSlashes || false
   this.maxParamLength = opts.maxParamLength || 100
+  this.onMaxParamLength = opts.onMaxParamLength || null
   this.allowUnsafeRegex = opts.allowUnsafeRegex || false
   this.constrainer = new Constrainer(opts.constraints)
   this.useSemicolonDelimiter = opts.useSemicolonDelimiter || false
@@ -143187,6 +142343,7 @@ Router.prototype.find = function find (method, path, derivedConstraints) {
   const pathLen = path.length
 
   const brothersNodesStack = []
+  let maxParamLengthExceeded = false
 
   while (true) {
     if (pathIndex === pathLen && currentNode.isLeafNode) {
@@ -143205,6 +142362,9 @@ Router.prototype.find = function find (method, path, derivedConstraints) {
 
     if (node === null) {
       if (brothersNodesStack.length === 0) {
+        if (maxParamLengthExceeded && this.onMaxParamLength) {
+          return this._onMaxParamLength(originPath)
+        }
         return null
       }
 
@@ -143246,18 +142406,34 @@ Router.prototype.find = function find (method, path, derivedConstraints) {
 
     if (currentNode.isRegex) {
       const matchedParameters = currentNode.regex.exec(param)
-      if (matchedParameters === null) continue
+      if (matchedParameters === null) {
+        node = null
+        continue
+      }
 
+      let regexMaxParamLengthExceeded = false
       for (let i = 1; i < matchedParameters.length; i++) {
         const matchedParam = matchedParameters[i]
         if (matchedParam.length > maxParamLength) {
-          return null
+          regexMaxParamLengthExceeded = true
+          break
         }
-        params.push(matchedParam)
+      }
+
+      if (regexMaxParamLengthExceeded) {
+        maxParamLengthExceeded = true
+        node = null
+        continue
+      }
+
+      for (let i = 1; i < matchedParameters.length; i++) {
+        params.push(matchedParameters[i])
       }
     } else {
       if (param.length > maxParamLength) {
-        return null
+        maxParamLengthExceeded = true
+        node = null
+        continue
       }
       params.push(param)
     }
@@ -143293,6 +142469,18 @@ Router.prototype._onBadUrl = function (path) {
   const onBadUrl = this.onBadUrl
   return {
     handler: (req, res, ctx) => onBadUrl(path, req, res),
+    params: {},
+    store: null
+  }
+}
+
+Router.prototype._onMaxParamLength = function (path) {
+  if (this.onMaxParamLength === null) {
+    return null
+  }
+  const onMaxParamLength = this.onMaxParamLength
+  return {
+    handler: (req, res, ctx) => onMaxParamLength(path, req, res),
     params: {},
     store: null
   }
@@ -143769,8 +142957,8 @@ class HandlerStorage {
       }
     }
 
-    // Return the first handler who's bit is set in the candidates https://stackoverflow.com/questions/18134985/how-to-find-index-of-first-set-bit
-    lines.push('return this.handlers[Math.floor(Math.log2(candidates))]')
+    // Return the highest set bit index in the candidates bitmask.
+    lines.push('return this.handlers[31 - Math.clz32(candidates)]')
 
     this._getHandlerMatchingConstraints = new Function('derivedConstraints', lines.join('\n')) // eslint-disable-line
   }
@@ -150765,12 +149953,13 @@ module.exports = { version: packageJson.version }
 /***/ 87269:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-/*! Axios v1.16.0 Copyright (c) 2026 Matt Zabriskie and contributors */
+/*! Axios v1.18.1 Copyright (c) 2026 Matt Zabriskie and contributors */
 
 
 var FormData$1 = __nccwpck_require__(96454);
 var crypto = __nccwpck_require__(76982);
 var url = __nccwpck_require__(87016);
+var HttpsProxyAgent = __nccwpck_require__(78996);
 var http = __nccwpck_require__(58611);
 var https = __nccwpck_require__(65692);
 var http2 = __nccwpck_require__(85675);
@@ -150806,6 +149995,52 @@ const {
   iterator,
   toStringTag
 } = Symbol;
+
+/* Creating a function that will check if an object has a property. */
+const hasOwnProperty = (({
+  hasOwnProperty
+}) => (obj, prop) => hasOwnProperty.call(obj, prop))(Object.prototype);
+
+/**
+ * Walk the prototype chain (excluding the shared Object.prototype) looking for
+ * an own `prop`. This distinguishes genuine own/inherited members — including
+ * class accessors and template prototypes — from members injected via
+ * Object.prototype pollution (e.g. `Object.prototype.username = '...'`), which
+ * live on Object.prototype itself and are therefore never matched.
+ *
+ * @param {*} thing The value whose chain to inspect
+ * @param {string|symbol} prop The property key to look for
+ *
+ * @returns {boolean} True when `prop` is owned below Object.prototype
+ */
+const hasOwnInPrototypeChain = (thing, prop) => {
+  let obj = thing;
+  const seen = [];
+  while (obj != null && obj !== Object.prototype) {
+    if (seen.indexOf(obj) !== -1) {
+      return false;
+    }
+    seen.push(obj);
+    if (hasOwnProperty(obj, prop)) {
+      return true;
+    }
+    obj = getPrototypeOf(obj);
+  }
+  return false;
+};
+
+/**
+ * Read `obj[prop]` only when it is safe from Object.prototype pollution. Own
+ * properties and members inherited from a non-Object.prototype source (a class
+ * instance or template object) are honored; a value reachable only through a
+ * polluted Object.prototype is ignored and `undefined` is returned.
+ *
+ * @param {*} obj The source object
+ * @param {string|symbol} prop The property key to read
+ *
+ * @returns {*} The resolved value, or undefined when unsafe/absent
+ */
+const getSafeProp = (obj, prop) => obj != null && hasOwnInPrototypeChain(obj, prop) ? obj[prop] : undefined;
 const kindOf = (cache => thing => {
   const str = toString.call(thing);
   return cache[str] || (cache[str] = str.slice(8, -1).toLowerCase());
@@ -150924,11 +150159,15 @@ const isBoolean = thing => thing === true || thing === false;
  * @returns {boolean} True if value is a plain Object, otherwise false
  */
 const isPlainObject = val => {
-  if (kindOf(val) !== 'object') {
+  if (!isObject(val)) {
     return false;
   }
   const prototype = getPrototypeOf(val);
-  return (prototype === null || prototype === Object.prototype || Object.getPrototypeOf(prototype) === null) && !(toStringTag in val) && !(iterator in val);
+  return (prototype === null || prototype === Object.prototype || getPrototypeOf(prototype) === null) &&
+  // Treat any genuine (non-Object.prototype-polluted) Symbol.toStringTag or
+  // Symbol.iterator as evidence the value is a tagged/iterable type rather
+  // than a plain object, while ignoring keys injected onto Object.prototype.
+  !hasOwnInPrototypeChain(val, toStringTag) && !hasOwnInPrototypeChain(val, iterator);
 };
 
 /**
@@ -151183,7 +150422,10 @@ function merge(...objs) {
     if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
       return;
     }
-    const targetKey = caseless && findKey(result, key) || key;
+
+    // findKey lowercases the key, so caseless lookup only applies to strings —
+    // symbol keys are identity-matched.
+    const targetKey = caseless && typeof key === 'string' && findKey(result, key) || key;
     // Read via own-prop only — a bare `result[targetKey]` walks the prototype
     // chain, so a polluted Object.prototype value could surface here and get
     // copied into the merged result.
@@ -151199,7 +150441,21 @@ function merge(...objs) {
     }
   };
   for (let i = 0, l = objs.length; i < l; i++) {
-    objs[i] && forEach(objs[i], assignValue);
+    const source = objs[i];
+    if (!source || isBuffer(source)) {
+      continue;
+    }
+    forEach(source, assignValue);
+    if (typeof source !== 'object' || isArray(source)) {
+      continue;
+    }
+    const symbols = Object.getOwnPropertySymbols(source);
+    for (let j = 0; j < symbols.length; j++) {
+      const symbol = symbols[j];
+      if (propertyIsEnumerable.call(source, symbol)) {
+        assignValue(source[symbol], symbol);
+      }
+    }
   }
   return result;
 }
@@ -151411,11 +150667,9 @@ const toCamelCase = str => {
     return p1.toUpperCase() + p2;
   });
 };
-
-/* Creating a function that will check if an object has a property. */
-const hasOwnProperty = (({
-  hasOwnProperty
-}) => (obj, prop) => hasOwnProperty.call(obj, prop))(Object.prototype);
+const {
+  propertyIsEnumerable
+} = Object.prototype;
 
 /**
  * Determine if a value is a RegExp object
@@ -151504,10 +150758,10 @@ function isSpecCompliantForm(thing) {
  * @returns {Object} The JSON-compatible object.
  */
 const toJSONObject = obj => {
-  const stack = new Array(10);
-  const visit = (source, i) => {
+  const visited = new WeakSet();
+  const visit = source => {
     if (isObject(source)) {
-      if (stack.indexOf(source) >= 0) {
+      if (visited.has(source)) {
         return;
       }
 
@@ -151516,19 +150770,20 @@ const toJSONObject = obj => {
         return source;
       }
       if (!('toJSON' in source)) {
-        stack[i] = source;
+        // add-on descent / delete-on-ascent: preserves path semantics, so DAG nodes serialise at every occurrence (see #7230).
+        visited.add(source);
         const target = isArray(source) ? [] : {};
         forEach(source, (value, key) => {
-          const reducedValue = visit(value, i + 1);
+          const reducedValue = visit(value);
           !isUndefined(reducedValue) && (target[key] = reducedValue);
         });
-        stack[i] = undefined;
+        visited.delete(source);
         return target;
       }
     }
     return source;
   };
-  return visit(obj, 0);
+  return visit(obj);
 };
 
 /**
@@ -151589,6 +150844,19 @@ const asap = typeof queueMicrotask !== 'undefined' ? queueMicrotask.bind(_global
 // *********************
 
 const isIterable = thing => thing != null && isFunction$1(thing[iterator]);
+
+/**
+ * Determine if a value is iterable via an iterator that is NOT sourced solely
+ * from a polluted Object.prototype. Use this instead of `isIterable` whenever
+ * the iterable comes from untrusted input (e.g. user-supplied header sources),
+ * so `Object.prototype[Symbol.iterator] = ...` cannot turn an ordinary object
+ * into an attacker-controlled entries iterator.
+ *
+ * @param {*} thing The value to test
+ *
+ * @returns {boolean} True if value has a non-polluted iterator
+ */
+const isSafeIterable = thing => thing != null && hasOwnInPrototypeChain(thing, iterator) && isIterable(thing);
 var utils$1 = {
   isArray,
   isArrayBuffer,
@@ -151634,6 +150902,8 @@ var utils$1 = {
   hasOwnProperty,
   hasOwnProp: hasOwnProperty,
   // an alias to avoid ESLint no-prototype-builtins detection
+  hasOwnInPrototypeChain,
+  getSafeProp,
   reduceDescriptors,
   freezeMethods,
   toObjectSet,
@@ -151649,7 +150919,8 @@ var utils$1 = {
   isThenable,
   setImmediate: _setImmediate,
   asap,
-  isIterable
+  isIterable,
+  isSafeIterable
 };
 
 // RawAxiosHeaders whose duplicates are ignored by node
@@ -151695,8 +150966,6 @@ var parseHeaders = rawHeaders => {
   return parsed;
 };
 
-const $internals = Symbol('internals');
-const INVALID_HEADER_VALUE_CHARS_RE = /[^\x09\x20-\x7E\x80-\xFF]/g;
 function trimSPorHTAB(str) {
   let start = 0;
   let end = str.length;
@@ -151716,11 +150985,31 @@ function trimSPorHTAB(str) {
   }
   return start === 0 && end === str.length ? str : str.slice(start, end);
 }
+
+// The control-code ranges are intentional: header sanitization strips C0/DEL bytes.
+// eslint-disable-next-line no-control-regex
+const INVALID_UNICODE_HEADER_VALUE_CHARS = new RegExp('[\\u0000-\\u0008\\u000a-\\u001f\\u007f]+', 'g');
+// eslint-disable-next-line no-control-regex
+const INVALID_BYTE_STRING_HEADER_VALUE_CHARS = new RegExp('[^\\u0009\\u0020-\\u007e\\u0080-\\u00ff]+', 'g');
+function sanitizeValue(value, invalidChars) {
+  if (utils$1.isArray(value)) {
+    return value.map(item => sanitizeValue(item, invalidChars));
+  }
+  return trimSPorHTAB(String(value).replace(invalidChars, ''));
+}
+const sanitizeHeaderValue = value => sanitizeValue(value, INVALID_UNICODE_HEADER_VALUE_CHARS);
+const sanitizeByteStringHeaderValue = value => sanitizeValue(value, INVALID_BYTE_STRING_HEADER_VALUE_CHARS);
+function toByteStringHeaderObject(headers) {
+  const byteStringHeaders = Object.create(null);
+  utils$1.forEach(headers.toJSON(), (value, header) => {
+    byteStringHeaders[header] = sanitizeByteStringHeaderValue(value);
+  });
+  return byteStringHeaders;
+}
+
+const $internals = Symbol('internals');
 function normalizeHeader(header) {
   return header && String(header).trim().toLowerCase();
-}
-function sanitizeHeaderValue(str) {
-  return trimSPorHTAB(str.replace(INVALID_HEADER_VALUE_CHARS_RE, ''));
 }
 function normalizeValue(value) {
   if (value === false || value == null) {
@@ -151781,7 +151070,7 @@ class AxiosHeaders {
     function setHeader(_value, _header, _rewrite) {
       const lHeader = normalizeHeader(_header);
       if (!lHeader) {
-        throw new Error('header name must be a non-empty string');
+        return;
       }
       const key = utils$1.findKey(self, lHeader);
       if (!key || self[key] === undefined || _rewrite === true || _rewrite === undefined && self[key] !== false) {
@@ -151793,15 +151082,21 @@ class AxiosHeaders {
       setHeaders(header, valueOrRewrite);
     } else if (utils$1.isString(header) && (header = header.trim()) && !isValidHeaderName(header)) {
       setHeaders(parseHeaders(header), valueOrRewrite);
-    } else if (utils$1.isObject(header) && utils$1.isIterable(header)) {
-      let obj = {},
+    } else if (utils$1.isObject(header) && utils$1.isSafeIterable(header)) {
+      let obj = Object.create(null),
         dest,
         key;
       for (const entry of header) {
         if (!utils$1.isArray(entry)) {
-          throw TypeError('Object iterator must return a key-value pair');
+          throw new TypeError('Object iterator must return a key-value pair');
         }
-        obj[key = entry[0]] = (dest = obj[key]) ? utils$1.isArray(dest) ? [...dest, entry[1]] : [dest, entry[1]] : entry[1];
+        key = entry[0];
+        if (utils$1.hasOwnProp(obj, key)) {
+          dest = obj[key];
+          obj[key] = utils$1.isArray(dest) ? [...dest, entry[1]] : [dest, entry[1]];
+        } else {
+          obj[key] = entry[1];
+        }
       }
       setHeaders(obj, valueOrRewrite);
     } else {
@@ -152013,7 +151308,19 @@ function redactConfig(config, redactKeys) {
 class AxiosError extends Error {
   static from(error, code, config, request, response, customProps) {
     const axiosError = new AxiosError(error.message, code || error.code, config, request, response);
-    axiosError.cause = error;
+    // Match native `Error` `cause` semantics: non-enumerable. The wrapped
+    // error often carries circular internals (sockets, requests, agents), so
+    // an enumerable `cause` makes structured loggers (pino/winston) and any
+    // own-property walk throw "Converting circular structure to JSON".
+    // Regression from #6982; see #7205. `__proto__: null` mirrors the
+    // `message` descriptor below (prototype-pollution-safe descriptor).
+    Object.defineProperty(axiosError, 'cause', {
+      __proto__: null,
+      value: error,
+      writable: true,
+      enumerable: false,
+      configurable: true
+    });
     axiosError.name = error.name;
 
     // Preserve status from the original error if not already set from response
@@ -152103,6 +151410,10 @@ AxiosError.ERR_CANCELED = 'ERR_CANCELED';
 AxiosError.ERR_NOT_SUPPORT = 'ERR_NOT_SUPPORT';
 AxiosError.ERR_INVALID_URL = 'ERR_INVALID_URL';
 AxiosError.ERR_FORM_DATA_DEPTH_EXCEEDED = 'ERR_FORM_DATA_DEPTH_EXCEEDED';
+
+// Default nesting limit shared with the inverse transform (formDataToJSON) so
+// the FormData <-> JSON round-trip stays symmetric.
+const DEFAULT_FORM_DATA_MAX_DEPTH = 100;
 
 /**
  * Determines if the given thing is a array or js object.
@@ -152204,8 +151515,9 @@ function toFormData(obj, formData, options) {
   const dots = options.dots;
   const indexes = options.indexes;
   const _Blob = options.Blob || typeof Blob !== 'undefined' && Blob;
-  const maxDepth = options.maxDepth === undefined ? 100 : options.maxDepth;
+  const maxDepth = options.maxDepth === undefined ? DEFAULT_FORM_DATA_MAX_DEPTH : options.maxDepth;
   const useBlob = _Blob && utils$1.isSpecCompliantForm(formData);
+  const stack = [];
   if (!utils$1.isFunction(visitor)) {
     throw new TypeError('visitor must be a function');
   }
@@ -152221,9 +151533,37 @@ function toFormData(obj, formData, options) {
       throw new AxiosError('Blob is not supported. Use a Buffer instead.');
     }
     if (utils$1.isArrayBuffer(value) || utils$1.isTypedArray(value)) {
-      return useBlob && typeof Blob === 'function' ? new Blob([value]) : Buffer.from(value);
+      if (useBlob && typeof _Blob === 'function') {
+        return new _Blob([value]);
+      }
+      if (typeof Buffer !== 'undefined') {
+        return Buffer.from(value);
+      }
+      throw new AxiosError('Blob is not supported. Use a Buffer instead.', AxiosError.ERR_NOT_SUPPORT);
     }
     return value;
+  }
+  function throwIfMaxDepthExceeded(depth) {
+    if (depth > maxDepth) {
+      throw new AxiosError('Object is too deeply nested (' + depth + ' levels). Max depth: ' + maxDepth, AxiosError.ERR_FORM_DATA_DEPTH_EXCEEDED);
+    }
+  }
+  function stringifyWithDepthLimit(value, depth) {
+    if (maxDepth === Infinity) {
+      return JSON.stringify(value);
+    }
+    const ancestors = [];
+    return JSON.stringify(value, function limitDepth(_key, currentValue) {
+      if (!utils$1.isObject(currentValue)) {
+        return currentValue;
+      }
+      while (ancestors.length && ancestors[ancestors.length - 1] !== this) {
+        ancestors.pop();
+      }
+      ancestors.push(currentValue);
+      throwIfMaxDepthExceeded(depth + ancestors.length - 1);
+      return currentValue;
+    });
   }
 
   /**
@@ -152247,7 +151587,7 @@ function toFormData(obj, formData, options) {
         // eslint-disable-next-line no-param-reassign
         key = metaTokens ? key : key.slice(0, -2);
         // eslint-disable-next-line no-param-reassign
-        value = JSON.stringify(value);
+        value = stringifyWithDepthLimit(value, 1);
       } else if (utils$1.isArray(value) && isFlatArray(value) || (utils$1.isFileList(value) || utils$1.endsWith(key, '[]')) && (arr = utils$1.toArray(value))) {
         // eslint-disable-next-line no-param-reassign
         key = removeBrackets(key);
@@ -152265,7 +151605,6 @@ function toFormData(obj, formData, options) {
     formData.append(renderKey(path, key, dots), convertValue(value));
     return false;
   }
-  const stack = [];
   const exposedHelpers = Object.assign(predicates, {
     defaultVisitor,
     convertValue,
@@ -152273,11 +151612,9 @@ function toFormData(obj, formData, options) {
   });
   function build(value, path, depth = 0) {
     if (utils$1.isUndefined(value)) return;
-    if (depth > maxDepth) {
-      throw new AxiosError('Object is too deeply nested (' + depth + ' levels). Max depth: ' + maxDepth, AxiosError.ERR_FORM_DATA_DEPTH_EXCEEDED);
-    }
+    throwIfMaxDepthExceeded(depth);
     if (stack.indexOf(value) !== -1) {
-      throw Error('Circular reference detected in ' + path.join('.'));
+      throw new Error('Circular reference detected in ' + path.join('.'));
     }
     stack.push(value);
     utils$1.forEach(value, function each(el, key) {
@@ -152334,9 +151671,7 @@ prototype.append = function append(name, value) {
   this._pairs.push([name, value]);
 };
 prototype.toString = function toString(encoder) {
-  const _encode = encoder ? function (value) {
-    return encoder.call(this, value, encode$1);
-  } : encode$1;
+  const _encode = encoder ? value => encoder.call(this, value, encode$1) : encode$1;
   return this._pairs.map(function each(pair) {
     return _encode(pair[0]) + '=' + _encode(pair[1]);
   }, '').join('&');
@@ -152367,11 +151702,16 @@ function buildURL(url, params, options) {
   if (!params) {
     return url;
   }
-  const _encode = options && options.encode || encode;
+  url = url || '';
   const _options = utils$1.isFunction(options) ? {
     serialize: options
   } : options;
-  const serializeFn = _options && _options.serialize;
+
+  // Read serializer options pollution-safely: own properties and methods on a
+  // class/template prototype are honored, but values injected onto a polluted
+  // Object.prototype are ignored.
+  const _encode = utils$1.getSafeProp(_options, 'encode') || encode;
+  const serializeFn = utils$1.getSafeProp(_options, 'serialize');
   let serializedParams;
   if (serializeFn) {
     serializedParams = serializeFn(params, _options);
@@ -152459,7 +151799,9 @@ var transitionalDefaults = {
   silentJSONParsing: true,
   forcedJSONParsing: true,
   clarifyTimeoutError: false,
-  legacyInterceptorReqResOrdering: true
+  legacyInterceptorReqResOrdering: true,
+  advertiseZstdAcceptEncoding: false,
+  validateStatusUndefinedResolves: true
 };
 
 var URLSearchParams = url.URLSearchParams;
@@ -152560,6 +151902,13 @@ function toURLEncodedForm(data, options) {
   });
 }
 
+const MAX_DEPTH = DEFAULT_FORM_DATA_MAX_DEPTH;
+function throwIfDepthExceeded(index) {
+  if (index > MAX_DEPTH) {
+    throw new AxiosError('FormData field is too deeply nested (' + index + ' levels). Max depth: ' + MAX_DEPTH, AxiosError.ERR_FORM_DATA_DEPTH_EXCEEDED);
+  }
+}
+
 /**
  * It takes a string like `foo[x][y][z]` and returns an array like `['foo', 'x', 'y', 'z']
  *
@@ -152572,9 +151921,14 @@ function parsePropPath(name) {
   // foo.x.y.z
   // foo-x-y-z
   // foo x y z
-  return utils$1.matchAll(/\w+|\[(\w*)]/g, name).map(match => {
-    return match[0] === '[]' ? '' : match[1] || match[0];
-  });
+  const path = [];
+  const pattern = /\w+|\[(\w*)]/g;
+  let match;
+  while ((match = pattern.exec(name)) !== null) {
+    throwIfDepthExceeded(path.length);
+    path.push(match[0] === '[]' ? '' : match[1] || match[0]);
+  }
+  return path;
 }
 
 /**
@@ -152606,6 +151960,7 @@ function arrayToObject(arr) {
  */
 function formDataToJSON(formData) {
   function buildPath(path, value, target, index) {
+    throwIfDepthExceeded(index);
     let name = path[index++];
     if (name === '__proto__') return true;
     const isNumericKey = Number.isFinite(+name);
@@ -152619,7 +151974,7 @@ function formDataToJSON(formData) {
       }
       return !isNumericKey;
     }
-    if (!target[name] || !utils$1.isObject(target[name])) {
+    if (!utils$1.hasOwnProp(target, name) || !utils$1.isObject(target[name])) {
       target[name] = [];
     }
     const result = buildPath(path, value, target[name], index);
@@ -152846,6 +152201,24 @@ function combineURLs(baseURL, relativeURL) {
   return relativeURL ? baseURL.replace(/\/?\/$/, '') + '/' + relativeURL.replace(/^\/+/, '') : baseURL;
 }
 
+const malformedHttpProtocol = /^https?:(?!\/\/)/i;
+const httpProtocolControlCharacters = /[\t\n\r]/g;
+function stripLeadingC0ControlOrSpace(url) {
+  let i = 0;
+  while (i < url.length && url.charCodeAt(i) <= 0x20) {
+    i++;
+  }
+  return url.slice(i);
+}
+function normalizeURLForProtocolCheck(url) {
+  return stripLeadingC0ControlOrSpace(url).replace(httpProtocolControlCharacters, '');
+}
+function assertValidHttpProtocolURL(url, config) {
+  if (typeof url === 'string' && malformedHttpProtocol.test(normalizeURLForProtocolCheck(url))) {
+    throw new AxiosError('Invalid URL: missing "//" after protocol', AxiosError.ERR_INVALID_URL, config);
+  }
+}
+
 /**
  * Creates a new URL by combining the baseURL with the requestedURL,
  * only when the requestedURL is not already an absolute URL.
@@ -152856,9 +152229,11 @@ function combineURLs(baseURL, relativeURL) {
  *
  * @returns {string} The combined full path
  */
-function buildFullPath(baseURL, requestedURL, allowAbsoluteUrls) {
+function buildFullPath(baseURL, requestedURL, allowAbsoluteUrls, config) {
+  assertValidHttpProtocolURL(requestedURL, config);
   let isRelativeUrl = !isAbsoluteURL(requestedURL);
   if (baseURL && (isRelativeUrl || allowAbsoluteUrls === false)) {
+    assertValidHttpProtocolURL(baseURL, config);
     return combineURLs(baseURL, requestedURL);
   }
   return requestedURL;
@@ -152960,14 +152335,16 @@ function getEnv(key) {
   return process.env[key.toLowerCase()] || process.env[key.toUpperCase()] || '';
 }
 
-const VERSION = "1.16.0";
+const VERSION = "1.18.1";
 
 function parseProtocol(url) {
   const match = /^([-+\w]{1,25}):(?:\/\/)?/.exec(url);
   return match && match[1] || '';
 }
 
-const DATA_URL_PATTERN = /^(?:([^;]+);)?(?:[^;]+;)?(base64|),([\s\S]*)$/;
+// RFC 2397: data:[<mediatype>][;base64],<data>
+// mediatype = type/subtype followed by optional ;name=value parameters
+const DATA_URL_PATTERN = /^([^,;]+\/[^,;]+)?((?:;[^,;=]+=[^,;]+)*)(;base64)?,([\s\S]*)$/;
 
 /**
  * Parse data uri to a Buffer or Blob
@@ -152991,10 +152368,20 @@ function fromDataURI(uri, asBlob, options) {
     if (!match) {
       throw new AxiosError('Invalid URL', AxiosError.ERR_INVALID_URL);
     }
-    const mime = match[1];
-    const isBase64 = match[2];
-    const body = match[3];
-    const buffer = Buffer.from(decodeURIComponent(body), isBase64 ? 'base64' : 'utf8');
+    const type = match[1];
+    const params = match[2];
+    const encoding = match[3] ? 'base64' : 'utf8';
+    const body = match[4];
+
+    // RFC 2397 section 3: default mediatype is text/plain;charset=US-ASCII
+    // Bare `data:,` leaves mime undefined; Blob normalises that to "" per spec.
+    let mime = '';
+    if (type) {
+      mime = params ? type + params : type;
+    } else if (params) {
+      mime = 'text/plain' + params;
+    }
+    const buffer = encoding === 'base64' ? Buffer.from(body, 'base64') : Buffer.from(decodeURIComponent(body), encoding);
     if (asBlob) {
       if (!_Blob) {
         throw new AxiosError('Blob is not supported', AxiosError.ERR_NOT_SUPPORT);
@@ -153187,10 +152574,10 @@ const formDataToStream = (form, headersHandler, options) => {
     boundary = tag + '-' + platform.generateString(size, BOUNDARY_ALPHABET)
   } = options || {};
   if (!utils$1.isFormData(form)) {
-    throw TypeError('FormData instance required');
+    throw new TypeError('FormData instance required');
   }
   if (boundary.length < 1 || boundary.length > 70) {
-    throw Error('boundary must be 1-70 characters long');
+    throw new Error('boundary must be 1-70 characters long');
   }
   const boundaryBytes = textEncoder.encode('--' + boundary + CRLF);
   const footerBytes = textEncoder.encode('--' + boundary + '--' + CRLF);
@@ -153240,6 +152627,84 @@ class ZlibHeaderTransformStream extends stream.Transform {
   }
 }
 
+class Http2Sessions {
+  constructor() {
+    this.sessions = Object.create(null);
+  }
+  getSession(authority, options) {
+    options = Object.assign({
+      sessionTimeout: 1000
+    }, options);
+    let authoritySessions = this.sessions[authority];
+    if (authoritySessions) {
+      let len = authoritySessions.length;
+      for (let i = 0; i < len; i++) {
+        const [sessionHandle, sessionOptions] = authoritySessions[i];
+        if (!sessionHandle.destroyed && !sessionHandle.closed && util.isDeepStrictEqual(sessionOptions, options)) {
+          return sessionHandle;
+        }
+      }
+    }
+    const session = http2.connect(authority, options);
+    let removed;
+    let timer;
+    const removeSession = () => {
+      if (removed) {
+        return;
+      }
+      removed = true;
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+      }
+      let entries = authoritySessions,
+        len = entries.length,
+        i = len;
+      while (i--) {
+        if (entries[i][0] === session) {
+          if (len === 1) {
+            delete this.sessions[authority];
+          } else {
+            entries.splice(i, 1);
+          }
+          if (!session.closed) {
+            session.close();
+          }
+          return;
+        }
+      }
+    };
+    const originalRequestFn = session.request;
+    const {
+      sessionTimeout
+    } = options;
+    if (sessionTimeout != null) {
+      let streamsCount = 0;
+      session.request = function () {
+        const stream = originalRequestFn.apply(this, arguments);
+        streamsCount++;
+        if (timer) {
+          clearTimeout(timer);
+          timer = null;
+        }
+        stream.once('close', () => {
+          if (! --streamsCount) {
+            timer = setTimeout(() => {
+              timer = null;
+              removeSession();
+            }, sessionTimeout);
+          }
+        });
+        return stream;
+      };
+    }
+    session.once('close', removeSession);
+    let entry = [session, options];
+    authoritySessions ? authoritySessions.push(entry) : authoritySessions = this.sessions[authority] = [entry];
+    return session;
+  }
+}
+
 const callbackify = (fn, reducer) => {
   return utils$1.isAsyncFn(fn) ? function (...args) {
     const cb = args.pop();
@@ -153253,12 +152718,33 @@ const callbackify = (fn, reducer) => {
   } : fn;
 };
 
-const LOOPBACK_HOSTNAMES = new Set(['localhost']);
+const LOOPBACK_HOSTNAMES = new Set(['localhost', '0.0.0.0']);
 const isIPv4Loopback = host => {
   const parts = host.split('.');
   if (parts.length !== 4) return false;
   if (parts[0] !== '127') return false;
   return parts.every(p => /^\d+$/.test(p) && Number(p) >= 0 && Number(p) <= 255);
+};
+const isIPv6ZeroGroup = group => /^0{1,4}$/.test(group);
+
+// The unspecified address (IPv4 0.0.0.0 / IPv6 ::) resolves to the local host
+// for outbound connections, so treat it as loopback-equivalent for NO_PROXY
+// matching. 0.0.0.0 is covered by LOOPBACK_HOSTNAMES; this handles compressed
+// and full IPv6 all-zero forms so both families bypass symmetrically.
+const isIPv6Unspecified = host => {
+  if (host === '::') return true;
+  const compressionIndex = host.indexOf('::');
+  if (compressionIndex !== -1) {
+    if (compressionIndex !== host.lastIndexOf('::')) return false;
+    const left = host.slice(0, compressionIndex);
+    const right = host.slice(compressionIndex + 2);
+    const leftGroups = left ? left.split(':') : [];
+    const rightGroups = right ? right.split(':') : [];
+    const explicitGroups = leftGroups.length + rightGroups.length;
+    return explicitGroups < 8 && leftGroups.every(isIPv6ZeroGroup) && rightGroups.every(isIPv6ZeroGroup);
+  }
+  const groups = host.split(':');
+  return groups.length === 8 && groups.every(isIPv6ZeroGroup);
 };
 const isIPv6Loopback = host => {
   // Collapse all-zero groups: any form of ::1 / 0:0:...:0:1
@@ -153292,6 +152778,7 @@ const isLoopback = host => {
   if (!host) return false;
   if (LOOPBACK_HOSTNAMES.has(host)) return true;
   if (isIPv4Loopback(host)) return true;
+  if (isIPv6Unspecified(host)) return true;
   return isIPv6Loopback(host);
 };
 const DEFAULT_PORTS = {
@@ -153474,6 +152961,9 @@ const progressEventReducer = (listener, isDownloadStream, freq = 3) => {
   let bytesNotified = 0;
   const _speedometer = speedometer(50, 250);
   return throttle(e => {
+    if (!e || typeof e.loaded !== 'number') {
+      return;
+    }
     const rawLoaded = e.loaded;
     const total = e.lengthComputable ? e.total : undefined;
     const loaded = total != null ? Math.min(rawLoaded, total) : rawLoaded;
@@ -153508,11 +152998,13 @@ const asyncDecorator = fn => (...args) => utils$1.asap(() => fn(...args));
  * Estimate decoded byte length of a data:// URL *without* allocating large buffers.
  * - For base64: compute exact decoded size using length and padding;
  *               handle %XX at the character-count level (no string allocation).
- * - For non-base64: use UTF-8 byteLength of the encoded body as a safe upper bound.
+ * - For non-base64: compute the exact percent-decoded UTF-8 byte length.
  *
  * @param {string} url
  * @returns {number}
  */
+const isHexDigit = charCode => charCode >= 48 && charCode <= 57 || charCode >= 65 && charCode <= 70 || charCode >= 97 && charCode <= 102;
+const isPercentEncodedByte = (str, i, len) => i + 2 < len && isHexDigit(str.charCodeAt(i + 1)) && isHexDigit(str.charCodeAt(i + 2));
 function estimateDataURLDecodedBytes(url) {
   if (!url || typeof url !== 'string') return 0;
   if (!url.startsWith('data:')) return 0;
@@ -153529,7 +153021,7 @@ function estimateDataURLDecodedBytes(url) {
       if (body.charCodeAt(i) === 37 /* '%' */ && i + 2 < len) {
         const a = body.charCodeAt(i + 1);
         const b = body.charCodeAt(i + 2);
-        const isHex = (a >= 48 && a <= 57 || a >= 65 && a <= 70 || a >= 97 && a <= 102) && (b >= 48 && b <= 57 || b >= 65 && b <= 70 || b >= 97 && b <= 102);
+        const isHex = isHexDigit(a) && isHexDigit(b);
         if (isHex) {
           effectiveLen -= 2;
           i += 2;
@@ -153564,18 +153056,18 @@ function estimateDataURLDecodedBytes(url) {
     const bytes = groups * 3 - (pad || 0);
     return bytes > 0 ? bytes : 0;
   }
-  if (typeof Buffer !== 'undefined' && typeof Buffer.byteLength === 'function') {
-    return Buffer.byteLength(body, 'utf8');
-  }
 
   // Compute UTF-8 byte length directly from UTF-16 code units without allocating
   // a byte buffer (TextEncoder.encode would defeat the DoS guard on large bodies).
-  // Using body.length here would undercount non-ASCII (e.g. '€' is 1 code unit
-  // but 3 UTF-8 bytes).
+  // Valid %XX triplets count as one decoded byte; this matches the bytes that
+  // decodeURIComponent(body) would produce before Buffer re-encodes the string.
   let bytes = 0;
   for (let i = 0, len = body.length; i < len; i++) {
     const c = body.charCodeAt(i);
-    if (c < 0x80) {
+    if (c === 37 /* '%' */ && isPercentEncodedByte(body, i, len)) {
+      bytes += 1;
+      i += 2;
+    } else if (c < 0x80) {
       bytes += 1;
     } else if (c < 0x800) {
       bytes += 2;
@@ -153602,7 +153094,14 @@ const brotliOptions = {
   flush: zlib.constants.BROTLI_OPERATION_FLUSH,
   finishFlush: zlib.constants.BROTLI_OPERATION_FLUSH
 };
+const zstdOptions = {
+  flush: zlib.constants.ZSTD_e_flush,
+  finishFlush: zlib.constants.ZSTD_e_flush
+};
 const isBrotliSupported = utils$1.isFunction(zlib.createBrotliDecompress);
+const isZstdSupported = utils$1.isFunction(zlib.createZstdDecompress);
+const ACCEPT_ENCODING = 'gzip, compress, deflate' + (isBrotliSupported ? ', br' : '');
+const ACCEPT_ENCODING_WITH_ZSTD = ACCEPT_ENCODING + (isZstdSupported ? ', zstd' : '');
 const {
   http: httpFollow,
   https: httpsFollow
@@ -153625,6 +153124,78 @@ function setFormDataHeaders$1(headers, formHeaders, policy) {
 // the request currently owning that socket across keep-alive reuse (issue #10780).
 const kAxiosSocketListener = Symbol('axios.http.socketListener');
 const kAxiosCurrentReq = Symbol('axios.http.currentReq');
+
+// Tags HttpsProxyAgent instances installed by setProxy() so the redirect path
+// can strip them without clobbering a user-supplied agent that happens to be
+// an HttpsProxyAgent.
+const kAxiosInstalledTunnel = Symbol('axios.http.installedTunnel');
+
+// Cache of CONNECT-tunneling agents keyed by proxy config so repeat requests
+// through the same proxy reuse a single agent (and its socket pool). The
+// keyspace is bounded by the set of distinct proxy configs the process uses,
+// so unbounded growth is not a concern in practice.
+const tunnelingAgentCache = new Map();
+const tunnelingAgentCacheUser = new WeakMap();
+// Minimum minor versions where Node's HTTP Agent supports native proxyEnv
+// handling. Checking the selected agent below also covers startup modes such
+// as NODE_OPTIONS=--use-env-proxy and --no-use-env-proxy precedence.
+const NODE_NATIVE_ENV_PROXY_SUPPORT = {
+  22: 21,
+  24: 5
+};
+function isNodeNativeEnvProxySupported(nodeVersion = process.versions && process.versions.node) {
+  if (!nodeVersion) {
+    return false;
+  }
+  const [major, minor] = nodeVersion.split('.').map(part => Number(part));
+  if (!Number.isInteger(major) || !Number.isInteger(minor)) {
+    return false;
+  }
+  if (major > 24) {
+    return true;
+  }
+  return NODE_NATIVE_ENV_PROXY_SUPPORT[major] != null && minor >= NODE_NATIVE_ENV_PROXY_SUPPORT[major];
+}
+function isNodeEnvProxyEnabled(agent, nodeVersion = process.versions && process.versions.node) {
+  if (!isNodeNativeEnvProxySupported(nodeVersion)) {
+    return false;
+  }
+  const agentOptions = agent && agent.options;
+  return Boolean(agentOptions && utils$1.hasOwnProp(agentOptions, 'proxyEnv') && agentOptions.proxyEnv != null);
+}
+function getProxyEnvAgent(options, configHttpAgent, configHttpsAgent) {
+  return isHttps.test(options.protocol) ? configHttpsAgent || https.globalAgent : configHttpAgent || http.globalAgent;
+}
+function getTunnelingAgent(agentOptions, userHttpsAgent) {
+  const key = agentOptions.protocol + '//' + agentOptions.hostname + ':' + (agentOptions.port || '') + '#' + (agentOptions.auth || '');
+  const cache = userHttpsAgent ? tunnelingAgentCacheUser.get(userHttpsAgent) || tunnelingAgentCacheUser.set(userHttpsAgent, new Map()).get(userHttpsAgent) : tunnelingAgentCache;
+  let agent = cache.get(key);
+  if (agent) return agent;
+  // Forward the user's TLS options (custom CA, rejectUnauthorized, client cert,
+  // etc.) into the tunneling agent so they apply to the origin TLS upgrade
+  // performed after CONNECT. Our proxy fields take precedence on conflict.
+  const merged = userHttpsAgent && userHttpsAgent.options ? {
+    ...userHttpsAgent.options,
+    ...agentOptions
+  } : agentOptions;
+  agent = new HttpsProxyAgent(merged);
+  if (userHttpsAgent && userHttpsAgent.options) {
+    const originTLSOptions = {
+      ...userHttpsAgent.options
+    };
+    const callback = agent.callback;
+    agent.callback = function axiosTunnelingAgentCallback(req, opts) {
+      // HttpsProxyAgent v5 reads callback opts for the post-CONNECT origin TLS upgrade.
+      return callback.call(this, req, {
+        ...originTLSOptions,
+        ...opts
+      });
+    };
+  }
+  agent[kAxiosInstalledTunnel] = true;
+  cache.set(key, agent);
+  return agent;
+}
 const supportedProtocols = platform.protocols.map(protocol => {
   return protocol + ':';
 });
@@ -153633,7 +153204,7 @@ const supportedProtocols = platform.protocols.map(protocol => {
 // Decode before composing the `auth` option so credentials such as
 // `my%40email.com:pass` are sent as `my@email.com:pass`. Falls back to the
 // original value for malformed input so a bad encoding never throws.
-const decodeURIComponentSafe = value => {
+const decodeURIComponentSafe$1 = value => {
   if (!utils$1.isString(value)) {
     return value;
   }
@@ -153647,84 +153218,11 @@ const flushOnFinish = (stream, [throttled, flush]) => {
   stream.on('end', flush).on('error', flush);
   return throttled;
 };
-class Http2Sessions {
-  constructor() {
-    this.sessions = Object.create(null);
-  }
-  getSession(authority, options) {
-    options = Object.assign({
-      sessionTimeout: 1000
-    }, options);
-    let authoritySessions = this.sessions[authority];
-    if (authoritySessions) {
-      let len = authoritySessions.length;
-      for (let i = 0; i < len; i++) {
-        const [sessionHandle, sessionOptions] = authoritySessions[i];
-        if (!sessionHandle.destroyed && !sessionHandle.closed && util.isDeepStrictEqual(sessionOptions, options)) {
-          return sessionHandle;
-        }
-      }
-    }
-    const session = http2.connect(authority, options);
-    let removed;
-    const removeSession = () => {
-      if (removed) {
-        return;
-      }
-      removed = true;
-      let entries = authoritySessions,
-        len = entries.length,
-        i = len;
-      while (i--) {
-        if (entries[i][0] === session) {
-          if (len === 1) {
-            delete this.sessions[authority];
-          } else {
-            entries.splice(i, 1);
-          }
-          if (!session.closed) {
-            session.close();
-          }
-          return;
-        }
-      }
-    };
-    const originalRequestFn = session.request;
-    const {
-      sessionTimeout
-    } = options;
-    if (sessionTimeout != null) {
-      let timer;
-      let streamsCount = 0;
-      session.request = function () {
-        const stream = originalRequestFn.apply(this, arguments);
-        streamsCount++;
-        if (timer) {
-          clearTimeout(timer);
-          timer = null;
-        }
-        stream.once('close', () => {
-          if (! --streamsCount) {
-            timer = setTimeout(() => {
-              timer = null;
-              removeSession();
-            }, sessionTimeout);
-          }
-        });
-        return stream;
-      };
-    }
-    session.once('close', removeSession);
-    let entry = [session, options];
-    authoritySessions ? authoritySessions.push(entry) : authoritySessions = this.sessions[authority] = [entry];
-    return session;
-  }
-}
 const http2Sessions = new Http2Sessions();
 
 /**
- * If the proxy or config beforeRedirects functions are defined, call them with the options
- * object.
+ * If the proxy, auth, sensitive header, or config beforeRedirects functions are defined,
+ * call them with the options object.
  *
  * @param {Object<string, any>} options - The options object that was passed to the request.
  *
@@ -153734,8 +153232,35 @@ function dispatchBeforeRedirect(options, responseDetails, requestDetails) {
   if (options.beforeRedirects.proxy) {
     options.beforeRedirects.proxy(options);
   }
+  if (options.beforeRedirects.auth) {
+    options.beforeRedirects.auth(options);
+  }
+  if (options.beforeRedirects.sensitiveHeaders) {
+    options.beforeRedirects.sensitiveHeaders(options, requestDetails);
+  }
   if (options.beforeRedirects.config) {
     options.beforeRedirects.config(options, responseDetails, requestDetails);
+  }
+}
+function stripMatchingHeaders(headers, sensitiveSet) {
+  if (!headers) {
+    return;
+  }
+  Object.keys(headers).forEach(header => {
+    if (sensitiveSet.has(header.toLowerCase())) {
+      delete headers[header];
+    }
+  });
+}
+function isSameOriginRedirect(redirectOptions, requestDetails) {
+  if (!requestDetails) {
+    return false;
+  }
+  try {
+    return new URL(requestDetails.url).origin === new URL(redirectOptions.href).origin;
+  } catch (e) {
+    // If origin comparison fails, treat the redirect as unsafe.
+    return false;
   }
 }
 
@@ -153748,9 +153273,10 @@ function dispatchBeforeRedirect(options, responseDetails, requestDetails) {
  *
  * @returns {http.ClientRequestArgs}
  */
-function setProxy(options, configProxy, location, isRedirect) {
+function setProxy(options, configProxy, location, isRedirect, configHttpsAgent, configHttpAgent) {
   let proxy = configProxy;
-  if (!proxy && proxy !== false) {
+  const proxyEnvAgent = getProxyEnvAgent(options, configHttpAgent, configHttpsAgent);
+  if (!proxy && proxy !== false && !isNodeEnvProxyEnabled(proxyEnvAgent)) {
     const proxyUrl = getProxyForUrl(location);
     if (proxyUrl) {
       if (!shouldBypassProxy(location)) {
@@ -153768,6 +153294,13 @@ function setProxy(options, configProxy, location, isRedirect) {
         delete options.headers[name];
       }
     }
+  }
+  // Strip any tunneling agent we installed for the previous hop so a redirect
+  // that drops the proxy or crosses an HTTPS↔HTTP boundary doesn't reuse a
+  // stale one. Match on our Symbol marker so a user-supplied HttpsProxyAgent
+  // (which won't carry the marker) is left alone.
+  if (isRedirect && options.agent && options.agent[kAxiosInstalledTunnel]) {
+    options.agent = undefined;
   }
   if (proxy) {
     // Read proxy fields without traversing the prototype chain. URL instances expose
@@ -153801,37 +153334,84 @@ function setProxy(options, configProxy, location, isRedirect) {
           proxy
         });
       }
-      const base64 = Buffer.from(proxyAuth, 'utf8').toString('base64');
-      options.headers['Proxy-Authorization'] = 'Basic ' + base64;
     }
-
-    // Preserve a user-supplied Host header (case-insensitive) so callers can override
-    // the value forwarded to the proxy; otherwise default to the request URL's host.
-    let hasUserHostHeader = false;
-    for (const name of Object.keys(options.headers)) {
-      if (name.toLowerCase() === 'host') {
-        hasUserHostHeader = true;
-        break;
+    const targetIsHttps = isHttps.test(options.protocol);
+    if (targetIsHttps) {
+      // CONNECT-tunneling path for HTTPS targets. Preserves end-to-end TLS to
+      // the origin so the proxy cannot inspect the URL, headers, or body — the
+      // behavior already promised by THREATMODEL.md (T-R9). HttpsProxyAgent
+      // sends Proxy-Authorization on the CONNECT request only, never on the
+      // wrapped TLS request, which is why we don't stamp it onto
+      // options.headers here. If the user already supplied an HttpsProxyAgent,
+      // they own tunneling end-to-end and we leave them alone; otherwise we
+      // install our own tunneling agent and forward their TLS options (if any)
+      // so a custom httpsAgent for cert pinning / rejectUnauthorized still
+      // applies to the origin TLS upgrade.
+      if (!(configHttpsAgent instanceof HttpsProxyAgent)) {
+        const proxyHost = readProxyField('hostname') || readProxyField('host');
+        const proxyPort = readProxyField('port');
+        const rawProxyProtocol = readProxyField('protocol');
+        const normalizedProtocol = rawProxyProtocol ? rawProxyProtocol.includes(':') ? rawProxyProtocol : `${rawProxyProtocol}:` : 'http:';
+        // Bracket IPv6 literals for URL parsing; URL.hostname strips the
+        // brackets again on read so the agent receives the raw form.
+        const proxyHostForURL = proxyHost && proxyHost.includes(':') && !proxyHost.startsWith('[') ? `[${proxyHost}]` : proxyHost;
+        const proxyURL = new URL(`${normalizedProtocol}//${proxyHostForURL}${proxyPort ? ':' + proxyPort : ''}`);
+        const agentOptions = {
+          protocol: proxyURL.protocol,
+          hostname: proxyURL.hostname.replace(/^\[|\]$/g, ''),
+          port: proxyURL.port,
+          auth: proxyAuth && typeof proxyAuth === 'string' ? proxyAuth : undefined
+        };
+        if (proxyURL.protocol === 'https:') {
+          agentOptions.ALPNProtocols = ['http/1.1'];
+        }
+        const tunnelingAgent = getTunnelingAgent(agentOptions, configHttpsAgent);
+        // Set both: `options.agent` is consumed by the native https.request path
+        // (maxRedirects === 0); `options.agents.https` is consumed by
+        // follow-redirects, which ignores `options.agent` when `options.agents`
+        // is present.
+        options.agent = tunnelingAgent;
+        if (options.agents) {
+          options.agents.https = tunnelingAgent;
+        }
       }
-    }
-    if (!hasUserHostHeader) {
-      options.headers.host = options.hostname + (options.port ? ':' + options.port : '');
-    }
-    const proxyHost = readProxyField('hostname') || readProxyField('host');
-    options.hostname = proxyHost;
-    // Replace 'host' since options is not a URL object
-    options.host = proxyHost;
-    options.port = readProxyField('port');
-    options.path = location;
-    const proxyProtocol = readProxyField('protocol');
-    if (proxyProtocol) {
-      options.protocol = proxyProtocol.includes(':') ? proxyProtocol : `${proxyProtocol}:`;
+    } else {
+      // Forward-proxy mode for plaintext HTTP targets. The request line carries
+      // the absolute URL and the proxy sees everything — acceptable for plain
+      // HTTP since the wire was already plaintext.
+      if (proxyAuth) {
+        const base64 = Buffer.from(proxyAuth, 'utf8').toString('base64');
+        options.headers['Proxy-Authorization'] = 'Basic ' + base64;
+      }
+
+      // Preserve a user-supplied Host header (case-insensitive) so callers can override
+      // the value forwarded to the proxy; otherwise default to the request URL's host.
+      let hasUserHostHeader = false;
+      for (const name of Object.keys(options.headers)) {
+        if (name.toLowerCase() === 'host') {
+          hasUserHostHeader = true;
+          break;
+        }
+      }
+      if (!hasUserHostHeader) {
+        options.headers.host = options.hostname + (options.port ? ':' + options.port : '');
+      }
+      const proxyHost = readProxyField('hostname') || readProxyField('host');
+      options.hostname = proxyHost;
+      // Replace 'host' since options is not a URL object
+      options.host = proxyHost;
+      options.port = readProxyField('port');
+      options.path = location;
+      const proxyProtocol = readProxyField('protocol');
+      if (proxyProtocol) {
+        options.protocol = proxyProtocol.includes(':') ? proxyProtocol : `${proxyProtocol}:`;
+      }
     }
   }
   options.beforeRedirects.proxy = function beforeRedirect(redirectOptions) {
     // Configure proxy for redirected request, passing the original config proxy to apply
     // the exact same logic as if the redirected request was performed by axios directly.
-    setProxy(redirectOptions, configProxy, redirectOptions.href, true);
+    setProxy(redirectOptions, configProxy, redirectOptions.href, true, configHttpsAgent, configHttpAgent);
   };
 }
 const isHttpAdapterSupported = typeof process !== 'undefined' && utils$1.kindOf(process) === 'process';
@@ -153914,16 +153494,30 @@ const http2Transport = {
 /*eslint consistent-return:0*/
 var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
   return wrapAsync(async function dispatchHttpRequest(resolve, reject, onDone) {
-    const own = key => utils$1.hasOwnProp(config, key) ? config[key] : undefined;
+    // Read config pollution-safely: own properties and members inherited from
+    // a non-Object.prototype source (e.g. an Object.create(defaults) template)
+    // are honored, but values injected onto a polluted Object.prototype are
+    // ignored. All behavior-affecting reads in this adapter go through own()
+    // so the protection boundary stays consistent.
+    const own = key => utils$1.getSafeProp(config, key);
+    const transitional = own('transitional') || transitionalDefaults;
     let data = own('data');
     let lookup = own('lookup');
     let family = own('family');
     let httpVersion = own('httpVersion');
     if (httpVersion === undefined) httpVersion = 1;
     let http2Options = own('http2Options');
+    const httpAgent = own('httpAgent');
+    const httpsAgent = own('httpsAgent');
+    const configProxy = own('proxy');
     const responseType = own('responseType');
     const responseEncoding = own('responseEncoding');
-    const method = config.method.toUpperCase();
+    const socketPath = own('socketPath');
+    const method = own('method').toUpperCase();
+    const maxRedirects = own('maxRedirects');
+    const maxBodyLength = own('maxBodyLength');
+    const maxContentLength = own('maxContentLength');
+    const decompress = own('decompress');
     let isDone;
     let rejected = false;
     let req;
@@ -153954,7 +153548,7 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
       try {
         abortEmitter.emit('abort', !reason || reason.type ? new CanceledError(null, config, req) : reason);
       } catch (err) {
-        console.warn('emit error', err);
+        // ignore emit errors
       }
     }
     function clearConnectPhaseTimer() {
@@ -153964,10 +153558,11 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
       }
     }
     function createTimeoutError() {
-      let timeoutErrorMessage = config.timeout ? 'timeout of ' + config.timeout + 'ms exceeded' : 'timeout exceeded';
-      const transitional = config.transitional || transitionalDefaults;
-      if (config.timeoutErrorMessage) {
-        timeoutErrorMessage = config.timeoutErrorMessage;
+      const configTimeout = own('timeout');
+      let timeoutErrorMessage = configTimeout ? 'timeout of ' + configTimeout + 'ms exceeded' : 'timeout exceeded';
+      const configTimeoutErrorMessage = own('timeoutErrorMessage');
+      if (configTimeoutErrorMessage) {
+        timeoutErrorMessage = configTimeoutErrorMessage;
       }
       return new AxiosError(timeoutErrorMessage, transitional.clarifyTimeoutError ? AxiosError.ETIMEDOUT : AxiosError.ECONNABORTED, config, req);
     }
@@ -154010,17 +153605,22 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
     });
 
     // Parse url
-    const fullPath = buildFullPath(config.baseURL, config.url, config.allowAbsoluteUrls);
-    const parsed = new URL(fullPath, platform.hasBrowserEnv ? platform.origin : undefined);
+    const fullPath = buildFullPath(own('baseURL'), own('url'), own('allowAbsoluteUrls'), config);
+    // Unix-socket requests (own socketPath) commonly pass a path-only url
+    // like '/foo'; supply a synthetic base so new URL() can still parse it.
+    // Use the own-property value (not config.socketPath) so a polluted
+    // prototype cannot influence URL base selection.
+    const urlBase = socketPath ? 'http://localhost' : platform.hasBrowserEnv ? platform.origin : undefined;
+    const parsed = new URL(fullPath, urlBase);
     const protocol = parsed.protocol || supportedProtocols[0];
     if (protocol === 'data:') {
       // Apply the same semantics as HTTP: only enforce if a finite, non-negative cap is set.
-      if (config.maxContentLength > -1) {
-        // Use the exact string passed to fromDataURI (config.url); fall back to fullPath if needed.
-        const dataUrl = String(config.url || fullPath || '');
+      if (maxContentLength > -1) {
+        // Use the exact string passed to fromDataURI (the configured url); fall back to fullPath if needed.
+        const dataUrl = String(own('url') || fullPath || '');
         const estimated = estimateDataURLDecodedBytes(dataUrl);
-        if (estimated > config.maxContentLength) {
-          return reject(new AxiosError('maxContentLength size of ' + config.maxContentLength + ' exceeded', AxiosError.ERR_BAD_RESPONSE, config));
+        if (estimated > maxContentLength) {
+          return reject(new AxiosError('maxContentLength size of ' + maxContentLength + ' exceeded', AxiosError.ERR_BAD_RESPONSE, config));
         }
       }
       let convertedData;
@@ -154033,7 +153633,7 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
         });
       }
       try {
-        convertedData = fromDataURI(config.url, responseType === 'blob', {
+        convertedData = fromDataURI(own('url'), responseType === 'blob', {
           Blob: config.env && config.env.Blob
         });
       } catch (err) {
@@ -154107,7 +153707,7 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
 
       // Add Content-Length header if data exists
       headers.setContentLength(data.length, false);
-      if (config.maxBodyLength > -1 && data.length > config.maxBodyLength) {
+      if (maxBodyLength > -1 && data.length > maxBodyLength) {
         return reject(new AxiosError('Request body larger than maxBodyLength limit', AxiosError.ERR_BAD_REQUEST, config));
       }
     }
@@ -154134,37 +153734,36 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
     let auth = undefined;
     const configAuth = own('auth');
     if (configAuth) {
-      const username = configAuth.username || '';
-      const password = configAuth.password || '';
+      const username = utils$1.getSafeProp(configAuth, 'username') || '';
+      const password = utils$1.getSafeProp(configAuth, 'password') || '';
       auth = username + ':' + password;
     }
-    if (!auth && parsed.username) {
-      const urlUsername = decodeURIComponentSafe(parsed.username);
-      const urlPassword = decodeURIComponentSafe(parsed.password);
+    if (!auth && (parsed.username || parsed.password)) {
+      const urlUsername = decodeURIComponentSafe$1(parsed.username);
+      const urlPassword = decodeURIComponentSafe$1(parsed.password);
       auth = urlUsername + ':' + urlPassword;
     }
     auth && headers.delete('authorization');
     let path$1;
     try {
-      path$1 = buildURL(parsed.pathname + parsed.search, config.params, config.paramsSerializer).replace(/^\?/, '');
+      path$1 = buildURL(parsed.pathname + parsed.search, own('params'), own('paramsSerializer')).replace(/^\?/, '');
     } catch (err) {
-      const customErr = new Error(err.message);
-      customErr.config = config;
-      customErr.url = config.url;
-      customErr.exists = true;
-      return reject(customErr);
+      return reject(AxiosError.from(err, AxiosError.ERR_BAD_REQUEST, config, null, null, {
+        url: own('url'),
+        exists: true
+      }));
     }
-    headers.set('Accept-Encoding', 'gzip, compress, deflate' + (isBrotliSupported ? ', br' : ''), false);
+    headers.set('Accept-Encoding', utils$1.hasOwnProp(transitional, 'advertiseZstdAcceptEncoding') && transitional.advertiseZstdAcceptEncoding === true ? ACCEPT_ENCODING_WITH_ZSTD : ACCEPT_ENCODING, false);
 
     // Null-prototype to block prototype pollution gadgets on properties read
     // directly by Node's http.request (e.g. insecureHTTPParser, lookup).
     const options = Object.assign(Object.create(null), {
       path: path$1,
       method: method,
-      headers: headers.toJSON(),
+      headers: toByteStringHeaderObject(headers),
       agents: {
-        http: config.httpAgent,
-        https: config.httpsAgent
+        http: httpAgent,
+        https: httpsAgent
       },
       auth,
       protocol,
@@ -154176,52 +153775,105 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
 
     // cacheable-lookup integration hotfix
     !utils$1.isUndefined(lookup) && (options.lookup = lookup);
-    if (config.socketPath) {
-      if (typeof config.socketPath !== 'string') {
+    if (socketPath) {
+      if (typeof socketPath !== 'string') {
         return reject(new AxiosError('socketPath must be a string', AxiosError.ERR_BAD_OPTION_VALUE, config));
       }
-      if (config.allowedSocketPaths != null) {
-        const allowed = Array.isArray(config.allowedSocketPaths) ? config.allowedSocketPaths : [config.allowedSocketPaths];
-        const resolvedSocket = path.resolve(config.socketPath);
+      const allowedSocketPaths = own('allowedSocketPaths');
+      if (allowedSocketPaths != null) {
+        const allowed = Array.isArray(allowedSocketPaths) ? allowedSocketPaths : [allowedSocketPaths];
+        const resolvedSocket = path.resolve(socketPath);
         const isAllowed = allowed.some(entry => typeof entry === 'string' && path.resolve(entry) === resolvedSocket);
         if (!isAllowed) {
-          return reject(new AxiosError(`socketPath "${config.socketPath}" is not permitted by allowedSocketPaths`, AxiosError.ERR_BAD_OPTION_VALUE, config));
+          return reject(new AxiosError(`socketPath "${socketPath}" is not permitted by allowedSocketPaths`, AxiosError.ERR_BAD_OPTION_VALUE, config));
         }
       }
-      options.socketPath = config.socketPath;
+      options.socketPath = socketPath;
     } else {
       options.hostname = parsed.hostname.startsWith('[') ? parsed.hostname.slice(1, -1) : parsed.hostname;
       options.port = parsed.port;
-      setProxy(options, config.proxy, protocol + '//' + parsed.hostname + (parsed.port ? ':' + parsed.port : '') + options.path);
+      setProxy(options, configProxy, protocol + '//' + parsed.hostname + (parsed.port ? ':' + parsed.port : '') + options.path, false, httpsAgent, httpAgent);
     }
     let transport;
     let isNativeTransport = false;
+    // True only for the follow-redirects transport, which applies
+    // options.maxBodyLength itself. Every other transport (http2, native
+    // http/https, a user-supplied custom transport) needs the explicit
+    // byte-counting pipeline below to enforce maxBodyLength on streamed uploads.
+    let transportEnforcesMaxBodyLength = false;
     const isHttpsRequest = isHttps.test(options.protocol);
-    options.agent = isHttpsRequest ? config.httpsAgent : config.httpAgent;
+    // Don't clobber a CONNECT-tunneling agent installed by setProxy() for an
+    // HTTPS target.
+    if (options.agent == null) {
+      options.agent = isHttpsRequest ? httpsAgent : httpAgent;
+    }
     if (isHttp2) {
       transport = http2Transport;
     } else {
       const configTransport = own('transport');
       if (configTransport) {
         transport = configTransport;
-      } else if (config.maxRedirects === 0) {
+      } else if (maxRedirects === 0) {
         transport = isHttpsRequest ? https : http;
         isNativeTransport = true;
       } else {
-        if (config.maxRedirects) {
-          options.maxRedirects = config.maxRedirects;
+        transportEnforcesMaxBodyLength = true;
+        options.sensitiveHeaders = [];
+        if (maxRedirects) {
+          options.maxRedirects = maxRedirects;
         }
         const configBeforeRedirect = own('beforeRedirect');
         if (configBeforeRedirect) {
           options.beforeRedirects.config = configBeforeRedirect;
         }
+        if (auth) {
+          // Restore HTTP Basic credentials on same-origin redirects only.
+          // follow-redirects >= 1.15.8 strips Authorization on every redirect (see #6929);
+          // cross-origin stripping is the documented mitigation for T-R2 in THREATMODEL.md
+          // and is preserved by deliberately not restoring on origin change.
+          const requestOrigin = parsed.origin;
+          const authToRestore = auth;
+          options.beforeRedirects.auth = function beforeRedirectAuth(redirectOptions) {
+            try {
+              if (new URL(redirectOptions.href).origin === requestOrigin) {
+                redirectOptions.auth = authToRestore;
+              }
+            } catch (e) {
+              // ignore malformed URL: leaving auth stripped is fail-safe
+            }
+          };
+        }
+        const sensitiveHeaders = own('sensitiveHeaders');
+        if (sensitiveHeaders != null) {
+          if (!utils$1.isArray(sensitiveHeaders)) {
+            return reject(new AxiosError('sensitiveHeaders must be an array of strings', AxiosError.ERR_BAD_OPTION_VALUE, config));
+          }
+          const sensitiveSet = new Set();
+          for (const header of sensitiveHeaders) {
+            if (!utils$1.isString(header)) {
+              return reject(new AxiosError('sensitiveHeaders must be an array of strings', AxiosError.ERR_BAD_OPTION_VALUE, config));
+            }
+            sensitiveSet.add(header.toLowerCase());
+          }
+          if (sensitiveSet.size) {
+            options.sensitiveHeaders = Array.from(sensitiveSet);
+            options.beforeRedirects.sensitiveHeaders = function beforeRedirectSensitiveHeaders(redirectOptions, requestDetails) {
+              if (!isSameOriginRedirect(redirectOptions, requestDetails)) {
+                stripMatchingHeaders(redirectOptions.headers, sensitiveSet);
+              }
+            };
+          }
+        }
         transport = isHttpsRequest ? httpsFollow : httpFollow;
       }
     }
-    if (config.maxBodyLength > -1) {
-      options.maxBodyLength = config.maxBodyLength;
+
+    // Set an explicit maxBodyLength option for transports that inspect it.
+    // When maxBodyLength is -1 (default/unlimited), use Infinity so
+    // follow-redirects does not fall back to its own 10MB default.
+    if (maxBodyLength > -1) {
+      options.maxBodyLength = maxBodyLength;
     } else {
-      // follow-redirects does not skip comparison, so it should always succeed for axios -1 unlimited
       options.maxBodyLength = Infinity;
     }
 
@@ -154251,7 +153903,7 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
       const lastRequest = res.req || req;
 
       // if decompress disabled we should not decompress
-      if (config.decompress !== false && res.headers['content-encoding']) {
+      if (decompress !== false && res.headers['content-encoding']) {
         // if no content, but headers still say that it is encoded,
         // remove the header not confuse downstream operations
         if (method === 'HEAD' || res.statusCode === 204) {
@@ -154283,6 +153935,13 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
               streams.push(zlib.createBrotliDecompress(brotliOptions));
               delete res.headers['content-encoding'];
             }
+            break;
+          case 'zstd':
+            if (isZstdSupported) {
+              streams.push(zlib.createZstdDecompress(zstdOptions));
+              delete res.headers['content-encoding'];
+            }
+            break;
         }
       }
       responseStream = streams.length > 1 ? stream.pipeline(streams, utils$1.noop) : streams[0];
@@ -154296,8 +153955,8 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
       if (responseType === 'stream') {
         // Enforce maxContentLength on streamed responses; previously this
         // was applied only to buffered responses.
-        if (config.maxContentLength > -1) {
-          const limit = config.maxContentLength;
+        if (maxContentLength > -1) {
+          const limit = maxContentLength;
           const source = responseStream;
           async function* enforceMaxContentLength() {
             let totalResponseBytes = 0;
@@ -154323,11 +153982,11 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
           totalResponseBytes += chunk.length;
 
           // make sure the content length is not over the maxContentLength if specified
-          if (config.maxContentLength > -1 && totalResponseBytes > config.maxContentLength) {
+          if (maxContentLength > -1 && totalResponseBytes > maxContentLength) {
             // stream.destroy() emit aborted event before calling reject() on Node.js v16
             rejected = true;
             responseStream.destroy();
-            abort(new AxiosError('maxContentLength size of ' + config.maxContentLength + ' exceeded', AxiosError.ERR_BAD_RESPONSE, config, lastRequest));
+            abort(new AxiosError('maxContentLength size of ' + maxContentLength + ' exceeded', AxiosError.ERR_BAD_RESPONSE, config, lastRequest));
           }
         });
         responseStream.on('aborted', function handlerStreamAborted() {
@@ -154390,7 +154049,11 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
     const boundSockets = new Set();
     req.on('socket', function handleRequestSocket(socket) {
       // default interval of sending ack packet is 1 minute
-      socket.setKeepAlive(true, 1000 * 60);
+      // proxy agents (e.g. agent-base) may return a generic Duplex stream
+      // that doesn't have setKeepAlive, so guard before calling
+      if (typeof socket.setKeepAlive === 'function') {
+        socket.setKeepAlive(true, 1000 * 60);
+      }
 
       // Install a single 'error' listener per socket (not per request) to avoid
       // accumulating listeners on pooled keep-alive sockets that get reassigned
@@ -154420,9 +154083,9 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
     });
 
     // Handle request timeout
-    if (config.timeout) {
+    if (own('timeout')) {
       // This is forcing a int timeout to avoid problems if the `req` interface doesn't handle other types.
-      const timeout = parseInt(config.timeout, 10);
+      const timeout = parseInt(own('timeout'), 10);
       if (Number.isNaN(timeout)) {
         abort(new AxiosError('error trying to parse `config.timeout` to int', AxiosError.ERR_BAD_OPTION_VALUE, config, req));
         return;
@@ -154466,12 +154129,13 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
         }
       });
 
-      // Enforce maxBodyLength for streamed uploads on the native http/https
-      // transport (maxRedirects === 0); follow-redirects enforces it on the
-      // other path.
+      // Enforce maxBodyLength for streamed uploads on every transport that
+      // does not apply options.maxBodyLength itself (native http/https, http2,
+      // and user-supplied custom transports). The follow-redirects transport
+      // enforces it on the redirected HTTP/1 path.
       let uploadStream = data;
-      if (config.maxBodyLength > -1 && config.maxRedirects === 0) {
-        const limit = config.maxBodyLength;
+      if (maxBodyLength > -1 && !transportEnforcesMaxBodyLength) {
+        const limit = maxBodyLength;
         let bytesSent = 0;
         uploadStream = stream.pipeline([data, new stream.Transform({
           transform(chunk, _enc, cb) {
@@ -154534,7 +154198,11 @@ var cookies = platform.hasStandardBrowserEnv ?
       const cookie = cookies[i].replace(/^\s+/, '');
       const eq = cookie.indexOf('=');
       if (eq !== -1 && cookie.slice(0, eq) === name) {
-        return decodeURIComponent(cookie.slice(eq + 1));
+        try {
+          return decodeURIComponent(cookie.slice(eq + 1));
+        } catch (e) {
+          return cookie.slice(eq + 1);
+        }
       }
     }
     return null;
@@ -154567,6 +154235,7 @@ const headersToObject = thing => thing instanceof AxiosHeaders ? {
  */
 function mergeConfig(config1, config2) {
   // eslint-disable-next-line no-param-reassign
+  config1 = config1 || {};
   config2 = config2 || {};
 
   // Use a null-prototype object so that downstream reads such as `config.auth`
@@ -154617,6 +154286,23 @@ function mergeConfig(config1, config2) {
     } else if (!utils$1.isUndefined(a)) {
       return getMergedValue(undefined, a);
     }
+  }
+  function getMergedTransitionalOption(prop) {
+    const transitional2 = utils$1.hasOwnProp(config2, 'transitional') ? config2.transitional : undefined;
+    if (!utils$1.isUndefined(transitional2)) {
+      if (utils$1.isPlainObject(transitional2)) {
+        if (utils$1.hasOwnProp(transitional2, prop)) {
+          return transitional2[prop];
+        }
+      } else {
+        return undefined;
+      }
+    }
+    const transitional1 = utils$1.hasOwnProp(config1, 'transitional') ? config1.transitional : undefined;
+    if (utils$1.isPlainObject(transitional1) && utils$1.hasOwnProp(transitional1, prop)) {
+      return transitional1[prop];
+    }
+    return undefined;
   }
 
   // eslint-disable-next-line consistent-return
@@ -154670,6 +154356,13 @@ function mergeConfig(config1, config2) {
     const configValue = merge(a, b, prop);
     utils$1.isUndefined(configValue) && merge !== mergeDirectKeys || (config[prop] = configValue);
   });
+  if (utils$1.hasOwnProp(config2, 'validateStatus') && utils$1.isUndefined(config2.validateStatus) && getMergedTransitionalOption('validateStatusUndefinedResolves') === false) {
+    if (utils$1.hasOwnProp(config1, 'validateStatus')) {
+      config.validateStatus = getMergedValue(undefined, config1.validateStatus);
+    } else {
+      delete config.validateStatus;
+    }
+  }
   return config;
 }
 
@@ -154679,7 +154372,7 @@ function setFormDataHeaders(headers, formHeaders, policy) {
     headers.set(formHeaders);
     return;
   }
-  Object.entries(formHeaders).forEach(([key, val]) => {
+  Object.entries(formHeaders || {}).forEach(([key, val]) => {
     if (FORM_DATA_CONTENT_HEADERS.includes(key.toLowerCase())) {
       headers.set(key, val);
     }
@@ -154694,8 +154387,8 @@ function setFormDataHeaders(headers, formHeaders, policy) {
  *
  * @returns {string} UTF-8 bytes as a Latin-1 string
  */
-const encodeUTF8 = str => encodeURIComponent(str).replace(/%([0-9A-F]{2})/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)));
-var resolveConfig = config => {
+const encodeUTF8$1 = str => encodeURIComponent(str).replace(/%([0-9A-F]{2})/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)));
+function resolveConfig(config) {
   const newConfig = mergeConfig({}, config);
 
   // Read only own properties to prevent prototype pollution gadgets
@@ -154711,15 +154404,21 @@ var resolveConfig = config => {
   const allowAbsoluteUrls = own('allowAbsoluteUrls');
   const url = own('url');
   newConfig.headers = headers = AxiosHeaders.from(headers);
-  newConfig.url = buildURL(buildFullPath(baseURL, url, allowAbsoluteUrls), config.params, config.paramsSerializer);
+  newConfig.url = buildURL(buildFullPath(baseURL, url, allowAbsoluteUrls, newConfig), own('params'), own('paramsSerializer'));
 
   // HTTP basic authentication
   if (auth) {
-    headers.set('Authorization', 'Basic ' + btoa((auth.username || '') + ':' + (auth.password ? encodeUTF8(auth.password) : '')));
+    const username = utils$1.getSafeProp(auth, 'username') || '';
+    const password = utils$1.getSafeProp(auth, 'password') || '';
+    try {
+      headers.set('Authorization', 'Basic ' + btoa(username + ':' + (password ? encodeUTF8$1(password) : '')));
+    } catch (e) {
+      throw AxiosError.from(e, AxiosError.ERR_BAD_OPTION_VALUE, config);
+    }
   }
   if (utils$1.isFormData(data)) {
-    if (platform.hasStandardBrowserEnv || platform.hasStandardBrowserWebWorkerEnv) {
-      headers.setContentType(undefined); // browser handles it
+    if (platform.hasStandardBrowserEnv || platform.hasStandardBrowserWebWorkerEnv || utils$1.isReactNative(data)) {
+      headers.setContentType(undefined); // browser/web worker/RN handles it
     } else if (utils$1.isFunction(data.getHeaders)) {
       // Node.js FormData (like form-data package)
       setFormDataHeaders(headers, data.getHeaders(), own('formDataHeaderPolicy'));
@@ -154747,7 +154446,7 @@ var resolveConfig = config => {
     }
   }
   return newConfig;
-};
+}
 
 const isXHRAdapterSupported = typeof XMLHttpRequest !== 'undefined';
 var xhrAdapter = isXHRAdapterSupported && function (config) {
@@ -154869,7 +154568,7 @@ var xhrAdapter = isXHRAdapterSupported && function (config) {
 
     // Add headers to the request
     if ('setRequestHeader' in request) {
-      utils$1.forEach(requestHeaders.toJSON(), function setRequestHeader(val, key) {
+      utils$1.forEach(toByteStringHeaderObject(requestHeaders), function setRequestHeader(val, key) {
         request.setRequestHeader(key, val);
       });
     }
@@ -154916,6 +154615,7 @@ var xhrAdapter = isXHRAdapterSupported && function (config) {
     const protocol = parseProtocol(_config.url);
     if (protocol && !platform.protocols.includes(protocol)) {
       reject(new AxiosError('Unsupported protocol ' + protocol + ':', AxiosError.ERR_BAD_REQUEST, config));
+      done();
       return;
     }
 
@@ -154925,41 +154625,43 @@ var xhrAdapter = isXHRAdapterSupported && function (config) {
 };
 
 const composeSignals = (signals, timeout) => {
-  const {
-    length
-  } = signals = signals ? signals.filter(Boolean) : [];
-  if (timeout || length) {
-    let controller = new AbortController();
-    let aborted;
-    const onabort = function (reason) {
-      if (!aborted) {
-        aborted = true;
-        unsubscribe();
-        const err = reason instanceof Error ? reason : this.reason;
-        controller.abort(err instanceof AxiosError ? err : new CanceledError(err instanceof Error ? err.message : err));
-      }
-    };
-    let timer = timeout && setTimeout(() => {
-      timer = null;
-      onabort(new AxiosError(`timeout of ${timeout}ms exceeded`, AxiosError.ETIMEDOUT));
-    }, timeout);
-    const unsubscribe = () => {
-      if (signals) {
-        timer && clearTimeout(timer);
-        timer = null;
-        signals.forEach(signal => {
-          signal.unsubscribe ? signal.unsubscribe(onabort) : signal.removeEventListener('abort', onabort);
-        });
-        signals = null;
-      }
-    };
-    signals.forEach(signal => signal.addEventListener('abort', onabort));
-    const {
-      signal
-    } = controller;
-    signal.unsubscribe = () => utils$1.asap(unsubscribe);
-    return signal;
+  signals = signals ? signals.filter(Boolean) : [];
+  if (!timeout && !signals.length) {
+    return;
   }
+  const controller = new AbortController();
+  let aborted = false;
+  const onabort = function (reason) {
+    if (!aborted) {
+      aborted = true;
+      unsubscribe();
+      const err = reason instanceof Error ? reason : this.reason;
+      controller.abort(err instanceof AxiosError ? err : new CanceledError(err instanceof Error ? err.message : err));
+    }
+  };
+  let timer = timeout && setTimeout(() => {
+    timer = null;
+    onabort(new AxiosError(`timeout of ${timeout}ms exceeded`, AxiosError.ETIMEDOUT));
+  }, timeout);
+  const unsubscribe = () => {
+    if (!signals) {
+      return;
+    }
+    timer && clearTimeout(timer);
+    timer = null;
+    signals.forEach(signal => {
+      signal.unsubscribe ? signal.unsubscribe(onabort) : signal.removeEventListener('abort', onabort);
+    });
+    signals = null;
+  };
+  signals.forEach(signal => signal.addEventListener('abort', onabort, {
+    once: true
+  }));
+  const {
+    signal
+  } = controller;
+  signal.unsubscribe = () => utils$1.asap(unsubscribe);
+  return signal;
 };
 
 const streamChunk = function* (chunk, chunkSize) {
@@ -155048,6 +154750,31 @@ const DEFAULT_CHUNK_SIZE = 64 * 1024;
 const {
   isFunction
 } = utils$1;
+
+/**
+ * Encode a UTF-8 string to a Latin-1 byte string for use with btoa().
+ * This is a modern replacement for the deprecated unescape(encodeURIComponent(str)) pattern.
+ *
+ * @param {string} str The string to encode
+ *
+ * @returns {string} UTF-8 bytes as a Latin-1 string
+ */
+const encodeUTF8 = str => encodeURIComponent(str).replace(/%([0-9A-F]{2})/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)));
+
+// Node's WHATWG URL parser returns `username` and `password` percent-encoded.
+// Decode before composing the `auth` option so credentials such as
+// `my%40email.com:pass` are sent as `my@email.com:pass`. Falls back to the
+// original value for malformed input so a bad encoding never throws.
+const decodeURIComponentSafe = value => {
+  if (!utils$1.isString(value)) {
+    return value;
+  }
+  try {
+    return decodeURIComponent(value);
+  } catch (error) {
+    return value;
+  }
+};
 const test = (fn, ...args) => {
   try {
     return !!fn(...args);
@@ -155055,9 +154782,16 @@ const test = (fn, ...args) => {
     return false;
   }
 };
+const maybeWithAuthCredentials = url => {
+  const protocolIndex = url.indexOf('://');
+  let urlToCheck = url;
+  if (protocolIndex !== -1) {
+    urlToCheck = urlToCheck.slice(protocolIndex + 3);
+  }
+  return urlToCheck.includes('@') || urlToCheck.includes(':');
+};
 const factory = env => {
-  var _utils$global;
-  const globalObject = (_utils$global = utils$1.global) !== null && _utils$global !== void 0 ? _utils$global : globalThis;
+  const globalObject = utils$1.global !== undefined && utils$1.global !== null ? utils$1.global : globalThis;
   const {
     ReadableStream,
     TextEncoder
@@ -155159,6 +154893,7 @@ const factory = env => {
     } = resolveConfig(config);
     const hasMaxContentLength = utils$1.isNumber(maxContentLength) && maxContentLength > -1;
     const hasMaxBodyLength = utils$1.isNumber(maxBodyLength) && maxBodyLength > -1;
+    const own = key => utils$1.hasOwnProp(config, key) ? config[key] : undefined;
     let _fetch = envFetch || fetch;
     responseType = responseType ? (responseType + '').toLowerCase() : 'text';
     let composedSignal = composeSignals([signal, cancelToken && cancelToken.toAbortSignal()], timeout);
@@ -155167,7 +154902,46 @@ const factory = env => {
       composedSignal.unsubscribe();
     });
     let requestContentLength;
+
+    // AxiosError we raise while the request body is being streamed. Captured
+    // by identity so the catch block can surface it directly, regardless of
+    // how the runtime wraps the resulting fetch rejection (undici exposes it
+    // as `err.cause`; some browsers drop the original error entirely).
+    let pendingBodyError = null;
+    const maxBodyLengthError = () => new AxiosError('Request body larger than maxBodyLength limit', AxiosError.ERR_BAD_REQUEST, config, request);
     try {
+      // HTTP basic authentication
+      let auth = undefined;
+      const configAuth = own('auth');
+      if (configAuth) {
+        const username = utils$1.getSafeProp(configAuth, 'username') || '';
+        const password = utils$1.getSafeProp(configAuth, 'password') || '';
+        auth = {
+          username,
+          password
+        };
+      }
+      if (maybeWithAuthCredentials(url)) {
+        const parsedURL = new URL(url, platform.origin);
+        if (!auth && (parsedURL.username || parsedURL.password)) {
+          const urlUsername = decodeURIComponentSafe(parsedURL.username);
+          const urlPassword = decodeURIComponentSafe(parsedURL.password);
+          auth = {
+            username: urlUsername,
+            password: urlPassword
+          };
+        }
+        if (parsedURL.username || parsedURL.password) {
+          parsedURL.username = '';
+          parsedURL.password = '';
+          url = parsedURL.href;
+        }
+      }
+      if (auth) {
+        headers.delete('authorization');
+        headers.set('Authorization', 'Basic ' + btoa(encodeUTF8((auth.username || '') + ':' + (auth.password || ''))));
+      }
+
       // Enforce maxContentLength for data: URLs up-front so we never materialize
       // an oversized payload. The HTTP adapter applies the same check (see http.js
       // "if (protocol === 'data:')" branch).
@@ -155178,30 +154952,54 @@ const factory = env => {
         }
       }
 
-      // Enforce maxBodyLength against the outbound request body before dispatch.
-      // Mirrors http.js behavior (ERR_BAD_REQUEST / 'Request body larger than
-      // maxBodyLength limit'). Skip when the body length cannot be determined
-      // (e.g. a live ReadableStream supplied by the caller).
+      // Enforce maxBodyLength against known-size bodies before dispatch using
+      // the body's *actual* size — never a caller-declared Content-Length,
+      // which could under-report to slip an oversized body past the check.
+      // Unknown-size streams return undefined here and are counted per-chunk
+      // below as fetch consumes them.
       if (hasMaxBodyLength && method !== 'get' && method !== 'head') {
-        const outboundLength = await resolveBodyLength(headers, data);
-        if (typeof outboundLength === 'number' && isFinite(outboundLength) && outboundLength > maxBodyLength) {
-          throw new AxiosError('Request body larger than maxBodyLength limit', AxiosError.ERR_BAD_REQUEST, config, request);
+        const outboundLength = await getBodyLength(data);
+        if (typeof outboundLength === 'number' && isFinite(outboundLength)) {
+          requestContentLength = outboundLength;
+          if (outboundLength > maxBodyLength) {
+            throw maxBodyLengthError();
+          }
         }
       }
-      if (onUploadProgress && supportsRequestStream && method !== 'get' && method !== 'head' && (requestContentLength = await resolveBodyLength(headers, data)) !== 0) {
-        let _request = new Request(url, {
-          method: 'POST',
-          body: data,
-          duplex: 'half'
-        });
-        let contentTypeHeader;
-        if (utils$1.isFormData(data) && (contentTypeHeader = _request.headers.get('content-type'))) {
-          headers.setContentType(contentTypeHeader);
+
+      // A streamed body under maxBodyLength must be counted as fetch consumes
+      // it; its size is never trusted from a caller-declared Content-Length.
+      const mustEnforceStreamBody = hasMaxBodyLength && (utils$1.isReadableStream(data) || utils$1.isStream(data));
+      const trackRequestStream = (stream, onProgress, flush) => trackStream(stream, DEFAULT_CHUNK_SIZE, loadedBytes => {
+        if (hasMaxBodyLength && loadedBytes > maxBodyLength) {
+          throw pendingBodyError = maxBodyLengthError();
         }
-        if (_request.body) {
-          const [onProgress, flush] = progressEventDecorator(requestContentLength, progressEventReducer(asyncDecorator(onUploadProgress)));
-          data = trackStream(_request.body, DEFAULT_CHUNK_SIZE, onProgress, flush);
+        onProgress && onProgress(loadedBytes);
+      }, flush);
+      if (supportsRequestStream && method !== 'get' && method !== 'head' && (onUploadProgress || mustEnforceStreamBody)) {
+        requestContentLength = requestContentLength == null ? await resolveBodyLength(headers, data) : requestContentLength;
+
+        // A declared length of 0 is only trusted to skip the wrap when we are
+        // not enforcing a stream limit (which must not rely on that header).
+        if (requestContentLength !== 0 || mustEnforceStreamBody) {
+          let _request = new Request(url, {
+            method: 'POST',
+            body: data,
+            duplex: 'half'
+          });
+          let contentTypeHeader;
+          if (utils$1.isFormData(data) && (contentTypeHeader = _request.headers.get('content-type'))) {
+            headers.setContentType(contentTypeHeader);
+          }
+          if (_request.body) {
+            const [onProgress, flush] = onUploadProgress && progressEventDecorator(requestContentLength, progressEventReducer(asyncDecorator(onUploadProgress))) || [];
+            data = trackRequestStream(_request.body, onProgress, flush);
+          }
         }
+      } else if (mustEnforceStreamBody && !isRequestSupported && isReadableStreamSupported && method !== 'get' && method !== 'head') {
+        data = trackRequestStream(data);
+      } else if (mustEnforceStreamBody && isRequestSupported && !supportsRequestStream && method !== 'get' && method !== 'head') {
+        throw new AxiosError('Stream request bodies are not supported by the current fetch implementation', AxiosError.ERR_NOT_SUPPORT, config, request);
       }
       if (!utils$1.isString(withCredentials)) {
         withCredentials = withCredentials ? 'include' : 'omit';
@@ -155226,18 +155024,19 @@ const factory = env => {
         ...fetchOptions,
         signal: composedSignal,
         method: method.toUpperCase(),
-        headers: headers.normalize().toJSON(),
+        headers: toByteStringHeaderObject(headers.normalize()),
         body: data,
         duplex: 'half',
         credentials: isCredentialsSupported ? withCredentials : undefined
       };
       request = isRequestSupported && new Request(url, resolvedOptions);
       let response = await (isRequestSupported ? _fetch(request, fetchOptions) : _fetch(url, resolvedOptions));
+      const responseHeaders = AxiosHeaders.from(response.headers);
 
       // Cheap pre-check: if the server honestly declares a content-length that
       // already exceeds the cap, reject before we start streaming.
       if (hasMaxContentLength) {
-        const declaredLength = utils$1.toFiniteNumber(response.headers.get('content-length'));
+        const declaredLength = utils$1.toFiniteNumber(responseHeaders.getContentLength());
         if (declaredLength != null && declaredLength > maxContentLength) {
           throw new AxiosError('maxContentLength size of ' + maxContentLength + ' exceeded', AxiosError.ERR_BAD_RESPONSE, config, request);
         }
@@ -155248,7 +155047,7 @@ const factory = env => {
         ['status', 'statusText', 'headers'].forEach(prop => {
           options[prop] = response[prop];
         });
-        const responseContentLength = utils$1.toFiniteNumber(response.headers.get('content-length'));
+        const responseContentLength = utils$1.toFiniteNumber(responseHeaders.getContentLength());
         const [onProgress, flush] = onDownloadProgress && progressEventDecorator(responseContentLength, progressEventReducer(asyncDecorator(onDownloadProgress), true)) || [];
         let bytesRead = 0;
         const onChunkProgress = loadedBytes => {
@@ -155307,13 +155106,48 @@ const factory = env => {
         const canceledError = composedSignal.reason;
         canceledError.config = config;
         request && (canceledError.request = request);
-        err !== canceledError && (canceledError.cause = err);
+        if (err !== canceledError) {
+          // Non-enumerable to match native Error `cause` semantics so loggers
+          // don't recurse into circular fetch internals (see #7205).
+          Object.defineProperty(canceledError, 'cause', {
+            __proto__: null,
+            value: err,
+            writable: true,
+            enumerable: false,
+            configurable: true
+          });
+        }
         throw canceledError;
       }
+
+      // Surface a maxBodyLength violation we raised while the request body was
+      // being streamed. Matching by identity (rather than reading
+      // `err.cause.isAxiosError`) keeps the error deterministic across runtimes
+      // and avoids both prototype-pollution reads and mis-attributing a foreign
+      // AxiosError that merely happened to land in `err.cause`.
+      if (pendingBodyError) {
+        request && !pendingBodyError.request && (pendingBodyError.request = request);
+        throw pendingBodyError;
+      }
+
+      // Re-throw AxiosErrors we raised synchronously (data: URL / content-length
+      // pre-checks, response size enforcement) without re-wrapping them.
+      if (err instanceof AxiosError) {
+        request && !err.request && (err.request = request);
+        throw err;
+      }
       if (err && err.name === 'TypeError' && /Load failed|fetch/i.test(err.message)) {
-        throw Object.assign(new AxiosError('Network Error', AxiosError.ERR_NETWORK, config, request, err && err.response), {
-          cause: err.cause || err
+        const networkError = new AxiosError('Network Error', AxiosError.ERR_NETWORK, config, request, err && err.response);
+        // Non-enumerable to match native Error `cause` semantics so loggers
+        // don't recurse into circular fetch internals (see #7205).
+        Object.defineProperty(networkError, 'cause', {
+          __proto__: null,
+          value: err.cause || err,
+          writable: true,
+          enumerable: false,
+          configurable: true
         });
+        throw networkError;
       }
       throw AxiosError.from(err, err && err.code, config, request, err && err.response);
     }
@@ -155432,7 +155266,7 @@ function getAdapter(adapters, config) {
   if (!adapter) {
     const reasons = Object.entries(rejectedReasons).map(([id, state]) => `adapter ${id} ` + (state === false ? 'is not supported by the environment' : 'is not available in the build'));
     let s = length ? reasons.length > 1 ? 'since :\n' + reasons.map(renderReason).join('\n') : ' ' + renderReason(reasons[0]) : 'as no adapter specified';
-    throw new AxiosError(`There is no suitable adapter to dispatch the request ` + s, 'ERR_NOT_SUPPORT');
+    throw new AxiosError(`There is no suitable adapter to dispatch the request ` + s, AxiosError.ERR_NOT_SUPPORT);
   }
   return adapter;
 }
@@ -155575,7 +155409,7 @@ validators$1.spelling = function spelling(correctSpelling) {
  */
 
 function assertOptions(options, schema, allowUnknown) {
-  if (typeof options !== 'object') {
+  if (typeof options !== 'object' || options === null) {
     throw new AxiosError('options must be an object', AxiosError.ERR_BAD_OPTION_VALUE);
   }
   const keys = Object.keys(options);
@@ -155684,7 +155518,9 @@ class Axios {
         silentJSONParsing: validators.transitional(validators.boolean),
         forcedJSONParsing: validators.transitional(validators.boolean),
         clarifyTimeoutError: validators.transitional(validators.boolean),
-        legacyInterceptorReqResOrdering: validators.transitional(validators.boolean)
+        legacyInterceptorReqResOrdering: validators.transitional(validators.boolean),
+        advertiseZstdAcceptEncoding: validators.transitional(validators.boolean),
+        validateStatusUndefinedResolves: validators.transitional(validators.boolean)
       }, false);
     }
     if (paramsSerializer != null) {
@@ -155781,7 +155617,7 @@ class Axios {
   }
   getUri(config) {
     config = mergeConfig(this.defaults, config);
-    const fullPath = buildFullPath(config.baseURL, config.url, config.allowAbsoluteUrls);
+    const fullPath = buildFullPath(config.baseURL, config.url, config.allowAbsoluteUrls, config);
     return buildURL(fullPath, config.params, config.paramsSerializer);
   }
 }
@@ -155793,7 +155629,7 @@ utils$1.forEach(['delete', 'get', 'head', 'options'], function forEachMethodNoDa
     return this.request(mergeConfig(config || {}, {
       method,
       url,
-      data: (config || {}).data
+      data: config && utils$1.hasOwnProp(config, 'data') ? config.data : undefined
     }));
   };
 });
@@ -157005,14 +156841,7 @@ exports.LruObjectHitStatistics = LruObjectHitStatistics;
 /***/ 64012:
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"name":"@actions/cache","version":"6.1.0","description":"Actions cache lib","keywords":["github","actions","cache"],"homepage":"https://github.com/actions/toolkit/tree/main/packages/cache","license":"MIT","type":"module","main":"lib/cache.js","types":"lib/cache.d.ts","exports":{".":{"types":"./lib/cache.d.ts","import":"./lib/cache.js"}},"directories":{"lib":"lib","test":"__tests__"},"files":["lib","!.DS_Store"],"publishConfig":{"access":"public"},"repository":{"type":"git","url":"git+https://github.com/actions/toolkit.git","directory":"packages/cache"},"scripts":{"audit-moderate":"npm install && npm audit --json --audit-level=moderate > audit.json","test":"echo \\"Error: run tests from root\\" && exit 1","tsc":"tsc && cp src/internal/shared/package-version.cjs lib/internal/shared/"},"bugs":{"url":"https://github.com/actions/toolkit/issues"},"dependencies":{"@actions/core":"^3.0.1","@actions/exec":"^3.0.0","@actions/glob":"^0.6.1","@actions/http-client":"^4.0.1","@actions/io":"^3.0.2","@azure/core-rest-pipeline":"^1.23.0","@azure/storage-blob":"^12.31.0","@protobuf-ts/runtime-rpc":"^2.11.1","semver":"^7.7.4"},"devDependencies":{"@protobuf-ts/plugin":"^2.11.1","@types/node":"^25.6.0","@types/semver":"^7.7.1","typescript":"^5.9.3"},"overrides":{"uri-js":"npm:uri-js-replace@^1.0.1","node-fetch":"^3.3.2"}}');
-
-/***/ }),
-
-/***/ 27413:
-/***/ ((module) => {
-
-module.exports = /*#__PURE__*/JSON.parse('{"name":"@aws-sdk/client-s3","description":"AWS SDK for JavaScript S3 Client for Node.js, Browser and React Native","version":"3.1075.0","scripts":{"build":"concurrently \'yarn:build:types\' \'yarn:build:es\' && yarn build:cjs","build:cjs":"node ../../scripts/compilation/inline","build:es":"premove dist-es && tsc -p tsconfig.es.json","build:include:deps":"yarn g:turbo run build -F=\\"$npm_package_name\\"","build:types":"premove dist-types && tsc -p tsconfig.types.json","build:types:downlevel":"downlevel-dts dist-types dist-types/ts3.4","clean":"premove dist-cjs dist-es dist-types","extract:docs":"api-extractor run --local","generate:client":"node ../../scripts/generate-clients/single-service","test":"yarn g:vitest run --passWithNoTests","test:watch":"yarn g:vitest watch --passWithNoTests","test:integration":"yarn g:vitest run --passWithNoTests -c vitest.config.integ.mts","test:integration:watch":"yarn g:vitest watch --passWithNoTests -c vitest.config.integ.mts","test:e2e":"yarn g:vitest run -c vitest.config.e2e.mts","test:e2e:watch":"yarn g:vitest watch -c vitest.config.e2e.mts","test:browser":"yarn g:vitest run -c vitest.config.browser.mts","test:browser:watch":"yarn g:vitest watch -c vitest.config.browser.mts","test:index":"tsc --noEmit ./test/index-types.ts && node ./test/index-objects.spec.mjs"},"main":"./dist-cjs/index.js","types":"./dist-types/index.d.ts","module":"./dist-es/index.js","sideEffects":false,"dependencies":{"@aws-crypto/sha1-browser":"5.2.0","@aws-crypto/sha256-browser":"5.2.0","@aws-crypto/sha256-js":"5.2.0","@aws-sdk/core":"^3.974.23","@aws-sdk/credential-provider-node":"^3.972.58","@aws-sdk/middleware-flexible-checksums":"^3.974.33","@aws-sdk/middleware-sdk-s3":"^3.972.54","@aws-sdk/signature-v4-multi-region":"^3.996.35","@aws-sdk/types":"^3.973.13","@smithy/core":"^3.24.6","@smithy/fetch-http-handler":"^5.4.6","@smithy/node-http-handler":"^4.7.6","@smithy/types":"^4.14.3","tslib":"^2.6.2"},"devDependencies":{"@aws-sdk/signature-v4-crt":"3.1075.0","@smithy/snapshot-testing":"^2.1.7","@tsconfig/node20":"20.1.8","@types/node":"^20.14.8","concurrently":"7.0.0","downlevel-dts":"0.10.1","premove":"4.0.0","typescript":"~5.8.3","vitest":"^4.0.17"},"engines":{"node":">=20.0.0"},"typesVersions":{"<4.5":{"dist-types/*":["dist-types/ts3.4/*"]}},"files":["dist-*/**"],"author":{"name":"AWS SDK for JavaScript Team","url":"https://aws.amazon.com/sdk-for-javascript/"},"license":"Apache-2.0","browser":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.browser"},"react-native":{"./dist-es/runtimeConfig":"./dist-es/runtimeConfig.native"},"homepage":"https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-s3","repository":{"type":"git","url":"https://github.com/aws/aws-sdk-js-v3.git","directory":"clients/client-s3"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"@actions/cache","version":"6.2.0","description":"Actions cache lib","keywords":["github","actions","cache"],"homepage":"https://github.com/actions/toolkit/tree/main/packages/cache","license":"MIT","type":"module","main":"lib/cache.js","types":"lib/cache.d.ts","exports":{".":{"types":"./lib/cache.d.ts","import":"./lib/cache.js"}},"directories":{"lib":"lib","test":"__tests__"},"files":["lib","!.DS_Store"],"publishConfig":{"access":"public"},"repository":{"type":"git","url":"git+https://github.com/actions/toolkit.git","directory":"packages/cache"},"scripts":{"audit-moderate":"npm install && npm audit --json --audit-level=moderate > audit.json","test":"echo \\"Error: run tests from root\\" && exit 1","tsc":"tsc && cp src/internal/shared/package-version.cjs lib/internal/shared/"},"bugs":{"url":"https://github.com/actions/toolkit/issues"},"dependencies":{"@actions/core":"^3.0.1","@actions/exec":"^3.0.0","@actions/glob":"^0.6.1","@actions/http-client":"^4.0.1","@actions/io":"^3.0.2","@azure/core-rest-pipeline":"^1.23.0","@azure/storage-blob":"^12.31.0","@protobuf-ts/runtime-rpc":"^2.11.1","semver":"^7.7.4"},"devDependencies":{"@protobuf-ts/plugin":"^2.11.1","@types/node":"^25.6.0","@types/semver":"^7.7.1","typescript":"^5.9.3"},"overrides":{"uri-js":"npm:uri-js-replace@^1.0.1","node-fetch":"^3.3.2"}}');
 
 /***/ }),
 
@@ -157061,7 +156890,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"http://json-schema.org/dra
 /***/ 10570:
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"name":"joi","description":"Object schema validation","version":"18.2.1","repository":{"url":"git://github.com/hapijs/joi.git","type":"git"},"engines":{"node":">= 20"},"main":"lib/index.js","types":"lib/index.d.ts","browser":"dist/joi-browser.min.js","files":["lib/**/*","dist/*"],"keywords":["schema","validation"],"dependencies":{"@hapi/address":"^5.1.1","@hapi/formula":"^3.0.2","@hapi/hoek":"^11.0.7","@hapi/pinpoint":"^2.0.1","@hapi/tlds":"^1.1.1","@hapi/topo":"^6.0.2","@standard-schema/spec":"^1.1.0"},"devDependencies":{"@hapi/bourne":"^3.0.0","@hapi/code":"^9.0.3","@hapi/eslint-plugin":"^7.0.0","@hapi/joi-legacy-test":"npm:@hapi/joi@15.x.x","@hapi/lab":"^26.0.0","@types/node":"^20.17.47","ajv":"^8.18.0","typescript":"^5.8.3"},"scripts":{"prepublishOnly":"cd browser && npm install && npm run build","test":"lab -t 100 -a @hapi/code -L -Y","test-cov-html":"lab -r html -o coverage.html -a @hapi/code"},"license":"BSD-3-Clause"}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"joi","description":"Object schema validation","version":"18.2.3","repository":{"url":"git://github.com/hapijs/joi.git","type":"git"},"engines":{"node":">= 20"},"main":"lib/index.js","types":"lib/index.d.ts","browser":"dist/joi-browser.min.js","files":["lib/**/*","dist/*"],"keywords":["schema","validation"],"dependencies":{"@hapi/address":"^5.1.1","@hapi/formula":"^3.0.2","@hapi/hoek":"^11.0.7","@hapi/pinpoint":"^2.0.1","@hapi/tlds":"^1.1.1","@hapi/topo":"^6.0.2","@standard-schema/spec":"^1.1.0"},"devDependencies":{"@hapi/bourne":"^3.0.0","@hapi/code":"^9.0.3","@hapi/eslint-plugin":"^7.0.0","@hapi/joi-legacy-test":"npm:@hapi/joi@15.x.x","@hapi/lab":"^26.0.0","@types/node":"^20.17.47","ajv":"^8.18.0","ajv-formats":"^3.0.1","typescript":"^5.8.3"},"scripts":{"prepublishOnly":"cd browser && npm install && npm run build","test":"lab -t 100 -a @hapi/code -L -Y","test-cov-html":"lab -r html -o coverage.html -a @hapi/code"},"license":"BSD-3-Clause"}');
 
 /***/ }),
 
@@ -160738,9 +160567,12 @@ unit.placeholder = ' _'
 ;// CONCATENATED MODULE: ./node_modules/parse-duration/index.js
 
 
-const durationRE = /((?:\d{1,16}(?:\.\d{1,16})?|\.\d{1,16})(?:[eE][-+]?\d{1,4})?)\s?([\p{L}]{0,14})/gu
+const durationRE = /((?:\d{1,16}(?:\.\d{1,16})?|\.\d{1,16})(?:[eE][-+]?\d{1,4})?)\s*([\p{L}]{0,14})/gu
 
 parse.unit = en
+
+// group/placeholder cleanup regex — rebuilt only when the locale strings change
+let groupRE, placeholder = null, parse_duration_group
 
 /**
  * convert `str` to ms
@@ -160750,28 +160582,34 @@ parse.unit = en
  * @return {number|null}
  */
 function parse(str = '', format = 'ms') {
-  let result = null, prevUnits
+  let result = null, prevUnits, unit = parse.unit
 
-  String(str)
-    .replace(new RegExp(`(\\d)[${parse.unit.placeholder}${parse.unit.group}](\\d)`, 'g'), '$1$2')  // clean up group separators / placeholders
-    .replace(parse.unit.decimal, '.') // normalize decimal separator
-    .replace(durationRE, (_, n, units) => {
+  if (unit.placeholder !== placeholder || unit.group !== parse_duration_group)
+    groupRE = new RegExp(`(\\d)[${(placeholder = unit.placeholder) ?? ''}${(parse_duration_group = unit.group) ?? ''}](\\d)`, 'g')
+
+  str = String(str)
+  let s = str.replace(groupRE, '$1$2') // clean up group separators / placeholders
+  if (unit.decimal !== '.') s = s.replaceAll(unit.decimal, '.') // normalize decimal separator
+
+  durationRE.lastIndex = 0
+  for (let m; (m = durationRE.exec(s));) {
+    let units = m[2]
     // if no units, find next smallest units or fall back to format value
     // eg. 1h30 -> 1h30m
     if (!units) {
       if (prevUnits) {
-        for (const u in parse.unit) if (parse.unit[u] < prevUnits) { units = u; break }
+        for (const u in unit) if (unit[u] < prevUnits) { units = u; break }
       }
       else units = format
     }
     else units = units.toLowerCase()
 
-    prevUnits = units = parse.unit[units] || parse.unit[units.replace(/s$/, '')]
+    prevUnits = units = unit[units] || (units.endsWith('s') ? unit[units.slice(0, -1)] : undefined)
 
-    if (units) result = (result || 0) + n * units
-  })
+    if (typeof units == 'number') result = (result || 0) + m[1] * units
+  }
 
-  return result && ((result / (parse.unit[format] || 1)) * (str[0] === '-' ? -1 : 1))
+  return result && ((result / (unit[format] || 1)) * (str.trimStart()[0] === '-' ? -1 : 1))
 }
 
 // EXTERNAL MODULE: external "node:fs"
@@ -161798,6 +161636,10 @@ const SystemTarPathOnWindows = `${process.env['SYSTEMDRIVE']}\\Windows\\System32
 const TarFilename = 'cache.tar';
 const ManifestFilename = 'manifest.txt';
 const CacheFileSizeLimit = 10 * Math.pow(1024, 3); // 10GiB per repository
+// Prefix the cache backend embeds in a read-denial message (v2 twirp
+// GetCacheEntryDownloadURL error or the GHES v1 `_apis/artifactcache` 403 body).
+// Shared so cache.ts and cacheHttpClient.ts match the same contract value.
+const CacheReadDeniedMessagePrefix = 'cache read denied:';
 //# sourceMappingURL=constants.js.map
 ;// CONCATENATED MODULE: ./node_modules/@actions/cache/lib/internal/cacheUtils.js
 var cacheUtils_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -205831,6 +205673,24 @@ function config_getCacheServiceVersion() {
         return 'v1';
     return process.env['ACTIONS_CACHE_SERVICE_V2'] ? 'v2' : 'v1';
 }
+// The cache-mode lattice: readable = {read, write}, writable = {write,
+// write-only}, none = neither.
+const KNOWN_CACHE_MODES = ['none', 'read', 'write', 'write-only'];
+// The effective cache-mode exported by the runner, or '' when not set.
+function getCacheMode() {
+    return (process.env['ACTIONS_CACHE_MODE'] || '').trim().toLowerCase();
+}
+// Unset or unrecognized modes are permissive so behavior matches today.
+function isCacheReadable(mode) {
+    if (!KNOWN_CACHE_MODES.includes(mode))
+        return true;
+    return mode === 'read' || mode === 'write';
+}
+function isCacheWritable(mode) {
+    if (!KNOWN_CACHE_MODES.includes(mode))
+        return true;
+    return mode === 'write' || mode === 'write-only';
+}
 function getCacheServiceURL() {
     const version = config_getCacheServiceVersion();
     // Based on the version of the cache service, we will determine which
@@ -205880,6 +205740,7 @@ var cacheHttpClient_awaiter = (undefined && undefined.__awaiter) || function (th
 
 
 
+
 function getCacheApiUrl(resource) {
     const baseUrl = getCacheServiceURL();
     if (!baseUrl) {
@@ -205907,6 +205768,7 @@ function createHttpClient() {
 }
 function getCacheEntry(keys, paths, options) {
     return cacheHttpClient_awaiter(this, void 0, void 0, function* () {
+        var _a;
         const httpClient = createHttpClient();
         const version = getCacheVersion(paths, options === null || options === void 0 ? void 0 : options.compressionMethod, options === null || options === void 0 ? void 0 : options.enableCrossOsArchive);
         const resource = `cache?keys=${encodeURIComponent(keys.join(','))}&version=${version}`;
@@ -205920,6 +205782,12 @@ function getCacheEntry(keys, paths, options) {
             return null;
         }
         if (!isSuccessStatusCode(response.statusCode)) {
+            // Only surface the receiver's body for a `cache read denied:` policy denial
+            // so callers can dispatch on it; keep the generic message otherwise.
+            const errorMessage = (_a = response.error) === null || _a === void 0 ? void 0 : _a.message;
+            if (errorMessage === null || errorMessage === void 0 ? void 0 : errorMessage.includes(CacheReadDeniedMessagePrefix)) {
+                throw new Error(errorMessage);
+            }
             throw new Error(`Cache service responded with ${response.statusCode}`);
         }
         const cacheResult = response.result;
@@ -207180,6 +207048,7 @@ var cache_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _ar
 
 
 
+
 class ValidationError extends Error {
     constructor(message) {
         super(message);
@@ -207195,19 +207064,20 @@ class ReserveCacheError extends Error {
     }
 }
 /**
- * Stable prefix the receiver writes into the cache reservation response when
- * the issuer downgraded the cache token to read-only (for example, because
+ * Stable prefix the cache service writes into the cache reservation response
+ * when the issuer downgraded the cache token to read-only (for example, because
  * the run was triggered by an untrusted event). saveCacheV1 / saveCacheV2
- * dispatch on this prefix to re-classify the failure as a
- * CacheWriteDeniedError so consumers (and the outer catch arm) can
- * distinguish a policy denial from other reservation failures.
+ * dispatch on this prefix to re-classify the failure as a CacheWriteDeniedError
+ * so consumers and tests can distinguish a policy denial from other reservation
+ * failures. Internally it is logged as a non-fatal warning like other
+ * best-effort save failures.
  */
 const CACHE_WRITE_DENIED_PREFIX = 'cache write denied:';
 /**
  * Raised when the cache backend refuses to reserve a writable cache entry
  * because the JWT issued for this run was scoped read-only (for example, the
  * run was triggered by an event the repository administrator classified as
- * untrusted). The receiver-supplied detail message always begins with
+ * untrusted). The service-supplied detail message always begins with
  * `cache write denied:` (the full error message includes additional context
  * like the cache key).
  *
@@ -207221,6 +207091,19 @@ class CacheWriteDeniedError extends ReserveCacheError {
         super(message);
         this.name = 'CacheWriteDeniedError';
         Object.setPrototypeOf(this, CacheWriteDeniedError.prototype);
+    }
+}
+// Re-exported from constants so consumers keep referencing it here; the shared
+// value also drives detection in cacheHttpClient without duplicating the string.
+const CACHE_READ_DENIED_PREFIX = CacheReadDeniedMessagePrefix;
+// Raised when the cache backend denies a download URL because the run's token
+// has no readable cache scopes. Caching is best-effort, so restoreCache logs a
+// warning and reports a cache miss rather than rethrowing this.
+class CacheReadDeniedError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'CacheReadDeniedError';
+        Object.setPrototypeOf(this, CacheReadDeniedError.prototype);
     }
 }
 class FinalizeCacheError extends Error {
@@ -207277,6 +207160,12 @@ function restoreCache(paths_1, primaryKey_1, restoreKeys_1, options_1) {
         const cacheServiceVersion = config_getCacheServiceVersion();
         core_debug(`Cache service version: ${cacheServiceVersion}`);
         checkPaths(paths);
+        const cacheMode = getCacheMode();
+        if (!isCacheReadable(cacheMode)) {
+            info(`Cache restore skipped: the effective cache-mode '${cacheMode}' does not permit reads.`);
+            core_debug(`Skipped restore for paths [${paths.join(', ')}] with primary key '${primaryKey}'.`);
+            return undefined;
+        }
         switch (cacheServiceVersion) {
             case 'v2':
                 return yield restoreCacheV2(paths, primaryKey, restoreKeys, options, enableCrossOsArchive);
@@ -207298,6 +207187,7 @@ function restoreCache(paths_1, primaryKey_1, restoreKeys_1, options_1) {
  */
 function restoreCacheV1(paths_1, primaryKey_1, restoreKeys_1, options_1) {
     return cache_awaiter(this, arguments, void 0, function* (paths, primaryKey, restoreKeys, options, enableCrossOsArchive = false) {
+        var _a;
         restoreKeys = restoreKeys || [];
         const keys = [primaryKey, ...restoreKeys];
         core_debug('Resolved Keys:');
@@ -207312,10 +207202,26 @@ function restoreCacheV1(paths_1, primaryKey_1, restoreKeys_1, options_1) {
         let archivePath = '';
         try {
             // path are needed to compute version
-            const cacheEntry = yield getCacheEntry(keys, paths, {
-                compressionMethod,
-                enableCrossOsArchive
-            });
+            let cacheEntry;
+            try {
+                cacheEntry = yield getCacheEntry(keys, paths, {
+                    compressionMethod,
+                    enableCrossOsArchive
+                });
+            }
+            catch (error) {
+                // The v1 artifact cache service returns HTTP 403 with a
+                // `cache read denied:` body when the run's token has no readable cache
+                // scopes. getCacheEntry lives in a dependency-free internal module and
+                // cannot import CacheReadDeniedError without a circular dependency, so it
+                // only surfaces the raw denial message; we classify it into the typed
+                // error here so the outer catch and consumers can dispatch on it.
+                const errorMessage = (_a = error === null || error === void 0 ? void 0 : error.message) !== null && _a !== void 0 ? _a : '';
+                if (errorMessage.includes(CACHE_READ_DENIED_PREFIX)) {
+                    throw new CacheReadDeniedError(errorMessage);
+                }
+                throw error;
+            }
             if (!(cacheEntry === null || cacheEntry === void 0 ? void 0 : cacheEntry.archiveLocation)) {
                 // Cache not found
                 return undefined;
@@ -207344,7 +207250,9 @@ function restoreCacheV1(paths_1, primaryKey_1, restoreKeys_1, options_1) {
             }
             else {
                 // warn on cache restore failure and continue build
-                // Log server errors (5xx) as errors, all other errors as warnings
+                // Log server errors (5xx) as errors, all other errors as warnings.
+                // A read denied by policy (CacheReadDeniedError) is not an HttpClientError
+                // so it falls here and is warned, treated as a cache miss.
                 if (typedError instanceof HttpClientError &&
                     typeof typedError.statusCode === 'number' &&
                     typedError.statusCode >= 500) {
@@ -207379,6 +207287,7 @@ function restoreCacheV1(paths_1, primaryKey_1, restoreKeys_1, options_1) {
  */
 function restoreCacheV2(paths_1, primaryKey_1, restoreKeys_1, options_1) {
     return cache_awaiter(this, arguments, void 0, function* (paths, primaryKey, restoreKeys, options, enableCrossOsArchive = false) {
+        var _a;
         // Override UploadOptions to force the use of Azure
         options = Object.assign(Object.assign({}, options), { useAzureSdk: true });
         restoreKeys = restoreKeys || [];
@@ -207400,7 +207309,20 @@ function restoreCacheV2(paths_1, primaryKey_1, restoreKeys_1, options_1) {
                 restoreKeys,
                 version: getCacheVersion(paths, compressionMethod, enableCrossOsArchive)
             };
-            const response = yield twirpClient.GetCacheEntryDownloadURL(request);
+            let response;
+            try {
+                response = yield twirpClient.GetCacheEntryDownloadURL(request);
+            }
+            catch (error) {
+                // The receiver returns twirp PermissionDenied (403) when the run's token
+                // has no readable cache scopes. The client wraps that 403, so the stable
+                // prefix is embedded in the message rather than leading it.
+                const errorMessage = (_a = error === null || error === void 0 ? void 0 : error.message) !== null && _a !== void 0 ? _a : '';
+                if (errorMessage.includes(CACHE_READ_DENIED_PREFIX)) {
+                    throw new CacheReadDeniedError(errorMessage);
+                }
+                throw error;
+            }
             if (!response.ok) {
                 core_debug(`Cache not found for version ${request.version} of keys: ${keys.join(', ')}`);
                 return undefined;
@@ -207435,8 +207357,10 @@ function restoreCacheV2(paths_1, primaryKey_1, restoreKeys_1, options_1) {
                 throw error;
             }
             else {
-                // Supress all non-validation cache related errors because caching should be optional
-                // Log server errors (5xx) as errors, all other errors as warnings
+                // Suppress all non-validation cache related errors because caching should be optional
+                // Log server errors (5xx) as errors, all other errors as warnings.
+                // A read denied by policy (CacheReadDeniedError) is not an HttpClientError
+                // so it falls here and is warned, treated as a cache miss.
                 if (typedError instanceof HttpClientError &&
                     typeof typedError.statusCode === 'number' &&
                     typedError.statusCode >= 500) {
@@ -207475,6 +207399,12 @@ function cache_saveCache(paths_1, key_1, options_1) {
         core_debug(`Cache service version: ${cacheServiceVersion}`);
         checkPaths(paths);
         checkKey(key);
+        const cacheMode = getCacheMode();
+        if (!isCacheWritable(cacheMode)) {
+            info(`Cache save skipped: the effective cache-mode '${cacheMode}' does not permit writes.`);
+            core_debug(`Skipped save for paths [${paths.join(', ')}] with key '${key}'.`);
+            return -1;
+        }
         switch (cacheServiceVersion) {
             case 'v2':
                 return yield saveCacheV2(paths, key, options, enableCrossOsArchive);
@@ -207552,17 +207482,14 @@ function saveCacheV1(paths_1, key_1, options_1) {
             if (typedError.name === ValidationError.name) {
                 throw error;
             }
-            else if (typedError.name === CacheWriteDeniedError.name) {
-                // Cache write was denied by policy (read-only token). Surface to the
-                // customer at warning level so it is visible in the workflow log
-                // without failing the run.
-                warning(`Failed to save: ${typedError.message}`);
-            }
             else if (typedError.name === ReserveCacheError.name) {
                 info(`Failed to save: ${typedError.message}`);
             }
             else {
-                // Log server errors (5xx) as errors, all other errors as warnings
+                // Log server errors (5xx) as errors, all other errors as warnings.
+                // A write denied by policy (CacheWriteDeniedError) is not an
+                // HttpClientError and its name does not match the ReserveCacheError arm,
+                // so it falls here and is warned without failing the run.
                 if (typedError instanceof HttpClientError &&
                     typeof typedError.statusCode === 'number' &&
                     typedError.statusCode >= 500) {
@@ -207673,12 +207600,6 @@ function saveCacheV2(paths_1, key_1, options_1) {
             if (typedError.name === ValidationError.name) {
                 throw error;
             }
-            else if (typedError.name === CacheWriteDeniedError.name) {
-                // Cache write was denied by policy (read-only token). Surface to the
-                // customer at warning level so it is visible in the workflow log
-                // without failing the run.
-                warning(`Failed to save: ${typedError.message}`);
-            }
             else if (typedError.name === ReserveCacheError.name) {
                 info(`Failed to save: ${typedError.message}`);
             }
@@ -207686,7 +207607,10 @@ function saveCacheV2(paths_1, key_1, options_1) {
                 warning(typedError.message);
             }
             else {
-                // Log server errors (5xx) as errors, all other errors as warnings
+                // Log server errors (5xx) as errors, all other errors as warnings.
+                // A write denied by policy (CacheWriteDeniedError) is not an
+                // HttpClientError and its name does not match the ReserveCacheError arm,
+                // so it falls here and is warned without failing the run.
                 if (typedError instanceof HttpClientError &&
                     typeof typedError.statusCode === 'number' &&
                     typedError.statusCode >= 500) {
@@ -207786,8 +207710,20 @@ function getCacheClient() {
             await stream_to_promise_default()(stream.pipe(writeStream));
             core_core.info(`Saved cache to ${tempFile}`);
             core_core.info(`Saving cache for key: ${key}, path: ${tempFile}`);
-            await withCachePath(tempFile, cachePath => cache_saveCache([cachePath], key));
-            core_core.info(`Saved cache ${key}`);
+            //* saveCache does not throw on most failures (a rate limit included):
+            //* it logs a warning and returns -1, so a missing id is a failed save.
+            let cacheId = await withCachePath(tempFile, cachePath => cache_saveCache([cachePath], key));
+            if (cacheId === -1) {
+                core_core.warning(`Cache save for key ${key} returned no id, retrying in 1s`);
+                await utils_sleep(1000);
+                cacheId = await withCachePath(tempFile, cachePath => cache_saveCache([cachePath], key));
+            }
+            if (cacheId === -1) {
+                core_core.warning(`Cache not saved for key ${key}`);
+            }
+            else {
+                core_core.info(`Saved cache ${key}`);
+            }
             //* Remove the temporary file
             await (0,promises_.unlink)(tempFile);
         }

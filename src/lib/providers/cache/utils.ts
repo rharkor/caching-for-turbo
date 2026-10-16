@@ -86,8 +86,23 @@ export function getCacheClient() {
       core.info(`Saved cache to ${tempFile}`)
 
       core.info(`Saving cache for key: ${key}, path: ${tempFile}`)
-      await withCachePath(tempFile, cachePath => saveCache([cachePath], key))
-      core.info(`Saved cache ${key}`)
+      //* saveCache does not throw on most failures (a rate limit included):
+      //* it logs a warning and returns -1, so a missing id is a failed save.
+      let cacheId = await withCachePath(tempFile, cachePath =>
+        saveCache([cachePath], key)
+      )
+      if (cacheId === -1) {
+        core.warning(`Cache save for key ${key} returned no id, retrying in 1s`)
+        await sleep(1000)
+        cacheId = await withCachePath(tempFile, cachePath =>
+          saveCache([cachePath], key)
+        )
+      }
+      if (cacheId === -1) {
+        core.warning(`Cache not saved for key ${key}`)
+      } else {
+        core.info(`Saved cache ${key}`)
+      }
 
       //* Remove the temporary file
       await unlink(tempFile)
