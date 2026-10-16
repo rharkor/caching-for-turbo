@@ -111,6 +111,10 @@ jobs:
   test-action-s3:
     name: GitHub Actions Test (S3)
     runs-on: ubuntu-latest
+    # Fork PRs don't receive repository secrets, so the S3 test can't run there
+    if:
+      github.event_name != 'pull_request' ||
+      github.event.pull_request.head.repo.full_name == github.repository
 
     steps:
       - name: Checkout
