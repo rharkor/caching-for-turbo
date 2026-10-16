@@ -2009,6 +2009,7 @@ const _mw13 = (Command, cs, config, o) => [
 ];
 
 class S3ServiceException extends ServiceException {
+    static shapeId = "smithy.ts.sdk.synthetic.com.amazonaws.s3#S3ServiceException";
     constructor(options) {
         super(options);
         Object.setPrototypeOf(this, S3ServiceException.prototype);
@@ -2016,6 +2017,7 @@ class S3ServiceException extends ServiceException {
 }
 
 class NoSuchUpload extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#NoSuchUpload";
     name = "NoSuchUpload";
     $fault = "client";
     constructor(opts) {
@@ -2028,6 +2030,7 @@ class NoSuchUpload extends S3ServiceException {
     }
 }
 class AccessDenied extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#AccessDenied";
     name = "AccessDenied";
     $fault = "client";
     constructor(opts) {
@@ -2040,6 +2043,7 @@ class AccessDenied extends S3ServiceException {
     }
 }
 class ObjectNotInActiveTierError extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#ObjectNotInActiveTierError";
     name = "ObjectNotInActiveTierError";
     $fault = "client";
     constructor(opts) {
@@ -2052,6 +2056,7 @@ class ObjectNotInActiveTierError extends S3ServiceException {
     }
 }
 class BucketAlreadyExists extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#BucketAlreadyExists";
     name = "BucketAlreadyExists";
     $fault = "client";
     constructor(opts) {
@@ -2064,6 +2069,7 @@ class BucketAlreadyExists extends S3ServiceException {
     }
 }
 class BucketAlreadyOwnedByYou extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#BucketAlreadyOwnedByYou";
     name = "BucketAlreadyOwnedByYou";
     $fault = "client";
     constructor(opts) {
@@ -2076,6 +2082,7 @@ class BucketAlreadyOwnedByYou extends S3ServiceException {
     }
 }
 class NoSuchBucket extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#NoSuchBucket";
     name = "NoSuchBucket";
     $fault = "client";
     constructor(opts) {
@@ -2088,6 +2095,7 @@ class NoSuchBucket extends S3ServiceException {
     }
 }
 class NoSuchKey extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#NoSuchKey";
     name = "NoSuchKey";
     $fault = "client";
     constructor(opts) {
@@ -2100,6 +2108,7 @@ class NoSuchKey extends S3ServiceException {
     }
 }
 class InvalidObjectState extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#InvalidObjectState";
     name = "InvalidObjectState";
     $fault = "client";
     StorageClass;
@@ -2116,6 +2125,7 @@ class InvalidObjectState extends S3ServiceException {
     }
 }
 class NoSuchAnnotation extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#NoSuchAnnotation";
     name = "NoSuchAnnotation";
     $fault = "client";
     constructor(opts) {
@@ -2128,6 +2138,7 @@ class NoSuchAnnotation extends S3ServiceException {
     }
 }
 class NotFound extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#NotFound";
     name = "NotFound";
     $fault = "client";
     constructor(opts) {
@@ -2140,6 +2151,7 @@ class NotFound extends S3ServiceException {
     }
 }
 class InvalidPrefix extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#InvalidPrefix";
     name = "InvalidPrefix";
     $fault = "client";
     constructor(opts) {
@@ -2152,6 +2164,7 @@ class InvalidPrefix extends S3ServiceException {
     }
 }
 class EncryptionTypeMismatch extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#EncryptionTypeMismatch";
     name = "EncryptionTypeMismatch";
     $fault = "client";
     constructor(opts) {
@@ -2164,6 +2177,7 @@ class EncryptionTypeMismatch extends S3ServiceException {
     }
 }
 class InvalidRequest extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#InvalidRequest";
     name = "InvalidRequest";
     $fault = "client";
     constructor(opts) {
@@ -2176,6 +2190,7 @@ class InvalidRequest extends S3ServiceException {
     }
 }
 class InvalidWriteOffset extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#InvalidWriteOffset";
     name = "InvalidWriteOffset";
     $fault = "client";
     constructor(opts) {
@@ -2188,6 +2203,7 @@ class InvalidWriteOffset extends S3ServiceException {
     }
 }
 class TooManyParts extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#TooManyParts";
     name = "TooManyParts";
     $fault = "client";
     constructor(opts) {
@@ -2200,6 +2216,7 @@ class TooManyParts extends S3ServiceException {
     }
 }
 class AnnotationLimitExceeded extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#AnnotationLimitExceeded";
     name = "AnnotationLimitExceeded";
     $fault = "client";
     constructor(opts) {
@@ -2212,6 +2229,7 @@ class AnnotationLimitExceeded extends S3ServiceException {
     }
 }
 class AnnotationNameTooLong extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#AnnotationNameTooLong";
     name = "AnnotationNameTooLong";
     $fault = "client";
     constructor(opts) {
@@ -2224,6 +2242,7 @@ class AnnotationNameTooLong extends S3ServiceException {
     }
 }
 class InvalidAnnotationName extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#InvalidAnnotationName";
     name = "InvalidAnnotationName";
     $fault = "client";
     constructor(opts) {
@@ -2236,6 +2255,7 @@ class InvalidAnnotationName extends S3ServiceException {
     }
 }
 class UnsupportedMediaType extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#UnsupportedMediaType";
     name = "UnsupportedMediaType";
     $fault = "client";
     constructor(opts) {
@@ -2248,6 +2268,7 @@ class UnsupportedMediaType extends S3ServiceException {
     }
 }
 class IdempotencyParameterMismatch extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#IdempotencyParameterMismatch";
     name = "IdempotencyParameterMismatch";
     $fault = "client";
     constructor(opts) {
@@ -2260,6 +2281,7 @@ class IdempotencyParameterMismatch extends S3ServiceException {
     }
 }
 class ObjectAlreadyInActiveTierError extends S3ServiceException {
+    static shapeId = "com.amazonaws.s3#ObjectAlreadyInActiveTierError";
     name = "ObjectAlreadyInActiveTierError";
     $fault = "client";
     constructor(opts) {
@@ -2469,6 +2491,7 @@ const _DBTR = "DeleteBucketTaggingRequest";
 const _DBW = "DeleteBucketWebsite";
 const _DBWR = "DeleteBucketWebsiteRequest";
 const _DE = "DataExport";
+const _DEH = "DefaultEventHold";
 const _DIM = "DestinationIfMatch";
 const _DIMS = "DestinationIfModifiedSince";
 const _DINM = "DestinationIfNoneMatch";
@@ -2516,6 +2539,8 @@ const _ED = "ErrorDetails";
 const _EDr = "ErrorDocument";
 const _EE = "EndEvent";
 const _EH = "ExposeHeaders";
+const _EHD = "EventHoldDuration";
+const _EHv = "EventHold";
 const _EHx = "ExposeHeader";
 const _EM = "ErrorMessage";
 const _EODM = "ExpiredObjectDeleteMarker";
@@ -2860,6 +2885,9 @@ const _OL = "OutputLocation";
 const _OLC = "ObjectLockConfiguration";
 const _OLE = "ObjectLockEnabled";
 const _OLEFB = "ObjectLockEnabledForBucket";
+const _OLEH = "ObjectLockEventHold";
+const _OLEHDD = "ObjectLockEventHoldDurationDays";
+const _OLEHDY = "ObjectLockEventHoldDurationYears";
 const _OLLH = "ObjectLockLegalHold";
 const _OLLHS = "ObjectLockLegalHoldStatus";
 const _OLM = "ObjectLockMode";
@@ -3303,6 +3331,9 @@ const _xampc = "x-amz-mp-parts-count";
 const _xaoa = "x-amz-object-attributes";
 const _xaoad = "x-amz-object-annotation-directive";
 const _xaoim = "x-amz-object-if-match";
+const _xaoleh = "x-amz-object-lock-event-hold";
+const _xaolehdd = "x-amz-object-lock-event-hold-duration-days";
+const _xaolehdy = "x-amz-object-lock-event-hold-duration-years";
 const _xaollh = "x-amz-object-lock-legal-hold";
 const _xaolm = "x-amz-object-lock-mode";
 const _xaolrud = "x-amz-object-lock-retain-until-date";
@@ -3343,10 +3374,10 @@ const _xawob = "x-amz-write-offset-bytes";
 const _xawrl = "x-amz-website-redirect-location";
 const _xs = "xsi:type";
 const n0 = "com.amazonaws.s3";
-const _s_registry = TypeRegistry.for(_s);
+const _s_registry = new TypeRegistry(_s);
 var S3ServiceException$ = [-3, _s, "S3ServiceException", 0, [], []];
 _s_registry.registerError(S3ServiceException$, S3ServiceException);
-const n0_registry = TypeRegistry.for(n0);
+const n0_registry = new TypeRegistry(n0);
 var AccessDenied$ = [-3, n0, _AD,
     { [_e]: _c, [_hE]: 403 },
     [],
@@ -3631,8 +3662,8 @@ var CopyObjectOutput$ = [3, n0, _COO,
 ];
 var CopyObjectRequest$ = [3, n0, _CORo,
     0,
-    [_B, _CSo, _K, _ACL_, _CC, _CA, _CDo, _CEo, _CL, _CTo, _CSIM, _CSIMS, _CSINM, _CSIUS, _Exp, _GFC, _GR, _GRACP, _GWACP, _IM, _INM, _M, _MD, _TD, _ADn, _SSE, _SC, _WRL, _SSECA, _SSECK, _SSECKMD, _SSEKMSKI, _SSEKMSEC, _BKE, _CSSSECA, _CSSSECK, _CSSSECKMD, _RP, _Tag, _OLM, _OLRUD, _OLLHS, _EBO, _ESBO],
-    [[0, 1], [0, { [_hH]: _xacs___ }], [0, 1], [0, { [_hH]: _xaa }], [0, { [_hH]: _CC_ }], [0, { [_hH]: _xaca }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [0, { [_hH]: _CT_ }], [0, { [_hH]: _xacsim }], [4, { [_hH]: _xacsims }], [0, { [_hH]: _xacsinm }], [4, { [_hH]: _xacsius }], [4, { [_hH]: _Exp }], [0, { [_hH]: _xagfc }], [0, { [_hH]: _xagr }], [0, { [_hH]: _xagra }], [0, { [_hH]: _xagwa }], [0, { [_hH]: _IM_ }], [0, { [_hH]: _INM_ }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xamd }], [0, { [_hH]: _xatd }], [0, { [_hH]: _xaoad }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xacssseca }], [() => CopySourceSSECustomerKey, { [_hH]: _xacssseck }], [0, { [_hH]: _xacssseckM }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xat }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xasebo }]], 3
+    [_B, _CSo, _K, _ACL_, _CC, _CA, _CDo, _CEo, _CL, _CTo, _CSIM, _CSIMS, _CSINM, _CSIUS, _Exp, _GFC, _GR, _GRACP, _GWACP, _IM, _INM, _M, _MD, _TD, _ADn, _SSE, _SC, _WRL, _SSECA, _SSECK, _SSECKMD, _SSEKMSKI, _SSEKMSEC, _BKE, _CSSSECA, _CSSSECK, _CSSSECKMD, _RP, _Tag, _OLM, _OLRUD, _OLLHS, _OLEH, _OLEHDD, _OLEHDY, _EBO, _ESBO],
+    [[0, 1], [0, { [_hH]: _xacs___ }], [0, 1], [0, { [_hH]: _xaa }], [0, { [_hH]: _CC_ }], [0, { [_hH]: _xaca }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [0, { [_hH]: _CT_ }], [0, { [_hH]: _xacsim }], [4, { [_hH]: _xacsims }], [0, { [_hH]: _xacsinm }], [4, { [_hH]: _xacsius }], [4, { [_hH]: _Exp }], [0, { [_hH]: _xagfc }], [0, { [_hH]: _xagr }], [0, { [_hH]: _xagra }], [0, { [_hH]: _xagwa }], [0, { [_hH]: _IM_ }], [0, { [_hH]: _INM_ }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xamd }], [0, { [_hH]: _xatd }], [0, { [_hH]: _xaoad }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xacssseca }], [() => CopySourceSSECustomerKey, { [_hH]: _xacssseck }], [0, { [_hH]: _xacssseckM }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xat }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }], [0, { [_hH]: _xaoleh }], [1, { [_hH]: _xaolehdd }], [1, { [_hH]: _xaolehdy }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xasebo }]], 3
 ];
 var CopyObjectResult$ = [3, n0, _COR,
     0,
@@ -3686,8 +3717,8 @@ var CreateMultipartUploadOutput$ = [3, n0, _CMUOr,
 ];
 var CreateMultipartUploadRequest$ = [3, n0, _CMURr,
     0,
-    [_B, _K, _ACL_, _CC, _CDo, _CEo, _CL, _CTo, _Exp, _GFC, _GR, _GRACP, _GWACP, _M, _SSE, _SC, _WRL, _SSECA, _SSECK, _SSECKMD, _SSEKMSKI, _SSEKMSEC, _BKE, _RP, _Tag, _OLM, _OLRUD, _OLLHS, _EBO, _CA, _CT],
-    [[0, 1], [0, 1], [0, { [_hH]: _xaa }], [0, { [_hH]: _CC_ }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [0, { [_hH]: _CT_ }], [4, { [_hH]: _Exp }], [0, { [_hH]: _xagfc }], [0, { [_hH]: _xagr }], [0, { [_hH]: _xagra }], [0, { [_hH]: _xagwa }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xat }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xaca }], [0, { [_hH]: _xact }]], 2
+    [_B, _K, _ACL_, _CC, _CDo, _CEo, _CL, _CTo, _Exp, _GFC, _GR, _GRACP, _GWACP, _M, _SSE, _SC, _WRL, _SSECA, _SSECK, _SSECKMD, _SSEKMSKI, _SSEKMSEC, _BKE, _RP, _Tag, _OLM, _OLRUD, _OLLHS, _OLEH, _OLEHDD, _OLEHDY, _EBO, _CA, _CT],
+    [[0, 1], [0, 1], [0, { [_hH]: _xaa }], [0, { [_hH]: _CC_ }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [0, { [_hH]: _CT_ }], [4, { [_hH]: _Exp }], [0, { [_hH]: _xagfc }], [0, { [_hH]: _xagr }], [0, { [_hH]: _xagra }], [0, { [_hH]: _xagwa }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xat }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }], [0, { [_hH]: _xaoleh }], [1, { [_hH]: _xaolehdd }], [1, { [_hH]: _xaolehdy }], [0, { [_hH]: _xaebo }], [0, { [_hH]: _xaca }], [0, { [_hH]: _xact }]], 2
 ];
 var CreateSessionOutput$ = [3, n0, _CSO,
     { [_xN]: _CSR },
@@ -3711,8 +3742,8 @@ var CSVOutput$ = [3, n0, _CSVO,
 ];
 var DefaultRetention$ = [3, n0, _DRe,
     0,
-    [_Mo, _D, _Y],
-    [0, 1, 1]
+    [_Mo, _D, _Y, _DEH],
+    [0, 1, 1, () => EventHoldDuration$]
 ];
 var Delete$ = [3, n0, _De,
     0,
@@ -3898,6 +3929,11 @@ var EventBridgeConfiguration$ = [3, n0, _EBC,
     0,
     [],
     []
+];
+var EventHoldDuration$ = [3, n0, _EHD,
+    0,
+    [_D, _Y],
+    [1, 1]
 ];
 var ExistingObjectReplication$ = [3, n0, _EOR,
     0,
@@ -4201,8 +4237,8 @@ var GetObjectLockConfigurationRequest$ = [3, n0, _GOLCR,
 ];
 var GetObjectOutput$ = [3, n0, _GOO,
     0,
-    [_Bo, _DM, _AR, _Ex, _Re, _LM, _CLo, _ET, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CT, _MM, _VI, _CC, _CDo, _CEo, _CL, _CR, _CTo, _Exp, _ES, _WRL, _SSE, _M, _SSECA, _SSECKMD, _SSEKMSKI, _BKE, _SC, _RC, _RS, _PC, _TC, _OLM, _OLRUD, _OLLHS],
-    [[() => StreamingBlob, 16], [2, { [_hH]: _xadm }], [0, { [_hH]: _ar }], [0, { [_hH]: _xae }], [0, { [_hH]: _xar }], [4, { [_hH]: _LM_ }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _ET }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _xact }], [1, { [_hH]: _xamm }], [0, { [_hH]: _xavi }], [0, { [_hH]: _CC_ }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [0, { [_hH]: _CR_ }], [0, { [_hH]: _CT_ }], [4, { [_hH]: _Exp }], [0, { [_hH]: _ES }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasse }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xarc }], [0, { [_hH]: _xars }], [1, { [_hH]: _xampc }], [1, { [_hH]: _xatc }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }]]
+    [_Bo, _DM, _AR, _Ex, _Re, _LM, _CLo, _ET, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CT, _MM, _VI, _CC, _CDo, _CEo, _CL, _CR, _CTo, _Exp, _ES, _WRL, _SSE, _M, _SSECA, _SSECKMD, _SSEKMSKI, _BKE, _SC, _RC, _RS, _PC, _TC, _OLM, _OLRUD, _OLLHS, _OLEH, _OLEHDD, _OLEHDY],
+    [[() => StreamingBlob, 16], [2, { [_hH]: _xadm }], [0, { [_hH]: _ar }], [0, { [_hH]: _xae }], [0, { [_hH]: _xar }], [4, { [_hH]: _LM_ }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _ET }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _xact }], [1, { [_hH]: _xamm }], [0, { [_hH]: _xavi }], [0, { [_hH]: _CC_ }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [0, { [_hH]: _CR_ }], [0, { [_hH]: _CT_ }], [4, { [_hH]: _Exp }], [0, { [_hH]: _ES }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasse }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xarc }], [0, { [_hH]: _xars }], [1, { [_hH]: _xampc }], [1, { [_hH]: _xatc }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }], [0, { [_hH]: _xaoleh }], [1, { [_hH]: _xaolehdd }], [1, { [_hH]: _xaolehdy }]]
 ];
 var GetObjectRequest$ = [3, n0, _GOR,
     0,
@@ -4276,8 +4312,8 @@ var HeadBucketRequest$ = [3, n0, _HBR,
 ];
 var HeadObjectOutput$ = [3, n0, _HOO,
     0,
-    [_DM, _AR, _Ex, _Re, _ASr, _LM, _CLo, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CT, _ET, _MM, _VI, _CC, _CDo, _CEo, _CL, _CTo, _CR, _Exp, _ES, _WRL, _SSE, _M, _SSECA, _SSECKMD, _SSEKMSKI, _BKE, _SC, _RC, _RS, _PC, _TC, _OLM, _OLRUD, _OLLHS],
-    [[2, { [_hH]: _xadm }], [0, { [_hH]: _ar }], [0, { [_hH]: _xae }], [0, { [_hH]: _xar }], [0, { [_hH]: _xaas }], [4, { [_hH]: _LM_ }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _xact }], [0, { [_hH]: _ET }], [1, { [_hH]: _xamm }], [0, { [_hH]: _xavi }], [0, { [_hH]: _CC_ }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [0, { [_hH]: _CT_ }], [0, { [_hH]: _CR_ }], [4, { [_hH]: _Exp }], [0, { [_hH]: _ES }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasse }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xarc }], [0, { [_hH]: _xars }], [1, { [_hH]: _xampc }], [1, { [_hH]: _xatc }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }]]
+    [_DM, _AR, _Ex, _Re, _ASr, _LM, _CLo, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _CT, _ET, _MM, _VI, _CC, _CDo, _CEo, _CL, _CTo, _CR, _Exp, _ES, _WRL, _SSE, _M, _SSECA, _SSECKMD, _SSEKMSKI, _BKE, _SC, _RC, _RS, _PC, _TC, _OLM, _OLRUD, _OLLHS, _OLEH, _OLEHDD, _OLEHDY],
+    [[2, { [_hH]: _xadm }], [0, { [_hH]: _ar }], [0, { [_hH]: _xae }], [0, { [_hH]: _xar }], [0, { [_hH]: _xaas }], [4, { [_hH]: _LM_ }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [0, { [_hH]: _xact }], [0, { [_hH]: _ET }], [1, { [_hH]: _xamm }], [0, { [_hH]: _xavi }], [0, { [_hH]: _CC_ }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [0, { [_hH]: _CT_ }], [0, { [_hH]: _CR_ }], [4, { [_hH]: _Exp }], [0, { [_hH]: _ES }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasse }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xasseca }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xarc }], [0, { [_hH]: _xars }], [1, { [_hH]: _xampc }], [1, { [_hH]: _xatc }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }], [0, { [_hH]: _xaoleh }], [1, { [_hH]: _xaolehdd }], [1, { [_hH]: _xaolehdy }]]
 ];
 var HeadObjectRequest$ = [3, n0, _HOR,
     0,
@@ -4631,8 +4667,8 @@ var ObjectLockLegalHold$ = [3, n0, _OLLH,
 ];
 var ObjectLockRetention$ = [3, n0, _OLR,
     0,
-    [_Mo, _RUD],
-    [0, 5]
+    [_Mo, _RUD, _EHv, _EHD],
+    [0, 5, 0, () => EventHoldDuration$]
 ];
 var ObjectLockRule$ = [3, n0, _OLRb,
     0,
@@ -4856,8 +4892,8 @@ var PutObjectOutput$ = [3, n0, _POO,
 ];
 var PutObjectRequest$ = [3, n0, _POR,
     0,
-    [_B, _K, _ACL_, _Bo, _CC, _CDo, _CEo, _CL, _CLo, _CMDo, _CTo, _CA, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _Exp, _IM, _INM, _GFC, _GR, _GRACP, _GWACP, _WOB, _M, _SSE, _SC, _WRL, _SSECA, _SSECK, _SSECKMD, _SSEKMSKI, _SSEKMSEC, _BKE, _RP, _Tag, _OLM, _OLRUD, _OLLHS, _EBO],
-    [[0, 1], [0, 1], [0, { [_hH]: _xaa }], [() => StreamingBlob, 16], [0, { [_hH]: _CC_ }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _CM }], [0, { [_hH]: _CT_ }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [4, { [_hH]: _Exp }], [0, { [_hH]: _IM_ }], [0, { [_hH]: _INM_ }], [0, { [_hH]: _xagfc }], [0, { [_hH]: _xagr }], [0, { [_hH]: _xagra }], [0, { [_hH]: _xagwa }], [1, { [_hH]: _xawob }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xat }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }], [0, { [_hH]: _xaebo }]], 2
+    [_B, _K, _ACL_, _Bo, _CC, _CDo, _CEo, _CL, _CLo, _CMDo, _CTo, _CA, _CCRC, _CCRCC, _CCRCNVME, _CSHA, _CSHAh, _CSHAhe, _CMD, _CXXHASH, _CXXHASHh, _CXXHASHhe, _Exp, _IM, _INM, _GFC, _GR, _GRACP, _GWACP, _WOB, _M, _SSE, _SC, _WRL, _SSECA, _SSECK, _SSECKMD, _SSEKMSKI, _SSEKMSEC, _BKE, _RP, _Tag, _OLM, _OLRUD, _OLLHS, _OLEH, _OLEHDD, _OLEHDY, _EBO],
+    [[0, 1], [0, 1], [0, { [_hH]: _xaa }], [() => StreamingBlob, 16], [0, { [_hH]: _CC_ }], [0, { [_hH]: _CD_ }], [0, { [_hH]: _CE_ }], [0, { [_hH]: _CL_ }], [1, { [_hH]: _CL__ }], [0, { [_hH]: _CM }], [0, { [_hH]: _CT_ }], [0, { [_hH]: _xasca }], [0, { [_hH]: _xacc }], [0, { [_hH]: _xacc_ }], [0, { [_hH]: _xacc__ }], [0, { [_hH]: _xacs }], [0, { [_hH]: _xacs_ }], [0, { [_hH]: _xacs__ }], [0, { [_hH]: _xacm }], [0, { [_hH]: _xacx }], [0, { [_hH]: _xacx_ }], [0, { [_hH]: _xacx__ }], [4, { [_hH]: _Exp }], [0, { [_hH]: _IM_ }], [0, { [_hH]: _INM_ }], [0, { [_hH]: _xagfc }], [0, { [_hH]: _xagr }], [0, { [_hH]: _xagra }], [0, { [_hH]: _xagwa }], [1, { [_hH]: _xawob }], [128 | 0, { [_hPH]: _xam }], [0, { [_hH]: _xasse }], [0, { [_hH]: _xasc }], [0, { [_hH]: _xawrl }], [0, { [_hH]: _xasseca }], [() => SSECustomerKey, { [_hH]: _xasseck }], [0, { [_hH]: _xasseckM }], [() => SSEKMSKeyId, { [_hH]: _xasseakki }], [() => SSEKMSEncryptionContext, { [_hH]: _xassec }], [2, { [_hH]: _xassebke }], [0, { [_hH]: _xarp }], [0, { [_hH]: _xat }], [0, { [_hH]: _xaolm }], [5, { [_hH]: _xaolrud }], [0, { [_hH]: _xaollh }], [0, { [_hH]: _xaoleh }], [1, { [_hH]: _xaolehdd }], [1, { [_hH]: _xaolehdy }], [0, { [_hH]: _xaebo }]], 2
 ];
 var PutObjectRetentionOutput$ = [3, n0, _PORO,
     0,
@@ -5685,7 +5721,7 @@ var WriteGetObjectResponse$ = [9, n0, _WGOR,
 class CreateSessionCommand extends command(_ep4, _mw0, "CreateSession", CreateSession$) {
 }
 
-var version = "3.1094.0";
+var version = "3.1151.0";
 var packageInfo = {
 	version: version};
 
@@ -6471,6 +6507,7 @@ const ChecksumType = {
 };
 const ServerSideEncryption = {
     AES256: "AES256",
+    aws_backup: "aws:backup",
     aws_fsx: "aws:fsx",
     aws_kms: "aws:kms",
     aws_kms_dsse: "aws:kms:dsse",
@@ -6504,6 +6541,10 @@ const MetadataDirective = {
     COPY: "COPY",
     REPLACE: "REPLACE",
 };
+const ObjectLockEventHold = {
+    OFF: "OFF",
+    ON: "ON",
+};
 const ObjectLockLegalHoldStatus = {
     OFF: "OFF",
     ON: "ON",
@@ -6513,6 +6554,8 @@ const ObjectLockMode = {
     GOVERNANCE: "GOVERNANCE",
 };
 const StorageClass = {
+    AWS_BACKUP_LOW_COST_WARM: "AWS_BACKUP_LOW_COST_WARM",
+    AWS_BACKUP_WARM: "AWS_BACKUP_WARM",
     DEEP_ARCHIVE: "DEEP_ARCHIVE",
     EXPRESS_ONEZONE: "EXPRESS_ONEZONE",
     FSX_ONTAP: "FSX_ONTAP",
@@ -6650,10 +6693,13 @@ const InventoryOptionalField = {
     ETag: "ETag",
     EncryptionStatus: "EncryptionStatus",
     IntelligentTieringAccessTier: "IntelligentTieringAccessTier",
+    IntelligentTieringReferenceDate: "IntelligentTieringReferenceDate",
     IsMultipartUploaded: "IsMultipartUploaded",
     LastModifiedDate: "LastModifiedDate",
     LifecycleExpirationDate: "LifecycleExpirationDate",
     ObjectAccessControlList: "ObjectAccessControlList",
+    ObjectLockEventHoldDuration: "ObjectLockEventHoldDuration",
+    ObjectLockEventHoldStatus: "ObjectLockEventHoldStatus",
     ObjectLockLegalHoldStatus: "ObjectLockLegalHoldStatus",
     ObjectLockMode: "ObjectLockMode",
     ObjectLockRetainUntilDate: "ObjectLockRetainUntilDate",
@@ -6717,6 +6763,7 @@ const Event = {
     s3_ObjectRestore_Completed: "s3:ObjectRestore:Completed",
     s3_ObjectRestore_Delete: "s3:ObjectRestore:Delete",
     s3_ObjectRestore_Post: "s3:ObjectRestore:Post",
+    s3_ObjectRetention_Put: "s3:ObjectRetention:Put",
     s3_ObjectTagging_: "s3:ObjectTagging:*",
     s3_ObjectTagging_Delete: "s3:ObjectTagging:Delete",
     s3_ObjectTagging_Put: "s3:ObjectTagging:Put",
@@ -6807,6 +6854,8 @@ const EncodingType = {
     url: "url",
 };
 const ObjectStorageClass = {
+    AWS_BACKUP_LOW_COST_WARM: "AWS_BACKUP_LOW_COST_WARM",
+    AWS_BACKUP_WARM: "AWS_BACKUP_WARM",
     DEEP_ARCHIVE: "DEEP_ARCHIVE",
     EXPRESS_ONEZONE: "EXPRESS_ONEZONE",
     FSX_ONTAP: "FSX_ONTAP",
@@ -7033,6 +7082,7 @@ exports.ErrorDetails$ = ErrorDetails$;
 exports.ErrorDocument$ = ErrorDocument$;
 exports.Event = Event;
 exports.EventBridgeConfiguration$ = EventBridgeConfiguration$;
+exports.EventHoldDuration$ = EventHoldDuration$;
 exports.ExistingObjectReplication$ = ExistingObjectReplication$;
 exports.ExistingObjectReplicationStatus = ExistingObjectReplicationStatus;
 exports.ExpirationState = ExpirationState;
@@ -7319,6 +7369,7 @@ exports.ObjectEncryption$ = ObjectEncryption$;
 exports.ObjectIdentifier$ = ObjectIdentifier$;
 exports.ObjectLockConfiguration$ = ObjectLockConfiguration$;
 exports.ObjectLockEnabled = ObjectLockEnabled;
+exports.ObjectLockEventHold = ObjectLockEventHold;
 exports.ObjectLockLegalHold$ = ObjectLockLegalHold$;
 exports.ObjectLockLegalHoldStatus = ObjectLockLegalHoldStatus;
 exports.ObjectLockMode = ObjectLockMode;
@@ -8569,6 +8620,7 @@ const { setCredentialFeature } = __nccwpck_require__(5152);
 const { normalizeProvider, memoizeIdentityProvider, isIdentityExpired, doesIdentityRequireRefresh } = __nccwpck_require__(90402);
 const { SignatureV4 } = __nccwpck_require__(75118);
 const { HttpResponse, HttpRequest } = __nccwpck_require__(93422);
+const { SMITHY_CONTEXT_KEY } = __nccwpck_require__(90690);
 
 const getDateHeader = (response) => HttpResponse.isInstance(response) ? (response.headers?.date ?? response.headers?.Date) : undefined;
 const getAgeHeader = (response) => HttpResponse.isInstance(response) ? (response.headers?.age ?? response.headers?.Age) : undefined;
@@ -8595,6 +8647,12 @@ const throwSigningPropertyError = (name, property) => {
         throw new Error(`Property \`${name}\` is not resolved for AWS SDK SigV4Auth`);
     }
     return property;
+};
+const hasEventStreamOutput = (signingProperties) => {
+    const context = signingProperties.context;
+    const eventStream = context?.[SMITHY_CONTEXT_KEY]
+        ?.eventStream;
+    return eventStream?.output === true;
 };
 const validateSigningProperties = async (signingProperties) => {
     const context = throwSigningPropertyError("context", signingProperties.context);
@@ -8631,7 +8689,9 @@ class AwsSdkSigV4Signer {
         }
         const noSkewCorrection = (await config.disableClockSkewCorrection?.()) === true;
         signingProperties._disableClockSkewCorrection = noSkewCorrection;
-        if (!noSkewCorrection) {
+        const skipSkewSampling = noSkewCorrection || hasEventStreamOutput(signingProperties);
+        signingProperties._skipClockSkewSampling = skipSkewSampling;
+        if (!skipSkewSampling) {
             signingProperties._preRequestSystemClockOffset = config.systemClockOffset;
             signingProperties._requestSentAt = Date.now();
         }
@@ -8645,7 +8705,7 @@ class AwsSdkSigV4Signer {
     errorHandler(signingProperties) {
         return (error) => {
             const errorException = error;
-            if (!signingProperties._disableClockSkewCorrection) {
+            if (!signingProperties._skipClockSkewSampling && !signingProperties._disableClockSkewCorrection) {
                 const serverTime = errorException.ServerTime ?? getDateHeader(errorException.$response);
                 if (serverTime) {
                     const config = throwSigningPropertyError("config", signingProperties.config);
@@ -8666,7 +8726,7 @@ class AwsSdkSigV4Signer {
         };
     }
     successHandler(httpResponse, signingProperties) {
-        if (signingProperties._disableClockSkewCorrection) {
+        if (signingProperties._skipClockSkewSampling || signingProperties._disableClockSkewCorrection) {
             return;
         }
         const dateHeader = getDateHeader(httpResponse);
@@ -8924,7 +8984,7 @@ const { SmithyRpcV2CborProtocol, loadSmithyRpcV2CborErrorCode } = __nccwpck_requ
 const { TypeRegistry, NormalizedSchema, deref } = __nccwpck_require__(26890);
 const { decorateServiceException, getValueFromTextNode } = __nccwpck_require__(92658);
 const { collectBody, determineTimestampFormat, RpcProtocol, HttpBindingProtocol, HttpInterceptingShapeSerializer, HttpInterceptingShapeDeserializer, FromStringShapeDeserializer, extendedEncodeURIComponent } = __nccwpck_require__(93422);
-const { NumericValue, toUtf8, fromBase64, LazyJsonString, parseEpochTimestamp, parseRfc7231DateTime, parseRfc3339DateTimeWithOffset, toBase64, dateToUtcString, generateIdempotencyToken, expectUnion } = __nccwpck_require__(92430);
+const { NumericValue, toUtf8, fromBase64, LazyJsonString, parseEpochTimestamp, parseRfc7231DateTime, parseRfc3339DateTimeWithOffset, generateIdempotencyToken, toBase64, dateToUtcString, expectUnion } = __nccwpck_require__(92430);
 const { parseXML, XmlNode, XmlText } = __nccwpck_require__(94274);
 
 class ProtocolLib {
@@ -9115,56 +9175,6 @@ class AwsSmithyRpcV2CborProtocol extends SmithyRpcV2CborProtocol {
     }
 }
 
-const _toStr = (val) => {
-    if (val == null) {
-        return val;
-    }
-    if (typeof val === "number" || typeof val === "bigint") {
-        const warning = new Error(`Received number ${val} where a string was expected.`);
-        warning.name = "Warning";
-        console.warn(warning);
-        return String(val);
-    }
-    if (typeof val === "boolean") {
-        const warning = new Error(`Received boolean ${val} where a string was expected.`);
-        warning.name = "Warning";
-        console.warn(warning);
-        return String(val);
-    }
-    return val;
-};
-const _toBool = (val) => {
-    if (val == null) {
-        return val;
-    }
-    if (typeof val === "string") {
-        const lowercase = val.toLowerCase();
-        if (val !== "" && lowercase !== "false" && lowercase !== "true") {
-            const warning = new Error(`Received string "${val}" where a boolean was expected.`);
-            warning.name = "Warning";
-            console.warn(warning);
-        }
-        return val !== "" && lowercase !== "false";
-    }
-    return val;
-};
-const _toNum = (val) => {
-    if (val == null) {
-        return val;
-    }
-    if (typeof val === "string") {
-        const num = Number(val);
-        if (num.toString() !== val) {
-            const warning = new Error(`Received string "${val}" where a number was expected.`);
-            warning.name = "Warning";
-            console.warn(warning);
-            return val;
-        }
-        return num;
-    }
-    return val;
-};
-
 class SerdeContextConfig {
     serdeContext;
     setSerdeContext(serdeContext) {
@@ -9199,22 +9209,144 @@ class UnionSerde {
     }
 }
 
+let canParseBuffer;
+function detectBufferParsing() {
+    if (canParseBuffer === undefined) {
+        try {
+            if (typeof Buffer !== "function") {
+                canParseBuffer = false;
+            }
+            else {
+                const result = JSON.parse(Buffer.from([0x7b, 0x7d]));
+                canParseBuffer = result !== null && typeof result === "object";
+            }
+        }
+        catch {
+            canParseBuffer = false;
+        }
+    }
+    return canParseBuffer;
+}
+
 function jsonReviver(key, value, context) {
     if (context?.source) {
         const numericString = context.source;
         if (typeof value === "number") {
-            if (value > Number.MAX_SAFE_INTEGER || value < Number.MIN_SAFE_INTEGER || numericString !== String(value)) {
-                const isFractional = numericString.includes(".");
-                if (isFractional) {
+            const inSafeRange = value <= Number.MAX_SAFE_INTEGER && value >= Number.MIN_SAFE_INTEGER;
+            if (inSafeRange) {
+                if (isRepresentable(numericString, value)) {
+                    return value;
+                }
+                return new NumericValue(numericString, "bigDecimal");
+            }
+            else {
+                if (isFractionalBigNumeric(numericString)) {
                     return new NumericValue(numericString, "bigDecimal");
                 }
-                else {
-                    return BigInt(numericString);
+                if (/[eE]/.test(numericString)) {
+                    return expandExponentToBigInt(numericString);
                 }
+                return BigInt(numericString);
             }
         }
     }
     return value;
+}
+function isFractionalBigNumeric(s) {
+    const dotIndex = s.indexOf(".");
+    if (dotIndex === -1) {
+        return false;
+    }
+    const eIndex = s.search(/[eE]/);
+    if (eIndex === -1) {
+        return true;
+    }
+    const fracDigits = eIndex - dotIndex - 1;
+    const exp = parseInt(s.slice(eIndex + 1), 10);
+    return exp < fracDigits;
+}
+function isRepresentable(numericString, value) {
+    if (numericString === String(value)) {
+        return true;
+    }
+    if (Object.is(value, -0)) {
+        return true;
+    }
+    if (/[eE]/.test(numericString)) {
+        return expandToDecimal(numericString) === expandToDecimal(String(value));
+    }
+    const normalized = numericString.replace(/(\.\d*?)0+$/, "$1").replace(/\.$/, "");
+    const canonical = String(value);
+    if (normalized === canonical) {
+        return true;
+    }
+    if (/[eE]/.test(canonical)) {
+        return normalized === expandToDecimal(canonical);
+    }
+    return false;
+}
+function expandToDecimal(s) {
+    const negative = s.startsWith("-");
+    const abs = negative ? s.slice(1) : s;
+    const eIndex = abs.search(/[eE]/);
+    let result;
+    if (eIndex === -1) {
+        result = abs;
+    }
+    else {
+        const exp = parseInt(abs.slice(eIndex + 1), 10);
+        const mantissa = abs.slice(0, eIndex);
+        const dotIndex = mantissa.indexOf(".");
+        let digits;
+        let intLen;
+        if (dotIndex === -1) {
+            digits = mantissa;
+            intLen = mantissa.length;
+        }
+        else {
+            digits = mantissa.slice(0, dotIndex) + mantissa.slice(dotIndex + 1);
+            intLen = dotIndex;
+        }
+        digits = digits.replace(/0+$/, "") || "0";
+        const newDotPos = intLen + exp;
+        if (digits === "0") {
+            result = "0";
+        }
+        else if (newDotPos <= 0) {
+            result = "0." + "0".repeat(-newDotPos) + digits;
+        }
+        else if (newDotPos >= digits.length) {
+            result = digits + "0".repeat(newDotPos - digits.length);
+        }
+        else {
+            result = digits.slice(0, newDotPos) + "." + digits.slice(newDotPos);
+        }
+    }
+    if (result.includes(".")) {
+        result = result.replace(/(\.\d*?)0+$/, "$1").replace(/\.$/, "");
+    }
+    return (negative ? "-" : "") + result;
+}
+function expandExponentToBigInt(s) {
+    const eIndex = s.search(/[eE]/);
+    const exp = parseInt(s.slice(eIndex + 1), 10);
+    const negative = s.startsWith("-");
+    const mantissa = s.slice(negative ? 1 : 0, eIndex);
+    const dotIndex = mantissa.indexOf(".");
+    let digits;
+    let shift;
+    if (dotIndex === -1) {
+        digits = mantissa;
+        shift = exp;
+    }
+    else {
+        digits = mantissa.slice(0, dotIndex) + mantissa.slice(dotIndex + 1);
+        const fracDigits = mantissa.length - dotIndex - 1;
+        shift = exp - fracDigits;
+    }
+    digits = digits.replace(/0+$/, "") || "0";
+    const result = BigInt(digits) * 10n ** BigInt(shift + (mantissa.replace(".", "").length - digits.length));
+    return negative ? -result : result;
 }
 
 const REVIVER_SYMBOL = Symbol.for("@aws-sdk/reviver");
@@ -9259,25 +9391,6 @@ function _check(ns, seen) {
 }
 
 const collectBodyString = (streamBody, context) => collectBody(streamBody, context).then((body) => (context?.utf8Encoder ?? toUtf8)(body));
-
-let canParseBuffer;
-function detectBufferParsing() {
-    if (canParseBuffer === undefined) {
-        try {
-            if (typeof Buffer !== "function") {
-                canParseBuffer = false;
-            }
-            else {
-                const result = JSON.parse(Buffer.from([0x7b, 0x7d]));
-                canParseBuffer = result !== null && typeof result === "object";
-            }
-        }
-        catch {
-            canParseBuffer = false;
-        }
-    }
-    return canParseBuffer;
-}
 
 async function parseJsonBody(streamBody, context, schema) {
     let parsingInput;
@@ -9366,6 +9479,1030 @@ const loadErrorCode = ({ headers }, data, order) => {
 
 function writeKey(obj) {
     Object.defineProperty(obj, "__proto__", { value: undefined, writable: true, enumerable: true, configurable: true });
+}
+
+class JsonShapeDeserializer2 extends SerdeContextConfig {
+    settings;
+    constructor(settings) {
+        super();
+        this.settings = settings;
+    }
+    async read(schema, data) {
+        const reviver = needsReviver(schema) ? jsonReviver : undefined;
+        let parsed;
+        if (typeof data === "string") {
+            if (data.length === 0) {
+                return {};
+            }
+            parsed = JSON.parse(data, reviver);
+        }
+        else if (data instanceof Uint8Array && detectBufferParsing()) {
+            if (data.byteLength === 0) {
+                return {};
+            }
+            const buf = Buffer.isBuffer(data) ? data : Buffer.from(data.buffer, data.byteOffset, data.byteLength);
+            parsed = JSON.parse(buf, reviver);
+        }
+        else {
+            parsed = await parseJsonBody(data, this.serdeContext, schema);
+        }
+        return this._read(schema, parsed);
+    }
+    readObject(schema, data) {
+        return this._read(schema, data);
+    }
+    _read(schema, value) {
+        const isObject = value !== null && typeof value === "object";
+        const ns = NormalizedSchema.of(schema);
+        if (isObject) {
+            if (ns.isStructSchema()) {
+                return this._readStruct(ns, value);
+            }
+            if (Array.isArray(value) && ns.isListSchema()) {
+                const listMember = ns.getValueSchema();
+                if (this.needsTransform(listMember)) {
+                    for (let i = 0; i < value.length; ++i) {
+                        value[i] = this._read(listMember, value[i]);
+                    }
+                }
+                return value;
+            }
+            if (ns.isMapSchema()) {
+                const mapMember = ns.getValueSchema();
+                const map = value;
+                if (this.needsTransform(mapMember)) {
+                    for (const k in map) {
+                        if (k === "__proto__") {
+                            writeKey(map);
+                        }
+                        map[k] = this._read(mapMember, map[k]);
+                    }
+                }
+                return map;
+            }
+        }
+        if (ns.isBlobSchema() && typeof value === "string") {
+            return fromBase64(value);
+        }
+        const mediaType = ns.getMergedTraits().mediaType;
+        if (ns.isStringSchema() && typeof value === "string" && mediaType) {
+            const isJson = mediaType === "application/json" || mediaType.endsWith("+json");
+            if (isJson) {
+                return LazyJsonString.from(value);
+            }
+            return value;
+        }
+        if (ns.isTimestampSchema() && value != null) {
+            const format = determineTimestampFormat(ns, this.settings);
+            switch (format) {
+                case 5:
+                    return parseRfc3339DateTimeWithOffset(value);
+                case 6:
+                    return parseRfc7231DateTime(value);
+                case 7:
+                    return parseEpochTimestamp(value);
+                default:
+                    console.warn("Missing timestamp format, parsing value with Date constructor:", value);
+                    return new Date(value);
+            }
+        }
+        if (ns.isBigIntegerSchema() && (typeof value === "number" || typeof value === "string")) {
+            return BigInt(value);
+        }
+        if (ns.isBigDecimalSchema() && value != undefined) {
+            if (value instanceof NumericValue) {
+                return value;
+            }
+            const untyped = value;
+            if (untyped.type === "bigDecimal" && "string" in untyped) {
+                return new NumericValue(untyped.string, untyped.type);
+            }
+            return new NumericValue(String(value), "bigDecimal");
+        }
+        if (ns.isNumericSchema() && typeof value === "string") {
+            switch (value) {
+                case "Infinity":
+                    return Infinity;
+                case "-Infinity":
+                    return -Infinity;
+                case "NaN":
+                    return NaN;
+            }
+            return value;
+        }
+        if (ns.isDocumentSchema()) {
+            if (isObject) {
+                if (Array.isArray(value)) {
+                    for (let i = 0; i < value.length; ++i) {
+                        const v = value[i];
+                        if (!(v instanceof NumericValue)) {
+                            value[i] = this._read(ns, v);
+                        }
+                    }
+                }
+                else {
+                    const doc = value;
+                    for (const k in doc) {
+                        if (k === "__proto__") {
+                            writeKey(doc);
+                        }
+                        const v = doc[k];
+                        if (!(v instanceof NumericValue)) {
+                            doc[k] = this._read(ns, v);
+                        }
+                    }
+                }
+            }
+        }
+        return value;
+    }
+    _readStruct(ns, record) {
+        const union = ns.isUnionSchema();
+        const out = {};
+        let nameMap;
+        const hasType = typeof record.__type === "string";
+        const { jsonName } = this.settings;
+        if (jsonName && hasType) {
+            nameMap = {};
+        }
+        let unionSerde;
+        if (union) {
+            unionSerde = new UnionSerde(record, out);
+        }
+        for (const [memberName, memberSchema] of ns.structIterator()) {
+            let fromKey = memberName;
+            if (jsonName) {
+                fromKey = memberSchema.getMergedTraits().jsonName ?? fromKey;
+                if (hasType) {
+                    nameMap[fromKey] = memberName;
+                }
+            }
+            if (union) {
+                unionSerde.mark(fromKey);
+            }
+            if (record[fromKey] != null) {
+                out[memberName] = this._read(memberSchema, record[fromKey]);
+            }
+        }
+        if (union) {
+            unionSerde.writeUnknown();
+        }
+        else if (hasType) {
+            for (const k in record) {
+                const v = record[k];
+                const t = jsonName ? (nameMap[k] ?? k) : k;
+                if (!(t in out)) {
+                    out[t] = v;
+                }
+            }
+        }
+        return out;
+    }
+    needsTransform(ns) {
+        if (ns.isBlobSchema() || ns.isTimestampSchema() || ns.isBigIntegerSchema() || ns.isBigDecimalSchema()) {
+            return true;
+        }
+        if (ns.isDocumentSchema() || ns.isStructSchema() || ns.isListSchema() || ns.isMapSchema()) {
+            return true;
+        }
+        if (ns.isStringSchema() && ns.getMergedTraits().mediaType) {
+            return true;
+        }
+        return false;
+    }
+}
+
+class JsonBytesStringAdapter extends Uint8Array {
+    string = null;
+    static allocUnsafe(bytes) {
+        if (typeof Buffer === "function") {
+            const buffer = Buffer.allocUnsafe(bytes);
+            return new JsonBytesStringAdapter(buffer.buffer, buffer.byteOffset, buffer.byteLength);
+        }
+        return new JsonBytesStringAdapter(bytes);
+    }
+    toString() {
+        return this.s();
+    }
+    valueOf() {
+        return this.s();
+    }
+    includes(searchString, position) {
+        if (typeof searchString === "string") {
+            return this.s().includes(searchString, position);
+        }
+        return Uint8Array.prototype.includes.call(this, searchString, position);
+    }
+    indexOf(searchString, position) {
+        if (typeof searchString === "string") {
+            return this.s().indexOf(searchString, position);
+        }
+        return Uint8Array.prototype.indexOf.call(this, searchString, position);
+    }
+    lastIndexOf(searchString, position) {
+        if (typeof searchString === "string") {
+            return this.s().lastIndexOf(searchString, position);
+        }
+        const fn = Uint8Array.prototype.lastIndexOf;
+        if (position !== undefined) {
+            return fn.call(this, searchString, position);
+        }
+        return fn.call(this, searchString);
+    }
+    startsWith(searchString, position) {
+        return this.s().startsWith(searchString, position);
+    }
+    endsWith(searchString, endPosition) {
+        return this.s().endsWith(searchString, endPosition);
+    }
+    match(regexp) {
+        return this.s().match(regexp);
+    }
+    replace(searchValue, replaceValue) {
+        return this.s().replace(searchValue, replaceValue);
+    }
+    search(regexp) {
+        return this.s().search(regexp);
+    }
+    split(separator, limit) {
+        return this.s().split(separator, limit);
+    }
+    substring(start, end) {
+        return this.s().substring(start, end);
+    }
+    trim() {
+        return this.s().trim();
+    }
+    trimStart() {
+        return this.s().trimStart();
+    }
+    trimEnd() {
+        return this.s().trimEnd();
+    }
+    charAt(pos) {
+        return this.s().charAt(pos);
+    }
+    charCodeAt(index) {
+        return this.s().charCodeAt(index);
+    }
+    padStart(maxLength, fillString) {
+        return this.s().padStart(maxLength, fillString);
+    }
+    padEnd(maxLength, fillString) {
+        return this.s().padEnd(maxLength, fillString);
+    }
+    repeat(count) {
+        return this.s().repeat(count);
+    }
+    toUpperCase() {
+        return this.s().toUpperCase();
+    }
+    toLowerCase() {
+        return this.s().toLowerCase();
+    }
+    s() {
+        if (this.string == null) {
+            const n = Date.now();
+            if (n > warned + 60_000) {
+                console.warn("@aws-sdk/core/protocols - WARN - JsonCodec2: you have called a string method on a Uint8Array request body. " +
+                    "It has been automatically converted to string. In a future version this will throw an error.");
+                warned = n;
+            }
+            this.string = toUtf8(this);
+        }
+        return this.string;
+    }
+}
+var warned = 0;
+
+const encoder = new TextEncoder();
+const OPEN_BRACE = 0x7b;
+const CLOSE_BRACE = 0x7d;
+const OPEN_BRACKET = 0x5b;
+const CLOSE_BRACKET = 0x5d;
+const QUOTE = 0x22;
+const COLON = 0x3a;
+const COMMA = 0x2c;
+const BACKSLASH = 0x5c;
+const TRUE = new Uint8Array([0x74, 0x72, 0x75, 0x65]);
+const FALSE = new Uint8Array([0x66, 0x61, 0x6c, 0x73, 0x65]);
+const NULL = new Uint8Array([0x6e, 0x75, 0x6c, 0x6c]);
+const ESCAPE_TABLE = new Array(128).fill(null);
+ESCAPE_TABLE[0x08] = "b";
+ESCAPE_TABLE[0x09] = "t";
+ESCAPE_TABLE[0x0a] = "n";
+ESCAPE_TABLE[0x0c] = "f";
+ESCAPE_TABLE[0x0d] = "r";
+ESCAPE_TABLE[0x22] = '"';
+ESCAPE_TABLE[0x5c] = "\\";
+for (let i = 0; i < 0x20; i++) {
+    if (ESCAPE_TABLE[i] === null) {
+        ESCAPE_TABLE[i] = "u00" + i.toString(16).padStart(2, "0");
+    }
+}
+const INITIAL_BUFFER_SIZE = 2048;
+function alloc(size) {
+    return JsonBytesStringAdapter.allocUnsafe(size);
+}
+class JsonShapeSerializer2 extends SerdeContextConfig {
+    settings;
+    json;
+    i = 0;
+    rootSchema;
+    rawValue;
+    passthrough = false;
+    constructor(settings) {
+        super();
+        this.settings = settings;
+        this.json = alloc(INITIAL_BUFFER_SIZE);
+    }
+    write(schema, value) {
+        this.i = 0;
+        this.rawValue = value;
+        this.rootSchema = NormalizedSchema.of(schema);
+        this.passthrough = this.rootSchema.isBlobSchema() || this.rootSchema.isStringSchema();
+        if (!this.passthrough) {
+            this.writeValue(this.rootSchema, value, undefined);
+        }
+    }
+    writeDiscriminatedDocument(schema, value) {
+        this.i = 0;
+        this.rootSchema = NormalizedSchema.of(schema);
+        const ns = this.rootSchema;
+        if (ns.isStructSchema() && value != null && typeof value === "object") {
+            this.writeValue(ns, value, undefined);
+            const prefix = `"__type":"${ns.getName(true) ?? "Unknown"}",`;
+            const z = prefix.length;
+            this.ensure(z);
+            this.json.copyWithin(1 + z, 1, this.i);
+            encoder.encodeInto(prefix, this.json.subarray(1));
+            this.i += z;
+        }
+        else {
+            this.writeValue(ns, value, undefined);
+        }
+    }
+    flush() {
+        this.rootSchema = undefined;
+        const finalPosition = this.i;
+        this.i = 0;
+        const raw = this.rawValue;
+        this.rawValue = undefined;
+        if (finalPosition === 0) {
+            return raw;
+        }
+        const result = this.json.subarray(0, finalPosition);
+        this.json = alloc(INITIAL_BUFFER_SIZE);
+        return result;
+    }
+    ensure(byteCount) {
+        const { i, json } = this;
+        if (i + byteCount > json.length) {
+            let newSize = json.length * 2;
+            while (newSize < i + byteCount) {
+                newSize *= 2;
+            }
+            const next = alloc(newSize);
+            next.set(this.json);
+            this.json = next;
+        }
+    }
+    writeAscii(s) {
+        const z = s.length;
+        this.ensure(z);
+        let { i, json } = this;
+        for (let j = 0; j < z; ++j) {
+            json[i] = s.charCodeAt(j);
+            i += 1;
+        }
+        this.i = i;
+    }
+    writeAsciiQuoted(s) {
+        const z = s.length;
+        this.ensure(z + 4);
+        let { json, i } = this;
+        json[i++] = QUOTE;
+        for (let j = 0; j < z; ++j) {
+            json[i++] = s.charCodeAt(j);
+        }
+        json[i++] = QUOTE;
+        this.i = i;
+    }
+    writeJsonString(s) {
+        this.ensure(s.length * 3 + 2);
+        this.json[this.i++] = QUOTE;
+        const z = s.length;
+        for (let j = 0; j < z; ++j) {
+            const c = s.charCodeAt(j);
+            if (c > 0x22 && c < 0x5c) {
+                this.json[this.i++] = c;
+            }
+            else if (c < 0x80) {
+                const esc = ESCAPE_TABLE[c];
+                if (esc !== null) {
+                    this.ensure(esc.length + 1);
+                    this.json[this.i++] = BACKSLASH;
+                    for (let k = 0; k < esc.length; k++) {
+                        this.json[this.i++] = esc.charCodeAt(k);
+                    }
+                }
+                else {
+                    this.json[this.i++] = c;
+                }
+            }
+            else if (c >= 0xd800 && c <= 0xdbff) {
+                const next = j + 1 < z ? s.charCodeAt(j + 1) : 0;
+                if (next >= 0xdc00 && next <= 0xdfff) {
+                    this.ensure(4);
+                    const { written } = encoder.encodeInto(s.substring(j, j + 2), this.json.subarray(this.i));
+                    this.i += written;
+                    ++j;
+                }
+                else {
+                    this.ensure(6);
+                    this.writeUnicodeEscape(c);
+                }
+            }
+            else if (c >= 0xdc00 && c <= 0xdfff) {
+                this.ensure(6);
+                this.writeUnicodeEscape(c);
+            }
+            else {
+                let { i, json } = this;
+                if (c < 0x800) {
+                    json[i++] = 0xc0 | (c >> 6);
+                    json[i++] = 0x80 | (c & 0x3f);
+                }
+                else {
+                    json[i++] = 0xe0 | (c >> 12);
+                    json[i++] = 0x80 | ((c >> 6) & 0x3f);
+                    json[i++] = 0x80 | (c & 0x3f);
+                }
+                this.i = i;
+            }
+        }
+        this.json[this.i++] = QUOTE;
+    }
+    writeUnicodeEscape(code) {
+        let { json, i } = this;
+        json[i++] = BACKSLASH;
+        json[i++] = 0x75;
+        const hex = code.toString(16).padStart(4, "0");
+        for (let j = 0; j < 4; ++j) {
+            json[i++] = hex.charCodeAt(j);
+        }
+        this.i = i;
+    }
+    static B64 = (() => {
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+        const table = new Uint8Array(64);
+        for (let i = 0; i < 64; ++i) {
+            table[i] = chars.charCodeAt(i);
+        }
+        return table;
+    })();
+    writeBase64(data) {
+        const b64Len = Math.ceil(data.length / 3) * 4;
+        this.ensure(b64Len + 2);
+        const json = this.json;
+        const B64 = JsonShapeSerializer2.B64;
+        let i = this.i;
+        json[i++] = QUOTE;
+        const len = data.length;
+        const remainder = len % 3;
+        const mainLen = len - remainder;
+        for (let j = 0; j < mainLen; j += 3) {
+            const a = data[j];
+            const b = data[j + 1];
+            const c = data[j + 2];
+            json[i++] = B64[a >> 2];
+            json[i++] = B64[((a & 0x03) << 4) | (b >> 4)];
+            json[i++] = B64[((b & 0x0f) << 2) | (c >> 6)];
+            json[i++] = B64[c & 0x3f];
+        }
+        if (remainder === 2) {
+            const a = data[mainLen];
+            const b = data[mainLen + 1];
+            json[i++] = B64[a >> 2];
+            json[i++] = B64[((a & 0x03) << 4) | (b >> 4)];
+            json[i++] = B64[(b & 0x0f) << 2];
+            json[i++] = 0x3d;
+        }
+        else if (remainder === 1) {
+            const a = data[mainLen];
+            json[i++] = B64[a >> 2];
+            json[i++] = B64[(a & 0x03) << 4];
+            json[i++] = 0x3d;
+            json[i++] = 0x3d;
+        }
+        json[i++] = QUOTE;
+        this.i = i;
+    }
+    writeValue(schema, value, container) {
+        if (value == null) {
+            if (container?.isStructSchema()) {
+                if (value === undefined) {
+                    const ns = NormalizedSchema.of(schema);
+                    if (ns.isIdempotencyToken()) {
+                        this.writeAsciiQuoted(generateIdempotencyToken());
+                        return;
+                    }
+                }
+                return;
+            }
+            this.ensure(4);
+            this.json.set(NULL, this.i);
+            this.i += 4;
+            return;
+        }
+        const ns = NormalizedSchema.of(schema);
+        const isObject = typeof value === "object";
+        if (ns.isStringSchema()) {
+            const mediaType = ns.getMergedTraits().mediaType;
+            if (mediaType) {
+                const isJson = mediaType === "application/json" || mediaType.endsWith("+json");
+                if (isJson) {
+                    this.writeJsonString(LazyJsonString.from(value).toString());
+                    return;
+                }
+            }
+        }
+        if (isObject) {
+            if (ns.isStructSchema()) {
+                this.writeStruct(ns, value);
+                return;
+            }
+            if (Array.isArray(value) && (ns.isListSchema() || ns.isDocumentSchema())) {
+                this.writeList(ns, value, ns.isDocumentSchema());
+                return;
+            }
+            if (ns.isMapSchema()) {
+                this.writeMap(ns, value, false);
+                return;
+            }
+            if (value instanceof Uint8Array && (ns.isBlobSchema() || ns.isDocumentSchema())) {
+                this.writeBase64(value);
+                return;
+            }
+            if (value instanceof Date && (ns.isTimestampSchema() || ns.isDocumentSchema())) {
+                this.writeTimestamp(ns, value);
+                return;
+            }
+            if (value instanceof NumericValue) {
+                this.writeAscii(value.string);
+                return;
+            }
+            if (ns.isDocumentSchema()) {
+                if (Array.isArray(value)) {
+                    this.writeList(ns, value, true);
+                }
+                else {
+                    this.writeMap(ns, value, true);
+                }
+                return;
+            }
+            const json = JSON.stringify(value);
+            this.writeAscii(json);
+            return;
+        }
+        if (typeof value === "string") {
+            if (ns.isBlobSchema()) {
+                const b64 = (this.serdeContext?.base64Encoder ?? toBase64)(value);
+                this.writeAsciiQuoted(b64);
+                return;
+            }
+            this.writeJsonString(value);
+            return;
+        }
+        if (typeof value === "number") {
+            if (Math.abs(value) === Infinity || Number.isNaN(value)) {
+                this.writeAsciiQuoted(String(value));
+                return;
+            }
+            const numStr = String(value);
+            this.writeAscii(numStr);
+            return;
+        }
+        if (typeof value === "boolean") {
+            this.ensure(5);
+            let { i, json } = this;
+            if (value) {
+                json.set(TRUE, i);
+                i += 4;
+            }
+            else {
+                json.set(FALSE, i);
+                i += 5;
+            }
+            this.i = i;
+            return;
+        }
+        if (typeof value === "bigint") {
+            this.writeAscii(value.toString());
+            return;
+        }
+        this.writeAscii(String(value));
+    }
+    writeStruct(ns, value) {
+        this.ensure(2);
+        this.json[this.i++] = OPEN_BRACE;
+        let wroteAny = false;
+        const hasType = typeof value.__type === "string";
+        let writtenKeys;
+        if (hasType) {
+            writtenKeys = new Set();
+        }
+        for (const [memberName, memberSchema] of ns.structIterator()) {
+            const item = value[memberName];
+            if (item == null && !memberSchema.isIdempotencyToken()) {
+                continue;
+            }
+            if (wroteAny) {
+                this.ensure(1);
+                this.json[this.i++] = COMMA;
+            }
+            wroteAny = true;
+            const targetKey = this.settings.jsonName ? (memberSchema.getMergedTraits().jsonName ?? memberName) : memberName;
+            if (writtenKeys) {
+                writtenKeys.add(memberName);
+                writtenKeys.add(targetKey);
+            }
+            this.writeAsciiQuoted(targetKey);
+            this.json[this.i++] = COLON;
+            this.writeValue(memberSchema, item, ns);
+        }
+        if (!wroteAny && ns.isUnionSchema()) {
+            const { $unknown } = value;
+            if (Array.isArray($unknown)) {
+                const [k, v] = $unknown;
+                this.writeAsciiQuoted(k);
+                this.ensure(1);
+                this.json[this.i++] = COLON;
+                this.writeValue(15, v, ns);
+            }
+        }
+        else if (hasType) {
+            for (const k in value) {
+                if (writtenKeys.has(k)) {
+                    continue;
+                }
+                writtenKeys.add(k);
+                const v = value[k];
+                if (wroteAny) {
+                    this.ensure(1);
+                    this.json[this.i++] = COMMA;
+                }
+                wroteAny = true;
+                this.writeAsciiQuoted(k);
+                this.ensure(1);
+                this.json[this.i++] = COLON;
+                this.writeValue(15, v, undefined);
+            }
+        }
+        this.ensure(1);
+        this.json[this.i++] = CLOSE_BRACE;
+    }
+    writeList(ns, value, isDocument) {
+        const sparse = !!ns.getMergedTraits().sparse;
+        const valueSchema = ns.getValueSchema();
+        if (!isDocument) {
+            if (valueSchema.isStringSchema() || valueSchema.isNumericSchema() || valueSchema.isBooleanSchema()) {
+                let hasSpecials = false;
+                for (let i = 0; i < value.length; ++i) {
+                    const v = value[i];
+                    if (Number.isNaN(v) || v === Infinity || v === -Infinity || (v == null && !sparse)) {
+                        hasSpecials = true;
+                        break;
+                    }
+                }
+                let json;
+                if (!hasSpecials) {
+                    json = JSON.stringify(value);
+                }
+                else {
+                    const out = [];
+                    for (let i = 0; i < value.length; ++i) {
+                        const v = value[i];
+                        if (v == null && !sparse)
+                            continue;
+                        if (Number.isNaN(v) || v === Infinity || v === -Infinity) {
+                            out.push(String(v));
+                        }
+                        else {
+                            out.push(v);
+                        }
+                    }
+                    json = JSON.stringify(out);
+                }
+                this.ensure(json.length * 3);
+                this.i += encoder.encodeInto(json, this.json.subarray(this.i)).written;
+                return;
+            }
+        }
+        this.ensure(2);
+        this.json[this.i++] = OPEN_BRACKET;
+        let wroteFirstItem = false;
+        for (let i = 0; i < value.length; ++i) {
+            const item = value[i];
+            if (isDocument ? item === undefined : item == null && !sparse) {
+                continue;
+            }
+            if (wroteFirstItem) {
+                this.ensure(1);
+                this.json[this.i++] = COMMA;
+            }
+            this.writeValue(valueSchema, item, undefined);
+            wroteFirstItem = true;
+        }
+        this.ensure(1);
+        this.json[this.i++] = CLOSE_BRACKET;
+    }
+    writeMap(ns, value, isDocument) {
+        const sparse = !!ns.getMergedTraits().sparse;
+        const valueSchema = ns.getValueSchema();
+        if (!isDocument) {
+            if (valueSchema.isStringSchema() || valueSchema.isNumericSchema() || valueSchema.isBooleanSchema()) {
+                let modifications;
+                for (const k in value) {
+                    const v = value[k];
+                    if (Number.isNaN(v) || v === Infinity || v === -Infinity) {
+                        (modifications ??= {})[k] = v;
+                        value[k] = String(v);
+                    }
+                    else if (v === null && !sparse) {
+                        (modifications ??= {})[k] = null;
+                        value[k] = undefined;
+                    }
+                }
+                const json = JSON.stringify(value);
+                if (modifications) {
+                    Object.assign(value, modifications);
+                }
+                this.ensure(json.length * 3);
+                this.i += encoder.encodeInto(json, this.json.subarray(this.i)).written;
+                return;
+            }
+        }
+        this.ensure(2);
+        this.json[this.i++] = OPEN_BRACE;
+        let first = true;
+        for (const k in value) {
+            const v = value[k];
+            if (isDocument ? v === undefined : v == null && !sparse) {
+                continue;
+            }
+            if (!first) {
+                this.ensure(1);
+                this.json[this.i++] = COMMA;
+            }
+            first = false;
+            this.writeJsonString(k);
+            this.ensure(1);
+            this.json[this.i++] = COLON;
+            this.writeValue(valueSchema, v, undefined);
+        }
+        this.ensure(1);
+        this.json[this.i++] = CLOSE_BRACE;
+    }
+    writeTimestamp(ns, value) {
+        const format = determineTimestampFormat(ns, this.settings);
+        switch (format) {
+            case 5: {
+                const iso = value.toISOString().replace(".000Z", "Z");
+                this.writeAsciiQuoted(iso);
+                return;
+            }
+            case 6: {
+                this.writeAsciiQuoted(dateToUtcString(value));
+                return;
+            }
+            case 7: {
+                const epochSecs = String(value.getTime() / 1000);
+                this.writeAscii(epochSecs);
+                return;
+            }
+            default: {
+                const epochSecs = String(value.getTime() / 1000);
+                this.writeAscii(epochSecs);
+                return;
+            }
+        }
+    }
+}
+
+class JsonCodec2 extends SerdeContextConfig {
+    settings;
+    constructor(settings) {
+        super();
+        this.settings = settings;
+    }
+    createSerializer() {
+        const serializer = new JsonShapeSerializer2(this.settings);
+        serializer.setSerdeContext(this.serdeContext);
+        return serializer;
+    }
+    createDeserializer() {
+        const deserializer = new JsonShapeDeserializer2(this.settings);
+        deserializer.setSerdeContext(this.serdeContext);
+        return deserializer;
+    }
+}
+
+class AwsJsonRpcProtocol extends RpcProtocol {
+    serializer;
+    deserializer;
+    serviceTarget;
+    codec;
+    mixin;
+    awsQueryCompatible;
+    constructor({ defaultNamespace, errorTypeRegistries, serviceTarget, awsQueryCompatible, jsonCodec, }) {
+        super({
+            defaultNamespace,
+            errorTypeRegistries,
+        });
+        this.serviceTarget = serviceTarget;
+        this.codec =
+            jsonCodec ??
+                new JsonCodec2({
+                    timestampFormat: {
+                        useTrait: true,
+                        default: 7,
+                    },
+                    jsonName: false,
+                });
+        this.serializer = this.codec.createSerializer();
+        this.deserializer = this.codec.createDeserializer();
+        this.awsQueryCompatible = !!awsQueryCompatible;
+        this.mixin = new ProtocolLib(this.awsQueryCompatible);
+    }
+    async serializeRequest(operationSchema, input, context) {
+        const request = await super.serializeRequest(operationSchema, input, context);
+        if (!request.path.endsWith("/")) {
+            request.path += "/";
+        }
+        request.headers["content-type"] = `application/x-amz-json-${this.getJsonRpcVersion()}`;
+        request.headers["x-amz-target"] = `${this.serviceTarget}.${operationSchema.name}`;
+        if (this.awsQueryCompatible) {
+            request.headers["x-amzn-query-mode"] = "true";
+        }
+        if (deref(operationSchema.input) === "unit" || !request.body) {
+            request.body = "{}";
+        }
+        return request;
+    }
+    getPayloadCodec() {
+        return this.codec;
+    }
+    async handleError(operationSchema, context, response, dataObject, metadata) {
+        const { awsQueryCompatible } = this;
+        if (awsQueryCompatible) {
+            this.mixin.setQueryCompatError(dataObject, response);
+        }
+        const errorIdentifier = loadJsonRpcErrorCode(response, dataObject, awsQueryCompatible) ?? "Unknown";
+        this.mixin.compose(this.compositeErrorRegistry, errorIdentifier, this.options.defaultNamespace);
+        const { errorSchema, errorMetadata } = await this.mixin.getErrorSchemaOrThrowBaseException(errorIdentifier, this.options.defaultNamespace, response, dataObject, metadata, awsQueryCompatible ? this.mixin.findQueryCompatibleError : undefined);
+        const ns = NormalizedSchema.of(errorSchema);
+        const message = dataObject.message ?? dataObject.Message ?? "UnknownError";
+        const ErrorCtor = this.compositeErrorRegistry.getErrorCtor(errorSchema) ?? Error;
+        const exception = new ErrorCtor({});
+        const output = {};
+        const errorDeserializer = this.codec.createDeserializer();
+        for (const [name, member] of ns.structIterator()) {
+            if (dataObject[name] != null) {
+                output[name] = errorDeserializer.readObject(member, dataObject[name]);
+            }
+        }
+        if (awsQueryCompatible) {
+            this.mixin.queryCompatOutput(dataObject, output);
+        }
+        throw this.mixin.decorateServiceException(Object.assign(exception, errorMetadata, {
+            $fault: ns.getMergedTraits().error,
+            message,
+        }, output), dataObject);
+    }
+}
+
+class AwsJson1_0Protocol extends AwsJsonRpcProtocol {
+    constructor({ defaultNamespace, errorTypeRegistries, serviceTarget, awsQueryCompatible, jsonCodec, }) {
+        super({
+            defaultNamespace,
+            errorTypeRegistries,
+            serviceTarget,
+            awsQueryCompatible,
+            jsonCodec,
+        });
+    }
+    getShapeId() {
+        return "aws.protocols#awsJson1_0";
+    }
+    getJsonRpcVersion() {
+        return "1.0";
+    }
+    getDefaultContentType() {
+        return "application/x-amz-json-1.0";
+    }
+}
+
+class AwsJson1_1Protocol extends AwsJsonRpcProtocol {
+    constructor({ defaultNamespace, errorTypeRegistries, serviceTarget, awsQueryCompatible, jsonCodec, }) {
+        super({
+            defaultNamespace,
+            errorTypeRegistries,
+            serviceTarget,
+            awsQueryCompatible,
+            jsonCodec,
+        });
+    }
+    getShapeId() {
+        return "aws.protocols#awsJson1_1";
+    }
+    getJsonRpcVersion() {
+        return "1.1";
+    }
+    getDefaultContentType() {
+        return "application/x-amz-json-1.1";
+    }
+}
+
+class AwsRestJsonProtocol extends HttpBindingProtocol {
+    serializer;
+    deserializer;
+    codec;
+    mixin = new ProtocolLib();
+    constructor({ defaultNamespace, errorTypeRegistries, jsonCodec, }) {
+        super({
+            defaultNamespace,
+            errorTypeRegistries,
+        });
+        const settings = {
+            timestampFormat: {
+                useTrait: true,
+                default: 7,
+            },
+            httpBindings: true,
+            jsonName: true,
+        };
+        this.codec = jsonCodec ?? new JsonCodec2(settings);
+        this.serializer = new HttpInterceptingShapeSerializer(this.codec.createSerializer(), settings);
+        this.deserializer = new HttpInterceptingShapeDeserializer(this.codec.createDeserializer(), settings);
+    }
+    getShapeId() {
+        return "aws.protocols#restJson1";
+    }
+    getPayloadCodec() {
+        return this.codec;
+    }
+    setSerdeContext(serdeContext) {
+        this.codec.setSerdeContext(serdeContext);
+        super.setSerdeContext(serdeContext);
+    }
+    async serializeRequest(operationSchema, input, context) {
+        const request = await super.serializeRequest(operationSchema, input, context);
+        const inputSchema = NormalizedSchema.of(operationSchema.input);
+        if (!request.headers["content-type"]) {
+            const contentType = this.mixin.resolveRestContentType(this.getDefaultContentType(), inputSchema);
+            if (contentType) {
+                request.headers["content-type"] = contentType;
+            }
+        }
+        if (request.body == null && request.headers["content-type"] === this.getDefaultContentType()) {
+            request.body = "{}";
+        }
+        return request;
+    }
+    async deserializeResponse(operationSchema, context, response) {
+        const output = await super.deserializeResponse(operationSchema, context, response);
+        const outputSchema = NormalizedSchema.of(operationSchema.output);
+        for (const [name, member] of outputSchema.structIterator()) {
+            if (member.getMemberTraits().httpPayload && !(name in output)) {
+                output[name] = null;
+            }
+        }
+        return output;
+    }
+    async handleError(operationSchema, context, response, dataObject, metadata) {
+        const errorIdentifier = loadRestJsonErrorCode(response, dataObject) ?? "Unknown";
+        this.mixin.compose(this.compositeErrorRegistry, errorIdentifier, this.options.defaultNamespace);
+        const { errorSchema, errorMetadata } = await this.mixin.getErrorSchemaOrThrowBaseException(errorIdentifier, this.options.defaultNamespace, response, dataObject, metadata);
+        const ns = NormalizedSchema.of(errorSchema);
+        const message = dataObject.message ?? dataObject.Message ?? "UnknownError";
+        const ErrorCtor = this.compositeErrorRegistry.getErrorCtor(errorSchema) ?? Error;
+        const exception = new ErrorCtor({});
+        await this.deserializeHttpMessage(errorSchema, context, response, dataObject);
+        const output = {};
+        const errorDeserializer = this.codec.createDeserializer();
+        for (const [name, member] of ns.structIterator()) {
+            const target = member.getMergedTraits().jsonName ?? name;
+            output[name] = errorDeserializer.readObject(member, dataObject[target]);
+        }
+        throw this.mixin.decorateServiceException(Object.assign(exception, errorMetadata, {
+            $fault: ns.getMergedTraits().error,
+            message,
+        }, output), dataObject);
+    }
+    getDefaultContentType() {
+        return "application/json";
+    }
 }
 
 class JsonShapeDeserializer extends SerdeContextConfig {
@@ -9669,7 +10806,7 @@ class JsonShapeSerializer extends SerdeContextConfig {
                 }
                 return out;
             }
-            if (value instanceof Uint8Array && (ns.isBlobSchema() || ns.isDocumentSchema())) {
+            if (value instanceof Uint8Array && ns.isBlobSchema()) {
                 if (ns === this.rootSchema) {
                     return value;
                 }
@@ -9709,7 +10846,7 @@ class JsonShapeSerializer extends SerdeContextConfig {
             }
             return value;
         }
-        if (typeof value === "number" && ns.isNumericSchema()) {
+        if (typeof value === "number") {
             if (Math.abs(value) === Infinity || isNaN(value)) {
                 return String(value);
             }
@@ -9726,6 +10863,9 @@ class JsonShapeSerializer extends SerdeContextConfig {
         }
         if (ns.isDocumentSchema()) {
             if (isObject) {
+                if (value instanceof Uint8Array) {
+                    return (this.serdeContext?.base64Encoder ?? toBase64)(value);
+                }
                 const out = Array.isArray(value) ? [] : {};
                 for (const k in value) {
                     const v = value[k];
@@ -9767,213 +10907,6 @@ class JsonCodec extends SerdeContextConfig {
         return deserializer;
     }
 }
-
-class AwsJsonRpcProtocol extends RpcProtocol {
-    serializer;
-    deserializer;
-    serviceTarget;
-    codec;
-    mixin;
-    awsQueryCompatible;
-    constructor({ defaultNamespace, errorTypeRegistries, serviceTarget, awsQueryCompatible, jsonCodec, }) {
-        super({
-            defaultNamespace,
-            errorTypeRegistries,
-        });
-        this.serviceTarget = serviceTarget;
-        this.codec =
-            jsonCodec ??
-                new JsonCodec({
-                    timestampFormat: {
-                        useTrait: true,
-                        default: 7,
-                    },
-                    jsonName: false,
-                });
-        this.serializer = this.codec.createSerializer();
-        this.deserializer = this.codec.createDeserializer();
-        this.awsQueryCompatible = !!awsQueryCompatible;
-        this.mixin = new ProtocolLib(this.awsQueryCompatible);
-    }
-    async serializeRequest(operationSchema, input, context) {
-        const request = await super.serializeRequest(operationSchema, input, context);
-        if (!request.path.endsWith("/")) {
-            request.path += "/";
-        }
-        request.headers["content-type"] = `application/x-amz-json-${this.getJsonRpcVersion()}`;
-        request.headers["x-amz-target"] = `${this.serviceTarget}.${operationSchema.name}`;
-        if (this.awsQueryCompatible) {
-            request.headers["x-amzn-query-mode"] = "true";
-        }
-        if (deref(operationSchema.input) === "unit" || !request.body) {
-            request.body = "{}";
-        }
-        return request;
-    }
-    getPayloadCodec() {
-        return this.codec;
-    }
-    async handleError(operationSchema, context, response, dataObject, metadata) {
-        const { awsQueryCompatible } = this;
-        if (awsQueryCompatible) {
-            this.mixin.setQueryCompatError(dataObject, response);
-        }
-        const errorIdentifier = loadJsonRpcErrorCode(response, dataObject, awsQueryCompatible) ?? "Unknown";
-        this.mixin.compose(this.compositeErrorRegistry, errorIdentifier, this.options.defaultNamespace);
-        const { errorSchema, errorMetadata } = await this.mixin.getErrorSchemaOrThrowBaseException(errorIdentifier, this.options.defaultNamespace, response, dataObject, metadata, awsQueryCompatible ? this.mixin.findQueryCompatibleError : undefined);
-        const ns = NormalizedSchema.of(errorSchema);
-        const message = dataObject.message ?? dataObject.Message ?? "UnknownError";
-        const ErrorCtor = this.compositeErrorRegistry.getErrorCtor(errorSchema) ?? Error;
-        const exception = new ErrorCtor({});
-        const output = {};
-        const errorDeserializer = this.codec.createDeserializer();
-        for (const [name, member] of ns.structIterator()) {
-            if (dataObject[name] != null) {
-                output[name] = errorDeserializer.readObject(member, dataObject[name]);
-            }
-        }
-        if (awsQueryCompatible) {
-            this.mixin.queryCompatOutput(dataObject, output);
-        }
-        throw this.mixin.decorateServiceException(Object.assign(exception, errorMetadata, {
-            $fault: ns.getMergedTraits().error,
-            message,
-        }, output), dataObject);
-    }
-}
-
-class AwsJson1_0Protocol extends AwsJsonRpcProtocol {
-    constructor({ defaultNamespace, errorTypeRegistries, serviceTarget, awsQueryCompatible, jsonCodec, }) {
-        super({
-            defaultNamespace,
-            errorTypeRegistries,
-            serviceTarget,
-            awsQueryCompatible,
-            jsonCodec,
-        });
-    }
-    getShapeId() {
-        return "aws.protocols#awsJson1_0";
-    }
-    getJsonRpcVersion() {
-        return "1.0";
-    }
-    getDefaultContentType() {
-        return "application/x-amz-json-1.0";
-    }
-}
-
-class AwsJson1_1Protocol extends AwsJsonRpcProtocol {
-    constructor({ defaultNamespace, errorTypeRegistries, serviceTarget, awsQueryCompatible, jsonCodec, }) {
-        super({
-            defaultNamespace,
-            errorTypeRegistries,
-            serviceTarget,
-            awsQueryCompatible,
-            jsonCodec,
-        });
-    }
-    getShapeId() {
-        return "aws.protocols#awsJson1_1";
-    }
-    getJsonRpcVersion() {
-        return "1.1";
-    }
-    getDefaultContentType() {
-        return "application/x-amz-json-1.1";
-    }
-}
-
-class AwsRestJsonProtocol extends HttpBindingProtocol {
-    serializer;
-    deserializer;
-    codec;
-    mixin = new ProtocolLib();
-    constructor({ defaultNamespace, errorTypeRegistries, }) {
-        super({
-            defaultNamespace,
-            errorTypeRegistries,
-        });
-        const settings = {
-            timestampFormat: {
-                useTrait: true,
-                default: 7,
-            },
-            httpBindings: true,
-            jsonName: true,
-        };
-        this.codec = new JsonCodec(settings);
-        this.serializer = new HttpInterceptingShapeSerializer(this.codec.createSerializer(), settings);
-        this.deserializer = new HttpInterceptingShapeDeserializer(this.codec.createDeserializer(), settings);
-    }
-    getShapeId() {
-        return "aws.protocols#restJson1";
-    }
-    getPayloadCodec() {
-        return this.codec;
-    }
-    setSerdeContext(serdeContext) {
-        this.codec.setSerdeContext(serdeContext);
-        super.setSerdeContext(serdeContext);
-    }
-    async serializeRequest(operationSchema, input, context) {
-        const request = await super.serializeRequest(operationSchema, input, context);
-        const inputSchema = NormalizedSchema.of(operationSchema.input);
-        if (!request.headers["content-type"]) {
-            const contentType = this.mixin.resolveRestContentType(this.getDefaultContentType(), inputSchema);
-            if (contentType) {
-                request.headers["content-type"] = contentType;
-            }
-        }
-        if (request.body == null && request.headers["content-type"] === this.getDefaultContentType()) {
-            request.body = "{}";
-        }
-        return request;
-    }
-    async deserializeResponse(operationSchema, context, response) {
-        const output = await super.deserializeResponse(operationSchema, context, response);
-        const outputSchema = NormalizedSchema.of(operationSchema.output);
-        for (const [name, member] of outputSchema.structIterator()) {
-            if (member.getMemberTraits().httpPayload && !(name in output)) {
-                output[name] = null;
-            }
-        }
-        return output;
-    }
-    async handleError(operationSchema, context, response, dataObject, metadata) {
-        const errorIdentifier = loadRestJsonErrorCode(response, dataObject) ?? "Unknown";
-        this.mixin.compose(this.compositeErrorRegistry, errorIdentifier, this.options.defaultNamespace);
-        const { errorSchema, errorMetadata } = await this.mixin.getErrorSchemaOrThrowBaseException(errorIdentifier, this.options.defaultNamespace, response, dataObject, metadata);
-        const ns = NormalizedSchema.of(errorSchema);
-        const message = dataObject.message ?? dataObject.Message ?? "UnknownError";
-        const ErrorCtor = this.compositeErrorRegistry.getErrorCtor(errorSchema) ?? Error;
-        const exception = new ErrorCtor({});
-        await this.deserializeHttpMessage(errorSchema, context, response, dataObject);
-        const output = {};
-        const errorDeserializer = this.codec.createDeserializer();
-        for (const [name, member] of ns.structIterator()) {
-            const target = member.getMergedTraits().jsonName ?? name;
-            output[name] = errorDeserializer.readObject(member, dataObject[target]);
-        }
-        throw this.mixin.decorateServiceException(Object.assign(exception, errorMetadata, {
-            $fault: ns.getMergedTraits().error,
-            message,
-        }, output), dataObject);
-    }
-    getDefaultContentType() {
-        return "application/json";
-    }
-}
-
-const awsExpectUnion = (value) => {
-    if (value == null) {
-        return undefined;
-    }
-    if (typeof value === "object" && "__type" in value) {
-        delete value.__type;
-    }
-    return expectUnion(value);
-};
 
 class XmlShapeDeserializer extends SerdeContextConfig {
     settings;
@@ -10907,6 +11840,66 @@ class AwsRestXmlProtocol extends HttpBindingProtocol {
     }
 }
 
+const awsExpectUnion = (value) => {
+    if (value == null) {
+        return undefined;
+    }
+    if (typeof value === "object" && "__type" in value) {
+        delete value.__type;
+    }
+    return expectUnion(value);
+};
+
+const _toStr = (val) => {
+    if (val == null) {
+        return val;
+    }
+    if (typeof val === "number" || typeof val === "bigint") {
+        const warning = new Error(`Received number ${val} where a string was expected.`);
+        warning.name = "Warning";
+        console.warn(warning);
+        return String(val);
+    }
+    if (typeof val === "boolean") {
+        const warning = new Error(`Received boolean ${val} where a string was expected.`);
+        warning.name = "Warning";
+        console.warn(warning);
+        return String(val);
+    }
+    return val;
+};
+const _toBool = (val) => {
+    if (val == null) {
+        return val;
+    }
+    if (typeof val === "string") {
+        const lowercase = val.toLowerCase();
+        if (val !== "" && lowercase !== "false" && lowercase !== "true") {
+            const warning = new Error(`Received string "${val}" where a boolean was expected.`);
+            warning.name = "Warning";
+            console.warn(warning);
+        }
+        return val !== "" && lowercase !== "false";
+    }
+    return val;
+};
+const _toNum = (val) => {
+    if (val == null) {
+        return val;
+    }
+    if (typeof val === "string") {
+        const num = Number(val);
+        if (num.toString() !== val) {
+            const warning = new Error(`Received string "${val}" where a number was expected.`);
+            warning.name = "Warning";
+            console.warn(warning);
+            return val;
+        }
+        return num;
+    }
+    return val;
+};
+
 exports.AwsEc2QueryProtocol = AwsEc2QueryProtocol;
 exports.AwsJson1_0Protocol = AwsJson1_0Protocol;
 exports.AwsJson1_1Protocol = AwsJson1_1Protocol;
@@ -10916,8 +11909,11 @@ exports.AwsRestJsonProtocol = AwsRestJsonProtocol;
 exports.AwsRestXmlProtocol = AwsRestXmlProtocol;
 exports.AwsSmithyRpcV2CborProtocol = AwsSmithyRpcV2CborProtocol;
 exports.JsonCodec = JsonCodec;
+exports.JsonCodec2 = JsonCodec2;
 exports.JsonShapeDeserializer = JsonShapeDeserializer;
+exports.JsonShapeDeserializer2 = JsonShapeDeserializer2;
 exports.JsonShapeSerializer = JsonShapeSerializer;
+exports.JsonShapeSerializer2 = JsonShapeSerializer2;
 exports.QueryShapeSerializer = QueryShapeSerializer;
 exports.XmlCodec = XmlCodec;
 exports.XmlShapeDeserializer = XmlShapeDeserializer;
@@ -10993,8 +11989,13 @@ function formatUrl(request) {
     return `${protocol}//${auth}${hostname}${path}${queryString}${fragment}`;
 }
 
+function hasOwn(container, key) {
+    return Object.prototype.hasOwnProperty.call(container, key);
+}
+
 exports.build = build;
 exports.formatUrl = formatUrl;
+exports.hasOwn = hasOwn;
 exports.parse = parse;
 exports.validate = validate;
 
@@ -11473,7 +12474,7 @@ exports.fromIni = fromIni;
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 const { setCredentialFeature } = __nccwpck_require__(5152);
-const { CredentialsProviderError, readFile, parseKnownFiles, getProfileName } = __nccwpck_require__(47291);
+const { CredentialsProviderError, parseKnownFiles, getProfileName } = __nccwpck_require__(47291);
 const { HttpRequest } = __nccwpck_require__(93422);
 const { createHash, createPrivateKey, createPublicKey, sign } = __nccwpck_require__(77598);
 const { promises } = __nccwpck_require__(73024);
@@ -11502,13 +12503,7 @@ class LoginCredentialsFetcher {
         if (timeUntilExpiry <= LoginCredentialsFetcher.REFRESH_THRESHOLD) {
             return this.refresh(token);
         }
-        return {
-            accessKeyId: accessToken.accessKeyId,
-            secretAccessKey: accessToken.secretAccessKey,
-            sessionToken: accessToken.sessionToken,
-            accountId: accessToken.accountId,
-            expiration: new Date(accessToken.expiresAt),
-        };
+        return this.toCredentials(token.accessToken);
     }
     get logger() {
         return this.init?.logger;
@@ -11516,7 +12511,25 @@ class LoginCredentialsFetcher {
     get loginSession() {
         return this.profileData.login_session;
     }
+    toCredentials(token) {
+        return {
+            accessKeyId: token.accessKeyId,
+            secretAccessKey: token.secretAccessKey,
+            sessionToken: token.sessionToken,
+            accountId: token.accountId,
+            expiration: new Date(token.expiresAt),
+        };
+    }
     async refresh(token) {
+        const diskToken = await this.loadToken().catch(() => token);
+        const now = Date.now();
+        const diskExpiry = new Date(diskToken.accessToken.expiresAt).getTime();
+        const tokenExpiry = new Date(token.accessToken.expiresAt).getTime();
+        const freshToken = diskExpiry <= now && tokenExpiry > now ? token : diskToken;
+        const freshExpiry = new Date(freshToken.accessToken.expiresAt).getTime();
+        if (freshExpiry - Date.now() > LoginCredentialsFetcher.REFRESH_THRESHOLD) {
+            return this.toCredentials(freshToken.accessToken);
+        }
         const { SigninClient, CreateOAuth2TokenCommand } = __nccwpck_require__(99762);
         const { logger, userAgentAppId } = this.callerClientConfig ?? {};
         const isH2 = (requestHandler) => {
@@ -11540,8 +12553,8 @@ class LoginCredentialsFetcher {
         this.createDPoPInterceptor(client.middlewareStack);
         const commandInput = {
             tokenInput: {
-                clientId: token.clientId,
-                refreshToken: token.refreshToken,
+                clientId: freshToken.clientId,
+                refreshToken: freshToken.refreshToken,
                 grantType: "refresh_token",
             },
         };
@@ -11558,9 +12571,9 @@ class LoginCredentialsFetcher {
             const expiresInMs = (expiresIn ?? 900) * 1000;
             const expiration = new Date(Date.now() + expiresInMs);
             const updatedToken = {
-                ...token,
+                ...freshToken,
                 accessToken: {
-                    ...token.accessToken,
+                    ...freshToken.accessToken,
                     accessKeyId,
                     secretAccessKey,
                     sessionToken,
@@ -11569,14 +12582,7 @@ class LoginCredentialsFetcher {
                 refreshToken,
             };
             await this.saveToken(updatedToken);
-            const newAccessToken = updatedToken.accessToken;
-            return {
-                accessKeyId: newAccessToken.accessKeyId,
-                secretAccessKey: newAccessToken.secretAccessKey,
-                sessionToken: newAccessToken.sessionToken,
-                accountId: newAccessToken.accountId,
-                expiration,
-            };
+            return this.toCredentials(updatedToken.accessToken);
         }
         catch (error) {
             if (error.name === "AccessDeniedException") {
@@ -11597,7 +12603,15 @@ class LoginCredentialsFetcher {
                     default:
                         message = `Failed to refresh token: ${String(error)}. Please re-authenticate using \`aws login\``;
                 }
-                throw new CredentialsProviderError(message, { logger: this.logger, tryNextLink: false });
+                throw new CredentialsProviderError(message, {
+                    logger: this.logger,
+                    tryNextLink: false,
+                });
+            }
+            const tokenExpiry = new Date(freshToken.accessToken.expiresAt).getTime();
+            if (tokenExpiry > Date.now()) {
+                this.logger?.warn?.(`Failed to refresh token: ${String(error)}. Using existing token until expiry.`);
+                return this.toCredentials(freshToken.accessToken);
             }
             throw new CredentialsProviderError(`Failed to refresh token: ${String(error)}. Please re-authenticate using aws login`, { logger: this.logger });
         }
@@ -11605,13 +12619,7 @@ class LoginCredentialsFetcher {
     async loadToken() {
         const tokenFilePath = this.getTokenFilePath();
         try {
-            let tokenData;
-            try {
-                tokenData = await readFile(tokenFilePath, { ignoreCache: this.init?.ignoreCache });
-            }
-            catch {
-                tokenData = await promises.readFile(tokenFilePath, "utf8");
-            }
+            const tokenData = await promises.readFile(tokenFilePath, "utf8");
             const token = JSON.parse(tokenData);
             const missingFields = ["accessToken", "clientId", "refreshToken", "dpopKey"].filter((k) => !token[k]);
             if (!token.accessToken?.accountId) {
@@ -11816,6 +12824,8 @@ function memoizeChain(providers, treatAsExpired) {
                     passiveLock = chain(options)
                         .then((c) => {
                         credentials = c;
+                    })
+                        .catch(() => {
                     })
                         .finally(() => {
                         passiveLock = undefined;
@@ -12295,11 +13305,11 @@ const { toEndpointV1, getEndpointFromInstructions } = __nccwpck_require__(62085)
 const { extendedEncodeURIComponent } = __nccwpck_require__(93422);
 const { EventEmitter } = __nccwpck_require__(24434);
 const { Buffer } = __nccwpck_require__(20181);
-const { lstatSync, ReadStream } = __nccwpck_require__(73024);
+const { statSync, ReadStream } = __nccwpck_require__(73024);
 const { Readable } = __nccwpck_require__(2203);
 
 const runtimeConfigShared = {
-    lstatSync: () => { },
+    statSync: () => { },
     isFileReadStream(f) {
         return false;
     },
@@ -12308,7 +13318,7 @@ const runtimeConfigShared = {
 const runtimeConfig = {
     ...runtimeConfigShared,
     runtime: "node",
-    lstatSync,
+    statSync,
     isFileReadStream(f) {
         return f instanceof ReadStream;
     },
@@ -12335,7 +13345,7 @@ const byteLength = (input) => {
     }
     else if (runtimeConfig.isFileReadStream(input)) {
         try {
-            return runtimeConfig.lstatSync(input.path).size;
+            return runtimeConfig.statSync(input.path).size;
         }
         catch (error) {
             return undefined;
@@ -12353,7 +13363,7 @@ var BYTE_LENGTH_SOURCE;
     BYTE_LENGTH_SOURCE["LENGTH"] = "the value of Body.length";
     BYTE_LENGTH_SOURCE["SIZE"] = "the value of Body.size";
     BYTE_LENGTH_SOURCE["START_END_DIFF"] = "the numeric difference between Body.start and Body.end";
-    BYTE_LENGTH_SOURCE["LSTAT"] = "the size of the file given by Body.path on disk as reported by lstatSync";
+    BYTE_LENGTH_SOURCE["STAT"] = "the size of the file given by Body.path on disk as reported by statSync";
 })(BYTE_LENGTH_SOURCE || (BYTE_LENGTH_SOURCE = {}));
 const byteLengthSource = (input, override) => {
     if (override != null) {
@@ -12379,8 +13389,8 @@ const byteLengthSource = (input, override) => {
     }
     else if (runtimeConfig.isFileReadStream(input)) {
         try {
-            runtimeConfig.lstatSync(input.path).size;
-            return BYTE_LENGTH_SOURCE.LSTAT;
+            runtimeConfig.statSync(input.path).size;
+            return BYTE_LENGTH_SOURCE.STAT;
         }
         catch (error) {
             return undefined;
@@ -12734,6 +13744,7 @@ class Upload extends EventEmitter {
         if (this.isMultiPart) {
             const { expectedPartsCount, uploadedParts, totalBytes, totalBytesSource } = this;
             if (totalBytes !== undefined && expectedPartsCount !== undefined && uploadedParts.length !== expectedPartsCount) {
+                await this.markUploadAsAborted();
                 throw new Error(`Expected ${expectedPartsCount} part(s) but uploaded ${uploadedParts.length} part(s).
 The expected part count is based on the byte-count of the input.params.Body,
 which was read from ${totalBytesSource} and is ${totalBytes}.
@@ -12824,10 +13835,10 @@ exports._ = Upload;
 
 const { NoOpLogger, getSmithyContext } = __nccwpck_require__(92658);
 const { HttpRequest, HttpResponse } = __nccwpck_require__(93422);
+const { setFeature } = __nccwpck_require__(5152);
 const { parseRfc7231DateTime } = __nccwpck_require__(92430);
 const { SignatureV4SignWithCredentials } = __nccwpck_require__(5785);
 const { booleanSelector, SelectorType } = __nccwpck_require__(47291);
-const { setFeature } = __nccwpck_require__(5152);
 const { httpSigningMiddlewareOptions } = __nccwpck_require__(90402);
 const { Readable } = __nccwpck_require__(57075);
 const { validate, parse } = __nccwpck_require__(519);
@@ -12924,6 +13935,7 @@ function regionRedirectMiddleware(clientConfig) {
                             const actualRegion = bucketRegionHeader;
                             context.logger?.debug(`Redirecting from ${await clientConfig.region()} to ${actualRegion}`);
                             context.__s3RegionRedirect = actualRegion;
+                            setFeature(context, "S3_REGION_REDIRECT", "Ah");
                         }
                         catch (e) {
                             throw new Error("Region redirect failed: " + e);
@@ -13949,7 +14961,7 @@ const commonParams = {
     UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" },
 };
 
-var version = "3.997.34";
+var version = "3.997.47";
 var packageInfo = {
 	version: version};
 
@@ -14066,6 +15078,7 @@ const defaultEndpointResolver = (endpointParams, context = {}) => {
 customEndpointFunctions.aws = awsEndpointFunctions;
 
 class SigninServiceException extends ServiceException {
+    static shapeId = "smithy.ts.sdk.synthetic.com.amazonaws.signin#SigninServiceException";
     constructor(options) {
         super(options);
         Object.setPrototypeOf(this, SigninServiceException.prototype);
@@ -14073,6 +15086,7 @@ class SigninServiceException extends ServiceException {
 }
 
 class AccessDeniedException extends SigninServiceException {
+    static shapeId = "com.amazonaws.signin#AccessDeniedException";
     name = "AccessDeniedException";
     $fault = "client";
     error;
@@ -14087,6 +15101,7 @@ class AccessDeniedException extends SigninServiceException {
     }
 }
 class InternalServerException extends SigninServiceException {
+    static shapeId = "com.amazonaws.signin#InternalServerException";
     name = "InternalServerException";
     $fault = "server";
     error;
@@ -14101,6 +15116,7 @@ class InternalServerException extends SigninServiceException {
     }
 }
 class TooManyRequestsError extends SigninServiceException {
+    static shapeId = "com.amazonaws.signin#TooManyRequestsError";
     name = "TooManyRequestsError";
     $fault = "client";
     error;
@@ -14115,6 +15131,7 @@ class TooManyRequestsError extends SigninServiceException {
     }
 }
 class ValidationException extends SigninServiceException {
+    static shapeId = "com.amazonaws.signin#ValidationException";
     name = "ValidationException";
     $fault = "client";
     error;
@@ -14173,10 +15190,10 @@ const _tO = "tokenOutput";
 const _tT = "tokenType";
 const _tt = "token_type";
 const n0 = "com.amazonaws.signin";
-const _s_registry = TypeRegistry.for(_s);
+const _s_registry = new TypeRegistry(_s);
 var SigninServiceException$ = [-3, _s, "SigninServiceException", 0, [], []];
 _s_registry.registerError(SigninServiceException$, SigninServiceException);
-const n0_registry = TypeRegistry.for(n0);
+const n0_registry = new TypeRegistry(n0);
 var AccessDeniedException$ = [-3, n0, _ADE,
     { [_e]: _c },
     [_e, _m],
@@ -14546,7 +15563,7 @@ const commonParams = {
     UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" },
 };
 
-var version = "3.997.34";
+var version = "3.997.47";
 var packageInfo = {
 	version: version};
 
@@ -14612,6 +15629,7 @@ const defaultEndpointResolver = (endpointParams, context = {}) => {
 customEndpointFunctions.aws = awsEndpointFunctions;
 
 class SSOOIDCServiceException extends ServiceException {
+    static shapeId = "smithy.ts.sdk.synthetic.com.amazonaws.ssooidc#SSOOIDCServiceException";
     constructor(options) {
         super(options);
         Object.setPrototypeOf(this, SSOOIDCServiceException.prototype);
@@ -14619,6 +15637,7 @@ class SSOOIDCServiceException extends ServiceException {
 }
 
 class AccessDeniedException extends SSOOIDCServiceException {
+    static shapeId = "com.amazonaws.ssooidc#AccessDeniedException";
     name = "AccessDeniedException";
     $fault = "client";
     error;
@@ -14637,6 +15656,7 @@ class AccessDeniedException extends SSOOIDCServiceException {
     }
 }
 class AuthorizationPendingException extends SSOOIDCServiceException {
+    static shapeId = "com.amazonaws.ssooidc#AuthorizationPendingException";
     name = "AuthorizationPendingException";
     $fault = "client";
     error;
@@ -14653,6 +15673,7 @@ class AuthorizationPendingException extends SSOOIDCServiceException {
     }
 }
 class ExpiredTokenException extends SSOOIDCServiceException {
+    static shapeId = "com.amazonaws.ssooidc#ExpiredTokenException";
     name = "ExpiredTokenException";
     $fault = "client";
     error;
@@ -14669,6 +15690,7 @@ class ExpiredTokenException extends SSOOIDCServiceException {
     }
 }
 class InternalServerException extends SSOOIDCServiceException {
+    static shapeId = "com.amazonaws.ssooidc#InternalServerException";
     name = "InternalServerException";
     $fault = "server";
     error;
@@ -14685,6 +15707,7 @@ class InternalServerException extends SSOOIDCServiceException {
     }
 }
 class InvalidClientException extends SSOOIDCServiceException {
+    static shapeId = "com.amazonaws.ssooidc#InvalidClientException";
     name = "InvalidClientException";
     $fault = "client";
     error;
@@ -14701,6 +15724,7 @@ class InvalidClientException extends SSOOIDCServiceException {
     }
 }
 class InvalidGrantException extends SSOOIDCServiceException {
+    static shapeId = "com.amazonaws.ssooidc#InvalidGrantException";
     name = "InvalidGrantException";
     $fault = "client";
     error;
@@ -14717,6 +15741,7 @@ class InvalidGrantException extends SSOOIDCServiceException {
     }
 }
 class InvalidRequestException extends SSOOIDCServiceException {
+    static shapeId = "com.amazonaws.ssooidc#InvalidRequestException";
     name = "InvalidRequestException";
     $fault = "client";
     error;
@@ -14735,6 +15760,7 @@ class InvalidRequestException extends SSOOIDCServiceException {
     }
 }
 class InvalidScopeException extends SSOOIDCServiceException {
+    static shapeId = "com.amazonaws.ssooidc#InvalidScopeException";
     name = "InvalidScopeException";
     $fault = "client";
     error;
@@ -14751,6 +15777,7 @@ class InvalidScopeException extends SSOOIDCServiceException {
     }
 }
 class SlowDownException extends SSOOIDCServiceException {
+    static shapeId = "com.amazonaws.ssooidc#SlowDownException";
     name = "SlowDownException";
     $fault = "client";
     error;
@@ -14767,6 +15794,7 @@ class SlowDownException extends SSOOIDCServiceException {
     }
 }
 class UnauthorizedClientException extends SSOOIDCServiceException {
+    static shapeId = "com.amazonaws.ssooidc#UnauthorizedClientException";
     name = "UnauthorizedClientException";
     $fault = "client";
     error;
@@ -14783,6 +15811,7 @@ class UnauthorizedClientException extends SSOOIDCServiceException {
     }
 }
 class UnsupportedGrantTypeException extends SSOOIDCServiceException {
+    static shapeId = "com.amazonaws.ssooidc#UnsupportedGrantTypeException";
     name = "UnsupportedGrantTypeException";
     $fault = "client";
     error;
@@ -14840,10 +15869,10 @@ const _sc = "scope";
 const _se = "server";
 const _tT = "tokenType";
 const n0 = "com.amazonaws.ssooidc";
-const _s_registry = TypeRegistry.for(_s);
+const _s_registry = new TypeRegistry(_s);
 var SSOOIDCServiceException$ = [-3, _s, "SSOOIDCServiceException", 0, [], []];
 _s_registry.registerError(SSOOIDCServiceException$, SSOOIDCServiceException);
-const n0_registry = TypeRegistry.for(n0);
+const n0_registry = new TypeRegistry(n0);
 var AccessDeniedException$ = [-3, n0, _ADE,
     { [_e]: _c, [_hE]: 400 },
     [_e, _r, _ed],
@@ -15227,7 +16256,7 @@ const commonParams = {
     UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" },
 };
 
-var version = "3.997.34";
+var version = "3.997.47";
 var packageInfo = {
 	version: version};
 
@@ -15293,6 +16322,7 @@ const defaultEndpointResolver = (endpointParams, context = {}) => {
 customEndpointFunctions.aws = awsEndpointFunctions;
 
 class SSOServiceException extends ServiceException {
+    static shapeId = "smithy.ts.sdk.synthetic.com.amazonaws.sso#SSOServiceException";
     constructor(options) {
         super(options);
         Object.setPrototypeOf(this, SSOServiceException.prototype);
@@ -15300,6 +16330,7 @@ class SSOServiceException extends ServiceException {
 }
 
 class InvalidRequestException extends SSOServiceException {
+    static shapeId = "com.amazonaws.sso#InvalidRequestException";
     name = "InvalidRequestException";
     $fault = "client";
     constructor(opts) {
@@ -15312,6 +16343,7 @@ class InvalidRequestException extends SSOServiceException {
     }
 }
 class ResourceNotFoundException extends SSOServiceException {
+    static shapeId = "com.amazonaws.sso#ResourceNotFoundException";
     name = "ResourceNotFoundException";
     $fault = "client";
     constructor(opts) {
@@ -15324,6 +16356,7 @@ class ResourceNotFoundException extends SSOServiceException {
     }
 }
 class TooManyRequestsException extends SSOServiceException {
+    static shapeId = "com.amazonaws.sso#TooManyRequestsException";
     name = "TooManyRequestsException";
     $fault = "client";
     constructor(opts) {
@@ -15336,6 +16369,7 @@ class TooManyRequestsException extends SSOServiceException {
     }
 }
 class UnauthorizedException extends SSOServiceException {
+    static shapeId = "com.amazonaws.sso#UnauthorizedException";
     name = "UnauthorizedException";
     $fault = "client";
     constructor(opts) {
@@ -15379,10 +16413,10 @@ const _sAK = "secretAccessKey";
 const _sT = "sessionToken";
 const _xasbt = "x-amz-sso_bearer_token";
 const n0 = "com.amazonaws.sso";
-const _s_registry = TypeRegistry.for(_s);
+const _s_registry = new TypeRegistry(_s);
 var SSOServiceException$ = [-3, _s, "SSOServiceException", 0, [], []];
 _s_registry.registerError(SSOServiceException$, SSOServiceException);
-const n0_registry = TypeRegistry.for(n0);
+const n0_registry = new TypeRegistry(n0);
 var InvalidRequestException$ = [-3, n0, _IRE,
     { [_e]: _c, [_hE]: 400 },
     [_m],
@@ -15882,11 +16916,12 @@ const commonParams = {
     UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" },
 };
 
-var version = "3.997.34";
+var version = "3.997.47";
 var packageInfo = {
 	version: version};
 
 class STSServiceException extends ServiceException {
+    static shapeId = "smithy.ts.sdk.synthetic.com.amazonaws.sts#STSServiceException";
     constructor(options) {
         super(options);
         Object.setPrototypeOf(this, STSServiceException.prototype);
@@ -15894,6 +16929,7 @@ class STSServiceException extends ServiceException {
 }
 
 class ExpiredTokenException extends STSServiceException {
+    static shapeId = "com.amazonaws.sts#ExpiredTokenException";
     name = "ExpiredTokenException";
     $fault = "client";
     constructor(opts) {
@@ -15906,6 +16942,7 @@ class ExpiredTokenException extends STSServiceException {
     }
 }
 class MalformedPolicyDocumentException extends STSServiceException {
+    static shapeId = "com.amazonaws.sts#MalformedPolicyDocumentException";
     name = "MalformedPolicyDocumentException";
     $fault = "client";
     constructor(opts) {
@@ -15918,6 +16955,7 @@ class MalformedPolicyDocumentException extends STSServiceException {
     }
 }
 class PackedPolicyTooLargeException extends STSServiceException {
+    static shapeId = "com.amazonaws.sts#PackedPolicyTooLargeException";
     name = "PackedPolicyTooLargeException";
     $fault = "client";
     constructor(opts) {
@@ -15930,6 +16968,7 @@ class PackedPolicyTooLargeException extends STSServiceException {
     }
 }
 class RegionDisabledException extends STSServiceException {
+    static shapeId = "com.amazonaws.sts#RegionDisabledException";
     name = "RegionDisabledException";
     $fault = "client";
     constructor(opts) {
@@ -15942,6 +16981,7 @@ class RegionDisabledException extends STSServiceException {
     }
 }
 class IDPRejectedClaimException extends STSServiceException {
+    static shapeId = "com.amazonaws.sts#IDPRejectedClaimException";
     name = "IDPRejectedClaimException";
     $fault = "client";
     constructor(opts) {
@@ -15954,6 +16994,7 @@ class IDPRejectedClaimException extends STSServiceException {
     }
 }
 class InvalidIdentityTokenException extends STSServiceException {
+    static shapeId = "com.amazonaws.sts#InvalidIdentityTokenException";
     name = "InvalidIdentityTokenException";
     $fault = "client";
     constructor(opts) {
@@ -15966,6 +17007,7 @@ class InvalidIdentityTokenException extends STSServiceException {
     }
 }
 class IDPCommunicationErrorException extends STSServiceException {
+    static shapeId = "com.amazonaws.sts#IDPCommunicationErrorException";
     name = "IDPCommunicationErrorException";
     $fault = "client";
     $retryable = {};
@@ -16001,6 +17043,7 @@ const _IDPRCE = "IDPRejectedClaimException";
 const _IITE = "InvalidIdentityTokenException";
 const _K = "Key";
 const _MPDE = "MalformedPolicyDocumentException";
+const _MSTS = "MinimumSessionTokenSize";
 const _P = "Policy";
 const _PA = "PolicyArns";
 const _PAr = "ProviderArn";
@@ -16020,6 +17063,8 @@ const _SFWIT = "SubjectFromWebIdentityToken";
 const _SI = "SourceIdentity";
 const _SN = "SerialNumber";
 const _ST = "SessionToken";
+const _STS = "SessionTokenSize";
+const _STU = "SessionTokenUtilization";
 const _T = "Tags";
 const _TC = "TokenCode";
 const _TTK = "TransitiveTagKeys";
@@ -16038,10 +17083,10 @@ const _pDLT = "policyDescriptorListType";
 const _s = "smithy.ts.sdk.synthetic.com.amazonaws.sts";
 const _tLT = "tagListType";
 const n0 = "com.amazonaws.sts";
-const _s_registry = TypeRegistry.for(_s);
+const _s_registry = new TypeRegistry(_s);
 var STSServiceException$ = [-3, _s, "STSServiceException", 0, [], []];
 _s_registry.registerError(STSServiceException$, STSServiceException);
-const n0_registry = TypeRegistry.for(n0);
+const n0_registry = new TypeRegistry(n0);
 var ExpiredTokenException$ = [-3, n0, _ETE,
     { [_aQE]: [`ExpiredTokenException`, 400], [_e]: _c, [_hE]: 400 },
     [_m],
@@ -16097,23 +17142,23 @@ var AssumedRoleUser$ = [3, n0, _ARU,
 ];
 var AssumeRoleRequest$ = [3, n0, _ARR,
     0,
-    [_RA, _RSN, _PA, _P, _DS, _T, _TTK, _EI, _SN, _TC, _SI, _PC],
-    [0, 0, () => policyDescriptorListType, 0, 1, () => tagListType, 64 | 0, 0, 0, 0, 0, () => ProvidedContextsListType], 2
+    [_RA, _RSN, _PA, _P, _DS, _T, _TTK, _EI, _SN, _TC, _SI, _PC, _MSTS],
+    [0, 0, () => policyDescriptorListType, 0, 1, () => tagListType, 64 | 0, 0, 0, 0, 0, () => ProvidedContextsListType, 1], 2
 ];
 var AssumeRoleResponse$ = [3, n0, _ARRs,
     0,
-    [_C, _ARU, _PPS, _SI],
-    [[() => Credentials$, 0], () => AssumedRoleUser$, 1, 0]
+    [_C, _ARU, _PPS, _SI, _STU, _STS],
+    [[() => Credentials$, 0], () => AssumedRoleUser$, 1, 0, 1, 1]
 ];
 var AssumeRoleWithWebIdentityRequest$ = [3, n0, _ARWWIR,
     0,
-    [_RA, _RSN, _WIT, _PI, _PA, _P, _DS],
-    [0, 0, [() => clientTokenType, 0], 0, () => policyDescriptorListType, 0, 1], 3
+    [_RA, _RSN, _WIT, _PI, _PA, _P, _DS, _MSTS],
+    [0, 0, [() => clientTokenType, 0], 0, () => policyDescriptorListType, 0, 1, 1], 3
 ];
 var AssumeRoleWithWebIdentityResponse$ = [3, n0, _ARWWIRs,
     0,
-    [_C, _SFWIT, _ARU, _PPS, _Pr, _Au, _SI],
-    [[() => Credentials$, 0], 0, () => AssumedRoleUser$, 1, 0, 0, 0]
+    [_C, _SFWIT, _ARU, _PPS, _Pr, _Au, _SI, _STU, _STS],
+    [[() => Credentials$, 0], 0, () => AssumedRoleUser$, 1, 0, 0, 0, 1, 1]
 ];
 var Credentials$ = [3, n0, _C,
     0,
@@ -16732,7 +17777,7 @@ const writeSSOTokenToFile = (id, ssoToken) => {
     return writeFile(tokenFilepath, tokenString);
 };
 
-const lastRefreshAttemptTime = new Date(0);
+const lastRefreshAttemptTimes = new Map();
 const fromSso = (init = {}) => async ({ callerClientConfig } = {}) => {
     init.logger?.debug("@aws-sdk/token-providers - fromSso");
     const profiles = await parseKnownFiles(init);
@@ -16769,11 +17814,15 @@ const fromSso = (init = {}) => async ({ callerClientConfig } = {}) => {
     validateTokenKey("accessToken", ssoToken.accessToken);
     validateTokenKey("expiresAt", ssoToken.expiresAt);
     const { accessToken, expiresAt } = ssoToken;
-    const existingToken = { token: accessToken, expiration: new Date(expiresAt) };
+    const existingToken = {
+        token: accessToken,
+        expiration: new Date(expiresAt),
+    };
     if (existingToken.expiration.getTime() - Date.now() > EXPIRE_WINDOW_MS) {
         return existingToken;
     }
-    if (Date.now() - lastRefreshAttemptTime.getTime() < 30 * 1000) {
+    const lastRefreshAttemptTime = lastRefreshAttemptTimes.get(ssoSessionName) ?? 0;
+    if (Date.now() - lastRefreshAttemptTime < 30 * 1000) {
         validateTokenExpiry(existingToken);
         return existingToken;
     }
@@ -16781,7 +17830,7 @@ const fromSso = (init = {}) => async ({ callerClientConfig } = {}) => {
     validateTokenKey("clientSecret", ssoToken.clientSecret, true);
     validateTokenKey("refreshToken", ssoToken.refreshToken, true);
     try {
-        lastRefreshAttemptTime.setTime(Date.now());
+        lastRefreshAttemptTimes.set(ssoSessionName, Date.now());
         const newSsoOidcToken = await getNewSsoOidcToken(ssoToken, ssoRegion, init, callerClientConfig);
         validateTokenKey("accessToken", newSsoOidcToken.accessToken);
         validateTokenKey("expiresIn", newSsoOidcToken.expiresIn);
@@ -33642,7 +34691,7 @@ exports.ReflectionTypeCheck = ReflectionTypeCheck;
 /***/ 90402:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
-const { getSmithyContext } = __nccwpck_require__(34534);
+const { getSmithyContext, hasOwn } = __nccwpck_require__(34534);
 exports.getSmithyContext = getSmithyContext;
 const { HttpRequest } = __nccwpck_require__(93422);
 const { requestBuilder } = __nccwpck_require__(93422);
@@ -33847,6 +34896,8 @@ class DefaultIdentityProviderConfig {
     authSchemes = new Map();
     constructor(config) {
         for (const key in config) {
+            if (!hasOwn(config, key))
+                continue;
             const value = config[key];
             if (value !== undefined) {
                 this.authSchemes.set(key, value);
@@ -33991,10 +35042,10 @@ exports.setFeature = setFeature;
 /***/ 64645:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
-const { nv, NumericValue, calculateBodyLength, _parseEpochTimestamp, fromBase64, generateIdempotencyToken } = __nccwpck_require__(92430);
+const { nv, NumericValue, calculateBodyLength, generateIdempotencyToken, fromBase64, _parseEpochTimestamp } = __nccwpck_require__(92430);
+const { hasOwn, getSmithyContext } = __nccwpck_require__(34534);
 const { HttpRequest, collectBody, SerdeContext, RpcProtocol } = __nccwpck_require__(93422);
 const { NormalizedSchema, deref, TypeRegistry } = __nccwpck_require__(26890);
-const { getSmithyContext } = __nccwpck_require__(34534);
 
 const majorUint64 = 0;
 const majorNegativeInt64 = 1;
@@ -34022,23 +35073,23 @@ function tag(data) {
     return data;
 }
 
-const USE_BUFFER$1 = typeof Buffer !== "undefined";
-const textDecoder = new TextDecoder();
-let payload = alloc(0);
-let isBuffer = false;
-let dataView$1 = new DataView(payload.buffer, payload.byteOffset, payload.byteLength);
+const USE_BUFFER$3 = typeof Buffer !== "undefined";
+const textDecoder$1 = new TextDecoder();
+let payload$1 = alloc(0);
+let isBuffer$1 = false;
+let dataView$2 = new DataView(payload$1.buffer, payload$1.byteOffset, payload$1.byteLength);
 let _offset = 0;
 function setPayload(bytes) {
-    payload = bytes;
-    isBuffer = USE_BUFFER$1 && payload instanceof Buffer;
-    dataView$1 = new DataView(payload.buffer, payload.byteOffset, payload.byteLength);
+    payload$1 = bytes;
+    isBuffer$1 = USE_BUFFER$3 && payload$1 instanceof Buffer;
+    dataView$2 = new DataView(payload$1.buffer, payload$1.byteOffset, payload$1.byteLength);
 }
 function decode(at, to) {
     if (at >= to) {
         throw new Error("unexpected end of (decode) payload.");
     }
-    const major = (payload[at] & 0b1110_0000) >> 5;
-    const minor = payload[at] & 0b0001_1111;
+    const major = (payload$1[at] & 0b1110_0000) >> 5;
+    const minor = payload$1[at] & 0b0001_1111;
     if (minor === minorIndefinite && 2 <= major && major <= 5) {
         return decodeIndefinite(at, to);
     }
@@ -34056,36 +35107,36 @@ function decode(at, to) {
                 switch (minor) {
                     case extendedOneByte:
                         if (to - at < 2) {
-                            overflow(1);
+                            overflow$1(1);
                         }
-                        unsignedInt = payload[at + 1];
+                        unsignedInt = payload$1[at + 1];
                         offset = 2;
                         break;
                     case extendedFloat16:
                         if (to - at < 3) {
-                            overflow(2);
+                            overflow$1(2);
                         }
-                        unsignedInt = dataView$1.getUint16(at + 1);
+                        unsignedInt = dataView$2.getUint16(at + 1);
                         offset = 3;
                         break;
                     case extendedFloat32:
                         if (to - at < 5) {
-                            overflow(4);
+                            overflow$1(4);
                         }
-                        unsignedInt = dataView$1.getUint32(at + 1);
+                        unsignedInt = dataView$2.getUint32(at + 1);
                         offset = 5;
                         break;
                     case extendedFloat64:
                         if (to - at < 9) {
-                            overflow(8);
+                            overflow$1(8);
                         }
                         {
-                            const hi = dataView$1.getUint32(at + 1);
+                            const hi = dataView$2.getUint32(at + 1);
                             if (hi < 0x00200000) {
-                                unsignedInt = hi * 4294967296 + dataView$1.getUint32(at + 5);
+                                unsignedInt = hi * 4294967296 + dataView$2.getUint32(at + 5);
                             }
                             else {
-                                unsignedInt = dataView$1.getBigUint64(at + 1);
+                                unsignedInt = dataView$2.getBigUint64(at + 1);
                             }
                         }
                         offset = 9;
@@ -34096,7 +35147,7 @@ function decode(at, to) {
             }
             if (major === majorUint64) {
                 _offset = offset;
-                return castBigInt(unsignedInt);
+                return castBigInt$1(unsignedInt);
             }
             else if (major === majorNegativeInt64) {
                 let negativeInt;
@@ -34107,7 +35158,7 @@ function decode(at, to) {
                     negativeInt = -1 - unsignedInt;
                 }
                 _offset = offset;
-                return castBigInt(negativeInt);
+                return castBigInt$1(negativeInt);
             }
             else {
                 return decodeTagValue(at, to, minor, unsignedInt, offset);
@@ -34126,8 +35177,8 @@ function decode(at, to) {
     }
 }
 function decodeIndefinite(at, to) {
-    const major = (payload[at] & 0b1110_0000) >> 5;
-    const minor = payload[at] & 0b0001_1111;
+    const major = (payload$1[at] & 0b1110_0000) >> 5;
+    const minor = payload$1[at] & 0b0001_1111;
     if (minor === minorIndefinite) {
         switch (major) {
             case majorUtf8String:
@@ -34141,7 +35192,7 @@ function decodeIndefinite(at, to) {
         }
     }
 }
-function bytesToFloat16(a, b) {
+function bytesToFloat16$1(a, b) {
     const sign = a >> 7;
     const exponent = (a & 0b0111_1100) >> 2;
     const fraction = ((a & 0b0000_0011) << 8) | b;
@@ -34161,7 +35212,7 @@ function bytesToFloat16(a, b) {
     return scalar * (Math.pow(2, exponent - 15) * (1 + fraction / 1024));
 }
 function decodeMap(at, to) {
-    const mapDataLength = decodeCount(at, to);
+    const mapDataLength = decodeCount$1(at, to);
     if (mapDataLength < 25) {
         return decodeMapSmall(at, to, mapDataLength);
     }
@@ -34175,7 +35226,7 @@ function decodeMapLarge(at, to, mapDataLength) {
     for (let i = 0; i < mapDataLength; ++i) {
         const key = decodeUtf8String(at, to);
         at += _offset;
-        const valMajor = (payload[at] & 0b1110_0000) >> 5;
+        const valMajor = (payload$1[at] & 0b1110_0000) >> 5;
         if (valMajor === majorUtf8String) {
             map[key] = decodeUtf8String(at, to);
         }
@@ -34203,7 +35254,7 @@ function decodeMapSmall(at, to, mapDataLength) {
     return map;
 }
 function decodeList(at, to) {
-    const listDataLength = decodeCount(at, to);
+    const listDataLength = decodeCount$1(at, to);
     const offset = _offset;
     at += offset;
     const base = at;
@@ -34216,99 +35267,115 @@ function decodeList(at, to) {
     return list;
 }
 function decodeUtf8String(at, to) {
-    const length = decodeCount(at, to);
+    const length = decodeCount$1(at, to);
     const offset = _offset;
     at += offset;
     if (to - at < length) {
-        overflow(length);
+        overflow$1(length);
     }
     _offset = offset + length;
     if (length < 24) {
         return decodeUtf8StringCached(at, length);
     }
-    if (isBuffer) {
-        return payload.toString("utf-8", at, at + length);
+    if (isBuffer$1) {
+        return payload$1.toString("utf-8", at, at + length);
     }
-    return textDecoder.decode(payload.subarray(at, at + length));
+    return textDecoder$1.decode(payload$1.subarray(at, at + length));
 }
-const stringCache = new Array(2048);
-const stringCacheEpochs = new Uint16Array(2048);
-let cacheEpoch = 0;
+const stringCache$1 = new Array(2048);
+const stringCacheEpochs$1 = new Uint16Array(2048);
+let cacheEpoch$1 = 0;
 function advanceDecodingEpoch() {
-    cacheEpoch = (cacheEpoch + 1) & 0b1111_1111_1111_1111;
+    cacheEpoch$1 = (cacheEpoch$1 + 1) & 0b1111_1111_1111_1111;
 }
 function decodeUtf8StringCached(at, length) {
     let h = length;
     for (let i = 0; i < length; ++i) {
-        h = (h * 31 + payload[at + i]) | 0;
+        h = (h * 31 + payload$1[at + i]) | 0;
     }
     const slot = (h >>> 0) & 2047;
-    const cached = stringCache[slot];
+    const cached = stringCache$1[slot];
     if (cached !== undefined) {
         if (cached.length === length) {
             let match = true;
             for (let i = 0; i < length; ++i) {
-                if (cached.charCodeAt(i) !== payload[at + i]) {
+                if (cached.charCodeAt(i) !== payload$1[at + i]) {
                     match = false;
                     break;
                 }
             }
             if (match) {
-                stringCacheEpochs[slot] = cacheEpoch;
+                stringCacheEpochs$1[slot] = cacheEpoch$1;
                 return cached;
             }
         }
     }
-    const result = isBuffer
-        ? payload.toString("utf-8", at, at + length)
-        : textDecoder.decode(payload.subarray(at, at + length));
-    if (stringCacheEpochs[slot] !== cacheEpoch) {
-        stringCache[slot] = result;
-        stringCacheEpochs[slot] = cacheEpoch;
+    const result = isBuffer$1
+        ? payload$1.toString("utf-8", at, at + length)
+        : textDecoder$1.decode(payload$1.subarray(at, at + length));
+    if (stringCacheEpochs$1[slot] !== cacheEpoch$1) {
+        stringCache$1[slot] = result;
+        stringCacheEpochs$1[slot] = cacheEpoch$1;
     }
     return result;
 }
 function decodeUnstructuredByteString(at, to) {
-    const length = decodeCount(at, to);
+    const length = decodeCount$1(at, to);
     const offset = _offset;
     at += offset;
     if (to - at < length) {
-        overflow(length);
+        overflow$1(length);
     }
-    const value = payload.subarray(at, at + length);
+    const value = payload$1.subarray(at, at + length);
     _offset = offset + length;
     return value;
 }
 function decodeTagValue(at, to, minor, unsignedInt, offset) {
     if (minor === 2 || minor === 3) {
-        const length = decodeCount(at + offset, to);
+        const length = decodeCount$1(at + offset, to);
         let b = BigInt(0);
         const start = at + offset + _offset;
         for (let i = start; i < start + length; ++i) {
-            b = (b << BigInt(8)) | BigInt(payload[i]);
+            b = (b << BigInt(8)) | BigInt(payload$1[i]);
         }
         _offset = offset + _offset + length;
         return minor === 3 ? -b - BigInt(1) : b;
     }
     else if (minor === 4) {
         const decimalFraction = decode(at + offset, to);
-        const [exponent, mantissa] = decimalFraction;
+        const [rawExponent, mantissa] = decimalFraction;
         const normalizer = mantissa < 0 ? -1 : 1;
-        const mantissaStr = "0".repeat(Math.abs(exponent) + 1) + String(BigInt(normalizer) * BigInt(mantissa));
-        let numericString;
+        const absMantissa = BigInt(normalizer) * BigInt(mantissa);
+        const mantissaDigits = String(absMantissa);
         const sign = mantissa < 0 ? "-" : "";
-        numericString =
-            exponent === 0
-                ? mantissaStr
-                : mantissaStr.slice(0, mantissaStr.length + exponent) + "." + mantissaStr.slice(exponent);
-        numericString = numericString.replace(/^0+/g, "");
-        if (numericString === "") {
-            numericString = "0";
+        let numericString;
+        const isSmallExponent = typeof rawExponent === "number" && Math.abs(rawExponent) <= 2 ** 28;
+        if (isSmallExponent) {
+            const exponent = rawExponent;
+            const mantissaStr = "0".repeat(Math.abs(exponent) + 1) + mantissaDigits;
+            numericString =
+                exponent === 0
+                    ? mantissaStr
+                    : mantissaStr.slice(0, mantissaStr.length + exponent) + "." + mantissaStr.slice(exponent);
+            numericString = numericString.replace(/^0+/g, "");
+            if (numericString === "") {
+                numericString = "0";
+            }
+            if (numericString[0] === ".") {
+                numericString = "0" + numericString;
+            }
+            numericString = sign + numericString;
         }
-        if (numericString[0] === ".") {
-            numericString = "0" + numericString;
+        else {
+            const bigExponent = BigInt(rawExponent);
+            if (mantissaDigits.length === 1) {
+                numericString = sign + mantissaDigits + "e" + String(bigExponent);
+            }
+            else {
+                const adjustedExp = bigExponent + BigInt(mantissaDigits.length - 1);
+                numericString = sign + mantissaDigits[0] + "." + mantissaDigits.slice(1) + "e" + String(adjustedExp);
+            }
         }
-        numericString = sign + numericString;
         _offset = offset + _offset;
         return nv(numericString);
     }
@@ -34316,11 +35383,11 @@ function decodeTagValue(at, to, minor, unsignedInt, offset) {
         const value = decode(at + offset, to);
         const valueOffset = _offset;
         _offset = offset + valueOffset;
-        return tag({ tag: castBigInt(unsignedInt), value });
+        return tag({ tag: castBigInt$1(unsignedInt), value });
     }
 }
 function decodeSpecial(at, to) {
-    const minor = payload[at] & 0b0001_1111;
+    const minor = payload$1[at] & 0b0001_1111;
     switch (minor) {
         case specialTrue:
         case specialFalse:
@@ -34337,25 +35404,25 @@ function decodeSpecial(at, to) {
                 throw new Error("incomplete float16 at end of buf.");
             }
             _offset = 3;
-            return bytesToFloat16(payload[at + 1], payload[at + 2]);
+            return bytesToFloat16$1(payload$1[at + 1], payload$1[at + 2]);
         case extendedFloat32:
             if (to - at < 5) {
                 throw new Error("incomplete float32 at end of buf.");
             }
             _offset = 5;
-            return dataView$1.getFloat32(at + 1);
+            return dataView$2.getFloat32(at + 1);
         case extendedFloat64:
             if (to - at < 9) {
                 throw new Error("incomplete float64 at end of buf.");
             }
             _offset = 9;
-            return dataView$1.getFloat64(at + 1);
+            return dataView$2.getFloat64(at + 1);
         default:
             unexpectedMinor(minor);
     }
 }
-function decodeCount(at, to) {
-    const minor = payload[at] & 0b0001_1111;
+function decodeCount$1(at, to) {
+    const minor = payload$1[at] & 0b0001_1111;
     if (minor < 24) {
         _offset = 1;
         return minor;
@@ -34363,28 +35430,28 @@ function decodeCount(at, to) {
     switch (minor) {
         case extendedOneByte:
             if (to - at < 2) {
-                overflow(1);
+                overflow$1(1);
             }
             _offset = 2;
-            return payload[at + 1];
+            return payload$1[at + 1];
         case extendedFloat16:
             if (to - at < 3) {
-                overflow(2);
+                overflow$1(2);
             }
             _offset = 3;
-            return dataView$1.getUint16(at + 1);
+            return dataView$2.getUint16(at + 1);
         case extendedFloat32:
             if (to - at < 5) {
-                overflow(4);
+                overflow$1(4);
             }
             _offset = 5;
-            return dataView$1.getUint32(at + 1);
+            return dataView$2.getUint32(at + 1);
         case extendedFloat64:
             if (to - at < 9) {
-                overflow(8);
+                overflow$1(8);
             }
             _offset = 9;
-            return demote(dataView$1.getBigUint64(at + 1));
+            return demote(dataView$2.getBigUint64(at + 1));
         default:
             unexpectedMinor(minor);
     }
@@ -34394,7 +35461,7 @@ function decodeMapIndefinite(at, to) {
     const base = at;
     const map = {};
     for (; at < to;) {
-        if (payload[at] === 0b1111_1111) {
+        if (payload$1[at] === 0b1111_1111) {
             _offset = at - base + 2;
             return map;
         }
@@ -34409,7 +35476,7 @@ function decodeListIndefinite(at, to) {
     at += 1;
     const list = [];
     for (const base = at; at < to;) {
-        if (payload[at] === 0b1111_1111) {
+        if (payload$1[at] === 0b1111_1111) {
             _offset = at - base + 2;
             return list;
         }
@@ -34422,17 +35489,17 @@ function decodeUtf8StringIndefinite(at, to) {
     at += 1;
     const vector = [];
     for (const base = at; at < to;) {
-        if (payload[at] === 0b1111_1111) {
+        if (payload$1[at] === 0b1111_1111) {
             const data = alloc(vector.length);
             data.set(vector, 0);
             _offset = at - base + 2;
-            if (USE_BUFFER$1) {
+            if (USE_BUFFER$3) {
                 return data.toString("utf-8", 0, data.length);
             }
-            return textDecoder.decode(data);
+            return textDecoder$1.decode(data);
         }
-        const major = (payload[at] & 0b1110_0000) >> 5;
-        const minor = payload[at] & 0b0001_1111;
+        const major = (payload$1[at] & 0b1110_0000) >> 5;
+        const minor = payload$1[at] & 0b0001_1111;
         if (major !== majorUtf8String) {
             unexpectedMajorInIndefiniteString(major);
         }
@@ -34452,14 +35519,14 @@ function decodeUnstructuredByteStringIndefinite(at, to) {
     at += 1;
     const vector = [];
     for (const base = at; at < to;) {
-        if (payload[at] === 0b1111_1111) {
+        if (payload$1[at] === 0b1111_1111) {
             const data = alloc(vector.length);
             data.set(vector, 0);
             _offset = at - base + 2;
             return data;
         }
-        const major = (payload[at] & 0b1110_0000) >> 5;
-        const minor = payload[at] & 0b0001_1111;
+        const major = (payload$1[at] & 0b1110_0000) >> 5;
+        const minor = payload$1[at] & 0b0001_1111;
         if (major !== majorUnstructuredByteString) {
             unexpectedMajorInIndefiniteString(major);
         }
@@ -34475,7 +35542,7 @@ function decodeUnstructuredByteStringIndefinite(at, to) {
     }
     throw new Error("expected break marker.");
 }
-function castBigInt(bigInt) {
+function castBigInt$1(bigInt) {
     if (typeof bigInt === "number") {
         return bigInt;
     }
@@ -34492,7 +35559,7 @@ function demote(bigInteger) {
     }
     return num;
 }
-function overflow(n) {
+function overflow$1(n) {
     throw new Error(`length ${n} greater than remaining buf len.`);
 }
 function unexpectedMinor(minor) {
@@ -34502,25 +35569,25 @@ function unexpectedMajorInIndefiniteString(major) {
     throw new Error(`unexpected major type ${major} in indefinite string.`);
 }
 
-const USE_BUFFER = typeof Buffer !== "undefined";
+const USE_BUFFER$2 = typeof Buffer !== "undefined";
 const encodeStringCache = new Map();
-let encodeCacheEpoch = 0;
-let encodeCacheSaturated = false;
+let encodeCacheEpoch$1 = 0;
+let encodeCacheSaturated$1 = false;
 const initialSize = 2048;
 let data = alloc(initialSize);
-let dataView = new DataView(data.buffer, data.byteOffset, data.byteLength);
-let cursor = 0;
+let dataView$1 = new DataView(data.buffer, data.byteOffset, data.byteLength);
+let cursor$1 = 0;
 function encode(_input) {
     const encodeStack = [_input];
     while (encodeStack.length) {
         const input = encodeStack.pop();
         if (typeof input === "string") {
             const len = input.length;
-            if (USE_BUFFER) {
+            if (USE_BUFFER$2) {
                 ensureSpace(len * 3 + 9);
                 if (len > 23) {
-                    encodeHeader(majorUtf8String, Buffer.byteLength(input));
-                    cursor += data.write(input, cursor);
+                    encodeHeader$1(majorUtf8String, Buffer.byteLength(input));
+                    cursor$1 += data.write(input, cursor$1);
                 }
                 else {
                     encodeStringCached(input);
@@ -34529,8 +35596,8 @@ function encode(_input) {
             else {
                 const maxBytes = len * 3;
                 ensureSpace(maxBytes + 9);
-                const headerPos = cursor;
-                const result = new TextEncoder().encodeInto(input, data.subarray(cursor + 9));
+                const headerPos = cursor$1;
+                const result = new TextEncoder().encodeInto(input, data.subarray(cursor$1 + 9));
                 const byteLen = result.written;
                 let headerSize;
                 if (byteLen < 24) {
@@ -34551,50 +35618,50 @@ function encode(_input) {
                 if (headerSize < 9) {
                     data.copyWithin(headerPos + headerSize, headerPos + 9, headerPos + 9 + byteLen);
                 }
-                cursor = headerPos;
+                cursor$1 = headerPos;
                 encodeInteger(majorUtf8String, byteLen);
-                cursor += byteLen;
+                cursor$1 += byteLen;
             }
             continue;
         }
-        if (data.byteLength - cursor < 9) {
+        if (data.byteLength - cursor$1 < 9) {
             ensureSpace(64);
         }
         if (typeof input === "number") {
-            if (Number.isInteger(input)) {
+            if (Number.isInteger(input) && input >= -9007199254740992 && input <= 0x1fffffffffffff) {
                 const nonNegative = input >= 0;
                 const major = nonNegative ? majorUint64 : majorNegativeInt64;
                 const value = nonNegative ? input : -input - 1;
                 if (value < 24) {
-                    data[cursor++] = (major << 5) | value;
+                    data[cursor$1++] = (major << 5) | value;
                 }
                 else if (value < 256) {
-                    data[cursor++] = (major << 5) | 24;
-                    data[cursor++] = value;
+                    data[cursor$1++] = (major << 5) | 24;
+                    data[cursor$1++] = value;
                 }
                 else if (value < 65536) {
-                    data[cursor++] = (major << 5) | extendedFloat16;
-                    data[cursor++] = value >> 8;
-                    data[cursor++] = value & 0xff;
+                    data[cursor$1++] = (major << 5) | extendedFloat16;
+                    data[cursor$1++] = value >> 8;
+                    data[cursor$1++] = value & 0xff;
                 }
                 else if (value < 4294967296) {
-                    data[cursor++] = (major << 5) | extendedFloat32;
-                    dataView.setUint32(cursor, value);
-                    cursor += 4;
+                    data[cursor$1++] = (major << 5) | extendedFloat32;
+                    dataView$1.setUint32(cursor$1, value);
+                    cursor$1 += 4;
                 }
                 else {
-                    data[cursor++] = (major << 5) | extendedFloat64;
+                    data[cursor$1++] = (major << 5) | extendedFloat64;
                     const hi = (value / 4294967296) | 0;
                     const lo = (value - hi * 4294967296) | 0;
-                    dataView.setUint32(cursor, hi);
-                    dataView.setUint32(cursor + 4, lo);
-                    cursor += 8;
+                    dataView$1.setUint32(cursor$1, hi);
+                    dataView$1.setUint32(cursor$1 + 4, lo);
+                    cursor$1 += 8;
                 }
                 continue;
             }
-            data[cursor++] = (majorSpecial << 5) | extendedFloat64;
-            dataView.setFloat64(cursor, input);
-            cursor += 8;
+            data[cursor$1++] = (majorSpecial << 5) | extendedFloat64;
+            dataView$1.setFloat64(cursor$1, input);
+            cursor$1 += 8;
             continue;
         }
         else if (typeof input === "bigint") {
@@ -34607,9 +35674,9 @@ function encode(_input) {
                     encodeInteger(major, n);
                 }
                 else {
-                    data[cursor++] = (major << 5) | extendedFloat64;
-                    dataView.setBigUint64(cursor, value);
-                    cursor += 8;
+                    data[cursor$1++] = (major << 5) | extendedFloat64;
+                    dataView$1.setBigUint64(cursor$1, value);
+                    cursor$1 += 8;
                 }
             }
             else {
@@ -34622,19 +35689,19 @@ function encode(_input) {
                     b >>= BigInt(8);
                 }
                 ensureSpace(bigIntBytes.byteLength * 2 + 16);
-                data[cursor++] = nonNegative ? 0b110_00010 : 0b110_00011;
-                encodeHeader(majorUnstructuredByteString, bigIntBytes.byteLength);
-                data.set(bigIntBytes, cursor);
-                cursor += bigIntBytes.byteLength;
+                data[cursor$1++] = nonNegative ? 0b110_00010 : 0b110_00011;
+                encodeHeader$1(majorUnstructuredByteString, bigIntBytes.byteLength);
+                data.set(bigIntBytes, cursor$1);
+                cursor$1 += bigIntBytes.byteLength;
             }
             continue;
         }
         else if (input === null) {
-            data[cursor++] = (majorSpecial << 5) | specialNull;
+            data[cursor$1++] = (majorSpecial << 5) | specialNull;
             continue;
         }
         else if (typeof input === "boolean") {
-            data[cursor++] = (majorSpecial << 5) | (input ? specialTrue : specialFalse);
+            data[cursor$1++] = (majorSpecial << 5) | (input ? specialTrue : specialFalse);
             continue;
         }
         else if (typeof input === "undefined") {
@@ -34651,25 +35718,33 @@ function encode(_input) {
         else if (typeof input.byteLength === "number") {
             ensureSpace(input.length * 2 + 9);
             encodeInteger(majorUnstructuredByteString, input.length);
-            data.set(input, cursor);
-            cursor += input.byteLength;
+            data.set(input, cursor$1);
+            cursor$1 += input.byteLength;
             continue;
         }
         else if (typeof input === "object") {
             if (input instanceof NumericValue) {
-                const decimalIndex = input.string.indexOf(".");
-                const exponent = decimalIndex === -1 ? 0 : decimalIndex - input.string.length + 1;
-                const mantissa = BigInt(input.string.replace(".", ""));
-                data[cursor++] = 0b110_00100;
+                let str = input.string;
+                let expOffset = BigInt(0);
+                const eIndex = str.search(/[eE]/);
+                if (eIndex !== -1) {
+                    expOffset = BigInt(str.slice(eIndex + 1));
+                    str = str.slice(0, eIndex);
+                }
+                const decimalIndex = str.indexOf(".");
+                const fractionDigits = decimalIndex === -1 ? 0 : str.length - decimalIndex - 1;
+                const exponent = expOffset - BigInt(fractionDigits);
+                const mantissa = BigInt(str.replace(".", ""));
+                data[cursor$1++] = 0b110_00100;
                 encodeInteger(majorList, 2);
                 encodeStack.push(mantissa);
-                encodeStack.push(exponent);
+                encodeStack.push(exponent >= -0x20000000000000n && exponent <= 0x1fffffffffffffn ? Number(exponent) : exponent);
                 continue;
             }
             if (input[tagSymbol]) {
                 if ("tag" in input && "value" in input) {
                     encodeStack.push(input.value);
-                    encodeHeader(majorTag, input.tag);
+                    encodeHeader$1(majorTag, input.tag);
                     continue;
                 }
                 else {
@@ -34689,13 +35764,13 @@ function encode(_input) {
     }
 }
 function advanceEncodingEpoch() {
-    encodeCacheEpoch = (encodeCacheEpoch + 1) & 0b1111_1111_1111_1111;
-    encodeCacheSaturated = false;
+    encodeCacheEpoch$1 = (encodeCacheEpoch$1 + 1) & 0b1111_1111_1111_1111;
+    encodeCacheSaturated$1 = false;
 }
 function toUint8Array() {
-    const out = alloc(cursor);
-    out.set(data.subarray(0, cursor), 0);
-    cursor = 0;
+    const out = alloc(cursor$1);
+    out.set(data.subarray(0, cursor$1), 0);
+    cursor$1 = 0;
     return out;
 }
 function resize(size) {
@@ -34709,23 +35784,23 @@ function resize(size) {
             data.set(old, 0);
         }
     }
-    dataView = new DataView(data.buffer, data.byteOffset, data.byteLength);
+    dataView$1 = new DataView(data.buffer, data.byteOffset, data.byteLength);
 }
 function encodeStringCached(input) {
     const cached = encodeStringCache.get(input);
     if (cached !== undefined) {
-        data.set(cached.bytes, cursor);
-        cursor += cached.bytes.length;
-        cached.epoch = encodeCacheEpoch;
+        data.set(cached.bytes, cursor$1);
+        cursor$1 += cached.bytes.length;
+        cached.epoch = encodeCacheEpoch$1;
         return;
     }
-    const start = cursor;
+    const start = cursor$1;
     const byteLen = Buffer.byteLength(input);
     encodeInteger(majorUtf8String, byteLen);
-    cursor += data.write(input, cursor);
-    const bytes = Uint8Array.prototype.slice.call(data, start, cursor);
+    cursor$1 += data.write(input, cursor$1);
+    const bytes = Uint8Array.prototype.slice.call(data, start, cursor$1);
     if (encodeStringCache.size >= 2048) {
-        if (encodeCacheSaturated) {
+        if (encodeCacheSaturated$1) {
             return;
         }
         let evicted = 0;
@@ -34733,24 +35808,24 @@ function encodeStringCached(input) {
             if (evicted >= 1024) {
                 break;
             }
-            if (entry.epoch !== encodeCacheEpoch) {
+            if (entry.epoch !== encodeCacheEpoch$1) {
                 encodeStringCache.delete(key);
                 evicted++;
             }
         }
         if (evicted === 0) {
-            encodeCacheSaturated = true;
+            encodeCacheSaturated$1 = true;
             return;
         }
     }
     if (encodeStringCache.size < 2048) {
-        encodeStringCache.set(input, { epoch: encodeCacheEpoch, bytes });
+        encodeStringCache.set(input, { epoch: encodeCacheEpoch$1, bytes });
     }
 }
 function ensureSpace(bytes) {
-    const remaining = data.byteLength - cursor;
+    const remaining = data.byteLength - cursor$1;
     if (remaining < bytes) {
-        if (cursor < 16_000_000) {
+        if (cursor$1 < 16_000_000) {
             resize(Math.max(data.byteLength * 4, data.byteLength + bytes));
         }
         else {
@@ -34758,55 +35833,55 @@ function ensureSpace(bytes) {
         }
     }
 }
-function encodeHeader(major, value) {
+function encodeHeader$1(major, value) {
     if (value < 24) {
-        data[cursor++] = (major << 5) | value;
+        data[cursor$1++] = (major << 5) | value;
     }
     else if (value < 256) {
-        data[cursor++] = (major << 5) | 24;
-        data[cursor++] = value;
+        data[cursor$1++] = (major << 5) | 24;
+        data[cursor$1++] = value;
     }
     else if (value < 65536) {
-        data[cursor++] = (major << 5) | extendedFloat16;
-        dataView.setUint16(cursor, value);
-        cursor += 2;
+        data[cursor$1++] = (major << 5) | extendedFloat16;
+        dataView$1.setUint16(cursor$1, value);
+        cursor$1 += 2;
     }
     else if (value < 4294967296) {
-        data[cursor++] = (major << 5) | extendedFloat32;
-        dataView.setUint32(cursor, value);
-        cursor += 4;
+        data[cursor$1++] = (major << 5) | extendedFloat32;
+        dataView$1.setUint32(cursor$1, value);
+        cursor$1 += 4;
     }
     else {
-        data[cursor++] = (major << 5) | extendedFloat64;
-        dataView.setBigUint64(cursor, typeof value === "bigint" ? value : BigInt(value));
-        cursor += 8;
+        data[cursor$1++] = (major << 5) | extendedFloat64;
+        dataView$1.setBigUint64(cursor$1, typeof value === "bigint" ? value : BigInt(value));
+        cursor$1 += 8;
     }
 }
 function encodeInteger(major, value) {
     if (value < 24) {
-        data[cursor++] = (major << 5) | value;
+        data[cursor$1++] = (major << 5) | value;
     }
     else if (value < 256) {
-        data[cursor++] = (major << 5) | 24;
-        data[cursor++] = value;
+        data[cursor$1++] = (major << 5) | 24;
+        data[cursor$1++] = value;
     }
     else if (value < 65536) {
-        data[cursor++] = (major << 5) | extendedFloat16;
-        data[cursor++] = value >> 8;
-        data[cursor++] = value & 0xff;
+        data[cursor$1++] = (major << 5) | extendedFloat16;
+        data[cursor$1++] = value >> 8;
+        data[cursor$1++] = value & 0xff;
     }
     else if (value < 4294967296) {
-        data[cursor++] = (major << 5) | extendedFloat32;
-        dataView.setUint32(cursor, value);
-        cursor += 4;
+        data[cursor$1++] = (major << 5) | extendedFloat32;
+        dataView$1.setUint32(cursor$1, value);
+        cursor$1 += 4;
     }
     else {
-        data[cursor++] = (major << 5) | extendedFloat64;
+        data[cursor$1++] = (major << 5) | extendedFloat64;
         const hi = (value / 4294967296) | 0;
         const lo = (value - hi * 4294967296) | 0;
-        dataView.setUint32(cursor, hi);
-        dataView.setUint32(cursor + 4, lo);
-        cursor += 8;
+        dataView$1.setUint32(cursor$1, hi);
+        dataView$1.setUint32(cursor$1 + 4, lo);
+        cursor$1 += 8;
     }
 }
 
@@ -34871,23 +35946,10 @@ const loadSmithyRpcV2CborErrorCode = (output, data) => {
         if (cleanValue.indexOf(":") >= 0) {
             cleanValue = cleanValue.split(":")[0];
         }
-        if (cleanValue.indexOf("#") >= 0) {
-            cleanValue = cleanValue.split("#")[1];
-        }
         return cleanValue;
     };
     if (data["__type"] !== undefined) {
         return sanitizeErrorCode(data["__type"]);
-    }
-    let codeKey;
-    for (const key in data) {
-        if (key.toLowerCase() === "code") {
-            codeKey = key;
-            break;
-        }
-    }
-    if (codeKey && data[codeKey] !== undefined) {
-        return sanitizeErrorCode(data[codeKey]);
     }
 };
 const checkCborResponse = (response) => {
@@ -34913,6 +35975,8 @@ const buildHttpRpcRequest = async (context, headers, path, resolvedHostname, bod
     }
     if (endpoint.headers) {
         for (const name in endpoint.headers) {
+            if (!hasOwn(endpoint.headers, name))
+                continue;
             contents.headers[name] = endpoint.headers[name];
         }
     }
@@ -34926,18 +35990,1370 @@ const buildHttpRpcRequest = async (context, headers, path, resolvedHostname, bod
     return new HttpRequest(contents);
 };
 
+class CborShapeSerializer2 extends SerdeContext {
+    write(schema, value) {
+        cursor = 0;
+        const ns = NormalizedSchema.of(schema);
+        writeValue(ns, value, undefined, this.serdeContext);
+    }
+    flush() {
+        const result = buf.subarray(0, cursor);
+        cursor = 0;
+        buf = allocUnsafe(INITIAL_BUFFER_SIZE);
+        view = new DataView(buf.buffer, buf.byteOffset, buf.byteLength);
+        return result;
+    }
+}
+const CBOR_STRUCT_CACHE = Symbol.for("@smithy/cbor-struct-cache");
+function loadCborStructIterator(ns) {
+    const schema = ns.getSchema();
+    const existing = schema[CBOR_STRUCT_CACHE];
+    if (existing) {
+        return existing;
+    }
+    const memberNames = [];
+    const memberSchemas = [];
+    for (const [name, memberSchema] of ns.structIterator()) {
+        memberNames.push(name);
+        memberSchemas.push(memberSchema);
+    }
+    const encodedKeys = new Array(memberNames.length);
+    for (let i = 0; i < memberNames.length; ++i) {
+        encodedKeys[i] = encodeCborStringKey(memberNames[i]);
+    }
+    const cache = { memberNames, memberSchemas, encodedKeys };
+    schema[CBOR_STRUCT_CACHE] = cache;
+    return cache;
+}
+function encodeCborStringKey(s) {
+    let utf8Bytes;
+    if (USE_BUFFER$1) {
+        utf8Bytes = Buffer.from(s, "utf-8");
+    }
+    else {
+        utf8Bytes = new TextEncoder().encode(s);
+    }
+    const byteLen = utf8Bytes.length;
+    let headerSize;
+    if (byteLen < 24) {
+        headerSize = 1;
+    }
+    else if (byteLen < 256) {
+        headerSize = 2;
+    }
+    else {
+        headerSize = 3;
+    }
+    const result = new Uint8Array(headerSize + byteLen);
+    if (headerSize === 1) {
+        result[0] = (majorUtf8String << 5) | byteLen;
+    }
+    else if (headerSize === 2) {
+        result[0] = (majorUtf8String << 5) | 24;
+        result[1] = byteLen;
+    }
+    else {
+        result[0] = (majorUtf8String << 5) | extendedFloat16;
+        result[1] = byteLen >> 8;
+        result[2] = byteLen & 0xff;
+    }
+    result.set(utf8Bytes, headerSize);
+    return result;
+}
+const USE_BUFFER$1 = typeof Buffer !== "undefined";
+const textEncoder = new TextEncoder();
+const INITIAL_BUFFER_SIZE = 2048;
+let buf = USE_BUFFER$1 ? Buffer.allocUnsafe(INITIAL_BUFFER_SIZE) : new Uint8Array(INITIAL_BUFFER_SIZE);
+let view = new DataView(buf.buffer, buf.byteOffset, buf.byteLength);
+let cursor = 0;
+const STRING_CACHE_MAX = 2048;
+const stringEncodeCache = new Map();
+let encodeCacheEpoch = 0;
+let encodeCacheSaturated = false;
+function allocUnsafe(size) {
+    return USE_BUFFER$1 ? Buffer.allocUnsafe(size) : new Uint8Array(size);
+}
+function writeValue(ns, value, container, serdeContext) {
+    if (value == null) {
+        if (value === undefined && ns.isIdempotencyToken()) {
+            writeString(generateIdempotencyToken());
+            return;
+        }
+        ensure(1);
+        buf[cursor++] = (majorSpecial << 5) | specialNull;
+        return;
+    }
+    if (ns.isUnitSchema()) {
+        ensure(1);
+        encodeHeader(majorMap, 0);
+        return;
+    }
+    const isObject = typeof value === "object";
+    if (isObject) {
+        if (ns.isBlobSchema()) {
+            if (value instanceof Uint8Array) {
+                writeBytes(value);
+                return;
+            }
+        }
+        if (ns.isTimestampSchema()) {
+            if (value instanceof Date) {
+                writeTimestamp(value);
+                return;
+            }
+        }
+        if (ns.isStructSchema()) {
+            writeStruct(ns, value, serdeContext);
+            return;
+        }
+        if (Array.isArray(value) && (ns.isListSchema() || ns.isDocumentSchema())) {
+            writeList(ns, value, ns.isDocumentSchema(), serdeContext);
+            return;
+        }
+        if (ns.isMapSchema()) {
+            writeMap(ns, value, false, serdeContext);
+            return;
+        }
+        if (value instanceof Date) {
+            writeTimestamp(value);
+            return;
+        }
+        if (value instanceof Uint8Array) {
+            writeBytes(value);
+            return;
+        }
+        if (value instanceof NumericValue) {
+            writeNumericValue(value);
+            return;
+        }
+        if (value[tagSymbol]) {
+            const tagged = value;
+            writeTag(tagged.tag, tagged.value);
+            return;
+        }
+        if (ns.isDocumentSchema()) {
+            if (Array.isArray(value)) {
+                writeList(ns, value, true, serdeContext);
+            }
+            else {
+                writeMap(ns, value, true, serdeContext);
+            }
+            return;
+        }
+        if (ns.isBigDecimalSchema()) {
+            writeUntypedValue(value);
+            return;
+        }
+        writeMap(ns, value, true, serdeContext);
+        return;
+    }
+    if (typeof value === "string") {
+        if (ns.isBlobSchema()) {
+            const bytes = (serdeContext?.base64Decoder ?? fromBase64)(value);
+            writeBytes(bytes);
+            return;
+        }
+        writeString(value);
+        return;
+    }
+    if (typeof value === "number") {
+        ensure(9);
+        if (Number.isInteger(value) && value >= -9007199254740992 && value <= 0x1fffffffffffff) {
+            writeInteger(value);
+        }
+        else {
+            writeFloat64(value);
+        }
+        return;
+    }
+    if (typeof value === "boolean") {
+        ensure(1);
+        buf[cursor++] = (majorSpecial << 5) | (value ? specialTrue : specialFalse);
+        return;
+    }
+    if (typeof value === "bigint") {
+        writeBigInt(value);
+        return;
+    }
+    writeString(String(value));
+}
+function writeStruct(ns, value, serdeContext) {
+    if (ns.isUnionSchema()) {
+        let wrote = false;
+        for (const [memberName, memberSchema] of ns.structIterator()) {
+            const item = value[memberName];
+            if (item != null) {
+                ensure(9);
+                encodeHeader(majorMap, 1);
+                writeString(memberName);
+                writeValue(memberSchema, item, ns, serdeContext);
+                wrote = true;
+                break;
+            }
+        }
+        if (!wrote) {
+            const { $unknown } = value;
+            if (Array.isArray($unknown)) {
+                ensure(9);
+                encodeHeader(majorMap, 1);
+                writeString($unknown[0]);
+                writeUntypedValue($unknown[1]);
+            }
+            else {
+                ensure(9);
+                encodeHeader(majorMap, 0);
+            }
+        }
+        return;
+    }
+    const cache = loadCborStructIterator(ns);
+    const { memberNames, memberSchemas, encodedKeys } = cache;
+    const z = memberNames.length;
+    let headerSize;
+    if (z < 24) {
+        headerSize = 1;
+    }
+    else if (z < 256) {
+        headerSize = 2;
+    }
+    else {
+        headerSize = 3;
+    }
+    ensure(headerSize);
+    const headerPos = cursor;
+    cursor += headerSize;
+    let count = 0;
+    for (let i = 0; i < z; ++i) {
+        const item = value[memberNames[i]];
+        if (item == null && !memberSchemas[i].isIdempotencyToken()) {
+            continue;
+        }
+        const key = encodedKeys[i];
+        ensure(key.length);
+        buf.set(key, cursor);
+        cursor += key.length;
+        writeValue(memberSchemas[i], item, ns, serdeContext);
+        ++count;
+    }
+    if (typeof value.__type === "string") {
+        for (const k in value) {
+            if (!hasOwn(value, k))
+                continue;
+            if (!memberNames.includes(k)) {
+                writeString(k);
+                writeUntypedValue(value[k]);
+                ++count;
+            }
+        }
+    }
+    if (headerSize === 1) {
+        buf[headerPos] = (majorMap << 5) | count;
+    }
+    else if (headerSize === 2) {
+        buf[headerPos] = (majorMap << 5) | 24;
+        buf[headerPos + 1] = count;
+    }
+    else {
+        buf[headerPos] = (majorMap << 5) | extendedFloat16;
+        buf[headerPos + 1] = count >> 8;
+        buf[headerPos + 2] = count & 0xff;
+    }
+}
+function writeList(ns, value, isDocument, serdeContext) {
+    const sparse = !!ns.getMergedTraits().sparse;
+    const valueSchema = ns.getValueSchema();
+    if (isDocument || sparse) {
+        const items = [];
+        for (let i = 0; i < value.length; ++i) {
+            const item = value[i];
+            if (isDocument) {
+                if (item !== undefined) {
+                    items.push(item);
+                }
+            }
+            else {
+                if (item != null || sparse) {
+                    items.push(item);
+                }
+            }
+        }
+        ensure(9);
+        encodeHeader(majorList, items.length);
+        for (let i = 0; i < items.length; ++i) {
+            writeValue(valueSchema, items[i], undefined, serdeContext);
+        }
+    }
+    else {
+        let count = 0;
+        for (let i = 0; i < value.length; ++i) {
+            if (value[i] != null) {
+                ++count;
+            }
+        }
+        ensure(9);
+        encodeHeader(majorList, count);
+        for (let i = 0; i < value.length; ++i) {
+            if (value[i] != null) {
+                writeValue(valueSchema, value[i], undefined, serdeContext);
+            }
+        }
+    }
+}
+function writeMap(ns, value, isDocument, serdeContext) {
+    const sparse = !!ns.getMergedTraits().sparse;
+    const valueSchema = ns.getValueSchema();
+    const keys = [];
+    for (const k in value) {
+        if (!hasOwn(value, k))
+            continue;
+        const v = value[k];
+        if (isDocument ? v !== undefined : v != null || sparse) {
+            keys.push(k);
+        }
+    }
+    ensure(9);
+    encodeHeader(majorMap, keys.length);
+    for (let i = 0; i < keys.length; ++i) {
+        const k = keys[i];
+        writeString(k);
+        writeValue(valueSchema, value[k], undefined, serdeContext);
+    }
+}
+function writeUntypedValue(value) {
+    if (value == null) {
+        ensure(1);
+        buf[cursor++] = (majorSpecial << 5) | specialNull;
+        return;
+    }
+    if (typeof value === "string") {
+        writeString(value);
+        return;
+    }
+    if (typeof value === "number") {
+        ensure(9);
+        if (Number.isInteger(value) && value >= -9007199254740992 && value <= 0x1fffffffffffff) {
+            writeInteger(value);
+        }
+        else {
+            writeFloat64(value);
+        }
+        return;
+    }
+    if (typeof value === "boolean") {
+        ensure(1);
+        buf[cursor++] = (majorSpecial << 5) | (value ? specialTrue : specialFalse);
+        return;
+    }
+    if (typeof value === "bigint") {
+        writeBigInt(value);
+        return;
+    }
+    if (value instanceof Uint8Array) {
+        writeBytes(value);
+        return;
+    }
+    if (value instanceof Date) {
+        writeTimestamp(value);
+        return;
+    }
+    if (value instanceof NumericValue) {
+        writeNumericValue(value);
+        return;
+    }
+    if (value[tagSymbol]) {
+        const tagged = value;
+        writeTag(tagged.tag, tagged.value);
+        return;
+    }
+    if (Array.isArray(value)) {
+        ensure(9);
+        encodeHeader(majorList, value.length);
+        for (let i = 0; i < value.length; ++i) {
+            writeUntypedValue(value[i]);
+        }
+        return;
+    }
+    if (typeof value === "object") {
+        const keys = Object.keys(value);
+        ensure(9);
+        encodeHeader(majorMap, keys.length);
+        for (let i = 0; i < keys.length; ++i) {
+            writeString(keys[i]);
+            writeUntypedValue(value[keys[i]]);
+        }
+        return;
+    }
+    writeString(String(value));
+}
+function ensure(n) {
+    if (cursor + n > buf.length) {
+        let newSize = buf.length * 2;
+        while (newSize < cursor + n) {
+            newSize *= 2;
+        }
+        const next = allocUnsafe(newSize);
+        next.set(buf.subarray(0, cursor));
+        buf = next;
+        view = new DataView(next.buffer, next.byteOffset, next.byteLength);
+    }
+}
+function encodeHeader(major, value) {
+    if (value < 24) {
+        buf[cursor++] = (major << 5) | value;
+    }
+    else if (value < 256) {
+        buf[cursor++] = (major << 5) | 24;
+        buf[cursor++] = value;
+    }
+    else if (value < 65536) {
+        buf[cursor++] = (major << 5) | extendedFloat16;
+        buf[cursor++] = value >> 8;
+        buf[cursor++] = value & 0xff;
+    }
+    else if (value < 4294967296) {
+        buf[cursor++] = (major << 5) | extendedFloat32;
+        view.setUint32(cursor, value);
+        cursor += 4;
+    }
+    else {
+        buf[cursor++] = (major << 5) | extendedFloat64;
+        const hi = (value / 4294967296) | 0;
+        const lo = (value - hi * 4294967296) | 0;
+        view.setUint32(cursor, hi);
+        view.setUint32(cursor + 4, lo);
+        cursor += 8;
+    }
+}
+function encodeBigHeader(major, value) {
+    const n = Number(value);
+    if (n < 4294967296) {
+        encodeHeader(major, n);
+        return;
+    }
+    buf[cursor++] = (major << 5) | extendedFloat64;
+    view.setBigUint64(cursor, value);
+    cursor += 8;
+}
+function writeString(s) {
+    const len = s.length;
+    if (len <= 23) {
+        const cached = stringEncodeCache.get(s);
+        if (cached) {
+            ensure(cached.bytes.length);
+            buf.set(cached.bytes, cursor);
+            cursor += cached.bytes.length;
+            cached.epoch = encodeCacheEpoch;
+            return;
+        }
+        const start = cursor;
+        writeStringUncached(s, len);
+        const end = cursor;
+        const bytes = Uint8Array.prototype.slice.call(buf, start, end);
+        if (stringEncodeCache.size >= STRING_CACHE_MAX) {
+            if (encodeCacheSaturated) {
+                return;
+            }
+            let evicted = 0;
+            for (const [key, entry] of stringEncodeCache) {
+                if (evicted >= 1024) {
+                    break;
+                }
+                if (entry.epoch !== encodeCacheEpoch) {
+                    stringEncodeCache.delete(key);
+                    ++evicted;
+                }
+            }
+            if (evicted === 0) {
+                encodeCacheSaturated = true;
+                return;
+            }
+        }
+        if (stringEncodeCache.size < STRING_CACHE_MAX) {
+            stringEncodeCache.set(s, { epoch: encodeCacheEpoch, bytes });
+        }
+        return;
+    }
+    writeStringUncached(s, len);
+}
+function writeStringUncached(s, len) {
+    if (USE_BUFFER$1) {
+        const maxBytes = len * 3;
+        ensure(maxBytes + 9);
+        const byteLen = Buffer.byteLength(s);
+        encodeHeader(majorUtf8String, byteLen);
+        cursor += buf.write(s, cursor);
+    }
+    else {
+        const maxBytes = len * 3;
+        ensure(maxBytes + 9);
+        const headerPos = cursor;
+        const result = textEncoder.encodeInto(s, buf.subarray(headerPos + 9));
+        const byteLen = result.written;
+        let headerSize;
+        if (byteLen < 24) {
+            headerSize = 1;
+        }
+        else if (byteLen < 256) {
+            headerSize = 2;
+        }
+        else if (byteLen < 65536) {
+            headerSize = 3;
+        }
+        else if (byteLen < 4294967296) {
+            headerSize = 5;
+        }
+        else {
+            headerSize = 9;
+        }
+        if (headerSize < 9) {
+            buf.copyWithin(headerPos + headerSize, headerPos + 9, headerPos + 9 + byteLen);
+        }
+        cursor = headerPos;
+        encodeHeader(majorUtf8String, byteLen);
+        cursor += byteLen;
+    }
+}
+function writeFloat64(value) {
+    ensure(9);
+    buf[cursor++] = (majorSpecial << 5) | extendedFloat64;
+    view.setFloat64(cursor, value);
+    cursor += 8;
+}
+function writeInteger(value) {
+    ensure(9);
+    const nonNegative = value >= 0;
+    const major = nonNegative ? majorUint64 : majorNegativeInt64;
+    const abs = nonNegative ? value : -value - 1;
+    encodeHeader(major, abs);
+}
+function writeBigInt(value) {
+    const nonNegative = value >= 0;
+    const major = nonNegative ? majorUint64 : majorNegativeInt64;
+    const abs = nonNegative ? value : -value - BigInt(1);
+    if (abs < BigInt("18446744073709551616")) {
+        ensure(9);
+        encodeBigHeader(major, abs);
+    }
+    else {
+        const binaryStr = abs.toString(2);
+        const byteLen = Math.ceil(binaryStr.length / 8);
+        const bigIntBytes = new Uint8Array(byteLen);
+        let b = abs;
+        for (let i = byteLen - 1; i >= 0; --i) {
+            bigIntBytes[i] = Number(b & BigInt(255));
+            b >>= BigInt(8);
+        }
+        ensure(byteLen + 16);
+        buf[cursor++] = nonNegative ? 0b110_00010 : 0b110_00011;
+        encodeHeader(majorUnstructuredByteString, byteLen);
+        buf.set(bigIntBytes, cursor);
+        cursor += byteLen;
+    }
+}
+function writeBytes(data) {
+    ensure(data.length + 9);
+    encodeHeader(majorUnstructuredByteString, data.length);
+    buf.set(data, cursor);
+    cursor += data.length;
+}
+function writeTag(tagValue, innerValue) {
+    ensure(9);
+    if (typeof tagValue === "bigint") {
+        encodeBigHeader(majorTag, tagValue);
+    }
+    else {
+        encodeHeader(majorTag, tagValue);
+    }
+    writeUntypedValue(innerValue);
+}
+function writeNumericValue(nv) {
+    let str = nv.string;
+    let expOffset = BigInt(0);
+    const eIndex = str.search(/[eE]/);
+    if (eIndex !== -1) {
+        expOffset = BigInt(str.slice(eIndex + 1));
+        str = str.slice(0, eIndex);
+    }
+    const decimalIndex = str.indexOf(".");
+    const fractionDigits = decimalIndex === -1 ? 0 : str.length - decimalIndex - 1;
+    const exponent = expOffset - BigInt(fractionDigits);
+    const mantissa = BigInt(str.replace(".", ""));
+    ensure(9);
+    buf[cursor++] = 0b110_00100;
+    encodeHeader(majorList, 2);
+    ensure(9);
+    if (exponent >= -0x20000000000000n && exponent <= 0x1fffffffffffffn) {
+        writeInteger(Number(exponent));
+    }
+    else {
+        writeBigInt(exponent);
+    }
+    writeBigInt(mantissa);
+}
+function writeTimestamp(date) {
+    ensure(18);
+    encodeHeader(majorTag, 1);
+    const epochSecs = date.getTime() / 1000;
+    if (Number.isInteger(epochSecs)) {
+        writeInteger(epochSecs);
+    }
+    else {
+        writeFloat64(epochSecs);
+    }
+}
+
+class CborShapeDeserializer2 extends SerdeContext {
+    read(schema, bytes) {
+        payload = bytes;
+        isBuffer = USE_BUFFER && bytes instanceof Buffer;
+        dataView = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+        pos = 0;
+        end = bytes.length;
+        cacheEpoch = (cacheEpoch + 1) & 0xffff;
+        return readValue(NormalizedSchema.of(schema));
+    }
+    readValue(_schema, value) {
+        return transformObject(NormalizedSchema.of(_schema), value);
+    }
+}
+const USE_BUFFER = typeof Buffer !== "undefined";
+const textDecoder = new TextDecoder();
+let payload = new Uint8Array(0);
+let isBuffer = false;
+let dataView = new DataView(new ArrayBuffer(0));
+let pos = 0;
+let end = 0;
+const STRING_CACHE_SIZE = 2048;
+const stringCache = new Array(STRING_CACHE_SIZE);
+const stringCacheEpochs = new Uint16Array(STRING_CACHE_SIZE);
+let cacheEpoch = 0;
+function readValue(ns) {
+    if (pos >= end) {
+        throw new Error("unexpected end of CBOR payload.");
+    }
+    const major = (payload[pos] & 0b1110_0000) >> 5;
+    const minor = payload[pos] & 0b0001_1111;
+    if (minor === minorIndefinite && major >= 2 && major <= 5) {
+        return readIndefinite(ns, major);
+    }
+    switch (major) {
+        case majorUint64:
+            return readUnsignedInt();
+        case majorNegativeInt64:
+            return readNegativeInt();
+        case majorUnstructuredByteString:
+            return readByteString();
+        case majorUtf8String:
+            return readUtf8String();
+        case majorList:
+            return readList(ns);
+        case majorMap:
+            return readMap(ns);
+        case majorTag:
+            return readTag();
+        case majorSpecial:
+            return readSpecial();
+        default:
+            throw new Error(`unexpected CBOR major type ${major}.`);
+    }
+}
+function readList(ns) {
+    const count = decodeCount();
+    const memberSchema = ns.isListSchema() ? ns.getValueSchema() : ns;
+    const list = Array(count);
+    for (let i = 0; i < count; ++i) {
+        list[i] = readValue(memberSchema);
+    }
+    return list;
+}
+function readMap(ns) {
+    const count = decodeCount();
+    if (ns.isStructSchema()) {
+        const startPos = pos;
+        return readStruct(ns, count, startPos);
+    }
+    const valueSchema = ns.isMapSchema() ? ns.getValueSchema() : ns;
+    const map = {};
+    for (let i = 0; i < count; ++i) {
+        const key = readUtf8String();
+        map[key] = readValue(valueSchema);
+    }
+    return map;
+}
+function readStruct(ns, count, startPos) {
+    const isUnion = ns.isUnionSchema();
+    const cache = loadCborStructIterator(ns);
+    const { memberSchemas, encodedKeys, memberNames } = cache;
+    const z = encodedKeys.length;
+    const result = {};
+    let unknownKey;
+    let unknownValue;
+    let unknownCount = 0;
+    let hasType = false;
+    let hint = 0;
+    for (let i = 0; i < count; ++i) {
+        const matchIdx = matchStructKey(encodedKeys, z, hint);
+        if (matchIdx >= 0) {
+            hint = matchIdx + 1;
+            if (hint >= z) {
+                hint = 0;
+            }
+            const val = readValue(memberSchemas[matchIdx]);
+            if (val != null) {
+                result[memberNames[matchIdx]] = val;
+            }
+        }
+        else {
+            const key = readUtf8String();
+            const val = readValue(NormalizedSchema.of(15));
+            if (key === "__type" && typeof val === "string") {
+                hasType = true;
+            }
+            else {
+                unknownKey = key;
+                unknownValue = val;
+                ++unknownCount;
+            }
+        }
+    }
+    if (isUnion) {
+        let resultEmpty = true;
+        for (const _ in result) {
+            if (!hasOwn(result, _))
+                continue;
+            resultEmpty = false;
+            break;
+        }
+        if (resultEmpty && unknownCount === 1) {
+            result.$unknown = [unknownKey, unknownValue];
+        }
+    }
+    else if (hasType) {
+        pos = startPos;
+        const docSchema = NormalizedSchema.of(15);
+        for (let i = 0; i < count; ++i) {
+            const key = readUtf8String();
+            const val = readValue(docSchema);
+            if (!(key in result)) {
+                result[key] = val;
+            }
+        }
+    }
+    return result;
+}
+function readTag(ns) {
+    const tagNum = decodeArgument();
+    const tagNumber = typeof tagNum === "bigint" ? Number(tagNum) : tagNum;
+    if (tagNumber === 1) {
+        const docSchema = NormalizedSchema.of(15);
+        const epochValue = readValue(docSchema);
+        return _parseEpochTimestamp(epochValue);
+    }
+    if (tagNumber === 2 || tagNumber === 3) {
+        const byteStr = readByteString();
+        let b = BigInt(0);
+        for (let i = 0; i < byteStr.length; ++i) {
+            b = (b << BigInt(8)) | BigInt(byteStr[i]);
+        }
+        return tagNumber === 3 ? -b - BigInt(1) : b;
+    }
+    if (tagNumber === 4) {
+        const docSchema = NormalizedSchema.of(15);
+        const pair = readValue(docSchema);
+        const [rawExponent, mantissa] = pair;
+        const normalizer = mantissa < 0 ? -1 : 1;
+        const absMantissa = BigInt(normalizer) * BigInt(mantissa);
+        const mantissaDigits = String(absMantissa);
+        const sign = mantissa < 0 ? "-" : "";
+        let numericString;
+        const isSmallExponent = typeof rawExponent === "number" && Math.abs(rawExponent) <= 2 ** 28;
+        if (isSmallExponent) {
+            const exponent = rawExponent;
+            const mantissaStr = "0".repeat(Math.abs(exponent) + 1) + mantissaDigits;
+            numericString =
+                exponent === 0
+                    ? mantissaStr
+                    : mantissaStr.slice(0, mantissaStr.length + exponent) + "." + mantissaStr.slice(exponent);
+            numericString = numericString.replace(/^0+/g, "");
+            if (numericString === "") {
+                numericString = "0";
+            }
+            if (numericString[0] === ".") {
+                numericString = "0" + numericString;
+            }
+            numericString = sign + numericString;
+        }
+        else {
+            const bigExponent = BigInt(rawExponent);
+            if (mantissaDigits.length === 1) {
+                numericString = sign + mantissaDigits + "e" + String(bigExponent);
+            }
+            else {
+                const adjustedExp = bigExponent + BigInt(mantissaDigits.length - 1);
+                numericString = sign + mantissaDigits[0] + "." + mantissaDigits.slice(1) + "e" + String(adjustedExp);
+            }
+        }
+        return nv(numericString);
+    }
+    const docSchema = NormalizedSchema.of(15);
+    const innerValue = readValue(docSchema);
+    return { tag: castBigInt(tagNum), value: innerValue };
+}
+function readIndefinite(ns, major) {
+    switch (major) {
+        case majorUtf8String:
+            return readUtf8StringIndefinite();
+        case majorUnstructuredByteString:
+            return readByteStringIndefinite();
+        case majorList:
+            return readListIndefinite(ns);
+        case majorMap:
+            return readMapIndefinite(ns);
+        default:
+            throw new Error(`unexpected indefinite length for major ${major}.`);
+    }
+}
+function readUtf8StringIndefinite() {
+    pos += 1;
+    const chunks = [];
+    let totalLen = 0;
+    while (pos < end) {
+        if (payload[pos] === 0xff) {
+            pos += 1;
+            const combined = new Uint8Array(totalLen);
+            let offset = 0;
+            for (let i = 0; i < chunks.length; ++i) {
+                combined.set(chunks[i], offset);
+                offset += chunks[i].length;
+            }
+            if (USE_BUFFER) {
+                return Buffer.from(combined.buffer, combined.byteOffset, combined.byteLength).toString("utf-8");
+            }
+            return textDecoder.decode(combined);
+        }
+        const bytes = readByteString();
+        chunks.push(bytes);
+        totalLen += bytes.length;
+    }
+    throw new Error("expected break marker.");
+}
+function readByteStringIndefinite() {
+    pos += 1;
+    const chunks = [];
+    let totalLen = 0;
+    while (pos < end) {
+        if (payload[pos] === 0xff) {
+            pos += 1;
+            const combined = new Uint8Array(totalLen);
+            let offset = 0;
+            for (let i = 0; i < chunks.length; ++i) {
+                combined.set(chunks[i], offset);
+                offset += chunks[i].length;
+            }
+            return combined;
+        }
+        const bytes = readByteString();
+        chunks.push(bytes);
+        totalLen += bytes.length;
+    }
+    throw new Error("expected break marker.");
+}
+function readListIndefinite(ns) {
+    pos += 1;
+    const memberSchema = ns.isListSchema() ? ns.getValueSchema() : ns;
+    const list = [];
+    while (pos < end) {
+        if (payload[pos] === 0xff) {
+            pos += 1;
+            return list;
+        }
+        list.push(readValue(memberSchema));
+    }
+    throw new Error("expected break marker.");
+}
+function readMapIndefinite(ns) {
+    pos += 1;
+    if (ns.isStructSchema()) {
+        const cache = loadCborStructIterator(ns);
+        const { memberSchemas, encodedKeys, memberNames } = cache;
+        const z = encodedKeys.length;
+        const isUnion = ns.isUnionSchema();
+        const result = {};
+        let unknownKey;
+        let unknownValue;
+        let unknownCount = 0;
+        let hint = 0;
+        while (pos < end) {
+            if (payload[pos] === 0xff) {
+                pos += 1;
+                if (isUnion) {
+                    let resultEmpty = true;
+                    for (const _ in result) {
+                        if (!hasOwn(result, _))
+                            continue;
+                        resultEmpty = false;
+                        break;
+                    }
+                    if (resultEmpty && unknownCount === 1) {
+                        result.$unknown = [unknownKey, unknownValue];
+                    }
+                }
+                return result;
+            }
+            const matchIdx = matchStructKey(encodedKeys, z, hint);
+            if (matchIdx >= 0) {
+                hint = matchIdx + 1;
+                if (hint >= z) {
+                    hint = 0;
+                }
+                const val = readValue(memberSchemas[matchIdx]);
+                if (val != null) {
+                    result[memberNames[matchIdx]] = val;
+                }
+            }
+            else {
+                const key = readUtf8String();
+                const val = readValue(NormalizedSchema.of(15));
+                if (key !== "__type") {
+                    unknownKey = key;
+                    unknownValue = val;
+                    ++unknownCount;
+                }
+            }
+        }
+        throw new Error("expected break marker.");
+    }
+    const valueSchema = ns.isMapSchema() ? ns.getValueSchema() : ns;
+    const map = {};
+    while (pos < end) {
+        if (payload[pos] === 0xff) {
+            pos += 1;
+            return map;
+        }
+        const key = readUtf8String();
+        map[key] = readValue(valueSchema);
+    }
+    throw new Error("expected break marker.");
+}
+function matchStructKey(encodedKeys, z, hint) {
+    const hintKey = encodedKeys[hint];
+    if (pos + hintKey.length <= end && bytesMatch(pos, hintKey)) {
+        pos += hintKey.length;
+        return hint;
+    }
+    for (let i = 0; i < z; ++i) {
+        if (i === hint) {
+            continue;
+        }
+        const ek = encodedKeys[i];
+        if (pos + ek.length <= end && bytesMatch(pos, ek)) {
+            pos += ek.length;
+            return i;
+        }
+    }
+    return -1;
+}
+function bytesMatch(at, expected) {
+    const len = expected.length;
+    if (payload[at] !== expected[0]) {
+        return false;
+    }
+    for (let i = 1; i < len; ++i) {
+        if (payload[at + i] !== expected[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+function decodeArgument() {
+    const minor = payload[pos] & 0b0001_1111;
+    if (minor < 24) {
+        pos += 1;
+        return minor;
+    }
+    switch (minor) {
+        case extendedOneByte:
+            if (end - pos < 2) {
+                overflow(1);
+            }
+            pos += 2;
+            return payload[pos - 1];
+        case extendedFloat16:
+            if (end - pos < 3) {
+                overflow(2);
+            }
+            pos += 3;
+            return dataView.getUint16(pos - 2);
+        case extendedFloat32:
+            if (end - pos < 5) {
+                overflow(4);
+            }
+            pos += 5;
+            return dataView.getUint32(pos - 4);
+        case extendedFloat64: {
+            if (end - pos < 9) {
+                overflow(8);
+            }
+            pos += 9;
+            const hi = dataView.getUint32(pos - 8);
+            if (hi < 0x00200000) {
+                return hi * 4294967296 + dataView.getUint32(pos - 4);
+            }
+            return dataView.getBigUint64(pos - 8);
+        }
+        default:
+            throw new Error(`unexpected minor value ${minor}.`);
+    }
+}
+function decodeCount() {
+    const val = decodeArgument();
+    return typeof val === "bigint" ? Number(val) : val;
+}
+function readUnsignedInt() {
+    const val = decodeArgument();
+    return castBigInt(val);
+}
+function readNegativeInt() {
+    const val = decodeArgument();
+    if (typeof val === "bigint") {
+        return BigInt(-1) - val;
+    }
+    return -1 - val;
+}
+function readByteString() {
+    const length = decodeCount();
+    if (end - pos < length) {
+        overflow(length);
+    }
+    const start = pos;
+    pos += length;
+    return payload.subarray(start, start + length);
+}
+function readUtf8String() {
+    const length = decodeCount();
+    if (end - pos < length) {
+        overflow(length);
+    }
+    const start = pos;
+    pos += length;
+    if (length < 24) {
+        return decodeUtf8Cached(start, length);
+    }
+    if (isBuffer) {
+        return payload.toString("utf-8", start, start + length);
+    }
+    return textDecoder.decode(payload.subarray(start, start + length));
+}
+function decodeUtf8Cached(at, length) {
+    let h = length;
+    for (let i = 0; i < length; ++i) {
+        h = (h * 31 + payload[at + i]) | 0;
+    }
+    const slot = (h >>> 0) & (STRING_CACHE_SIZE - 1);
+    const cached = stringCache[slot];
+    if (cached !== undefined && cached.length === length) {
+        let match = true;
+        for (let i = 0; i < length; ++i) {
+            if (cached.charCodeAt(i) !== payload[at + i]) {
+                match = false;
+                break;
+            }
+        }
+        if (match) {
+            stringCacheEpochs[slot] = cacheEpoch;
+            return cached;
+        }
+    }
+    const result = isBuffer
+        ? payload.toString("utf-8", at, at + length)
+        : textDecoder.decode(payload.subarray(at, at + length));
+    if (stringCacheEpochs[slot] !== cacheEpoch) {
+        stringCache[slot] = result;
+        stringCacheEpochs[slot] = cacheEpoch;
+    }
+    return result;
+}
+function readSpecial() {
+    const p = pos;
+    const minor = payload[p] & 0b0001_1111;
+    switch (minor) {
+        case specialTrue:
+            pos = p + 1;
+            return true;
+        case specialFalse:
+            pos = p + 1;
+            return false;
+        case specialNull:
+            pos = p + 1;
+            return null;
+        case specialUndefined:
+            pos = p + 1;
+            return null;
+        case extendedFloat16: {
+            if (end - p < 3) {
+                overflow(2);
+            }
+            pos = p + 3;
+            return bytesToFloat16(payload[p + 1], payload[p + 2]);
+        }
+        case extendedFloat32: {
+            if (end - p < 5) {
+                overflow(4);
+            }
+            pos = p + 5;
+            return dataView.getFloat32(p + 1);
+        }
+        case extendedFloat64: {
+            if (end - p < 9) {
+                overflow(8);
+            }
+            pos = p + 9;
+            return dataView.getFloat64(p + 1);
+        }
+        default:
+            throw new Error(`unexpected minor value ${minor} for major 7.`);
+    }
+}
+function bytesToFloat16(a, b) {
+    const sign = a >> 7;
+    const exponent = (a & 0b0111_1100) >> 2;
+    const fraction = ((a & 0b0000_0011) << 8) | b;
+    const scalar = sign === 0 ? 1 : -1;
+    if (exponent === 0b00000) {
+        if (fraction === 0) {
+            return 0;
+        }
+        return scalar * (Math.pow(2, 1 - 15) * (fraction / 1024));
+    }
+    else if (exponent === 0b11111) {
+        if (fraction === 0) {
+            return scalar * Infinity;
+        }
+        return NaN;
+    }
+    return scalar * (Math.pow(2, exponent - 15) * (1 + fraction / 1024));
+}
+function castBigInt(value) {
+    if (typeof value === "number") {
+        return value;
+    }
+    const num = Number(value);
+    if (Number.MIN_SAFE_INTEGER <= num && num <= Number.MAX_SAFE_INTEGER) {
+        return num;
+    }
+    return value;
+}
+function overflow(n) {
+    throw new Error(`CBOR: length ${n} greater than remaining buffer length.`);
+}
+function transformObject(ns, value) {
+    if (ns.isTimestampSchema()) {
+        if (typeof value === "number") {
+            return _parseEpochTimestamp(value);
+        }
+        if (typeof value === "object" && value !== null) {
+            if (value.tag === 1 && "value" in value) {
+                return _parseEpochTimestamp(value.value);
+            }
+        }
+    }
+    if (ns.isBlobSchema()) {
+        return value;
+    }
+    if (typeof value === "undefined" ||
+        typeof value === "boolean" ||
+        typeof value === "number" ||
+        typeof value === "string" ||
+        typeof value === "bigint" ||
+        typeof value === "symbol") {
+        return value;
+    }
+    if (typeof value !== "object" || value === null) {
+        return value;
+    }
+    if ("byteLength" in value) {
+        return value;
+    }
+    if (value instanceof Date) {
+        return value;
+    }
+    if (value instanceof NumericValue) {
+        return value;
+    }
+    if (ns.isDocumentSchema()) {
+        return value;
+    }
+    if (ns.isListSchema()) {
+        const memberSchema = ns.getValueSchema();
+        const out = [];
+        for (const item of value) {
+            out.push(transformObject(memberSchema, item));
+        }
+        return out;
+    }
+    const newObject = {};
+    if (ns.isMapSchema()) {
+        const targetSchema = ns.getValueSchema();
+        for (const key in value) {
+            if (!hasOwn(value, key))
+                continue;
+            newObject[key] = transformObject(targetSchema, value[key]);
+        }
+    }
+    else if (ns.isStructSchema()) {
+        const isUnion = ns.isUnionSchema();
+        let keys;
+        if (isUnion) {
+            keys = new Set();
+            for (const k in value) {
+                if (!hasOwn(value, k))
+                    continue;
+                if (k !== "__type") {
+                    keys.add(k);
+                }
+            }
+        }
+        for (const [key, memberSchema] of ns.structIterator()) {
+            if (isUnion) {
+                keys.delete(key);
+            }
+            if (value[key] != null) {
+                newObject[key] = transformObject(memberSchema, value[key]);
+            }
+        }
+        if (isUnion && keys?.size === 1) {
+            let newObjectEmpty = true;
+            for (const _ in newObject) {
+                if (!hasOwn(newObject, _))
+                    continue;
+                newObjectEmpty = false;
+                break;
+            }
+            if (newObjectEmpty) {
+                const k = keys.values().next().value;
+                newObject.$unknown = [k, value[k]];
+            }
+        }
+        else if (typeof value.__type === "string") {
+            for (const k in value) {
+                if (!hasOwn(value, k))
+                    continue;
+                if (!(k in newObject)) {
+                    newObject[k] = value[k];
+                }
+            }
+        }
+    }
+    return newObject;
+}
+
 class CborCodec extends SerdeContext {
     createSerializer() {
-        const serializer = new CborShapeSerializer();
+        const serializer = new CborShapeSerializer2();
         serializer.setSerdeContext(this.serdeContext);
         return serializer;
     }
     createDeserializer() {
-        const deserializer = new CborShapeDeserializer();
+        const deserializer = new CborShapeDeserializer2();
         deserializer.setSerdeContext(this.serdeContext);
         return deserializer;
     }
 }
+
+class SmithyRpcV2CborProtocol extends RpcProtocol {
+    codec = new CborCodec();
+    serializer = this.codec.createSerializer();
+    deserializer = this.codec.createDeserializer();
+    constructor({ defaultNamespace, errorTypeRegistries, }) {
+        super({ defaultNamespace, errorTypeRegistries });
+    }
+    getShapeId() {
+        return "smithy.protocols#rpcv2Cbor";
+    }
+    getPayloadCodec() {
+        return this.codec;
+    }
+    async serializeRequest(operationSchema, input, context) {
+        const request = await super.serializeRequest(operationSchema, input, context);
+        Object.assign(request.headers, {
+            "content-type": this.getDefaultContentType(),
+            "smithy-protocol": "rpc-v2-cbor",
+            accept: this.getDefaultContentType(),
+        });
+        if (deref(operationSchema.input) === "unit") {
+            delete request.body;
+            delete request.headers["content-type"];
+        }
+        else {
+            if (!request.body) {
+                this.serializer.write(15, {});
+                request.body = this.serializer.flush();
+            }
+            if (request.body instanceof Uint8Array) {
+                request.headers["content-length"] = String(request.body.byteLength);
+            }
+        }
+        const { service, operation } = getSmithyContext(context);
+        const path = `/service/${service}/operation/${operation}`;
+        if (request.path.endsWith("/")) {
+            request.path += path.slice(1);
+        }
+        else {
+            request.path += path;
+        }
+        return request;
+    }
+    async deserializeResponse(operationSchema, context, response) {
+        return super.deserializeResponse(operationSchema, context, response);
+    }
+    async handleError(operationSchema, context, response, dataObject, metadata) {
+        const errorIdentifier = loadSmithyRpcV2CborErrorCode(response, dataObject) ?? "Unknown";
+        const preferredNamespaces = ["*"];
+        const { defaultNamespace } = this.options;
+        preferredNamespaces.unshift(defaultNamespace);
+        const [namespace, errorShapeName] = (() => {
+            if (errorIdentifier.includes("#")) {
+                return errorIdentifier.split("#");
+            }
+            return [undefined, errorIdentifier];
+        })();
+        if (namespace) {
+            preferredNamespaces.unshift(namespace);
+        }
+        const errorMetadata = {
+            $metadata: metadata,
+            $fault: response.statusCode < 500 ? "client" : "server",
+        };
+        const preferredRegistries = [this.compositeErrorRegistry];
+        if (namespace) {
+            preferredRegistries.push(TypeRegistry.for(namespace));
+        }
+        preferredRegistries.push(TypeRegistry.for(defaultNamespace));
+        const [errorSchema, ErrorCtor, errorMode] = this.resolveError(errorShapeName, preferredNamespaces, preferredRegistries);
+        if (errorMode === "native" || errorMode === "synthetic") {
+            if (dataObject.Message) {
+                dataObject.message = dataObject.Message;
+            }
+            const error = errorMode === "synthetic" ? new ErrorCtor({ name: errorShapeName }) : new Error(errorShapeName);
+            throw Object.assign(error, errorMetadata, dataObject);
+        }
+        const ns = NormalizedSchema.of(errorSchema);
+        const message = dataObject.message ?? dataObject.Message ?? "Unknown";
+        const exception = new ErrorCtor({});
+        const output = {};
+        for (const [name, member] of ns.structIterator()) {
+            output[name] = this.deserializer.readValue(member, dataObject[name]);
+        }
+        throw Object.assign(exception, errorMetadata, {
+            $fault: ns.getMergedTraits().error,
+            message,
+        }, output);
+    }
+    getDefaultContentType() {
+        return "application/cbor";
+    }
+}
+
 class CborShapeSerializer extends SerdeContext {
     value;
     write(schema, value) {
@@ -34984,6 +37400,8 @@ class CborShapeSerializer extends SerdeContext {
             if (ns.isMapSchema()) {
                 const sparse = !!ns.getMergedTraits().sparse;
                 for (const key in sourceObject) {
+                    if (!hasOwn(sourceObject, key))
+                        continue;
                     const value = this.serialize(ns.getValueSchema(), sourceObject[key]);
                     if (value != null || sparse) {
                         newObject[key] = value;
@@ -35004,6 +37422,8 @@ class CborShapeSerializer extends SerdeContext {
                 }
                 else if (typeof sourceObject.__type === "string") {
                     for (const k in sourceObject) {
+                        if (!hasOwn(sourceObject, k))
+                            continue;
                         if (!(k in newObject)) {
                             newObject[k] = this.serialize(15, sourceObject[k]);
                         }
@@ -35011,7 +37431,17 @@ class CborShapeSerializer extends SerdeContext {
                 }
             }
             else if (ns.isDocumentSchema()) {
+                if (Array.isArray(sourceObject)) {
+                    const newArray = [];
+                    let i = 0;
+                    for (const item of sourceObject) {
+                        newArray[i++] = this.serialize(ns.getValueSchema(), item);
+                    }
+                    return newArray;
+                }
                 for (const key in sourceObject) {
+                    if (!hasOwn(sourceObject, key))
+                        continue;
                     newObject[key] = this.serialize(ns.getValueSchema(), sourceObject[key]);
                 }
             }
@@ -35028,6 +37458,7 @@ class CborShapeSerializer extends SerdeContext {
         return buffer;
     }
 }
+
 class CborShapeDeserializer extends SerdeContext {
     read(schema, bytes) {
         const data = cbor.deserialize(bytes);
@@ -35085,6 +37516,8 @@ class CborShapeDeserializer extends SerdeContext {
             if (ns.isMapSchema()) {
                 const targetSchema = ns.getValueSchema();
                 for (const key in value) {
+                    if (!hasOwn(value, key))
+                        continue;
                     const itemValue = this.readValue(targetSchema, value[key]);
                     newObject[key] = itemValue;
                 }
@@ -35095,6 +37528,8 @@ class CborShapeDeserializer extends SerdeContext {
                 if (isUnion) {
                     keys = new Set();
                     for (const k in value) {
+                        if (!hasOwn(value, k))
+                            continue;
                         if (k !== "__type") {
                             keys.add(k);
                         }
@@ -35111,6 +37546,8 @@ class CborShapeDeserializer extends SerdeContext {
                 if (isUnion && keys?.size === 1) {
                     let newObjectEmpty = true;
                     for (const _ in newObject) {
+                        if (!hasOwn(newObject, _))
+                            continue;
                         newObjectEmpty = false;
                         break;
                     }
@@ -35121,6 +37558,8 @@ class CborShapeDeserializer extends SerdeContext {
                 }
                 else if (typeof value.__type === "string") {
                     for (const k in value) {
+                        if (!hasOwn(value, k))
+                            continue;
                         if (!(k in newObject)) {
                             newObject[k] = value[k];
                         }
@@ -35138,104 +37577,11 @@ class CborShapeDeserializer extends SerdeContext {
     }
 }
 
-class SmithyRpcV2CborProtocol extends RpcProtocol {
-    codec = new CborCodec();
-    serializer = this.codec.createSerializer();
-    deserializer = this.codec.createDeserializer();
-    constructor({ defaultNamespace, errorTypeRegistries, }) {
-        super({ defaultNamespace, errorTypeRegistries });
-    }
-    getShapeId() {
-        return "smithy.protocols#rpcv2Cbor";
-    }
-    getPayloadCodec() {
-        return this.codec;
-    }
-    async serializeRequest(operationSchema, input, context) {
-        const request = await super.serializeRequest(operationSchema, input, context);
-        Object.assign(request.headers, {
-            "content-type": this.getDefaultContentType(),
-            "smithy-protocol": "rpc-v2-cbor",
-            accept: this.getDefaultContentType(),
-        });
-        if (deref(operationSchema.input) === "unit") {
-            delete request.body;
-            delete request.headers["content-type"];
-        }
-        else {
-            if (!request.body) {
-                this.serializer.write(15, {});
-                request.body = this.serializer.flush();
-            }
-            try {
-                request.headers["content-length"] = String(request.body.byteLength);
-            }
-            catch (ignored) { }
-        }
-        const { service, operation } = getSmithyContext(context);
-        const path = `/service/${service}/operation/${operation}`;
-        if (request.path.endsWith("/")) {
-            request.path += path.slice(1);
-        }
-        else {
-            request.path += path;
-        }
-        return request;
-    }
-    async deserializeResponse(operationSchema, context, response) {
-        return super.deserializeResponse(operationSchema, context, response);
-    }
-    async handleError(operationSchema, context, response, dataObject, metadata) {
-        const errorName = loadSmithyRpcV2CborErrorCode(response, dataObject) ?? "Unknown";
-        const errorMetadata = {
-            $metadata: metadata,
-            $fault: response.statusCode <= 500 ? "client" : "server",
-        };
-        let namespace = this.options.defaultNamespace;
-        if (errorName.includes("#")) {
-            [namespace] = errorName.split("#");
-        }
-        const registry = this.compositeErrorRegistry;
-        const nsRegistry = TypeRegistry.for(namespace);
-        registry.copyFrom(nsRegistry);
-        let errorSchema;
-        try {
-            errorSchema = registry.getSchema(errorName);
-        }
-        catch (ignored) {
-            if (dataObject.Message) {
-                dataObject.message = dataObject.Message;
-            }
-            const syntheticRegistry = TypeRegistry.for("smithy.ts.sdk.synthetic." + namespace);
-            registry.copyFrom(syntheticRegistry);
-            const baseExceptionSchema = registry.getBaseException();
-            if (baseExceptionSchema) {
-                const ErrorCtor = registry.getErrorCtor(baseExceptionSchema);
-                throw Object.assign(new ErrorCtor({ name: errorName }), errorMetadata, dataObject);
-            }
-            throw Object.assign(new Error(errorName), errorMetadata, dataObject);
-        }
-        const ns = NormalizedSchema.of(errorSchema);
-        const ErrorCtor = registry.getErrorCtor(errorSchema);
-        const message = dataObject.message ?? dataObject.Message ?? "Unknown";
-        const exception = new ErrorCtor({});
-        const output = {};
-        for (const [name, member] of ns.structIterator()) {
-            output[name] = this.deserializer.readValue(member, dataObject[name]);
-        }
-        throw Object.assign(exception, errorMetadata, {
-            $fault: ns.getMergedTraits().error,
-            message,
-        }, output);
-    }
-    getDefaultContentType() {
-        return "application/cbor";
-    }
-}
-
 exports.CborCodec = CborCodec;
 exports.CborShapeDeserializer = CborShapeDeserializer;
+exports.CborShapeDeserializer2 = CborShapeDeserializer2;
 exports.CborShapeSerializer = CborShapeSerializer;
+exports.CborShapeSerializer2 = CborShapeSerializer2;
 exports.SmithyRpcV2CborProtocol = SmithyRpcV2CborProtocol;
 exports.buildHttpRpcRequest = buildHttpRpcRequest;
 exports.cbor = cbor;
@@ -35837,6 +38183,7 @@ exports.readableStreamHasher = readableStreamHasher;
 /***/ 92658:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
+const { hasOwn } = __nccwpck_require__(34534);
 const { getSmithyContext, normalizeProvider } = __nccwpck_require__(34534);
 exports.getSmithyContext = getSmithyContext;
 exports.normalizeProvider = normalizeProvider;
@@ -36428,20 +38775,27 @@ class Command {
         }
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
+        const additionalSmithyContext = additionalContext[SMITHY_CONTEXT_KEY];
         const handlerExecutionContext = {
             logger,
             clientName,
             commandName,
             inputFilterSensitiveLog,
             outputFilterSensitiveLog,
+            ...additionalContext,
             [SMITHY_CONTEXT_KEY]: {
+                ...additionalSmithyContext,
                 commandInstance: this,
                 ...smithyContext,
+                ...(options?.metricsRecorder === undefined ? {} : { metricsRecorder: options.metricsRecorder }),
             },
-            ...additionalContext,
         };
         const { requestHandler } = configuration;
         let requestOptions = options ?? {};
+        if (requestOptions.metricsRecorder) {
+            requestOptions = { ...requestOptions };
+            delete requestOptions.metricsRecorder;
+        }
         if (smithyContext.eventStream) {
             requestOptions = {
                 isEventStream: true,
@@ -36596,6 +38950,7 @@ const createAggregatedClient = (commands, Client, options) => {
 };
 
 class ServiceException extends Error {
+    static shapeId = "smithy.ts.sdk.synthetic.nonamespace.client#ServiceException";
     $fault;
     $response;
     $retryable;
@@ -36624,10 +38979,46 @@ class ServiceException extends Error {
             return ServiceException.isInstance(instance);
         }
         if (ServiceException.isInstance(instance)) {
-            if (candidate.name && this.name) {
-                return this.prototype.isPrototypeOf(instance) || candidate.name === this.name;
+            if (this.prototype.isPrototypeOf(instance)) {
+                return true;
             }
-            return this.prototype.isPrototypeOf(instance);
+            const targetId = Object.prototype.hasOwnProperty.call(this, "shapeId")
+                ? this.shapeId
+                : undefined;
+            let candidateHasShapeId = false;
+            if (targetId) {
+                let proto = Object.getPrototypeOf(candidate);
+                while (proto && proto !== Object.prototype) {
+                    const ctor = proto.constructor;
+                    const candidateId = ctor !== ServiceException && Object.prototype.hasOwnProperty.call(ctor, "shapeId")
+                        ? ctor?.shapeId
+                        : undefined;
+                    if (candidateId) {
+                        candidateHasShapeId = true;
+                        if (candidateId === targetId) {
+                            return true;
+                        }
+                    }
+                    proto = Object.getPrototypeOf(proto);
+                }
+            }
+            if (targetId && candidateHasShapeId) {
+                return false;
+            }
+            const targetName = this.name;
+            if (targetName && targetName.length >= 6) {
+                if (candidate.name === targetName) {
+                    return true;
+                }
+                let proto = Object.getPrototypeOf(candidate);
+                while (proto && proto !== Object.prototype) {
+                    const ctorName = proto.constructor?.name;
+                    if (ctorName && ctorName !== "Error" && ctorName === targetName) {
+                        return true;
+                    }
+                    proto = Object.getPrototypeOf(proto);
+                }
+            }
         }
         return false;
     }
@@ -36706,6 +39097,8 @@ const knownAlgorithms = Object.values(AlgorithmId);
 const getChecksumConfiguration = (runtimeConfig) => {
     const checksumAlgorithms = [];
     for (const id in AlgorithmId) {
+        if (!hasOwn(AlgorithmId, id))
+            continue;
         const algorithmId = AlgorithmId[id];
         if (runtimeConfig[algorithmId] === undefined) {
             continue;
@@ -36779,7 +39172,9 @@ const getArrayIfSingleItem = (mayBeArray) => Array.isArray(mayBeArray) ? mayBeAr
 const getValueFromTextNode = (obj) => {
     const textNodeName = "#text";
     for (const key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key) && obj[key][textNodeName] !== undefined) {
+        if (!hasOwn(obj, key))
+            continue;
+        if (obj[key][textNodeName] !== undefined) {
             obj[key] = obj[key][textNodeName];
         }
         else if (typeof obj[key] === "object" && obj[key] !== null) {
@@ -36820,7 +39215,9 @@ function map(arg0, arg1, arg2) {
             instructions = arg1;
         }
     }
-    for (const key of Object.keys(instructions)) {
+    for (const key in instructions) {
+        if (!hasOwn(instructions, key))
+            continue;
         if (!Array.isArray(instructions[key])) {
             target[key] = instructions[key];
             continue;
@@ -36839,6 +39236,8 @@ const convertMap = (target) => {
 const take = (source, instructions) => {
     const out = {};
     for (const key in instructions) {
+        if (!hasOwn(instructions, key))
+            continue;
         applyInstruction(out, source, instructions, key);
     }
     return out;
@@ -36918,7 +39317,9 @@ const _json = (obj) => {
     }
     if (typeof obj === "object") {
         const target = {};
-        for (const key of Object.keys(obj)) {
+        for (const key in obj) {
+            if (!hasOwn(obj, key))
+                continue;
             if (obj[key] == null) {
                 continue;
             }
@@ -37776,7 +40177,7 @@ exports.resolveRegionConfig = resolveRegionConfig;
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 const { CONFIG_PREFIX_SEPARATOR, booleanSelector, SelectorType, loadConfig } = __nccwpck_require__(47291);
-const { toEndpointV1, getSmithyContext, normalizeProvider, isValidHostLabel } = __nccwpck_require__(34534);
+const { toEndpointV1, getSmithyContext, normalizeProvider, isValidHostLabel, hasOwn } = __nccwpck_require__(34534);
 exports.isValidHostLabel = isValidHostLabel;
 exports.middlewareEndpointToEndpointV1 = toEndpointV1;
 exports.toEndpointV1 = toEndpointV1;
@@ -38132,7 +40533,8 @@ class EndpointCache {
             return false;
         }
         for (const param of parameters) {
-            const val = String(endpointParams[param] ?? "");
+            const raw = endpointParams[param];
+            const val = raw == null ? "\0" : String(raw);
             if (val.includes("|;")) {
                 return false;
             }
@@ -38607,6 +41009,8 @@ const resolveEndpoint = (ruleSetObject, options) => {
     const { parameters, rules } = ruleSetObject;
     options.logger?.debug?.(`${debugId} Initial EndpointParams: ${toDebugString(endpointParams)}`);
     for (const paramKey in parameters) {
+        if (!hasOwn(parameters, paramKey))
+            continue;
         const parameter = parameters[paramKey];
         const endpointParam = endpointParams[paramKey];
         if (endpointParam == null && parameter.default != null) {
@@ -38659,6 +41063,7 @@ exports.resolveParams = resolveParams;
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 const { Crc32 } = __nccwpck_require__(99542);
+const { hasOwn } = __nccwpck_require__(34534);
 const { toHex, fromHex, toUtf8, fromUtf8 } = __nccwpck_require__(92430);
 const { Readable } = __nccwpck_require__(57075);
 const { TypeRegistry } = __nccwpck_require__(26890);
@@ -38716,7 +41121,9 @@ class HeaderMarshaller {
     }
     format(headers) {
         const chunks = [];
-        for (const headerName of Object.keys(headers)) {
+        for (const headerName in headers) {
+            if (!hasOwn(headers, headerName))
+                continue;
             const bytes = this.fromUtf8(headerName);
             chunks.push(Uint8Array.from([bytes.byteLength]), bytes, this.formatHeaderValue(headers[headerName]));
         }
@@ -38731,27 +41138,27 @@ class HeaderMarshaller {
     formatHeaderValue(header) {
         switch (header.type) {
             case "boolean":
-                return Uint8Array.from([header.value ? HEADER_VALUE_TYPE.boolTrue : HEADER_VALUE_TYPE.boolFalse]);
+                return Uint8Array.from([header.value ? 0 : 1]);
             case "byte":
-                return Uint8Array.from([HEADER_VALUE_TYPE.byte, header.value]);
+                return Uint8Array.from([2, header.value]);
             case "short":
                 const shortView = new DataView(new ArrayBuffer(3));
-                shortView.setUint8(0, HEADER_VALUE_TYPE.short);
+                shortView.setUint8(0, 3);
                 shortView.setInt16(1, header.value, false);
                 return new Uint8Array(shortView.buffer);
             case "integer":
                 const intView = new DataView(new ArrayBuffer(5));
-                intView.setUint8(0, HEADER_VALUE_TYPE.integer);
+                intView.setUint8(0, 4);
                 intView.setInt32(1, header.value, false);
                 return new Uint8Array(intView.buffer);
             case "long":
                 const longBytes = new Uint8Array(9);
-                longBytes[0] = HEADER_VALUE_TYPE.long;
+                longBytes[0] = 5;
                 longBytes.set(header.value.bytes, 1);
                 return longBytes;
             case "binary":
                 const binView = new DataView(new ArrayBuffer(3 + header.value.byteLength));
-                binView.setUint8(0, HEADER_VALUE_TYPE.byteArray);
+                binView.setUint8(0, 6);
                 binView.setUint16(1, header.value.byteLength, false);
                 const binBytes = new Uint8Array(binView.buffer);
                 binBytes.set(header.value, 3);
@@ -38759,14 +41166,14 @@ class HeaderMarshaller {
             case "string":
                 const utf8Bytes = this.fromUtf8(header.value);
                 const strView = new DataView(new ArrayBuffer(3 + utf8Bytes.byteLength));
-                strView.setUint8(0, HEADER_VALUE_TYPE.string);
+                strView.setUint8(0, 7);
                 strView.setUint16(1, utf8Bytes.byteLength, false);
                 const strBytes = new Uint8Array(strView.buffer);
                 strBytes.set(utf8Bytes, 3);
                 return strBytes;
             case "timestamp":
                 const tsBytes = new Uint8Array(9);
-                tsBytes[0] = HEADER_VALUE_TYPE.timestamp;
+                tsBytes[0] = 8;
                 tsBytes.set(Int64.fromNumber(header.value.valueOf()).bytes, 1);
                 return tsBytes;
             case "uuid":
@@ -38774,7 +41181,7 @@ class HeaderMarshaller {
                     throw new Error(`Invalid UUID received: ${header.value}`);
                 }
                 const uuidBytes = new Uint8Array(17);
-                uuidBytes[0] = HEADER_VALUE_TYPE.uuid;
+                uuidBytes[0] = 9;
                 uuidBytes.set(fromHex(header.value.replace(/-/g, "")), 1);
                 return uuidBytes;
         }
@@ -38787,46 +41194,46 @@ class HeaderMarshaller {
             const name = this.toUtf8(new Uint8Array(headers.buffer, headers.byteOffset + position, nameLength));
             position += nameLength;
             switch (headers.getUint8(position++)) {
-                case HEADER_VALUE_TYPE.boolTrue:
+                case 0:
                     out[name] = {
                         type: BOOLEAN_TAG,
                         value: true,
                     };
                     break;
-                case HEADER_VALUE_TYPE.boolFalse:
+                case 1:
                     out[name] = {
                         type: BOOLEAN_TAG,
                         value: false,
                     };
                     break;
-                case HEADER_VALUE_TYPE.byte:
+                case 2:
                     out[name] = {
                         type: BYTE_TAG,
                         value: headers.getInt8(position++),
                     };
                     break;
-                case HEADER_VALUE_TYPE.short:
+                case 3:
                     out[name] = {
                         type: SHORT_TAG,
                         value: headers.getInt16(position, false),
                     };
                     position += 2;
                     break;
-                case HEADER_VALUE_TYPE.integer:
+                case 4:
                     out[name] = {
                         type: INT_TAG,
                         value: headers.getInt32(position, false),
                     };
                     position += 4;
                     break;
-                case HEADER_VALUE_TYPE.long:
+                case 5:
                     out[name] = {
                         type: LONG_TAG,
                         value: new Int64(new Uint8Array(headers.buffer, headers.byteOffset + position, 8)),
                     };
                     position += 8;
                     break;
-                case HEADER_VALUE_TYPE.byteArray:
+                case 6:
                     const binaryLength = headers.getUint16(position, false);
                     position += 2;
                     out[name] = {
@@ -38835,7 +41242,7 @@ class HeaderMarshaller {
                     };
                     position += binaryLength;
                     break;
-                case HEADER_VALUE_TYPE.string:
+                case 7:
                     const stringLength = headers.getUint16(position, false);
                     position += 2;
                     out[name] = {
@@ -38844,14 +41251,14 @@ class HeaderMarshaller {
                     };
                     position += stringLength;
                     break;
-                case HEADER_VALUE_TYPE.timestamp:
+                case 8:
                     out[name] = {
                         type: TIMESTAMP_TAG,
                         value: new Date(new Int64(new Uint8Array(headers.buffer, headers.byteOffset + position, 8)).valueOf()),
                     };
                     position += 8;
                     break;
-                case HEADER_VALUE_TYPE.uuid:
+                case 9:
                     const uuidBytes = new Uint8Array(headers.buffer, headers.byteOffset + position, 16);
                     position += 16;
                     out[name] = {
@@ -39286,7 +41693,7 @@ class EventStreamSerde {
         this.defaultContentType = defaultContentType;
         this.compositeErrorRegistry = compositeErrorRegistry;
     }
-    async serializeEventStream({ eventStream, requestSchema, initialRequest, }) {
+    async serializeEventStream({ eventStream, requestSchema, initialRequest, initialMessageType, }) {
         const marshaller = this.marshaller;
         const eventStreamMember = requestSchema.getEventStreamMember();
         const unionSchema = requestSchema.getMemberSchema(eventStreamMember);
@@ -39297,7 +41704,7 @@ class EventStreamSerde {
             async *[Symbol.asyncIterator]() {
                 if (initialRequest) {
                     const headers = {
-                        ":event-type": { type: "string", value: "initial-request" },
+                        ":event-type": { type: "string", value: initialMessageType ?? "initial-request" },
                         ":message-type": { type: "string", value: "event" },
                         ":content-type": { type: "string", value: defaultContentType },
                     };
@@ -39323,6 +41730,8 @@ class EventStreamSerde {
             }
             let unionMember = "";
             for (const key in event) {
+                if (!hasOwn(event, key))
+                    continue;
                 if (key !== "__type") {
                     unionMember = key;
                     break;
@@ -39341,7 +41750,7 @@ class EventStreamSerde {
             };
         });
     }
-    async deserializeEventStream({ response, responseSchema, initialResponseContainer, }) {
+    async deserializeEventStream({ response, responseSchema, initialResponseContainer, initialMessageType, }) {
         const marshaller = this.marshaller;
         const eventStreamMember = responseSchema.getEventStreamMember();
         const unionSchema = responseSchema.getMemberSchema(eventStreamMember);
@@ -39350,13 +41759,15 @@ class EventStreamSerde {
         const asyncIterable = marshaller.deserialize(response.body, async (event) => {
             let unionMember = "";
             for (const key in event) {
+                if (!hasOwn(event, key))
+                    continue;
                 if (key !== "__type") {
                     unionMember = key;
                     break;
                 }
             }
             const body = event[unionMember].body;
-            if (unionMember === "initial-response") {
+            if (unionMember === (initialMessageType ?? "initial-response")) {
                 const dataObject = await this.deserializer.read(responseSchema, body);
                 delete dataObject[eventStreamMember];
                 return {
@@ -39424,6 +41835,8 @@ class EventStreamSerde {
                 throw new Error("@smithy::core/protocols - initial-response event encountered in event stream but no response schema given.");
             }
             for (const key in firstEvent.value) {
+                if (!hasOwn(firstEvent.value, key))
+                    continue;
                 initialResponseContainer[key] = firstEvent.value[key];
             }
         }
@@ -39581,14 +41994,14 @@ exports.universalEventStreamSerdeProvider = eventStreamSerdeProvider$1;
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 const { Uint8ArrayBlobAdapter, sdkStreamMixin, splitEvery, splitHeader, fromBase64, _parseEpochTimestamp, _parseRfc7231DateTime, _parseRfc3339DateTimeWithOffset, LazyJsonString, NumericValue, toUtf8, fromUtf8, generateIdempotencyToken, toBase64, dateToUtcString, quoteHeader } = __nccwpck_require__(92430);
-const { TypeRegistry, NormalizedSchema, translateTraits } = __nccwpck_require__(26890);
-const { HttpRequest, HttpResponse, isValidHostname } = __nccwpck_require__(34534);
+const { HttpRequest, HttpResponse, hasOwn, isValidHostname } = __nccwpck_require__(34534);
 const { parseQueryString, parseUrl } = __nccwpck_require__(34534);
 exports.HttpRequest = HttpRequest;
 exports.HttpResponse = HttpResponse;
 exports.isValidHostname = isValidHostname;
 exports.parseQueryString = parseQueryString;
 exports.parseUrl = parseUrl;
+const { TypeRegistry, NormalizedSchema, translateTraits } = __nccwpck_require__(26890);
 const { FieldPosition } = __nccwpck_require__(90690);
 
 const collectBody = async (streamBody = new Uint8Array(), context) => {
@@ -39621,7 +42034,7 @@ class HttpProtocol extends SerdeContext {
     constructor(options) {
         super();
         this.options = options;
-        this.compositeErrorRegistry = TypeRegistry.for(options.defaultNamespace);
+        this.compositeErrorRegistry = new TypeRegistry(options.defaultNamespace);
         for (const etr of options.errorTypeRegistries ?? []) {
             this.compositeErrorRegistry.copyFrom(etr);
         }
@@ -39657,6 +42070,8 @@ class HttpProtocol extends SerdeContext {
             }
             if (endpoint.headers) {
                 for (const name in endpoint.headers) {
+                    if (!hasOwn(endpoint.headers, name))
+                        continue;
                     request.headers[name] = endpoint.headers[name].join(", ");
                 }
             }
@@ -39672,6 +42087,8 @@ class HttpProtocol extends SerdeContext {
             };
             if (endpoint.headers) {
                 for (const name in endpoint.headers) {
+                    if (!hasOwn(endpoint.headers, name))
+                        continue;
                     request.headers[name] = endpoint.headers[name];
                 }
             }
@@ -39712,6 +42129,47 @@ class HttpProtocol extends SerdeContext {
             cfId: output.headers["x-amz-cf-id"],
         };
     }
+    resolveError(name, namespaces, registries) {
+        const defaultErrorSchema = [-3, "", "Error", 0, [], [], 0];
+        let schema;
+        for (const registry of registries) {
+            for (const ns of namespaces) {
+                try {
+                    if (ns === "*") {
+                        schema = registry.getSchema(name);
+                    }
+                    else {
+                        schema = registry.getSchema(ns + "#" + name);
+                    }
+                    const errorCtor = registry.getErrorCtor(schema);
+                    if (errorCtor) {
+                        return [schema, errorCtor, "modeled"];
+                    }
+                    else {
+                        const syntheticErrorSchema = registry.getBaseException();
+                        if (syntheticErrorSchema) {
+                            const syntheticErrorCtor = registry.getErrorCtor(syntheticErrorSchema);
+                            if (syntheticErrorCtor) {
+                                return [schema, syntheticErrorCtor, "synthetic"];
+                            }
+                        }
+                    }
+                }
+                catch (ignored) {
+                }
+            }
+        }
+        for (const registry of registries) {
+            const syntheticErrorSchema = registry.getBaseException();
+            if (syntheticErrorSchema) {
+                const syntheticErrorCtor = registry.getErrorCtor(syntheticErrorSchema);
+                if (syntheticErrorCtor) {
+                    return [syntheticErrorSchema, syntheticErrorCtor, "synthetic"];
+                }
+            }
+        }
+        return [defaultErrorSchema, Error, "native"];
+    }
     async serializeEventStream({ eventStream, requestSchema, initialRequest, }) {
         const eventStreamSerde = await this.loadEventStreamCapability();
         return eventStreamSerde.serializeEventStream({
@@ -39740,13 +42198,6 @@ class HttpProtocol extends SerdeContext {
             compositeErrorRegistry: this.compositeErrorRegistry,
         });
     }
-    resolveEventStreamMarshaller(importedProvider) {
-        const context = this.serdeContext;
-        if (context.eventStreamMarshaller) {
-            return context.eventStreamMarshaller;
-        }
-        return importedProvider(this.serdeContext);
-    }
     getDefaultContentType() {
         throw new Error(`@smithy/core/protocols - ${this.constructor.name} getDefaultContentType() implementation missing.`);
     }
@@ -39759,6 +42210,13 @@ class HttpProtocol extends SerdeContext {
             throw new Error("@smithy/core - HttpProtocol: eventStreamMarshaller missing in serdeContext.");
         }
         return context.eventStreamMarshaller;
+    }
+    resolveEventStreamMarshaller(importedProvider) {
+        const context = this.serdeContext;
+        if (context.eventStreamMarshaller) {
+            return context.eventStreamMarshaller;
+        }
+        return importedProvider(this.serdeContext);
     }
 }
 
@@ -39851,6 +42309,8 @@ class HttpBindingProtocol extends HttpProtocol {
             }
             else if (typeof memberTraits.httpPrefixHeaders === "string") {
                 for (const key in inputMemberValue) {
+                    if (!hasOwn(inputMemberValue, key))
+                        continue;
                     const val = inputMemberValue[key];
                     const amalgam = memberTraits.httpPrefixHeaders + key;
                     serializer.write([memberNs.getValueSchema(), { httpHeader: amalgam }], val);
@@ -39897,6 +42357,8 @@ class HttpBindingProtocol extends HttpProtocol {
         const traits = ns.getMergedTraits();
         if (traits.httpQueryParams) {
             for (const key in data) {
+                if (!hasOwn(data, key))
+                    continue;
                 if (!(key in query)) {
                     const val = data[key];
                     const valueSchema = ns.getValueSchema();
@@ -39940,6 +42402,8 @@ class HttpBindingProtocol extends HttpProtocol {
             throw new Error("@smithy/core/protocols - HTTP Protocol error handler failed to throw.");
         }
         for (const header in response.headers) {
+            if (!hasOwn(response.headers, header))
+                continue;
             const value = response.headers[header];
             delete response.headers[header];
             response.headers[header.toLowerCase()] = value;
@@ -40027,6 +42491,8 @@ class HttpBindingProtocol extends HttpProtocol {
             else if (memberTraits.httpPrefixHeaders !== undefined) {
                 dataObject[memberName] = {};
                 for (const header in response.headers) {
+                    if (!hasOwn(response.headers, header))
+                        continue;
                     if (header.startsWith(memberTraits.httpPrefixHeaders)) {
                         const value = response.headers[header];
                         const valueSchema = memberSchema.getValueSchema();
@@ -40076,10 +42542,9 @@ class RpcProtocol extends HttpProtocol {
             if (eventStreamMember) {
                 if (input[eventStreamMember]) {
                     const initialRequest = {};
-                    for (const [memberName, memberSchema] of ns.structIterator()) {
-                        if (memberName !== eventStreamMember && input[memberName]) {
-                            serializer.write(memberSchema, input[memberName]);
-                            initialRequest[memberName] = serializer.flush();
+                    for (const [memberName] of ns.structIterator()) {
+                        if (memberName !== eventStreamMember && input[memberName] != null) {
+                            initialRequest[memberName] = input[memberName];
                         }
                     }
                     payload = await this.serializeEventStream({
@@ -40113,6 +42578,8 @@ class RpcProtocol extends HttpProtocol {
             throw new Error("@smithy/core/protocols - RPC Protocol error handler failed to throw.");
         }
         for (const header in response.headers) {
+            if (!hasOwn(response.headers, header))
+                continue;
             const value = response.headers[header];
             delete response.headers[header];
             response.headers[header.toLowerCase()] = value;
@@ -40510,24 +42977,27 @@ class Fields {
 }
 
 const getHttpHandlerExtensionConfiguration = (runtimeConfig) => {
+    if (runtimeConfig.logger && runtimeConfig.logger.constructor?.name !== "NoOpLogger") {
+        runtimeConfig.requestHandler?.updateHttpClientConfig?.(Symbol.for("logger"), runtimeConfig.logger);
+    }
     return {
         setHttpHandler(handler) {
-            runtimeConfig.httpHandler = handler;
+            runtimeConfig.requestHandler = handler;
         },
         httpHandler() {
-            return runtimeConfig.httpHandler;
+            return runtimeConfig.requestHandler;
         },
         updateHttpClientConfig(key, value) {
-            runtimeConfig.httpHandler?.updateHttpClientConfig(key, value);
+            runtimeConfig.requestHandler?.updateHttpClientConfig(key, value);
         },
         httpHandlerConfigs() {
-            return runtimeConfig.httpHandler.httpHandlerConfigs();
+            return runtimeConfig.requestHandler.httpHandlerConfigs();
         },
     };
 };
 const resolveHttpHandlerRuntimeConfig = (httpHandlerExtensionConfiguration) => {
     return {
-        httpHandler: httpHandlerExtensionConfiguration.httpHandler(),
+        requestHandler: httpHandlerExtensionConfiguration.httpHandler(),
     };
 };
 
@@ -40543,10 +43013,12 @@ function contentLengthMiddleware(bodyLengthChecker) {
                     .indexOf(CONTENT_LENGTH_HEADER) === -1) {
                 try {
                     const length = bodyLengthChecker(body);
-                    request.headers = {
-                        ...request.headers,
-                        [CONTENT_LENGTH_HEADER]: String(length),
-                    };
+                    if (length != null) {
+                        request.headers = {
+                            ...request.headers,
+                            [CONTENT_LENGTH_HEADER]: String(length),
+                        };
+                    }
                 }
                 catch (ignored) {
                 }
@@ -40631,11 +43103,13 @@ const { Readable } = __nccwpck_require__(57075);
 const { NoOpLogger, normalizeProvider } = __nccwpck_require__(92658);
 const { HttpResponse, HttpRequest } = __nccwpck_require__(93422);
 const { parseRfc7231DateTime, v4 } = __nccwpck_require__(92430);
+const { hasOwn } = __nccwpck_require__(34534);
 
 const isStreamingPayload = (request) => request?.body instanceof Readable ||
     (typeof ReadableStream !== "undefined" && request?.body instanceof ReadableStream);
 
 const CLOCK_SKEW_ERROR_CODES = [
+    "AccessDeniedException",
     "AuthFailure",
     "InvalidSignatureException",
     "RequestExpired",
@@ -40684,16 +43158,17 @@ const isBrowserNetworkError = (error) => {
 const isThrottlingError = (error) => error.$metadata?.httpStatusCode === 429 ||
     THROTTLING_ERROR_CODES.includes(error.name) ||
     error.$retryable?.throttling == true;
-const isTransientError = (error, depth = 0) => isRetryableByTrait(error) ||
-    isClockSkewCorrectedError(error) ||
-    (error.name === "InvalidSignatureException" && error.message?.includes("Signature expired")) ||
-    TRANSIENT_ERROR_CODES.includes(error.name) ||
-    NODEJS_TIMEOUT_ERROR_CODES.includes(error?.code || "") ||
-    NODEJS_NETWORK_ERROR_CODES.includes(error?.code || "") ||
-    TRANSIENT_ERROR_STATUS_CODES.includes(error.$metadata?.httpStatusCode || 0) ||
-    isBrowserNetworkError(error) ||
-    isNodeJsHttp2TransientError(error) ||
-    (error.cause !== undefined && depth <= 10 && isTransientError(error.cause, depth + 1));
+const isTransientError = (error, depth = 0) => error?.name !== "AbortError" &&
+    (isRetryableByTrait(error) ||
+        isClockSkewCorrectedError(error) ||
+        (error.name === "InvalidSignatureException" && error.message?.includes("Signature expired")) ||
+        TRANSIENT_ERROR_CODES.includes(error.name) ||
+        NODEJS_TIMEOUT_ERROR_CODES.includes(error?.code || "") ||
+        NODEJS_NETWORK_ERROR_CODES.includes(error?.code || "") ||
+        TRANSIENT_ERROR_STATUS_CODES.includes(error.$metadata?.httpStatusCode || 0) ||
+        isBrowserNetworkError(error) ||
+        isNodeJsHttp2TransientError(error) ||
+        (error.cause !== undefined && depth <= 10 && isTransientError(error.cause, depth + 1)));
 const isServerError = (error) => {
     if (error.$metadata?.httpStatusCode !== undefined) {
         const statusCode = error.$metadata.httpStatusCode;
@@ -40722,7 +43197,9 @@ function parseRetryAfterHeader(response, logger) {
     if (!HttpResponse.isInstance(response)) {
         return;
     }
-    for (const header of Object.keys(response.headers)) {
+    for (const header in response.headers) {
+        if (!hasOwn(response.headers, header))
+            continue;
         const h = header.toLowerCase();
         if (h === "retry-after") {
             const retryAfter = response.headers[header];
@@ -41619,8 +44096,6 @@ class Schema {
 
 class ListSchema extends Schema {
     static symbol = Symbol.for("@smithy/lis");
-    name;
-    traits;
     valueSchema;
     symbol = ListSchema.symbol;
 }
@@ -41633,8 +44108,6 @@ const list = (namespace, name, traits, valueSchema) => Schema.assign(new ListSch
 
 class MapSchema extends Schema {
     static symbol = Symbol.for("@smithy/map");
-    name;
-    traits;
     keySchema;
     valueSchema;
     symbol = MapSchema.symbol;
@@ -41649,8 +44122,6 @@ const map = (namespace, name, traits, keySchema, valueSchema) => Schema.assign(n
 
 class OperationSchema extends Schema {
     static symbol = Symbol.for("@smithy/ope");
-    name;
-    traits;
     input;
     output;
     symbol = OperationSchema.symbol;
@@ -41665,8 +44136,6 @@ const op = (namespace, name, traits, input, output) => Schema.assign(new Operati
 
 class StructureSchema extends Schema {
     static symbol = Symbol.for("@smithy/str");
-    name;
-    traits;
     memberNames;
     memberList;
     symbol = StructureSchema.symbol;
@@ -42024,9 +44493,7 @@ const isStaticSchema = (sc) => Array.isArray(sc) && sc.length >= 5;
 
 class SimpleSchema extends Schema {
     static symbol = Symbol.for("@smithy/sim");
-    name;
     schemaRef;
-    traits;
     symbol = SimpleSchema.symbol;
 }
 const sim = (namespace, name, schemaRef, traits) => Schema.assign(new SimpleSchema(), {
@@ -42068,12 +44535,12 @@ class TypeRegistry {
         this.namespace = namespace;
         this.schemas = schemas;
         this.exceptions = exceptions;
+        if (!TypeRegistry.registries.has(namespace)) {
+            TypeRegistry.registries.set(namespace, this);
+        }
     }
     static for(namespace) {
-        if (!TypeRegistry.registries.has(namespace)) {
-            TypeRegistry.registries.set(namespace, new TypeRegistry(namespace));
-        }
-        return TypeRegistry.registries.get(namespace);
+        return TypeRegistry.registries.get(namespace) ?? new TypeRegistry(namespace);
     }
     copyFrom(other) {
         const { schemas, exceptions } = this;
@@ -42091,7 +44558,9 @@ class TypeRegistry {
     register(shapeId, schema) {
         const qualifiedName = this.normalizeShapeId(shapeId);
         for (const r of [this, TypeRegistry.for(qualifiedName.split("#")[0])]) {
-            r.schemas.set(qualifiedName, schema);
+            if (!r.schemas.has(qualifiedName)) {
+                r.schemas.set(qualifiedName, schema);
+            }
         }
     }
     getSchema(shapeId) {
@@ -42116,9 +44585,15 @@ class TypeRegistry {
     registerError(es, ctor) {
         const $error = es;
         const ns = $error[1];
+        const qualifiedName = ns + "#" + $error[2];
+        if (!ctor.hasOwnProperty?.("shapeId")) {
+            ctor.shapeId = qualifiedName;
+        }
         for (const r of [this, TypeRegistry.for(ns)]) {
-            r.schemas.set(ns + "#" + $error[2], $error);
-            r.exceptions.set($error, ctor);
+            if (!r.schemas.has(qualifiedName) && !r.exceptions.has($error)) {
+                r.schemas.set(qualifiedName, $error);
+                r.exceptions.set($error, ctor);
+            }
         }
     }
     getErrorCtor(es) {
@@ -42196,8 +44671,9 @@ exports.translateTraits = translateTraits;
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 const { createHmac, createHash, getRandomValues } = __nccwpck_require__(77598);
+const { hasOwn, HttpResponse } = __nccwpck_require__(34534);
+exports.hasOwn = hasOwn;
 const { ReadStream, lstatSync, fstatSync } = __nccwpck_require__(73024);
-const { HttpResponse } = __nccwpck_require__(34534);
 const { toEndpointV1 } = __nccwpck_require__(62085);
 const { Readable, Writable, PassThrough } = __nccwpck_require__(57075);
 
@@ -42456,6 +44932,8 @@ const expectUnion = (value) => {
     const asObject = expectObject(value);
     const setKeys = [];
     for (const k in asObject) {
+        if (!hasOwn(asObject, k))
+            continue;
         if (asObject[k] != null) {
             setKeys.push(k);
         }
@@ -42940,7 +45418,7 @@ const splitHeader = (value) => {
     });
 };
 
-const format = /^-?\d*(\.\d+)?$/;
+const format = /^-?((0|[1-9]\d*)(\.\d+)?|\.\d+)([eE][+-]?\d+)?$/;
 class NumericValue {
     string;
     type;
@@ -42948,7 +45426,7 @@ class NumericValue {
         this.string = string;
         this.type = type;
         if (!format.test(string)) {
-            throw new Error(`@smithy/core/serde - NumericValue must only contain [0-9], at most one decimal point ".", and an optional negation prefix "-".`);
+            throw new Error(`@smithy/core/serde - NumericValue string must conform to the Smithy bigDecimal format. Received: "${string}"`);
         }
     }
     toString() {
@@ -43546,6 +46024,8 @@ const getAwsChunkedEncodingStream$1 = (readableStream, options) => {
         checksumLocationName !== undefined &&
         streamHasher !== undefined;
     const digest = checksumRequired ? streamHasher(checksumAlgorithmFn, readableStream) : undefined;
+    Promise.resolve(digest).catch(() => {
+    });
     const reader = readableStream.getReader();
     return new ReadableStream({
         async pull(controller) {
@@ -43578,8 +46058,12 @@ function getAwsChunkedEncodingStream(stream, options) {
         checksumLocationName !== undefined &&
         streamHasher !== undefined;
     const digest = checksumRequired ? streamHasher(checksumAlgorithmFn, readable) : undefined;
+    Promise.resolve(digest).catch(() => {
+    });
     const awsChunkedEncodingStream = new Readable({
-        read: () => { },
+        read() {
+            readable.resume();
+        },
     });
     readable.on("data", (data) => {
         const length = bodyLengthChecker(data) || 0;
@@ -43588,16 +46072,27 @@ function getAwsChunkedEncodingStream(stream, options) {
         }
         awsChunkedEncodingStream.push(`${length.toString(16)}\r\n`);
         awsChunkedEncodingStream.push(data);
-        awsChunkedEncodingStream.push("\r\n");
-    });
-    readable.on("end", async () => {
-        awsChunkedEncodingStream.push(`0\r\n`);
-        if (checksumRequired) {
-            const checksum = base64Encoder(await digest);
-            awsChunkedEncodingStream.push(`${checksumLocationName}:${checksum}\r\n`);
-            awsChunkedEncodingStream.push(`\r\n`);
+        if (!awsChunkedEncodingStream.push("\r\n")) {
+            readable.pause();
         }
-        awsChunkedEncodingStream.push(null);
+    });
+    readable.on("error", (err) => {
+        awsChunkedEncodingStream.destroy(err);
+    });
+    readable.pause();
+    readable.on("end", async () => {
+        try {
+            awsChunkedEncodingStream.push(`0\r\n`);
+            if (checksumRequired) {
+                const checksum = base64Encoder(await digest);
+                awsChunkedEncodingStream.push(`${checksumLocationName}:${checksum}\r\n`);
+                awsChunkedEncodingStream.push(`\r\n`);
+            }
+            awsChunkedEncodingStream.push(null);
+        }
+        catch (err) {
+            awsChunkedEncodingStream.destroy(err);
+        }
     });
     return awsChunkedEncodingStream;
 }
@@ -43951,6 +46446,10 @@ const { SMITHY_CONTEXT_KEY } = __nccwpck_require__(90690);
 
 const getSmithyContext = (context) => context[SMITHY_CONTEXT_KEY] || (context[SMITHY_CONTEXT_KEY] = {});
 
+function hasOwn(o, k) {
+    return Object.prototype.hasOwnProperty.call(o, k);
+}
+
 class HttpRequest {
     method;
     protocol;
@@ -44110,6 +46609,8 @@ const toEndpointV1 = (endpoint) => {
             if (endpoint.headers) {
                 v1Endpoint.headers = {};
                 for (const name in endpoint.headers) {
+                    if (!hasOwn(endpoint.headers, name))
+                        continue;
                     v1Endpoint.headers[name.toLowerCase()] = endpoint.headers[name].join(", ");
                 }
             }
@@ -44123,6 +46624,7 @@ const toEndpointV1 = (endpoint) => {
 exports.HttpRequest = HttpRequest;
 exports.HttpResponse = HttpResponse;
 exports.getSmithyContext = getSmithyContext;
+exports.hasOwn = hasOwn;
 exports.isValidHostLabel = isValidHostLabel;
 exports.isValidHostname = isValidHostname;
 exports.normalizeProvider = normalizeProvider;
@@ -44513,12 +47015,13 @@ exports.providerConfigFromInit = providerConfigFromInit;
 /***/ 61279:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
+const { hasOwn } = __nccwpck_require__(92430);
+const { streamCollector } = __nccwpck_require__(92430);
+exports.streamCollector = streamCollector;
 const { buildQueryString, HttpResponse } = __nccwpck_require__(93422);
 const node_https = __nccwpck_require__(44708);
 const { Readable } = __nccwpck_require__(57075);
 const http2 = __nccwpck_require__(32467);
-const { streamCollector } = __nccwpck_require__(92430);
-exports.streamCollector = streamCollector;
 
 function buildAbortError(abortSignal) {
     const reason = abortSignal && typeof abortSignal === "object" && "reason" in abortSignal
@@ -44545,6 +47048,8 @@ const NODEJS_TIMEOUT_ERROR_CODES = ["ECONNRESET", "EPIPE", "ETIMEDOUT"];
 const getTransformedHeaders = (headers) => {
     const transformedHeaders = {};
     for (const name in headers) {
+        if (!hasOwn(headers, name))
+            continue;
         const headerValues = headers[name];
         transformedHeaders[name] = Array.isArray(headerValues) ? headerValues.join(",") : headerValues;
     }
@@ -44746,6 +47251,8 @@ class NodeHttpHandler {
         }
         if (sockets && requests) {
             for (const origin in sockets) {
+                if (!hasOwn(sockets, origin))
+                    continue;
                 const socketsInUse = sockets[origin]?.length ?? 0;
                 const requestsEnqueued = requests[origin]?.length ?? 0;
                 if (socketsInUse >= maxSockets && requestsEnqueued >= 2 * maxSockets) {
@@ -44781,6 +47288,7 @@ or increase socketAcquisitionWarningTimeout=(millis) in the NodeHttpHandler conf
             this.config = await this.configProvider;
         }
         const config = this.config;
+        const logger = config.logger;
         const isSSL = request.protocol === "https:";
         if (!isSSL && !this.config.httpAgent) {
             this.config.httpAgent = await this.config.httpAgentProvider();
@@ -44824,7 +47332,7 @@ or increase socketAcquisitionWarningTimeout=(millis) in the NodeHttpHandler conf
                 });
             }
             socketWarningTimeoutId = timing.setTimeout(() => {
-                this.socketWarningTimestamp = NodeHttpHandler.checkSocketUsage(agent, this.socketWarningTimestamp, config.logger);
+                this.socketWarningTimestamp = NodeHttpHandler.checkSocketUsage(agent, this.socketWarningTimestamp, logger);
             }, config.socketAcquisitionWarningTimeout ?? (config.requestTimeout ?? 2000) + (config.connectionTimeout ?? 1000));
             const queryString = request.query ? buildQueryString(request.query) : "";
             let auth = undefined;
@@ -44891,7 +47399,7 @@ or increase socketAcquisitionWarningTimeout=(millis) in the NodeHttpHandler conf
             }
             const effectiveRequestTimeout = requestTimeout ?? config.requestTimeout;
             connectionTimeoutId = setConnectionTimeout(req, reject, config.connectionTimeout);
-            requestTimeoutId = setRequestTimeout(req, reject, effectiveRequestTimeout, config.throwOnRequestTimeout, config.logger ?? console);
+            requestTimeoutId = setRequestTimeout(req, reject, effectiveRequestTimeout, config.throwOnRequestTimeout, logger ?? console);
             socketTimeoutId = setSocketTimeout(req, reject, config.socketTimeout);
             const httpAgent = nodeHttpsOptions.agent;
             if (typeof httpAgent === "object" && "keepAlive" in httpAgent) {
@@ -44909,6 +47417,12 @@ or increase socketAcquisitionWarningTimeout=(millis) in the NodeHttpHandler conf
     updateHttpClientConfig(key, value) {
         this.config = undefined;
         this.configProvider = this.configProvider.then((config) => {
+            if (key === Symbol.for("logger")) {
+                return {
+                    ...config,
+                    logger: config.logger ?? value,
+                };
+            }
             return {
                 ...config,
                 [key]: value,
@@ -44994,6 +47508,7 @@ class ClientHttp2SessionRef {
     destroy() {
         this.refs = 0;
         if (!this.session.destroyed) {
+            this.session.setTimeout(0);
             this.session.destroy();
         }
     }
@@ -45111,9 +47626,8 @@ class NodeHttp2ConnectionManager {
         session.on("error", ensureDestroyed);
         session.on("frameError", ensureDestroyed);
         session.on("close", ensureDestroyed);
-        if (connectionConfiguration.requestTimeout) {
-            session.setTimeout(connectionConfiguration.requestTimeout, ensureDestroyed);
-        }
+        const timeout = connectionConfiguration.requestTimeout ?? 300_000;
+        session.setTimeout(timeout, ensureDestroyed);
         ref.retain();
         return ref;
     }
@@ -45320,6 +47834,9 @@ class NodeHttp2Handler {
                 resolve({ response: httpResponse });
                 if (useIsolatedSession) {
                     session.close();
+                    clientHttp2Stream.on("end", () => {
+                        ref.destroy();
+                    });
                 }
             });
             clientHttp2Stream.on("close", () => {
@@ -45330,7 +47847,11 @@ class NodeHttp2Handler {
                     this.connectionManager.release(requestContext, ref);
                 }
                 if (!fulfilled) {
-                    rejectWithDestroy(new Error("Unexpected error: http2 request did not get a response"));
+                    const error = new Error("Unexpected error: http2 request did not get a response");
+                    if (session.destroyed) {
+                        error.name = "TimeoutError";
+                    }
+                    rejectWithDestroy(error);
                 }
             });
             writeRequestBodyPromise = writeRequestBody(clientHttp2Stream, request, effectiveRequestTimeout);
@@ -45360,14 +47881,16 @@ exports.NodeHttpHandler = NodeHttpHandler;
 /***/ 75118:
 /***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
-const { fromUtf8, fromHex, toHex, toUint8Array, isArrayBuffer } = __nccwpck_require__(92430);
+const { hasOwn, fromUtf8, fromHex, toHex, toUint8Array, isArrayBuffer } = __nccwpck_require__(92430);
 const { normalizeProvider } = __nccwpck_require__(92658);
 const { escapeUri, HttpRequest } = __nccwpck_require__(93422);
 
 class HeaderFormatter {
     format(headers) {
         const chunks = [];
-        for (const headerName of Object.keys(headers)) {
+        for (const headerName in headers) {
+            if (!hasOwn(headers, headerName))
+                continue;
             const bytes = fromUtf8(headerName);
             chunks.push(Uint8Array.from([bytes.byteLength]), bytes, this.formatHeaderValue(headers[headerName]));
         }
@@ -45382,27 +47905,27 @@ class HeaderFormatter {
     formatHeaderValue(header) {
         switch (header.type) {
             case "boolean":
-                return Uint8Array.from([header.value ? HEADER_VALUE_TYPE.boolTrue : HEADER_VALUE_TYPE.boolFalse]);
+                return Uint8Array.from([header.value ? 0 : 1]);
             case "byte":
-                return Uint8Array.from([HEADER_VALUE_TYPE.byte, header.value]);
+                return Uint8Array.from([2, header.value]);
             case "short":
                 const shortView = new DataView(new ArrayBuffer(3));
-                shortView.setUint8(0, HEADER_VALUE_TYPE.short);
+                shortView.setUint8(0, 3);
                 shortView.setInt16(1, header.value, false);
                 return new Uint8Array(shortView.buffer);
             case "integer":
                 const intView = new DataView(new ArrayBuffer(5));
-                intView.setUint8(0, HEADER_VALUE_TYPE.integer);
+                intView.setUint8(0, 4);
                 intView.setInt32(1, header.value, false);
                 return new Uint8Array(intView.buffer);
             case "long":
                 const longBytes = new Uint8Array(9);
-                longBytes[0] = HEADER_VALUE_TYPE.long;
+                longBytes[0] = 5;
                 longBytes.set(header.value.bytes, 1);
                 return longBytes;
             case "binary":
                 const binView = new DataView(new ArrayBuffer(3 + header.value.byteLength));
-                binView.setUint8(0, HEADER_VALUE_TYPE.byteArray);
+                binView.setUint8(0, 6);
                 binView.setUint16(1, header.value.byteLength, false);
                 const binBytes = new Uint8Array(binView.buffer);
                 binBytes.set(header.value, 3);
@@ -45410,14 +47933,14 @@ class HeaderFormatter {
             case "string":
                 const utf8Bytes = fromUtf8(header.value);
                 const strView = new DataView(new ArrayBuffer(3 + utf8Bytes.byteLength));
-                strView.setUint8(0, HEADER_VALUE_TYPE.string);
+                strView.setUint8(0, 7);
                 strView.setUint16(1, utf8Bytes.byteLength, false);
                 const strBytes = new Uint8Array(strView.buffer);
                 strBytes.set(utf8Bytes, 3);
                 return strBytes;
             case "timestamp":
                 const tsBytes = new Uint8Array(9);
-                tsBytes[0] = HEADER_VALUE_TYPE.timestamp;
+                tsBytes[0] = 8;
                 tsBytes.set(Int64.fromNumber(header.value.valueOf()).bytes, 1);
                 return tsBytes;
             case "uuid":
@@ -45425,7 +47948,7 @@ class HeaderFormatter {
                     throw new Error(`Invalid UUID received: ${header.value}`);
                 }
                 const uuidBytes = new Uint8Array(17);
-                uuidBytes[0] = HEADER_VALUE_TYPE.uuid;
+                uuidBytes[0] = 9;
                 uuidBytes.set(fromHex(header.value.replace(/-/g, "")), 1);
                 return uuidBytes;
         }
@@ -45536,7 +48059,9 @@ const MAX_PRESIGNED_TTL = 60 * 60 * 24 * 7;
 const getCanonicalQuery = ({ query = {} }) => {
     const keys = [];
     const serialized = {};
-    for (const key of Object.keys(query)) {
+    for (const key in query) {
+        if (!hasOwn(query, key))
+            continue;
         if (key.toLowerCase() === SIGNATURE_HEADER) {
             continue;
         }
@@ -45697,13 +48222,18 @@ const getCanonicalHeaders = ({ headers }, unsignableHeaders, signableHeaders) =>
                 continue;
             }
         }
-        canonical[canonicalHeaderName] = headers[headerName].trim().replace(/\s+/g, " ");
+        canonical[canonicalHeaderName] = headers[headerName]
+            .replace(/[\r\n]/g, " ")
+            .replace(/[ \t]+/g, " ")
+            .replace(/^ | $/g, "");
     }
     return canonical;
 };
 
 const getPayloadHash = async ({ headers, body }, hashConstructor) => {
-    for (const headerName of Object.keys(headers)) {
+    for (const headerName in headers) {
+        if (!hasOwn(headers, headerName))
+            continue;
         if (headerName.toLowerCase() === SHA256_HEADER) {
             return headers[headerName];
         }
@@ -45721,7 +48251,9 @@ const getPayloadHash = async ({ headers, body }, hashConstructor) => {
 
 const hasHeader = (soughtHeader, headers) => {
     soughtHeader = soughtHeader.toLowerCase();
-    for (const headerName of Object.keys(headers)) {
+    for (const headerName in headers) {
+        if (!hasOwn(headers, headerName))
+            continue;
         if (soughtHeader === headerName.toLowerCase()) {
             return true;
         }
@@ -45731,7 +48263,9 @@ const hasHeader = (soughtHeader, headers) => {
 
 const moveHeadersToQuery = (request, options = {}) => {
     const { headers, query = {} } = HttpRequest.clone(request);
-    for (const name of Object.keys(headers)) {
+    for (const name in headers) {
+        if (!hasOwn(headers, name))
+            continue;
         const lname = name.toLowerCase();
         if ((lname.slice(0, 6) === "x-amz-" && !options.unhoistableHeaders?.has(lname)) ||
             options.hoistableHeaders?.has(lname)) {
@@ -45748,7 +48282,9 @@ const moveHeadersToQuery = (request, options = {}) => {
 
 const prepareRequest = (request) => {
     request = HttpRequest.clone(request);
-    for (const headerName of Object.keys(request.headers)) {
+    for (const headerName in request.headers) {
+        if (!hasOwn(request.headers, headerName))
+            continue;
         if (GENERATED_HEADERS.indexOf(headerName.toLowerCase()) > -1) {
             delete request.headers[headerName];
         }
@@ -53588,286 +56124,10 @@ exports["default"] = parseProxyResponse;
 
 /***/ }),
 
-/***/ 59380:
-/***/ ((module) => {
-
-
-module.exports = balanced;
-function balanced(a, b, str) {
-  if (a instanceof RegExp) a = maybeMatch(a, str);
-  if (b instanceof RegExp) b = maybeMatch(b, str);
-
-  var r = range(a, b, str);
-
-  return r && {
-    start: r[0],
-    end: r[1],
-    pre: str.slice(0, r[0]),
-    body: str.slice(r[0] + a.length, r[1]),
-    post: str.slice(r[1] + b.length)
-  };
-}
-
-function maybeMatch(reg, str) {
-  var m = str.match(reg);
-  return m ? m[0] : null;
-}
-
-balanced.range = range;
-function range(a, b, str) {
-  var begs, beg, left, right, result;
-  var ai = str.indexOf(a);
-  var bi = str.indexOf(b, ai + 1);
-  var i = ai;
-
-  if (ai >= 0 && bi > 0) {
-    if(a===b) {
-      return [ai, bi];
-    }
-    begs = [];
-    left = str.length;
-
-    while (i >= 0 && !result) {
-      if (i == ai) {
-        begs.push(i);
-        ai = str.indexOf(a, i + 1);
-      } else if (begs.length == 1) {
-        result = [ begs.pop(), bi ];
-      } else {
-        beg = begs.pop();
-        if (beg < left) {
-          left = beg;
-          right = bi;
-        }
-
-        bi = str.indexOf(b, i + 1);
-      }
-
-      i = ai < bi && ai >= 0 ? ai : bi;
-    }
-
-    if (begs.length) {
-      result = [ left, right ];
-    }
-  }
-
-  return result;
-}
-
-
-/***/ }),
-
 /***/ 9449:
 /***/ (function(module) {
 
 !function(e,t){ true?module.exports=t():0}(this,(function(){return function(e){var t={};function r(i){if(t[i])return t[i].exports;var n=t[i]={i:i,l:!1,exports:{}};return e[i].call(n.exports,n,n.exports,r),n.l=!0,n.exports}return r.m=e,r.c=t,r.d=function(e,t,i){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:i})},r.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var i=Object.create(null);if(r.r(i),Object.defineProperty(i,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var n in e)r.d(i,n,function(t){return e[t]}.bind(null,n));return i},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=90)}({17:function(e,t,r){"use strict";t.__esModule=!0,t.default=void 0;var i=r(18),n=function(){function e(){}return e.getFirstMatch=function(e,t){var r=t.match(e);return r&&r.length>0&&r[1]||""},e.getSecondMatch=function(e,t){var r=t.match(e);return r&&r.length>1&&r[2]||""},e.matchAndReturnConst=function(e,t,r){if(e.test(t))return r},e.getWindowsVersionName=function(e){switch(e){case"NT":return"NT";case"XP":return"XP";case"NT 5.0":return"2000";case"NT 5.1":return"XP";case"NT 5.2":return"2003";case"NT 6.0":return"Vista";case"NT 6.1":return"7";case"NT 6.2":return"8";case"NT 6.3":return"8.1";case"NT 10.0":return"10";default:return}},e.getMacOSVersionName=function(e){var t=e.split(".").splice(0,2).map((function(e){return parseInt(e,10)||0}));t.push(0);var r=t[0],i=t[1];if(10===r)switch(i){case 5:return"Leopard";case 6:return"Snow Leopard";case 7:return"Lion";case 8:return"Mountain Lion";case 9:return"Mavericks";case 10:return"Yosemite";case 11:return"El Capitan";case 12:return"Sierra";case 13:return"High Sierra";case 14:return"Mojave";case 15:return"Catalina";default:return}switch(r){case 11:return"Big Sur";case 12:return"Monterey";case 13:return"Ventura";case 14:return"Sonoma";case 15:return"Sequoia";default:return}},e.getAndroidVersionName=function(e){var t=e.split(".").splice(0,2).map((function(e){return parseInt(e,10)||0}));if(t.push(0),!(1===t[0]&&t[1]<5))return 1===t[0]&&t[1]<6?"Cupcake":1===t[0]&&t[1]>=6?"Donut":2===t[0]&&t[1]<2?"Eclair":2===t[0]&&2===t[1]?"Froyo":2===t[0]&&t[1]>2?"Gingerbread":3===t[0]?"Honeycomb":4===t[0]&&t[1]<1?"Ice Cream Sandwich":4===t[0]&&t[1]<4?"Jelly Bean":4===t[0]&&t[1]>=4?"KitKat":5===t[0]?"Lollipop":6===t[0]?"Marshmallow":7===t[0]?"Nougat":8===t[0]?"Oreo":9===t[0]?"Pie":void 0},e.getVersionPrecision=function(e){return e.split(".").length},e.compareVersions=function(t,r,i){void 0===i&&(i=!1);var n=e.getVersionPrecision(t),a=e.getVersionPrecision(r),o=Math.max(n,a),s=0,u=e.map([t,r],(function(t){var r=o-e.getVersionPrecision(t),i=t+new Array(r+1).join(".0");return e.map(i.split("."),(function(e){return new Array(20-e.length).join("0")+e})).reverse()}));for(i&&(s=o-Math.min(n,a)),o-=1;o>=s;){if(u[0][o]>u[1][o])return 1;if(u[0][o]===u[1][o]){if(o===s)return 0;o-=1}else if(u[0][o]<u[1][o])return-1}},e.map=function(e,t){var r,i=[];if(Array.prototype.map)return Array.prototype.map.call(e,t);for(r=0;r<e.length;r+=1)i.push(t(e[r]));return i},e.find=function(e,t){var r,i;if(Array.prototype.find)return Array.prototype.find.call(e,t);for(r=0,i=e.length;r<i;r+=1){var n=e[r];if(t(n,r))return n}},e.assign=function(e){for(var t,r,i=e,n=arguments.length,a=new Array(n>1?n-1:0),o=1;o<n;o++)a[o-1]=arguments[o];if(Object.assign)return Object.assign.apply(Object,[e].concat(a));var s=function(){var e=a[t];"object"==typeof e&&null!==e&&Object.keys(e).forEach((function(t){i[t]=e[t]}))};for(t=0,r=a.length;t<r;t+=1)s();return e},e.getBrowserAlias=function(e){return i.BROWSER_ALIASES_MAP[e]},e.getBrowserTypeByAlias=function(e){return i.BROWSER_MAP[e]||""},e}();t.default=n,e.exports=t.default},18:function(e,t,r){"use strict";t.__esModule=!0,t.ENGINE_MAP=t.OS_MAP=t.PLATFORMS_MAP=t.BROWSER_MAP=t.BROWSER_ALIASES_MAP=void 0;t.BROWSER_ALIASES_MAP={AmazonBot:"amazonbot","Amazon Silk":"amazon_silk","Android Browser":"android",BaiduSpider:"baiduspider",Bada:"bada",BingCrawler:"bingcrawler",Brave:"brave",BlackBerry:"blackberry","ChatGPT-User":"chatgpt_user",Chrome:"chrome",ClaudeBot:"claudebot",Chromium:"chromium",Diffbot:"diffbot",DuckDuckBot:"duckduckbot",DuckDuckGo:"duckduckgo",Electron:"electron",Epiphany:"epiphany",FacebookExternalHit:"facebookexternalhit",Firefox:"firefox",Focus:"focus",Generic:"generic","Google Search":"google_search",Googlebot:"googlebot",GPTBot:"gptbot","Internet Explorer":"ie",InternetArchiveCrawler:"internetarchivecrawler","K-Meleon":"k_meleon",LibreWolf:"librewolf",Linespider:"linespider",Maxthon:"maxthon","Meta-ExternalAds":"meta_externalads","Meta-ExternalAgent":"meta_externalagent","Meta-ExternalFetcher":"meta_externalfetcher","Meta-WebIndexer":"meta_webindexer","Microsoft Edge":"edge","MZ Browser":"mz","NAVER Whale Browser":"naver","OAI-SearchBot":"oai_searchbot",Omgilibot:"omgilibot",Opera:"opera","Opera Coast":"opera_coast","Pale Moon":"pale_moon",PerplexityBot:"perplexitybot","Perplexity-User":"perplexity_user",PhantomJS:"phantomjs",PingdomBot:"pingdombot",Puffin:"puffin",QQ:"qq",QQLite:"qqlite",QupZilla:"qupzilla",Roku:"roku",Safari:"safari",Sailfish:"sailfish","Samsung Internet for Android":"samsung_internet",SlackBot:"slackbot",SeaMonkey:"seamonkey",Sleipnir:"sleipnir","Sogou Browser":"sogou",Swing:"swing",Tizen:"tizen","UC Browser":"uc",Vivaldi:"vivaldi","WebOS Browser":"webos",WeChat:"wechat",YahooSlurp:"yahooslurp","Yandex Browser":"yandex",YandexBot:"yandexbot",YouBot:"youbot"};t.BROWSER_MAP={amazonbot:"AmazonBot",amazon_silk:"Amazon Silk",android:"Android Browser",baiduspider:"BaiduSpider",bada:"Bada",bingcrawler:"BingCrawler",blackberry:"BlackBerry",brave:"Brave",chatgpt_user:"ChatGPT-User",chrome:"Chrome",claudebot:"ClaudeBot",chromium:"Chromium",diffbot:"Diffbot",duckduckbot:"DuckDuckBot",duckduckgo:"DuckDuckGo",edge:"Microsoft Edge",electron:"Electron",epiphany:"Epiphany",facebookexternalhit:"FacebookExternalHit",firefox:"Firefox",focus:"Focus",generic:"Generic",google_search:"Google Search",googlebot:"Googlebot",gptbot:"GPTBot",ie:"Internet Explorer",internetarchivecrawler:"InternetArchiveCrawler",k_meleon:"K-Meleon",librewolf:"LibreWolf",linespider:"Linespider",maxthon:"Maxthon",meta_externalads:"Meta-ExternalAds",meta_externalagent:"Meta-ExternalAgent",meta_externalfetcher:"Meta-ExternalFetcher",meta_webindexer:"Meta-WebIndexer",mz:"MZ Browser",naver:"NAVER Whale Browser",oai_searchbot:"OAI-SearchBot",omgilibot:"Omgilibot",opera:"Opera",opera_coast:"Opera Coast",pale_moon:"Pale Moon",perplexitybot:"PerplexityBot",perplexity_user:"Perplexity-User",phantomjs:"PhantomJS",pingdombot:"PingdomBot",puffin:"Puffin",qq:"QQ Browser",qqlite:"QQ Browser Lite",qupzilla:"QupZilla",roku:"Roku",safari:"Safari",sailfish:"Sailfish",samsung_internet:"Samsung Internet for Android",seamonkey:"SeaMonkey",slackbot:"SlackBot",sleipnir:"Sleipnir",sogou:"Sogou Browser",swing:"Swing",tizen:"Tizen",uc:"UC Browser",vivaldi:"Vivaldi",webos:"WebOS Browser",wechat:"WeChat",yahooslurp:"YahooSlurp",yandex:"Yandex Browser",yandexbot:"YandexBot",youbot:"YouBot"};t.PLATFORMS_MAP={bot:"bot",desktop:"desktop",mobile:"mobile",tablet:"tablet",tv:"tv"};t.OS_MAP={Android:"Android",Bada:"Bada",BlackBerry:"BlackBerry",ChromeOS:"Chrome OS",HarmonyOS:"HarmonyOS",iOS:"iOS",Linux:"Linux",MacOS:"macOS",PlayStation4:"PlayStation 4",Roku:"Roku",Tizen:"Tizen",WebOS:"WebOS",Windows:"Windows",WindowsPhone:"Windows Phone"};t.ENGINE_MAP={Blink:"Blink",EdgeHTML:"EdgeHTML",Gecko:"Gecko",Presto:"Presto",Trident:"Trident",WebKit:"WebKit"}},90:function(e,t,r){"use strict";t.__esModule=!0,t.default=void 0;var i,n=(i=r(91))&&i.__esModule?i:{default:i},a=r(18);function o(e,t){for(var r=0;r<t.length;r++){var i=t[r];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}var s=function(){function e(){}var t,r,i;return e.getParser=function(e,t,r){if(void 0===t&&(t=!1),void 0===r&&(r=null),"string"!=typeof e)throw new Error("UserAgent should be a string");return new n.default(e,t,r)},e.parse=function(e,t){return void 0===t&&(t=null),new n.default(e,t).getResult()},t=e,i=[{key:"BROWSER_MAP",get:function(){return a.BROWSER_MAP}},{key:"ENGINE_MAP",get:function(){return a.ENGINE_MAP}},{key:"OS_MAP",get:function(){return a.OS_MAP}},{key:"PLATFORMS_MAP",get:function(){return a.PLATFORMS_MAP}}],(r=null)&&o(t.prototype,r),i&&o(t,i),e}();t.default=s,e.exports=t.default},91:function(e,t,r){"use strict";t.__esModule=!0,t.default=void 0;var i=u(r(92)),n=u(r(93)),a=u(r(94)),o=u(r(95)),s=u(r(17));function u(e){return e&&e.__esModule?e:{default:e}}var d=function(){function e(e,t,r){if(void 0===t&&(t=!1),void 0===r&&(r=null),null==e||""===e)throw new Error("UserAgent parameter can't be empty");this._ua=e;var i=!1;"boolean"==typeof t?(i=t,this._hints=r):this._hints=null!=t&&"object"==typeof t?t:null,this.parsedResult={},!0!==i&&this.parse()}var t=e.prototype;return t.getHints=function(){return this._hints},t.hasBrand=function(e){if(!this._hints||!Array.isArray(this._hints.brands))return!1;var t=e.toLowerCase();return this._hints.brands.some((function(e){return e.brand&&e.brand.toLowerCase()===t}))},t.getBrandVersion=function(e){if(this._hints&&Array.isArray(this._hints.brands)){var t=e.toLowerCase(),r=this._hints.brands.find((function(e){return e.brand&&e.brand.toLowerCase()===t}));return r?r.version:void 0}},t.getUA=function(){return this._ua},t.test=function(e){return e.test(this._ua)},t.parseBrowser=function(){var e=this;this.parsedResult.browser={};var t=s.default.find(i.default,(function(t){if("function"==typeof t.test)return t.test(e);if(Array.isArray(t.test))return t.test.some((function(t){return e.test(t)}));throw new Error("Browser's test function is not valid")}));return t&&(this.parsedResult.browser=t.describe(this.getUA(),this)),this.parsedResult.browser},t.getBrowser=function(){return this.parsedResult.browser?this.parsedResult.browser:this.parseBrowser()},t.getBrowserName=function(e){return e?String(this.getBrowser().name).toLowerCase()||"":this.getBrowser().name||""},t.getBrowserVersion=function(){return this.getBrowser().version},t.getOS=function(){return this.parsedResult.os?this.parsedResult.os:this.parseOS()},t.parseOS=function(){var e=this;this.parsedResult.os={};var t=s.default.find(n.default,(function(t){if("function"==typeof t.test)return t.test(e);if(Array.isArray(t.test))return t.test.some((function(t){return e.test(t)}));throw new Error("Browser's test function is not valid")}));return t&&(this.parsedResult.os=t.describe(this.getUA())),this.parsedResult.os},t.getOSName=function(e){var t=this.getOS().name;return e?String(t).toLowerCase()||"":t||""},t.getOSVersion=function(){return this.getOS().version},t.getPlatform=function(){return this.parsedResult.platform?this.parsedResult.platform:this.parsePlatform()},t.getPlatformType=function(e){void 0===e&&(e=!1);var t=this.getPlatform().type;return e?String(t).toLowerCase()||"":t||""},t.parsePlatform=function(){var e=this;this.parsedResult.platform={};var t=s.default.find(a.default,(function(t){if("function"==typeof t.test)return t.test(e);if(Array.isArray(t.test))return t.test.some((function(t){return e.test(t)}));throw new Error("Browser's test function is not valid")}));return t&&(this.parsedResult.platform=t.describe(this.getUA())),this.parsedResult.platform},t.getEngine=function(){return this.parsedResult.engine?this.parsedResult.engine:this.parseEngine()},t.getEngineName=function(e){return e?String(this.getEngine().name).toLowerCase()||"":this.getEngine().name||""},t.parseEngine=function(){var e=this;this.parsedResult.engine={};var t=s.default.find(o.default,(function(t){if("function"==typeof t.test)return t.test(e);if(Array.isArray(t.test))return t.test.some((function(t){return e.test(t)}));throw new Error("Browser's test function is not valid")}));return t&&(this.parsedResult.engine=t.describe(this.getUA())),this.parsedResult.engine},t.parse=function(){return this.parseBrowser(),this.parseOS(),this.parsePlatform(),this.parseEngine(),this},t.getResult=function(){return s.default.assign({},this.parsedResult)},t.satisfies=function(e){var t=this,r={},i=0,n={},a=0;if(Object.keys(e).forEach((function(t){var o=e[t];"string"==typeof o?(n[t]=o,a+=1):"object"==typeof o&&(r[t]=o,i+=1)})),i>0){var o=Object.keys(r),u=s.default.find(o,(function(e){return t.isOS(e)}));if(u){var d=this.satisfies(r[u]);if(void 0!==d)return d}var c=s.default.find(o,(function(e){return t.isPlatform(e)}));if(c){var f=this.satisfies(r[c]);if(void 0!==f)return f}}if(a>0){var l=Object.keys(n),b=s.default.find(l,(function(e){return t.isBrowser(e,!0)}));if(void 0!==b)return this.compareVersion(n[b])}},t.isBrowser=function(e,t){void 0===t&&(t=!1);var r=this.getBrowserName().toLowerCase(),i=e.toLowerCase(),n=s.default.getBrowserTypeByAlias(i);return t&&n&&(i=n.toLowerCase()),i===r},t.compareVersion=function(e){var t=[0],r=e,i=!1,n=this.getBrowserVersion();if("string"==typeof n)return">"===e[0]||"<"===e[0]?(r=e.substr(1),"="===e[1]?(i=!0,r=e.substr(2)):t=[],">"===e[0]?t.push(1):t.push(-1)):"="===e[0]?r=e.substr(1):"~"===e[0]&&(i=!0,r=e.substr(1)),t.indexOf(s.default.compareVersions(n,r,i))>-1},t.isOS=function(e){return this.getOSName(!0)===String(e).toLowerCase()},t.isPlatform=function(e){return this.getPlatformType(!0)===String(e).toLowerCase()},t.isEngine=function(e){return this.getEngineName(!0)===String(e).toLowerCase()},t.is=function(e,t){return void 0===t&&(t=!1),this.isBrowser(e,t)||this.isOS(e)||this.isPlatform(e)},t.some=function(e){var t=this;return void 0===e&&(e=[]),e.some((function(e){return t.is(e)}))},e}();t.default=d,e.exports=t.default},92:function(e,t,r){"use strict";t.__esModule=!0,t.default=void 0;var i,n=(i=r(17))&&i.__esModule?i:{default:i};var a=/version\/(\d+(\.?_?\d+)+)/i,o=[{test:[/gptbot/i],describe:function(e){var t={name:"GPTBot"},r=n.default.getFirstMatch(/gptbot\/(\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/chatgpt-user/i],describe:function(e){var t={name:"ChatGPT-User"},r=n.default.getFirstMatch(/chatgpt-user\/(\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/oai-searchbot/i],describe:function(e){var t={name:"OAI-SearchBot"},r=n.default.getFirstMatch(/oai-searchbot\/(\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/claudebot/i,/claude-web/i,/claude-user/i,/claude-searchbot/i],describe:function(e){var t={name:"ClaudeBot"},r=n.default.getFirstMatch(/(?:claudebot|claude-web|claude-user|claude-searchbot)\/(\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/omgilibot/i,/webzio-extended/i],describe:function(e){var t={name:"Omgilibot"},r=n.default.getFirstMatch(/(?:omgilibot|webzio-extended)\/(\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/diffbot/i],describe:function(e){var t={name:"Diffbot"},r=n.default.getFirstMatch(/diffbot\/(\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/perplexitybot/i],describe:function(e){var t={name:"PerplexityBot"},r=n.default.getFirstMatch(/perplexitybot\/(\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/perplexity-user/i],describe:function(e){var t={name:"Perplexity-User"},r=n.default.getFirstMatch(/perplexity-user\/(\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/youbot/i],describe:function(e){var t={name:"YouBot"},r=n.default.getFirstMatch(/youbot\/(\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/meta-webindexer/i],describe:function(e){var t={name:"Meta-WebIndexer"},r=n.default.getFirstMatch(/meta-webindexer\/(\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/meta-externalads/i],describe:function(e){var t={name:"Meta-ExternalAds"},r=n.default.getFirstMatch(/meta-externalads\/(\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/meta-externalagent/i],describe:function(e){var t={name:"Meta-ExternalAgent"},r=n.default.getFirstMatch(/meta-externalagent\/(\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/meta-externalfetcher/i],describe:function(e){var t={name:"Meta-ExternalFetcher"},r=n.default.getFirstMatch(/meta-externalfetcher\/(\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/googlebot/i],describe:function(e){var t={name:"Googlebot"},r=n.default.getFirstMatch(/googlebot\/(\d+(\.\d+))/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/linespider/i],describe:function(e){var t={name:"Linespider"},r=n.default.getFirstMatch(/(?:linespider)(?:-[-\w]+)?[\s/](\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/amazonbot/i],describe:function(e){var t={name:"AmazonBot"},r=n.default.getFirstMatch(/amazonbot\/(\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/bingbot/i],describe:function(e){var t={name:"BingCrawler"},r=n.default.getFirstMatch(/bingbot\/(\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/baiduspider/i],describe:function(e){var t={name:"BaiduSpider"},r=n.default.getFirstMatch(/baiduspider\/(\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/duckduckbot/i],describe:function(e){var t={name:"DuckDuckBot"},r=n.default.getFirstMatch(/duckduckbot\/(\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/ia_archiver/i],describe:function(e){var t={name:"InternetArchiveCrawler"},r=n.default.getFirstMatch(/ia_archiver\/(\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/facebookexternalhit/i,/facebookcatalog/i],describe:function(){return{name:"FacebookExternalHit"}}},{test:[/slackbot/i,/slack-imgProxy/i],describe:function(e){var t={name:"SlackBot"},r=n.default.getFirstMatch(/(?:slackbot|slack-imgproxy)(?:-[-\w]+)?[\s/](\d+(\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/yahoo!?[\s/]*slurp/i],describe:function(){return{name:"YahooSlurp"}}},{test:[/yandexbot/i,/yandexmobilebot/i],describe:function(){return{name:"YandexBot"}}},{test:[/pingdom/i],describe:function(){return{name:"PingdomBot"}}},{test:[/opera/i],describe:function(e){var t={name:"Opera"},r=n.default.getFirstMatch(a,e)||n.default.getFirstMatch(/(?:opera)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/opr\/|opios/i],describe:function(e){var t={name:"Opera"},r=n.default.getFirstMatch(/(?:opr|opios)[\s/](\S+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/SamsungBrowser/i],describe:function(e){var t={name:"Samsung Internet for Android"},r=n.default.getFirstMatch(a,e)||n.default.getFirstMatch(/(?:SamsungBrowser)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/Whale/i],describe:function(e){var t={name:"NAVER Whale Browser"},r=n.default.getFirstMatch(a,e)||n.default.getFirstMatch(/(?:whale)[\s/](\d+(?:\.\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/PaleMoon/i],describe:function(e){var t={name:"Pale Moon"},r=n.default.getFirstMatch(a,e)||n.default.getFirstMatch(/(?:PaleMoon)[\s/](\d+(?:\.\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/MZBrowser/i],describe:function(e){var t={name:"MZ Browser"},r=n.default.getFirstMatch(/(?:MZBrowser)[\s/](\d+(?:\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/focus/i],describe:function(e){var t={name:"Focus"},r=n.default.getFirstMatch(/(?:focus)[\s/](\d+(?:\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/swing/i],describe:function(e){var t={name:"Swing"},r=n.default.getFirstMatch(/(?:swing)[\s/](\d+(?:\.\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/coast/i],describe:function(e){var t={name:"Opera Coast"},r=n.default.getFirstMatch(a,e)||n.default.getFirstMatch(/(?:coast)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/opt\/\d+(?:.?_?\d+)+/i],describe:function(e){var t={name:"Opera Touch"},r=n.default.getFirstMatch(/(?:opt)[\s/](\d+(\.?_?\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/yabrowser/i],describe:function(e){var t={name:"Yandex Browser"},r=n.default.getFirstMatch(/(?:yabrowser)[\s/](\d+(\.?_?\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/ucbrowser/i],describe:function(e){var t={name:"UC Browser"},r=n.default.getFirstMatch(a,e)||n.default.getFirstMatch(/(?:ucbrowser)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/Maxthon|mxios/i],describe:function(e){var t={name:"Maxthon"},r=n.default.getFirstMatch(a,e)||n.default.getFirstMatch(/(?:Maxthon|mxios)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/epiphany/i],describe:function(e){var t={name:"Epiphany"},r=n.default.getFirstMatch(a,e)||n.default.getFirstMatch(/(?:epiphany)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/puffin/i],describe:function(e){var t={name:"Puffin"},r=n.default.getFirstMatch(a,e)||n.default.getFirstMatch(/(?:puffin)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/sleipnir/i],describe:function(e){var t={name:"Sleipnir"},r=n.default.getFirstMatch(a,e)||n.default.getFirstMatch(/(?:sleipnir)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/k-meleon/i],describe:function(e){var t={name:"K-Meleon"},r=n.default.getFirstMatch(a,e)||n.default.getFirstMatch(/(?:k-meleon)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/micromessenger/i],describe:function(e){var t={name:"WeChat"},r=n.default.getFirstMatch(/(?:micromessenger)[\s/](\d+(\.?_?\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/qqbrowser/i],describe:function(e){var t={name:/qqbrowserlite/i.test(e)?"QQ Browser Lite":"QQ Browser"},r=n.default.getFirstMatch(/(?:qqbrowserlite|qqbrowser)[/](\d+(\.?_?\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/msie|trident/i],describe:function(e){var t={name:"Internet Explorer"},r=n.default.getFirstMatch(/(?:msie |rv:)(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/\sedg\//i],describe:function(e){var t={name:"Microsoft Edge"},r=n.default.getFirstMatch(/\sedg\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/edg([ea]|ios)/i],describe:function(e){var t={name:"Microsoft Edge"},r=n.default.getSecondMatch(/edg([ea]|ios)\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/vivaldi/i],describe:function(e){var t={name:"Vivaldi"},r=n.default.getFirstMatch(/vivaldi\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/seamonkey/i],describe:function(e){var t={name:"SeaMonkey"},r=n.default.getFirstMatch(/seamonkey\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/sailfish/i],describe:function(e){var t={name:"Sailfish"},r=n.default.getFirstMatch(/sailfish\s?browser\/(\d+(\.\d+)?)/i,e);return r&&(t.version=r),t}},{test:[/silk/i],describe:function(e){var t={name:"Amazon Silk"},r=n.default.getFirstMatch(/silk\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/phantom/i],describe:function(e){var t={name:"PhantomJS"},r=n.default.getFirstMatch(/phantomjs\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/slimerjs/i],describe:function(e){var t={name:"SlimerJS"},r=n.default.getFirstMatch(/slimerjs\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/blackberry|\bbb\d+/i,/rim\stablet/i],describe:function(e){var t={name:"BlackBerry"},r=n.default.getFirstMatch(a,e)||n.default.getFirstMatch(/blackberry[\d]+\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/(web|hpw)[o0]s/i],describe:function(e){var t={name:"WebOS Browser"},r=n.default.getFirstMatch(a,e)||n.default.getFirstMatch(/w(?:eb)?[o0]sbrowser\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/bada/i],describe:function(e){var t={name:"Bada"},r=n.default.getFirstMatch(/dolfin\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/tizen/i],describe:function(e){var t={name:"Tizen"},r=n.default.getFirstMatch(/(?:tizen\s?)?browser\/(\d+(\.?_?\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/qupzilla/i],describe:function(e){var t={name:"QupZilla"},r=n.default.getFirstMatch(/(?:qupzilla)[\s/](\d+(\.?_?\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/librewolf/i],describe:function(e){var t={name:"LibreWolf"},r=n.default.getFirstMatch(/(?:librewolf)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/firefox|iceweasel|fxios/i],describe:function(e){var t={name:"Firefox"},r=n.default.getFirstMatch(/(?:firefox|iceweasel|fxios)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/electron/i],describe:function(e){var t={name:"Electron"},r=n.default.getFirstMatch(/(?:electron)\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/sogoumobilebrowser/i,/metasr/i,/se 2\.[x]/i],describe:function(e){var t={name:"Sogou Browser"},r=n.default.getFirstMatch(/(?:sogoumobilebrowser)[\s/](\d+(\.?_?\d+)+)/i,e),i=n.default.getFirstMatch(/(?:chrome|crios|crmo)\/(\d+(\.?_?\d+)+)/i,e),a=n.default.getFirstMatch(/se ([\d.]+)x/i,e),o=r||i||a;return o&&(t.version=o),t}},{test:[/MiuiBrowser/i],describe:function(e){var t={name:"Miui"},r=n.default.getFirstMatch(/(?:MiuiBrowser)[\s/](\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:function(e){return!!e.hasBrand("DuckDuckGo")||e.test(/\sDdg\/[\d.]+$/i)},describe:function(e,t){var r={name:"DuckDuckGo"};if(t){var i=t.getBrandVersion("DuckDuckGo");if(i)return r.version=i,r}var a=n.default.getFirstMatch(/\sDdg\/([\d.]+)$/i,e);return a&&(r.version=a),r}},{test:function(e){return e.hasBrand("Brave")},describe:function(e,t){var r={name:"Brave"};if(t){var i=t.getBrandVersion("Brave");if(i)return r.version=i,r}return r}},{test:[/chromium/i],describe:function(e){var t={name:"Chromium"},r=n.default.getFirstMatch(/(?:chromium)[\s/](\d+(\.?_?\d+)+)/i,e)||n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/chrome|crios|crmo/i],describe:function(e){var t={name:"Chrome"},r=n.default.getFirstMatch(/(?:chrome|crios|crmo)\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/GSA/i],describe:function(e){var t={name:"Google Search"},r=n.default.getFirstMatch(/(?:GSA)\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:function(e){var t=!e.test(/like android/i),r=e.test(/android/i);return t&&r},describe:function(e){var t={name:"Android Browser"},r=n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/playstation 4/i],describe:function(e){var t={name:"PlayStation 4"},r=n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/safari|applewebkit/i],describe:function(e){var t={name:"Safari"},r=n.default.getFirstMatch(a,e);return r&&(t.version=r),t}},{test:[/.*/i],describe:function(e){var t=-1!==e.search("\\(")?/^(.*)\/(.*)[ \t]\((.*)/:/^(.*)\/(.*) /;return{name:n.default.getFirstMatch(t,e),version:n.default.getSecondMatch(t,e)}}}];t.default=o,e.exports=t.default},93:function(e,t,r){"use strict";t.__esModule=!0,t.default=void 0;var i,n=(i=r(17))&&i.__esModule?i:{default:i},a=r(18);var o=[{test:[/Roku\/DVP/],describe:function(e){var t=n.default.getFirstMatch(/Roku\/DVP-(\d+\.\d+)/i,e);return{name:a.OS_MAP.Roku,version:t}}},{test:[/windows phone/i],describe:function(e){var t=n.default.getFirstMatch(/windows phone (?:os)?\s?(\d+(\.\d+)*)/i,e);return{name:a.OS_MAP.WindowsPhone,version:t}}},{test:[/windows /i],describe:function(e){var t=n.default.getFirstMatch(/Windows ((NT|XP)( \d\d?.\d)?)/i,e),r=n.default.getWindowsVersionName(t);return{name:a.OS_MAP.Windows,version:t,versionName:r}}},{test:[/Macintosh(.*?) FxiOS(.*?)\//],describe:function(e){var t={name:a.OS_MAP.iOS},r=n.default.getSecondMatch(/(Version\/)(\d[\d.]+)/,e);return r&&(t.version=r),t}},{test:[/macintosh/i],describe:function(e){var t=n.default.getFirstMatch(/mac os x (\d+(\.?_?\d+)+)/i,e).replace(/[_\s]/g,"."),r=n.default.getMacOSVersionName(t),i={name:a.OS_MAP.MacOS,version:t};return r&&(i.versionName=r),i}},{test:[/(ipod|iphone|ipad)/i],describe:function(e){var t=n.default.getFirstMatch(/os (\d+([_\s]\d+)*) like mac os x/i,e).replace(/[_\s]/g,".");return{name:a.OS_MAP.iOS,version:t}}},{test:[/OpenHarmony/i],describe:function(e){var t=n.default.getFirstMatch(/OpenHarmony\s+(\d+(\.\d+)*)/i,e);return{name:a.OS_MAP.HarmonyOS,version:t}}},{test:function(e){var t=!e.test(/like android/i),r=e.test(/android/i);return t&&r},describe:function(e){var t=n.default.getFirstMatch(/android[\s/-](\d+(\.\d+)*)/i,e),r=n.default.getAndroidVersionName(t),i={name:a.OS_MAP.Android,version:t};return r&&(i.versionName=r),i}},{test:[/(web|hpw)[o0]s/i],describe:function(e){var t=n.default.getFirstMatch(/(?:web|hpw)[o0]s\/(\d+(\.\d+)*)/i,e),r={name:a.OS_MAP.WebOS};return t&&t.length&&(r.version=t),r}},{test:[/blackberry|\bbb\d+/i,/rim\stablet/i],describe:function(e){var t=n.default.getFirstMatch(/rim\stablet\sos\s(\d+(\.\d+)*)/i,e)||n.default.getFirstMatch(/blackberry\d+\/(\d+([_\s]\d+)*)/i,e)||n.default.getFirstMatch(/\bbb(\d+)/i,e);return{name:a.OS_MAP.BlackBerry,version:t}}},{test:[/bada/i],describe:function(e){var t=n.default.getFirstMatch(/bada\/(\d+(\.\d+)*)/i,e);return{name:a.OS_MAP.Bada,version:t}}},{test:[/tizen/i],describe:function(e){var t=n.default.getFirstMatch(/tizen[/\s](\d+(\.\d+)*)/i,e);return{name:a.OS_MAP.Tizen,version:t}}},{test:[/linux/i],describe:function(){return{name:a.OS_MAP.Linux}}},{test:[/CrOS/],describe:function(){return{name:a.OS_MAP.ChromeOS}}},{test:[/PlayStation 4/],describe:function(e){var t=n.default.getFirstMatch(/PlayStation 4[/\s](\d+(\.\d+)*)/i,e);return{name:a.OS_MAP.PlayStation4,version:t}}}];t.default=o,e.exports=t.default},94:function(e,t,r){"use strict";t.__esModule=!0,t.default=void 0;var i,n=(i=r(17))&&i.__esModule?i:{default:i},a=r(18);var o=[{test:[/googlebot/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Google"}}},{test:[/linespider/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Line"}}},{test:[/amazonbot/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Amazon"}}},{test:[/gptbot/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"OpenAI"}}},{test:[/chatgpt-user/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"OpenAI"}}},{test:[/oai-searchbot/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"OpenAI"}}},{test:[/baiduspider/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Baidu"}}},{test:[/bingbot/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Bing"}}},{test:[/duckduckbot/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"DuckDuckGo"}}},{test:[/claudebot/i,/claude-web/i,/claude-user/i,/claude-searchbot/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Anthropic"}}},{test:[/omgilibot/i,/webzio-extended/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Webz.io"}}},{test:[/diffbot/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Diffbot"}}},{test:[/perplexitybot/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Perplexity AI"}}},{test:[/perplexity-user/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Perplexity AI"}}},{test:[/youbot/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"You.com"}}},{test:[/ia_archiver/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Internet Archive"}}},{test:[/meta-webindexer/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Meta"}}},{test:[/meta-externalads/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Meta"}}},{test:[/meta-externalagent/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Meta"}}},{test:[/meta-externalfetcher/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Meta"}}},{test:[/facebookexternalhit/i,/facebookcatalog/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Meta"}}},{test:[/slackbot/i,/slack-imgProxy/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Slack"}}},{test:[/yahoo/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Yahoo"}}},{test:[/yandexbot/i,/yandexmobilebot/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Yandex"}}},{test:[/pingdom/i],describe:function(){return{type:a.PLATFORMS_MAP.bot,vendor:"Pingdom"}}},{test:[/huawei/i],describe:function(e){var t=n.default.getFirstMatch(/(can-l01)/i,e)&&"Nova",r={type:a.PLATFORMS_MAP.mobile,vendor:"Huawei"};return t&&(r.model=t),r}},{test:[/nexus\s*(?:7|8|9|10).*/i],describe:function(){return{type:a.PLATFORMS_MAP.tablet,vendor:"Nexus"}}},{test:[/ipad/i],describe:function(){return{type:a.PLATFORMS_MAP.tablet,vendor:"Apple",model:"iPad"}}},{test:[/Macintosh(.*?) FxiOS(.*?)\//],describe:function(){return{type:a.PLATFORMS_MAP.tablet,vendor:"Apple",model:"iPad"}}},{test:[/kftt build/i],describe:function(){return{type:a.PLATFORMS_MAP.tablet,vendor:"Amazon",model:"Kindle Fire HD 7"}}},{test:[/silk/i],describe:function(){return{type:a.PLATFORMS_MAP.tablet,vendor:"Amazon"}}},{test:[/tablet(?! pc)/i],describe:function(){return{type:a.PLATFORMS_MAP.tablet}}},{test:function(e){var t=e.test(/ipod|iphone/i),r=e.test(/like (ipod|iphone)/i);return t&&!r},describe:function(e){var t=n.default.getFirstMatch(/(ipod|iphone)/i,e);return{type:a.PLATFORMS_MAP.mobile,vendor:"Apple",model:t}}},{test:[/nexus\s*[0-6].*/i,/galaxy nexus/i],describe:function(){return{type:a.PLATFORMS_MAP.mobile,vendor:"Nexus"}}},{test:[/Nokia/i],describe:function(e){var t=n.default.getFirstMatch(/Nokia\s+([0-9]+(\.[0-9]+)?)/i,e),r={type:a.PLATFORMS_MAP.mobile,vendor:"Nokia"};return t&&(r.model=t),r}},{test:[/[^-]mobi/i],describe:function(){return{type:a.PLATFORMS_MAP.mobile}}},{test:function(e){return"blackberry"===e.getBrowserName(!0)},describe:function(){return{type:a.PLATFORMS_MAP.mobile,vendor:"BlackBerry"}}},{test:function(e){return"bada"===e.getBrowserName(!0)},describe:function(){return{type:a.PLATFORMS_MAP.mobile}}},{test:function(e){return"windows phone"===e.getBrowserName()},describe:function(){return{type:a.PLATFORMS_MAP.mobile,vendor:"Microsoft"}}},{test:function(e){var t=Number(String(e.getOSVersion()).split(".")[0]);return"android"===e.getOSName(!0)&&t>=3},describe:function(){return{type:a.PLATFORMS_MAP.tablet}}},{test:function(e){return"android"===e.getOSName(!0)},describe:function(){return{type:a.PLATFORMS_MAP.mobile}}},{test:[/smart-?tv|smarttv/i],describe:function(){return{type:a.PLATFORMS_MAP.tv}}},{test:[/netcast/i],describe:function(){return{type:a.PLATFORMS_MAP.tv}}},{test:function(e){return"macos"===e.getOSName(!0)},describe:function(){return{type:a.PLATFORMS_MAP.desktop,vendor:"Apple"}}},{test:function(e){return"windows"===e.getOSName(!0)},describe:function(){return{type:a.PLATFORMS_MAP.desktop}}},{test:function(e){return"linux"===e.getOSName(!0)},describe:function(){return{type:a.PLATFORMS_MAP.desktop}}},{test:function(e){return"playstation 4"===e.getOSName(!0)},describe:function(){return{type:a.PLATFORMS_MAP.tv}}},{test:function(e){return"roku"===e.getOSName(!0)},describe:function(){return{type:a.PLATFORMS_MAP.tv}}}];t.default=o,e.exports=t.default},95:function(e,t,r){"use strict";t.__esModule=!0,t.default=void 0;var i,n=(i=r(17))&&i.__esModule?i:{default:i},a=r(18);var o=[{test:function(e){return"microsoft edge"===e.getBrowserName(!0)},describe:function(e){if(/\sedg\//i.test(e))return{name:a.ENGINE_MAP.Blink};var t=n.default.getFirstMatch(/edge\/(\d+(\.?_?\d+)+)/i,e);return{name:a.ENGINE_MAP.EdgeHTML,version:t}}},{test:[/trident/i],describe:function(e){var t={name:a.ENGINE_MAP.Trident},r=n.default.getFirstMatch(/trident\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:function(e){return e.test(/presto/i)},describe:function(e){var t={name:a.ENGINE_MAP.Presto},r=n.default.getFirstMatch(/presto\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:function(e){var t=e.test(/gecko/i),r=e.test(/like gecko/i);return t&&!r},describe:function(e){var t={name:a.ENGINE_MAP.Gecko},r=n.default.getFirstMatch(/gecko\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}},{test:[/(apple)?webkit\/537\.36/i],describe:function(){return{name:a.ENGINE_MAP.Blink}}},{test:[/(apple)?webkit/i],describe:function(e){var t={name:a.ENGINE_MAP.WebKit},r=n.default.getFirstMatch(/webkit\/(\d+(\.?_?\d+)+)/i,e);return r&&(t.version=r),t}}];t.default=o,e.exports=t.default}})}));
-
-/***/ }),
-
-/***/ 94691:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-var concatMap = __nccwpck_require__(97087);
-var balanced = __nccwpck_require__(59380);
-
-module.exports = expandTop;
-
-var escSlash = '\0SLASH'+Math.random()+'\0';
-var escOpen = '\0OPEN'+Math.random()+'\0';
-var escClose = '\0CLOSE'+Math.random()+'\0';
-var escComma = '\0COMMA'+Math.random()+'\0';
-var escPeriod = '\0PERIOD'+Math.random()+'\0';
-
-function numeric(str) {
-  return parseInt(str, 10) == str
-    ? parseInt(str, 10)
-    : str.charCodeAt(0);
-}
-
-function escapeBraces(str) {
-  return str.split('\\\\').join(escSlash)
-            .split('\\{').join(escOpen)
-            .split('\\}').join(escClose)
-            .split('\\,').join(escComma)
-            .split('\\.').join(escPeriod);
-}
-
-function unescapeBraces(str) {
-  return str.split(escSlash).join('\\')
-            .split(escOpen).join('{')
-            .split(escClose).join('}')
-            .split(escComma).join(',')
-            .split(escPeriod).join('.');
-}
-
-
-// Basically just str.split(","), but handling cases
-// where we have nested braced sections, which should be
-// treated as individual members, like {a,{b,c},d}
-function parseCommaParts(str) {
-  if (!str)
-    return [''];
-
-  var parts = [];
-  var m = balanced('{', '}', str);
-
-  if (!m)
-    return str.split(',');
-
-  var pre = m.pre;
-  var body = m.body;
-  var post = m.post;
-  var p = pre.split(',');
-
-  p[p.length-1] += '{' + body + '}';
-  var postParts = parseCommaParts(post);
-  if (post.length) {
-    p[p.length-1] += postParts.shift();
-    p.push.apply(p, postParts);
-  }
-
-  parts.push.apply(parts, p);
-
-  return parts;
-}
-
-function expandTop(str) {
-  if (!str)
-    return [];
-
-  // I don't know why Bash 4.3 does this, but it does.
-  // Anything starting with {} will have the first two bytes preserved
-  // but *only* at the top level, so {},a}b will not expand to anything,
-  // but a{},b}c will be expanded to [a}c,abc].
-  // One could argue that this is a bug in Bash, but since the goal of
-  // this module is to match Bash's rules, we escape a leading {}
-  if (str.substr(0, 2) === '{}') {
-    str = '\\{\\}' + str.substr(2);
-  }
-
-  return expand(escapeBraces(str), true).map(unescapeBraces);
-}
-
-function identity(e) {
-  return e;
-}
-
-function embrace(str) {
-  return '{' + str + '}';
-}
-function isPadded(el) {
-  return /^-?0\d/.test(el);
-}
-
-function lte(i, y) {
-  return i <= y;
-}
-function gte(i, y) {
-  return i >= y;
-}
-
-function expand(str, isTop) {
-  var expansions = [];
-
-  var m = balanced('{', '}', str);
-  if (!m || /\$$/.test(m.pre)) return [str];
-
-  var isNumericSequence = /^-?\d+\.\.-?\d+(?:\.\.-?\d+)?$/.test(m.body);
-  var isAlphaSequence = /^[a-zA-Z]\.\.[a-zA-Z](?:\.\.-?\d+)?$/.test(m.body);
-  var isSequence = isNumericSequence || isAlphaSequence;
-  var isOptions = m.body.indexOf(',') >= 0;
-  if (!isSequence && !isOptions) {
-    // {a},b}
-    if (m.post.match(/,(?!,).*\}/)) {
-      str = m.pre + '{' + m.body + escClose + m.post;
-      return expand(str);
-    }
-    return [str];
-  }
-
-  var n;
-  if (isSequence) {
-    n = m.body.split(/\.\./);
-  } else {
-    n = parseCommaParts(m.body);
-    if (n.length === 1) {
-      // x{{a,b}}y ==> x{a}y x{b}y
-      n = expand(n[0], false).map(embrace);
-      if (n.length === 1) {
-        var post = m.post.length
-          ? expand(m.post, false)
-          : [''];
-        return post.map(function(p) {
-          return m.pre + n[0] + p;
-        });
-      }
-    }
-  }
-
-  // at this point, n is the parts, and we know it's not a comma set
-  // with a single entry.
-
-  // no need to expand pre, since it is guaranteed to be free of brace-sets
-  var pre = m.pre;
-  var post = m.post.length
-    ? expand(m.post, false)
-    : [''];
-
-  var N;
-
-  if (isSequence) {
-    var x = numeric(n[0]);
-    var y = numeric(n[1]);
-    var width = Math.max(n[0].length, n[1].length)
-    var incr = n.length == 3
-      ? Math.max(Math.abs(numeric(n[2])), 1)
-      : 1;
-    var test = lte;
-    var reverse = y < x;
-    if (reverse) {
-      incr *= -1;
-      test = gte;
-    }
-    var pad = n.some(isPadded);
-
-    N = [];
-
-    for (var i = x; test(i, y); i += incr) {
-      var c;
-      if (isAlphaSequence) {
-        c = String.fromCharCode(i);
-        if (c === '\\')
-          c = '';
-      } else {
-        c = String(i);
-        if (pad) {
-          var need = width - c.length;
-          if (need > 0) {
-            var z = new Array(need + 1).join('0');
-            if (i < 0)
-              c = '-' + z + c.slice(1);
-            else
-              c = z + c;
-          }
-        }
-      }
-      N.push(c);
-    }
-  } else {
-    N = concatMap(n, function(el) { return expand(el, false) });
-  }
-
-  for (var j = 0; j < N.length; j++) {
-    for (var k = 0; k < post.length; k++) {
-      var expansion = pre + N[j] + post[k];
-      if (!isTop || isSequence || expansion)
-        expansions.push(expansion);
-    }
-  }
-
-  return expansions;
-}
-
 
 /***/ }),
 
@@ -54153,26 +56413,6 @@ CombinedStream.prototype._updateDataSize = function() {
 CombinedStream.prototype._emitError = function(err) {
   this._reset();
   this.emit('error', err);
-};
-
-
-/***/ }),
-
-/***/ 97087:
-/***/ ((module) => {
-
-module.exports = function (xs, fn) {
-    var res = [];
-    for (var i = 0; i < xs.length; i++) {
-        var x = fn(xs[i], i);
-        if (isArray(x)) res.push.apply(res, x);
-        else res.push(x);
-    }
-    return res;
-};
-
-var isArray = Array.isArray || function (xs) {
-    return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
 
@@ -62918,6 +65158,18 @@ var hasOwn = __nccwpck_require__(54076);
 var populate = __nccwpck_require__(11835);
 
 /**
+ * Escape CR, LF, and `"` in a multipart `name`/`filename` parameter, so a field
+ * name or filename can not break out of its header line to inject headers or
+ * smuggle additional parts. Matches the WHATWG HTML multipart/form-data encoding.
+ *
+ * @param {string} str - the parameter value to escape
+ * @returns {string} the escaped value
+ */
+function escapeHeaderParam(str) {
+  return String(str).replace(/\r/g, '%0D').replace(/\n/g, '%0A').replace(/"/g, '%22');
+}
+
+/**
  * Create readable "multipart/form-data" streams.
  * Can be used to submit forms
  * and file uploads to other web applications.
@@ -63082,7 +65334,7 @@ FormData.prototype._multiPartHeader = function (field, value, options) {
   var contents = '';
   var headers = {
     // add custom disposition as third element or keep it two elements if not
-    'Content-Disposition': ['form-data', 'name="' + field + '"'].concat(contentDisposition || []),
+    'Content-Disposition': ['form-data', 'name="' + escapeHeaderParam(field) + '"'].concat(contentDisposition || []),
     // if no content type. allow it to be empty array
     'Content-Type': [].concat(contentType || [])
   };
@@ -63136,7 +65388,7 @@ FormData.prototype._getContentDisposition = function (value, options) { // eslin
   }
 
   if (filename) {
-    return 'filename="' + filename + '"';
+    return 'filename="' + escapeHeaderParam(filename) + '"';
   }
 };
 
@@ -66601,9 +68853,10 @@ internals.Base = class {
         const obj = this.clone();
 
         if (args) {
-            assert(Object.keys(args).length === 1 || Object.keys(args).length === this._definition.rules[rule.name].args.length, 'Invalid rule definition for', this.type, rule.name);
+            const argKeys = Object.keys(args);
+            assert(argKeys.length === 1 || argKeys.length === this._definition.rules[rule.name].args.length, 'Invalid rule definition for', this.type, rule.name);
 
-            for (const key of Object.keys(args)) {
+            for (const key of argKeys) {
                 let arg = args[key];
 
                 if (definition.argsByName) {
@@ -66807,7 +69060,7 @@ internals.Base = class {
         target._valids = this._valids && this._valids.clone();
         target._invalids = this._invalids && this._invalids.clone();
         target._rules = this._rules.slice();
-        target._singleRules = clone(this._singleRules, { shallow: true });
+        target._singleRules = new Map(this._singleRules);
         target._refs = this._refs.clone();
         target._flags = Object.assign({}, this._flags);
         target._cache = null;
@@ -69235,11 +71488,21 @@ exports.compile = function (messages, target) {
         if (code === 'root' ||
             Template.isTemplate(message)) {
 
+            // A flat code named __proto__ triggers the legacy accessor on plain-object assignment, and
+            // what we assign is always a Template, i.e. an object the accessor accepts, so it replaces
+            // target's own prototype instead of creating an own property. That in turn makes
+            // Template.isTemplate(target) true, so every code renders that one message
+
+            assert(code !== '__proto__', 'Cannot use __proto__ as a message code');
+
             target[code] = message;
             continue;
         }
 
         if (typeof message === 'string') {
+
+            assert(code !== '__proto__', 'Cannot use __proto__ as a message code');
+
             target[code] = new Template(message);
             continue;
         }
@@ -69249,20 +71512,26 @@ exports.compile = function (messages, target) {
         assert(typeof message === 'object' && !Array.isArray(message), 'Invalid message for', code);
 
         const language = code;
-        target[language] = target[language] || {};
+
+        // Don't reuse an inherited object, otherwise a language named __proto__ or constructor writes on the prototype
+
+        const localizedTarget = Object.hasOwn(target, language) ? target[language] : {};
+        target[language] = localizedTarget;
 
         for (const key of Object.keys(message)) {
             const localized = message[key];
 
+            assert(key !== '__proto__', 'Cannot use __proto__ as a message code');
+
             if (key === 'root' ||
                 Template.isTemplate(localized)) {
 
-                target[language][key] = localized;
+                localizedTarget[key] = localized;
                 continue;
             }
 
             assert(typeof localized === 'string', 'Invalid message for', key, 'in', language);
-            target[language][key] = new Template(localized);
+            localizedTarget[key] = new Template(localized);
         }
     }
 
@@ -69341,11 +71610,18 @@ exports.merge = function (base, extended) {
         if (code === 'root' ||
             Template.isTemplate(message)) {
 
+            // Same as in compile(), a flat code named __proto__ replaces target's own prototype
+
+            assert(code !== '__proto__', 'Cannot use __proto__ as a message code');
+
             target[code] = message;
             continue;
         }
 
         if (typeof message === 'string') {
+
+            assert(code !== '__proto__', 'Cannot use __proto__ as a message code');
+
             target[code] = new Template(message);
             continue;
         }
@@ -69355,20 +71631,26 @@ exports.merge = function (base, extended) {
         assert(typeof message === 'object' && !Array.isArray(message), 'Invalid message for', code);
 
         const language = code;
-        target[language] = target[language] || {};
+
+        // Same as in compile(), don't reuse an inherited object
+
+        const localizedTarget = Object.hasOwn(target, language) ? target[language] : {};
+        target[language] = localizedTarget;
 
         for (const key of Object.keys(message)) {
             const localized = message[key];
 
+            assert(key !== '__proto__', 'Cannot use __proto__ as a message code');
+
             if (key === 'root' ||
                 Template.isTemplate(localized)) {
 
-                target[language][key] = localized;
+                localizedTarget[key] = localized;
                 continue;
             }
 
             assert(typeof localized === 'string', 'Invalid message for', key, 'in', language);
-            target[language][key] = new Template(localized);
+            localizedTarget[key] = new Template(localized);
         }
     }
 
@@ -69405,8 +71687,17 @@ exports.Ids = internals.Ids = class {
     clone() {
 
         const clone = new internals.Ids();
-        clone._byId = new Map(this._byId);
-        clone._byKey = new Map(this._byKey);
+
+        // Most schemas have no ids nor keys, so we keep the empty maps the constructor already made
+
+        if (this._byId.size) {
+            clone._byId = new Map(this._byId);
+        }
+
+        if (this._byKey.size) {
+            clone._byKey = new Map(this._byKey);
+        }
+
         clone._schemaChain = this._schemaChain;
         return clone;
     }
@@ -69657,7 +71948,7 @@ internals.scan = function (item, source, options, _path, _key) {
 
 
 
-const { assert, clone, reach } = __nccwpck_require__(91884);
+const { assert, reach } = __nccwpck_require__(91884);
 
 const Common = __nccwpck_require__(84205);
 
@@ -70053,7 +72344,7 @@ exports.Manager = class {
     clone() {
 
         const copy = new exports.Manager();
-        copy.refs = clone(this.refs);
+        copy.refs = this.refs.slice();          // Entries are never mutated once registered, so a shallow copy is enough
         return copy;
     }
 
@@ -74247,12 +76538,7 @@ module.exports = Any.extend({
     rebuild(schema) {
 
         if (schema.$_terms.keys) {
-            const topo = new Topo.Sorter();
-            for (const child of schema.$_terms.keys) {
-                Common.tryWithPath(() => topo.add(child, { after: child.schema.$_rootReferences(), group: child.key }), child.key);
-            }
-
-            schema.$_terms.keys = new internals.Keys(...topo.nodes);
+            schema.$_terms.keys = new internals.Keys(...internals.sortKeys(schema.$_terms.keys));
         }
     },
 
@@ -74302,6 +76588,7 @@ module.exports = Any.extend({
         'object.regex': '{{#label}} must be a RegExp object',
         'object.rename.multiple': '{{#label}} cannot rename {{:#from}} because multiple renames are disabled and another key was already renamed to {{:#to}}',
         'object.rename.override': '{{#label}} cannot rename {{:#from}} because override is disabled and target {{:#to}} exists',
+        'object.rename.proto': '{{#label}} cannot rename {{:#from}} because target {{:#to}} is a reserved key',
         'object.schema': '{{#label}} must be a Joi schema of {{#type}} type',
         'object.unknown': '{{#label}} is not allowed',
         'object.with': '{{:#mainWithLabel}} missing required peer {{:#peerWithLabel}}',
@@ -74548,6 +76835,25 @@ internals.dependencies = {
 };
 
 
+internals.sortKeys = function (keys, manual = true) {
+
+    const topo = new Topo.Sorter();
+    for (const child of keys) {
+        Common.tryWithPath(() => topo.add(child, { after: child.schema.$_rootReferences(), group: child.key, manual }), child.key);
+    }
+
+    try {
+        return topo.sort();
+    }
+    catch {
+
+        // Sorting once at the end doesn't tell which key created the cycle, so replay the adds sorting each time to get the detailed error
+
+        return internals.sortKeys(keys, false);
+    }
+};
+
+
 internals.keysToLabels = function (schema, keys) {
 
     if (Array.isArray(keys)) {
@@ -74627,6 +76933,15 @@ internals.rename = function (schema, value, state, prefs, errors) {
                 if (prefs.abortEarly) {
                     return false;
                 }
+            }
+
+            if (to === '__proto__') {
+                errors.push(schema.$_createError('object.rename.proto', value, { from, to, pattern }, state, prefs));
+                if (prefs.abortEarly) {
+                    return false;
+                }
+
+                continue;
             }
 
             if (value[from] === undefined) {
@@ -75828,7 +78143,7 @@ module.exports = Any.extend({
         email: {
             method(options = {}) {
 
-                Common.assertOptions(options, ['allowFullyQualified', 'allowUnicode', 'ignoreLength', 'maxDomainSegments', 'minDomainSegments', 'multiple', 'separator', 'tlds']);
+                Common.assertOptions(options, ['allowFullyQualified', 'allowUnicode', 'allowUnderscore', 'ignoreLength', 'maxDomainSegments', 'minDomainSegments', 'multiple', 'separator', 'tlds']);
                 assert(options.multiple === undefined || typeof options.multiple === 'boolean', 'multiple option must be an boolean');
 
                 const address = internals.addressOptions(options);
@@ -76492,8 +78807,8 @@ internals.isoDate = function (value) {
         return null;
     }
 
-    if (/.*T.*[+-]\d\d$/.test(value)) {             // Add missing trailing zeros to timeshift
-        value += '00';
+    if (/T.*[+-]\d\d$/.test(value)) {                // Add missing separator and trailing zeros to timeshift
+        value += ':00';
     }
 
     const date = new Date(value);
@@ -76856,17 +79171,19 @@ internals.Mainstay = class {
 
     snapshot() {
 
+        // Both lists are append-only during the walk, so we only need to remember where to truncate
+
         this._snapshots.push({
-            externals: this.externals.slice(),
-            warnings: this.warnings.slice()
+            externals: this.externals.length,
+            warnings: this.warnings.length
         });
     }
 
     restore() {
 
         const snapshot = this._snapshots.pop();
-        this.externals = snapshot.externals;
-        this.warnings = snapshot.warnings;
+        this.externals.length = snapshot.externals;
+        this.warnings.length = snapshot.warnings;
     }
 
     commit() {
@@ -76939,6 +79256,12 @@ exports.validate = function (value, schema, state, prefs, overrides = {}) {
         if (result) {
             return result;
         }
+    }
+
+    // Failover scope
+
+    if (schema._flags.failover !== undefined) {
+        state.snapshot();                       // A failover discards the value, so it must discard whatever validating it registered
     }
 
     // Helpers
@@ -77204,12 +79527,27 @@ internals.finalize = function (value, errors, helpers) {
 
     // Failover value
 
-    if (errors.length) {
-        const failover = internals.default('failover', undefined, errors, helpers);
-        if (failover !== undefined) {
-            state.mainstay.tracer.value(state, 'failover', value, failover);
-            value = failover;
-            errors = [];
+    if (schema._flags.failover !== undefined) {
+        let applied = false;
+
+        if (errors.length) {
+            const failover = internals.default('failover', undefined, errors, helpers);
+            if (failover !== undefined) {
+                state.mainstay.tracer.value(state, 'failover', value, failover);
+                value = failover;
+                errors = [];
+                applied = true;
+            }
+        }
+
+        // The externals and warnings collected below this point were registered against the value we
+        // just threw away, and the failover value isn't validated, so roll them back
+
+        if (applied) {
+            state.restore();
+        }
+        else {
+            state.commit();
         }
     }
 
@@ -79083,1018 +81421,6 @@ function populateMaps (extensions, types) {
       types[extension] = type
     }
   })
-}
-
-
-/***/ }),
-
-/***/ 43772:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-module.exports = minimatch
-minimatch.Minimatch = Minimatch
-
-var path = (function () { try { return __nccwpck_require__(16928) } catch (e) {}}()) || {
-  sep: '/'
-}
-minimatch.sep = path.sep
-
-var GLOBSTAR = minimatch.GLOBSTAR = Minimatch.GLOBSTAR = {}
-var expand = __nccwpck_require__(94691)
-
-var plTypes = {
-  '!': { open: '(?:(?!(?:', close: '))[^/]*?)'},
-  '?': { open: '(?:', close: ')?' },
-  '+': { open: '(?:', close: ')+' },
-  '*': { open: '(?:', close: ')*' },
-  '@': { open: '(?:', close: ')' }
-}
-
-// any single thing other than /
-// don't need to escape / when using new RegExp()
-var qmark = '[^/]'
-
-// * => any number of characters
-var star = qmark + '*?'
-
-// ** when dots are allowed.  Anything goes, except .. and .
-// not (^ or / followed by one or two dots followed by $ or /),
-// followed by anything, any number of times.
-var twoStarDot = '(?:(?!(?:\\\/|^)(?:\\.{1,2})($|\\\/)).)*?'
-
-// not a ^ or / followed by a dot,
-// followed by anything, any number of times.
-var twoStarNoDot = '(?:(?!(?:\\\/|^)\\.).)*?'
-
-// characters that need to be escaped in RegExp.
-var reSpecials = charSet('().*{}+?[]^$\\!')
-
-// "abc" -> { a:true, b:true, c:true }
-function charSet (s) {
-  return s.split('').reduce(function (set, c) {
-    set[c] = true
-    return set
-  }, {})
-}
-
-// normalizes slashes.
-var slashSplit = /\/+/
-
-minimatch.filter = filter
-function filter (pattern, options) {
-  options = options || {}
-  return function (p, i, list) {
-    return minimatch(p, pattern, options)
-  }
-}
-
-function ext (a, b) {
-  b = b || {}
-  var t = {}
-  Object.keys(a).forEach(function (k) {
-    t[k] = a[k]
-  })
-  Object.keys(b).forEach(function (k) {
-    t[k] = b[k]
-  })
-  return t
-}
-
-minimatch.defaults = function (def) {
-  if (!def || typeof def !== 'object' || !Object.keys(def).length) {
-    return minimatch
-  }
-
-  var orig = minimatch
-
-  var m = function minimatch (p, pattern, options) {
-    return orig(p, pattern, ext(def, options))
-  }
-
-  m.Minimatch = function Minimatch (pattern, options) {
-    return new orig.Minimatch(pattern, ext(def, options))
-  }
-  m.Minimatch.defaults = function defaults (options) {
-    return orig.defaults(ext(def, options)).Minimatch
-  }
-
-  m.filter = function filter (pattern, options) {
-    return orig.filter(pattern, ext(def, options))
-  }
-
-  m.defaults = function defaults (options) {
-    return orig.defaults(ext(def, options))
-  }
-
-  m.makeRe = function makeRe (pattern, options) {
-    return orig.makeRe(pattern, ext(def, options))
-  }
-
-  m.braceExpand = function braceExpand (pattern, options) {
-    return orig.braceExpand(pattern, ext(def, options))
-  }
-
-  m.match = function (list, pattern, options) {
-    return orig.match(list, pattern, ext(def, options))
-  }
-
-  return m
-}
-
-Minimatch.defaults = function (def) {
-  return minimatch.defaults(def).Minimatch
-}
-
-function minimatch (p, pattern, options) {
-  assertValidPattern(pattern)
-
-  if (!options) options = {}
-
-  // shortcut: comments match nothing.
-  if (!options.nocomment && pattern.charAt(0) === '#') {
-    return false
-  }
-
-  return new Minimatch(pattern, options).match(p)
-}
-
-function Minimatch (pattern, options) {
-  if (!(this instanceof Minimatch)) {
-    return new Minimatch(pattern, options)
-  }
-
-  assertValidPattern(pattern)
-
-  if (!options) options = {}
-
-  pattern = pattern.trim()
-
-  // windows support: need to use /, not \
-  if (!options.allowWindowsEscape && path.sep !== '/') {
-    pattern = pattern.split(path.sep).join('/')
-  }
-
-  this.options = options
-  this.maxGlobstarRecursion = options.maxGlobstarRecursion !== undefined
-    ? options.maxGlobstarRecursion : 200
-  this.set = []
-  this.pattern = pattern
-  this.regexp = null
-  this.negate = false
-  this.comment = false
-  this.empty = false
-  this.partial = !!options.partial
-
-  // make the set of regexps etc.
-  this.make()
-}
-
-Minimatch.prototype.debug = function () {}
-
-Minimatch.prototype.make = make
-function make () {
-  var pattern = this.pattern
-  var options = this.options
-
-  // empty patterns and comments match nothing.
-  if (!options.nocomment && pattern.charAt(0) === '#') {
-    this.comment = true
-    return
-  }
-  if (!pattern) {
-    this.empty = true
-    return
-  }
-
-  // step 1: figure out negation, etc.
-  this.parseNegate()
-
-  // step 2: expand braces
-  var set = this.globSet = this.braceExpand()
-
-  if (options.debug) this.debug = function debug() { console.error.apply(console, arguments) }
-
-  this.debug(this.pattern, set)
-
-  // step 3: now we have a set, so turn each one into a series of path-portion
-  // matching patterns.
-  // These will be regexps, except in the case of "**", which is
-  // set to the GLOBSTAR object for globstar behavior,
-  // and will not contain any / characters
-  set = this.globParts = set.map(function (s) {
-    return s.split(slashSplit)
-  })
-
-  this.debug(this.pattern, set)
-
-  // glob --> regexps
-  set = set.map(function (s, si, set) {
-    return s.map(this.parse, this)
-  }, this)
-
-  this.debug(this.pattern, set)
-
-  // filter out everything that didn't compile properly.
-  set = set.filter(function (s) {
-    return s.indexOf(false) === -1
-  })
-
-  this.debug(this.pattern, set)
-
-  this.set = set
-}
-
-Minimatch.prototype.parseNegate = parseNegate
-function parseNegate () {
-  var pattern = this.pattern
-  var negate = false
-  var options = this.options
-  var negateOffset = 0
-
-  if (options.nonegate) return
-
-  for (var i = 0, l = pattern.length
-    ; i < l && pattern.charAt(i) === '!'
-    ; i++) {
-    negate = !negate
-    negateOffset++
-  }
-
-  if (negateOffset) this.pattern = pattern.substr(negateOffset)
-  this.negate = negate
-}
-
-// Brace expansion:
-// a{b,c}d -> abd acd
-// a{b,}c -> abc ac
-// a{0..3}d -> a0d a1d a2d a3d
-// a{b,c{d,e}f}g -> abg acdfg acefg
-// a{b,c}d{e,f}g -> abdeg acdeg abdeg abdfg
-//
-// Invalid sets are not expanded.
-// a{2..}b -> a{2..}b
-// a{b}c -> a{b}c
-minimatch.braceExpand = function (pattern, options) {
-  return braceExpand(pattern, options)
-}
-
-Minimatch.prototype.braceExpand = braceExpand
-
-function braceExpand (pattern, options) {
-  if (!options) {
-    if (this instanceof Minimatch) {
-      options = this.options
-    } else {
-      options = {}
-    }
-  }
-
-  pattern = typeof pattern === 'undefined'
-    ? this.pattern : pattern
-
-  assertValidPattern(pattern)
-
-  // Thanks to Yeting Li <https://github.com/yetingli> for
-  // improving this regexp to avoid a ReDOS vulnerability.
-  if (options.nobrace || !/\{(?:(?!\{).)*\}/.test(pattern)) {
-    // shortcut. no need to expand.
-    return [pattern]
-  }
-
-  return expand(pattern)
-}
-
-var MAX_PATTERN_LENGTH = 1024 * 64
-var assertValidPattern = function (pattern) {
-  if (typeof pattern !== 'string') {
-    throw new TypeError('invalid pattern')
-  }
-
-  if (pattern.length > MAX_PATTERN_LENGTH) {
-    throw new TypeError('pattern is too long')
-  }
-}
-
-// parse a component of the expanded set.
-// At this point, no pattern may contain "/" in it
-// so we're going to return a 2d array, where each entry is the full
-// pattern, split on '/', and then turned into a regular expression.
-// A regexp is made at the end which joins each array with an
-// escaped /, and another full one which joins each regexp with |.
-//
-// Following the lead of Bash 4.1, note that "**" only has special meaning
-// when it is the *only* thing in a path portion.  Otherwise, any series
-// of * is equivalent to a single *.  Globstar behavior is enabled by
-// default, and can be disabled by setting options.noglobstar.
-Minimatch.prototype.parse = parse
-var SUBPARSE = {}
-function parse (pattern, isSub) {
-  assertValidPattern(pattern)
-
-  var options = this.options
-
-  // shortcuts
-  if (pattern === '**') {
-    if (!options.noglobstar)
-      return GLOBSTAR
-    else
-      pattern = '*'
-  }
-  if (pattern === '') return ''
-
-  var re = ''
-  var hasMagic = !!options.nocase
-  var escaping = false
-  // ? => one single character
-  var patternListStack = []
-  var negativeLists = []
-  var stateChar
-  var inClass = false
-  var reClassStart = -1
-  var classStart = -1
-  // . and .. never match anything that doesn't start with .,
-  // even when options.dot is set.
-  var patternStart = pattern.charAt(0) === '.' ? '' // anything
-  // not (start or / followed by . or .. followed by / or end)
-  : options.dot ? '(?!(?:^|\\\/)\\.{1,2}(?:$|\\\/))'
-  : '(?!\\.)'
-  var self = this
-
-  function clearStateChar () {
-    if (stateChar) {
-      // we had some state-tracking character
-      // that wasn't consumed by this pass.
-      switch (stateChar) {
-        case '*':
-          re += star
-          hasMagic = true
-        break
-        case '?':
-          re += qmark
-          hasMagic = true
-        break
-        default:
-          re += '\\' + stateChar
-        break
-      }
-      self.debug('clearStateChar %j %j', stateChar, re)
-      stateChar = false
-    }
-  }
-
-  for (var i = 0, len = pattern.length, c
-    ; (i < len) && (c = pattern.charAt(i))
-    ; i++) {
-    this.debug('%s\t%s %s %j', pattern, i, re, c)
-
-    // skip over any that are escaped.
-    if (escaping && reSpecials[c]) {
-      re += '\\' + c
-      escaping = false
-      continue
-    }
-
-    switch (c) {
-      /* istanbul ignore next */
-      case '/': {
-        // completely not allowed, even escaped.
-        // Should already be path-split by now.
-        return false
-      }
-
-      case '\\':
-        clearStateChar()
-        escaping = true
-      continue
-
-      // the various stateChar values
-      // for the "extglob" stuff.
-      case '?':
-      case '*':
-      case '+':
-      case '@':
-      case '!':
-        this.debug('%s\t%s %s %j <-- stateChar', pattern, i, re, c)
-
-        // all of those are literals inside a class, except that
-        // the glob [!a] means [^a] in regexp
-        if (inClass) {
-          this.debug('  in class')
-          if (c === '!' && i === classStart + 1) c = '^'
-          re += c
-          continue
-        }
-
-        // coalesce consecutive non-globstar * characters
-        if (c === '*' && stateChar === '*') continue
-
-        // if we already have a stateChar, then it means
-        // that there was something like ** or +? in there.
-        // Handle the stateChar, then proceed with this one.
-        self.debug('call clearStateChar %j', stateChar)
-        clearStateChar()
-        stateChar = c
-        // if extglob is disabled, then +(asdf|foo) isn't a thing.
-        // just clear the statechar *now*, rather than even diving into
-        // the patternList stuff.
-        if (options.noext) clearStateChar()
-      continue
-
-      case '(':
-        if (inClass) {
-          re += '('
-          continue
-        }
-
-        if (!stateChar) {
-          re += '\\('
-          continue
-        }
-
-        patternListStack.push({
-          type: stateChar,
-          start: i - 1,
-          reStart: re.length,
-          open: plTypes[stateChar].open,
-          close: plTypes[stateChar].close
-        })
-        // negation is (?:(?!js)[^/]*)
-        re += stateChar === '!' ? '(?:(?!(?:' : '(?:'
-        this.debug('plType %j %j', stateChar, re)
-        stateChar = false
-      continue
-
-      case ')':
-        if (inClass || !patternListStack.length) {
-          re += '\\)'
-          continue
-        }
-
-        clearStateChar()
-        hasMagic = true
-        var pl = patternListStack.pop()
-        // negation is (?:(?!js)[^/]*)
-        // The others are (?:<pattern>)<type>
-        re += pl.close
-        if (pl.type === '!') {
-          negativeLists.push(pl)
-        }
-        pl.reEnd = re.length
-      continue
-
-      case '|':
-        if (inClass || !patternListStack.length || escaping) {
-          re += '\\|'
-          escaping = false
-          continue
-        }
-
-        clearStateChar()
-        re += '|'
-      continue
-
-      // these are mostly the same in regexp and glob
-      case '[':
-        // swallow any state-tracking char before the [
-        clearStateChar()
-
-        if (inClass) {
-          re += '\\' + c
-          continue
-        }
-
-        inClass = true
-        classStart = i
-        reClassStart = re.length
-        re += c
-      continue
-
-      case ']':
-        //  a right bracket shall lose its special
-        //  meaning and represent itself in
-        //  a bracket expression if it occurs
-        //  first in the list.  -- POSIX.2 2.8.3.2
-        if (i === classStart + 1 || !inClass) {
-          re += '\\' + c
-          escaping = false
-          continue
-        }
-
-        // handle the case where we left a class open.
-        // "[z-a]" is valid, equivalent to "\[z-a\]"
-        // split where the last [ was, make sure we don't have
-        // an invalid re. if so, re-walk the contents of the
-        // would-be class to re-translate any characters that
-        // were passed through as-is
-        // TODO: It would probably be faster to determine this
-        // without a try/catch and a new RegExp, but it's tricky
-        // to do safely.  For now, this is safe and works.
-        var cs = pattern.substring(classStart + 1, i)
-        try {
-          RegExp('[' + cs + ']')
-        } catch (er) {
-          // not a valid class!
-          var sp = this.parse(cs, SUBPARSE)
-          re = re.substr(0, reClassStart) + '\\[' + sp[0] + '\\]'
-          hasMagic = hasMagic || sp[1]
-          inClass = false
-          continue
-        }
-
-        // finish up the class.
-        hasMagic = true
-        inClass = false
-        re += c
-      continue
-
-      default:
-        // swallow any state char that wasn't consumed
-        clearStateChar()
-
-        if (escaping) {
-          // no need
-          escaping = false
-        } else if (reSpecials[c]
-          && !(c === '^' && inClass)) {
-          re += '\\'
-        }
-
-        re += c
-
-    } // switch
-  } // for
-
-  // handle the case where we left a class open.
-  // "[abc" is valid, equivalent to "\[abc"
-  if (inClass) {
-    // split where the last [ was, and escape it
-    // this is a huge pita.  We now have to re-walk
-    // the contents of the would-be class to re-translate
-    // any characters that were passed through as-is
-    cs = pattern.substr(classStart + 1)
-    sp = this.parse(cs, SUBPARSE)
-    re = re.substr(0, reClassStart) + '\\[' + sp[0]
-    hasMagic = hasMagic || sp[1]
-  }
-
-  // handle the case where we had a +( thing at the *end*
-  // of the pattern.
-  // each pattern list stack adds 3 chars, and we need to go through
-  // and escape any | chars that were passed through as-is for the regexp.
-  // Go through and escape them, taking care not to double-escape any
-  // | chars that were already escaped.
-  for (pl = patternListStack.pop(); pl; pl = patternListStack.pop()) {
-    var tail = re.slice(pl.reStart + pl.open.length)
-    this.debug('setting tail', re, pl)
-    // maybe some even number of \, then maybe 1 \, followed by a |
-    tail = tail.replace(/((?:\\{2}){0,64})(\\?)\|/g, function (_, $1, $2) {
-      if (!$2) {
-        // the | isn't already escaped, so escape it.
-        $2 = '\\'
-      }
-
-      // need to escape all those slashes *again*, without escaping the
-      // one that we need for escaping the | character.  As it works out,
-      // escaping an even number of slashes can be done by simply repeating
-      // it exactly after itself.  That's why this trick works.
-      //
-      // I am sorry that you have to see this.
-      return $1 + $1 + $2 + '|'
-    })
-
-    this.debug('tail=%j\n   %s', tail, tail, pl, re)
-    var t = pl.type === '*' ? star
-      : pl.type === '?' ? qmark
-      : '\\' + pl.type
-
-    hasMagic = true
-    re = re.slice(0, pl.reStart) + t + '\\(' + tail
-  }
-
-  // handle trailing things that only matter at the very end.
-  clearStateChar()
-  if (escaping) {
-    // trailing \\
-    re += '\\\\'
-  }
-
-  // only need to apply the nodot start if the re starts with
-  // something that could conceivably capture a dot
-  var addPatternStart = false
-  switch (re.charAt(0)) {
-    case '[': case '.': case '(': addPatternStart = true
-  }
-
-  // Hack to work around lack of negative lookbehind in JS
-  // A pattern like: *.!(x).!(y|z) needs to ensure that a name
-  // like 'a.xyz.yz' doesn't match.  So, the first negative
-  // lookahead, has to look ALL the way ahead, to the end of
-  // the pattern.
-  for (var n = negativeLists.length - 1; n > -1; n--) {
-    var nl = negativeLists[n]
-
-    var nlBefore = re.slice(0, nl.reStart)
-    var nlFirst = re.slice(nl.reStart, nl.reEnd - 8)
-    var nlLast = re.slice(nl.reEnd - 8, nl.reEnd)
-    var nlAfter = re.slice(nl.reEnd)
-
-    nlLast += nlAfter
-
-    // Handle nested stuff like *(*.js|!(*.json)), where open parens
-    // mean that we should *not* include the ) in the bit that is considered
-    // "after" the negated section.
-    var openParensBefore = nlBefore.split('(').length - 1
-    var cleanAfter = nlAfter
-    for (i = 0; i < openParensBefore; i++) {
-      cleanAfter = cleanAfter.replace(/\)[+*?]?/, '')
-    }
-    nlAfter = cleanAfter
-
-    var dollar = ''
-    if (nlAfter === '' && isSub !== SUBPARSE) {
-      dollar = '$'
-    }
-    var newRe = nlBefore + nlFirst + nlAfter + dollar + nlLast
-    re = newRe
-  }
-
-  // if the re is not "" at this point, then we need to make sure
-  // it doesn't match against an empty path part.
-  // Otherwise a/* will match a/, which it should not.
-  if (re !== '' && hasMagic) {
-    re = '(?=.)' + re
-  }
-
-  if (addPatternStart) {
-    re = patternStart + re
-  }
-
-  // parsing just a piece of a larger pattern.
-  if (isSub === SUBPARSE) {
-    return [re, hasMagic]
-  }
-
-  // skip the regexp for non-magical patterns
-  // unescape anything in it, though, so that it'll be
-  // an exact match against a file etc.
-  if (!hasMagic) {
-    return globUnescape(pattern)
-  }
-
-  var flags = options.nocase ? 'i' : ''
-  try {
-    var regExp = new RegExp('^' + re + '$', flags)
-  } catch (er) /* istanbul ignore next - should be impossible */ {
-    // If it was an invalid regular expression, then it can't match
-    // anything.  This trick looks for a character after the end of
-    // the string, which is of course impossible, except in multi-line
-    // mode, but it's not a /m regex.
-    return new RegExp('$.')
-  }
-
-  regExp._glob = pattern
-  regExp._src = re
-
-  return regExp
-}
-
-minimatch.makeRe = function (pattern, options) {
-  return new Minimatch(pattern, options || {}).makeRe()
-}
-
-Minimatch.prototype.makeRe = makeRe
-function makeRe () {
-  if (this.regexp || this.regexp === false) return this.regexp
-
-  // at this point, this.set is a 2d array of partial
-  // pattern strings, or "**".
-  //
-  // It's better to use .match().  This function shouldn't
-  // be used, really, but it's pretty convenient sometimes,
-  // when you just want to work with a regex.
-  var set = this.set
-
-  if (!set.length) {
-    this.regexp = false
-    return this.regexp
-  }
-  var options = this.options
-
-  var twoStar = options.noglobstar ? star
-    : options.dot ? twoStarDot
-    : twoStarNoDot
-  var flags = options.nocase ? 'i' : ''
-
-  var re = set.map(function (pattern) {
-    return pattern.map(function (p) {
-      return (p === GLOBSTAR) ? twoStar
-      : (typeof p === 'string') ? regExpEscape(p)
-      : p._src
-    }).join('\\\/')
-  }).join('|')
-
-  // must match entire pattern
-  // ending in a * or ** will make it less strict.
-  re = '^(?:' + re + ')$'
-
-  // can match anything, as long as it's not this.
-  if (this.negate) re = '^(?!' + re + ').*$'
-
-  try {
-    this.regexp = new RegExp(re, flags)
-  } catch (ex) /* istanbul ignore next - should be impossible */ {
-    this.regexp = false
-  }
-  return this.regexp
-}
-
-minimatch.match = function (list, pattern, options) {
-  options = options || {}
-  var mm = new Minimatch(pattern, options)
-  list = list.filter(function (f) {
-    return mm.match(f)
-  })
-  if (mm.options.nonull && !list.length) {
-    list.push(pattern)
-  }
-  return list
-}
-
-Minimatch.prototype.match = function match (f, partial) {
-  if (typeof partial === 'undefined') partial = this.partial
-  this.debug('match', f, this.pattern)
-  // short-circuit in the case of busted things.
-  // comments, etc.
-  if (this.comment) return false
-  if (this.empty) return f === ''
-
-  if (f === '/' && partial) return true
-
-  var options = this.options
-
-  // windows: need to use /, not \
-  if (path.sep !== '/') {
-    f = f.split(path.sep).join('/')
-  }
-
-  // treat the test path as a set of pathparts.
-  f = f.split(slashSplit)
-  this.debug(this.pattern, 'split', f)
-
-  // just ONE of the pattern sets in this.set needs to match
-  // in order for it to be valid.  If negating, then just one
-  // match means that we have failed.
-  // Either way, return on the first hit.
-
-  var set = this.set
-  this.debug(this.pattern, 'set', set)
-
-  // Find the basename of the path by looking for the last non-empty segment
-  var filename
-  var i
-  for (i = f.length - 1; i >= 0; i--) {
-    filename = f[i]
-    if (filename) break
-  }
-
-  for (i = 0; i < set.length; i++) {
-    var pattern = set[i]
-    var file = f
-    if (options.matchBase && pattern.length === 1) {
-      file = [filename]
-    }
-    var hit = this.matchOne(file, pattern, partial)
-    if (hit) {
-      if (options.flipNegate) return true
-      return !this.negate
-    }
-  }
-
-  // didn't get any hits.  this is success if it's a negative
-  // pattern, failure otherwise.
-  if (options.flipNegate) return false
-  return this.negate
-}
-
-// set partial to true to test if, for example,
-// "/a/b" matches the start of "/*/b/*/d"
-// Partial means, if you run out of file before you run
-// out of pattern, then that's fine, as long as all
-// the parts match.
-Minimatch.prototype.matchOne = function (file, pattern, partial) {
-  if (pattern.indexOf(GLOBSTAR) !== -1) {
-    return this._matchGlobstar(file, pattern, partial, 0, 0)
-  }
-  return this._matchOne(file, pattern, partial, 0, 0)
-}
-
-Minimatch.prototype._matchGlobstar = function (file, pattern, partial, fileIndex, patternIndex) {
-  var i
-
-  // find first globstar from patternIndex
-  var firstgs = -1
-  for (i = patternIndex; i < pattern.length; i++) {
-    if (pattern[i] === GLOBSTAR) { firstgs = i; break }
-  }
-
-  // find last globstar
-  var lastgs = -1
-  for (i = pattern.length - 1; i >= 0; i--) {
-    if (pattern[i] === GLOBSTAR) { lastgs = i; break }
-  }
-
-  var head = pattern.slice(patternIndex, firstgs)
-  var body = partial ? pattern.slice(firstgs + 1) : pattern.slice(firstgs + 1, lastgs)
-  var tail = partial ? [] : pattern.slice(lastgs + 1)
-
-  // check the head
-  if (head.length) {
-    var fileHead = file.slice(fileIndex, fileIndex + head.length)
-    if (!this._matchOne(fileHead, head, partial, 0, 0)) {
-      return false
-    }
-    fileIndex += head.length
-  }
-
-  // check the tail
-  var fileTailMatch = 0
-  if (tail.length) {
-    if (tail.length + fileIndex > file.length) return false
-
-    var tailStart = file.length - tail.length
-    if (this._matchOne(file, tail, partial, tailStart, 0)) {
-      fileTailMatch = tail.length
-    } else {
-      // affordance for stuff like a/**/* matching a/b/
-      if (file[file.length - 1] !== '' ||
-          fileIndex + tail.length === file.length) {
-        return false
-      }
-      tailStart--
-      if (!this._matchOne(file, tail, partial, tailStart, 0)) {
-        return false
-      }
-      fileTailMatch = tail.length + 1
-    }
-  }
-
-  // if body is empty (single ** between head and tail)
-  if (!body.length) {
-    var sawSome = !!fileTailMatch
-    for (i = fileIndex; i < file.length - fileTailMatch; i++) {
-      var f = String(file[i])
-      sawSome = true
-      if (f === '.' || f === '..' ||
-          (!this.options.dot && f.charAt(0) === '.')) {
-        return false
-      }
-    }
-    return partial || sawSome
-  }
-
-  // split body into segments at each GLOBSTAR
-  var bodySegments = [[[], 0]]
-  var currentBody = bodySegments[0]
-  var nonGsParts = 0
-  var nonGsPartsSums = [0]
-  for (var bi = 0; bi < body.length; bi++) {
-    var b = body[bi]
-    if (b === GLOBSTAR) {
-      nonGsPartsSums.push(nonGsParts)
-      currentBody = [[], 0]
-      bodySegments.push(currentBody)
-    } else {
-      currentBody[0].push(b)
-      nonGsParts++
-    }
-  }
-
-  var idx = bodySegments.length - 1
-  var fileLength = file.length - fileTailMatch
-  for (var si = 0; si < bodySegments.length; si++) {
-    bodySegments[si][1] = fileLength -
-      (nonGsPartsSums[idx--] + bodySegments[si][0].length)
-  }
-
-  return !!this._matchGlobStarBodySections(
-    file, bodySegments, fileIndex, 0, partial, 0, !!fileTailMatch
-  )
-}
-
-// return false for "nope, not matching"
-// return null for "not matching, cannot keep trying"
-Minimatch.prototype._matchGlobStarBodySections = function (
-  file, bodySegments, fileIndex, bodyIndex, partial, globStarDepth, sawTail
-) {
-  var bs = bodySegments[bodyIndex]
-  if (!bs) {
-    // just make sure there are no bad dots
-    for (var i = fileIndex; i < file.length; i++) {
-      sawTail = true
-      var f = file[i]
-      if (f === '.' || f === '..' ||
-          (!this.options.dot && f.charAt(0) === '.')) {
-        return false
-      }
-    }
-    return sawTail
-  }
-
-  var body = bs[0]
-  var after = bs[1]
-  while (fileIndex <= after) {
-    var m = this._matchOne(
-      file.slice(0, fileIndex + body.length),
-      body,
-      partial,
-      fileIndex,
-      0
-    )
-    // if limit exceeded, no match. intentional false negative,
-    // acceptable break in correctness for security.
-    if (m && globStarDepth < this.maxGlobstarRecursion) {
-      var sub = this._matchGlobStarBodySections(
-        file, bodySegments,
-        fileIndex + body.length, bodyIndex + 1,
-        partial, globStarDepth + 1, sawTail
-      )
-      if (sub !== false) {
-        return sub
-      }
-    }
-    var f = file[fileIndex]
-    if (f === '.' || f === '..' ||
-        (!this.options.dot && f.charAt(0) === '.')) {
-      return false
-    }
-    fileIndex++
-  }
-  return partial || null
-}
-
-Minimatch.prototype._matchOne = function (file, pattern, partial, fileIndex, patternIndex) {
-  var fi, pi, fl, pl
-  for (
-    fi = fileIndex, pi = patternIndex, fl = file.length, pl = pattern.length
-    ; (fi < fl) && (pi < pl)
-    ; fi++, pi++
-  ) {
-    this.debug('matchOne loop')
-    var p = pattern[pi]
-    var f = file[fi]
-
-    this.debug(pattern, p, f)
-
-    // should be impossible.
-    // some invalid regexp stuff in the set.
-    /* istanbul ignore if */
-    if (p === false || p === GLOBSTAR) return false
-
-    // something other than **
-    // non-magic patterns just have to match exactly
-    // patterns with magic have been turned into regexps.
-    var hit
-    if (typeof p === 'string') {
-      hit = f === p
-      this.debug('string match', p, f, hit)
-    } else {
-      hit = f.match(p)
-      this.debug('pattern match', p, f, hit)
-    }
-
-    if (!hit) return false
-  }
-
-  // now either we fell off the end of the pattern, or we're done.
-  if (fi === fl && pi === pl) {
-    // ran out of pattern and filename at the same time.
-    // an exact hit!
-    return true
-  } else if (fi === fl) {
-    // ran out of file, but still had pattern left.
-    // this is ok if we're doing the match as part of
-    // a glob fs traversal.
-    return partial
-  } else /* istanbul ignore else */ if (pi === pl) {
-    // ran out of pattern, still have file left.
-    // this is only acceptable if we're on the very last
-    // empty segment of a file with a trailing slash.
-    // a/* should match a/b/
-    return (fi === fl - 1) && (file[fi] === '')
-  }
-
-  // should be unreachable.
-  /* istanbul ignore next */
-  throw new Error('wtf?')
-}
-
-// replace stuff like \* with *
-function globUnescape (s) {
-  return s.replace(/\\(.)/g, '$1')
-}
-
-function regExpEscape (s) {
-  return s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
 }
 
 
@@ -94658,7 +95984,7 @@ function createWorker (stream, opts) {
   const { filename, workerData } = opts
 
   const bundlerOverrides = '__bundlerPathsOverrides' in globalThis ? globalThis.__bundlerPathsOverrides : {}
-  const toExecute = bundlerOverrides['thread-stream-worker'] || __nccwpck_require__.ab + "worker.js"
+  const toExecute = bundlerOverrides['thread-stream-worker'] || __nccwpck_require__.ab + "worker1.js"
 
   const worker = new Worker(toExecute, {
     ...opts.workerOpts,
@@ -122976,6 +124302,13 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("buffer");
 
 /***/ }),
 
+/***/ 35317:
+/***/ ((module) => {
+
+module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("child_process");
+
+/***/ }),
+
 /***/ 76982:
 /***/ ((module) => {
 
@@ -131446,7 +132779,7 @@ module.exports = {
 
 
 
-const VERSION = '5.10.0'
+const VERSION = '5.12.7'
 
 const Avvio = __nccwpck_require__(92586)
 const http = __nccwpck_require__(37067)
@@ -131526,7 +132859,7 @@ const {
 } = errorCodes
 
 const { buildErrorHandler } = __nccwpck_require__(11252)
-const { FSTWRN004, FSTDEP023, FSTDEP024 } = __nccwpck_require__(45054)
+const { FSTWRN004, FSTDEP023, FSTDEP024, FSTDEP025 } = __nccwpck_require__(45054)
 
 const initChannel = diagnostics.channel('fastify.initialization')
 
@@ -131589,7 +132922,9 @@ function fastify (serverOptions) {
         'OPTIONS',
         'PATCH',
         'PUT',
-        'POST'
+        'POST',
+        // RFC 10008
+        'QUERY'
       ])
     },
     [kOptions]: options,
@@ -131645,6 +132980,9 @@ function fastify (serverOptions) {
     },
     options: function _options (url, options, handler) {
       return router.prepareRoute.call(this, { method: 'OPTIONS', url, options, handler })
+    },
+    query: function _query (url, options, handler) {
+      return router.prepareRoute.call(this, { method: 'QUERY', url, options, handler })
     },
     all: function _all (url, options, handler) {
       return router.prepareRoute.call(this, { method: this.supportedMethods, url, options, handler })
@@ -131833,7 +133171,7 @@ function fastify (serverOptions) {
           if (forceCloseConnections === 'idle' && options.serverFactory) {
             instance.server.closeIdleConnections()
             /* istanbul ignore next: Cannot test this without Node.js core support */
-          } else if (serverHasCloseAllConnections && forceCloseConnections) {
+          } else if (serverHasCloseAllConnections && forceCloseConnections === true) {
             instance.server.closeAllConnections()
           } else if (forceCloseConnections === true) {
             for (const conn of fastify[kKeepAliveConnections]) {
@@ -132042,7 +133380,7 @@ function fastify (serverOptions) {
 
     if (name === 'onClose') {
       this.onClose(fn.bind(this))
-    } else if (name === 'onReady' || name === 'onListen' || name === 'onRoute') {
+    } else if (name === 'onReady' || name === 'onListen' || name === 'onRoute' || name === 'preClose') {
       this[kHooks].add(name, fn)
     } else {
       this.after((err, done) => {
@@ -132264,9 +133602,16 @@ function fastify (serverOptions) {
     return this
   }
 
-  function addHttpMethod (method, { hasBody = false } = {}) {
+  function addHttpMethod (method, { hasBody = false, overrideExisting = false } = {}) {
     if (typeof method !== 'string' || http.METHODS.indexOf(method) === -1) {
       throw new FST_ERR_ROUTE_METHOD_INVALID()
+    }
+
+    const alreadyExists = this[kSupportedHTTPMethods].bodyless.has(method) ||
+      this[kSupportedHTTPMethods].bodywith.has(method)
+
+    if (alreadyExists && !overrideExisting) {
+      FSTDEP025(method)
     }
 
     if (hasBody === true) {
@@ -133880,11 +135225,16 @@ ContentTypeParser.prototype.getParser = function (contentType) {
   // with that type.
   parser = this.customParsers.get(contentType.mediaType)
   if (parser !== undefined) {
+    this.cache.set(ct, parser)
     return parser
   }
 
   for (let j = 0; j !== this.parserRegExpList.length; ++j) {
     const parserRegExp = this.parserRegExpList[j]
+    // A parser registered with a `g`/`y` flagged RegExp keeps a mutable
+    // lastIndex between calls, so a plain `.test()` would skip part of the
+    // next content type and match inconsistently. Reset it before testing.
+    parserRegExp.lastIndex = 0
     if (parserRegExp.test(ct)) {
       parser = this.customParsers.get(parserRegExp.toString())
       this.cache.set(ct, parser)
@@ -133939,7 +135289,12 @@ ContentTypeParser.prototype.run = function (contentType, handler, request, reply
   }
 
   const resource = new AsyncResource('content-type-parser:run', request)
-  const done = resource.bind(onDone)
+
+  // Preserve the request's async context without the per-request function
+  // properties and wrappers created by AsyncResource.bind().
+  function done (error, body) {
+    resource.runInAsyncScope(onDone, undefined, error, body)
+  }
 
   if (parser.asString === true || parser.asBuffer === true) {
     rawBody(
@@ -133983,12 +135338,12 @@ function rawBody (request, reply, options, parser, done) {
   }
 
   let receivedLength = 0
-  let body = asString ? '' : []
+  const chunks = []
   const payload = request[kRequestPayloadStream] || request.raw
 
-  if (asString) {
-    payload.setEncoding('utf8')
-  }
+  // Always read raw Buffers and decode once at the end: setEncoding() would
+  // allocate a StringDecoder per request and force a Buffer.byteLength()
+  // rescan of every decoded chunk just to enforce the byte limit.
 
   payload.on('data', onData)
   payload.on('end', onEnd)
@@ -133996,7 +135351,11 @@ function rawBody (request, reply, options, parser, done) {
   payload.resume()
 
   function onData (chunk) {
-    receivedLength += asString ? Buffer.byteLength(chunk) : chunk.length
+    // A custom preParsing stream may still emit strings
+    if (typeof chunk === 'string') {
+      chunk = Buffer.from(chunk)
+    }
+    receivedLength += chunk.length
     const { receivedEncodedLength = 0 } = payload
     // The resulting body length must not exceed bodyLimit (see "zip bomb").
     // The case when encoded length is larger than received length is rather theoretical,
@@ -134009,11 +135368,7 @@ function rawBody (request, reply, options, parser, done) {
       return
     }
 
-    if (asString) {
-      body += chunk
-    } else {
-      body.push(chunk)
-    }
+    chunks.push(chunk)
   }
 
   function onEnd (err) {
@@ -134034,8 +135389,17 @@ function rawBody (request, reply, options, parser, done) {
       return
     }
 
-    if (!asString) {
-      body = Buffer.concat(body)
+    let body
+    if (asString) {
+      // Decoding the whole body at once also keeps multi-byte characters
+      // split across chunks intact
+      body = chunks.length === 1
+        ? chunks[0].toString('utf8')
+        : Buffer.concat(chunks, receivedLength).toString('utf8')
+    } else {
+      // Always copy so the parser never receives a view over the shared
+      // socket read buffer
+      body = Buffer.concat(chunks, receivedLength)
     }
 
     const result = parser.fn(request, body, done)
@@ -134162,18 +135526,40 @@ module.exports[kTestInternals] = { rawBody }
 
 
 
-const { LruMap: Lru } = __nccwpck_require__(70904)
+const { FifoMap: Fifo } = __nccwpck_require__(70904)
 
 /**
- * keyValuePairsReg is used to split the parameters list into associated
- * key value pairings. The leading `(?:^|;)\s*` anchor ensures the regex
- * only attempts matches at parameter boundaries, preventing quadratic
- * backtracking on malformed input.
+ * keyValuePairsReg matches a single `parameter-name "=" parameter-value`
+ * at a parameter boundary, following RFC 9110 §5.6.6 grammar:
+ *
+ *   parameter       = parameter-name "=" parameter-value
+ *   parameter-name  = token
+ *   parameter-value = ( token / quoted-string )
+ *   quoted-string   = DQUOTE *( qdtext / quoted-pair ) DQUOTE
+ *   qdtext          = HTAB / SP / %x21 / %x23-5B / %x5D-7E / obs-text
+ *   quoted-pair     = "\" ( HTAB / SP / VCHAR / obs-text )
+ *   obs-text        = %x80-FF
+ *
+ * The value alternative accepts either a bare token or a full quoted-string
+ * whose content matches the qdtext / quoted-pair character ranges. Because
+ * the quoted-string branch is aware of `\"` as an escape, embedded `"` and
+ * `;` characters inside a quoted value do not terminate the value.
  *
  * @see https://httpwg.org/specs/rfc9110.html#parameter
  * @type {RegExp}
  */
-const keyValuePairsReg = /(?:^|;)\s*([\w!#$%&'*+.^`|~-]+)=([^;]*)/gm
+const keyValuePairsReg = /(?:^|;)\s*([\w!#$%&'*+.^`|~-]+)=("(?:[\t\u0020\u0021\u0023-\u005b\u005d-\u007e\u0080-\u00ff]|\\[\t\u0020-\u00ff])*"|[\w!#$%&'*+.^`|~-]+)/gu
+
+/**
+ * quotedPairReg matches a quoted-pair (a backslash followed by a single
+ * quoted-pair-allowed octet) inside a quoted-string value. Per RFC 9110
+ * §5.6.4, recipients that process the value of a quoted-string MUST handle
+ * a quoted-pair as if it were replaced by the octet following the backslash.
+ *
+ * @see https://httpwg.org/specs/rfc9110.html#quoted.string
+ * @type {RegExp}
+ */
+const quotedPairReg = /\\([\t\u0020-\u00ff])/gu
 
 /**
  * typeNameReg is used to validate that the first part of the media-type
@@ -134201,9 +135587,9 @@ const subtypeNameReg = /^[\w!#$%&'*+.^`|~-]+\s*$/
 
 /**
  * Content-Type internal shared cache
- * @type {Lru<ContentType>}
+ * @type {Fifo<ContentType>}
  */
-const cache = new Lru(100)
+const cache = new Fifo(100)
 
 /**
  * ContentType parses and represents the value of the content-type header.
@@ -134222,7 +135608,7 @@ class ContentType {
   /**
    * The shared cache of ContentType instances. The cache is used to avoid
    * creating multiple instances of ContentType for the same header value.
-   * @type {Lru<ContentType>}
+   * @type {Fifo<ContentType>}
    */
   static get cache () { return cache }
 
@@ -134302,21 +135688,17 @@ class ContentType {
       const key = matches[1].toLowerCase()
       // Parameter values might or might not be case-sensitive,
       // depending on the semantics of the parameter name.
-      const value = matches[2]
-      if (value[0] === '"') {
-        if (value.at(-1) !== '"') {
-          this.#parameters.set(key, 'invalid quoted string')
-          matches = keyValuePairsReg.exec(paramsList)
-          continue
+      let value = matches[2]
+      if (value.charCodeAt(0) === 0x22 /* " */) {
+        // Strip the surrounding DQUOTEs and unescape quoted-pairs per
+        // RFC 9110 §5.6.4. The regex guarantees the value starts and ends
+        // with `"` and only contains permitted qdtext / quoted-pair octets.
+        value = value.slice(1, -1)
+        if (value.indexOf('\\') !== -1) {
+          value = value.replace(quotedPairReg, '$1')
         }
-        // We should probably verify the value matches a quoted string
-        // (https://httpwg.org/specs/rfc9110.html#rule.quoted-string) value.
-        // But we are not really doing much with the parameter values, so we
-        // are omitting that at this time.
-        this.#parameters.set(key, value.slice(1, value.length - 1))
-      } else {
-        this.#parameters.set(key, value)
       }
+      this.#parameters.set(key, value)
       matches = keyValuePairsReg.exec(paramsList)
     }
   }
@@ -134327,7 +135709,10 @@ class ContentType {
 
   get isValid () { return this.#valid }
 
-  get mediaType () { return `${this.#type}/${this.#subtype}` }
+  get mediaType () {
+    if (this.#valid === false) return undefined
+    return `${this.#type}/${this.#subtype}`
+  }
 
   get type () { return this.#type }
 
@@ -134585,7 +135970,7 @@ function checkDependencies (instance, name, deps) {
   }
 
   for (let i = 0; i !== deps.length; ++i) {
-    if (!checkExistence(instance, deps[i])) {
+    if (!checkExistence(instance, deps[i]) && !hasInstanceProperty(instance, deps[i])) {
       throw new FST_ERR_DEC_MISSING_DEPENDENCY(deps[i])
     }
   }
@@ -135410,6 +136795,17 @@ const codes = {
     500,
     TypeError
   ),
+  FST_ERR_ROUTE_MISSING_CONTENT_TYPE: createError(
+    'FST_ERR_ROUTE_MISSING_CONTENT_TYPE',
+    "Method '%s' must provide a 'Content-Type' header.",
+    400
+  ),
+  // No longer thrown, kept exported until v6 to avoid a breaking change
+  FST_ERR_ROUTE_MISSING_CONTENT: createError(
+    'FST_ERR_ROUTE_MISSING_CONTENT',
+    "Method '%s' must provide a request body.",
+    400
+  ),
 
   /**
    *  again listen when close server
@@ -135534,11 +136930,10 @@ function fourOhFour (options) {
 
   // 404 router, used for handling encapsulated 404 handlers
   const router = FindMyWay({
-    onBadUrl: createRouteEventHandler(),
-    onMaxParamLength: createRouteEventHandler(),
+    onBadUrl: options.routerOptions.onBadUrl,
+    onMaxParamLength: options.routerOptions.onMaxParamLength,
     defaultRoute: fourOhFourFallBack
   })
-  let _routeEventHandler = null
 
   return { router, setNotFoundHandler, setContext, arrange404 }
 
@@ -135547,8 +136942,6 @@ function fourOhFour (options) {
     instance[kFourOhFourLevelInstance] = instance
     instance[kCanSetNotFoundHandler] = true
     // we need to bind instance for the context
-    router.onBadUrl = router.onBadUrl.bind(instance)
-    router.onMaxParamLength = router.onMaxParamLength.bind(instance)
     router.defaultRoute = router.defaultRoute.bind(instance)
   }
 
@@ -135562,20 +136955,15 @@ function fourOhFour (options) {
     })
   }
 
-  function createRouteEventHandler () {
-    return function onRouteEvent (path, req, res) {
-      const fourOhFourContext = this[kFourOhFourLevelInstance][kFourOhFourContext]
-      const id = getGenReqId(fourOhFourContext.server, req)
-      const childLogger = createChildLogger(fourOhFourContext, logger, req, id)
-      const request = new Request(id, null, req, null, childLogger, fourOhFourContext)
-      const reply = new Reply(res, request, childLogger)
-
-      _routeEventHandler(request, reply)
-    }
-  }
-
   function setContext (instance, context) {
-    const _404Context = Object.assign({}, instance[kFourOhFourContext])
+    // Use the selected not-found context as the prototype rather than taking a
+    // detached shallow snapshot. The selected context's lifecycle hooks are
+    // populated during preReady (potentially after this snapshot is taken when
+    // the route is registered first), and prototype lookup keeps the
+    // route-specific 404 context linked to the live one so hooks like
+    // preHandler are not lost. The route's own onSend is preserved as an own
+    // property.
+    const _404Context = Object.create(instance[kFourOhFourContext])
     _404Context.onSend = context.onSend
     context[kFourOhFourContext] = _404Context
   }
@@ -135623,12 +137011,8 @@ function fourOhFour (options) {
     if (handler) {
       this[kFourOhFourLevelInstance][kCanSetNotFoundHandler] = false
       handler = handler.bind(this)
-      // update route event handler
-      _routeEventHandler = handler
     } else {
       handler = basic404
-      // update route event handler
-      _routeEventHandler = basic404
     }
 
     this.after((notHandledErr, done) => {
@@ -135704,7 +137088,10 @@ const diagnostics = __nccwpck_require__(53053)
 const wrapThenable = __nccwpck_require__(47191)
 const { validate: validateSchema } = __nccwpck_require__(85272)
 const { preValidationHookRunner, preHandlerHookRunner } = __nccwpck_require__(27571)
-const { FST_ERR_CTP_INVALID_MEDIA_TYPE } = __nccwpck_require__(71036)
+const {
+  FST_ERR_CTP_INVALID_MEDIA_TYPE,
+  FST_ERR_ROUTE_MISSING_CONTENT_TYPE
+} = __nccwpck_require__(71036)
 const { setErrorStatusCode } = __nccwpck_require__(34296)
 const {
   kReplyIsError,
@@ -135736,6 +137123,18 @@ function handleRequest (err, request, reply) {
   if (this[kSupportedHTTPMethods].bodywith.has(method)) {
     const headers = request.headers
     const ctHeader = headers['content-type']
+
+    if (method === 'QUERY') {
+      if (ctHeader === undefined) {
+        // https://datatracker.ietf.org/doc/html/rfc10008#section-2
+        // Servers MUST fail the request if the Content-Type request field
+        // ([HTTP], Section 8.3) is missing or is inconsistent with the
+        // request content.
+        reply[kReplyIsError] = true
+        reply.status(400).send(new FST_ERR_ROUTE_MISSING_CONTENT_TYPE(method))
+        return
+      }
+    }
 
     if (ctHeader === undefined) {
       const contentLength = headers['content-length']
@@ -136267,7 +137666,11 @@ function onSendHookRunner (functions, request, reply, payload, cb) {
   }
 
   function handleResolve (newPayload) {
-    next(null, newPayload)
+    try {
+      next(null, newPayload)
+    } catch (err) {
+      cb(err, request, reply, payload)
+    }
   }
 
   function handleReject (err) {
@@ -136495,7 +137898,7 @@ class LogController {
    * Logs the outcome of a completed request.
    * Uses `error` level when an error is present, `info` otherwise.
    *
-   * @param {Error | null} error  Error that occurred during the response, if any.
+   * @param {Error | null | undefined} error  Error that occurred during the response, if any.
    * @param {object} request      Fastify request object.
    * @param {object} reply        Fastify reply object.
    * @param {object} [metadata]   Extra contextual data (unused).
@@ -137270,6 +138673,12 @@ Object.defineProperties(Reply.prototype, {
       return (this[kReplyEndTime] || now()) - this[kReplyStartTime]
     }
   },
+  mediaType: {
+    get () {
+      const contentTypeHeader = this.getHeader('content-type')
+      return ContentType.from(contentTypeHeader).mediaType
+    }
+  },
   server: {
     get () {
       return this.request[kRouteContext].server
@@ -137431,9 +138840,13 @@ Reply.prototype.hasHeader = function (key) {
 }
 
 Reply.prototype.removeHeader = function (key) {
+  key = key.toLowerCase()
   // Node.js does not like headers with keys set to undefined,
   // so we have to delete the key.
-  delete this[kReplyHeaders][key.toLowerCase()]
+  delete this[kReplyHeaders][key]
+  if (!this.raw.headersSent) {
+    this.raw.removeHeader(key)
+  }
   return this
 }
 
@@ -137451,6 +138864,10 @@ Reply.prototype.header = function (key, value = '') {
     } else {
       this[kReplyHeaders][key].push(value)
     }
+  } else if (key === 'set-cookie' && Array.isArray(value)) {
+    // Copy the array: later calls push into the stored one, and the caller's
+    // array (often a module-level constant) must not grow across requests.
+    this[kReplyHeaders][key] = value.slice()
   } else {
     this[kReplyHeaders][key] = value
   }
@@ -137772,9 +139189,16 @@ function onSendEnd (reply, payload) {
       header += ' '
       header += trailerName
     }
-    // it must be chunked for trailer to work
-    reply.header('Transfer-Encoding', 'chunked')
-    reply.header('Trailer', header.trim())
+    if (header !== '') {
+      // HTTP/1 must use chunked encoding for trailers. HTTP/2 forbids
+      // the transfer-encoding header and handles trailers natively.
+      if (!isHttp2Reply(reply)) {
+        reply.header('Transfer-Encoding', 'chunked')
+      }
+      reply.header('Trailer', header.trim())
+    } else {
+      reply[kReplyTrailers] = null
+    }
   }
 
   // since Response contain status code, headers and body,
@@ -138371,8 +139795,9 @@ function getTrustProxyFn (tp) {
     return function () { return true }
   }
   if (typeof tp === 'number') {
-    // Support trusting hop count
-    return function (a, i) { return i < tp }
+    // Hop-count-only trust cannot validate the immediate peer. Fail closed so
+    // direct clients cannot spoof X-Forwarded-* values by supplying enough hops.
+    return function () { return false }
   }
   if (typeof tp === 'string') {
     // Support comma-separated tps
@@ -138905,7 +140330,7 @@ function buildRouting (options) {
 
   function findRoute (options) {
     const route = router.find(
-      options.method,
+      options.method?.toUpperCase() ?? '',
       options.url || '',
       options.constraints
     )
@@ -139016,6 +140441,7 @@ function buildRouting (options) {
         opts.attachValidation = false
       }
 
+      const routeConfigUrl = prefixing ? prefix : url
       if (prefixing === false) {
         // run 'onRoute' hooks
         for (const hook of this[kHooks].onRoute) {
@@ -139054,7 +140480,7 @@ function buildRouting (options) {
       const constraints = opts.constraints || {}
       const config = {
         ...opts.config,
-        url,
+        url: routeConfigUrl,
         method: opts.method
       }
 
@@ -139136,10 +140562,13 @@ function buildRouting (options) {
             context.schema = normalizeSchema(context.schema, this.initialConfig)
 
             const schemaController = this[kSchemaController]
-            const hasValidationSchema = opts.schema.body ||
-              opts.schema.headers ||
-              opts.schema.querystring ||
-              opts.schema.params
+            // A JSON Schema boolean (`false` or `true`) is a valid schema and
+            // must still trigger the validator compiler setup, so presence is
+            // determined from an explicit `undefined` check rather than truthiness.
+            const hasValidationSchema = opts.schema.body !== undefined ||
+              opts.schema.headers !== undefined ||
+              opts.schema.querystring !== undefined ||
+              opts.schema.params !== undefined
             if (!opts.validatorCompiler && hasValidationSchema) {
               schemaController.setupValidator(this[kOptions])
             }
@@ -139189,8 +140618,12 @@ function buildRouting (options) {
       // the child logger creation altogether
       childLogger = logger
     } else {
-      const loggerOpts = {
-        level: context.logLevel
+      const loggerOpts = {}
+
+      // An empty level means "inherit". Passing it would make pino treat it
+      // as a level change and rebuild every log method of each request child.
+      if (context.logLevel) {
+        loggerOpts.level = context.logLevel
       }
 
       if (context.logSerializers) {
@@ -139657,9 +141090,12 @@ function normalizeSchema (routeSchemas, serverOptions) {
   }
 
   // alias query to querystring schema
-  if (routeSchemas.query) {
+  // A JSON Schema boolean (`false` or `true`) is a valid schema and must still
+  // be aliased, so presence is determined from an explicit `undefined` check
+  // rather than truthiness.
+  if (routeSchemas.query !== undefined) {
     // check if our schema has both querystring and query
-    if (routeSchemas.querystring) {
+    if (routeSchemas.querystring !== undefined) {
       throw new FST_ERR_SCH_DUPLICATE('querystring')
     }
     routeSchemas.querystring = routeSchemas.query
@@ -139745,7 +141181,7 @@ function getSchemaSerializer (context, statusCode, contentType) {
   }
   if (responseSchemaDef[statusCode]) {
     if (responseSchemaDef[statusCode].constructor === Object) {
-      const ct = new ContentType(contentType)
+      const ct = ContentType.from(contentType)
       if (ct.isValid) {
         if (responseSchemaDef[statusCode][ct.mediaType]) {
           return responseSchemaDef[statusCode][ct.mediaType]
@@ -139764,7 +141200,7 @@ function getSchemaSerializer (context, statusCode, contentType) {
   const fallbackStatusCode = (statusCode + '')[0] + 'xx'
   if (responseSchemaDef[fallbackStatusCode]) {
     if (responseSchemaDef[fallbackStatusCode].constructor === Object) {
-      const ct = new ContentType(contentType)
+      const ct = ContentType.from(contentType)
       if (ct.isValid) {
         if (responseSchemaDef[fallbackStatusCode][ct.mediaType]) {
           return responseSchemaDef[fallbackStatusCode][ct.mediaType]
@@ -139783,7 +141219,7 @@ function getSchemaSerializer (context, statusCode, contentType) {
   }
   if (responseSchemaDef.default) {
     if (responseSchemaDef.default.constructor === Object) {
-      const ct = new ContentType(contentType)
+      const ct = ContentType.from(contentType)
       if (ct.isValid) {
         if (responseSchemaDef.default[ct.mediaType]) {
           return responseSchemaDef.default[ct.mediaType]
@@ -140358,7 +141794,7 @@ const {
   FST_ERR_SCH_RESPONSE_SCHEMA_NOT_NESTED_2XX
 } = __nccwpck_require__(71036)
 
-const { FSTWRN001 } = __nccwpck_require__(45054)
+const { FSTWRN001, FSTSEC002, FSTSEC003 } = __nccwpck_require__(45054)
 
 function compileSchemasForSerialization (context, compile) {
   if (!context.schema || !context.schema.response) {
@@ -140399,6 +141835,222 @@ function compileSchemasForSerialization (context, compile) {
     }, {})
 }
 
+// Header names are case insensitive (RFC 9110 §5.1), and Node.js stores every
+// received header name in lowercase in `request.headers` (see the Node.js
+// `message.headers` docs). The header schema must be normalized the same way
+// before compilation, otherwise schema keywords that reference header names by
+// their canonical or mixed case — `properties`, `required`, and the Draft 7
+// `dependencies` keyword (triggers and array-form dependent names) — never
+// match the lowercased request object, silently skipping assertions.
+//
+// JSON Schema is recursive, so the transformation walks the whole schema and
+// lowercases every position where a property name (i.e. a header name) appears,
+// while recursing into subschemas. This covers `properties` and `required` in
+// every nested subschema, `dependencies` trigger keys, array-form dependent
+// property names and subschemas used as dependency values, and subschemas
+// reachable through `allOf`, `anyOf`, `oneOf`, `not`, `if`/`then`/`else`, local
+// `$ref` definitions (`definitions`/`$defs`), and the other standard subschema
+// containers. The input schema is never mutated: a new schema tree is returned.
+//
+// A `propertyNames` subschema validates each header name itself, so values held
+// in `enum` and `const` (and in every subschema reachable from it) are header
+// names rather than header values. `insidePropertyNames` tracks that context so
+// those `enum`/`const` string values are lowercased there, and only there.
+function lowerCaseHeadersSchema (schema, insidePropertyNames = false) {
+  if (Array.isArray(schema)) {
+    return schema.map(item => lowerCaseHeadersSchema(item, insidePropertyNames))
+  }
+  if (schema === null || typeof schema !== 'object') {
+    return schema
+  }
+
+  const result = {}
+
+  for (const key of Object.keys(schema)) {
+    const value = schema[key]
+
+    switch (key) {
+      case 'properties': {
+        if (value === null || typeof value !== 'object') {
+          result.properties = value
+          break
+        }
+        const normalized = {}
+        for (const prop of Object.keys(value)) {
+          normalized[prop.toLowerCase()] = lowerCaseHeadersSchema(value[prop], insidePropertyNames)
+        }
+        result.properties = normalized
+        break
+      }
+      case 'required':
+        result.required = Array.isArray(value)
+          ? value.map(name => name.toLowerCase())
+          : value
+        break
+      case 'dependencies': {
+        if (value === null || typeof value !== 'object') {
+          result.dependencies = value
+          break
+        }
+        const normalized = {}
+        for (const dep of Object.keys(value)) {
+          const depValue = value[dep]
+          if (Array.isArray(depValue)) {
+            normalized[dep.toLowerCase()] = depValue.map(name => name.toLowerCase())
+          } else {
+            normalized[dep.toLowerCase()] = lowerCaseHeadersSchema(depValue, insidePropertyNames)
+          }
+        }
+        result.dependencies = normalized
+        break
+      }
+      case 'dependentSchemas': {
+        if (value === null || typeof value !== 'object') {
+          result.dependentSchemas = value
+          break
+        }
+        const normalized = {}
+        for (const dep of Object.keys(value)) {
+          normalized[dep.toLowerCase()] = lowerCaseHeadersSchema(value[dep], insidePropertyNames)
+        }
+        result.dependentSchemas = normalized
+        break
+      }
+      case 'dependentRequired': {
+        if (value === null || typeof value !== 'object') {
+          result.dependentRequired = value
+          break
+        }
+        const normalized = {}
+        for (const dep of Object.keys(value)) {
+          normalized[dep.toLowerCase()] = value[dep].map(name => name.toLowerCase())
+        }
+        result.dependentRequired = normalized
+        break
+      }
+      // Arrays of subschemas (`allOf`/`anyOf`/`oneOf`) or a single subschema
+      // (`not`/`if`/`then`/`else`/`items`/`additionalItems`/...). `lowerCaseHeadersSchema`
+      // handles arrays, objects and booleans, so recursing here covers them all.
+      case 'allOf':
+      case 'anyOf':
+      case 'oneOf':
+      case 'not':
+      case 'if':
+      case 'then':
+      case 'else':
+      case 'items':
+      case 'additionalItems':
+      case 'additionalProperties':
+      case 'unevaluatedItems':
+      case 'unevaluatedProperties':
+      case 'contains':
+      case 'contentSchema':
+        result[key] = lowerCaseHeadersSchema(value, insidePropertyNames)
+        break
+      case 'propertyNames':
+        result[key] = lowerCaseHeadersSchema(value, true)
+        break
+      // Maps of subschemas whose keys are not header names (definition names,
+      // regex patterns): keep the keys, normalize the subschema values.
+      //
+      // `patternProperties` keys are regular expressions matched against the
+      // already-lowercased header names and are left as-is: a regular expression
+      // cannot be safely lowercased. The same applies to a `propertyNames`
+      // `pattern`. A header-name pattern written in canonical case will not match
+      // the lowercased request headers, so it must be authored to match
+      // lowercase. See docs/Reference/Validation-and-Serialization.md.
+      case 'definitions':
+      case '$defs':
+      case 'patternProperties': {
+        if (value === null || typeof value !== 'object') {
+          result[key] = value
+          break
+        }
+        const normalized = {}
+        for (const k of Object.keys(value)) {
+          normalized[k] = lowerCaseHeadersSchema(value[k], insidePropertyNames)
+        }
+        result[key] = normalized
+        break
+      }
+      default:
+        // Inside a `propertyNames` subschema, `enum` and `const` values are the
+        // candidate header names themselves, so they must be lowercased to match
+        // the lowercased request headers. Everywhere else these hold header
+        // *values* (or arbitrary constant data) and must be left untouched.
+        if (insidePropertyNames && key === 'enum' && Array.isArray(value)) {
+          result[key] = value.map(item => typeof item === 'string' ? item.toLowerCase() : item)
+        } else if (insidePropertyNames && key === 'const' && typeof value === 'string') {
+          result[key] = value.toLowerCase()
+        } else {
+          result[key] = value
+        }
+    }
+  }
+
+  return result
+}
+
+// `lowerCaseHeadersSchema` only normalizes the inline schema tree. A header
+// schema can also pull in a schema registered with `addSchema()` through an
+// external `$ref` (any ref that does not start with `#`, i.e. not a same
+// document fragment). Those referenced schemas are resolved by the validator
+// after normalization and keep their original header-name case, so
+// case-insensitive assertions in them never match the lowercased request
+// headers. We cannot safely normalize them here because the same registered
+// schema is shared with body, querystring and params validation, so we detect
+// the external reference and warn the developer instead. Returns the first
+// external `$ref` found, or undefined.
+function findExternalHeaderRef (schema) {
+  if (Array.isArray(schema)) {
+    for (const item of schema) {
+      const ref = findExternalHeaderRef(item)
+      if (ref !== undefined) return ref
+    }
+    return undefined
+  }
+  if (schema === null || typeof schema !== 'object') {
+    return undefined
+  }
+  if (typeof schema.$ref === 'string' && schema.$ref[0] !== '#') {
+    return schema.$ref
+  }
+  for (const key of Object.keys(schema)) {
+    const ref = findExternalHeaderRef(schema[key])
+    if (ref !== undefined) return ref
+  }
+  return undefined
+}
+
+// A `$ref` reached inside a `propertyNames` subschema resolves to a definition
+// that is normalized in its own, non-`propertyNames` context, so header names
+// held in its `enum`/`const` keep their original case and a case-insensitive
+// deny-list or allow-list never matches the lowercased request headers. We
+// cannot safely normalize the referenced definition here because it may be
+// shared with value contexts, so we detect the reference and warn instead.
+// Returns the first local `$ref` found inside a `propertyNames` subschema, or
+// undefined.
+function findPropertyNamesRef (schema, insidePropertyNames = false) {
+  if (Array.isArray(schema)) {
+    for (const item of schema) {
+      const ref = findPropertyNamesRef(item, insidePropertyNames)
+      if (ref !== undefined) return ref
+    }
+    return undefined
+  }
+  if (schema === null || typeof schema !== 'object') {
+    return undefined
+  }
+  if (insidePropertyNames && typeof schema.$ref === 'string' && schema.$ref[0] === '#') {
+    return schema.$ref
+  }
+  for (const key of Object.keys(schema)) {
+    const ref = findPropertyNamesRef(schema[key], insidePropertyNames || key === 'propertyNames')
+    if (ref !== undefined) return ref
+  }
+  return undefined
+}
+
 function compileSchemasForValidation (context, compile, isCustom) {
   const { schema } = context
   if (!schema) {
@@ -140407,32 +142059,41 @@ function compileSchemasForValidation (context, compile, isCustom) {
 
   const { method, url } = context.config || {}
 
+  // JSON Schema Draft 7 defines the boolean `false` (and `true`) as a valid
+  // schema. A present boolean must be passed to the compiler unchanged, so
+  // every request-part schema is selected by an explicit `undefined` check
+  // rather than truthiness. FSTWRN001 is preserved only for schemas that are
+  // explicitly set to `undefined`.
+
   const headers = schema.headers
   // the or part is used for backward compatibility
-  if (headers && (isCustom || Object.getPrototypeOf(headers) !== Object.prototype)) {
-    // do not mess with schema when custom validator applied, e.g. Joi, Typebox
-    context[headersSchema] = compile({ schema: headers, method, url, httpPart: 'headers' })
-  } else if (headers) {
-    // The header keys are case insensitive
-    //  https://datatracker.ietf.org/doc/html/rfc2616#section-4.2
-    const headersSchemaLowerCase = {}
-    Object.keys(headers).forEach(k => { headersSchemaLowerCase[k] = headers[k] })
-    if (headersSchemaLowerCase.required instanceof Array) {
-      headersSchemaLowerCase.required = headersSchemaLowerCase.required.map(h => h.toLowerCase())
+  if (headers !== undefined) {
+    if (isCustom || typeof headers !== 'object' || headers === null || Object.getPrototypeOf(headers) !== Object.prototype) {
+      // do not mess with schema when custom validator applied, e.g. Joi, Typebox
+      // boolean schemas (true/false) and invalid values are compiled directly
+      context[headersSchema] = compile({ schema: headers, method, url, httpPart: 'headers' })
+    } else {
+      // The header keys are case insensitive
+      //  https://datatracker.ietf.org/doc/html/rfc2616#section-4.2
+      const headersSchemaLowerCase = lowerCaseHeadersSchema(headers)
+      const externalRef = findExternalHeaderRef(headers)
+      if (externalRef !== undefined) {
+        FSTSEC002(method, url, externalRef)
+      }
+      const propertyNamesRef = findPropertyNamesRef(headers)
+      if (propertyNamesRef !== undefined) {
+        FSTSEC003(method, url, propertyNamesRef)
+      }
+      context[headersSchema] = compile({ schema: headersSchemaLowerCase, method, url, httpPart: 'headers' })
     }
-    if (headers.properties) {
-      headersSchemaLowerCase.properties = {}
-      Object.keys(headers.properties).forEach(k => {
-        headersSchemaLowerCase.properties[k.toLowerCase()] = headers.properties[k]
-      })
-    }
-    context[headersSchema] = compile({ schema: headersSchemaLowerCase, method, url, httpPart: 'headers' })
   } else if (Object.hasOwn(schema, 'headers')) {
     FSTWRN001('headers', method, url)
   }
 
-  if (schema.body) {
-    const contentProperty = schema.body.content
+  if (schema.body !== undefined) {
+    const contentProperty = schema.body !== null && typeof schema.body === 'object'
+      ? schema.body.content
+      : undefined
     if (contentProperty) {
       const contentTypeSchemas = {}
       for (const contentType of Object.keys(contentProperty)) {
@@ -140447,13 +142108,13 @@ function compileSchemasForValidation (context, compile, isCustom) {
     FSTWRN001('body', method, url)
   }
 
-  if (schema.querystring) {
+  if (schema.querystring !== undefined) {
     context[querystringSchema] = compile({ schema: schema.querystring, method, url, httpPart: 'querystring' })
   } else if (Object.hasOwn(schema, 'querystring')) {
     FSTWRN001('querystring', method, url)
   }
 
-  if (schema.params) {
+  if (schema.params !== undefined) {
     context[paramsSchema] = compile({ schema: schema.params, method, url, httpPart: 'params' })
   } else if (Object.hasOwn(schema, 'params')) {
     FSTWRN001('params', method, url)
@@ -140461,11 +142122,22 @@ function compileSchemasForValidation (context, compile, isCustom) {
 }
 
 function validateParam (validatorFunction, request, paramName) {
-  const isUndefined = request[paramName] === undefined
+  // The headers getter may allocate a new object, so only read it when needed.
+  if (validatorFunction == null) return false
+  const value = request[paramName]
   let ret
 
   try {
-    ret = validatorFunction?.(isUndefined ? null : request[paramName])
+    const data = value === undefined ? null : value
+    // Ajv can only mutate a root value when its parent is provided.
+    if (validatorFunction.schemaEnv) {
+      ret = validatorFunction(data, {
+        parentData: request,
+        parentDataProperty: paramName
+      })
+    } else {
+      ret = validatorFunction(data)
+    }
   } catch (err) {
     // If validator throws synchronously, ensure it propagates as an internal error
     err.statusCode = 500
@@ -140473,8 +142145,13 @@ function validateParam (validatorFunction, request, paramName) {
   }
 
   if (ret && typeof ret.then === 'function') {
+    // An async validator (for example an `$async` Ajv schema) resolves with the
+    // validated data itself, not a `{ value, error }` result. Its properties must
+    // not be unwrapped the way a synchronous custom compiler result is, otherwise
+    // a payload carrying an `error` or `value` key could inject a validation error
+    // or replace the whole request part. Treat the async result as pass/fail only.
     return ret
-      .then((res) => { return answer(res) })
+      .then((res) => { return res === false ? validatorFunction.errors : false })
       .catch(err => { return err }) // return as simple error (not throw)
   }
 
@@ -140483,7 +142160,7 @@ function validateParam (validatorFunction, request, paramName) {
   function answer (ret) {
     if (ret === false) return validatorFunction.errors
     if (ret && ret.error) return ret.error
-    if (ret && ret.value) request[paramName] = ret.value
+    if (ret && typeof ret === 'object' && 'value' in ret) request[paramName] = ret.value
     return false
   }
 }
@@ -140632,15 +142309,18 @@ module.exports = {
 const { createWarning } = __nccwpck_require__(50099)
 
 /**
- * Deprecation codes:
+ * Warning codes:
  *   - FSTWRN001
  *   - FSTSEC001
+ *   - FSTSEC002
+ *   - FSTSEC003
  *   - FSTDEP022
  *   - FSTDEP023
  *   - FSTDEP024
+ *   - FSTDEP025
  *
  * Deprecation Codes FSTDEP001 - FSTDEP021 were used by v4 and MUST NOT be reused.
- *                             - FSTDEP022 is used by v5 and MUST NOT be reused.
+ *                             - FSTDEP022 - FSTDEP025 are used by v5 and MUST NOT be reused.
  * Warning Codes FSTWRN001 - FSTWRN002 were used by v4 and MUST NOT be reused.
  */
 
@@ -140672,6 +142352,20 @@ const FSTSEC001 = createWarning({
   unlimited: true
 })
 
+const FSTSEC002 = createWarning({
+  name: 'FastifySecurity',
+  code: 'FSTSEC002',
+  message: 'The headers schema for %s: %s references an external $ref (%s) that is not case-normalized. Header names in the referenced schema keep their original case and will not match the lowercased request headers, so case-insensitive assertions such as required and dependencies may not apply. Inline the header schema instead of referencing it with an external $ref.',
+  unlimited: true
+})
+
+const FSTSEC003 = createWarning({
+  name: 'FastifySecurity',
+  code: 'FSTSEC003',
+  message: 'The headers schema for %s: %s uses a $ref (%s) inside propertyNames that is not case-normalized. Header names held in the referenced schema keep their original case and will not match the lowercased request headers, so a case-insensitive deny-list or allow-list on header names may not apply. Inline the propertyNames constraint instead of referencing it with a $ref.',
+  unlimited: true
+})
+
 const FSTDEP022 = createWarning({
   name: 'FastifyWarning',
   code: 'FSTDEP022',
@@ -140693,14 +142387,24 @@ const FSTDEP024 = createWarning({
   unlimited: true
 })
 
+const FSTDEP025 = createWarning({
+  name: 'FastifyDeprecation',
+  code: 'FSTDEP025',
+  message: 'Calling addHttpMethod for existing method "%s" without { overrideExisting: true } is deprecated. In Fastify v6, this will throw an error.',
+  unlimited: true
+})
+
 module.exports = {
   FSTWRN001,
   FSTWRN003,
   FSTWRN004,
   FSTSEC001,
+  FSTSEC002,
+  FSTSEC003,
   FSTDEP022,
   FSTDEP023,
-  FSTDEP024
+  FSTDEP024,
+  FSTDEP025
 }
 
 
@@ -140805,6 +142509,43 @@ module.exports = wrapThenable
 // eslint-disable-next-line
 const STR_ESCAPE = /[\u0000-\u001f\u0022\u005c\ud800-\udfff]/
 
+function asString (str) {
+  const len = str.length
+  if (len === 0) {
+    return '""'
+  } else if (len < 42) {
+    // magically escape strings for json
+    // relying on their charCodeAt
+    // everything below 32 needs JSON.stringify()
+    // every string that contain surrogate needs JSON.stringify()
+    // 34 and 92 happens all the time, so we
+    // have a fast case for them
+    let result = ''
+    let last = -1
+    let point = 255
+    for (let i = 0; i < len; i++) {
+      point = str.charCodeAt(i)
+      if (
+        point === 0x22 || // '"'
+        point === 0x5c // '\'
+      ) {
+        last === -1 && (last = 0)
+        result += str.slice(last, i) + '\\'
+        last = i
+      } else if (point < 32 || (point >= 0xD800 && point <= 0xDFFF)) {
+        // The current character is non-printable characters or a surrogate.
+        return JSON.stringify(str)
+      }
+    }
+    return (last === -1 && ('"' + str + '"')) || ('"' + result + str.slice(last) + '"')
+  } else if (len < 5000 && STR_ESCAPE.test(str) === false) {
+    // Only use the regular expression for shorter input. The overhead is otherwise too much.
+    return '"' + str + '"'
+  } else {
+    return JSON.stringify(str)
+  }
+}
+
 module.exports = class Serializer {
   constructor (options) {
     switch (options && options.rounding) {
@@ -140865,7 +142606,7 @@ module.exports = class Serializer {
       return '"' + date.toISOString() + '"'
     }
     if (typeof date === 'string') {
-      return '"' + date + '"'
+      return asString(date)
     }
     throw new Error(`The value "${date}" cannot be converted to a date-time.`)
   }
@@ -140876,7 +142617,7 @@ module.exports = class Serializer {
       return '"' + new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(0, 10) + '"'
     }
     if (typeof date === 'string') {
-      return '"' + date + '"'
+      return asString(date)
     }
     throw new Error(`The value "${date}" cannot be converted to a date.`)
   }
@@ -140887,46 +142628,13 @@ module.exports = class Serializer {
       return '"' + new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().slice(11, 19) + '"'
     }
     if (typeof date === 'string') {
-      return '"' + date + '"'
+      return asString(date)
     }
     throw new Error(`The value "${date}" cannot be converted to a time.`)
   }
 
   asString (str) {
-    const len = str.length
-    if (len === 0) {
-      return '""'
-    } else if (len < 42) {
-      // magically escape strings for json
-      // relying on their charCodeAt
-      // everything below 32 needs JSON.stringify()
-      // every string that contain surrogate needs JSON.stringify()
-      // 34 and 92 happens all the time, so we
-      // have a fast case for them
-      let result = ''
-      let last = -1
-      let point = 255
-      for (let i = 0; i < len; i++) {
-        point = str.charCodeAt(i)
-        if (
-          point === 0x22 || // '"'
-          point === 0x5c // '\'
-        ) {
-          last === -1 && (last = 0)
-          result += str.slice(last, i) + '\\'
-          last = i
-        } else if (point < 32 || (point >= 0xD800 && point <= 0xDFFF)) {
-          // The current character is non-printable characters or a surrogate.
-          return JSON.stringify(str)
-        }
-      }
-      return (last === -1 && ('"' + str + '"')) || ('"' + result + str.slice(last) + '"')
-    } else if (len < 5000 && STR_ESCAPE.test(str) === false) {
-      // Only use the regular expression for shorter input. The overhead is otherwise too much.
-      return '"' + str + '"'
-    } else {
-      return JSON.stringify(str)
-    }
+    return asString(str)
   }
 
   asUnsafeString (str) {
@@ -147657,7 +149365,7 @@ function transport (fullOptions) {
   }
 
   if (targets) {
-    target = bundlerOverrides['pino-worker'] || join(__dirname, 'worker.js')
+    target = bundlerOverrides['pino-worker'] || __nccwpck_require__.ab + "worker.js"
     options.targets = targets.filter(dest => dest.target).map((dest) => {
       return {
         ...dest,
@@ -147674,7 +149382,7 @@ function transport (fullOptions) {
       })
     })
   } else if (pipeline) {
-    target = bundlerOverrides['pino-worker'] || join(__dirname, 'worker.js')
+    target = bundlerOverrides['pino-worker'] || __nccwpck_require__.ab + "worker.js"
     options.pipelines = [pipeline.map((dest) => {
       return {
         ...dest,
@@ -147704,7 +149412,7 @@ function transport (fullOptions) {
     }
 
     if (origin === 'pino/file') {
-      return join(__dirname, '..', 'file.js')
+      return __nccwpck_require__.ab + "file.js"
     }
 
     let fixTarget
@@ -147999,6 +149707,7 @@ const { format } = __nccwpck_require__(57975)
  * @property {string} message - The warning message.
  * @property {boolean} emitted - Indicates if the warning has been emitted.
  * @property {function} format - Formats the warning message.
+ * @returns {boolean} emit - Indicates if the warning has been emitted by this call.
  */
 
 /**
@@ -148015,7 +149724,68 @@ const { format } = __nccwpck_require__(57975)
  * @typedef {Object} ProcessWarning
  * @property {function} createWarning - Creates a warning item.
  * @property {function} createDeprecation - Creates a deprecation warning item.
+ * @property {function} spyWarning - Spy a warning item.
  */
+
+/**
+ * Represents the spy data.
+ * @typedef {Object} WarningSpyData
+ * @property {object} calls - Arguments of WarningItem calls with.
+ * @property {function} callCount - Number of counts called the WarningItem.
+ * @property {function} reset - Reset the calls data and state of WarningItem.
+ * @property {function} restore - Remove spy from WarningItem.
+ */
+
+const kWarningFn = Symbol('process-warning.fn')
+const kWarningSpyData = Symbol('process-warning.spyData')
+
+/**
+ * Spy a warning item.
+ * @function
+ * @memberof processWarning
+ * @param {WarningItem} warning - The warning item to spy.
+ * @returns {WarningSpyData} The created spy data.
+ */
+function spyWarning (warning) {
+  // Do not double spy the same warning
+  if (warning[kWarningSpyData] === null) {
+    const warningFn = warning[kWarningFn]
+    warning[kWarningFn] = function (a, b, c) {
+      const args = []
+      // since warning always call by fn(a, b, c)
+      // it need to remove the trailing undefined arguments
+      if (c) {
+        args.push(a, b, c)
+      } else if (b) {
+        args.push(a, b)
+      } else if (a) {
+        args.push(a)
+      }
+      warning[kWarningSpyData].calls.push({
+        arguments: args,
+        result: warningFn(a, b, c)
+      })
+    }
+    const spyData = {
+      calls: [],
+      callCount () {
+        return spyData.calls.length
+      },
+      reset () {
+        warning.emitted = false
+        spyData.calls.length = 0
+      },
+      restore () {
+        spyData.reset()
+        warning[kWarningFn] = warningFn
+        warning[kWarningSpyData] = null
+      }
+    }
+    warning[kWarningSpyData] = spyData
+  }
+
+  return warning[kWarningSpyData]
+}
 
 /**
  * Creates a deprecation warning item.
@@ -148044,21 +149814,24 @@ function createWarning ({ name, code, message, unlimited = false } = {}) {
 
   code = code.toUpperCase()
 
-  let warningContainer = {
-    [name]: function (a, b, c) {
+  const warningFn = unlimited === true
+    ? function (a, b, c) {
+      warning.emitted = true
+      process.emitWarning(warning.format(a, b, c), warning.name, warning.code)
+      return true
+    }
+    : function (a, b, c) {
       if (warning.emitted === true && warning.unlimited !== true) {
-        return
+        return false
       }
       warning.emitted = true
       process.emitWarning(warning.format(a, b, c), warning.name, warning.code)
+      return true
     }
-  }
-  if (unlimited) {
-    warningContainer = {
-      [name]: function (a, b, c) {
-        warning.emitted = true
-        process.emitWarning(warning.format(a, b, c), warning.name, warning.code)
-      }
+
+  const warningContainer = {
+    [name]: function (a, b, c) {
+      return warning[kWarningFn](a, b, c)
     }
   }
 
@@ -148068,14 +149841,16 @@ function createWarning ({ name, code, message, unlimited = false } = {}) {
   warning.message = message
   warning.unlimited = unlimited
   warning.code = code
+  warning[kWarningFn] = warningFn
+  warning[kWarningSpyData] = null
 
   /**
-   * Formats the warning message.
-   * @param {*} [a] Possible message interpolation value.
-   * @param {*} [b] Possible message interpolation value.
-   * @param {*} [c] Possible message interpolation value.
-   * @returns {string} The formatted warning message.
-   */
+ * Formats the warning message.
+ * @param {*} [a] Possible message interpolation value.
+ * @param {*} [b] Possible message interpolation value.
+ * @param {*} [c] Possible message interpolation value.
+ * @returns {string} The formatted warning message.
+ */
   warning.format = function (a, b, c) {
     let formatted
     if (a && b && c) {
@@ -148098,9 +149873,10 @@ function createWarning ({ name, code, message, unlimited = false } = {}) {
  * @namespace
  * @property {function} createWarning - Creates a warning item.
  * @property {function} createDeprecation - Creates a deprecation warning item.
+ * @property {function} spyWarning - Spy a warning item.
  * @property {ProcessWarning} processWarning - Represents the process warning functionality.
  */
-const out = { createWarning, createDeprecation }
+const out = { createWarning, createDeprecation, spyWarning }
 module.exports = out
 module.exports["default"] = out
 module.exports.processWarning = out
@@ -149112,7 +150888,8 @@ const util = __nccwpck_require__(39023);
 const axiosPkg = (__nccwpck_require__(87269)["default"]);
 const { isBoolean, isEmpty, negate, noop, once, partial, pick, zip } = __nccwpck_require__(58135);
 const { NEVER, combineLatest, from, merge, throwError, timer } = __nccwpck_require__(34863);
-const { distinctUntilChanged, map, mergeMap, scan, startWith, take, takeWhile } = __nccwpck_require__(73626);
+const { distinctUntilChanged, exhaustMap, map, mergeMap, scan, startWith, take, takeWhile } = __nccwpck_require__(73626);
+const childProcess = __nccwpck_require__(35317);
 
 // force http adapter for axios, otherwise if using jest/jsdom xhr might
 // be used and it logs all errors polluting the logs
@@ -149120,10 +150897,16 @@ const axios = axiosPkg.create({ adapter: 'http' });
 const isNotABoolean = negate(isBoolean);
 const isNotEmpty = negate(isEmpty);
 const fstat = promisify(fs.stat);
-const PREFIX_RE = /^((https?-get|https?|tcp|socket|file):)(.+)$/;
-const HOST_PORT_RE = /^(([^:]*):)?(\d+)$/;
+const exec = promisify(childProcess.exec);
+const PREFIX_RE = /^((https?-get|https?|tcp|socket|file|command):)(.+)$/;
+// host:port, bare port (host defaults to localhost), or bracketed IPv6 [::1]:port
+const HOST_PORT_RE = /^(?:\[([^\]]+)\]:|([^:]*):)?(\d+)$/;
 const HTTP_GET_RE = /^https?-get:/;
-const HTTP_UNIX_RE = /^http:\/\/unix:([^:]+):(.+)$/;
+const HTTP_PREFIX_RE = /^https?:\/\//;
+// the socket path may contain colons (e.g. Windows named pipes like \\?\pipe\C:\app\sock),
+// so split at the colon which is followed by the url or url path
+const HTTP_UNIX_RE = /^http:\/\/unix:(.+?):((?:https?:\/\/|\/).*)$/;
+const HTTP_UNIX_LEGACY_RE = /^http:\/\/unix:([^:]+):(.+)$/;
 const TIMEOUT_ERR_MSG = 'Timed out waiting for';
 
 const WAIT_ON_SCHEMA = Joi.object({
@@ -149139,6 +150922,7 @@ const WAIT_ON_SCHEMA = Joi.object({
   verbose: Joi.boolean().default(false),
   window: Joi.number().integer().min(0).default(750),
   tcpTimeout: Joi.number().integer().min(0).default(300),
+  commandTimeout: Joi.number().integer().min(0).default(0), // per-attempt kill for command: resources, 0 = no limit
 
   // http/https options
   ca: [Joi.string(), Joi.binary()],
@@ -149171,8 +150955,9 @@ const WAIT_ON_SCHEMA = Joi.object({
      For http over socket, use http://unix:SOCK_PATH:URL_PATH
                     like http://unix:/path/to/sock:/foo/bar or
                          http-get://unix:/path/to/sock:/foo/bar
+   - command:<shell command> succeeds when the command exits 0. ex: command:pg_isready
 
-   @param opts object configuring waitOn
+   @param opts object configuring waitOn, or a string / string array used as opts.resources shorthand
    @param opts.resources array of string resources to wait for. prefix determines the type of resource with the default type of `file:`
    @param opts.delay integer - optional initial delay in ms, default 0
    @param opts.httpTimeout integer - optional http HEAD/GET timeout to wait for request, default 0
@@ -149181,6 +150966,7 @@ const WAIT_ON_SCHEMA = Joi.object({
    @param opts.reverse boolean - optional flag which reverses the mode, succeeds when resources are not available
    @param opts.simultaneous integer - optional limit of concurrent connections to a resource, default Infinity
    @param opts.tcpTimeout - Maximum time in ms for tcp connect, default 300ms
+   @param opts.commandTimeout integer - optional per-attempt timeout in ms for command: resources, default 0 (no limit). A command still running at this bound is killed and the next poll retries
    @param opts.timeout integer - optional timeout in ms, default Infinity. Aborts with error.
    @param opts.verbose boolean - optional flag to turn on debug log
    @param opts.window integer - optional stabilization time in ms, default 750ms. Waits this amount of time for file sizes to stabilize or other resource availability to remain unchanged. If less than interval then will be reset to interval
@@ -149188,6 +150974,8 @@ const WAIT_ON_SCHEMA = Joi.object({
    if not specified, wait-on will return a promise that will be rejected if resource checks did not succeed or resolved otherwise
  */
 function waitOn(opts, cb) {
+  // Shorthand: a string or string array is treated as opts.resources
+  if (typeof opts === 'string' || Array.isArray(opts)) opts = { resources: [].concat(opts) };
   if (cb !== undefined) {
     return waitOnImpl(opts, cb);
   } else {
@@ -149218,6 +151006,12 @@ function waitOnImpl(opts, cbFunc) {
   };
 
   const { resources, log: shouldLog, timeout, verbose, reverse } = validatedOpts;
+
+  // fail fast on malformed resources instead of polling until timeout
+  const resourceError = validateResources(resources);
+  if (resourceError) {
+    return cbOnce(resourceError);
+  }
 
   const output = verbose ? console.log.bind() : noop;
   const log = shouldLog ? console.log.bind() : noop;
@@ -149292,6 +151086,8 @@ function createResource$(deps, resource) {
       return createHTTP$(deps, resource);
     case 'tcp:':
       return createTCP$(deps, resource);
+    case 'command:':
+      return createCommand$(deps, resource);
     case 'socket:':
       return createSocket$(deps, resource);
     default:
@@ -149358,6 +151154,56 @@ function extractPrefix(resource) {
   return '';
 }
 
+// Returns an Error for the first syntactically malformed resource, else null.
+// These fail immediately rather than polling until the global timeout.
+function validateResources(resources) {
+  for (const resource of resources) {
+    const err = validateResource(resource);
+    if (err) {
+      return err;
+    }
+  }
+  return null;
+}
+
+function validateResource(resource) {
+  switch (extractPrefix(resource)) {
+    case 'https-get:':
+    case 'http-get:':
+    case 'https:':
+    case 'http:': {
+      const url = resource.replace('-get:', ':');
+      // http over a unix socket/named pipe: http://unix:SOCK_PATH:URL_PATH
+      if (HTTP_UNIX_RE.test(url) || HTTP_UNIX_LEGACY_RE.test(url)) {
+        return null;
+      }
+      // require `//` right after the scheme; `new URL('http:localhost:3000')`
+      // parses successfully, so parsing alone would not catch this (#217)
+      if (!HTTP_PREFIX_RE.test(url)) {
+        return new Error(`Invalid resource "${resource}": http(s) resources must include "//", e.g. http://host:port/path`);
+      }
+      try {
+        new URL(url);
+      } catch {
+        return new Error(`Invalid resource "${resource}": not a valid URL`);
+      }
+      return null;
+    }
+    case 'tcp:': {
+      // tcp uses a bare host:port, not a URL authority (#140)
+      if (/^tcp:\/\//.test(resource)) {
+        return new Error(`Invalid resource "${resource}": use tcp:host:port (no "//"), e.g. tcp:127.0.0.1:3000`);
+      }
+      if (!HOST_PORT_RE.test(extractPath(resource))) {
+        return new Error(`Invalid resource "${resource}": expected tcp:host:port or tcp:[ipv6]:port`);
+      }
+      return null;
+    }
+    default:
+      return null;
+  }
+}
+
 async function getFileSize(filePath) {
   try {
     const { size } = await fstat(filePath);
@@ -149380,7 +151226,7 @@ function createHTTP$({ validatedOpts, output }, resource) {
   } = validatedOpts;
   const method = HTTP_GET_RE.test(resource) ? 'get' : 'head';
   const url = resource.replace('-get:', ':');
-  const matchHttpUnixSocket = HTTP_UNIX_RE.exec(url); // http://unix:/sock:/url
+  const matchHttpUnixSocket = HTTP_UNIX_RE.exec(url) || HTTP_UNIX_LEGACY_RE.exec(url); // http://unix:/sock:/url
   const urlSocketOptions = matchHttpUnixSocket
     ? { socketPath: matchHttpUnixSocket[1], url: matchHttpUnixSocket[2] }
     : { url };
@@ -149441,8 +151287,8 @@ function createTCP$({ validatedOpts: { delay, interval, tcpTimeout, reverse, sim
 }
 
 async function tcpExists(output, tcpPath, tcpTimeout) {
-  const [, , /* full, hostWithColon */ hostMatched, port] = HOST_PORT_RE.exec(tcpPath);
-  const host = hostMatched || 'localhost';
+  const [, /* full */ ipv6, hostMatched, port] = HOST_PORT_RE.exec(tcpPath);
+  const host = ipv6 || hostMatched || 'localhost';
   return new Promise((resolve) => {
     const conn = net
       .connect(port, host)
@@ -149452,12 +151298,12 @@ async function tcpExists(output, tcpPath, tcpTimeout) {
       })
       .on('timeout', () => {
         output(`  timed out connecting to TCP host:${host} port:${port} tcpTimeout:${tcpTimeout}ms`);
-        conn.end();
+        conn.destroy();
         resolve(false);
       })
       .on('connect', () => {
         output(`  TCP connection successful to host:${host} port:${port}`);
-        conn.end();
+        conn.destroy();
         resolve(true);
       });
     conn.setTimeout(tcpTimeout);
@@ -149488,10 +151334,42 @@ async function socketExists(output, socketPath) {
       })
       .on('connect', () => {
         output(`  connected to socket:${socketPath}`);
-        conn.end();
+        conn.destroy();
         resolve(true);
       });
   });
+}
+
+function createCommand$({ validatedOpts: { delay, interval, reverse, commandTimeout }, output }, resource) {
+  const command = extractPath(resource);
+  const checkFn = reverse ? negateAsync(commandPasses) : commandPasses;
+  // exhaustMap (not mergeMap/simultaneous): one exec in flight per resource. While a
+  // command runs, later timer ticks are dropped, so a command that outlasts `interval`
+  // is never spawned concurrently with itself.
+  return timer(delay, interval).pipe(
+    exhaustMap(() => {
+      output(`executing command "${command}" ...`);
+      return from(checkFn(output, command, commandTimeout));
+    }),
+    startWith(false),
+    distinctUntilChanged(),
+    take(2)
+  );
+}
+
+async function commandPasses(output, command, commandTimeout) {
+  try {
+    // commandTimeout > 0 kills a hung command at the per-attempt bound (SIGKILL, since a
+    // hung process may ignore SIGTERM); the rejection is caught below and polling continues.
+    // ponytail: kills the shell; a detached grandchild can outlive it. commandTimeout is
+    // the per-attempt bound, not a hard process-group kill.
+    const { stdout } = await exec(command, { ...(commandTimeout ? { timeout: commandTimeout, killSignal: 'SIGKILL' } : {}) });
+    output(`  Command "${command}" success. stdout: "${stdout}"`);
+    return true;
+  } catch (e) {
+    output(`  Command error: "${e.message}"`);
+    return false;
+  }
 }
 
 function negateAsync(asyncFn) {
@@ -149522,7 +151400,7 @@ module.exports = { version: packageJson.version }
 /***/ 87269:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-/*! Axios v1.18.1 Copyright (c) 2026 Matt Zabriskie and contributors */
+/*! Axios v1.20.0 Copyright (c) 2026 Matt Zabriskie and contributors */
 
 
 var FormData$1 = __nccwpck_require__(96454);
@@ -149569,13 +151447,57 @@ const {
 const hasOwnProperty = (({
   hasOwnProperty
 }) => (obj, prop) => hasOwnProperty.call(obj, prop))(Object.prototype);
+const isUnsafeObjectKey = prop => typeof prop === 'string' && (prop === '__proto__' || prop === 'constructor' || prop === 'prototype');
 
 /**
- * Walk the prototype chain (excluding the shared Object.prototype) looking for
- * an own `prop`. This distinguishes genuine own/inherited members — including
- * class accessors and template prototypes — from members injected via
- * Object.prototype pollution (e.g. `Object.prototype.username = '...'`), which
- * live on Object.prototype itself and are therefore never matched.
+ * Determine whether an inherited object must be treated as a shared-prototype
+ * boundary. Cross-realm Object.prototype objects cannot be distinguished
+ * reliably from application-created null-prototype objects because their
+ * properties are mutable, so all inherited terminal prototypes are excluded
+ * as a fail-closed boundary. A null-prototype source still keeps its own
+ * properties, as produced by mergeConfig and other safe materialization paths.
+ *
+ * @param {*} obj The object to inspect
+ * @param {*} prototype The object's prototype
+ * @param {boolean} source Whether obj is the original traversal source
+ *
+ * @returns {boolean} True when obj is a safe prototype traversal boundary
+ */
+const isPrototypeBoundary = (obj, prototype, source) => obj === Object.prototype || !source && prototype === null;
+
+/**
+ * Determine whether an object can retain its identity through code paths that
+ * add, replace, and remove config properties without bypassing unsafe-key
+ * filtering. Immutable objects, unsafe-key-bearing objects, and objects with
+ * accessor or restricted data properties must be materialized instead.
+ *
+ * @param {*} obj The object to inspect
+ *
+ * @returns {boolean} True when every own property is safe and fully mutable
+ */
+const isSafeAndFullyMutable = obj => {
+  if (!Object.isExtensible(obj)) {
+    return false;
+  }
+  const props = Object.getOwnPropertyNames(obj);
+  if (Object.getOwnPropertySymbols) {
+    props.push(...Object.getOwnPropertySymbols(obj));
+  }
+  return props.every(prop => {
+    if (isUnsafeObjectKey(prop)) {
+      return false;
+    }
+    const descriptor = Object.getOwnPropertyDescriptor(obj, prop);
+    return !!descriptor && descriptor.configurable && descriptor.writable === true;
+  });
+};
+
+/**
+ * Walk the prototype chain (excluding the source realm's Object.prototype)
+ * looking for an own `prop`. This distinguishes genuine own/inherited members
+ * — including class accessors and template prototypes — from members injected
+ * via Object.prototype pollution (e.g. `Object.prototype.username = '...'`),
+ * which live on Object.prototype itself and are therefore never matched.
  *
  * @param {*} thing The value whose chain to inspect
  * @param {string|symbol} prop The property key to look for
@@ -149585,15 +151507,19 @@ const hasOwnProperty = (({
 const hasOwnInPrototypeChain = (thing, prop) => {
   let obj = thing;
   const seen = [];
-  while (obj != null && obj !== Object.prototype) {
+  while (obj != null) {
     if (seen.indexOf(obj) !== -1) {
       return false;
     }
     seen.push(obj);
+    const prototype = getPrototypeOf(obj);
+    if (isPrototypeBoundary(obj, prototype, obj === thing)) {
+      return false;
+    }
     if (hasOwnProperty(obj, prop)) {
       return true;
     }
-    obj = getPrototypeOf(obj);
+    obj = prototype;
   }
   return false;
 };
@@ -149610,6 +151536,56 @@ const hasOwnInPrototypeChain = (thing, prop) => {
  * @returns {*} The resolved value, or undefined when unsafe/absent
  */
 const getSafeProp = (obj, prop) => obj != null && hasOwnInPrototypeChain(obj, prop) ? obj[prop] : undefined;
+
+/**
+ * Flatten an object and its application-defined prototype chain into a
+ * null-prototype object. Members inherited only from the source realm's
+ * Object.prototype are deliberately excluded, while class/template members
+ * below that boundary are preserved.
+ *
+ * @param {*} thing The value to flatten
+ *
+ * @returns {*} A null-prototype copy, or the original value when it is already
+ * structurally safe or is not an object
+ */
+const toSafeFlatObject = thing => {
+  if (thing == null || typeof thing !== 'object' && typeof thing !== 'function') {
+    return thing;
+  }
+  const sourcePrototype = getPrototypeOf(thing);
+  if (sourcePrototype === null && isSafeAndFullyMutable(thing)) {
+    return thing;
+  }
+  const result = Object.create(null);
+  const merged = Object.create(null);
+  const seen = [];
+  let current = thing;
+  while (current != null) {
+    if (seen.indexOf(current) !== -1) {
+      break;
+    }
+    seen.push(current);
+    const prototype = current === thing ? sourcePrototype : getPrototypeOf(current);
+    if (isPrototypeBoundary(current, prototype, current === thing)) {
+      break;
+    }
+    const props = Object.getOwnPropertyNames(current);
+    if (Object.getOwnPropertySymbols) {
+      props.push(...Object.getOwnPropertySymbols(current));
+    }
+    for (const prop of props) {
+      if (isUnsafeObjectKey(prop)) {
+        continue;
+      }
+      if (!hasOwnProperty(merged, prop)) {
+        result[prop] = thing[prop];
+        merged[prop] = true;
+      }
+    }
+    current = prototype;
+  }
+  return result;
+};
 const kindOf = (cache => thing => {
   const str = toString.call(thing);
   return cache[str] || (cache[str] = str.slice(8, -1).toLowerCase());
@@ -149733,9 +151709,9 @@ const isPlainObject = val => {
   }
   const prototype = getPrototypeOf(val);
   return (prototype === null || prototype === Object.prototype || getPrototypeOf(prototype) === null) &&
-  // Treat any genuine (non-Object.prototype-polluted) Symbol.toStringTag or
-  // Symbol.iterator as evidence the value is a tagged/iterable type rather
-  // than a plain object, while ignoring keys injected onto Object.prototype.
+  // Treat safe own/inherited Symbol.toStringTag or Symbol.iterator members as
+  // evidence the value is tagged/iterable, while ignoring members reachable
+  // only through shared or terminal prototype boundaries.
   !hasOwnInPrototypeChain(val, toStringTag) && !hasOwnInPrototypeChain(val, iterator);
 };
 
@@ -149819,6 +151795,7 @@ const isBlob = kindOfTest('Blob');
  * @returns {boolean} True if value is a FileList, otherwise false
  */
 const isFileList = kindOfTest('FileList');
+const isSet = kindOfTest('Set');
 
 /**
  * Determine if a value is a Stream
@@ -150341,11 +152318,20 @@ const toJSONObject = obj => {
       if (!('toJSON' in source)) {
         // add-on descent / delete-on-ascent: preserves path semantics, so DAG nodes serialise at every occurrence (see #7230).
         visited.add(source);
-        const target = isArray(source) ? [] : {};
-        forEach(source, (value, key) => {
-          const reducedValue = visit(value);
-          !isUndefined(reducedValue) && (target[key] = reducedValue);
-        });
+        let target;
+        if (isSet(source)) {
+          target = [];
+          for (const value of source) {
+            const reducedValue = visit(value);
+            !isUndefined(reducedValue) && target.push(reducedValue);
+          }
+        } else {
+          target = isArray(source) ? [] : {};
+          forEach(source, (value, key) => {
+            const reducedValue = visit(value);
+            !isUndefined(reducedValue) && (target[key] = reducedValue);
+          });
+        }
         visited.delete(source);
         return target;
       }
@@ -150473,6 +152459,7 @@ var utils$1 = {
   // an alias to avoid ESLint no-prototype-builtins detection
   hasOwnInPrototypeChain,
   getSafeProp,
+  toSafeFlatObject,
   reduceDescriptors,
   freezeMethods,
   toObjectSet,
@@ -150519,17 +152506,18 @@ var parseHeaders = rawHeaders => {
     i = line.indexOf(':');
     key = line.substring(0, i).trim().toLowerCase();
     val = line.substring(i + 1).trim();
-    if (!key || parsed[key] && ignoreDuplicateOf[key]) {
+    const hasKey = utils$1.hasOwnProp(parsed, key);
+    if (!key || hasKey && utils$1.hasOwnProp(ignoreDuplicateOf, key)) {
       return;
     }
     if (key === 'set-cookie') {
-      if (parsed[key]) {
+      if (hasKey) {
         parsed[key].push(val);
       } else {
         parsed[key] = [val];
       }
     } else {
-      parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+      parsed[key] = hasKey ? parsed[key] + ', ' + val : val;
     }
   });
   return parsed;
@@ -150576,7 +152564,7 @@ function toByteStringHeaderObject(headers) {
   return byteStringHeaders;
 }
 
-const $internals = Symbol('internals');
+const $internals$1 = Symbol('internals');
 function normalizeHeader(header) {
   return header && String(header).trim().toLowerCase();
 }
@@ -150594,6 +152582,90 @@ function parseTokens(str) {
     tokens[match[1]] = match[2];
   }
   return tokens;
+}
+const parameterNameRE = /^[!#$%&'*+\-.^_`|~0-9A-Za-z]+$/;
+function trimOWS(value) {
+  let start = 0;
+  let end = value.length;
+  while (start < end) {
+    const code = value.charCodeAt(start);
+    if (code !== 0x09 && code !== 0x20) {
+      break;
+    }
+    start += 1;
+  }
+  while (end > start) {
+    const code = value.charCodeAt(end - 1);
+    if (code !== 0x09 && code !== 0x20) {
+      break;
+    }
+    end -= 1;
+  }
+  return start === 0 && end === value.length ? value : value.slice(start, end);
+}
+function decodeQuotedString(value) {
+  const last = value.length - 1;
+  if (last < 1 || value.charCodeAt(0) !== 0x22 || value.charCodeAt(last) !== 0x22) {
+    return value;
+  }
+  let decoded = '';
+  for (let i = 1; i < last; i++) {
+    const code = value.charCodeAt(i);
+    if (code === 0x22) {
+      return value;
+    }
+    if (code === 0x5c) {
+      i += 1;
+      if (i >= last) {
+        return value;
+      }
+    }
+    decoded += value[i];
+  }
+  return decoded;
+}
+function parseParameters(value) {
+  const parameters = Object.create(null);
+  const str = String(value);
+  let start = 0;
+  let quoted = false;
+  let escaped = false;
+  function parseParameter(end) {
+    const part = trimOWS(str.slice(start, end));
+    const equals = part.indexOf('=');
+    if (equals < 1) {
+      return;
+    }
+    const name = trimOWS(part.slice(0, equals));
+    if (!parameterNameRE.test(name)) {
+      return;
+    }
+    const normalizedName = name.toLowerCase();
+    if (normalizedName === '__proto__' || normalizedName === 'constructor' || normalizedName === 'prototype') {
+      return;
+    }
+    const parameterValue = trimOWS(part.slice(equals + 1));
+    parameters[normalizedName] = decodeQuotedString(parameterValue);
+  }
+  for (let i = 0; i < str.length; i++) {
+    const code = str.charCodeAt(i);
+    if (quoted) {
+      if (escaped) {
+        escaped = false;
+      } else if (code === 0x5c) {
+        escaped = true;
+      } else if (code === 0x22) {
+        quoted = false;
+      }
+    } else if (code === 0x22) {
+      quoted = true;
+    } else if (code === 0x2c || code === 0x3b) {
+      parseParameter(i);
+      start = i + 1;
+    }
+  }
+  parseParameter(str.length);
+  return parameters;
 }
 const isValidHeaderName = str => /^[-_a-zA-Z0-9^`|~,!#$%&'*+.]+$/.test(str.trim());
 function matchHeaderValue(context, value, header, filter, isHeaderNameFilter) {
@@ -150772,7 +152844,8 @@ class AxiosHeaders {
     return Object.entries(this.toJSON()).map(([header, value]) => header + ': ' + value).join('\n');
   }
   getSetCookie() {
-    return this.get('set-cookie') || [];
+    const value = this.get('set-cookie');
+    return utils$1.isArray(value) ? value : value == null || value === false ? [] : [value];
   }
   get [Symbol.toStringTag]() {
     return 'AxiosHeaders';
@@ -150780,13 +152853,16 @@ class AxiosHeaders {
   static from(thing) {
     return thing instanceof this ? thing : new this(thing);
   }
+  static parseParameters(value) {
+    return parseParameters(value);
+  }
   static concat(first, ...targets) {
     const computed = new this(first);
     targets.forEach(target => computed.set(target));
     return computed;
   }
   static accessor(header) {
-    const internals = this[$internals] = this[$internals] = {
+    const internals = this[$internals$1] = this[$internals$1] = {
       accessors: {}
     };
     const accessors = internals.accessors;
@@ -150874,9 +152950,33 @@ function redactConfig(config, redactKeys) {
   };
   return visit(config);
 }
+function stringifySafely$1(value) {
+  try {
+    return String(value);
+  } catch (err) {
+    return '';
+  }
+}
+function aggregateErrorMessage(error) {
+  const message = error.errors.map(entry => {
+    try {
+      return entry && entry.message ? stringifySafely$1(entry.message) : stringifySafely$1(entry);
+    } catch (err) {
+      return '';
+    }
+  }).filter(Boolean).join('; ');
+  return message || error.name || 'AggregateError';
+}
 class AxiosError extends Error {
   static from(error, code, config, request, response, customProps) {
-    const axiosError = new AxiosError(error.message, code || error.code, config, request, response);
+    // `AggregateError` (thrown by Node on dual-stack/Happy-Eyeballs connection
+    // failures) has an empty `message`; its detail lives in `errors[]`. Without
+    // this, the wrapped error surfaces with a blank message (see #6721).
+    let message = error.message;
+    if (!message && utils$1.isArray(error.errors) && error.errors.length) {
+      message = aggregateErrorMessage(error);
+    }
+    const axiosError = new AxiosError(message, code || error.code, config, request, response);
     // Match native `Error` `cause` semantics: non-enumerable. The wrapped
     // error often carries circular internals (sockets, requests, agents), so
     // an enumerable `cause` makes structured loggers (pino/winston) and any
@@ -150980,6 +153080,15 @@ AxiosError.ERR_NOT_SUPPORT = 'ERR_NOT_SUPPORT';
 AxiosError.ERR_INVALID_URL = 'ERR_INVALID_URL';
 AxiosError.ERR_FORM_DATA_DEPTH_EXCEEDED = 'ERR_FORM_DATA_DEPTH_EXCEEDED';
 
+var PlatformBuffer = {
+  isBufferAvailable() {
+    return typeof Buffer !== 'undefined';
+  },
+  from(value) {
+    return Buffer.from(value);
+  }
+};
+
 // Default nesting limit shared with the inverse transform (formDataToJSON) so
 // the FormData <-> JSON round-trip stays symmetric.
 const DEFAULT_FORM_DATA_MAX_DEPTH = 100;
@@ -151068,23 +153177,17 @@ function toFormData(obj, formData, options) {
 
   // eslint-disable-next-line no-param-reassign
   formData = formData || new (FormData$1 || FormData)();
-
-  // eslint-disable-next-line no-param-reassign
-  options = utils$1.toFlatObject(options, {
-    metaTokens: true,
-    dots: false,
-    indexes: false
-  }, false, function defined(option, source) {
-    // eslint-disable-next-line no-eq-null,eqeqeq
-    return !utils$1.isUndefined(source[option]);
-  });
-  const metaTokens = options.metaTokens;
+  const option = (name, fallback) => {
+    const value = utils$1.getSafeProp(options, name);
+    return utils$1.isUndefined(value) ? fallback : value;
+  };
+  const metaTokens = option('metaTokens', true);
   // eslint-disable-next-line no-use-before-define
-  const visitor = options.visitor || defaultVisitor;
-  const dots = options.dots;
-  const indexes = options.indexes;
-  const _Blob = options.Blob || typeof Blob !== 'undefined' && Blob;
-  const maxDepth = options.maxDepth === undefined ? DEFAULT_FORM_DATA_MAX_DEPTH : options.maxDepth;
+  const visitor = option('visitor') || defaultVisitor;
+  const dots = option('dots', false);
+  const indexes = option('indexes', false);
+  const _Blob = option('Blob') || typeof Blob !== 'undefined' && Blob;
+  const maxDepth = option('maxDepth', DEFAULT_FORM_DATA_MAX_DEPTH);
   const useBlob = _Blob && utils$1.isSpecCompliantForm(formData);
   const stack = [];
   if (!utils$1.isFunction(visitor)) {
@@ -151105,8 +153208,8 @@ function toFormData(obj, formData, options) {
       if (useBlob && typeof _Blob === 'function') {
         return new _Blob([value]);
       }
-      if (typeof Buffer !== 'undefined') {
-        return Buffer.from(value);
+      if (PlatformBuffer && PlatformBuffer.isBufferAvailable()) {
+        return PlatformBuffer.from(value);
       }
       throw new AxiosError('Blob is not supported. Use a Buffer instead.', AxiosError.ERR_NOT_SUPPORT);
     }
@@ -151297,9 +153400,51 @@ function buildURL(url, params, options) {
   return url;
 }
 
+const $internals = Symbol('internals');
+
+// `handlers` is public and may be replaced with a nullish value by user code;
+// `clear()` has always tolerated that. Treat it as an empty stack rather than
+// dereferencing it.
+function countHandlers(handlers) {
+  return handlers ? handlers.length : 0;
+}
+function trimHandlers(handlers) {
+  if (!handlers) {
+    return;
+  }
+  while (handlers.length && handlers[handlers.length - 1] === null) {
+    handlers.pop();
+  }
+}
+function syncHandlerEntries(manager, internals) {
+  const handlers = manager.handlers;
+  const length = countHandlers(handlers);
+  if (handlers !== internals.handlersRef) {
+    internals.handlersRef = handlers;
+    internals.handlerEntries.clear();
+  } else if (length !== internals.handlersLength) {
+    if (!length) {
+      internals.handlerEntries.clear();
+    } else {
+      internals.handlerEntries.forEach(function removeStaleEntry(entry, id) {
+        if (handlers[entry.index] !== entry.handler) {
+          internals.handlerEntries.delete(id);
+        }
+      });
+    }
+  }
+  internals.handlersLength = length;
+}
 class InterceptorManager {
   constructor() {
     this.handlers = [];
+    this[$internals] = {
+      handlersRef: this.handlers,
+      handlersLength: this.handlers.length,
+      handlerEntries: new Map(),
+      iterationDepth: 0,
+      nextId: 0
+    };
   }
 
   /**
@@ -151312,13 +153457,25 @@ class InterceptorManager {
    * @return {Number} An ID used to remove interceptor later
    */
   use(fulfilled, rejected, options) {
-    this.handlers.push({
+    const handler = {
       fulfilled,
       rejected,
       synchronous: options ? options.synchronous : false,
       runWhen: options ? options.runWhen : null
+    };
+    const internals = this[$internals];
+    if (this.handlers == null) {
+      this.handlers = [];
+    }
+    syncHandlerEntries(this, internals);
+    const id = internals.nextId++;
+    this.handlers.push(handler);
+    internals.handlerEntries.set(id, {
+      handler,
+      index: this.handlers.length - 1
     });
-    return this.handlers.length - 1;
+    internals.handlersLength = this.handlers.length;
+    return id;
   }
 
   /**
@@ -151329,8 +153486,23 @@ class InterceptorManager {
    * @returns {void}
    */
   eject(id) {
-    if (this.handlers[id]) {
-      this.handlers[id] = null;
+    const internals = this[$internals];
+    syncHandlerEntries(this, internals);
+    const entry = internals.handlerEntries.get(id);
+    if (entry) {
+      internals.handlerEntries.delete(id);
+
+      // Ignore IDs invalidated by clear or direct replacement of handlers.
+      if (this.handlers[entry.index] !== entry.handler) {
+        return;
+      }
+      this.handlers[entry.index] = null;
+
+      // Do not reuse an index while forEach is walking its length snapshot.
+      if (!internals.iterationDepth) {
+        trimHandlers(this.handlers);
+        internals.handlersLength = this.handlers.length;
+      }
     }
   }
 
@@ -151342,6 +153514,7 @@ class InterceptorManager {
   clear() {
     if (this.handlers) {
       this.handlers = [];
+      syncHandlerEntries(this, this[$internals]);
     }
   }
 
@@ -151356,11 +153529,22 @@ class InterceptorManager {
    * @returns {void}
    */
   forEach(fn) {
-    utils$1.forEach(this.handlers, function forEachHandler(h) {
-      if (h !== null) {
-        fn(h);
+    const internals = this[$internals];
+    syncHandlerEntries(this, internals);
+    internals.iterationDepth++;
+    try {
+      utils$1.forEach(this.handlers, function forEachHandler(h) {
+        if (h !== null) {
+          fn(h);
+        }
+      });
+    } finally {
+      if (! --internals.iterationDepth) {
+        syncHandlerEntries(this, internals);
+        trimHandlers(this.handlers);
+        internals.handlersLength = countHandlers(this.handlers);
       }
-    });
+    }
   }
 }
 
@@ -151486,12 +153670,18 @@ function throwIfDepthExceeded(index) {
  * @returns An array of strings.
  */
 function parsePropPath(name) {
-  // foo[x][y][z]
-  // foo.x.y.z
-  // foo-x-y-z
-  // foo x y z
+  // foo[x][y][z] -> ['foo', 'x', 'y', 'z']
+  // foo.x.y.z    -> ['foo', 'x', 'y', 'z']
+  // A path is split on `.` and on `[...]` groups. A segment — whether written
+  // in dot notation or captured inside brackets — may contain any character
+  // except `.`, `[` and `]`, so a key like `user-name` or `user name` is kept
+  // literal instead of being split (#5402). `.`, `[` and `]` keep their existing
+  // meaning, e.g. `foo[bar.baz]` -> ['foo', 'bar', 'baz'] and `[]` is an array push.
+  // Excluding `[` from the bracket group also makes the match fail fast at the
+  // next `[`, so a malformed name cannot rescan to the end of the string from
+  // every unmatched `[` — parsing stays linear in the length of the name.
   const path = [];
-  const pattern = /\w+|\[(\w*)]/g;
+  const pattern = /[^.[\]]+|\[([^.[\]]*)]/g;
   let match;
   while ((match = pattern.exec(name)) !== null) {
     throwIfDepthExceeded(path.length);
@@ -151561,6 +153751,8 @@ function formDataToJSON(formData) {
   }
   return null;
 }
+
+const methodList = Object.freeze(['get', 'delete', 'head', 'options', 'post', 'put', 'patch', 'purge', 'link', 'unlink', 'query']);
 
 const own = (obj, key) => obj != null && utils$1.hasOwnProp(obj, key) ? obj[key] : undefined;
 
@@ -151678,7 +153870,7 @@ const defaults = {
     }
   }
 };
-utils$1.forEach(['delete', 'get', 'head', 'post', 'put', 'patch', 'query'], method => {
+utils$1.forEach(methodList, method => {
   defaults.headers[method] = {};
 });
 
@@ -151767,24 +153959,70 @@ function isAbsoluteURL(url) {
  * @returns {string} The combined URL
  */
 function combineURLs(baseURL, relativeURL) {
-  return relativeURL ? baseURL.replace(/\/?\/$/, '') + '/' + relativeURL.replace(/^\/+/, '') : baseURL;
+  if (!relativeURL) {
+    return baseURL;
+  }
+  let end = baseURL.length;
+  while (end > 0 && baseURL.charCodeAt(end - 1) === 47) {
+    end--;
+  }
+  return baseURL.slice(0, end) + '/' + relativeURL.replace(/^\/+/, '');
+}
+
+const urlParserControlCharacters = /[\t\n\r]/g;
+
+/**
+ * Match WHATWG URL preprocessing before checking a URL's protocol.
+ *
+ * @param {string} url
+ *
+ * @returns {string}
+ */
+function normalizeURLForProtocolCheck(url) {
+  if (typeof url !== 'string') {
+    return url;
+  }
+  let start = 0;
+  while (start < url.length && url.charCodeAt(start) <= 0x20) {
+    start++;
+  }
+  return url.slice(start).replace(urlParserControlCharacters, '');
 }
 
 const malformedHttpProtocol = /^https?:(?!\/\/)/i;
-const httpProtocolControlCharacters = /[\t\n\r]/g;
-function stripLeadingC0ControlOrSpace(url) {
-  let i = 0;
-  while (i < url.length && url.charCodeAt(i) <= 0x20) {
-    i++;
+
+// Redact the parts of a URL that can carry secrets before it is embedded in an
+// error message. AxiosError.toJSON() serializes `message` verbatim and errors
+// are commonly logged, while the opt-in `config.redact` model only cleans
+// config keys — it cannot reach the message. Redact only the genuinely
+// sensitive substrings — userinfo (credentials), query parameter values and
+// fragment contents — with the same REDACTED marker the config redaction uses,
+// while keeping the scheme, host, path and parameter names so the offending
+// request stays accurately identifiable.
+function redactFragment(fragment) {
+  if (!fragment) {
+    return fragment;
   }
-  return url.slice(i);
+  return fragment.replace(/(^|&)([^=&]*=)?[^&]+/g, (match, separator, parameterName = '') => {
+    return `${separator}${parameterName}${REDACTED}`;
+  });
 }
-function normalizeURLForProtocolCheck(url) {
-  return stripLeadingC0ControlOrSpace(url).replace(httpProtocolControlCharacters, '');
+function redactSensitiveURLParts(url) {
+  const redactedURL = url.replace(/^(https?:\/{0,2})[^/?#]*@/i, `$1${REDACTED}@`);
+  const fragmentIndex = redactedURL.indexOf('#');
+  const urlWithoutFragment = fragmentIndex === -1 ? redactedURL : redactedURL.slice(0, fragmentIndex);
+  const redactedURLWithoutFragment = urlWithoutFragment.replace(/([?&][^=&#]*=)[^&#]*/g, `$1${REDACTED}`);
+  if (fragmentIndex === -1) {
+    return redactedURLWithoutFragment;
+  }
+  return `${redactedURLWithoutFragment}#${redactFragment(redactedURL.slice(fragmentIndex + 1))}`;
 }
 function assertValidHttpProtocolURL(url, config) {
-  if (typeof url === 'string' && malformedHttpProtocol.test(normalizeURLForProtocolCheck(url))) {
-    throw new AxiosError('Invalid URL: missing "//" after protocol', AxiosError.ERR_INVALID_URL, config);
+  if (typeof url === 'string') {
+    const normalizedURL = normalizeURLForProtocolCheck(url);
+    if (malformedHttpProtocol.test(normalizedURL)) {
+      throw new AxiosError(`Invalid URL ${JSON.stringify(redactSensitiveURLParts(normalizedURL))}: missing "//" after protocol`, AxiosError.ERR_INVALID_URL, config);
+    }
   }
 }
 
@@ -151904,7 +154142,7 @@ function getEnv(key) {
   return process.env[key.toLowerCase()] || process.env[key.toUpperCase()] || '';
 }
 
-const VERSION = "1.18.1";
+const VERSION = "1.20.0";
 
 function parseProtocol(url) {
   const match = /^([-+\w]{1,25}):(?:\/\/)?/.exec(url);
@@ -151913,7 +154151,7 @@ function parseProtocol(url) {
 
 // RFC 2397: data:[<mediatype>][;base64],<data>
 // mediatype = type/subtype followed by optional ;name=value parameters
-const DATA_URL_PATTERN = /^([^,;]+\/[^,;]+)?((?:;[^,;=]+=[^,;]+)*)(;base64)?,([\s\S]*)$/;
+const DATA_URL_PATTERN = /^([^,;/]+\/[^,;/]+)?((?:;[^,;=]+=[^,;]+)*)(;base64)?,([\s\S]*)$/;
 
 /**
  * Parse data uri to a Buffer or Blob
@@ -151962,6 +154200,31 @@ function fromDataURI(uri, asBlob, options) {
     return buffer;
   }
   throw new AxiosError('Unsupported protocol ' + protocol, AxiosError.ERR_NOT_SUPPORT);
+}
+
+const FORM_DATA_CONTENT_HEADERS = ['content-type', 'content-length'];
+
+/**
+ * Apply the headers generated by a FormData implementation to the request headers,
+ * honoring the `formDataHeaderPolicy` option: with 'content-only', copy only the
+ * content-* headers; otherwise merge all of them.
+ *
+ * @param {AxiosHeaders} headers - the request headers to mutate
+ * @param {Object | null | undefined} formHeaders - headers produced by the FormData implementation
+ * @param {String} [policy] - the resolved `formDataHeaderPolicy` config value
+ *
+ * @returns {void}
+ */
+function setFormDataHeaders(headers, formHeaders, policy) {
+  if (policy !== 'content-only') {
+    headers.set(formHeaders);
+    return;
+  }
+  Object.entries(formHeaders || {}).forEach(([key, val]) => {
+    if (FORM_DATA_CONTENT_HEADERS.includes(key.toLowerCase())) {
+      headers.set(key, val);
+    }
+  });
 }
 
 const kInternals = Symbol('internals');
@@ -152201,7 +154464,7 @@ class Http2Sessions {
     this.sessions = Object.create(null);
   }
   getSession(authority, options) {
-    options = Object.assign({
+    options = Object.assign(Object.create(null), {
       sessionTimeout: 1000
     }, options);
     let authoritySessions = this.sessions[authority];
@@ -152268,6 +154531,7 @@ class Http2Sessions {
       };
     }
     session.once('close', removeSession);
+    session.once('error', removeSession);
     let entry = [session, options];
     authoritySessions ? authoritySessions.push(entry) : authoritySessions = this.sessions[authority] = [entry];
     return session;
@@ -152288,11 +154552,116 @@ const callbackify = (fn, reducer) => {
 };
 
 const LOOPBACK_HOSTNAMES = new Set(['localhost', '0.0.0.0']);
+const trimTrailingDots = value => {
+  let end = value.length;
+  while (end && value.charCodeAt(end - 1) === 46) {
+    end--;
+  }
+  return end === value.length ? value : value.slice(0, end);
+};
 const isIPv4Loopback = host => {
   const parts = host.split('.');
   if (parts.length !== 4) return false;
   if (parts[0] !== '127') return false;
   return parts.every(p => /^\d+$/.test(p) && Number(p) >= 0 && Number(p) <= 255);
+};
+
+/**
+ * Canonicalize an IPv4 address written in shorthand, octal, or hex form into
+ * dotted-decimal. IPv6 addresses and non-IP strings are returned unchanged so
+ * the existing IPv4-mapped IPv6 unmap path and the isLoopback path can still
+ * see them.
+ *
+ * Shorthand expansion mirrors Node's URL parser: literal parts fill from the
+ * left, the final part fills the remaining octets from the right with
+ * zero-padding on the left.
+ *   127.1     -> 127.0.0.1
+ *   127.0.1   -> 127.0.0.1
+ *   1.2.3     -> 1.2.0.3
+ *
+ * Each octet is parsed with an explicit base: 16 for `0x`/`0X` prefix, 8 for
+ * zero-prefixed multi-digit all-`0-7` parts, 10 otherwise. Zero-prefixed
+ * decimal-looking parts that contain `8` or `9` are rejected to match Node's
+ * URL parser, and the comparison layer falls through to non-bypass if either
+ * side rejects the form (fail-safe).
+ *
+ * Returns the input unchanged on any parse failure, out-of-range octet, or
+ * unusual shape (1-part, 5+ parts) so the comparison layer fails closed.
+ */
+const parseIPv4Octet = text => {
+  if (/^0[xX][0-9a-fA-F]+$/.test(text)) {
+    const n = parseInt(text.slice(2), 16);
+    return Number.isFinite(n) ? n : null;
+  }
+  if (text.length > 1 && /^0[0-7]+$/.test(text)) {
+    const n = parseInt(text, 8);
+    return Number.isFinite(n) ? n : null;
+  }
+  if (text.length > 1 && /^0[0-9]+$/.test(text)) {
+    return null;
+  }
+  if (/^[0-9]+$/.test(text)) {
+    const n = parseInt(text, 10);
+    return Number.isFinite(n) ? n : null;
+  }
+  return null;
+};
+const normalizeIPAddress = host => {
+  if (typeof host !== 'string' || !host || host.indexOf(':') !== -1) {
+    return host;
+  }
+  let h = host;
+  if (h.charAt(0) === '[' && h.charAt(h.length - 1) === ']') {
+    h = h.slice(1, -1);
+  }
+  h = trimTrailingDots(h);
+
+  // Allowed characters for any IPv4 shape: digits, dot, 'x', 'X', hex digits.
+  if (!/^[0-9.xXa-fA-F]+$/.test(h)) return host;
+  const parts = h.split('.');
+
+  // No part may be empty (e.g. "127..0.1" or "127.0.0."). Trailing dots are
+  // already stripped above; this guards against the empty-middle case.
+  if (parts.some(p => p === '')) return host;
+  if (parts.length === 4) {
+    // Full IPv4 form: each part is an octet.
+    const octets = parts.map(parseIPv4Octet);
+    if (octets.some(n => n === null || n < 0 || n > 255)) return host;
+    return octets.join('.');
+  }
+  if (parts.length > 4) {
+    return host;
+  }
+
+  // Shorthand: 1..3 parts. Node's URL parser treats a 1-part input as a 32-bit
+  // integer split into octets, which has surprising semantics (e.g. "127" ->
+  // "0.0.0.127"). Reject 1-part inputs to keep the helper predictable: the
+  // fail-safe returns the input unchanged and the comparison layer falls
+  // through to non-bypass.
+  if (parts.length === 1) return host;
+
+  // 2..3 parts: literal parts fill from the left, tail fills remaining octets
+  // from the right with zero-padding.
+  const literalOctets = parts.slice(0, -1);
+  const tail = parts[parts.length - 1];
+  const tailSlots = 4 - literalOctets.length;
+
+  // Tail is parsed as a full IPv4 number (hex/octal/decimal) and packed
+  // low-byte-right into the remaining octets, matching Node's URL parser.
+  // e.g. 127.65535 (tail 0xFFFF into 3 slots) -> 127.0.255.255;
+  //      127.0x00ff (tail 0xFF into 3 slots) -> 127.0.0.255;
+  //      127.0.65535 (tail 0xFFFF into 2 slots) -> 127.0.255.255.
+  const tailValue = parseIPv4Octet(tail);
+  if (tailValue === null) return host;
+  const maxTail = (1 << 8 * tailSlots) - 1;
+  if (tailValue < 0 || tailValue > maxTail) return host;
+  const tailOctets = new Array(tailSlots).fill(0);
+  for (let i = tailSlots - 1, v = tailValue; i >= 0; i--, v >>= 8) {
+    tailOctets[i] = v & 0xff;
+  }
+  const literal = literalOctets.map(parseIPv4Octet);
+  if (literal.some(n => n === null || n < 0 || n > 255)) return host;
+  return [...literal, ...tailOctets].join('.');
 };
 const isIPv6ZeroGroup = group => /^0{1,4}$/.test(group);
 
@@ -152400,6 +154769,40 @@ const unmapIPv4MappedIPv6 = host => {
   }
   return host;
 };
+const IPV4_OCTET_RE = /^(?:0|[1-9]\d{0,2})$/;
+const ipv4ToBytes = host => {
+  const parts = host.split('.');
+  return parts.length === 4 && parts.every(part => IPV4_OCTET_RE.test(part) && Number(part) <= 255) ? parts.map(Number) : null;
+};
+const IPV6_GROUP_RE = /^[0-9a-f]{1,4}$/i;
+const ipv6ToBytes = host => {
+  const halves = host.split('::');
+  if (halves.length > 2) {
+    return null;
+  }
+  const groups = halves[0] ? halves[0].split(':') : [];
+  if (halves.length === 2) {
+    const rear = halves[1] ? halves[1].split(':') : [];
+    const missing = 8 - groups.length - rear.length;
+    if (missing < 1) {
+      return null;
+    }
+    groups.push(...new Array(missing).fill('0'), ...rear);
+  }
+  if (groups.length !== 8 || groups.some(group => !IPV6_GROUP_RE.test(group))) {
+    return null;
+  }
+  return groups.flatMap(group => {
+    const value = Number.parseInt(group, 16);
+    return [value >> 8 & 0xff, value & 0xff];
+  });
+};
+const ipToBytes = host => {
+  if (typeof host !== 'string' || !host) {
+    return null;
+  }
+  return host.indexOf(':') !== -1 ? ipv6ToBytes(host) : ipv4ToBytes(host);
+};
 const normalizeNoProxyHost = hostname => {
   if (!hostname) {
     return hostname;
@@ -152407,7 +154810,101 @@ const normalizeNoProxyHost = hostname => {
   if (hostname.charAt(0) === '[' && hostname.charAt(hostname.length - 1) === ']') {
     hostname = hostname.slice(1, -1);
   }
-  return unmapIPv4MappedIPv6(hostname.replace(/\.+$/, ''));
+  const trimmed = trimTrailingDots(hostname);
+
+  // IPv4 shorthand/octal/hex → dotted-decimal; helper is a no-op for inputs
+  // containing ':' (IPv6 and IPv4-mapped IPv6) so we fall through to unmap.
+  const ipv4 = normalizeIPAddress(trimmed);
+  if (ipv4 !== trimmed) {
+    return ipv4;
+  }
+  return unmapIPv4MappedIPv6(trimmed);
+};
+const normalizeCidrBase = input => {
+  let base = input;
+  const startsBracket = base.charAt(0) === '[';
+  const endsBracket = base.charAt(base.length - 1) === ']';
+  const hasBracket = base.includes('[') || base.includes(']');
+  if (startsBracket || endsBracket) {
+    if (!startsBracket || !endsBracket) {
+      return null;
+    }
+    base = base.slice(1, -1);
+    if (base.indexOf(':') === -1 || base.includes('[') || base.includes(']')) {
+      return null;
+    }
+  } else if (hasBracket) {
+    return null;
+  }
+  if (!base || base.charAt(base.length - 1) === '.') {
+    return null;
+  }
+  const wasIPv6 = base.indexOf(':') !== -1;
+  if (wasIPv6) {
+    try {
+      base = new URL(`http://[${base}]/`).hostname.slice(1, -1);
+    } catch (_err) {
+      return null;
+    }
+  } else {
+    base = normalizeIPAddress(base);
+    if (!ipv4ToBytes(base)) {
+      return null;
+    }
+  }
+  return {
+    normalized: unmapIPv4MappedIPv6(base),
+    wasIPv6
+  };
+};
+const CIDR_ENTRY_RE = /^(.+)\/(0|[1-9]\d{0,2})$/;
+const parseCidrEntry = entry => {
+  if (entry.indexOf('/') === -1) {
+    return undefined;
+  }
+  const match = CIDR_ENTRY_RE.exec(entry);
+  if (!match) {
+    return null;
+  }
+  let prefix = Number(match[2]);
+  const parsedBase = normalizeCidrBase(match[1]);
+  if (!parsedBase) {
+    return null;
+  }
+  const {
+    normalized,
+    wasIPv6
+  } = parsedBase;
+  if (wasIPv6 && normalized.indexOf(':') === -1) {
+    if (prefix < 96) {
+      return null;
+    }
+    prefix -= 96;
+  }
+  const bytes = ipToBytes(normalized);
+  if (!bytes || prefix > bytes.length * 8) {
+    return null;
+  }
+  return {
+    bytes,
+    prefix
+  };
+};
+const isInSubnet = (addressBytes, networkBytes, prefix) => {
+  const fullBytes = prefix >> 3;
+  for (let i = 0; i < fullBytes; i++) {
+    if (addressBytes[i] !== networkBytes[i]) {
+      return false;
+    }
+  }
+  const remainingBits = prefix & 7;
+  if (remainingBits) {
+    const mask = 0xff << 8 - remainingBits & 0xff;
+    if ((addressBytes[fullBytes] & mask) !== (networkBytes[fullBytes] & mask)) {
+      return false;
+    }
+  }
+  return true;
 };
 function shouldBypassProxy(location) {
   let parsed;
@@ -152425,9 +154922,17 @@ function shouldBypassProxy(location) {
   }
   const port = Number.parseInt(parsed.port, 10) || DEFAULT_PORTS[parsed.protocol.split(':', 1)[0]] || 0;
   const hostname = normalizeNoProxyHost(parsed.hostname.toLowerCase());
+  const hostnameBytes = ipToBytes(hostname);
   return noProxy.split(/[\s,]+/).some(entry => {
     if (!entry) {
       return false;
+    }
+    if (entry === '*') {
+      return true;
+    }
+    const cidr = parseCidrEntry(entry);
+    if (cidr !== undefined) {
+      return cidr !== null && !!hostnameBytes && hostnameBytes.length === cidr.bytes.length && isInSubnet(hostnameBytes, cidr.bytes, cidr.prefix);
     }
     let [entryHost, entryPort] = parseNoProxyEntry(entry);
     entryHost = normalizeNoProxyHost(entryHost);
@@ -152491,7 +154996,7 @@ function speedometer(samplesCount, min) {
  * Throttle decorator
  * @param {Function} fn
  * @param {Number} freq
- * @return {Function}
+ * @return {Array<Function>}
  */
 function throttle(fn, freq) {
   let timestamp = 0;
@@ -152523,19 +155028,20 @@ function throttle(fn, freq) {
     }
   };
   const flush = () => lastArgs && invoke(lastArgs);
-  return [throttled, flush];
+  const flushWith = (...args) => invoke(args);
+  return [throttled, flush, flushWith];
 }
 
 const progressEventReducer = (listener, isDownloadStream, freq = 3) => {
   let bytesNotified = 0;
   const _speedometer = speedometer(50, 250);
   return throttle(e => {
-    if (!e || typeof e.loaded !== 'number') {
+    if (!e || !utils$1.isNumber(e.loaded)) {
       return;
     }
     const rawLoaded = e.loaded;
     const total = e.lengthComputable ? e.total : undefined;
-    const loaded = total != null ? Math.min(rawLoaded, total) : rawLoaded;
+    const loaded = Math.max(0, total != null ? Math.min(rawLoaded, total) : rawLoaded);
     const progressBytes = Math.max(0, loaded - bytesNotified);
     const rate = _speedometer(progressBytes);
     bytesNotified = Math.max(bytesNotified, loaded);
@@ -152561,20 +155067,85 @@ const progressEventDecorator = (total, throttled) => {
     loaded
   }), throttled[1]];
 };
-const asyncDecorator = fn => (...args) => utils$1.asap(() => fn(...args));
+const asyncDecorator = (fn, scheduler = utils$1.asap) => (...args) => scheduler(() => fn(...args));
 
 /**
- * Estimate decoded byte length of a data:// URL *without* allocating large buffers.
- * - For base64: compute exact decoded size using length and padding;
- *               handle %XX at the character-count level (no string allocation).
- * - For non-base64: compute the exact percent-decoded UTF-8 byte length.
- *
- * @param {string} url
- * @returns {number}
+ * Estimate data: URL byte lengths *without* allocating large buffers.
+ * - Fetch percent-decodes a base64 body before decoding it.
+ * - Node's Buffer.from(body, 'base64') sizes its backing allocation from the
+ *   raw body, including ignored characters and content after padding.
+ * - Non-base64 data is percent-decoded and then encoded as UTF-8.
  */
 const isHexDigit = charCode => charCode >= 48 && charCode <= 57 || charCode >= 65 && charCode <= 70 || charCode >= 97 && charCode <= 102;
 const isPercentEncodedByte = (str, i, len) => i + 2 < len && isHexDigit(str.charCodeAt(i + 1)) && isHexDigit(str.charCodeAt(i + 2));
-function estimateDataURLDecodedBytes(url) {
+const hexValue = charCode => charCode <= 57 ? charCode - 48 : (charCode & 0xdf) - 55;
+const isBase64Char = charCode => charCode >= 65 && charCode <= 90 ||
+// A-Z
+charCode >= 97 && charCode <= 122 ||
+// a-z
+charCode >= 48 && charCode <= 57 ||
+// 0-9
+charCode === 43 ||
+// +
+charCode === 47 ||
+// /
+charCode === 45 ||
+// - (base64url)
+charCode === 95; // _ (base64url)
+
+const isBase64Whitespace = charCode => charCode === 9 || charCode === 10 || charCode === 12 || charCode === 13 || charCode === 32;
+const base64Bytes = significant => {
+  const groups = Math.floor(significant / 4);
+  const remainder = significant % 4;
+  return groups * 3 + (remainder === 2 ? 1 : remainder === 3 ? 2 : 0);
+};
+
+// Buffer.byteLength(body, 'base64') uses the raw string length as an allocation
+// upper bound even when Buffer.from later ignores characters or stops at '='.
+const estimateBase64BufferAllocation = body => {
+  const len = body.length;
+  let padding = 0;
+  if (len > 0 && body.charCodeAt(len - 1) === 61 /* '=' */) {
+    padding++;
+    if (len > 1 && body.charCodeAt(len - 2) === 61 /* '=' */) {
+      padding++;
+    }
+  }
+  return Math.floor((len - padding) * 3 / 4);
+};
+const estimatePercentDecodedBase64Bytes = body => {
+  const len = body.length;
+  let significant = 0;
+  let padding = 0;
+  let invalid = false;
+  for (let i = 0; i < len; i++) {
+    let code = body.charCodeAt(i);
+    if (code === 37 /* '%' */ && isPercentEncodedByte(body, i, len)) {
+      code = hexValue(body.charCodeAt(i + 1)) * 16 + hexValue(body.charCodeAt(i + 2));
+      i += 2;
+    }
+    if (isBase64Whitespace(code)) {
+      continue;
+    }
+    if (code === 61 /* '=' */) {
+      padding++;
+      continue;
+    }
+    if (!isBase64Char(code) || padding > 0) {
+      invalid = true;
+      continue;
+    }
+    significant++;
+  }
+
+  // Fetch rejects malformed forgiving-base64 input. Returning the raw-size
+  // allocation bound keeps that invalid input from becoming a pre-check bypass.
+  if (invalid || padding > 2 || padding > 0 && (significant + padding) % 4 !== 0 || significant % 4 === 1) {
+    return estimateBase64BufferAllocation(body);
+  }
+  return base64Bytes(significant);
+};
+const estimateDataURLBytes = (url, estimateBase64) => {
   if (!url || typeof url !== 'string') return 0;
   if (!url.startsWith('data:')) return 0;
   const comma = url.indexOf(',');
@@ -152583,47 +155154,7 @@ function estimateDataURLDecodedBytes(url) {
   const body = url.slice(comma + 1);
   const isBase64 = /;base64/i.test(meta);
   if (isBase64) {
-    let effectiveLen = body.length;
-    const len = body.length; // cache length
-
-    for (let i = 0; i < len; i++) {
-      if (body.charCodeAt(i) === 37 /* '%' */ && i + 2 < len) {
-        const a = body.charCodeAt(i + 1);
-        const b = body.charCodeAt(i + 2);
-        const isHex = isHexDigit(a) && isHexDigit(b);
-        if (isHex) {
-          effectiveLen -= 2;
-          i += 2;
-        }
-      }
-    }
-    let pad = 0;
-    let idx = len - 1;
-    const tailIsPct3D = j => j >= 2 && body.charCodeAt(j - 2) === 37 &&
-    // '%'
-    body.charCodeAt(j - 1) === 51 && (
-    // '3'
-    body.charCodeAt(j) === 68 || body.charCodeAt(j) === 100); // 'D' or 'd'
-
-    if (idx >= 0) {
-      if (body.charCodeAt(idx) === 61 /* '=' */) {
-        pad++;
-        idx--;
-      } else if (tailIsPct3D(idx)) {
-        pad++;
-        idx -= 3;
-      }
-    }
-    if (pad === 1 && idx >= 0) {
-      if (body.charCodeAt(idx) === 61 /* '=' */) {
-        pad++;
-      } else if (tailIsPct3D(idx)) {
-        pad++;
-      }
-    }
-    const groups = Math.floor(effectiveLen / 4);
-    const bytes = groups * 3 - (pad || 0);
-    return bytes > 0 ? bytes : 0;
+    return estimateBase64(body);
   }
 
   // Compute UTF-8 byte length directly from UTF-16 code units without allocating
@@ -152653,6 +155184,28 @@ function estimateDataURLDecodedBytes(url) {
     }
   }
   return bytes;
+};
+
+/**
+ * Estimate the percent-decoded payload size used by Fetch data: URLs.
+ *
+ * @param {string} url
+ * @returns {number}
+ */
+function estimateDataURLDecodedBytes(url) {
+  // Fetch removes URL fragments before processing a data: URL.
+  const fragmentIndex = typeof url === 'string' ? url.indexOf('#') : -1;
+  return estimateDataURLBytes(fragmentIndex === -1 ? url : url.slice(0, fragmentIndex), estimatePercentDecodedBase64Bytes);
+}
+
+/**
+ * Estimate the Buffer backing allocation used by Node's raw base64 decoder.
+ *
+ * @param {string} url
+ * @returns {number}
+ */
+function estimateDataURLBufferAllocation(url) {
+  return estimateDataURLBytes(url, estimateBase64BufferAllocation);
 }
 
 const zlibOptions = {
@@ -152671,28 +155224,26 @@ const isBrotliSupported = utils$1.isFunction(zlib.createBrotliDecompress);
 const isZstdSupported = utils$1.isFunction(zlib.createZstdDecompress);
 const ACCEPT_ENCODING = 'gzip, compress, deflate' + (isBrotliSupported ? ', br' : '');
 const ACCEPT_ENCODING_WITH_ZSTD = ACCEPT_ENCODING + (isZstdSupported ? ', zstd' : '');
+const scheduleProgress = typeof process !== 'undefined' && process.nextTick ? process.nextTick.bind(process) : utils$1.asap;
 const {
   http: httpFollow,
   https: httpsFollow
 } = followRedirects;
 const isHttps = /https:?/;
-const FORM_DATA_CONTENT_HEADERS$1 = ['content-type', 'content-length'];
-function setFormDataHeaders$1(headers, formHeaders, policy) {
-  if (policy !== 'content-only') {
-    headers.set(formHeaders);
-    return;
-  }
-  Object.entries(formHeaders).forEach(([key, val]) => {
-    if (FORM_DATA_CONTENT_HEADERS$1.includes(key.toLowerCase())) {
-      headers.set(key, val);
-    }
-  });
-}
 
 // Symbols used to bind a single 'error' listener to a pooled socket and track
 // the request currently owning that socket across keep-alive reuse (issue #10780).
 const kAxiosSocketListener = Symbol('axios.http.socketListener');
 const kAxiosCurrentReq = Symbol('axios.http.currentReq');
+
+// A shared listener avoids retaining an adapter context for the lifetime of a
+// pooled socket. EventEmitter invokes listeners with `this` set to the emitter.
+function handleSocketError(err) {
+  const current = this[kAxiosCurrentReq];
+  if (current && !current.destroyed) {
+    current.destroy(err);
+  }
+}
 
 // Tags HttpsProxyAgent instances installed by setProxy() so the redirect path
 // can strip them without clobbering a user-supplied agent that happens to be
@@ -152839,13 +155390,14 @@ function isSameOriginRedirect(redirectOptions, requestDetails) {
  * @param {http.ClientRequestArgs} options
  * @param {AxiosProxyConfig} configProxy configuration from Axios options object
  * @param {string} location
+ * @param {boolean} [allowEnvProxy=true] whether environment proxy configuration can be used
  *
- * @returns {http.ClientRequestArgs}
+ * @returns {boolean} whether a proxy applies to the selected transport
  */
-function setProxy(options, configProxy, location, isRedirect, configHttpsAgent, configHttpAgent) {
+function setProxy(options, configProxy, location, isRedirect, configHttpsAgent, configHttpAgent, allowEnvProxy = true) {
   let proxy = configProxy;
   const proxyEnvAgent = getProxyEnvAgent(options, configHttpAgent, configHttpsAgent);
-  if (!proxy && proxy !== false && !isNodeEnvProxyEnabled(proxyEnvAgent)) {
+  if (!proxy && proxy !== false && allowEnvProxy && !isNodeEnvProxyEnabled(proxyEnvAgent)) {
     const proxyUrl = getProxyForUrl(location);
     if (proxyUrl) {
       if (!shouldBypassProxy(location)) {
@@ -152980,8 +155532,9 @@ function setProxy(options, configProxy, location, isRedirect, configHttpsAgent, 
   options.beforeRedirects.proxy = function beforeRedirect(redirectOptions) {
     // Configure proxy for redirected request, passing the original config proxy to apply
     // the exact same logic as if the redirected request was performed by axios directly.
-    setProxy(redirectOptions, configProxy, redirectOptions.href, true, configHttpsAgent, configHttpAgent);
+    setProxy(redirectOptions, configProxy, redirectOptions.href, true, configHttpsAgent, configHttpAgent, allowEnvProxy);
   };
+  return Boolean(proxy || configProxy !== false && allowEnvProxy && isNodeEnvProxyEnabled(proxyEnvAgent));
 }
 const isHttpAdapterSupported = typeof process !== 'undefined' && utils$1.kindOf(process) === 'process';
 
@@ -153012,7 +155565,7 @@ const resolveFamily = ({
   family
 }) => {
   if (!utils$1.isString(address)) {
-    throw TypeError('address must be a string');
+    throw new AxiosError('address must be a string', AxiosError.ERR_BAD_OPTION_VALUE);
   }
   return {
     address,
@@ -153023,6 +155576,32 @@ const buildAddressEntry = (address, family) => resolveFamily(utils$1.isObject(ad
   address,
   family
 });
+const normalizedLookupCache = new WeakMap();
+const normalizeLookup = lookup => {
+  let normalized = normalizedLookupCache.get(lookup);
+  if (normalized) {
+    return normalized;
+  }
+  const callbackLookup = callbackify(lookup, value => utils$1.isArray(value) ? value : [value]);
+
+  // Support opt.all, which is required by current Node.js releases.
+  normalized = (hostname, opt, cb) => {
+    callbackLookup(hostname, opt, (err, arg0, arg1) => {
+      if (err) {
+        return cb(err);
+      }
+      let addresses;
+      try {
+        addresses = utils$1.isArray(arg0) ? arg0.map(addr => buildAddressEntry(addr)) : [buildAddressEntry(arg0, arg1)];
+      } catch (error) {
+        return cb(error);
+      }
+      opt.all ? cb(err, addresses) : cb(err, addresses[0].address, addresses[0].family);
+    });
+  };
+  normalizedLookupCache.set(lookup, normalized);
+  return normalized;
+};
 const http2Transport = {
   request(options, cb) {
     const authority = options.protocol + '//' + options.hostname + ':' + (options.port || (options.protocol === 'https:' ? 443 : 80));
@@ -153075,6 +155654,7 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
     let family = own('family');
     let httpVersion = own('httpVersion');
     if (httpVersion === undefined) httpVersion = 1;
+    const rawHttpVersion = httpVersion;
     let http2Options = own('http2Options');
     const httpAgent = own('httpAgent');
     const httpsAgent = own('httpsAgent');
@@ -153091,26 +155671,20 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
     let rejected = false;
     let req;
     let connectPhaseTimer;
-    httpVersion = +httpVersion;
+    try {
+      httpVersion = +httpVersion;
+    } catch (err) {
+      throw new AxiosError('Invalid protocol version: value is not a number', AxiosError.ERR_BAD_OPTION_VALUE, config);
+    }
     if (Number.isNaN(httpVersion)) {
-      throw TypeError(`Invalid protocol version: '${config.httpVersion}' is not a number`);
+      throw new AxiosError(`Invalid protocol version: '${rawHttpVersion}' is not a number`, AxiosError.ERR_BAD_OPTION_VALUE, config);
     }
     if (httpVersion !== 1 && httpVersion !== 2) {
-      throw TypeError(`Unsupported protocol version '${httpVersion}'`);
+      throw new AxiosError(`Unsupported protocol version '${httpVersion}'`, AxiosError.ERR_BAD_OPTION_VALUE, config);
     }
     const isHttp2 = httpVersion === 2;
     if (lookup) {
-      const _lookup = callbackify(lookup, value => utils$1.isArray(value) ? value : [value]);
-      // hotfix to support opt.all option which is required for node 20.x
-      lookup = (hostname, opt, cb) => {
-        _lookup(hostname, opt, (err, arg0, arg1) => {
-          if (err) {
-            return cb(err);
-          }
-          const addresses = utils$1.isArray(arg0) ? arg0.map(addr => buildAddressEntry(addr)) : [buildAddressEntry(arg0, arg1)];
-          opt.all ? cb(err, addresses) : cb(err, addresses[0].address, addresses[0].family);
-        });
-      };
+      lookup = normalizeLookup(lookup);
     }
     const abortEmitter = new events.EventEmitter();
     function abort(reason) {
@@ -153187,7 +155761,7 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
       if (maxContentLength > -1) {
         // Use the exact string passed to fromDataURI (the configured url); fall back to fullPath if needed.
         const dataUrl = String(own('url') || fullPath || '');
-        const estimated = estimateDataURLDecodedBytes(dataUrl);
+        const estimated = estimateDataURLBufferAllocation(dataUrl);
         if (estimated > maxContentLength) {
           return reject(new AxiosError('maxContentLength size of ' + maxContentLength + ' exceeded', AxiosError.ERR_BAD_RESPONSE, config));
         }
@@ -153253,7 +155827,7 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
       });
       // support for https://www.npmjs.com/package/form-data api
     } else if (utils$1.isFormData(data) && utils$1.isFunction(data.getHeaders) && data.getHeaders !== Object.prototype.getHeaders) {
-      setFormDataHeaders$1(headers, data.getHeaders(), own('formDataHeaderPolicy'));
+      setFormDataHeaders(headers, data.getHeaders(), own('formDataHeaderPolicy'));
       if (!headers.hasContentLength()) {
         try {
           const knownLength = await util.promisify(data.getLength).call(data);
@@ -153296,7 +155870,7 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
       data = stream.pipeline([data, new AxiosTransformStream({
         maxRate: utils$1.toFiniteNumber(maxUploadRate)
       })], utils$1.noop);
-      onUploadProgress && data.on('progress', flushOnFinish(data, progressEventDecorator(contentLength, progressEventReducer(asyncDecorator(onUploadProgress), false, 3))));
+      onUploadProgress && data.on('progress', flushOnFinish(data, progressEventDecorator(contentLength, progressEventReducer(asyncDecorator(onUploadProgress, scheduleProgress), false, 3))));
     }
 
     // HTTP basic authentication
@@ -153323,6 +155897,11 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
       }));
     }
     headers.set('Accept-Encoding', utils$1.hasOwnProp(transitional, 'advertiseZstdAcceptEncoding') && transitional.advertiseZstdAcceptEncoding === true ? ACCEPT_ENCODING_WITH_ZSTD : ACCEPT_ENCODING, false);
+    if (isHttp2 && lookup) {
+      http2Options = Object.assign(Object.create(null), http2Options, {
+        lookup
+      });
+    }
 
     // Null-prototype to block prototype pollution gadgets on properties read
     // directly by Node's http.request (e.g. insecureHTTPParser, lookup).
@@ -153339,11 +155918,13 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
       family,
       beforeRedirect: dispatchBeforeRedirect,
       beforeRedirects: Object.create(null),
-      http2Options
+      http2Options,
+      createConnection: undefined
     });
 
     // cacheable-lookup integration hotfix
     !utils$1.isUndefined(lookup) && (options.lookup = lookup);
+    let proxyApplied = false;
     if (socketPath) {
       if (typeof socketPath !== 'string') {
         return reject(new AxiosError('socketPath must be a string', AxiosError.ERR_BAD_OPTION_VALUE, config));
@@ -153361,7 +155942,11 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
     } else {
       options.hostname = parsed.hostname.startsWith('[') ? parsed.hostname.slice(1, -1) : parsed.hostname;
       options.port = parsed.port;
-      setProxy(options, configProxy, protocol + '//' + parsed.hostname + (parsed.port ? ':' + parsed.port : '') + options.path, false, httpsAgent, httpAgent);
+      proxyApplied = setProxy(options, configProxy, protocol + '//' + parsed.hostname + (parsed.port ? ':' + parsed.port : '') + options.path, false, httpsAgent, httpAgent,
+      // The HTTP/2 transport connects independently of HTTP/1 agents, so it
+      // cannot apply either axios-resolved or agent-local environment proxies.
+      // Explicit proxy config is still processed and rejected below.
+      !isHttp2);
     }
     let transport;
     let isNativeTransport = false;
@@ -153377,6 +155962,9 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
       options.agent = isHttpsRequest ? httpsAgent : httpAgent;
     }
     if (isHttp2) {
+      if (proxyApplied) {
+        return reject(new AxiosError('HTTP/2 requests with a proxy are not supported', AxiosError.ERR_NOT_SUPPORT, config));
+      }
       transport = http2Transport;
     } else {
       const configTransport = own('transport');
@@ -153461,7 +156049,7 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
         const transformStream = new AxiosTransformStream({
           maxRate: utils$1.toFiniteNumber(maxDownloadRate)
         });
-        onDownloadProgress && transformStream.on('progress', flushOnFinish(transformStream, progressEventDecorator(responseLength, progressEventReducer(asyncDecorator(onDownloadProgress), true, 3))));
+        onDownloadProgress && transformStream.on('progress', flushOnFinish(transformStream, progressEventDecorator(responseLength, progressEventReducer(asyncDecorator(onDownloadProgress, scheduleProgress), true, 3))));
         streams.push(transformStream);
       }
 
@@ -153624,18 +156212,10 @@ var httpAdapter = isHttpAdapterSupported && function httpAdapter(config) {
         socket.setKeepAlive(true, 1000 * 60);
       }
 
-      // Install a single 'error' listener per socket (not per request) to avoid
-      // accumulating listeners on pooled keep-alive sockets that get reassigned
-      // to new requests before the previous request's 'close' fires (issue #10780).
-      // The listener is bound to the socket's currently-active request via a
-      // symbol, which is swapped as the socket is reassigned.
+      // Install one shared 'error' listener per socket. The symbol follows the
+      // currently-active request as pooled sockets are reassigned (issue #10780).
       if (!socket[kAxiosSocketListener]) {
-        socket.on('error', function handleSocketError(err) {
-          const current = socket[kAxiosCurrentReq];
-          if (current && !current.destroyed) {
-            current.destroy(err);
-          }
-        });
+        socket.on('error', handleSocketError);
         socket[kAxiosSocketListener] = true;
       }
       socket[kAxiosCurrentReq] = req;
@@ -153792,6 +156372,12 @@ var cookies = platform.hasStandardBrowserEnv ?
 const headersToObject = thing => thing instanceof AxiosHeaders ? {
   ...thing
 } : thing;
+const ownEnumerableKeys = thing => {
+  if (Object.getOwnPropertySymbols && Object.getOwnPropertyDescriptor) {
+    return Object.keys(thing).concat(Object.getOwnPropertySymbols(thing).filter(symbol => Object.getOwnPropertyDescriptor(thing, symbol).enumerable));
+  }
+  return Object.keys(thing);
+};
 
 /**
  * Config-specific merge-function which creates a new config-object
@@ -153891,7 +156477,7 @@ function mergeConfig(config1, config2) {
     transformResponse: defaultToConfig2,
     paramsSerializer: defaultToConfig2,
     timeout: defaultToConfig2,
-    timeoutMessage: defaultToConfig2,
+    timeoutErrorMessage: defaultToConfig2,
     withCredentials: defaultToConfig2,
     withXSRFToken: defaultToConfig2,
     adapter: defaultToConfig2,
@@ -153914,7 +156500,7 @@ function mergeConfig(config1, config2) {
     validateStatus: mergeDirectKeys,
     headers: (a, b, prop) => mergeDeepProperties(headersToObject(a), headersToObject(b), prop, true)
   };
-  utils$1.forEach(Object.keys({
+  utils$1.forEach(ownEnumerableKeys({
     ...config1,
     ...config2
   }), function computeConfigValue(prop) {
@@ -153933,19 +156519,6 @@ function mergeConfig(config1, config2) {
     }
   }
   return config;
-}
-
-const FORM_DATA_CONTENT_HEADERS = ['content-type', 'content-length'];
-function setFormDataHeaders(headers, formHeaders, policy) {
-  if (policy !== 'content-only') {
-    headers.set(formHeaders);
-    return;
-  }
-  Object.entries(formHeaders || {}).forEach(([key, val]) => {
-    if (FORM_DATA_CONTENT_HEADERS.includes(key.toLowerCase())) {
-      headers.set(key, val);
-    }
-  });
 }
 
 /**
@@ -153986,11 +156559,12 @@ function resolveConfig(config) {
     }
   }
   if (utils$1.isFormData(data)) {
+    const getHeaders = utils$1.getSafeProp(data, 'getHeaders');
     if (platform.hasStandardBrowserEnv || platform.hasStandardBrowserWebWorkerEnv || utils$1.isReactNative(data)) {
       headers.setContentType(undefined); // browser/web worker/RN handles it
-    } else if (utils$1.isFunction(data.getHeaders)) {
+    } else if (utils$1.isFunction(getHeaders)) {
       // Node.js FormData (like form-data package)
-      setFormDataHeaders(headers, data.getHeaders(), own('formDataHeaderPolicy'));
+      setFormDataHeaders(headers, getHeaders.call(data), own('formDataHeaderPolicy'));
     }
   }
 
@@ -154030,7 +156604,7 @@ var xhrAdapter = isXHRAdapterSupported && function (config) {
     } = _config;
     let onCanceled;
     let uploadThrottled, downloadThrottled;
-    let flushUpload, flushDownload;
+    let flushUpload, flushDownload, flushDownloadWithEvent;
     function done() {
       flushUpload && flushUpload(); // flush events
       flushDownload && flushDownload(); // flush events
@@ -154043,10 +156617,50 @@ var xhrAdapter = isXHRAdapterSupported && function (config) {
 
     // Set the request timeout in MS
     request.timeout = _config.timeout;
-    function onloadend() {
+    function onloadend(event) {
       if (!request) {
         return;
       }
+
+      // Status 0 means no response was received, which onerror and onabort normally
+      // reject before this runs. Firefox 152 fires only readystatechange and loadend for
+      // navigation-canceled requests (https://bugzilla.mozilla.org/show_bug.cgi?id=1505389),
+      // leaving settle() to resolve them as an empty success. ECONNABORTED is the error
+      // onabort raised on Firefox 151. Reads over file:, which some environments report as
+      // status 0 on success, are excluded by the request URL's scheme after browser-style
+      // preprocessing, by the page origin's scheme for relative URLs (which inherit it), or
+      // by responseURL where implemented.
+      if (request.status === 0 && (parseProtocol(normalizeURLForProtocolCheck(_config.url)) || parseProtocol(platform.origin)) !== 'file' && !(request.responseURL && request.responseURL.startsWith('file:'))) {
+        reject(new AxiosError('Request aborted', AxiosError.ECONNABORTED, config, request));
+        done();
+
+        // Clean up request
+        request = null;
+        return;
+      }
+
+      // When loadend is still dispatching, flushing with it gives progress
+      // listeners a final delivery whose event has a live target. The legacy
+      // ready-state fallback has no event, so replay its pending progress.
+      // A throwing listener must not block settlement; rethrow asynchronously,
+      // matching how listener errors surface on the throttle timer path.
+      try {
+        if (event) {
+          flushDownloadWithEvent && flushDownloadWithEvent(event);
+        } else {
+          flushDownload && flushDownload();
+        }
+      } catch (err) {
+        setTimeout(() => {
+          throw err;
+        });
+      }
+
+      // A final progress callback can cancel the request synchronously.
+      if (!request) {
+        return;
+      }
+
       // Prepare the response
       const responseHeaders = AxiosHeaders.from('getAllResponseHeaders' in request && request.getAllResponseHeaders());
       const responseData = !responseType || responseType === 'text' || responseType === 'json' ? request.responseText : request.response;
@@ -154154,7 +156768,7 @@ var xhrAdapter = isXHRAdapterSupported && function (config) {
 
     // Handle progress if needed
     if (onDownloadProgress) {
-      [downloadThrottled, flushDownload] = progressEventReducer(onDownloadProgress, true);
+      [downloadThrottled, flushDownload, flushDownloadWithEvent] = progressEventReducer(onDownloadProgress, true);
       request.addEventListener('progress', downloadThrottled);
     }
 
@@ -154223,9 +156837,18 @@ const composeSignals = (signals, timeout) => {
     });
     signals = null;
   };
-  signals.forEach(signal => signal.addEventListener('abort', onabort, {
-    once: true
-  }));
+  signals.forEach(signal => {
+    if (aborted) {
+      return;
+    }
+    if (signal.aborted) {
+      onabort.call(signal);
+      return;
+    }
+    signal.addEventListener('abort', onabort, {
+      once: true
+    });
+  });
   const {
     signal
   } = controller;
@@ -154316,6 +156939,17 @@ const trackStream = (stream, chunkSize, onProgress, onFinish) => {
 };
 
 const DEFAULT_CHUNK_SIZE = 64 * 1024;
+const DEFAULT_REQUEST_OPTIONS = {
+  cache: 'default',
+  redirect: 'follow',
+  referrer: 'about:client',
+  referrerPolicy: '',
+  mode: 'cors',
+  integrity: '',
+  keepalive: false,
+  priority: 'auto',
+  window: null
+};
 const {
   isFunction
 } = utils$1;
@@ -154458,7 +157092,8 @@ const factory = env => {
       withCredentials = 'same-origin',
       fetchOptions,
       maxContentLength,
-      maxBodyLength
+      maxBodyLength,
+      maxRedirects
     } = resolveConfig(config);
     const hasMaxContentLength = utils$1.isNumber(maxContentLength) && maxContentLength > -1;
     const hasMaxBodyLength = utils$1.isNumber(maxBodyLength) && maxBodyLength > -1;
@@ -154589,17 +157224,46 @@ const factory = env => {
 
       // Set User-Agent header if not already set (fetch defaults to 'node' in Node.js)
       headers.set('User-Agent', 'axios/' + VERSION, false);
-      const resolvedOptions = {
-        ...fetchOptions,
+      const safeFetchOptions = fetchOptions == null ? fetchOptions : Object.assign(Object.create(null), fetchOptions);
+      if (safeFetchOptions) {
+        // These options are owned by Axios and are already reflected in the
+        // resolved Request passed to fetch.
+        delete safeFetchOptions.body;
+        delete safeFetchOptions.headers;
+        delete safeFetchOptions.method;
+        delete safeFetchOptions.signal;
+        delete safeFetchOptions.duplex;
+        delete safeFetchOptions.credentials;
+      }
+      const resolvedOptions = Object.assign(Object.create(null), safeFetchOptions, {
         signal: composedSignal,
         method: method.toUpperCase(),
         headers: toByteStringHeaderObject(headers.normalize()),
         body: data,
         duplex: 'half',
         credentials: isCredentialsSupported ? withCredentials : undefined
-      };
+      });
+      if (isRequestSupported) {
+        utils$1.forEach(DEFAULT_REQUEST_OPTIONS, (value, key) => {
+          if (resolvedOptions[key] === undefined) {
+            resolvedOptions[key] = value;
+          }
+        });
+        if (resolvedOptions.signal === undefined) {
+          resolvedOptions.signal = null;
+        }
+        if (resolvedOptions.body === undefined) {
+          resolvedOptions.body = null;
+        }
+      }
+      if (maxRedirects === 0) {
+        resolvedOptions.redirect = 'manual';
+        if (safeFetchOptions) {
+          safeFetchOptions.redirect = 'manual';
+        }
+      }
       request = isRequestSupported && new Request(url, resolvedOptions);
-      let response = await (isRequestSupported ? _fetch(request, fetchOptions) : _fetch(url, resolvedOptions));
+      let response = await (isRequestSupported ? _fetch(request, safeFetchOptions) : _fetch(url, resolvedOptions));
       const responseHeaders = AxiosHeaders.from(response.headers);
 
       // Cheap pre-check: if the server honestly declares a content-length that
@@ -154879,9 +157543,13 @@ function throwIfCancellationRequested(config) {
  *
  * @returns {Promise} The Promise to be fulfilled
  */
-function dispatchRequest(config) {
+function dispatchRequest(_config) {
+  // Interceptors may replace the merged config with an ordinary object. Flatten
+  // it at the dispatch boundary so shared prototype members cannot become
+  // request behavior, while preserving intentional template/class members.
+  const config = utils$1.toSafeFlatObject(_config);
   throwIfCancellationRequested(config);
-  config.headers = AxiosHeaders.from(config.headers);
+  config.headers = AxiosHeaders.from(utils$1.getSafeProp(config, 'headers'));
 
   // Transform request data
   config.data = transformData.call(config, config.transformRequest);
@@ -155037,18 +157705,17 @@ class Axios {
       return await this._request(configOrUrl, config);
     } catch (err) {
       if (err instanceof Error) {
-        let dummy = {};
-        Error.captureStackTrace ? Error.captureStackTrace(dummy) : dummy = new Error();
-
-        // slice off the Error: ... line
-        const stack = (() => {
-          if (!dummy.stack) {
-            return '';
-          }
-          const firstNewlineIndex = dummy.stack.indexOf('\n');
-          return firstNewlineIndex === -1 ? '' : dummy.stack.slice(firstNewlineIndex + 1);
-        })();
         try {
+          let dummy = {};
+          Error.captureStackTrace ? Error.captureStackTrace(dummy) : dummy = new Error();
+          const dummyStack = dummy.stack;
+          let stack = '';
+
+          // slice off the Error: ... line
+          if (typeof dummyStack === 'string') {
+            const firstNewlineIndex = dummyStack.indexOf('\n');
+            stack = firstNewlineIndex === -1 ? '' : dummyStack.slice(firstNewlineIndex + 1);
+          }
           if (!err.stack) {
             err.stack = stack;
             // match without the 2 top stack lines
@@ -155061,7 +157728,7 @@ class Axios {
             }
           }
         } catch (e) {
-          // ignore the case where "stack" is an un-writable property
+          // Ignore failures from custom stack hooks or un-writable stack properties.
         }
       }
       throw err;
@@ -155117,11 +157784,11 @@ class Axios {
     }, true);
 
     // Set config.method
-    config.method = (config.method || this.defaults.method || 'get').toLowerCase();
+    config.method = (utils$1.getSafeProp(config, 'method') || utils$1.getSafeProp(this.defaults, 'method') || 'get').toLowerCase();
 
     // Flatten headers
     let contextHeaders = headers && utils$1.merge(headers.common, headers[config.method]);
-    headers && utils$1.forEach(['delete', 'get', 'head', 'post', 'put', 'patch', 'query', 'common'], method => {
+    headers && utils$1.forEach(methodList.concat('common'), method => {
       delete headers[method];
     });
     config.headers = AxiosHeaders.concat(contextHeaders, headers);
@@ -155166,16 +157833,29 @@ class Axios {
       const onFulfilled = requestInterceptorChain[i++];
       const onRejected = requestInterceptorChain[i++];
       try {
-        newConfig = onFulfilled(newConfig);
+        newConfig = onFulfilled ? onFulfilled(newConfig) : newConfig;
       } catch (error) {
-        onRejected.call(this, error);
+        if (!onRejected) {
+          promise = Promise.reject(error);
+          break;
+        }
+        try {
+          const rejectedResult = onRejected.call(this, error);
+          if (utils$1.isThenable(rejectedResult)) {
+            promise = Promise.resolve(rejectedResult).then(() => dispatchRequest.call(this, newConfig));
+          }
+        } catch (rejectedError) {
+          promise = Promise.reject(rejectedError);
+        }
         break;
       }
     }
-    try {
-      promise = dispatchRequest.call(this, newConfig);
-    } catch (error) {
-      return Promise.reject(error);
+    if (!promise) {
+      try {
+        promise = dispatchRequest.call(this, newConfig);
+      } catch (error) {
+        promise = Promise.reject(error);
+      }
     }
     i = 0;
     len = responseInterceptorChain.length;
@@ -155414,14 +158094,22 @@ const HttpStatusCode = {
   Gone: 410,
   LengthRequired: 411,
   PreconditionFailed: 412,
+  /**
+   * @deprecated Use `ContentTooLarge` instead.
+   */
   PayloadTooLarge: 413,
+  ContentTooLarge: 413,
   UriTooLong: 414,
   UnsupportedMediaType: 415,
   RangeNotSatisfiable: 416,
   ExpectationFailed: 417,
   ImATeapot: 418,
   MisdirectedRequest: 421,
+  /**
+   * @deprecated Use `UnprocessableContent` instead.
+   */
   UnprocessableEntity: 422,
+  UnprocessableContent: 422,
   Locked: 423,
   FailedDependency: 424,
   TooEarly: 425,
@@ -155441,6 +158129,7 @@ const HttpStatusCode = {
   LoopDetected: 508,
   NotExtended: 510,
   NetworkAuthenticationRequired: 511,
+  WebServerReturnsAnUnknownError: 520,
   WebServerIsDown: 521,
   ConnectionTimedOut: 522,
   OriginIsUnreachable: 523,
@@ -155449,7 +158138,9 @@ const HttpStatusCode = {
   InvalidSslCertificate: 526
 };
 Object.entries(HttpStatusCode).forEach(([key, value]) => {
-  HttpStatusCode[value] = key;
+  if (HttpStatusCode[value] === undefined) {
+    HttpStatusCode[value] = key;
+  }
 });
 
 /**
@@ -155517,7 +158208,6 @@ axios.HttpStatusCode = HttpStatusCode;
 axios.default = axios;
 
 module.exports = axios;
-//# sourceMappingURL=axios.cjs.map
 
 
 /***/ }),
@@ -156410,7 +159100,7 @@ exports.LruObjectHitStatistics = LruObjectHitStatistics;
 /***/ 64012:
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"name":"@actions/cache","version":"6.2.0","description":"Actions cache lib","keywords":["github","actions","cache"],"homepage":"https://github.com/actions/toolkit/tree/main/packages/cache","license":"MIT","type":"module","main":"lib/cache.js","types":"lib/cache.d.ts","exports":{".":{"types":"./lib/cache.d.ts","import":"./lib/cache.js"}},"directories":{"lib":"lib","test":"__tests__"},"files":["lib","!.DS_Store"],"publishConfig":{"access":"public"},"repository":{"type":"git","url":"git+https://github.com/actions/toolkit.git","directory":"packages/cache"},"scripts":{"audit-moderate":"npm install && npm audit --json --audit-level=moderate > audit.json","test":"echo \\"Error: run tests from root\\" && exit 1","tsc":"tsc && cp src/internal/shared/package-version.cjs lib/internal/shared/"},"bugs":{"url":"https://github.com/actions/toolkit/issues"},"dependencies":{"@actions/core":"^3.0.1","@actions/exec":"^3.0.0","@actions/glob":"^0.6.1","@actions/http-client":"^4.0.1","@actions/io":"^3.0.2","@azure/core-rest-pipeline":"^1.23.0","@azure/storage-blob":"^12.31.0","@protobuf-ts/runtime-rpc":"^2.11.1","semver":"^7.7.4"},"devDependencies":{"@protobuf-ts/plugin":"^2.11.1","@types/node":"^25.6.0","@types/semver":"^7.7.1","typescript":"^5.9.3"},"overrides":{"uri-js":"npm:uri-js-replace@^1.0.1","node-fetch":"^3.3.2"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"@actions/cache","version":"6.3.0","description":"Actions cache lib","keywords":["github","actions","cache"],"homepage":"https://github.com/actions/toolkit/tree/main/packages/cache","license":"MIT","type":"module","main":"lib/cache.js","types":"lib/cache.d.ts","exports":{".":{"types":"./lib/cache.d.ts","import":"./lib/cache.js"}},"directories":{"lib":"lib","test":"__tests__"},"files":["lib","!.DS_Store"],"publishConfig":{"access":"public"},"repository":{"type":"git","url":"git+https://github.com/actions/toolkit.git","directory":"packages/cache"},"scripts":{"audit-moderate":"npm install && npm audit --json --audit-level=moderate > audit.json","test":"echo \\"Error: run tests from root\\" && exit 1","tsc":"tsc && cp src/internal/shared/package-version.cjs lib/internal/shared/"},"bugs":{"url":"https://github.com/actions/toolkit/issues"},"dependencies":{"@actions/core":"^3.0.1","@actions/exec":"^3.0.0","@actions/glob":"^0.7.0","@actions/http-client":"^4.0.1","@actions/io":"^3.0.2","@azure/core-rest-pipeline":"~1.23.0","@azure/storage-blob":"~12.31.0","@protobuf-ts/runtime-rpc":"^2.11.1","semver":"^7.8.5"},"devDependencies":{"@protobuf-ts/plugin":"^2.11.1","@types/node":"^25.9.8","@types/semver":"^7.8.0","typescript":"^5.9.3"},"overrides":{"uri-js":"npm:uri-js-replace@^1.0.1","node-fetch":"^3.3.2"}}');
 
 /***/ }),
 
@@ -156459,7 +159149,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"http://json-schema.org/dra
 /***/ 10570:
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"name":"joi","description":"Object schema validation","version":"18.2.3","repository":{"url":"git://github.com/hapijs/joi.git","type":"git"},"engines":{"node":">= 20"},"main":"lib/index.js","types":"lib/index.d.ts","browser":"dist/joi-browser.min.js","files":["lib/**/*","dist/*"],"keywords":["schema","validation"],"dependencies":{"@hapi/address":"^5.1.1","@hapi/formula":"^3.0.2","@hapi/hoek":"^11.0.7","@hapi/pinpoint":"^2.0.1","@hapi/tlds":"^1.1.1","@hapi/topo":"^6.0.2","@standard-schema/spec":"^1.1.0"},"devDependencies":{"@hapi/bourne":"^3.0.0","@hapi/code":"^9.0.3","@hapi/eslint-plugin":"^7.0.0","@hapi/joi-legacy-test":"npm:@hapi/joi@15.x.x","@hapi/lab":"^26.0.0","@types/node":"^20.17.47","ajv":"^8.18.0","ajv-formats":"^3.0.1","typescript":"^5.8.3"},"scripts":{"prepublishOnly":"cd browser && npm install && npm run build","test":"lab -t 100 -a @hapi/code -L -Y","test-cov-html":"lab -r html -o coverage.html -a @hapi/code"},"license":"BSD-3-Clause"}');
+module.exports = /*#__PURE__*/JSON.parse('{"name":"joi","description":"Object schema validation","version":"18.2.9","repository":{"url":"git://github.com/hapijs/joi.git","type":"git"},"engines":{"node":">= 20"},"main":"lib/index.js","types":"lib/index.d.ts","browser":"dist/joi-browser.min.js","files":["lib/**/*","dist/*"],"keywords":["schema","validation"],"dependencies":{"@hapi/address":"^5.1.1","@hapi/formula":"^3.0.2","@hapi/hoek":"^11.0.7","@hapi/pinpoint":"^2.0.1","@hapi/tlds":"^1.1.1","@hapi/topo":"^6.0.2","@standard-schema/spec":"^1.1.0"},"devDependencies":{"@hapi/bourne":"^3.0.0","@hapi/code":"^9.0.3","@hapi/eslint-plugin":"^7.0.0","@hapi/joi-legacy-test":"npm:@hapi/joi@15.x.x","@hapi/lab":"^26.0.0","@types/node":"^20.17.47","ajv":"^8.18.0","ajv-formats":"^3.0.1","typescript":"^5.8.3"},"scripts":{"prepublishOnly":"cd browser && npm install && npm run build","test":"lab -t 100 -a @hapi/code -L -Y","test-cov-html":"lab -r html -o coverage.html -a @hapi/code"},"license":"BSD-3-Clause"}');
 
 /***/ }),
 
@@ -156516,6 +159206,9 @@ module.exports = /*#__PURE__*/JSON.parse('{"name":"thread-stream","version":"4.0
 /******/ __nccwpck_require__.m = __webpack_modules__;
 /******/ 
 /************************************************************************/
+/******/ /* webpack/runtime/asset-relocator-loader */
+/******/ if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = decodeURIComponent(new URL('.', import.meta.url).pathname).slice(import.meta.url.match(/^file:\/\/\/\w:/) ? 1 : 0, -1) + "/";
+/******/ 
 /******/ /* webpack/runtime/compat get default export */
 /******/ (() => {
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -156616,10 +159309,6 @@ module.exports = /*#__PURE__*/JSON.parse('{"name":"thread-stream","version":"4.0
 /******/ 		return module;
 /******/ 	};
 /******/ })();
-/******/ 
-/******/ /* webpack/runtime/compat */
-/******/ 
-/******/ if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = new URL('.', import.meta.url).pathname.slice(import.meta.url.match(/^file:\/\/\/\w:/) ? 1 : 0, -1) + "/";
 /******/ 
 /******/ /* webpack/runtime/import chunk loading */
 /******/ (() => {
@@ -158310,8 +160999,8 @@ function toPlatformPath(pth) {
 var external_string_decoder_ = __nccwpck_require__(13193);
 // EXTERNAL MODULE: external "events"
 var external_events_ = __nccwpck_require__(24434);
-;// CONCATENATED MODULE: external "child_process"
-const external_child_process_namespaceObject = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("child_process");
+// EXTERNAL MODULE: external "child_process"
+var external_child_process_ = __nccwpck_require__(35317);
 // EXTERNAL MODULE: external "assert"
 var external_assert_ = __nccwpck_require__(42613);
 ;// CONCATENATED MODULE: ./node_modules/@actions/io/lib/io-util.js
@@ -158584,7 +161273,7 @@ function mv(source_1, dest_1) {
  */
 function rmRF(inputPath) {
     return io_awaiter(this, void 0, void 0, function* () {
-        if (ioUtil.IS_WINDOWS) {
+        if (IS_WINDOWS) {
             // Check for invalid characters
             // https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file
             if (/[*"<>|]/.test(inputPath)) {
@@ -158593,7 +161282,7 @@ function rmRF(inputPath) {
         }
         try {
             // note if path does not exist, error is silent
-            yield ioUtil.rm(inputPath, {
+            yield rm(inputPath, {
                 force: true,
                 maxRetries: 3,
                 recursive: true,
@@ -159153,7 +161842,7 @@ class ToolRunner extends external_events_.EventEmitter {
                     return reject(new Error(`The cwd: ${this.options.cwd} does not exist!`));
                 }
                 const fileName = this._getSpawnFileName();
-                const cp = external_child_process_namespaceObject.spawn(fileName, this._getSpawnArgs(optionsNonNull), this._getSpawnOptions(this.options, fileName));
+                const cp = external_child_process_.spawn(fileName, this._getSpawnArgs(optionsNonNull), this._getSpawnOptions(this.options, fileName));
                 let stdbuffer = '';
                 if (cp.stdout) {
                     cp.stdout.on('data', (data) => {
@@ -160134,12 +162823,24 @@ unit.placeholder = ' _'
 ;// CONCATENATED MODULE: ./node_modules/parse-duration/index.js
 
 
-const durationRE = /((?:\d{1,16}(?:\.\d{1,16})?|\.\d{1,16})(?:[eE][-+]?\d{1,4})?)\s*([\p{L}]{0,14})/gu
+const durationRE = /((?:\d+(?:\.\d+)?|\.\d+)(?:[eE][-+]?\d+)?)\s*([\p{L}]{0,14})/gu
 
 parse.unit = en
 
 // group/placeholder cleanup regex — rebuilt only when the locale strings change
 let groupRE, placeholder = null, parse_duration_group
+
+/**
+ * look up a unit name, ignoring case and a trailing plural `s`
+ *
+ * @param {object} unit
+ * @param {string} name
+ * @return {number|undefined}
+ */
+const lookupUnit = (unit, name) => {
+  name = String(name).toLowerCase()
+  return unit[name] ?? (name.endsWith('s') ? unit[name.slice(0, -1)] : undefined)
+}
 
 /**
  * convert `str` to ms
@@ -160169,14 +162870,13 @@ function parse(str = '', format = 'ms') {
       }
       else units = format
     }
-    else units = units.toLowerCase()
 
-    prevUnits = units = unit[units] || (units.endsWith('s') ? unit[units.slice(0, -1)] : undefined)
+    prevUnits = units = lookupUnit(unit, units)
 
     if (typeof units == 'number') result = (result || 0) + m[1] * units
   }
 
-  return result && ((result / (unit[format] || 1)) * (str.trimStart()[0] === '-' ? -1 : 1))
+  return result && ((result / (lookupUnit(unit, format) || 1)) * (str.trimStart()[0] === '-' ? -1 : 1))
 }
 
 // EXTERNAL MODULE: external "node:fs"
@@ -160496,8 +163196,2568 @@ function internal_pattern_helper_partialMatch(patterns, itemPath) {
     return patterns.some(x => !x.negate && x.partialMatch(itemPath));
 }
 //# sourceMappingURL=internal-pattern-helper.js.map
-// EXTERNAL MODULE: ./node_modules/minimatch/minimatch.js
-var minimatch = __nccwpck_require__(43772);
+;// CONCATENATED MODULE: ./node_modules/@actions/glob/node_modules/balanced-match/dist/esm/index.js
+const balanced = (a, b, str) => {
+    const ma = a instanceof RegExp ? maybeMatch(a, str) : a;
+    const mb = b instanceof RegExp ? maybeMatch(b, str) : b;
+    const r = ma !== null && mb != null && range(ma, mb, str);
+    return (r && {
+        start: r[0],
+        end: r[1],
+        pre: str.slice(0, r[0]),
+        body: str.slice(r[0] + ma.length, r[1]),
+        post: str.slice(r[1] + mb.length),
+    });
+};
+const maybeMatch = (reg, str) => {
+    const m = str.match(reg);
+    return m ? m[0] : null;
+};
+const range = (a, b, str) => {
+    let begs, beg, left, right = undefined, result;
+    let ai = str.indexOf(a);
+    let bi = str.indexOf(b, ai + 1);
+    let i = ai;
+    if (ai >= 0 && bi > 0) {
+        if (a === b) {
+            return [ai, bi];
+        }
+        begs = [];
+        left = str.length;
+        while (i >= 0 && !result) {
+            if (i === ai) {
+                begs.push(i);
+                ai = str.indexOf(a, i + 1);
+            }
+            else if (begs.length === 1) {
+                const r = begs.pop();
+                if (r !== undefined)
+                    result = [r, bi];
+            }
+            else {
+                beg = begs.pop();
+                if (beg !== undefined && beg < left) {
+                    left = beg;
+                    right = bi;
+                }
+                bi = str.indexOf(b, i + 1);
+            }
+            i = ai < bi && ai >= 0 ? ai : bi;
+        }
+        if (begs.length && right !== undefined) {
+            result = [left, right];
+        }
+    }
+    return result;
+};
+//# sourceMappingURL=index.js.map
+;// CONCATENATED MODULE: ./node_modules/@actions/glob/node_modules/brace-expansion/dist/esm/index.js
+
+const escSlash = '\0SLASH' + Math.random() + '\0';
+const escOpen = '\0OPEN' + Math.random() + '\0';
+const escClose = '\0CLOSE' + Math.random() + '\0';
+const escComma = '\0COMMA' + Math.random() + '\0';
+const escPeriod = '\0PERIOD' + Math.random() + '\0';
+const escSlashPattern = new RegExp(escSlash, 'g');
+const escOpenPattern = new RegExp(escOpen, 'g');
+const escClosePattern = new RegExp(escClose, 'g');
+const escCommaPattern = new RegExp(escComma, 'g');
+const escPeriodPattern = new RegExp(escPeriod, 'g');
+const slashPattern = /\\\\/g;
+const openPattern = /\\{/g;
+const closePattern = /\\}/g;
+const commaPattern = /\\,/g;
+const periodPattern = /\\\./g;
+const EXPANSION_MAX = 100_000;
+// `EXPANSION_MAX` caps the *number* of expansions, but not their length. An
+// input like `'{a,b}'.repeat(1500)` stays under that count - its output is
+// truncated to 100k results - while making every result ~1500 characters
+// long. The result set, and the intermediate arrays built while combining
+// brace sets, then grow large enough to exhaust memory and crash the process
+// (CVE-2026-14257). `EXPANSION_MAX_LENGTH` bounds the total number of
+// characters the accumulator may hold at any point, so memory stays flat no
+// matter how many brace groups are chained. The limit sits well above any
+// realistic expansion (100k results hitting `EXPANSION_MAX` measure ~1M
+// characters) so legitimate input is unaffected.
+const EXPANSION_MAX_LENGTH = 4_000_000;
+// `expand_` recurses once per level of brace *nesting* - both when expanding a
+// set's comma members and when re-wrapping a set whose body is a single part.
+// The CVE-2026-14257 fix made the *tail* iterative (recursion on `m.post`, one
+// level per chained group), which left nesting depth unbounded: about 3,100
+// levels of `{{{...a,b...}}}` - only ~6KB of input - exhausted the native stack
+// and crashed the process. `EXPANSION_MAX_DEPTH` bounds how deep the parser
+// will follow nesting. It sits far above any realistic pattern and well below
+// the depth at which the stack runs out.
+const EXPANSION_MAX_DEPTH = 1_000;
+// Bash keeps a quirk where a brace group followed by a comma set still expands
+// (`{a},b}`). The parser implements it by rewriting the string and restarting
+// the scan, absorbing one `}` per pass. `n` trailing braces therefore cost `n`
+// full passes over a string that itself grows by one `escClose` sentinel each
+// time - quadratic in `n`, with a ~26x constant from the sentinel's length.
+// 128KB of `'{a}' + '}'.repeat(n) + ',z}'` blocked the event loop for 27
+// seconds to produce two results. `EXPANSION_MAX_REWRITES` bounds how many
+// times the scan may restart. Real `{a},b}` input needs a handful.
+const EXPANSION_MAX_REWRITES = 1_000;
+function numeric(str) {
+    return !isNaN(str) ? parseInt(str, 10) : str.charCodeAt(0);
+}
+function escapeBraces(str) {
+    return str
+        .replace(slashPattern, escSlash)
+        .replace(openPattern, escOpen)
+        .replace(closePattern, escClose)
+        .replace(commaPattern, escComma)
+        .replace(periodPattern, escPeriod);
+}
+function unescapeBraces(str) {
+    return str
+        .replace(escSlashPattern, '\\')
+        .replace(escOpenPattern, '{')
+        .replace(escClosePattern, '}')
+        .replace(escCommaPattern, ',')
+        .replace(escPeriodPattern, '.');
+}
+// Like `target.push(...items)` but doesn't overflow the stack
+function pushAll(target, items) {
+    for (let i = 0; i < items.length; i++) {
+        target.push(items[i]);
+    }
+}
+/**
+ * Basically just str.split(","), but handling cases
+ * where we have nested braced sections, which should be
+ * treated as individual members, like {a,{b,c},d}
+ */
+function parseCommaParts(str) {
+    const parts = [];
+    // Walk the brace groups iteratively. Recursing on `post` once per group let a
+    // chain of them exhaust the stack - the parsing-side counterpart to
+    // the `expand_` overflow fixed for CVE-2026-14257, and not something `max` or
+    // `maxLength` can bound, since it happens before expansion.
+    //
+    // The part the next chunk continues
+    let carry = '';
+    for (;;) {
+        const m = balanced('{', '}', str);
+        if (!m) {
+            const tail = str.split(',');
+            tail[0] = carry + tail[0];
+            pushAll(parts, tail);
+            return parts;
+        }
+        const { pre, body, post } = m;
+        const p = pre.split(',');
+        p[0] = carry + p[0];
+        p[p.length - 1] += '{' + body + '}';
+        if (!post.length) {
+            pushAll(parts, p);
+            return parts;
+        }
+        carry = p.pop();
+        pushAll(parts, p);
+        str = post;
+    }
+}
+function expand(str, options = {}) {
+    if (!str) {
+        return [];
+    }
+    const { max = EXPANSION_MAX, maxLength = EXPANSION_MAX_LENGTH, maxDepth = EXPANSION_MAX_DEPTH, maxRewrites = EXPANSION_MAX_REWRITES, } = options;
+    // I don't know why Bash 4.3 does this, but it does.
+    // Anything starting with {} will have the first two bytes preserved
+    // but *only* at the top level, so {},a}b will not expand to anything,
+    // but a{},b}c will be expanded to [a}c,abc].
+    // One could argue that this is a bug in Bash, but since the goal of
+    // this module is to match Bash's rules, we escape a leading {}
+    if (str.slice(0, 2) === '{}') {
+        str = '\\{\\}' + str.slice(2);
+    }
+    return expand_(escapeBraces(str), max, maxLength, maxDepth, 0, maxRewrites, true).map(unescapeBraces);
+}
+function embrace(str) {
+    return '{' + str + '}';
+}
+function isPadded(el) {
+    return /^-?0\d/.test(el);
+}
+function lte(i, y) {
+    return i <= y;
+}
+function gte(i, y) {
+    return i >= y;
+}
+// Build `{ acc[a] + pre + values[v] }` for every combination, capping the
+// number of results at `max` and the total number of characters at `maxLength`.
+// This is the one place output grows, so bounding it here keeps the single
+// accumulator - and therefore memory - flat regardless of how many brace groups
+// are combined (CVE-2026-14257).
+function combine(acc, pre, values, max, maxLength, dropEmpties) {
+    const out = [];
+    let length = 0;
+    for (let a = 0; a < acc.length; a++) {
+        for (let v = 0; v < values.length; v++) {
+            if (out.length >= max)
+                return out;
+            const expansion = acc[a] + pre + values[v];
+            // Bash drops empty results at the top level. Skip them before they count
+            // against `max`, so `max` bounds the number of *kept* results.
+            if (dropEmpties && !expansion)
+                continue;
+            if (length + expansion.length > maxLength)
+                return out;
+            out.push(expansion);
+            length += expansion.length;
+        }
+    }
+    return out;
+}
+// The expansion values of a single numeric (`1..5`) or alphabetic (`a..e..2`)
+// sequence body.
+function expandSequence(body, isAlphaSequence, max, maxLength) {
+    const n = body.split(/\.\./);
+    const N = [];
+    // A sequence body always splits into two or three parts, but the compiler
+    // can't know that.
+    /* c8 ignore start */
+    if (n[0] === undefined || n[1] === undefined) {
+        return N;
+    }
+    /* c8 ignore stop */
+    const x = numeric(n[0]);
+    const y = numeric(n[1]);
+    const width = Math.max(n[0].length, n[1].length);
+    let incr = n.length === 3 && n[2] !== undefined ?
+        Math.max(Math.abs(numeric(n[2])), 1)
+        : 1;
+    let test = lte;
+    const reverse = y < x;
+    if (reverse) {
+        incr *= -1;
+        test = gte;
+    }
+    const pad = n.some(isPadded);
+    let length = 0;
+    for (let i = x; test(i, y) && N.length < max; i += incr) {
+        let c;
+        if (isAlphaSequence) {
+            c = String.fromCharCode(i);
+            if (c === '\\') {
+                c = '';
+            }
+        }
+        else {
+            c = String(i);
+            if (pad) {
+                const need = width - c.length;
+                if (need > 0) {
+                    const z = new Array(need + 1).join('0');
+                    if (i < 0) {
+                        c = '-' + z + c.slice(1);
+                    }
+                    else {
+                        c = z + c;
+                    }
+                }
+            }
+        }
+        if (length + c.length > maxLength)
+            break;
+        N.push(c);
+        length += c.length;
+    }
+    return N;
+}
+function expand_(str, max, maxLength, maxDepth, depth, maxRewrites, isTop) {
+    // Too deeply nested to keep following: treat the rest as literal, the same
+    // way a group that cannot expand is already handled. Truncating rather than
+    // throwing keeps `expand` total, matching `max` and `maxLength`.
+    if (depth > maxDepth) {
+        return [str];
+    }
+    // Consume the string's top-level brace groups left to right, threading a
+    // running set of combined prefixes (`acc`). Expanding the tail iteratively -
+    // rather than recursing on `m.post` once per group - keeps the native stack
+    // depth constant, so deeply chained input (`'{a,b}'.repeat(3000)`) can no
+    // longer overflow the stack, and leaves a single accumulator whose size
+    // `maxLength` bounds directly (CVE-2026-14257).
+    let acc = [''];
+    // Bash drops empty results, but only when the *first* top-level group is a
+    // comma set - a sequence like `{a..\}` may legitimately yield ''. The drop
+    // is on the final strings, so it is applied to whichever `combine` produces
+    // them (the one with no brace set left in the tail).
+    // How many times the `{a},b}` rewrite below has restarted the scan. Each pass
+    // re-reads the whole string, so leaving this unbounded is quadratic.
+    let rewrites = 0;
+    let dropEmpties = false;
+    let firstGroup = true;
+    for (;;) {
+        const m = balanced('{', '}', str);
+        // No brace set left: the rest of the string is literal.
+        if (!m) {
+            return combine(acc, str, [''], max, maxLength, dropEmpties);
+        }
+        // no need to expand pre, since it is guaranteed to be free of brace-sets
+        const pre = m.pre;
+        if (/\$$/.test(pre)) {
+            acc = combine(acc, pre + '{' + m.body + '}', [''], max, maxLength, dropEmpties && !m.post.length);
+            firstGroup = false;
+            if (!m.post.length)
+                break;
+            str = m.post;
+            continue;
+        }
+        const isNumericSequence = /^-?\d+\.\.-?\d+(?:\.\.-?\d+)?$/.test(m.body);
+        const isAlphaSequence = /^[a-zA-Z]\.\.[a-zA-Z](?:\.\.-?\d+)?$/.test(m.body);
+        const isSequence = isNumericSequence || isAlphaSequence;
+        const isOptions = m.body.indexOf(',') >= 0;
+        if (!isSequence && !isOptions) {
+            // {a},b}
+            if (rewrites < maxRewrites && m.post.match(/,(?!,).*\}/)) {
+                rewrites++;
+                str = m.pre + '{' + m.body + escClose + m.post;
+                isTop = true;
+                continue;
+            }
+            // Nothing here expands, so the whole remaining string is literal.
+            return combine(acc, pre + '{' + m.body + '}' + m.post, [''], max, maxLength, dropEmpties);
+        }
+        if (firstGroup) {
+            dropEmpties = isTop && !isSequence;
+            firstGroup = false;
+        }
+        let values;
+        if (isSequence) {
+            values = expandSequence(m.body, isAlphaSequence, max, maxLength);
+        }
+        else {
+            let n = parseCommaParts(m.body);
+            if (n.length === 1 && n[0] !== undefined) {
+                // x{{a,b}}y ==> x{a}y x{b}y
+                n = expand_(n[0], max, maxLength, maxDepth, depth + 1, maxRewrites, false).map(embrace);
+                //XXX is this necessary? Can't seem to hit it in tests.
+                /* c8 ignore start */
+                if (n.length === 1) {
+                    acc = combine(acc, pre + n[0], [''], max, maxLength, dropEmpties && !m.post.length);
+                    if (!m.post.length)
+                        break;
+                    str = m.post;
+                    continue;
+                }
+                /* c8 ignore stop */
+            }
+            // Values that `combine` is going to drop as empty produce no result, so
+            // they must not count against `max` - otherwise `{a,,b}` with `max: 2`
+            // would stop at `['a', '']` and yield one result instead of two. Skipping
+            // them outright keeps `values` bounded while leaving `max` a bound on
+            // *kept* results.
+            let dropsEmpties = dropEmpties && !m.post.length && !pre;
+            for (let d = 0; dropsEmpties && d < acc.length; d++) {
+                if (acc[d]) {
+                    dropsEmpties = false;
+                }
+            }
+            values = [];
+            let valuesLength = 0;
+            outer: for (let j = 0; j < n.length; j++) {
+                const expanded = expand_(n[j], max, maxLength, maxDepth, depth + 1, maxRewrites, false);
+                for (let k = 0; k < expanded.length; k++) {
+                    const v = expanded[k];
+                    if (dropsEmpties && !v)
+                        continue;
+                    if (values.length >= max ||
+                        valuesLength + v.length > maxLength) {
+                        break outer;
+                    }
+                    values.push(v);
+                    valuesLength += v.length;
+                }
+            }
+        }
+        acc = combine(acc, pre, values, max, maxLength, dropEmpties && !m.post.length);
+        if (!m.post.length)
+            break;
+        str = m.post;
+    }
+    return acc;
+}
+//# sourceMappingURL=index.js.map
+;// CONCATENATED MODULE: ./node_modules/@actions/glob/node_modules/minimatch/dist/esm/assert-valid-pattern.js
+const MAX_PATTERN_LENGTH = 1024 * 64;
+const assertValidPattern = (pattern) => {
+    if (typeof pattern !== 'string') {
+        throw new TypeError('invalid pattern');
+    }
+    if (pattern.length > MAX_PATTERN_LENGTH) {
+        throw new TypeError('pattern is too long');
+    }
+};
+//# sourceMappingURL=assert-valid-pattern.js.map
+;// CONCATENATED MODULE: ./node_modules/@actions/glob/node_modules/minimatch/dist/esm/brace-expressions.js
+// translate the various posix character classes into unicode properties
+// this works across all unicode locales
+// { <posix class>: [<translation>, /u flag required, negated]
+const posixClasses = {
+    '[:alnum:]': ['\\p{L}\\p{Nl}\\p{Nd}', true],
+    '[:alpha:]': ['\\p{L}\\p{Nl}', true],
+    '[:ascii:]': ['\\x' + '00-\\x' + '7f', false],
+    '[:blank:]': ['\\p{Zs}\\t', true],
+    '[:cntrl:]': ['\\p{Cc}', true],
+    '[:digit:]': ['\\p{Nd}', true],
+    '[:graph:]': ['\\p{Z}\\p{C}', true, true],
+    '[:lower:]': ['\\p{Ll}', true],
+    '[:print:]': ['\\p{C}', true],
+    '[:punct:]': ['\\p{P}', true],
+    '[:space:]': ['\\p{Z}\\t\\r\\n\\v\\f', true],
+    '[:upper:]': ['\\p{Lu}', true],
+    '[:word:]': ['\\p{L}\\p{Nl}\\p{Nd}\\p{Pc}', true],
+    '[:xdigit:]': ['A-Fa-f0-9', false],
+};
+// only need to escape a few things inside of brace expressions
+// escapes: [ \ ] -
+const braceEscape = (s) => s.replace(/[[\]\\-]/g, '\\$&');
+// escape all regexp magic characters
+const regexpEscape = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+// everything has already been escaped, we just have to join
+const rangesToString = (ranges) => ranges.join('');
+// takes a glob string at a posix brace expression, and returns
+// an equivalent regular expression source, and boolean indicating
+// whether the /u flag needs to be applied, and the number of chars
+// consumed to parse the character class.
+// This also removes out of order ranges, and returns ($.) if the
+// entire class just no good.
+const parseClass = (glob, position) => {
+    const pos = position;
+    /* c8 ignore start */
+    if (glob.charAt(pos) !== '[') {
+        throw new Error('not in a brace expression');
+    }
+    /* c8 ignore stop */
+    const ranges = [];
+    const negs = [];
+    let i = pos + 1;
+    let sawStart = false;
+    let uflag = false;
+    let escaping = false;
+    let negate = false;
+    let endPos = pos;
+    let rangeStart = '';
+    WHILE: while (i < glob.length) {
+        const c = glob.charAt(i);
+        if ((c === '!' || c === '^') && i === pos + 1) {
+            negate = true;
+            i++;
+            continue;
+        }
+        if (c === ']' && sawStart && !escaping) {
+            endPos = i + 1;
+            break;
+        }
+        sawStart = true;
+        if (c === '\\') {
+            if (!escaping) {
+                escaping = true;
+                i++;
+                continue;
+            }
+            // escaped \ char, fall through and treat like normal char
+        }
+        if (c === '[' && !escaping) {
+            // either a posix class, a collation equivalent, or just a [
+            for (const [cls, [unip, u, neg]] of Object.entries(posixClasses)) {
+                if (glob.startsWith(cls, i)) {
+                    // invalid, [a-[] is fine, but not [a-[:alpha]]
+                    if (rangeStart) {
+                        return ['$.', false, glob.length - pos, true];
+                    }
+                    i += cls.length;
+                    if (neg)
+                        negs.push(unip);
+                    else
+                        ranges.push(unip);
+                    uflag = uflag || u;
+                    continue WHILE;
+                }
+            }
+        }
+        // now it's just a normal character, effectively
+        escaping = false;
+        if (rangeStart) {
+            // throw this range away if it's not valid, but others
+            // can still match.
+            if (c > rangeStart) {
+                ranges.push(braceEscape(rangeStart) + '-' + braceEscape(c));
+            }
+            else if (c === rangeStart) {
+                ranges.push(braceEscape(c));
+            }
+            rangeStart = '';
+            i++;
+            continue;
+        }
+        // now might be the start of a range.
+        // can be either c-d or c-] or c<more...>] or c] at this point
+        if (glob.startsWith('-]', i + 1)) {
+            ranges.push(braceEscape(c + '-'));
+            i += 2;
+            continue;
+        }
+        if (glob.startsWith('-', i + 1)) {
+            rangeStart = c;
+            i += 2;
+            continue;
+        }
+        // not the start of a range, just a single character
+        ranges.push(braceEscape(c));
+        i++;
+    }
+    if (endPos < i) {
+        // didn't see the end of the class, not a valid class,
+        // but might still be valid as a literal match.
+        return ['', false, 0, false];
+    }
+    // if we got no ranges and no negates, then we have a range that
+    // cannot possibly match anything, and that poisons the whole glob
+    if (!ranges.length && !negs.length) {
+        return ['$.', false, glob.length - pos, true];
+    }
+    // if we got one positive range, and it's a single character, then that's
+    // not actually a magic pattern, it's just that one literal character.
+    // we should not treat that as "magic", we should just return the literal
+    // character. [_] is a perfectly valid way to escape glob magic chars.
+    if (negs.length === 0 &&
+        ranges.length === 1 &&
+        /^\\?.$/.test(ranges[0]) &&
+        !negate) {
+        const r = ranges[0].length === 2 ? ranges[0].slice(-1) : ranges[0];
+        return [regexpEscape(r), false, endPos - pos, false];
+    }
+    const sranges = '[' + (negate ? '^' : '') + rangesToString(ranges) + ']';
+    const snegs = '[' + (negate ? '' : '^') + rangesToString(negs) + ']';
+    const comb = ranges.length && negs.length ? '(' + sranges + '|' + snegs + ')'
+        : ranges.length ? sranges
+            : snegs;
+    return [comb, uflag, endPos - pos, true];
+};
+//# sourceMappingURL=brace-expressions.js.map
+;// CONCATENATED MODULE: ./node_modules/@actions/glob/node_modules/minimatch/dist/esm/unescape.js
+/**
+ * Un-escape a string that has been escaped with {@link escape}.
+ *
+ * If the {@link MinimatchOptions.windowsPathsNoEscape} option is used, then
+ * square-bracket escapes are removed, but not backslash escapes.
+ *
+ * For example, it will turn the string `'[*]'` into `*`, but it will not
+ * turn `'\\*'` into `'*'`, because `\` is a path separator in
+ * `windowsPathsNoEscape` mode.
+ *
+ * When `windowsPathsNoEscape` is not set, then both square-bracket escapes and
+ * backslash escapes are removed.
+ *
+ * Slashes (and backslashes in `windowsPathsNoEscape` mode) cannot be escaped
+ * or unescaped.
+ *
+ * When `magicalBraces` is not set, escapes of braces (`{` and `}`) will not be
+ * unescaped.
+ */
+const unescape_unescape = (s, { windowsPathsNoEscape = false, magicalBraces = true, } = {}) => {
+    if (magicalBraces) {
+        return windowsPathsNoEscape ?
+            s.replace(/\[([^/\\])\]/g, '$1')
+            : s
+                .replace(/((?!\\).|^)\[([^/\\])\]/g, '$1$2')
+                .replace(/\\([^/])/g, '$1');
+    }
+    return windowsPathsNoEscape ?
+        s.replace(/\[([^/\\{}])\]/g, '$1')
+        : s
+            .replace(/((?!\\).|^)\[([^/\\{}])\]/g, '$1$2')
+            .replace(/\\([^/{}])/g, '$1');
+};
+//# sourceMappingURL=unescape.js.map
+;// CONCATENATED MODULE: ./node_modules/@actions/glob/node_modules/minimatch/dist/esm/ast.js
+// parse a single path portion
+var _a;
+
+
+const types = new Set(['!', '?', '+', '*', '@']);
+const isExtglobType = (c) => types.has(c);
+const isExtglobAST = (c) => isExtglobType(c.type);
+// Map of which extglob types can adopt the children of a nested extglob
+//
+// anything but ! can adopt a matching type:
+// +(a|+(b|c)|d) => +(a|b|c|d)
+// *(a|*(b|c)|d) => *(a|b|c|d)
+// @(a|@(b|c)|d) => @(a|b|c|d)
+// ?(a|?(b|c)|d) => ?(a|b|c|d)
+//
+// * can adopt anything, because 0 or repetition is allowed
+// *(a|?(b|c)|d) => *(a|b|c|d)
+// *(a|+(b|c)|d) => *(a|b|c|d)
+// *(a|@(b|c)|d) => *(a|b|c|d)
+//
+// + can adopt @, because 1 or repetition is allowed
+// +(a|@(b|c)|d) => +(a|b|c|d)
+//
+// + and @ CANNOT adopt *, because 0 would be allowed
+// +(a|*(b|c)|d) => would match "", on *(b|c)
+// @(a|*(b|c)|d) => would match "", on *(b|c)
+//
+// + and @ CANNOT adopt ?, because 0 would be allowed
+// +(a|?(b|c)|d) => would match "", on ?(b|c)
+// @(a|?(b|c)|d) => would match "", on ?(b|c)
+//
+// ? can adopt @, because 0 or 1 is allowed
+// ?(a|@(b|c)|d) => ?(a|b|c|d)
+//
+// ? and @ CANNOT adopt * or +, because >1 would be allowed
+// ?(a|*(b|c)|d) => would match bbb on *(b|c)
+// @(a|*(b|c)|d) => would match bbb on *(b|c)
+// ?(a|+(b|c)|d) => would match bbb on +(b|c)
+// @(a|+(b|c)|d) => would match bbb on +(b|c)
+//
+// ! CANNOT adopt ! (nothing else can either)
+// !(a|!(b|c)|d) => !(a|b|c|d) would fail to match on b (not not b|c)
+//
+// ! can adopt @
+// !(a|@(b|c)|d) => !(a|b|c|d)
+//
+// ! CANNOT adopt *
+// !(a|*(b|c)|d) => !(a|b|c|d) would match on bbb, not allowed
+//
+// ! CANNOT adopt +
+// !(a|+(b|c)|d) => !(a|b|c|d) would match on bbb, not allowed
+//
+// ! CANNOT adopt ?
+// x!(a|?(b|c)|d) => x!(a|b|c|d) would fail to match "x"
+const adoptionMap = new Map([
+    ['!', ['@']],
+    ['?', ['?', '@']],
+    ['@', ['@']],
+    ['*', ['*', '+', '?', '@']],
+    ['+', ['+', '@']],
+]);
+// nested extglobs that can be adopted in, but with the addition of
+// a blank '' element.
+const adoptionWithSpaceMap = new Map([
+    ['!', ['?']],
+    ['@', ['?']],
+    ['+', ['?', '*']],
+]);
+// union of the previous two maps
+const adoptionAnyMap = new Map([
+    ['!', ['?', '@']],
+    ['?', ['?', '@']],
+    ['@', ['?', '@']],
+    ['*', ['*', '+', '?', '@']],
+    ['+', ['+', '@', '?', '*']],
+]);
+// Extglobs that can take over their parent if they are the only child
+// the key is parent, value maps child to resulting extglob parent type
+// '@' is omitted because it's a special case. An `@` extglob with a single
+// member can always be usurped by that subpattern.
+const usurpMap = new Map([
+    ['!', new Map([['!', '@']])],
+    [
+        '?',
+        new Map([
+            ['*', '*'],
+            ['+', '*'],
+        ]),
+    ],
+    [
+        '@',
+        new Map([
+            ['!', '!'],
+            ['?', '?'],
+            ['@', '@'],
+            ['*', '*'],
+            ['+', '+'],
+        ]),
+    ],
+    [
+        '+',
+        new Map([
+            ['?', '*'],
+            ['*', '*'],
+        ]),
+    ],
+]);
+// Patterns that get prepended to bind to the start of either the
+// entire string, or just a single path portion, to prevent dots
+// and/or traversal patterns, when needed.
+// Exts don't need the ^ or / bit, because the root binds that already.
+const startNoTraversal = '(?!(?:^|/)\\.\\.?(?:$|/))';
+const startNoDot = '(?!\\.)';
+// characters that indicate a start of pattern needs the "no dots" bit,
+// because a dot *might* be matched. ( is not in the list, because in
+// the case of a child extglob, it will handle the prevention itself.
+const addPatternStart = new Set(['[', '.']);
+// cases where traversal is A-OK, no dot prevention needed
+const justDots = new Set(['..', '.']);
+const reSpecials = new Set('().*{}+?[]^$\\!');
+const regExpEscape = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+// any single thing other than /
+const qmark = '[^/]';
+// * => any number of characters
+const star = qmark + '*?';
+// use + when we need to ensure that *something* matches, because the * is
+// the only thing in the path portion.
+const starNoEmpty = qmark + '+?';
+// remove the \ chars that we added if we end up doing a nonmagic compare
+// const deslash = (s: string) => s.replace(/\\(.)/g, '$1')
+let ID = 0;
+class AST {
+    type;
+    #root;
+    #hasMagic;
+    #uflag = false;
+    #parts = [];
+    #parent;
+    #parentIndex;
+    #negs;
+    #filledNegs = false;
+    #options;
+    #toString;
+    // set to true if it's an extglob with no children
+    // (which really means one child of '')
+    #emptyExt = false;
+    id = ++ID;
+    get depth() {
+        return (this.#parent?.depth ?? -1) + 1;
+    }
+    [Symbol.for('nodejs.util.inspect.custom')]() {
+        return {
+            '@@type': 'AST',
+            id: this.id,
+            type: this.type,
+            root: this.#root.id,
+            parent: this.#parent?.id,
+            depth: this.depth,
+            partsLength: this.#parts.length,
+            parts: this.#parts,
+        };
+    }
+    constructor(type, parent, options = {}) {
+        this.type = type;
+        // extglobs are inherently magical
+        if (type)
+            this.#hasMagic = true;
+        this.#parent = parent;
+        this.#root = this.#parent ? this.#parent.#root : this;
+        this.#options = this.#root === this ? options : this.#root.#options;
+        this.#negs = this.#root === this ? [] : this.#root.#negs;
+        if (type === '!' && !this.#root.#filledNegs)
+            this.#negs.push(this);
+        this.#parentIndex = this.#parent ? this.#parent.#parts.length : 0;
+    }
+    get hasMagic() {
+        /* c8 ignore start */
+        if (this.#hasMagic !== undefined)
+            return this.#hasMagic;
+        /* c8 ignore stop */
+        for (const p of this.#parts) {
+            if (typeof p === 'string')
+                continue;
+            if (p.type || p.hasMagic)
+                return (this.#hasMagic = true);
+        }
+        // note: will be undefined until we generate the regexp src and find out
+        return this.#hasMagic;
+    }
+    // reconstructs the pattern
+    toString() {
+        return (this.#toString !== undefined ? this.#toString
+            : !this.type ?
+                (this.#toString = this.#parts.map(p => String(p)).join(''))
+                : (this.#toString =
+                    this.type +
+                        '(' +
+                        this.#parts.map(p => String(p)).join('|') +
+                        ')'));
+    }
+    #fillNegs() {
+        /* c8 ignore start */
+        if (this !== this.#root)
+            throw new Error('should only call on root');
+        if (this.#filledNegs)
+            return this;
+        /* c8 ignore stop */
+        // call toString() once to fill this out
+        this.toString();
+        this.#filledNegs = true;
+        let n;
+        while ((n = this.#negs.pop())) {
+            if (n.type !== '!')
+                continue;
+            // walk up the tree, appending everthing that comes AFTER parentIndex
+            let p = n;
+            let pp = p.#parent;
+            while (pp) {
+                for (let i = p.#parentIndex + 1; !pp.type && i < pp.#parts.length; i++) {
+                    for (const part of n.#parts) {
+                        /* c8 ignore start */
+                        if (typeof part === 'string') {
+                            throw new Error('string part in extglob AST??');
+                        }
+                        /* c8 ignore stop */
+                        part.copyIn(pp.#parts[i]);
+                    }
+                }
+                p = pp;
+                pp = p.#parent;
+            }
+        }
+        return this;
+    }
+    push(...parts) {
+        for (const p of parts) {
+            if (p === '')
+                continue;
+            /* c8 ignore start */
+            if (typeof p !== 'string' &&
+                !(p instanceof _a && p.#parent === this)) {
+                throw new Error('invalid part: ' + p);
+            }
+            /* c8 ignore stop */
+            this.#parts.push(p);
+        }
+    }
+    toJSON() {
+        const ret = this.type === null ?
+            this.#parts
+                .slice()
+                .map(p => (typeof p === 'string' ? p : p.toJSON()))
+            : [this.type, ...this.#parts.map(p => p.toJSON())];
+        if (this.isStart() && !this.type)
+            ret.unshift([]);
+        if (this.isEnd() &&
+            (this === this.#root ||
+                (this.#root.#filledNegs && this.#parent?.type === '!'))) {
+            ret.push({});
+        }
+        return ret;
+    }
+    isStart() {
+        if (this.#root === this)
+            return true;
+        // if (this.type) return !!this.#parent?.isStart()
+        if (!this.#parent?.isStart())
+            return false;
+        if (this.#parentIndex === 0)
+            return true;
+        // if everything AHEAD of this is a negation, then it's still the "start"
+        const p = this.#parent;
+        for (let i = 0; i < this.#parentIndex; i++) {
+            const pp = p.#parts[i];
+            if (!(pp instanceof _a && pp.type === '!')) {
+                return false;
+            }
+        }
+        return true;
+    }
+    isEnd() {
+        if (this.#root === this)
+            return true;
+        if (this.#parent?.type === '!')
+            return true;
+        if (!this.#parent?.isEnd())
+            return false;
+        if (!this.type)
+            return this.#parent?.isEnd();
+        // if not root, it'll always have a parent
+        /* c8 ignore start */
+        const pl = this.#parent ? this.#parent.#parts.length : 0;
+        /* c8 ignore stop */
+        return this.#parentIndex === pl - 1;
+    }
+    copyIn(part) {
+        if (typeof part === 'string')
+            this.push(part);
+        else
+            this.push(part.clone(this));
+    }
+    clone(parent) {
+        const c = new _a(this.type, parent);
+        for (const p of this.#parts) {
+            c.copyIn(p);
+        }
+        return c;
+    }
+    static #parseAST(str, ast, pos, opt, extDepth) {
+        const maxDepth = opt.maxExtglobRecursion ?? 2;
+        let escaping = false;
+        let inBrace = false;
+        let braceStart = -1;
+        let braceNeg = false;
+        if (ast.type === null) {
+            // outside of a extglob, append until we find a start
+            let i = pos;
+            let acc = '';
+            while (i < str.length) {
+                const c = str.charAt(i++);
+                // still accumulate escapes at this point, but we do ignore
+                // starts that are escaped
+                if (escaping || c === '\\') {
+                    escaping = !escaping;
+                    acc += c;
+                    continue;
+                }
+                if (inBrace) {
+                    if (i === braceStart + 1) {
+                        if (c === '^' || c === '!') {
+                            braceNeg = true;
+                        }
+                    }
+                    else if (c === ']' && !(i === braceStart + 2 && braceNeg)) {
+                        inBrace = false;
+                    }
+                    acc += c;
+                    continue;
+                }
+                else if (c === '[') {
+                    inBrace = true;
+                    braceStart = i;
+                    braceNeg = false;
+                    acc += c;
+                    continue;
+                }
+                // we don't have to check for adoption here, because that's
+                // done at the other recursion point.
+                const doRecurse = !opt.noext &&
+                    isExtglobType(c) &&
+                    str.charAt(i) === '(' &&
+                    extDepth <= maxDepth;
+                if (doRecurse) {
+                    ast.push(acc);
+                    acc = '';
+                    const ext = new _a(c, ast);
+                    i = _a.#parseAST(str, ext, i, opt, extDepth + 1);
+                    ast.push(ext);
+                    continue;
+                }
+                acc += c;
+            }
+            ast.push(acc);
+            return i;
+        }
+        // some kind of extglob, pos is at the (
+        // find the next | or )
+        let i = pos + 1;
+        let part = new _a(null, ast);
+        const parts = [];
+        let acc = '';
+        while (i < str.length) {
+            const c = str.charAt(i++);
+            // still accumulate escapes at this point, but we do ignore
+            // starts that are escaped
+            if (escaping || c === '\\') {
+                escaping = !escaping;
+                acc += c;
+                continue;
+            }
+            if (inBrace) {
+                if (i === braceStart + 1) {
+                    if (c === '^' || c === '!') {
+                        braceNeg = true;
+                    }
+                }
+                else if (c === ']' && !(i === braceStart + 2 && braceNeg)) {
+                    inBrace = false;
+                }
+                acc += c;
+                continue;
+            }
+            else if (c === '[') {
+                inBrace = true;
+                braceStart = i;
+                braceNeg = false;
+                acc += c;
+                continue;
+            }
+            const doRecurse = !opt.noext &&
+                isExtglobType(c) &&
+                str.charAt(i) === '(' &&
+                /* c8 ignore start - the maxDepth is sufficient here */
+                (extDepth <= maxDepth || (ast && ast.#canAdoptType(c)));
+            /* c8 ignore stop */
+            if (doRecurse) {
+                const depthAdd = ast && ast.#canAdoptType(c) ? 0 : 1;
+                part.push(acc);
+                acc = '';
+                const ext = new _a(c, part);
+                part.push(ext);
+                i = _a.#parseAST(str, ext, i, opt, extDepth + depthAdd);
+                continue;
+            }
+            if (c === '|') {
+                part.push(acc);
+                acc = '';
+                parts.push(part);
+                part = new _a(null, ast);
+                continue;
+            }
+            if (c === ')') {
+                if (acc === '' && ast.#parts.length === 0) {
+                    ast.#emptyExt = true;
+                }
+                part.push(acc);
+                acc = '';
+                ast.push(...parts, part);
+                return i;
+            }
+            acc += c;
+        }
+        // unfinished extglob
+        // if we got here, it was a malformed extglob! not an extglob, but
+        // maybe something else in there.
+        ast.type = null;
+        ast.#hasMagic = undefined;
+        ast.#parts = [str.substring(pos - 1)];
+        return i;
+    }
+    #canAdoptWithSpace(child) {
+        return this.#canAdopt(child, adoptionWithSpaceMap);
+    }
+    #canAdopt(child, map = adoptionMap) {
+        if (!child ||
+            typeof child !== 'object' ||
+            child.type !== null ||
+            child.#parts.length !== 1 ||
+            this.type === null) {
+            return false;
+        }
+        const gc = child.#parts[0];
+        if (!gc || typeof gc !== 'object' || gc.type === null) {
+            return false;
+        }
+        return this.#canAdoptType(gc.type, map);
+    }
+    #canAdoptType(c, map = adoptionAnyMap) {
+        return !!map.get(this.type)?.includes(c);
+    }
+    #adoptWithSpace(child, index) {
+        const gc = child.#parts[0];
+        const blank = new _a(null, gc, this.options);
+        blank.#parts.push('');
+        gc.push(blank);
+        this.#adopt(child, index);
+    }
+    #adopt(child, index) {
+        const gc = child.#parts[0];
+        this.#parts.splice(index, 1, ...gc.#parts);
+        for (const p of gc.#parts) {
+            if (typeof p === 'object')
+                p.#parent = this;
+        }
+        this.#toString = undefined;
+    }
+    #canUsurpType(c) {
+        const m = usurpMap.get(this.type);
+        return !!m?.has(c);
+    }
+    #canUsurp(child) {
+        if (!child ||
+            typeof child !== 'object' ||
+            child.type !== null ||
+            child.#parts.length !== 1 ||
+            this.type === null ||
+            this.#parts.length !== 1) {
+            return false;
+        }
+        const gc = child.#parts[0];
+        if (!gc || typeof gc !== 'object' || gc.type === null) {
+            return false;
+        }
+        return this.#canUsurpType(gc.type);
+    }
+    #usurp(child) {
+        const m = usurpMap.get(this.type);
+        const gc = child.#parts[0];
+        const nt = m?.get(gc.type);
+        /* c8 ignore start - impossible */
+        if (!nt)
+            return false;
+        /* c8 ignore stop */
+        this.#parts = gc.#parts;
+        for (const p of this.#parts) {
+            if (typeof p === 'object') {
+                p.#parent = this;
+            }
+        }
+        this.type = nt;
+        this.#toString = undefined;
+        this.#emptyExt = false;
+    }
+    static fromGlob(pattern, options = {}) {
+        const ast = new _a(null, undefined, options);
+        _a.#parseAST(pattern, ast, 0, options, 0);
+        return ast;
+    }
+    // returns the regular expression if there's magic, or the unescaped
+    // string if not.
+    toMMPattern() {
+        // should only be called on root
+        /* c8 ignore start */
+        if (this !== this.#root)
+            return this.#root.toMMPattern();
+        /* c8 ignore stop */
+        const glob = this.toString();
+        const [re, body, hasMagic, uflag] = this.toRegExpSource();
+        // if we're in nocase mode, and not nocaseMagicOnly, then we do
+        // still need a regular expression if we have to case-insensitively
+        // match capital/lowercase characters.
+        const anyMagic = hasMagic ||
+            this.#hasMagic ||
+            (this.#options.nocase &&
+                !this.#options.nocaseMagicOnly &&
+                glob.toUpperCase() !== glob.toLowerCase());
+        if (!anyMagic) {
+            return body;
+        }
+        const flags = (this.#options.nocase ? 'i' : '') + (uflag ? 'u' : '');
+        return Object.assign(new RegExp(`^${re}$`, flags), {
+            _src: re,
+            _glob: glob,
+        });
+    }
+    get options() {
+        return this.#options;
+    }
+    // returns the string match, the regexp source, whether there's magic
+    // in the regexp (so a regular expression is required) and whether or
+    // not the uflag is needed for the regular expression (for posix classes)
+    // TODO: instead of injecting the start/end at this point, just return
+    // the BODY of the regexp, along with the start/end portions suitable
+    // for binding the start/end in either a joined full-path makeRe context
+    // (where we bind to (^|/), or a standalone matchPart context (where
+    // we bind to ^, and not /).  Otherwise slashes get duped!
+    //
+    // In part-matching mode, the start is:
+    // - if not isStart: nothing
+    // - if traversal possible, but not allowed: ^(?!\.\.?$)
+    // - if dots allowed or not possible: ^
+    // - if dots possible and not allowed: ^(?!\.)
+    // end is:
+    // - if not isEnd(): nothing
+    // - else: $
+    //
+    // In full-path matching mode, we put the slash at the START of the
+    // pattern, so start is:
+    // - if first pattern: same as part-matching mode
+    // - if not isStart(): nothing
+    // - if traversal possible, but not allowed: /(?!\.\.?(?:$|/))
+    // - if dots allowed or not possible: /
+    // - if dots possible and not allowed: /(?!\.)
+    // end is:
+    // - if last pattern, same as part-matching mode
+    // - else nothing
+    //
+    // Always put the (?:$|/) on negated tails, though, because that has to be
+    // there to bind the end of the negated pattern portion, and it's easier to
+    // just stick it in now rather than try to inject it later in the middle of
+    // the pattern.
+    //
+    // We can just always return the same end, and leave it up to the caller
+    // to know whether it's going to be used joined or in parts.
+    // And, if the start is adjusted slightly, can do the same there:
+    // - if not isStart: nothing
+    // - if traversal possible, but not allowed: (?:/|^)(?!\.\.?$)
+    // - if dots allowed or not possible: (?:/|^)
+    // - if dots possible and not allowed: (?:/|^)(?!\.)
+    //
+    // But it's better to have a simpler binding without a conditional, for
+    // performance, so probably better to return both start options.
+    //
+    // Then the caller just ignores the end if it's not the first pattern,
+    // and the start always gets applied.
+    //
+    // But that's always going to be $ if it's the ending pattern, or nothing,
+    // so the caller can just attach $ at the end of the pattern when building.
+    //
+    // So the todo is:
+    // - better detect what kind of start is needed
+    // - return both flavors of starting pattern
+    // - attach $ at the end of the pattern when creating the actual RegExp
+    //
+    // Ah, but wait, no, that all only applies to the root when the first pattern
+    // is not an extglob. If the first pattern IS an extglob, then we need all
+    // that dot prevention biz to live in the extglob portions, because eg
+    // +(*|.x*) can match .xy but not .yx.
+    //
+    // So, return the two flavors if it's #root and the first child is not an
+    // AST, otherwise leave it to the child AST to handle it, and there,
+    // use the (?:^|/) style of start binding.
+    //
+    // Even simplified further:
+    // - Since the start for a join is eg /(?!\.) and the start for a part
+    // is ^(?!\.), we can just prepend (?!\.) to the pattern (either root
+    // or start or whatever) and prepend ^ or / at the Regexp construction.
+    toRegExpSource(allowDot) {
+        const dot = allowDot ?? !!this.#options.dot;
+        if (this.#root === this) {
+            this.#flatten();
+            this.#fillNegs();
+        }
+        if (!isExtglobAST(this)) {
+            const noEmpty = this.isStart() &&
+                this.isEnd() &&
+                !this.#parts.some(s => typeof s !== 'string');
+            const src = this.#parts
+                .map(p => {
+                const [re, _, hasMagic, uflag] = typeof p === 'string' ?
+                    _a.#parseGlob(p, this.#hasMagic, noEmpty)
+                    : p.toRegExpSource(allowDot);
+                this.#hasMagic = this.#hasMagic || hasMagic;
+                this.#uflag = this.#uflag || uflag;
+                return re;
+            })
+                .join('');
+            let start = '';
+            if (this.isStart()) {
+                if (typeof this.#parts[0] === 'string') {
+                    // this is the string that will match the start of the pattern,
+                    // so we need to protect against dots and such.
+                    // '.' and '..' cannot match unless the pattern is that exactly,
+                    // even if it starts with . or dot:true is set.
+                    const dotTravAllowed = this.#parts.length === 1 && justDots.has(this.#parts[0]);
+                    if (!dotTravAllowed) {
+                        const aps = addPatternStart;
+                        // check if we have a possibility of matching . or ..,
+                        // and prevent that.
+                        const needNoTrav = 
+                        // dots are allowed, and the pattern starts with [ or .
+                        (dot && aps.has(src.charAt(0))) ||
+                            // the pattern starts with \., and then [ or .
+                            (src.startsWith('\\.') && aps.has(src.charAt(2))) ||
+                            // the pattern starts with \.\., and then [ or .
+                            (src.startsWith('\\.\\.') && aps.has(src.charAt(4)));
+                        // no need to prevent dots if it can't match a dot, or if a
+                        // sub-pattern will be preventing it anyway.
+                        const needNoDot = !dot && !allowDot && aps.has(src.charAt(0));
+                        start =
+                            needNoTrav ? startNoTraversal
+                                : needNoDot ? startNoDot
+                                    : '';
+                    }
+                }
+            }
+            // append the "end of path portion" pattern to negation tails
+            let end = '';
+            if (this.isEnd() &&
+                this.#root.#filledNegs &&
+                this.#parent?.type === '!') {
+                end = '(?:$|\\/)';
+            }
+            const final = start + src + end;
+            return [
+                final,
+                unescape_unescape(src),
+                (this.#hasMagic = !!this.#hasMagic),
+                this.#uflag,
+            ];
+        }
+        // We need to calculate the body *twice* if it's a repeat pattern
+        // at the start, once in nodot mode, then again in dot mode, so a
+        // pattern like *(?) can match 'x.y'
+        const repeated = this.type === '*' || this.type === '+';
+        // some kind of extglob
+        const start = this.type === '!' ? '(?:(?!(?:' : '(?:';
+        let body = this.#partsToRegExp(dot);
+        if (this.isStart() && this.isEnd() && !body && this.type !== '!') {
+            // invalid extglob, has to at least be *something* present, if it's
+            // the entire path portion.
+            const s = this.toString();
+            const me = this;
+            me.#parts = [s];
+            me.type = null;
+            me.#hasMagic = undefined;
+            return [s, unescape_unescape(this.toString()), false, false];
+        }
+        let bodyDotAllowed = !repeated || allowDot || dot || !startNoDot ?
+            ''
+            : this.#partsToRegExp(true);
+        if (bodyDotAllowed === body) {
+            bodyDotAllowed = '';
+        }
+        if (bodyDotAllowed) {
+            body = `(?:${body})(?:${bodyDotAllowed})*?`;
+        }
+        // an empty !() is exactly equivalent to a starNoEmpty
+        let final = '';
+        if (this.type === '!' && this.#emptyExt) {
+            final = (this.isStart() && !dot ? startNoDot : '') + starNoEmpty;
+        }
+        else {
+            const close = this.type === '!' ?
+                // !() must match something,but !(x) can match ''
+                '))' +
+                    (this.isStart() && !dot && !allowDot ? startNoDot : '') +
+                    star +
+                    ')'
+                : this.type === '@' ? ')'
+                    : this.type === '?' ? ')?'
+                        : this.type === '+' && bodyDotAllowed ? ')'
+                            : this.type === '*' && bodyDotAllowed ? `)?`
+                                : `)${this.type}`;
+            final = start + body + close;
+        }
+        return [
+            final,
+            unescape_unescape(body),
+            (this.#hasMagic = !!this.#hasMagic),
+            this.#uflag,
+        ];
+    }
+    #flatten() {
+        if (!isExtglobAST(this)) {
+            for (const p of this.#parts) {
+                if (typeof p === 'object') {
+                    p.#flatten();
+                }
+            }
+        }
+        else {
+            // do up to 10 passes to flatten as much as possible
+            let iterations = 0;
+            let done = false;
+            do {
+                done = true;
+                for (let i = 0; i < this.#parts.length; i++) {
+                    const c = this.#parts[i];
+                    if (typeof c === 'object') {
+                        c.#flatten();
+                        if (this.#canAdopt(c)) {
+                            done = false;
+                            this.#adopt(c, i);
+                        }
+                        else if (this.#canAdoptWithSpace(c)) {
+                            done = false;
+                            this.#adoptWithSpace(c, i);
+                        }
+                        else if (this.#canUsurp(c)) {
+                            done = false;
+                            this.#usurp(c);
+                        }
+                    }
+                }
+            } while (!done && ++iterations < 10);
+        }
+        this.#toString = undefined;
+    }
+    #partsToRegExp(dot) {
+        return this.#parts
+            .map(p => {
+            // extglob ASTs should only contain parent ASTs
+            /* c8 ignore start */
+            if (typeof p === 'string') {
+                throw new Error('string type in extglob ast??');
+            }
+            /* c8 ignore stop */
+            // can ignore hasMagic, because extglobs are already always magic
+            const [re, _, _hasMagic, uflag] = p.toRegExpSource(dot);
+            this.#uflag = this.#uflag || uflag;
+            return re;
+        })
+            .filter(p => !(this.isStart() && this.isEnd()) || !!p)
+            .join('|');
+    }
+    static #parseGlob(glob, hasMagic, noEmpty = false) {
+        let escaping = false;
+        let re = '';
+        let uflag = false;
+        // multiple stars that aren't globstars coalesce into one *
+        let inStar = false;
+        for (let i = 0; i < glob.length; i++) {
+            const c = glob.charAt(i);
+            if (escaping) {
+                escaping = false;
+                re += (reSpecials.has(c) ? '\\' : '') + c;
+                continue;
+            }
+            if (c === '*') {
+                if (inStar)
+                    continue;
+                inStar = true;
+                re += noEmpty && /^[*]+$/.test(glob) ? starNoEmpty : star;
+                hasMagic = true;
+                continue;
+            }
+            else {
+                inStar = false;
+            }
+            if (c === '\\') {
+                if (i === glob.length - 1) {
+                    re += '\\\\';
+                }
+                else {
+                    escaping = true;
+                }
+                continue;
+            }
+            if (c === '[') {
+                const [src, needUflag, consumed, magic] = parseClass(glob, i);
+                if (consumed) {
+                    re += src;
+                    uflag = uflag || needUflag;
+                    i += consumed - 1;
+                    hasMagic = hasMagic || magic;
+                    continue;
+                }
+            }
+            if (c === '?') {
+                re += qmark;
+                hasMagic = true;
+                continue;
+            }
+            re += regExpEscape(c);
+        }
+        return [re, unescape_unescape(glob), !!hasMagic, uflag];
+    }
+}
+_a = AST;
+//# sourceMappingURL=ast.js.map
+;// CONCATENATED MODULE: ./node_modules/@actions/glob/node_modules/minimatch/dist/esm/escape.js
+/**
+ * Escape all magic characters in a glob pattern.
+ *
+ * If the {@link MinimatchOptions.windowsPathsNoEscape}
+ * option is used, then characters are escaped by wrapping in `[]`, because
+ * a magic character wrapped in a character class can only be satisfied by
+ * that exact character.  In this mode, `\` is _not_ escaped, because it is
+ * not interpreted as a magic character, but instead as a path separator.
+ *
+ * If the {@link MinimatchOptions.magicalBraces} option is used,
+ * then braces (`{` and `}`) will be escaped.
+ */
+const escape_escape = (s, { windowsPathsNoEscape = false, magicalBraces = false, } = {}) => {
+    // don't need to escape +@! because we escape the parens
+    // that make those magic, and escaping ! as [!] isn't valid,
+    // because [!]] is a valid glob class meaning not ']'.
+    if (magicalBraces) {
+        return windowsPathsNoEscape ?
+            s.replace(/[?*()[\]{}]/g, '[$&]')
+            : s.replace(/[?*()[\]\\{}]/g, '\\$&');
+    }
+    return windowsPathsNoEscape ?
+        s.replace(/[?*()[\]]/g, '[$&]')
+        : s.replace(/[?*()[\]\\]/g, '\\$&');
+};
+//# sourceMappingURL=escape.js.map
+;// CONCATENATED MODULE: ./node_modules/@actions/glob/node_modules/minimatch/dist/esm/index.js
+
+
+
+
+
+const minimatch = (p, pattern, options = {}) => {
+    assertValidPattern(pattern);
+    // shortcut: comments match nothing.
+    if (!options.nocomment && pattern.charAt(0) === '#') {
+        return false;
+    }
+    return new Minimatch(pattern, options).match(p);
+};
+// Optimized checking for the most common glob patterns.
+const starDotExtRE = /^\*+([^+@!?*[(]*)$/;
+const starDotExtTest = (ext) => (f) => !f.startsWith('.') && f.endsWith(ext);
+const starDotExtTestDot = (ext) => (f) => f.endsWith(ext);
+const starDotExtTestNocase = (ext) => {
+    ext = ext.toLowerCase();
+    return (f) => !f.startsWith('.') && f.toLowerCase().endsWith(ext);
+};
+const starDotExtTestNocaseDot = (ext) => {
+    ext = ext.toLowerCase();
+    return (f) => f.toLowerCase().endsWith(ext);
+};
+const starDotStarRE = /^\*+\.\*+$/;
+const starDotStarTest = (f) => !f.startsWith('.') && f.includes('.');
+const starDotStarTestDot = (f) => f !== '.' && f !== '..' && f.includes('.');
+const dotStarRE = /^\.\*+$/;
+const dotStarTest = (f) => f !== '.' && f !== '..' && f.startsWith('.');
+const starRE = /^\*+$/;
+const starTest = (f) => f.length !== 0 && !f.startsWith('.');
+const starTestDot = (f) => f.length !== 0 && f !== '.' && f !== '..';
+const qmarksRE = /^\?+([^+@!?*[(]*)?$/;
+const qmarksTestNocase = ([$0, ext = '']) => {
+    const noext = qmarksTestNoExt([$0]);
+    if (!ext)
+        return noext;
+    ext = ext.toLowerCase();
+    return (f) => noext(f) && f.toLowerCase().endsWith(ext);
+};
+const qmarksTestNocaseDot = ([$0, ext = '']) => {
+    const noext = qmarksTestNoExtDot([$0]);
+    if (!ext)
+        return noext;
+    ext = ext.toLowerCase();
+    return (f) => noext(f) && f.toLowerCase().endsWith(ext);
+};
+const qmarksTestDot = ([$0, ext = '']) => {
+    const noext = qmarksTestNoExtDot([$0]);
+    return !ext ? noext : (f) => noext(f) && f.endsWith(ext);
+};
+const qmarksTest = ([$0, ext = '']) => {
+    const noext = qmarksTestNoExt([$0]);
+    return !ext ? noext : (f) => noext(f) && f.endsWith(ext);
+};
+const qmarksTestNoExt = ([$0]) => {
+    const len = $0.length;
+    return (f) => f.length === len && !f.startsWith('.');
+};
+const qmarksTestNoExtDot = ([$0]) => {
+    const len = $0.length;
+    return (f) => f.length === len && f !== '.' && f !== '..';
+};
+/* c8 ignore start */
+const defaultPlatform = (typeof process === 'object' && process ?
+    (typeof process.env === 'object' &&
+        process.env &&
+        process.env.__MINIMATCH_TESTING_PLATFORM__) ||
+        process.platform
+    : 'posix');
+const esm_path = {
+    win32: { sep: '\\' },
+    posix: { sep: '/' },
+};
+/* c8 ignore stop */
+const sep = defaultPlatform === 'win32' ? esm_path.win32.sep : esm_path.posix.sep;
+minimatch.sep = sep;
+const GLOBSTAR = Symbol('globstar **');
+minimatch.GLOBSTAR = GLOBSTAR;
+// any single thing other than /
+// don't need to escape / when using new RegExp()
+const esm_qmark = '[^/]';
+// * => any number of characters
+const esm_star = esm_qmark + '*?';
+// ** when dots are allowed.  Anything goes, except .. and .
+// not (^ or / followed by one or two dots followed by $ or /),
+// followed by anything, any number of times.
+const twoStarDot = '(?:(?!(?:\\/|^)(?:\\.{1,2})($|\\/)).)*?';
+// not a ^ or / followed by a dot,
+// followed by anything, any number of times.
+const twoStarNoDot = '(?:(?!(?:\\/|^)\\.).)*?';
+const filter = (pattern, options = {}) => (p) => minimatch(p, pattern, options);
+minimatch.filter = filter;
+const ext = (a, b = {}) => Object.assign({}, a, b);
+const defaults = (def) => {
+    if (!def || typeof def !== 'object' || !Object.keys(def).length) {
+        return minimatch;
+    }
+    const orig = minimatch;
+    const m = (p, pattern, options = {}) => orig(p, pattern, ext(def, options));
+    return Object.assign(m, {
+        Minimatch: class Minimatch extends orig.Minimatch {
+            constructor(pattern, options = {}) {
+                super(pattern, ext(def, options));
+            }
+            static defaults(options) {
+                return orig.defaults(ext(def, options)).Minimatch;
+            }
+        },
+        AST: class AST extends orig.AST {
+            /* c8 ignore start */
+            constructor(type, parent, options = {}) {
+                super(type, parent, ext(def, options));
+            }
+            /* c8 ignore stop */
+            static fromGlob(pattern, options = {}) {
+                return orig.AST.fromGlob(pattern, ext(def, options));
+            }
+        },
+        unescape: (s, options = {}) => orig.unescape(s, ext(def, options)),
+        escape: (s, options = {}) => orig.escape(s, ext(def, options)),
+        filter: (pattern, options = {}) => orig.filter(pattern, ext(def, options)),
+        defaults: (options) => orig.defaults(ext(def, options)),
+        makeRe: (pattern, options = {}) => orig.makeRe(pattern, ext(def, options)),
+        braceExpand: (pattern, options = {}) => orig.braceExpand(pattern, ext(def, options)),
+        match: (list, pattern, options = {}) => orig.match(list, pattern, ext(def, options)),
+        sep: orig.sep,
+        GLOBSTAR: GLOBSTAR,
+    });
+};
+minimatch.defaults = defaults;
+// Brace expansion:
+// a{b,c}d -> abd acd
+// a{b,}c -> abc ac
+// a{0..3}d -> a0d a1d a2d a3d
+// a{b,c{d,e}f}g -> abg acdfg acefg
+// a{b,c}d{e,f}g -> abdeg acdeg abdeg abdfg
+//
+// Invalid sets are not expanded.
+// a{2..}b -> a{2..}b
+// a{b}c -> a{b}c
+const braceExpand = (pattern, options = {}) => {
+    assertValidPattern(pattern);
+    // Thanks to Yeting Li <https://github.com/yetingli> for
+    // improving this regexp to avoid a ReDOS vulnerability.
+    if (options.nobrace || !/\{(?:(?!\{).)*\}/.test(pattern)) {
+        // shortcut. no need to expand.
+        return [pattern];
+    }
+    return expand(pattern, { max: options.braceExpandMax });
+};
+minimatch.braceExpand = braceExpand;
+// parse a component of the expanded set.
+// At this point, no pattern may contain "/" in it
+// so we're going to return a 2d array, where each entry is the full
+// pattern, split on '/', and then turned into a regular expression.
+// A regexp is made at the end which joins each array with an
+// escaped /, and another full one which joins each regexp with |.
+//
+// Following the lead of Bash 4.1, note that "**" only has special meaning
+// when it is the *only* thing in a path portion.  Otherwise, any series
+// of * is equivalent to a single *.  Globstar behavior is enabled by
+// default, and can be disabled by setting options.noglobstar.
+const makeRe = (pattern, options = {}) => new Minimatch(pattern, options).makeRe();
+minimatch.makeRe = makeRe;
+const match = (list, pattern, options = {}) => {
+    const mm = new Minimatch(pattern, options);
+    list = list.filter(f => mm.match(f));
+    if (mm.options.nonull && !list.length) {
+        list.push(pattern);
+    }
+    return list;
+};
+minimatch.match = match;
+// replace stuff like \* with *
+const globMagic = /[?*]|[+@!]\(.*?\)|\[|\]/;
+const esm_regExpEscape = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+class Minimatch {
+    options;
+    set;
+    pattern;
+    windowsPathsNoEscape;
+    nonegate;
+    negate;
+    comment;
+    empty;
+    preserveMultipleSlashes;
+    partial;
+    globSet;
+    globParts;
+    nocase;
+    isWindows;
+    platform;
+    windowsNoMagicRoot;
+    maxGlobstarRecursion;
+    regexp;
+    constructor(pattern, options = {}) {
+        assertValidPattern(pattern);
+        options = options || {};
+        this.options = options;
+        this.maxGlobstarRecursion = options.maxGlobstarRecursion ?? 200;
+        this.pattern = pattern;
+        this.platform = options.platform || defaultPlatform;
+        this.isWindows = this.platform === 'win32';
+        // avoid the annoying deprecation flag lol
+        const awe = ('allowWindow' + 'sEscape');
+        this.windowsPathsNoEscape =
+            !!options.windowsPathsNoEscape || options[awe] === false;
+        if (this.windowsPathsNoEscape) {
+            this.pattern = this.pattern.replace(/\\/g, '/');
+        }
+        this.preserveMultipleSlashes = !!options.preserveMultipleSlashes;
+        this.regexp = null;
+        this.negate = false;
+        this.nonegate = !!options.nonegate;
+        this.comment = false;
+        this.empty = false;
+        this.partial = !!options.partial;
+        this.nocase = !!this.options.nocase;
+        this.windowsNoMagicRoot =
+            options.windowsNoMagicRoot !== undefined ?
+                options.windowsNoMagicRoot
+                : !!(this.isWindows && this.nocase);
+        this.globSet = [];
+        this.globParts = [];
+        this.set = [];
+        // make the set of regexps etc.
+        this.make();
+    }
+    hasMagic() {
+        if (this.options.magicalBraces && this.set.length > 1) {
+            return true;
+        }
+        for (const pattern of this.set) {
+            for (const part of pattern) {
+                if (typeof part !== 'string')
+                    return true;
+            }
+        }
+        return false;
+    }
+    debug(..._) { }
+    make() {
+        const pattern = this.pattern;
+        const options = this.options;
+        // empty patterns and comments match nothing.
+        if (!options.nocomment && pattern.charAt(0) === '#') {
+            this.comment = true;
+            return;
+        }
+        if (!pattern) {
+            this.empty = true;
+            return;
+        }
+        // step 1: figure out negation, etc.
+        this.parseNegate();
+        // step 2: expand braces
+        this.globSet = [...new Set(this.braceExpand())];
+        if (options.debug) {
+            //oxlint-disable-next-line no-console
+            this.debug = (...args) => console.error(...args);
+        }
+        this.debug(this.pattern, this.globSet);
+        // step 3: now we have a set, so turn each one into a series of
+        // path-portion matching patterns.
+        // These will be regexps, except in the case of "**", which is
+        // set to the GLOBSTAR object for globstar behavior,
+        // and will not contain any / characters
+        //
+        // First, we preprocess to make the glob pattern sets a bit simpler
+        // and deduped.  There are some perf-killing patterns that can cause
+        // problems with a glob walk, but we can simplify them down a bit.
+        const rawGlobParts = this.globSet.map(s => this.slashSplit(s));
+        this.globParts = this.preprocess(rawGlobParts);
+        this.debug(this.pattern, this.globParts);
+        // glob --> regexps
+        let set = this.globParts.map((s, _, __) => {
+            if (this.isWindows && this.windowsNoMagicRoot) {
+                // check if it's a drive or unc path.
+                const isUNC = s[0] === '' &&
+                    s[1] === '' &&
+                    (s[2] === '?' || !globMagic.test(s[2])) &&
+                    !globMagic.test(s[3]);
+                const isDrive = /^[a-z]:/i.test(s[0]);
+                if (isUNC) {
+                    return [
+                        ...s.slice(0, 4),
+                        ...s.slice(4).map(ss => this.parse(ss)),
+                    ];
+                }
+                else if (isDrive) {
+                    return [s[0], ...s.slice(1).map(ss => this.parse(ss))];
+                }
+            }
+            return s.map(ss => this.parse(ss));
+        });
+        this.debug(this.pattern, set);
+        // filter out everything that didn't compile properly.
+        this.set = set.filter(s => s.indexOf(false) === -1);
+        // do not treat the ? in UNC paths as magic
+        if (this.isWindows) {
+            for (let i = 0; i < this.set.length; i++) {
+                const p = this.set[i];
+                if (p[0] === '' &&
+                    p[1] === '' &&
+                    this.globParts[i][2] === '?' &&
+                    typeof p[3] === 'string' &&
+                    /^[a-z]:$/i.test(p[3])) {
+                    p[2] = '?';
+                }
+            }
+        }
+        this.debug(this.pattern, this.set);
+    }
+    // various transforms to equivalent pattern sets that are
+    // faster to process in a filesystem walk.  The goal is to
+    // eliminate what we can, and push all ** patterns as far
+    // to the right as possible, even if it increases the number
+    // of patterns that we have to process.
+    preprocess(globParts) {
+        // if we're not in globstar mode, then turn ** into *
+        if (this.options.noglobstar) {
+            for (const partset of globParts) {
+                for (let j = 0; j < partset.length; j++) {
+                    if (partset[j] === '**') {
+                        partset[j] = '*';
+                    }
+                }
+            }
+        }
+        const { optimizationLevel = 1 } = this.options;
+        if (optimizationLevel >= 2) {
+            // aggressive optimization for the purpose of fs walking
+            globParts = this.firstPhasePreProcess(globParts);
+            globParts = this.secondPhasePreProcess(globParts);
+        }
+        else if (optimizationLevel >= 1) {
+            // just basic optimizations to remove some .. parts
+            globParts = this.levelOneOptimize(globParts);
+        }
+        else {
+            // just collapse multiple ** portions into one
+            globParts = this.adjascentGlobstarOptimize(globParts);
+        }
+        return globParts;
+    }
+    // just get rid of adjascent ** portions
+    adjascentGlobstarOptimize(globParts) {
+        return globParts.map(parts => {
+            let gs = -1;
+            while (-1 !== (gs = parts.indexOf('**', gs + 1))) {
+                let i = gs;
+                while (parts[i + 1] === '**') {
+                    i++;
+                }
+                if (i !== gs) {
+                    parts.splice(gs, i - gs);
+                }
+            }
+            return parts;
+        });
+    }
+    // get rid of adjascent ** and resolve .. portions
+    levelOneOptimize(globParts) {
+        return globParts.map(parts => {
+            parts = parts.reduce((set, part) => {
+                const prev = set[set.length - 1];
+                if (part === '**' && prev === '**') {
+                    return set;
+                }
+                if (part === '..') {
+                    if (prev && prev !== '..' && prev !== '.' && prev !== '**') {
+                        set.pop();
+                        return set;
+                    }
+                }
+                set.push(part);
+                return set;
+            }, []);
+            return parts.length === 0 ? [''] : parts;
+        });
+    }
+    levelTwoFileOptimize(parts) {
+        if (!Array.isArray(parts)) {
+            parts = this.slashSplit(parts);
+        }
+        let didSomething = false;
+        do {
+            didSomething = false;
+            // <pre>/<e>/<rest> -> <pre>/<rest>
+            if (!this.preserveMultipleSlashes) {
+                for (let i = 1; i < parts.length - 1; i++) {
+                    const p = parts[i];
+                    // don't squeeze out UNC patterns
+                    if (i === 1 && p === '' && parts[0] === '')
+                        continue;
+                    if (p === '.' || p === '') {
+                        didSomething = true;
+                        parts.splice(i, 1);
+                        i--;
+                    }
+                }
+                if (parts[0] === '.' &&
+                    parts.length === 2 &&
+                    (parts[1] === '.' || parts[1] === '')) {
+                    didSomething = true;
+                    parts.pop();
+                }
+            }
+            // <pre>/<p>/../<rest> -> <pre>/<rest>
+            let dd = 0;
+            while (-1 !== (dd = parts.indexOf('..', dd + 1))) {
+                const p = parts[dd - 1];
+                if (p &&
+                    p !== '.' &&
+                    p !== '..' &&
+                    p !== '**' &&
+                    !(this.isWindows && /^[a-z]:$/i.test(p))) {
+                    didSomething = true;
+                    parts.splice(dd - 1, 2);
+                    dd -= 2;
+                }
+            }
+        } while (didSomething);
+        return parts.length === 0 ? [''] : parts;
+    }
+    // First phase: single-pattern processing
+    // <pre> is 1 or more portions
+    // <rest> is 1 or more portions
+    // <p> is any portion other than ., .., '', or **
+    // <e> is . or ''
+    //
+    // **/.. is *brutal* for filesystem walking performance, because
+    // it effectively resets the recursive walk each time it occurs,
+    // and ** cannot be reduced out by a .. pattern part like a regexp
+    // or most strings (other than .., ., and '') can be.
+    //
+    // <pre>/**/../<p>/<p>/<rest> -> {<pre>/../<p>/<p>/<rest>,<pre>/**/<p>/<p>/<rest>}
+    // <pre>/<e>/<rest> -> <pre>/<rest>
+    // <pre>/<p>/../<rest> -> <pre>/<rest>
+    // **/**/<rest> -> **/<rest>
+    //
+    // **/*/<rest> -> */**/<rest> <== not valid because ** doesn't follow
+    // this WOULD be allowed if ** did follow symlinks, or * didn't
+    firstPhasePreProcess(globParts) {
+        let didSomething = false;
+        do {
+            didSomething = false;
+            // <pre>/**/../<p>/<p>/<rest> -> {<pre>/../<p>/<p>/<rest>,<pre>/**/<p>/<p>/<rest>}
+            for (let parts of globParts) {
+                let gs = -1;
+                while (-1 !== (gs = parts.indexOf('**', gs + 1))) {
+                    let gss = gs;
+                    while (parts[gss + 1] === '**') {
+                        // <pre>/**/**/<rest> -> <pre>/**/<rest>
+                        gss++;
+                    }
+                    // eg, if gs is 2 and gss is 4, that means we have 3 **
+                    // parts, and can remove 2 of them.
+                    if (gss > gs) {
+                        parts.splice(gs + 1, gss - gs);
+                    }
+                    let next = parts[gs + 1];
+                    const p = parts[gs + 2];
+                    const p2 = parts[gs + 3];
+                    if (next !== '..')
+                        continue;
+                    if (!p ||
+                        p === '.' ||
+                        p === '..' ||
+                        !p2 ||
+                        p2 === '.' ||
+                        p2 === '..') {
+                        continue;
+                    }
+                    didSomething = true;
+                    // edit parts in place, and push the new one
+                    parts.splice(gs, 1);
+                    const other = parts.slice(0);
+                    other[gs] = '**';
+                    globParts.push(other);
+                    gs--;
+                }
+                // <pre>/<e>/<rest> -> <pre>/<rest>
+                if (!this.preserveMultipleSlashes) {
+                    for (let i = 1; i < parts.length - 1; i++) {
+                        const p = parts[i];
+                        // don't squeeze out UNC patterns
+                        if (i === 1 && p === '' && parts[0] === '')
+                            continue;
+                        if (p === '.' || p === '') {
+                            didSomething = true;
+                            parts.splice(i, 1);
+                            i--;
+                        }
+                    }
+                    if (parts[0] === '.' &&
+                        parts.length === 2 &&
+                        (parts[1] === '.' || parts[1] === '')) {
+                        didSomething = true;
+                        parts.pop();
+                    }
+                }
+                // <pre>/<p>/../<rest> -> <pre>/<rest>
+                let dd = 0;
+                while (-1 !== (dd = parts.indexOf('..', dd + 1))) {
+                    const p = parts[dd - 1];
+                    if (p && p !== '.' && p !== '..' && p !== '**') {
+                        didSomething = true;
+                        const needDot = dd === 1 && parts[dd + 1] === '**';
+                        const splin = needDot ? ['.'] : [];
+                        parts.splice(dd - 1, 2, ...splin);
+                        if (parts.length === 0)
+                            parts.push('');
+                        dd -= 2;
+                    }
+                }
+            }
+        } while (didSomething);
+        return globParts;
+    }
+    // second phase: multi-pattern dedupes
+    // {<pre>/*/<rest>,<pre>/<p>/<rest>} -> <pre>/*/<rest>
+    // {<pre>/<rest>,<pre>/<rest>} -> <pre>/<rest>
+    // {<pre>/**/<rest>,<pre>/<rest>} -> <pre>/**/<rest>
+    //
+    // {<pre>/**/<rest>,<pre>/**/<p>/<rest>} -> <pre>/**/<rest>
+    // ^-- not valid because ** doens't follow symlinks
+    secondPhasePreProcess(globParts) {
+        for (let i = 0; i < globParts.length - 1; i++) {
+            for (let j = i + 1; j < globParts.length; j++) {
+                const matched = this.partsMatch(globParts[i], globParts[j], !this.preserveMultipleSlashes);
+                if (matched) {
+                    globParts[i] = [];
+                    globParts[j] = matched;
+                    break;
+                }
+            }
+        }
+        return globParts.filter(gs => gs.length);
+    }
+    partsMatch(a, b, emptyGSMatch = false) {
+        let ai = 0;
+        let bi = 0;
+        let result = [];
+        let which = '';
+        while (ai < a.length && bi < b.length) {
+            if (a[ai] === b[bi]) {
+                result.push(which === 'b' ? b[bi] : a[ai]);
+                ai++;
+                bi++;
+            }
+            else if (emptyGSMatch && a[ai] === '**' && b[bi] === a[ai + 1]) {
+                result.push(a[ai]);
+                ai++;
+            }
+            else if (emptyGSMatch && b[bi] === '**' && a[ai] === b[bi + 1]) {
+                result.push(b[bi]);
+                bi++;
+            }
+            else if (a[ai] === '*' &&
+                b[bi] &&
+                (this.options.dot || !b[bi].startsWith('.')) &&
+                b[bi] !== '**') {
+                if (which === 'b')
+                    return false;
+                which = 'a';
+                result.push(a[ai]);
+                ai++;
+                bi++;
+            }
+            else if (b[bi] === '*' &&
+                a[ai] &&
+                (this.options.dot || !a[ai].startsWith('.')) &&
+                a[ai] !== '**') {
+                if (which === 'a')
+                    return false;
+                which = 'b';
+                result.push(b[bi]);
+                ai++;
+                bi++;
+            }
+            else {
+                return false;
+            }
+        }
+        // if we fall out of the loop, it means they two are identical
+        // as long as their lengths match
+        return a.length === b.length && result;
+    }
+    parseNegate() {
+        if (this.nonegate)
+            return;
+        const pattern = this.pattern;
+        let negate = false;
+        let negateOffset = 0;
+        for (let i = 0; i < pattern.length && pattern.charAt(i) === '!'; i++) {
+            negate = !negate;
+            negateOffset++;
+        }
+        if (negateOffset)
+            this.pattern = pattern.slice(negateOffset);
+        this.negate = negate;
+    }
+    // set partial to true to test if, for example,
+    // "/a/b" matches the start of "/*/b/*/d"
+    // Partial means, if you run out of file before you run
+    // out of pattern, then that's fine, as long as all
+    // the parts match.
+    matchOne(file, pattern, partial = false) {
+        let fileStartIndex = 0;
+        let patternStartIndex = 0;
+        // UNC paths like //?/X:/... can match X:/... and vice versa
+        // Drive letters in absolute drive or unc paths are always compared
+        // case-insensitively.
+        if (this.isWindows) {
+            const fileDrive = typeof file[0] === 'string' && /^[a-z]:$/i.test(file[0]);
+            const fileUNC = !fileDrive &&
+                file[0] === '' &&
+                file[1] === '' &&
+                file[2] === '?' &&
+                /^[a-z]:$/i.test(file[3]);
+            const patternDrive = typeof pattern[0] === 'string' && /^[a-z]:$/i.test(pattern[0]);
+            const patternUNC = !patternDrive &&
+                pattern[0] === '' &&
+                pattern[1] === '' &&
+                pattern[2] === '?' &&
+                typeof pattern[3] === 'string' &&
+                /^[a-z]:$/i.test(pattern[3]);
+            const fdi = fileUNC ? 3
+                : fileDrive ? 0
+                    : undefined;
+            const pdi = patternUNC ? 3
+                : patternDrive ? 0
+                    : undefined;
+            if (typeof fdi === 'number' && typeof pdi === 'number') {
+                const [fd, pd] = [
+                    file[fdi],
+                    pattern[pdi],
+                ];
+                // start matching at the drive letter index of each
+                if (fd.toLowerCase() === pd.toLowerCase()) {
+                    pattern[pdi] = fd;
+                    patternStartIndex = pdi;
+                    fileStartIndex = fdi;
+                }
+            }
+        }
+        // resolve and reduce . and .. portions in the file as well.
+        // don't need to do the second phase, because it's only one string[]
+        const { optimizationLevel = 1 } = this.options;
+        if (optimizationLevel >= 2) {
+            file = this.levelTwoFileOptimize(file);
+        }
+        if (pattern.includes(GLOBSTAR)) {
+            return this.#matchGlobstar(file, pattern, partial, fileStartIndex, patternStartIndex);
+        }
+        return this.#matchOne(file, pattern, partial, fileStartIndex, patternStartIndex);
+    }
+    #matchGlobstar(file, pattern, partial, fileIndex, patternIndex) {
+        // split the pattern into head, tail, and middle of ** delimited parts
+        const firstgs = pattern.indexOf(GLOBSTAR, patternIndex);
+        const lastgs = pattern.lastIndexOf(GLOBSTAR);
+        // split the pattern up into globstar-delimited sections
+        // the tail has to be at the end, and the others just have
+        // to be found in order from the head.
+        const [head, body, tail] = partial ?
+            [
+                pattern.slice(patternIndex, firstgs),
+                pattern.slice(firstgs + 1),
+                [],
+            ]
+            : [
+                pattern.slice(patternIndex, firstgs),
+                pattern.slice(firstgs + 1, lastgs),
+                pattern.slice(lastgs + 1),
+            ];
+        // check the head, from the current file/pattern index.
+        if (head.length) {
+            const fileHead = file.slice(fileIndex, fileIndex + head.length);
+            if (!this.#matchOne(fileHead, head, partial, 0, 0)) {
+                return false;
+            }
+            fileIndex += head.length;
+            patternIndex += head.length;
+        }
+        // now we know the head matches!
+        // if the last portion is not empty, it MUST match the end
+        // check the tail
+        let fileTailMatch = 0;
+        if (tail.length) {
+            // if head + tail > file, then we cannot possibly match
+            if (tail.length + fileIndex > file.length)
+                return false;
+            // try to match the tail
+            let tailStart = file.length - tail.length;
+            if (this.#matchOne(file, tail, partial, tailStart, 0)) {
+                fileTailMatch = tail.length;
+            }
+            else {
+                // affordance for stuff like a/**/* matching a/b/
+                // if the last file portion is '', and there's more to the pattern
+                // then try without the '' bit.
+                if (file[file.length - 1] !== '' ||
+                    fileIndex + tail.length === file.length) {
+                    return false;
+                }
+                tailStart--;
+                if (!this.#matchOne(file, tail, partial, tailStart, 0)) {
+                    return false;
+                }
+                fileTailMatch = tail.length + 1;
+            }
+        }
+        // now we know the tail matches!
+        // the middle is zero or more portions wrapped in **, possibly
+        // containing more ** sections.
+        // so a/**/b/**/c/**/d has become **/b/**/c/**
+        // if it's empty, it means a/**/b, just verify we have no bad dots
+        // if there's no tail, so it ends on /**, then we must have *something*
+        // after the head, or it's not a matc
+        if (!body.length) {
+            let sawSome = !!fileTailMatch;
+            for (let i = fileIndex; i < file.length - fileTailMatch; i++) {
+                const f = String(file[i]);
+                sawSome = true;
+                if (f === '.' ||
+                    f === '..' ||
+                    (!this.options.dot && f.startsWith('.'))) {
+                    return false;
+                }
+            }
+            // in partial mode, we just need to get past all file parts
+            return partial || sawSome;
+        }
+        // now we know that there's one or more body sections, which can
+        // be matched anywhere from the 0 index (because the head was pruned)
+        // through to the length-fileTailMatch index.
+        // split the body up into sections, and note the minimum index it can
+        // be found at (start with the length of all previous segments)
+        // [section, before, after]
+        const bodySegments = [[[], 0]];
+        let currentBody = bodySegments[0];
+        let nonGsParts = 0;
+        const nonGsPartsSums = [0];
+        for (const b of body) {
+            if (b === GLOBSTAR) {
+                nonGsPartsSums.push(nonGsParts);
+                currentBody = [[], 0];
+                bodySegments.push(currentBody);
+            }
+            else {
+                currentBody[0].push(b);
+                nonGsParts++;
+            }
+        }
+        let i = bodySegments.length - 1;
+        const fileLength = file.length - fileTailMatch;
+        for (const b of bodySegments) {
+            b[1] = fileLength - (nonGsPartsSums[i--] + b[0].length);
+        }
+        return !!this.#matchGlobStarBodySections(file, bodySegments, fileIndex, 0, partial, 0, !!fileTailMatch);
+    }
+    // return false for "nope, not matching"
+    // return null for "not matching, cannot keep trying"
+    #matchGlobStarBodySections(file, 
+    // pattern section, last possible position for it
+    bodySegments, fileIndex, bodyIndex, partial, globStarDepth, sawTail) {
+        // take the first body segment, and walk from fileIndex to its "after"
+        // value at the end
+        // If it doesn't match at that position, we increment, until we hit
+        // that final possible position, and give up.
+        // If it does match, then advance and try to rest.
+        // If any of them fail we keep walking forward.
+        // this is still a bit recursively painful, but it's more constrained
+        // than previous implementations, because we never test something that
+        // can't possibly be a valid matching condition.
+        const bs = bodySegments[bodyIndex];
+        if (!bs) {
+            // just make sure that there's no bad dots
+            for (let i = fileIndex; i < file.length; i++) {
+                sawTail = true;
+                const f = file[i];
+                if (f === '.' ||
+                    f === '..' ||
+                    (!this.options.dot && f.startsWith('.'))) {
+                    return false;
+                }
+            }
+            return sawTail;
+        }
+        // have a non-globstar body section to test
+        const [body, after] = bs;
+        while (fileIndex <= after) {
+            const m = this.#matchOne(file.slice(0, fileIndex + body.length), body, partial, fileIndex, 0);
+            // if limit exceeded, no match. intentional false negative,
+            // acceptable break in correctness for security.
+            if (m && globStarDepth < this.maxGlobstarRecursion) {
+                // match! see if the rest match. if so, we're done!
+                const sub = this.#matchGlobStarBodySections(file, bodySegments, fileIndex + body.length, bodyIndex + 1, partial, globStarDepth + 1, sawTail);
+                if (sub !== false) {
+                    return sub;
+                }
+            }
+            const f = file[fileIndex];
+            if (f === '.' ||
+                f === '..' ||
+                (!this.options.dot && f.startsWith('.'))) {
+                return false;
+            }
+            fileIndex++;
+        }
+        // walked off. no point continuing
+        return partial || null;
+    }
+    #matchOne(file, pattern, partial, fileIndex, patternIndex) {
+        let fi;
+        let pi;
+        let pl;
+        let fl;
+        for (fi = fileIndex,
+            pi = patternIndex,
+            fl = file.length,
+            pl = pattern.length; fi < fl && pi < pl; fi++, pi++) {
+            this.debug('matchOne loop');
+            let p = pattern[pi];
+            let f = file[fi];
+            this.debug(pattern, p, f);
+            // should be impossible.
+            // some invalid regexp stuff in the set.
+            /* c8 ignore start */
+            if (p === false || p === GLOBSTAR) {
+                return false;
+            }
+            /* c8 ignore stop */
+            // something other than **
+            // non-magic patterns just have to match exactly
+            // patterns with magic have been turned into regexps.
+            let hit;
+            if (typeof p === 'string') {
+                hit = f === p;
+                this.debug('string match', p, f, hit);
+            }
+            else {
+                hit = p.test(f);
+                this.debug('pattern match', p, f, hit);
+            }
+            if (!hit)
+                return false;
+        }
+        // Note: ending in / means that we'll get a final ""
+        // at the end of the pattern.  This can only match a
+        // corresponding "" at the end of the file.
+        // If the file ends in /, then it can only match a
+        // a pattern that ends in /, unless the pattern just
+        // doesn't have any more for it. But, a/b/ should *not*
+        // match "a/b/*", even though "" matches against the
+        // [^/]*? pattern, except in partial mode, where it might
+        // simply not be reached yet.
+        // However, a/b/ should still satisfy a/*
+        // now either we fell off the end of the pattern, or we're done.
+        if (fi === fl && pi === pl) {
+            // ran out of pattern and filename at the same time.
+            // an exact hit!
+            return true;
+        }
+        else if (fi === fl) {
+            // ran out of file, but still had pattern left.
+            // this is ok if we're doing the match as part of
+            // a glob fs traversal.
+            return partial;
+        }
+        else if (pi === pl) {
+            // ran out of pattern, still have file left.
+            // this is only acceptable if we're on the very last
+            // empty segment of a file with a trailing slash.
+            // a/* should match a/b/
+            return fi === fl - 1 && file[fi] === '';
+            /* c8 ignore start */
+        }
+        else {
+            // should be unreachable.
+            throw new Error('wtf?');
+        }
+        /* c8 ignore stop */
+    }
+    braceExpand() {
+        return braceExpand(this.pattern, this.options);
+    }
+    parse(pattern) {
+        assertValidPattern(pattern);
+        const options = this.options;
+        // shortcuts
+        if (pattern === '**')
+            return GLOBSTAR;
+        if (pattern === '')
+            return '';
+        // far and away, the most common glob pattern parts are
+        // *, *.*, and *.<ext>  Add a fast check method for those.
+        let m;
+        let fastTest = null;
+        if ((m = pattern.match(starRE))) {
+            fastTest = options.dot ? starTestDot : starTest;
+        }
+        else if ((m = pattern.match(starDotExtRE))) {
+            fastTest = (options.nocase ?
+                options.dot ?
+                    starDotExtTestNocaseDot
+                    : starDotExtTestNocase
+                : options.dot ? starDotExtTestDot
+                    : starDotExtTest)(m[1]);
+        }
+        else if ((m = pattern.match(qmarksRE))) {
+            fastTest = (options.nocase ?
+                options.dot ?
+                    qmarksTestNocaseDot
+                    : qmarksTestNocase
+                : options.dot ? qmarksTestDot
+                    : qmarksTest)(m);
+        }
+        else if ((m = pattern.match(starDotStarRE))) {
+            fastTest = options.dot ? starDotStarTestDot : starDotStarTest;
+        }
+        else if ((m = pattern.match(dotStarRE))) {
+            fastTest = dotStarTest;
+        }
+        const re = AST.fromGlob(pattern, this.options).toMMPattern();
+        if (fastTest && typeof re === 'object') {
+            // Avoids overriding in frozen environments
+            Reflect.defineProperty(re, 'test', { value: fastTest });
+        }
+        return re;
+    }
+    makeRe() {
+        if (this.regexp || this.regexp === false)
+            return this.regexp;
+        // at this point, this.set is a 2d array of partial
+        // pattern strings, or "**".
+        //
+        // It's better to use .match().  This function shouldn't
+        // be used, really, but it's pretty convenient sometimes,
+        // when you just want to work with a regex.
+        const set = this.set;
+        if (!set.length) {
+            this.regexp = false;
+            return this.regexp;
+        }
+        const options = this.options;
+        const twoStar = options.noglobstar ? esm_star
+            : options.dot ? twoStarDot
+                : twoStarNoDot;
+        const flags = new Set(options.nocase ? ['i'] : []);
+        // regexpify non-globstar patterns
+        // if ** is only item, then we just do one twoStar
+        // if ** is first, and there are more, prepend (\/|twoStar\/)? to next
+        // if ** is last, append (\/twoStar|) to previous
+        // if ** is in the middle, append (\/|\/twoStar\/) to previous
+        // then filter out GLOBSTAR symbols
+        let re = set
+            .map(pattern => {
+            const pp = pattern.map(p => {
+                if (p instanceof RegExp) {
+                    for (const f of p.flags.split(''))
+                        flags.add(f);
+                }
+                return (typeof p === 'string' ? esm_regExpEscape(p)
+                    : p === GLOBSTAR ? GLOBSTAR
+                        : p._src);
+            });
+            pp.forEach((p, i) => {
+                const next = pp[i + 1];
+                const prev = pp[i - 1];
+                if (p !== GLOBSTAR || prev === GLOBSTAR) {
+                    return;
+                }
+                if (prev === undefined) {
+                    if (next !== undefined && next !== GLOBSTAR) {
+                        pp[i + 1] = '(?:\\/|' + twoStar + '\\/)?' + next;
+                    }
+                    else {
+                        pp[i] = twoStar;
+                    }
+                }
+                else if (next === undefined) {
+                    pp[i - 1] = prev + '(?:\\/|\\/' + twoStar + ')?';
+                }
+                else if (next !== GLOBSTAR) {
+                    pp[i - 1] = prev + '(?:\\/|\\/' + twoStar + '\\/)' + next;
+                    pp[i + 1] = GLOBSTAR;
+                }
+            });
+            const filtered = pp.filter(p => p !== GLOBSTAR);
+            // For partial matches, we need to make the pattern match
+            // any prefix of the full path. We do this by generating
+            // alternative patterns that match progressively longer prefixes.
+            if (this.partial && filtered.length >= 1) {
+                const prefixes = [];
+                for (let i = 1; i <= filtered.length; i++) {
+                    prefixes.push(filtered.slice(0, i).join('/'));
+                }
+                return '(?:' + prefixes.join('|') + ')';
+            }
+            return filtered.join('/');
+        })
+            .join('|');
+        // need to wrap in parens if we had more than one thing with |,
+        // otherwise only the first will be anchored to ^ and the last to $
+        const [open, close] = set.length > 1 ? ['(?:', ')'] : ['', ''];
+        // must match entire pattern
+        // ending in a * or ** will make it less strict.
+        re = '^' + open + re + close + '$';
+        // In partial mode, '/' should always match as it's a valid prefix for any pattern
+        if (this.partial) {
+            re = '^(?:\\/|' + open + re.slice(1, -1) + close + ')$';
+        }
+        // can match anything, as long as it's not this.
+        if (this.negate)
+            re = '^(?!' + re + ').+$';
+        try {
+            this.regexp = new RegExp(re, [...flags].join(''));
+            /* c8 ignore start */
+        }
+        catch {
+            // should be impossible
+            this.regexp = false;
+        }
+        /* c8 ignore stop */
+        return this.regexp;
+    }
+    slashSplit(p) {
+        // if p starts with // on windows, we preserve that
+        // so that UNC paths aren't broken.  Otherwise, any number of
+        // / characters are coalesced into one, unless
+        // preserveMultipleSlashes is set to true.
+        if (this.preserveMultipleSlashes) {
+            return p.split('/');
+        }
+        else if (this.isWindows && /^\/\/[^/]+/.test(p)) {
+            // add an extra '' for the one we lose
+            return ['', ...p.split(/\/+/)];
+        }
+        else {
+            return p.split(/\/+/);
+        }
+    }
+    match(f, partial = this.partial) {
+        this.debug('match', f, this.pattern);
+        // short-circuit in the case of busted things.
+        // comments, etc.
+        if (this.comment) {
+            return false;
+        }
+        if (this.empty) {
+            return f === '';
+        }
+        if (f === '/' && partial) {
+            return true;
+        }
+        const options = this.options;
+        // windows: need to use /, not \
+        if (this.isWindows) {
+            f = f.split('\\').join('/');
+        }
+        // treat the test path as a set of pathparts.
+        const ff = this.slashSplit(f);
+        this.debug(this.pattern, 'split', ff);
+        // just ONE of the pattern sets in this.set needs to match
+        // in order for it to be valid.  If negating, then just one
+        // match means that we have failed.
+        // Either way, return on the first hit.
+        const set = this.set;
+        this.debug(this.pattern, 'set', set);
+        // Find the basename of the path by looking for the last non-empty segment
+        let filename = ff[ff.length - 1];
+        if (!filename) {
+            for (let i = ff.length - 2; !filename && i >= 0; i--) {
+                filename = ff[i];
+            }
+        }
+        for (const pattern of set) {
+            let file = ff;
+            if (options.matchBase && pattern.length === 1) {
+                file = [filename];
+            }
+            const hit = this.matchOne(file, pattern, partial);
+            if (hit) {
+                if (options.flipNegate) {
+                    return true;
+                }
+                return !this.negate;
+            }
+        }
+        // didn't get any hits.  this is success if it's a negative
+        // pattern, failure otherwise.
+        if (options.flipNegate) {
+            return false;
+        }
+        return this.negate;
+    }
+    static defaults(def) {
+        return minimatch.defaults(def).Minimatch;
+    }
+}
+/* c8 ignore start */
+
+
+
+/* c8 ignore stop */
+minimatch.AST = AST;
+minimatch.Minimatch = Minimatch;
+minimatch.escape = escape_escape;
+minimatch.unescape = unescape_unescape;
+//# sourceMappingURL=index.js.map
 ;// CONCATENATED MODULE: ./node_modules/@actions/glob/lib/internal-path.js
 
 
@@ -160594,7 +165854,6 @@ class Path {
 
 
 
-const { Minimatch } = minimatch;
 const internal_pattern_IS_WINDOWS = process.platform === 'win32';
 class Pattern {
     constructor(patternOrNegate, isImplicitPattern = false, segments, homedir) {
@@ -188255,7 +193514,7 @@ const versionId = {
         },
     },
 };
-const range = {
+const parameters_range = {
     parameterPath: ["options", "range"],
     mapper: {
         serializedName: "x-ms-range",
@@ -190584,7 +195843,7 @@ const downloadOperationSpec = {
         leaseId,
         ifModifiedSince,
         ifUnmodifiedSince,
-        range,
+        parameters_range,
         rangeGetContentMD5,
         rangeGetContentCRC64,
         encryptionKey,
@@ -191527,7 +196786,7 @@ const uploadPagesOperationSpec = {
         leaseId,
         ifModifiedSince,
         ifUnmodifiedSince,
-        range,
+        parameters_range,
         encryptionKey,
         encryptionKeySha256,
         encryptionAlgorithm,
@@ -191571,7 +196830,7 @@ const clearPagesOperationSpec = {
         leaseId,
         ifModifiedSince,
         ifUnmodifiedSince,
-        range,
+        parameters_range,
         encryptionKey,
         encryptionKeySha256,
         encryptionAlgorithm,
@@ -191663,7 +196922,7 @@ const getPageRangesOperationSpec = {
         leaseId,
         ifModifiedSince,
         ifUnmodifiedSince,
-        range,
+        parameters_range,
         ifMatch,
         ifNoneMatch,
         ifTags,
@@ -191700,7 +196959,7 @@ const getPageRangesDiffOperationSpec = {
         leaseId,
         ifModifiedSince,
         ifUnmodifiedSince,
-        range,
+        parameters_range,
         ifMatch,
         ifNoneMatch,
         ifTags,
@@ -206369,6 +211628,7 @@ var tar_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
 
 
 
+
 const tar_IS_WINDOWS = process.platform === 'win32';
 // Returns tar path and type: BSD or GNU
 function getTarPath() {
@@ -206432,7 +211692,9 @@ function getTarArgs(tarPath_1, compressionMethod_1, type_1) {
             case 'extract':
                 args.push('-xf', BSD_TAR_ZSTD
                     ? tarFile
-                    : archivePath.replace(new RegExp(`\\${external_path_.sep}`, 'g'), '/'), '-P', '-C', workingDirectory.replace(new RegExp(`\\${external_path_.sep}`, 'g'), '/'));
+                    : archivePath.replace(new RegExp(`\\${external_path_.sep}`, 'g'), '/'), '-P', '-C', BSD_TAR_ZSTD
+                    ? quoteAbsolutePath(workingDirectory)
+                    : workingDirectory.replace(new RegExp(`\\${external_path_.sep}`, 'g'), '/'));
                 break;
             case 'list':
                 args.push('-tf', BSD_TAR_ZSTD
@@ -206472,15 +211734,18 @@ function getCommands(compressionMethod_1, type_1) {
         else {
             args = [[...tarArgs].join(' '), [...compressionArgs].join(' ')];
         }
-        if (BSD_TAR_ZSTD) {
-            return args;
-        }
-        return [args.join(' ')];
+        return {
+            commands: BSD_TAR_ZSTD ? args : [args.join(' ')],
+            requiresTempDirectory: BSD_TAR_ZSTD && type !== 'create'
+        };
     });
 }
 function getWorkingDirectory() {
     var _a;
     return (_a = process.env['GITHUB_WORKSPACE']) !== null && _a !== void 0 ? _a : process.cwd();
+}
+function quoteAbsolutePath(filePath) {
+    return `"${external_path_.resolve(filePath).replace(new RegExp(`\\${external_path_.sep}`, 'g'), '/')}"`;
 }
 // Common function for extractTar and listTar to get the compression method
 function getDecompressionProgram(tarPath, compressionMethod, archivePath) {
@@ -206498,7 +211763,7 @@ function getDecompressionProgram(tarPath, compressionMethod, archivePath) {
                     ? [
                         'zstd -d --long=30 --force -o',
                         TarFilename,
-                        archivePath.replace(new RegExp(`\\${external_path_.sep}`, 'g'), '/')
+                        quoteAbsolutePath(archivePath)
                     ]
                     : [
                         '--use-compress-program',
@@ -206506,11 +211771,7 @@ function getDecompressionProgram(tarPath, compressionMethod, archivePath) {
                     ];
             case CompressionMethod.ZstdWithoutLong:
                 return BSD_TAR_ZSTD
-                    ? [
-                        'zstd -d --force -o',
-                        TarFilename,
-                        archivePath.replace(new RegExp(`\\${external_path_.sep}`, 'g'), '/')
-                    ]
+                    ? ['zstd -d --force -o', TarFilename, quoteAbsolutePath(archivePath)]
                     : ['--use-compress-program', tar_IS_WINDOWS ? '"zstd -d"' : 'unzstd'];
             default:
                 return ['-z'];
@@ -206570,11 +211831,34 @@ function execCommands(commands, cwd) {
         }
     });
 }
+function execReadCommands(archivePath, compressionMethod, type) {
+    return tar_awaiter(this, void 0, void 0, function* () {
+        const { commands, requiresTempDirectory } = yield getCommands(compressionMethod, type, archivePath);
+        // The Windows BSD-tar fallback decompresses into cache.tar before reading
+        // it. Isolate that intermediate for each list/extract operation, including
+        // debug listings during saves.
+        const tempDirectory = requiresTempDirectory
+            ? yield createTempDirectory()
+            : undefined;
+        try {
+            yield execCommands(commands, tempDirectory);
+        }
+        finally {
+            if (tempDirectory) {
+                try {
+                    yield rmRF(tempDirectory);
+                }
+                catch (error) {
+                    core_debug(`Failed to delete temporary tar directory: ${error}`);
+                }
+            }
+        }
+    });
+}
 // List the contents of a tar
 function listTar(archivePath, compressionMethod) {
     return tar_awaiter(this, void 0, void 0, function* () {
-        const commands = yield getCommands(compressionMethod, 'list', archivePath);
-        yield execCommands(commands);
+        yield execReadCommands(archivePath, compressionMethod, 'list');
     });
 }
 // Extract a tar
@@ -206583,8 +211867,7 @@ function extractTar(archivePath, compressionMethod) {
         // Create directory to extract tar into
         const workingDirectory = getWorkingDirectory();
         yield mkdirP(workingDirectory);
-        const commands = yield getCommands(compressionMethod, 'extract', archivePath);
-        yield execCommands(commands);
+        yield execReadCommands(archivePath, compressionMethod, 'extract');
     });
 }
 // Create a tar
@@ -206592,7 +211875,7 @@ function createTar(archiveFolder, sourceDirectories, compressionMethod) {
     return tar_awaiter(this, void 0, void 0, function* () {
         // Write source directories to manifest.txt to avoid command length limits
         (0,external_fs_.writeFileSync)(external_path_.join(archiveFolder, ManifestFilename), sourceDirectories.join('\n'));
-        const commands = yield getCommands(compressionMethod, 'create');
+        const { commands } = yield getCommands(compressionMethod, 'create');
         yield execCommands(commands, archiveFolder);
     });
 }
@@ -207704,7 +212987,7 @@ async function launchServer(devRun) {
         // See: https://nodejs.org/docs/latest-v16.x/api/child_process.html#optionsdetached
         const out = (0,external_fs_.openSync)(serverLogFile, 'a');
         const err = (0,external_fs_.openSync)(serverLogFile, 'a');
-        const child = (0,external_child_process_namespaceObject.spawn)(process.argv[0], [process.argv[1], '--server'], {
+        const child = (0,external_child_process_.spawn)(process.argv[0], [process.argv[1], '--server'], {
             detached: true,
             stdio: ['ignore', out, err]
         });
