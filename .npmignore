@@ -14,7 +14,8 @@ node_modules/
 package-lock.json
 
 # Development tooling
-eslint.config.mjs
+.oxlintrc.json
+vitest.config.ts
 .prettierrc.json
 .prettierignore
 .releaserc.json
@@ -33,6 +34,7 @@ turbo.json
 *.spec.js
 *.spec.ts
 __tests__/
+__mocks__/
 test/
 tests/
 coverage/
@@ -81,6 +83,6 @@ Thumbs.db
 
 dist/setup/
 dist/post/
-dist/cli/index.js.map
+dist/cli/main.js.map
 action.yml
 .env.example
