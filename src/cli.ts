@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import { config } from 'dotenv'
 import { server } from './lib/server'
 import { killServer, launchServer } from './lib/server/utils'
