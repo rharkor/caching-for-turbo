@@ -11,6 +11,11 @@
     {
       "matchDepTypes": ["devDependencies"],
       "automerge": true
+    },
+    {
+      "description": "Hold the changelog preset at v9: v10 needs conventional-changelog-writer@9, which semantic-release plugins do not use yet",
+      "matchPackageNames": ["conventional-changelog-conventionalcommits"],
+      "allowedVersions": "<10"
     }
   ],
   "platformAutomerge": true
