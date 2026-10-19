@@ -1,22 +1,15 @@
-import {
-  describe,
-  it,
-  expect,
-  beforeEach,
-  afterEach,
-  jest
-} from '@jest/globals'
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import { Readable } from 'node:stream'
 import { mkdtempSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 
-jest.mock('@/lib/core', () => ({
+vi.mock('@/lib/core', () => ({
   core: {
-    info: jest.fn(),
-    error: jest.fn(),
-    warning: jest.fn(),
-    getInput: jest.fn(() => '')
+    info: vi.fn(),
+    error: vi.fn(),
+    warning: vi.fn(),
+    getInput: vi.fn(() => '')
   }
 }))
 
@@ -28,7 +21,7 @@ describe('getCacheClient', () => {
     process.env.ACTIONS_CACHE_URL = 'https://example.com'
     process.env.ACTIONS_RUNTIME_TOKEN = 'token'
     process.env.RUNNER_TEMP = tempDir
-    jest.resetModules()
+    vi.resetModules()
   })
 
   afterEach(() => {
@@ -81,8 +74,8 @@ describe('getCacheClient', () => {
     const { getCacheClient } = await import('@/lib/providers/cache/utils')
     saveCache.mockReset()
     saveCache.mockResolvedValueOnce(-1).mockResolvedValueOnce(42)
-    jest.mocked(core.warning).mockClear()
-    jest.mocked(core.info).mockClear()
+    vi.mocked(core.warning).mockClear()
+    vi.mocked(core.info).mockClear()
 
     const client = getCacheClient()
     await client.save('turbogha_retry', Readable.from(Buffer.from('bytes')))
@@ -100,8 +93,8 @@ describe('getCacheClient', () => {
     const { getCacheClient } = await import('@/lib/providers/cache/utils')
     saveCache.mockReset()
     saveCache.mockResolvedValue(-1)
-    jest.mocked(core.warning).mockClear()
-    jest.mocked(core.info).mockClear()
+    vi.mocked(core.warning).mockClear()
+    vi.mocked(core.info).mockClear()
 
     const client = getCacheClient()
     await client.save('turbogha_fail', Readable.from(Buffer.from('bytes')))

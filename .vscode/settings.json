@@ -1,17 +1,17 @@
 {
   "[javascript]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[markdown]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

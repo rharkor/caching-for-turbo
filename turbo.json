@@ -2,11 +2,11 @@
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
     "test-build": {
-      "inputs": ["src"],
+      "inputs": ["src", "script/build.ts"],
       "outputs": ["dist"]
     },
     "test-unit": {
-      "inputs": ["src", "__tests__", "__mocks__", "jest.config.ts"]
+      "inputs": ["src", "__tests__", "__mocks__", "vitest.config.ts"]
     }
   }
 }

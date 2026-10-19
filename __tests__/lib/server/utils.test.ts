@@ -4,7 +4,7 @@
  * readActualPort accepts optional overrides for serverPort and serverPortFile,
  * so we can test the real export directly without module mocking.
  */
-import { describe, it, expect, beforeEach, afterEach } from '@jest/globals'
+import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import { mkdtempSync, writeFileSync, rmSync } from 'fs'
 import { join } from 'path'
 import { tmpdir } from 'os'

@@ -40,6 +40,10 @@ jobs:
         id: npm-lint
         run: npm run lint
 
+      - name: Typecheck
+        id: npm-typecheck
+        run: npm run typecheck
+
   test-action:
     name: GitHub Actions Test (Linux)
     runs-on: ubuntu-latest

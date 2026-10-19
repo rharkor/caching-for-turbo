@@ -1,7 +1,7 @@
 import { getTracker } from './tracker'
 
 export const timingProvider = <
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // oxlint-disable-next-line typescript/no-explicit-any
   F extends (...args: any[]) => Promise<any>
 >(
   name: keyof ReturnType<typeof getTracker>,

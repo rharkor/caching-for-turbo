@@ -1,8 +1,8 @@
-import { jest } from '@jest/globals'
+import { vi } from 'vitest'
 
-export const getInput = jest.fn().mockReturnValue('')
-export const setFailed = jest.fn()
-export const exportVariable = jest.fn()
-export const info = jest.fn()
-export const error = jest.fn()
-export const debug = jest.fn()
+export const getInput = vi.fn().mockReturnValue('')
+export const setFailed = vi.fn()
+export const exportVariable = vi.fn()
+export const info = vi.fn()
+export const error = vi.fn()
+export const debug = vi.fn()
