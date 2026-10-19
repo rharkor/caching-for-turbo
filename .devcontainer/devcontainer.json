@@ -1,6 +1,6 @@
 {
   "name": "GitHub Actions (TypeScript)",
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:24",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:26",
   "postCreateCommand": "npm install",
   "customizations": {
     "codespaces": {
@@ -10,15 +10,14 @@
       "extensions": [
         "bierner.markdown-preview-github-styles",
         "davidanson.vscode-markdownlint",
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode",
+        "oxc.oxc-vscode",
         "github.copilot",
         "github.copilot-chat",
         "github.vscode-github-actions",
         "github.vscode-pull-request-github",
         "me-dutour-mathieu.vscode-github-actions",
         "redhat.vscode-yaml",
-        "rvest.vs-code-prettier-eslint",
+        "esbenp.prettier-vscode",
         "yzhang.markdown-all-in-one"
       ],
       "settings": {

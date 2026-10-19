@@ -1,7 +1,7 @@
-import { jest } from '@jest/globals'
+import { vi } from 'vitest'
 
 export const restoreCache =
-  jest.fn<
+  vi.fn<
     (
       paths: string[],
       primaryKey: string,
@@ -10,4 +10,4 @@ export const restoreCache =
   >()
 
 export const saveCache =
-  jest.fn<(paths: string[], key: string) => Promise<number>>()
+  vi.fn<(paths: string[], key: string) => Promise<number>>()

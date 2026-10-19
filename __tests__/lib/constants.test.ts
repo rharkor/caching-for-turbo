@@ -1,12 +1,5 @@
 import { join } from 'node:path'
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  jest
-} from '@jest/globals'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 describe('getCacheKey', () => {
   it('appends artifact tag when signing is enabled', async () => {
@@ -27,7 +20,7 @@ describe('getTempCachePath', () => {
 
   beforeEach(() => {
     process.env.RUNNER_TEMP = '/tmp/runner-temp'
-    jest.resetModules()
+    vi.resetModules()
   })
 
   afterEach(() => {
@@ -36,7 +29,7 @@ describe('getTempCachePath', () => {
     } else {
       process.env.RUNNER_TEMP = originalRunnerTemp
     }
-    jest.resetModules()
+    vi.resetModules()
   })
 
   it('base64url-encodes artifact tags so slashes do not create subdirectories', async () => {
