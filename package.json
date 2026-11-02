@@ -78,7 +78,7 @@
     "tsx": "^4.15.4",
     "turbo": "^2.0.3",
     "typescript": "^7.0.0",
-    "vitest": "5.0.5"
+    "vitest": "5.1.0"
   },
   "packageManager": "npm@12.2.1",
   "publishConfig": {
