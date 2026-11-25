@@ -28,7 +28,42 @@
     "node": ">=20"
   },
   "license": "MIT",
-  "packageManager": "npm@12.2.0",
+  "dependencies": {
+    "@actions/cache": "^6.0.0",
+    "@actions/core": "^3.0.0",
+    "@aws-sdk/client-s3": "^3.0.0",
+    "@aws-sdk/lib-storage": "^3.0.0",
+    "@rharkor/logger": "^1.3.1",
+    "fastify": "^5.0.0",
+    "filesize-parser": "^1.5.1",
+    "parse-duration": "^2.1.4",
+    "stream-to-promise": "^3.0.0",
+    "wait-on": "^9.0.0"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^7.0.0",
+    "@semantic-release/commit-analyzer": "^13.0.0",
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^11.0.0",
+    "@semantic-release/github": "^12.0.0",
+    "@semantic-release/npm": "^13.0.0",
+    "@semantic-release/release-notes-generator": "^14.0.0",
+    "@types/node": "^24.0.0",
+    "@types/stream-to-promise": "^2.2.4",
+    "@types/wait-on": "^5.3.4",
+    "conventional-changelog-conventionalcommits": "^9.3.1",
+    "dotenv": "^18.0.0",
+    "esbuild": "0.28.2",
+    "make-coverage-badge": "^1.2.0",
+    "oxlint": "1.95.0",
+    "prettier": "^3.8.0",
+    "semantic-release": "^25.0.0",
+    "tsx": "^4.15.4",
+    "turbo": "^2.0.3",
+    "typescript": "^7.0.0",
+    "vitest": "5.1.1"
+  },
+  "packageManager": "npm@12.2.3",
   "publishConfig": {
     "access": "public"
   }
