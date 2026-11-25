@@ -72,15 +72,15 @@
     "dotenv": "^18.0.0",
     "esbuild": "0.28.2",
     "make-coverage-badge": "^1.2.0",
-    "oxlint": "1.88.0",
+    "oxlint": "1.95.0",
     "prettier": "^3.8.0",
     "semantic-release": "^25.0.0",
     "tsx": "^4.15.4",
     "turbo": "^2.0.3",
     "typescript": "^7.0.0",
-    "vitest": "5.0.5"
+    "vitest": "5.1.1"
   },
-  "packageManager": "npm@12.2.0",
+  "packageManager": "npm@12.2.3",
   "publishConfig": {
     "access": "public"
   }
