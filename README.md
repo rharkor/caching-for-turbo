@@ -96,8 +96,14 @@ the following step **before** you run `turbo build`:
 
 ```yaml
 - name: Cache for Turbo
-  uses: rharkor/caching-for-turbo@v2.3.12
+  uses: rharkor/caching-for-turbo@v2
 ```
+
+`@v2` always points to the latest 2.x release, so you get fixes without editing
+your workflow. To pin an exact version instead, use a release tag such as
+`@v2.5.3` (see
+[releases](https://github.com/rharkor/caching-for-turbo/releases)) or a commit
+SHA.
 
 This GitHub Action facilitates:
 
@@ -257,7 +263,7 @@ Example S3 configuration:
 
 ```yaml
 - name: Cache for Turbo
-  uses: rharkor/caching-for-turbo@v2.3.12
+  uses: rharkor/caching-for-turbo@v2
   with:
     provider: s3
     s3-bucket: my-turbo-cache-bucket
@@ -293,7 +299,7 @@ Example with cleanup configuration:
 
 ```yaml
 - name: Cache for Turbo
-  uses: rharkor/caching-for-turbo@v2.3.12
+  uses: rharkor/caching-for-turbo@v2
   with:
     provider: s3
     s3-bucket: my-turbo-cache-bucket
