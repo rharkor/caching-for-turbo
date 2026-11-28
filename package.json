@@ -74,7 +74,7 @@
     "make-coverage-badge": "^1.2.0",
     "oxlint": "1.95.0",
     "prettier": "^3.8.0",
-    "semantic-release": "^25.0.0",
+    "semantic-release": "^26.0.0",
     "tsx": "^4.15.4",
     "turbo": "^2.0.3",
     "typescript": "^7.0.0",
